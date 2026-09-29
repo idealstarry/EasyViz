@@ -18,20 +18,18 @@ font_manager.findfont('Arial', fallback_to_default=False)
 plt.rcParams.update({'font.family':'Arial','font.size':8,'pdf.fonttype':42,'svg.fonttype':'none'})
 
 
-def card(entries, filename, title, subtitle):
-    height = 28 + 21 * len(entries)
+def card(entries, filename):
+    height = 8 + 21 * len(entries)
     fig = plt.figure(figsize=(210/25.4, height/25.4), facecolor='white')
     def text(x, y, label, **kwargs):
         fig.text(x/210, y/height, label, **kwargs)
-    text(8, height-9, title, fontsize=13, weight='bold', color='#233641')
-    text(8, height-15, subtitle, fontsize=8, color='#536771')
     for i, (name, entry) in enumerate(entries):
-        y = height-35-i*21
-        text(8, y+5, entry.get('display_name',name), fontsize=9, weight='bold', color='#233641')
-        text(8, y, name, fontsize=7, color='#536771')
+        y = height-12-i*21
+        text(4, y+5, entry.get('display_name',name), fontsize=9, weight='bold', color='#233641')
+        text(4, y, name, fontsize=7, color='#536771')
         source = entry.get('source_short',entry.get('type',''))
-        text(8, y-4.5, source, fontsize=7, color='#536771')
-        ax=fig.add_axes([76/210,(y-1)/height,126/210,8/height]);ax.set_axis_off()
+        text(4, y-4.5, source, fontsize=7, color='#536771')
+        ax=fig.add_axes([72/210,(y-1)/height,134/210,8/height]);ax.set_axis_off()
         if entry['type']=='categorical':
             colors=entry['colors']
             for j,c in enumerate(colors):
@@ -44,7 +42,7 @@ def card(entries, filename, title, subtitle):
             labels=('low','center','high') if entry['type']=='diverging' else ('low','','high')
             for x,label in zip((0,.5,1),labels):
                 ax.text(x,-.58,label,ha='center',va='center',fontsize=7,color='#536771',transform=ax.transAxes)
-    text(8, 5, 'Categorical swatches preserve sampled colors; continuous ramps are labeled adaptations.',fontsize=7,color='#536771')
+    text(4, 5, 'Categorical swatches preserve sampled colors; continuous ramps are labeled adaptations.',fontsize=7,color='#536771')
     fig.savefig(FOLDER / f'{filename}.png',dpi=300,facecolor='white')
     fig.savefig(FOLDER / f'{filename}.pdf',facecolor='white')
     plt.close(fig)
@@ -52,6 +50,6 @@ def card(entries, filename, title, subtitle):
 
 featured=[(k,v) for k,v in PALETTES.items() if v.get('collection')=='literature']
 if featured:
-    card(featured,'preview','EasyViz · Literature colors','Brighter coordinated choices, with figure-level provenance. Read palettes.md for source roles and limits.')
-card(list(PALETTES.items()),'all-presets','EasyViz · All color presets','Literature-derived choices first; established and legacy options remain available for explicit use.')
+    card(featured,'preview')
+card(list(PALETTES.items()),'all-presets')
 print(f'Rendered {len(featured)} literature choices and {len(PALETTES)} total presets.')
