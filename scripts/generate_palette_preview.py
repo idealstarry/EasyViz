@@ -45,7 +45,7 @@ def card(entries, filename, title, subtitle):
             for x,label in zip((0,.5,1),labels):
                 ax.text(x,-.58,label,ha='center',va='center',fontsize=7,color='#536771',transform=ax.transAxes)
     text(8, 5, 'Categorical swatches preserve sampled colors; continuous ramps are labeled adaptations.',fontsize=7,color='#536771')
-    fig.savefig(FOLDER / f'{filename}.png',dpi=180,facecolor='white')
+    fig.savefig(FOLDER / f'{filename}.png',dpi=300,facecolor='white')
     fig.savefig(FOLDER / f'{filename}.pdf',facecolor='white')
     plt.close(fig)
 
