@@ -6,8 +6,6 @@
 
 **Scientific panels, ready for your manuscript.**
 
-[Examples](#examples) · [Use](#use) · [Setup](#setup) · [QA](evals/release-qa/README.md)
-
 </div>
 
 EasyViz helps an Agent turn prepared source data into clear scientific figures. Choose a chart or supply a reference, select a palette and export format, and get a reproducible panel at its final manuscript size.
