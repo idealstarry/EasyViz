@@ -1,4 +1,4 @@
-# EasyViz 0.1.1
+# EasyViz 0.1.2
 
 Create and reproduce scientific plots from source data. Export individual manuscript panels at their final physical size so the user can assemble them without resizing text.
 

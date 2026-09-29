@@ -18,6 +18,7 @@ if TARGET.exists():
     shutil.rmtree(TARGET)
 TARGET.mkdir()
 shutil.copytree(ROOT / 'plugins/easyviz/.codex-plugin', TARGET / '.codex-plugin')
+shutil.copytree(ROOT / 'plugins/easyviz/assets', TARGET / 'assets')
 shutil.copytree(ROOT / 'skills', TARGET / 'skills', ignore=shutil.ignore_patterns('__pycache__','.DS_Store','*.pyc'))
 shutil.copy2(ROOT / 'plugins/easyviz/README.md', TARGET / 'README.md')
 for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):

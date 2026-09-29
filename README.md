@@ -1,10 +1,10 @@
 <div align="center">
 
+<img src="plugins/easyviz/assets/logo.svg" alt="EasyViz logo" width="96" height="96">
+
 # EasyViz
 
 **Scientific panels, ready for your manuscript.**
-
-Source data · Create & reproduce · Consistent typography · Individual exports
 
 [Examples](#examples) · [Use](#use) · [Setup](#setup) · [QA](evals/release-qa/README.md)
 
