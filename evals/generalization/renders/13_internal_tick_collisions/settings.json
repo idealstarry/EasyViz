@@ -1,0 +1,285 @@
+{
+  "chart": "heatmap",
+  "fields": {
+    "row": "row",
+    "column": "column",
+    "value": "value"
+  },
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 88.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 8.0,
+    "panel": 8.0
+  },
+  "palette": "okabe-ito",
+  "colormap": "viridis",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "options": {
+    "x_rotation": 0
+  },
+  "resolved_colors": {},
+  "input_file": "data.csv",
+  "input_sha256": "617e23967933e533d98a1529e424941c560252db94d1c2c825af4a5190625b4d",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "5a973ebcd461fcd25f5bf9509b91fb7e8998796058f011700eb66283bc8c8ba9",
+    "legend_helper_sha256": "24e85216725ee68d21def0206a3656ba0a87d7c1de7e4580432a0d39116f7a2a"
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "colorbar",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "bottom",
+          "orientation": "horizontal",
+          "rect_mm": [
+            33.68000000000001,
+            11.951805555555552,
+            18.000000000000004,
+            2.000000000000001
+          ],
+          "length_mm": 18.000000000000004,
+          "thickness_mm": 2.000000000000001,
+          "ticks": [
+            0.0090860503411589,
+            0.4876565887064542,
+            0.9662271270717494
+          ],
+          "font_size_pt": 8.0
+        },
+        "bbox_mm": [
+          29.314375000000005,
+          4.536436631944442,
+          26.731250000000014,
+          9.415368923611112
+        ],
+        "plot_bbox_mm": [
+          19.360000000000003,
+          21.119999999999997,
+          46.64000000000001,
+          58.080000000000005
+        ],
+        "canvas_mm": [
+          88.0,
+          88.0
+        ],
+        "area_fraction_of_plot": 0.09291192537237909,
+        "width_fraction_of_plot": 0.5731400085763295,
+        "height_fraction_of_plot": 0.16211034648090755,
+        "area_fraction_of_canvas": 0.03250059149525821,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.22595806256034337,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          85.99999999999999,
+          12.951805555555552
+        ],
+        "key_bboxes_mm": [],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "mapped_range": [
+          0.0090860503411589,
+          0.9662271270717494
+        ],
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 20.328,
+            "bbox_mm": [
+              71.90561197916668,
+              57.246190538194455,
+              15.488934461805554,
+              22.985684461805544
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              71.90561197916668,
+              53.57419053819444,
+              15.488934461805554,
+              26.65768446180556
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              71.90561197916668,
+              49.57419053819444,
+              15.488934461805554,
+              30.657684461805562
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 18.0,
+            "bbox_mm": [
+              29.314375000000005,
+              81.2,
+              26.731250000000014,
+              8.821434461805547
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              26.314375,
+              81.2,
+              32.73125,
+              8.821434461805547
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              24.314375000000002,
+              81.2,
+              36.731249999999996,
+              8.821434461805547
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 18.0,
+            "bbox_mm": [
+              29.314375000000005,
+              4.536436631944442,
+              26.731250000000014,
+              9.415368923611112
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              26.314375,
+              4.536436631944442,
+              32.73125,
+              9.415368923611112
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              24.314375000000002,
+              4.536436631944442,
+              36.731249999999996,
+              9.415368923611112
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 251.68458053927964,
+      "sum_envelope_area_mm2": 251.68458053927964,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.09291192537237909,
+      "area_fraction_of_canvas": 0.03250059149525821,
+      "enclosing_bbox_mm": [
+        29.314375000000005,
+        4.536436631944442,
+        26.731250000000014,
+        9.415368923611112
+      ],
+      "max_individual_width_mm": 26.73125000000001,
+      "max_individual_height_mm": 9.41536892361111,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios are diagnostics, not universal publication limits. Check other annotation collisions visually."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

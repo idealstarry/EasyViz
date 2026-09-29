@@ -1,0 +1,95 @@
+{
+  "case": "massier-bmi-violin",
+  "role": "independent implementer",
+  "input_mode": "image-data",
+  "author_code_accessed": false,
+  "external_browsing_performed": false,
+  "other_example_implementation_accessed": false,
+  "original_provenance_paths_accessed": false,
+  "isolation": "instruction-based, not OS sandbox",
+  "prior_familiarity": "No prior reproduction or author implementation was supplied or inspected.",
+  "implementation": "Written independently using SciPy and Matplotlib; no reusable implementation template read.",
+  "files_read": [
+    {
+      "path": "AGENTS.md",
+      "purpose": "project instructions",
+      "sha256": "dfc430c4080e0869f093d3f38b9708b41c26178920d49eaa8443b6448e6b5413"
+    },
+    {
+      "path": "skills/easyviz/SKILL.md",
+      "purpose": "EasyViz workflow",
+      "sha256": "28a27eb1d1dc9e190c18bf815052d5dc418ea938a95b76a79472f748b06ce60d"
+    },
+    {
+      "path": "skills/easyviz/references/reproduce.md",
+      "purpose": "image-data reproduction and evidence rules",
+      "sha256": "4220547cc585f9f0a16a7ac24678631a361e7846cb3bf75bf34c7e2479d8ef67"
+    },
+    {
+      "path": "skills/easyviz/references/panel-layout.md",
+      "purpose": "fixed dimensions and font rules",
+      "sha256": "4c1989c87e7fc38bb214d8c2fd696965a97f9836049bcebbdf16df1b2bab9f57"
+    },
+    {
+      "path": "skills/easyviz/references/reference-spec.md",
+      "purpose": "adoption and evidence separation",
+      "sha256": "e9faa9e72fda86449cee9d4b311ecb59ea3a7b099a12695456b3d150d52c10a3"
+    },
+    {
+      "path": "skills/easyviz/references/visual-review.md",
+      "purpose": "review and correction criteria",
+      "sha256": "90aaf15d0944b757acab958de4f4dfe40d89cc52acfaf163103ca51066441656"
+    },
+    {
+      "path": "examples/blind-inputs/massier-bmi-violin/reference.png",
+      "purpose": "direct image inspection",
+      "sha256": "cb867fbcf25e57ae55e8a373f872b355a5aef9e5eec9b8a1aeb2ef9a035a7703"
+    },
+    {
+      "path": "examples/blind-inputs/massier-bmi-violin/reference-spec.json",
+      "purpose": "independent reader specification",
+      "sha256": "1c217a131a7a765fedbb95d62364d6941be0eec1829e040b8e70cef7d1554110"
+    },
+    {
+      "path": "examples/blind-inputs/massier-bmi-violin/request.md",
+      "purpose": "user requirements and caption evidence",
+      "sha256": "23df9f115fb8222c5b6f523146f027b3146b4321cf31b413d0778980a6ffcfde"
+    },
+    {
+      "path": "examples/blind-inputs/massier-bmi-violin/data-dictionary.md",
+      "purpose": "data meanings and original counts",
+      "sha256": "1eeea5aab3dafd55d8f085a5d74b483a475301c83562571b114c9c0548c715d8"
+    },
+    {
+      "path": "examples/blind-inputs/massier-bmi-violin/source-data.csv",
+      "purpose": "real participant BMI values",
+      "sha256": "7b74fb379e3ad6101a7ec81a641e1bc11c20e0812170d3f1857d72d3e0d41172"
+    }
+  ],
+  "runtime_support_accessed": [
+    "Python environment and installed package modules",
+    "System font inventory; resolved Arial font file"
+  ],
+  "own_output_files_read": [
+    "inputs/source-data.csv",
+    "settings.json",
+    "plot.py",
+    "panel.pdf",
+    "panel.svg",
+    "panel.png",
+    "qa.json",
+    "access-log.json"
+  ],
+  "input_copies": [
+    "inputs/data-dictionary.md",
+    "inputs/source-data.csv",
+    "inputs/reference.png",
+    "inputs/reference-spec.json",
+    "inputs/request.md"
+  ],
+  "artifact_relocation": {
+    "note": "Input directory moved after the recorded run; access entries retain their historical paths.",
+    "from": "examples/blind-inputs/massier-bmi-violin",
+    "to": "evals/reproduce-inputs/massier-bmi-violin"
+  }
+}

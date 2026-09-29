@@ -1,0 +1,225 @@
+{
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "author_code_accessed": false,
+  "inputs": {
+    "data": "source.csv",
+    "reference": "reference.png",
+    "request": "request.md",
+    "sha256": {
+      "source.csv": "9b67693ea18bcf591800fa89a0a994aa0f4a5c5b5fd4a1c1ef1e63cdb0e86d35",
+      "reference.png": "4faf034df66f6db27a30497058604b376dbbe222d5ded81d563237826214e31a",
+      "request.md": "a65c34b084b7b85907820aee328fa4f0fe2df7ad82d12b6cdf790cf6e78bce8d"
+    }
+  },
+  "layout": {
+    "width_mm": 180,
+    "height_mm": 125,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "plot_bbox_mm": [
+      62,
+      33,
+      90,
+      85
+    ],
+    "actual_font_path": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "actual_font_name": "Arial"
+  },
+  "data_mapping": {
+    "x": "marker",
+    "y": "population",
+    "size": "detected_fraction",
+    "color": "mean_scaled_expression",
+    "order": "first appearance for each dimension",
+    "aggregation": "none",
+    "missing": "absent source row => gray x; measured zero => zero-area blank",
+    "transformation": "complete population-marker grid without imputing measurements"
+  },
+  "statistics": {
+    "computed": false,
+    "reason": "No statistical layer requested; upstream summaries supplied."
+  },
+  "colors": {
+    "type": "linear blue-neutral-pink",
+    "stops": [
+      "#2581b9",
+      "#f7f8f9",
+      "#cc86b9"
+    ],
+    "limits": [
+      -2,
+      2
+    ],
+    "center": 0,
+    "source": "estimated from supplied reference colorbar pixels"
+  },
+  "marks": {
+    "shape": "circle",
+    "max_scatter_area_pt2": 64,
+    "area_formula": "s = 64 * detected_fraction",
+    "geometric_disk_area_formula_pt2": "pi / 4 * s; strictly proportional to detected_fraction",
+    "outline": "none",
+    "missing_shape": "x",
+    "missing_area_pt2": 12,
+    "missing_stroke_pt": 0.6,
+    "missing_color": "#70777e",
+    "zero": "no visible mark; source expression preserved"
+  },
+  "group_lines": {
+    "after_populations": [
+      "Nonclassical monocytes",
+      "Inflammatory macrophages"
+    ],
+    "color": "#d9e0e8",
+    "width_pt": 0.6,
+    "new_population_annotations": []
+  },
+  "guides": {
+    "colorbar_rect_mm": [
+      161.5,
+      49.5,
+      2.7,
+      42
+    ],
+    "colorbar_ticks": [
+      -2,
+      0,
+      2
+    ],
+    "colorbar_label": "Scaled expression",
+    "size_values": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "size_label": "Detected (%)",
+    "size_area_formula": "same s = 64 * value",
+    "zero_swatch": "outlined empty cell, separate from quantitative circle scale",
+    "zero_label": "0 (measured)",
+    "missing_label": "Not measured"
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "intentional_differences": [
+    "Eight population rows follow source first appearance; new rows have no invented biological annotations.",
+    "Retain only the two original separators after named populations.",
+    "Add gray x for absent combinations and an empty-cell key for measured zeros.",
+    "Legend and margins adapted for final physical size and longer population labels.",
+    "Palette sampled approximately; source numeric values replace reference values."
+  ],
+  "review": {
+    "reading_role": "main-agent fallback",
+    "independent_reader_attempt": "failed: agent thread limit reached"
+  },
+  "order": {
+    "populations": [
+      "Classical monocytes",
+      "Nonclassical monocytes",
+      "Resident macrophages",
+      "Inflammatory macrophages",
+      "DC2",
+      "Activated DC",
+      "Interferon-responsive Mo",
+      "Lipid-associated macrophages"
+    ],
+    "markers": [
+      "LYZ",
+      "S100A8",
+      "FCGR3A",
+      "HLA-DRA",
+      "C1QC",
+      "APOE",
+      "IL1B",
+      "CXCL10"
+    ]
+  },
+  "legend_layout": {
+    "plot_bbox_mm": [
+      62.0,
+      33.0,
+      90.0,
+      85.0
+    ],
+    "complete_bounds_mm": {
+      "color": [
+        161.5,
+        47.8787,
+        12.009,
+        44.6486
+      ],
+      "size": [
+        97.2944,
+        5.0889,
+        48.2776,
+        8.2354
+      ],
+      "presence": [
+        20.5,
+        4.8,
+        22.8567,
+        9.5243
+      ],
+      "combined_envelope": [
+        20.5,
+        4.8,
+        153.009,
+        87.7273
+      ]
+    },
+    "reserved_regions_mm": {
+      "color": [
+        159,
+        45,
+        20,
+        53
+      ],
+      "size": [
+        94,
+        2,
+        61,
+        14
+      ],
+      "presence": [
+        18,
+        2,
+        35,
+        14
+      ]
+    },
+    "relative_to_plot": {
+      "color": {
+        "width_ratio": 0.1334337094907408,
+        "height_ratio": 0.5252775224673202,
+        "envelope_area_ratio": 0.07008972833492047
+      },
+      "size": {
+        "width_ratio": 0.5364172839506174,
+        "height_ratio": 0.09688712724673204,
+        "envelope_area_ratio": 0.051971929647469856
+      },
+      "presence": {
+        "width_ratio": 0.253962962962963,
+        "height_ratio": 0.11205052593954246,
+        "envelope_area_ratio": 0.028456683569164552
+      },
+      "combined": {
+        "width_ratio": 1.7001003761574078,
+        "height_ratio": 1.03208620557598,
+        "envelope_area_ratio": 1.7546501463265958
+      }
+    },
+    "text_pt": 8,
+    "size_areas_pt2": [
+      16,
+      32,
+      64
+    ],
+    "combined_envelope_note": "Envelope spans separated guides and includes empty space; judge individual guides and actual visual weight."
+  }
+}

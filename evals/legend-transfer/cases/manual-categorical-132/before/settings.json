@@ -1,0 +1,93 @@
+{
+  "chart": "scatter",
+  "layout": {
+    "width_mm": 132.0,
+    "height_mm": 96.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.72
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "score_x",
+    "y": "score_y",
+    "group": "arm",
+    "unit": "unit"
+  },
+  "colors": {
+    "G1": "#2581B9",
+    "G2": "#DF9A3C",
+    "G3": "#1AA781",
+    "G4": "#D76F3B"
+  },
+  "order": {
+    "group": [
+      "G1",
+      "G2",
+      "G3",
+      "G4"
+    ]
+  },
+  "labels": {
+    "x": "Score X",
+    "y": "Score Y"
+  },
+  "options": {
+    "point_area_pt2": 12,
+    "alpha": 1,
+    "grid": false
+  },
+  "legends": {
+    "categorical": {
+      "position": "manual",
+      "anchor_mm": [
+        18,
+        76
+      ],
+      "loc": "lower left",
+      "ncol": 2
+    }
+  },
+  "resolved_colors": {
+    "G1": "#2581B9",
+    "G2": "#DF9A3C",
+    "G3": "#1AA781",
+    "G4": "#D76F3B"
+  },
+  "input_file": "source.csv",
+  "input_sha256": "b99aec2bcd827dcf8b8c1dae43c481250277ce11d16415ea4ccf91e79f06134d",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "e05e77eabd1aec98919330b013dfb13c1c04158e1448324a696d9514c78bd087"
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "width_mm": 180,
+  "height_mm": 120,
+  "font_family": "Arial",
+  "font_size_pt": 8,
+  "dpi": 300,
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "dot_area_max_pt2": 88,
+  "dot_count_scale_max": 2700,
+  "color_range_percent": [
+    0,
+    40
+  ],
+  "color_stops": [
+    "#D3E6F1",
+    "#A8CDE3",
+    "#7CB3D5",
+    "#519AC7",
+    "#2581B9"
+  ],
+  "group_colors": {
+    "M2 macrophages": "#2581B9",
+    "Other macrophages": "#DF9A3C",
+    "Monocytes": "#1AA781",
+    "DC": "#CC86B9"
+  },
+  "depot_order": [
+    "sc",
+    "om",
+    "pvat"
+  ],
+  "depot_display": {
+    "sc": "sc",
+    "om": "om",
+    "pvat": "pv"
+  },
+  "pooled_count_axis_max": 4000,
+  "palette_family": "notch2-balanced",
+  "palette_preset": "notch2-blue",
+  "size_legend_color": "#2581B9",
+  "palette_source": "https://www.nature.com/articles/s41467-024-53700-9",
+  "palette_status": "Categorical swatches sampled from one paper figure; blue sequential ramp explicitly derived with a 20% endpoint tint to keep borderless low-value marks visible.",
+  "panel_title": null,
+  "caption_file": "caption.md",
+  "mark_style": {
+    "outline": "none",
+    "edge_color": "none",
+    "edge_width_pt": 0
+  },
+  "categorical_palette": "notch2-balanced",
+  "row_pitch": 4.8,
+  "legends": {
+    "categorical": {
+      "position": "manual",
+      "anchor_mm": [
+        6,
+        17
+      ],
+      "loc": "upper left",
+      "ncol": 2
+    },
+    "size": {
+      "position": "manual",
+      "anchor_mm": [
+        66,
+        17
+      ],
+      "loc": "upper left",
+      "ncol": 3
+    },
+    "colorbar": {
+      "position": "manual",
+      "rect_mm": [
+        128,
+        11,
+        32,
+        1.4
+      ],
+      "orientation": "horizontal",
+      "ticks": [
+        0,
+        20,
+        40
+      ],
+      "label_position": "top"
+    }
+  }
+}

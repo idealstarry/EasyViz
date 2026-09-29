@@ -1,0 +1,9 @@
+# Myeloid subtype composition across human adipose depots
+
+Composition of 16 myeloid subtypes across subcutaneous (sc), omental (om), and perivascular (pv) white adipose tissue, using the 48 subtype–depot observations released by Massier et al. Dot area is proportional to the number of source objects in each subtype and depot. Color indicates the subtype's percentage of all myeloid objects in the same depot. Column denominators are 11,470 sc, 8,563 om, and 2,506 pv objects, totaling 22,539 objects. Aligned bars and numbers give the pooled count of each subtype across depots.
+
+Subtype descriptors and marker examples follow the publication. Marker labels are descriptive annotations; this source table does not measure their expression. The colored annotation strip groups the published descriptors into M2 macrophages, other macrophages, monocytes, and dendritic cells for display. No new clustering or differential-abundance analysis was performed. Counts describe pooled objects, not independent subjects, and no subject-level statistical inference is implied.
+
+LAM, lipid-associated macrophages; MMe, metabolic-regulated macrophages; Mox, redox-regulatory metabolic macrophages; Mo, monocytes; DC2, dendritic cells of subtype 2.
+
+Data and descriptors: Massier et al., *An integrated single cell and spatial transcriptomic map of human white adipose tissue*, Nature Communications 14, 1438 (2023), [doi:10.1038/s41467-023-36983-2](https://doi.org/10.1038/s41467-023-36983-2), Figure 2d and Figure 2f. The chart uses the authors' [released source data](https://data.mendeley.com/datasets/y3pxvr4xbf/2) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), with a new chart design, editorial row grouping, selected marker examples, and explicit percentage calculations. This caption is provided separately for manuscript assembly; the panel has no assigned figure letter.

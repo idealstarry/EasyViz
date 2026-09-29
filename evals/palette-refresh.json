@@ -1,0 +1,115 @@
+{
+  "status": "pass",
+  "date": "2026-09-29",
+  "cases": {
+    "annotated-inhibition": {
+      "status": "pass",
+      "unchanged_data_sha256": {
+        "plotting-data.csv": "644a4c6fc12bcf8c7cbc0bc478aff12434995ebfea20d15a27c6686d60cfe668",
+        "summary-data.csv": "f7a2bb0d2373e5a28afc712f7d83f86444cce1b3354a9ea1d0d9dc1d56a266cf"
+      },
+      "unchanged_settings": [
+        "width_mm",
+        "height_mm",
+        "font_size_pt",
+        "dpi",
+        "selection_count",
+        "color_limits",
+        "receiver_mean_limits",
+        "sender_mean_limits"
+      ],
+      "pdf_mm": [
+        179.99999491373697,
+        159.99999906751842
+      ],
+      "all_text_pt": 8,
+      "removed_text_absent": [
+        "Inhibition profiles",
+        "all 76 receivers",
+        "Full-matrix scale"
+      ],
+      "essential_labels_present": [
+        "Receiver mean GII (min)",
+        "Sender mean (min)",
+        "Pairwise GII (min)",
+        "Genome analyzed"
+      ],
+      "external_caption": "caption.md",
+      "rendered_png_sha256": "676672e7231b92b600bb5437f6c41dde8acfb364f2a3bbe3f10fcb27e43e10b5"
+    },
+    "cell-atlas-dotplot": {
+      "status": "pass",
+      "unchanged_data_sha256": {
+        "plotted-data.csv": "b3e999625576abbab8bd1e992e369e6b1afc8b07deffb85823f4d6450e749647"
+      },
+      "unchanged_settings": [
+        "width_mm",
+        "height_mm",
+        "font_size_pt",
+        "dpi",
+        "dot_area_max_pt2",
+        "dot_count_scale_max",
+        "color_range_percent",
+        "pooled_count_axis_max"
+      ],
+      "pdf_mm": [
+        179.99999491373697,
+        119.99999660915799
+      ],
+      "all_text_pt": 8,
+      "removed_text_absent": [
+        "Myeloid atlas across human adipose depots",
+        "16 subtypes",
+        "22,539 pooled objects",
+        "sc: subcutaneous",
+        "Counts describe objects, not subjects"
+      ],
+      "essential_labels_present": [
+        "Subtype",
+        "Reported marker examples",
+        "Within-depot composition",
+        "Pooled n",
+        "Dot area: object count",
+        "within-depot share (%)"
+      ],
+      "external_caption": "caption.md",
+      "rendered_png_sha256": "5dbdffaff19d5b5f00692a48d8ffa1b81d0d68e13374dc6a8c21ddce9289f8f5"
+    }
+  },
+  "palettes": {
+    "preset_count": 12,
+    "new_literature_choices": 6,
+    "sequential_checks": {
+      "somerville-sky": {
+        "samples": 256,
+        "relative_luminance_monotonically_decreases": true,
+        "endpoints": [
+          0.9556259492770209,
+          0.30068204480094063
+        ]
+      },
+      "somerville-coral": {
+        "samples": 256,
+        "relative_luminance_monotonically_decreases": true,
+        "endpoints": [
+          0.9621935576849492,
+          0.3028171311357723
+        ]
+      },
+      "notch2-teal": {
+        "samples": 256,
+        "relative_luminance_monotonically_decreases": true,
+        "endpoints": [
+          0.9548931832432728,
+          0.29442024304104936
+        ]
+      }
+    }
+  },
+  "visual_review": {
+    "actual_pngs_inspected": true,
+    "independent_review": "palette_local inspected both current create panels and the palette card; no material clipping or collisions reported.",
+    "scope": "Visual inspection and luminance checks do not establish color-vision-deficiency safety."
+  },
+  "policy": "Extra titles, subtitles, overview text and narrative footnotes belong in external captions. Essential axes, legends, scale labels and data annotations remain. No fixed top-left title layout."
+}

@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "measurement_date": "2026-09-29",
+  "units": "PDF points, 1 pt = 1/72 inch in the inspected PDF page coordinate system",
+  "coordinate_origin": "top left",
+  "method": "Poppler full-page raster inspection, PyMuPDF crop inspection, vector/image bounding boxes and text spans. Reported plot/legend bounds combine manual scope selection with extracted primitives. They are approximate measurements of these source PDFs, not universal publication standards.",
+  "ratio_denominator": "Sum of declared axes field rectangle areas, excluding ticks, axis labels, titles, dendrograms and legend. If multiple independent axes share a legend, sum their separate field areas without inter-axis gaps. Somerville2A is one axes field with deliberate within-field group gaps.",
+  "font_caveat": "PDF text-span font sizes describe this source page. Raster crops do not establish author intended final export size. Outlined glyph ink heights are not font sizes; null means unavailable.",
+  "sources": {
+    "notch2-2024": {
+      "local_pdf": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Mayra. et al., NC, 2024/paper.pdf",
+      "title": "Induction of a distinct macrophage population and protection from lung injury and fibrosis by Notch2 blockade",
+      "doi": "10.1038/s41467-024-53700-9",
+      "url": "https://www.nature.com/articles/s41467-024-53700-9",
+      "sha256": "784302ece7c881a11d3260a911a69d4012f957cf535074e8dcb1348f72af7afb",
+      "page_size_pt": [
+        595.276,
+        790.866
+      ]
+    },
+    "somerville-2024": {
+      "local_pdf": "/Users/starry/Desktop/Cm/Viz_ref/Somerville et al., 2024/Somerville et al., 2024.pdf",
+      "title": "Genomic and phenotypic imprints of microbial domestication on cheese starter cultures",
+      "doi": "10.1038/s41467-024-52687-7",
+      "url": "https://www.nature.com/articles/s41467-024-52687-7",
+      "sha256": "9f2a39db451a63a721ac7c84d77578acdc008e513a293339154d148250a7e7af",
+      "page_size_pt": [
+        595.276,
+        790.866
+      ]
+    }
+  },
+  "panels": [
+    {
+      "id": "notch2-figure-2b",
+      "source": "notch2-2024",
+      "page_1based": 4,
+      "panel": "2b",
+      "chart": "three adjacent composition axes with one categorical legend",
+      "plot_field_bboxes_pt": [
+        [
+          364.88,
+          79.4,
+          414.64,
+          154.9
+        ],
+        [
+          425.09,
+          79.4,
+          474.85,
+          154.9
+        ],
+        [
+          484.32,
+          79.4,
+          534.08,
+          154.9
+        ]
+      ],
+      "complete_legend_bbox_pt": [
+        364.48,
+        173.0,
+        540.47,
+        178.43
+      ],
+      "legend_item_count": 11,
+      "legend_rows": 1,
+      "legend_key_bbox_pt": [
+        364.48,
+        173.0,
+        368.8,
+        178.43
+      ],
+      "legend_key_body_bbox_pt": [
+        365.32,
+        173.84,
+        367.96,
+        177.71
+      ],
+      "legend_key_text_gap_pt": 2.45,
+      "legend_group_gaps_pt_examples": [
+        3.29,
+        3.52,
+        3.36
+      ],
+      "plot_to_legend_gap_pt": 18.1,
+      "last_tick_text_to_legend_gap_pt": 7.34,
+      "legend_font_pt": null,
+      "axis_tick_font_pt": {
+        "x_labels": 6.412,
+        "y_labels": null
+      },
+      "glyph_ink_height_pt": {
+        "legend": [
+          4.49,
+          4.59
+        ],
+        "y_tick": [
+          4.82,
+          4.98
+        ]
+      },
+      "font_note": "Legend and y ticks are outlined. Their ink heights are not font sizes. X tick labels retain ArialMT font metadata.",
+      "measurement_note": "Plot field is the sum of three independent axes rectangles; all axes labels and inter-axis gaps are excluded. Key outer extent includes the border. Complete legend includes all 11 keys and outlined labels.",
+      "crop": "/private/tmp/easyviz-legend-research/notch2-2b.png",
+      "plot_field_area_sum_pt2": 11270.64,
+      "plot_field_enclosing_bbox_pt": [
+        364.88,
+        79.4,
+        534.08,
+        154.9
+      ],
+      "legend_area_pt2": 955.626,
+      "legend_to_plot_area_ratio": 0.08479,
+      "legend_width_over_enclosing_plot_width": 1.04013,
+      "geometry_uncertainty_pt": 0.5
+    },
+    {
+      "id": "notch2-figure-2c",
+      "source": "notch2-2024",
+      "page_1based": 4,
+      "panel": "2c",
+      "chart": "three dotplot blocks sharing size and continuous-color keys",
+      "plot_field_bboxes_pt": [
+        [
+          73.08,
+          232.38,
+          320.32,
+          267.8
+        ],
+        [
+          73.42,
+          311.26,
+          312.8,
+          345.55
+        ],
+        [
+          74.05,
+          387.84,
+          220.72,
+          422.26
+        ]
+      ],
+      "complete_legend_bbox_pt": [
+        233.02,
+        391.16,
+        314.26,
+        420.63
+      ],
+      "legend_rows": 2,
+      "size_key_values": [
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "size_key_diameters_pt": [
+        1.82,
+        3.07,
+        4.17,
+        5.17,
+        6.1
+      ],
+      "size_key_center_pitch_pt": 7.0,
+      "largest_size_key_text_gap_pt": 2.87,
+      "colorbar_body_bbox_pt": [
+        275.61,
+        410.7,
+        310.41,
+        413.13
+      ],
+      "colorbar_orientation": "horizontal",
+      "colorbar_tick_values": [
+        0,
+        0.5,
+        1
+      ],
+      "legend_title_font_pt": 5.61,
+      "axis_tick_font_pt": null,
+      "glyph_ink_height_pt": {
+        "size_key_numerals": [
+          2.98,
+          3.03
+        ],
+        "colorbar_numerals": [
+          4.06,
+          4.13
+        ],
+        "row_tick": [
+          4.11,
+          4.2
+        ]
+      },
+      "font_note": "Only two legend titles retain Helvetica font metadata; key numerals and chart tick labels are outlined. The smaller size-key numerals are observed, not recommended for EasyViz.",
+      "measurement_note": "Complete legend includes both keys, their titles and all numeric labels. Main ratio uses the sum of three dotplot field areas and excludes gene labels, headings and blank gaps. Legend is shared; it should not be charged independently to every block.",
+      "crop": "/private/tmp/easyviz-legend-research/notch2-2c.png",
+      "plot_field_area_sum_pt2": 22013.962,
+      "plot_field_enclosing_bbox_pt": [
+        73.08,
+        232.38,
+        320.32,
+        422.26
+      ],
+      "legend_area_pt2": 2394.143,
+      "legend_to_plot_area_ratio": 0.10876,
+      "legend_width_over_enclosing_plot_width": 0.32859,
+      "colorbar_length_pt": 34.8,
+      "colorbar_thickness_pt": 2.43,
+      "colorbar_length_over_widest_plot_width": 0.14075,
+      "geometry_uncertainty_pt": 0.5
+    },
+    {
+      "id": "notch2-figure-2d",
+      "source": "notch2-2024",
+      "page_1based": 4,
+      "panel": "2d",
+      "chart": "clustered similarity heatmap",
+      "plot_field_bboxes_pt": [
+        [
+          383.42,
+          261.5,
+          502.24,
+          378.2
+        ]
+      ],
+      "complete_legend_bbox_pt": [
+        510.28,
+        229.41,
+        540.47,
+        271.0
+      ],
+      "colorbar_body_bbox_pt": [
+        524.38,
+        231.68,
+        532.9,
+        270.85
+      ],
+      "colorbar_orientation": "vertical",
+      "colorbar_tick_values": [
+        0,
+        1
+      ],
+      "legend_title_font_pt": 6.412,
+      "axis_tick_font_pt": null,
+      "glyph_ink_height_pt": {
+        "colorbar_numerals": [
+          4.51,
+          4.57
+        ],
+        "rotated_matrix_labels_cross_axis": [
+          4.49,
+          4.59
+        ]
+      },
+      "font_note": "Colorbar title retains ArialMT metadata. Numerical ticks and matrix labels are outlined.",
+      "measurement_note": "Matrix rectangle excludes dendrograms, annotation strip and labels. Colorbar body boundaries were manually localized in the rendered PDF because the PDF stores them inside a larger composite image. Title and numeric glyph bounds are programmatically extracted. Complete legend includes body, title and both visible ticks; no -1 tick is drawn in the inspected source.",
+      "geometry_uncertainty_pt": 1.0,
+      "crop": "/private/tmp/easyviz-legend-research/notch2-2d.png",
+      "plot_field_area_sum_pt2": 13866.294,
+      "plot_field_enclosing_bbox_pt": [
+        383.42,
+        261.5,
+        502.24,
+        378.2
+      ],
+      "legend_area_pt2": 1255.602,
+      "legend_to_plot_area_ratio": 0.09055,
+      "legend_width_over_enclosing_plot_width": 0.25408,
+      "colorbar_length_pt": 39.17,
+      "colorbar_thickness_pt": 8.52,
+      "colorbar_length_over_matrix_height": 0.33565
+    },
+    {
+      "id": "somerville-figure-2a",
+      "source": "somerville-2024",
+      "page_1based": 4,
+      "panel": "2A",
+      "chart": "grouped stacked composition with three long species labels",
+      "plot_field_bboxes_pt": [
+        [
+          87.94,
+          79.6,
+          358.73,
+          152.45
+        ]
+      ],
+      "complete_legend_bbox_pt": [
+        82.44,
+        48.77,
+        356.28,
+        59.81
+      ],
+      "legend_item_count": 3,
+      "legend_rows": 1,
+      "legend_key_bbox_pt": [
+        82.44,
+        48.77,
+        93.48,
+        59.81
+      ],
+      "legend_key_text_gap_pt_examples": [
+        2.81,
+        2.31,
+        3.13
+      ],
+      "legend_group_gaps_pt_examples": [
+        2.58,
+        7.29
+      ],
+      "plot_to_legend_gap_pt": 19.79,
+      "header_strip_to_legend_gap_pt": 2.54,
+      "legend_font_pt": null,
+      "axis_tick_font_pt": null,
+      "glyph_ink_height_pt": {
+        "legend_typical_letters": [
+          4.41,
+          4.61
+        ],
+        "legend_including_descenders": [
+          5.73,
+          5.76
+        ],
+        "axis_tick_digits": [
+          4.67,
+          4.77
+        ]
+      },
+      "font_note": "All figure text is outlined; actual font size is unavailable. Upper/lowercase and descenders affect ink bounds.",
+      "measurement_note": "One composition field includes deliberate gaps between culture groups; culture header strips and axis labels are excluded. Complete legend has all three species names and swatches. This is a useful counterexample: its swatches are large relative to text, so a uniform tiny-swatch rule cannot be claimed as a literature standard.",
+      "crop": "/private/tmp/easyviz-legend-research/somerville-2a.png",
+      "plot_field_area_sum_pt2": 19727.052,
+      "plot_field_enclosing_bbox_pt": [
+        87.94,
+        79.6,
+        358.73,
+        152.45
+      ],
+      "legend_area_pt2": 3023.194,
+      "legend_to_plot_area_ratio": 0.15325,
+      "legend_width_over_enclosing_plot_width": 1.01126,
+      "geometry_uncertainty_pt": 0.5
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/palette_local",
+  "role": "independent visual reviewer; no renderer or example implementation edits",
+  "status": "ready_with_notes",
+  "scope": "Final legend revision in cell-atlas, paired-effects main/evaluation, and ten synthetic transfer cases. Annotated-inhibition is covered only by the earlier baseline audit.",
+  "artifact_sha256": {
+    "skills/easyviz/scripts/legend_layout.py": "24e85216725ee68d21def0206a3656ba0a87d7c1de7e4580432a0d39116f7a2a",
+    "evals/legend-transfer/results.json": "41bcb83513ee0b6a697f9bc8f618ee9c62faba3075a6f0bedf9a7e08a6bd29ae",
+    "evals/legend-transfer/manifest.json": "65799fcf3ce062c211eb765c5c79f980f020dec14daed806fbbfd9ba8dbf6984",
+    "evals/legend-literature/current-audit.json": "07255120ae39e3603b30222dadbef51c3f8b9d3b219a2b52e07422d2f6213864",
+    "evals/legend-literature/current-baseline/snapshots.json": "cb647950588429fcf7065c6a72c50b667dce426faf58c030fab17305a8028360",
+    "evals/legend-literature/current-baseline/cell-atlas-dotplot/figure.png": "d73dc463a34b1bdcb7899b4459925eeac4861b065ee168d2601b1ae6c0790c2e",
+    "evals/legend-literature/current-baseline/cell-atlas-dotplot/figure.pdf": "836525aab4f20904b7900700176cf3e957bd425fe302b2c7a9a8a9cdc1e71826",
+    "evals/legend-literature/current-baseline/paired-effects/panel.png": "8a6304b8c914a0ff40150507e0e9104270385e6b47c7afdd1d21eab816dad4c6",
+    "evals/legend-literature/current-baseline/paired-effects/panel.pdf": "3b6364be11804091e5a8bbb9501b4e2a8c69b8f855979b8d6df24bcf612b555b",
+    "examples/create/cell-atlas-dotplot/output/figure.png": "d2d0658649b4fe7f749cc0210c190e126bca38ea270354c7c93f7807dff9a1d0",
+    "examples/create/cell-atlas-dotplot/output/figure.pdf": "7a1718f2e19b30056ccc980e8a9e6cd0fbbcc8eeb7b4a8cd53a2ba1500d2cb6d",
+    "examples/create/cell-atlas-dotplot/output/figure.svg": "bab2a080cf8233db51c71870791f5cb864f2d9ea8789ba743d7279ac13b9089d",
+    "examples/create/cell-atlas-dotplot/output/validation.json": "868eb03d858b2068ea3af75e9537a0fb79225e68efc5e6fe9549f36e522826a9",
+    "examples/create/paired-effects/panel.png": "136ddb65108d46995b35c7dd06978361a5d7d2ba6e0867adbed4f547a1e4bc2b",
+    "examples/create/paired-effects/panel.pdf": "13746220e3df9a829e44d77d0bb9ad439db29a48d8326931dff79b26e3a03a40",
+    "examples/create/paired-effects/evaluation/panel.png": "d40c4fe38b5729bd3291a5994215c8afd5c6d42b637432de39e603cffc2a5485",
+    "examples/create/paired-effects/legend-update-review.json": "faf208dbde788986366713a71b0ed79ea475b3192fa5900c4efddc06891b5c33",
+    "evals/legend-transfer/cases/categorical-2-short-88/after/panel.png": "20e1e080af1ff4d1847863e2b6acad4c7d924346a137d781b1b1bc2406d11540",
+    "evals/legend-transfer/cases/categorical-4-long-132/after/panel.png": "3aed128cb55b5b2327455d77430202b5aa3e54dbec532e93bd2a2a501de6f011",
+    "evals/legend-transfer/cases/categorical-8-short-180/after/panel.png": "25bfc64551062655d7b78a364780620b38e5a26d1422f8b19ee5805dffdd3261",
+    "evals/legend-transfer/cases/categorical-8-long-180/after/panel.png": "47c6f4fc1a31cc7dac0dc4289b8e6407696ae6dfdde90ce64f29099f3139298d",
+    "evals/legend-transfer/cases/colorbar-landscape-132/after/panel.png": "b47cbc85193ad75515e501c5053bf4035830dc73ccdc765e93035fb2a45b1e77",
+    "evals/legend-transfer/cases/colorbar-square-88/after/panel.png": "4a78353a69058150f10ced83ce55350fae2dc98b869d743a7dfabf3e05f25667",
+    "evals/legend-transfer/cases/dot-small-88/after/panel.png": "9ffcf89538fe5d01fb184949fc0f55e5c8e666e06bc633aa3a4ff082e15a3962",
+    "evals/legend-transfer/cases/dot-large-132/after/panel.png": "aa95b9c7fbae908a9476f0caba0e9c9f0a0e505e1188e03d919da079e92e256c",
+    "evals/legend-transfer/cases/manual-categorical-132/after/panel.png": "96b58146099077ae71508e7082ca90e2ff141f06c433fd794c5805d2df15164e",
+    "evals/legend-transfer/cases/impossible-8-long-88/after/panel.png": "56f39b6d2d4f12e63d35a542ad22e5b761aa3def5cb3f6b716341587d385e126"
+  },
+  "methods": [
+    "Opened final custom PNGs and every final benchmark PNG, not only the contact sheet.",
+    "Compared the cell-atlas and paired-effects main output with frozen baseline figures; inspected PDF renders at 96 dpi as a screen proxy for final physical size. This is not a print proof.",
+    "Checked cell PDF MediaBox and extracted all text span sizes; matched 48 exported main-dot vector diameters and fill colors against the baseline.",
+    "Used helper geometry and benchmark equality/export checks as supplementary evidence; no universal area-ratio acceptance rule."
+  ],
+  "actionable_findings": [],
+  "cell_atlas": {
+    "status": "ready_with_notes",
+    "canvas_mm": [
+      180,
+      120
+    ],
+    "pdf_measured_canvas_mm": [
+      179.99999491373697,
+      119.99999660915799
+    ],
+    "pdf_text_sizes_pt": [
+      8.0
+    ],
+    "reserved_bottom_band_mm": {
+      "before": 25.7,
+      "after": 19.5,
+      "reclaimed": 6.2,
+      "relative_reduction_percent": 24.12451361867704
+    },
+    "row_pitch_mm": {
+      "before": 4.4,
+      "after": 4.8
+    },
+    "colorbar_body_mm": {
+      "before": [
+        71,
+        3.1
+      ],
+      "after": [
+        32,
+        1.4
+      ]
+    },
+    "main_plot_bbox_mm": [
+      6.0,
+      19.50000000000004,
+      169.0,
+      81.49999999999996
+    ],
+    "helper_guides": [
+      {
+        "kind": "colorbar",
+        "bbox_mm": [
+          127.238,
+          7.0514105902777775,
+          34.286,
+          8.20324435763889
+        ]
+      },
+      {
+        "kind": "categorical",
+        "bbox_mm": [
+          6.0,
+          10.702821180555556,
+          45.408,
+          6.2971788194444445
+        ]
+      },
+      {
+        "kind": "size",
+        "bbox_mm": [
+          66.00000000000001,
+          10.156065475460684,
+          32.81726738322931,
+          6.843934524539316
+        ]
+      }
+    ],
+    "helper_combined": {
+      "guide_count": 3,
+      "occupied_envelope_union_area_mm2": 791.7979611244614,
+      "sum_envelope_area_mm2": 791.7979611244614,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.05748705565937936,
+      "area_fraction_of_canvas": 0.03665731301502135,
+      "enclosing_bbox_mm": [
+        6.0,
+        7.0514105902777775,
+        155.524,
+        9.948589409722224
+      ],
+      "max_individual_width_mm": 45.407999999999994,
+      "max_individual_height_mm": 8.20324435763889,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "independent_exported_main_dot_check": {
+      "matched_mark_count": 48,
+      "maximum_diameter_difference_pt": 0.0,
+      "fill_colors_identical": true,
+      "method": "PDF filled circular vector paths, sorted by column and row; compare circle bounding-box diameters and RGB fills."
+    },
+    "observations": [
+      "Bottom guides now form three compact groups with clear decoding: two-column category guide, three exact-area count keys, and short thin colorbar.",
+      "The recovered footer height increases row spacing while preserving the agreed canvas and 8 pt text. The table and data marks remain visually primary.",
+      "Count keys are centered on their numeric labels; no oversized or displaced size symbols remain in the PNG or PDF render.",
+      "No overall title, subtitle, or narrative footnote is present; necessary table headers and legend meaning labels remain."
+    ],
+    "limitation": "The smallest positive counts remain difficult to distinguish at a 96 dpi screen rendering because the exact proportional area mapping is preserved. This review does not claim that every rare dot is individually readable at every output scale."
+  },
+  "paired_effects": {
+    "status": "ready_with_notes",
+    "main_guide_bbox_size_mm": {
+      "before": [
+        64.05,
+        3.155
+      ],
+      "after": [
+        53.203,
+        3.0485894097222213
+      ]
+    },
+    "main_helper_combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 162.19410236545139,
+      "sum_envelope_area_mm2": 162.19410236545139,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.014186635595357542,
+      "area_fraction_of_canvas": 0.007508986220622749,
+      "enclosing_bbox_mm": [
+        123.19699999999999,
+        113.95141059027779,
+        53.203000000000024,
+        3.0485894097222213
+      ],
+      "max_individual_width_mm": 53.20300000000002,
+      "max_individual_height_mm": 3.048589409722221,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "evaluation_guide_bbox_size_mm": [
+      68.92314583333336,
+      3.0485894097222213
+    ],
+    "observations": [
+      "The main guide is shorter chiefly because the marker-to-label whitespace is reduced. Its original height was already modest; this is a local spacing improvement rather than a large recovery of plotting space.",
+      "Main and evaluation cohort labels remain complete and clearly grouped with their colored points. The evaluation three-cohort guide remains within the fixed canvas.",
+      "No guide clipping, collision, or competing overall title/prose was observed; plot fields remain primary."
+    ],
+    "implementation_evidence_reference": "examples/create/paired-effects/legend-update-review.json records source/settings/plotted-data equality and unchanged SVG data-axis primitives; these automated comparisons were supplied by the integration owner."
+  },
+  "transfer_benchmark": {
+    "expectations_passed": 10,
+    "feasible_panels_passed": 9,
+    "expected_needs_revision_case": "impossible-8-long-88",
+    "final_after_pngs_opened": [
+      "categorical-2-short-88",
+      "categorical-4-long-132",
+      "categorical-8-short-180",
+      "categorical-8-long-180",
+      "colorbar-landscape-132",
+      "colorbar-square-88",
+      "dot-small-88",
+      "dot-large-132",
+      "manual-categorical-132",
+      "impossible-8-long-88"
+    ],
+    "observations": [
+      "Short categorical labels fit compact side guides; longer four- and eight-category labels use top rows without truncation. Width occupied by necessary long text is not treated as a failure by itself.",
+      "Thin colorbars retain decoding titles and ticks. Small- and large-area quantitative keys are aligned with numeric labels and do not collide.",
+      "The explicit manual placement is retained; the benchmark is not a claim that arbitrary fixed axes positions have been optimized.",
+      "The 88 by 32 mm impossible case visibly cannot hold the full guide and is correctly needs_revision. It is a diagnostic failure output, not an accepted manuscript panel."
+    ],
+    "verification_scope": "Benchmark owner checks unchanged source/specification, categorical order/coverage/fill colors, required colorbar meaning/range, quantitative values/areas, and actual SVG/PNG size-key geometry. These results supplement independent visual inspection."
+  },
+  "generalization_assessment": [
+    "The helper measures complete guide envelopes, keys, labels, and meaning text; combined occupied envelopes are reported separately from the enclosing rectangle and available regions.",
+    "Fixed typography and exact quantitative symbol scale survive compaction. Categorical symbol size and padding can be reduced independently of meaningful quantitative areas.",
+    "The bounded benchmark covers label length/count, canvas shape/size, multiple guide types, explicit placement, and an impossible case. It does not establish fit for arbitrary scientific panels.",
+    "Keep manual visual review of actual exported PNG/PDF/SVG because metadata-only size checks previously missed transform and alignment defects, now corrected."
+  ],
+  "limitations": [
+    "Screen inspection at documented export sizes; no physical print proof.",
+    "The earlier baseline audit uses PDF-derived bounds, while final helper envelopes use its rendering backend. Small sub-millimetre differences between their text bounds should not be interpreted as exact typography changes.",
+    "Envelope ratios are diagnostic, not ink area or universal journal limits.",
+    "No universal color-vision or publication-quality claim."
+  ]
+}

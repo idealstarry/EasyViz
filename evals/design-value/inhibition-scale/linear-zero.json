@@ -1,0 +1,134 @@
+{
+  "track": "create",
+  "width_mm": 180,
+  "height_mm": 160,
+  "font": "Arial",
+  "font_size_pt": 8,
+  "title_size_pt": 8,
+  "line_width_pt": 0.6,
+  "dpi": 300,
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "selection_count": 20,
+  "selection": "Round 20 equally spaced ranks from 0 to 75, after separately sorting full-matrix row and column means descending; break ties by strain ID.",
+  "heatmap_mm": [
+    40,
+    34,
+    96,
+    96
+  ],
+  "receiver_mean_mm": [
+    40,
+    136,
+    96,
+    12
+  ],
+  "sender_mean_mm": [
+    143,
+    34,
+    28,
+    96
+  ],
+  "receiver_mean_limits": [
+    0,
+    400
+  ],
+  "receiver_mean_ticks": [
+    0,
+    200,
+    400
+  ],
+  "sender_mean_limits": [
+    0,
+    750
+  ],
+  "sender_mean_ticks": [
+    0,
+    300,
+    600
+  ],
+  "receiver_genome_mm": [
+    40,
+    131.5,
+    96,
+    2
+  ],
+  "sender_genome_mm": [
+    137.5,
+    34,
+    2,
+    96
+  ],
+  "colorbar_mm": [
+    143,
+    17,
+    28,
+    3
+  ],
+  "text_positions_mm": {
+    "sender_axis": [
+      4,
+      82
+    ],
+    "receiver_axis": [
+      88,
+      10
+    ],
+    "receiver_mean": [
+      40,
+      151
+    ],
+    "sender_mean": [
+      143,
+      132.5
+    ],
+    "colorbar_title": [
+      157,
+      22
+    ],
+    "genome_legend": [
+      40,
+      0.2
+    ]
+  },
+  "color_limits": [
+    -400,
+    1000
+  ],
+  "colormap": [
+    "#2581B9",
+    "#F8F7F4",
+    "#E47751"
+  ],
+  "mean_color": "#6197B8",
+  "genome_colors": {
+    "0": "#E5E9EB",
+    "1": "#007F7F"
+  },
+  "grid_color": "#DFE2E5",
+  "palette_family": "experiment-blue-neutral-coral",
+  "palette_preset": null,
+  "palette_source": "https://www.nature.com/articles/s41467-024-52687-7",
+  "palette_status": "Proposed signed blue-neutral-coral scale using previously sourced endpoints; not the author palette.",
+  "panel_title": null,
+  "caption_file": "caption.md",
+  "experiment_scale": "linear-zero",
+  "experiment_ticks": [
+    -400,
+    0,
+    1000
+  ],
+  "experiment_colorbar_label": "Pairwise GII (min)",
+  "colormap_stop_rule": "positions 0, norm(0), 1; neutral is at numeric zero, not midpoint",
+  "palette_sources": [
+    "https://www.nature.com/articles/s41467-024-53700-9",
+    "https://www.nature.com/articles/s41467-024-52687-7"
+  ],
+  "experiment_source_script_sha256": "89b9ef28ba5cdb840378cb5885b0037b75ddf9d37eb9f27fe1420cb6ad160151",
+  "experiment_note": "Proposal only. Fixed input/order/axes/font/canvas; no numeric value transformation in source or summaries. Normalization affects color only.",
+  "normalization_formula": "(x + 400) / 1400",
+  "normalization_inverse": "1400 * t - 400"
+}

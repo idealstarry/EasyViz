@@ -1,0 +1,96 @@
+{
+  "chart": "heatmap",
+  "fields": {
+    "row": "feature",
+    "column": "sample",
+    "value": "score"
+  },
+  "layout": {
+    "width_mm": 180,
+    "height_mm": 160,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8,
+    "title": 8,
+    "panel": 8
+  },
+  "palette": "okabe-ito",
+  "colormap": "RdBu_r",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "options": {
+    "color_limits": [
+      -3,
+      3
+    ],
+    "color_center": 0
+  },
+  "order": {
+    "x": [
+      "S18",
+      "S17",
+      "S16",
+      "S15",
+      "S14",
+      "S13",
+      "S12",
+      "S11",
+      "S10",
+      "S09",
+      "S08",
+      "S07",
+      "S06",
+      "S05",
+      "S04",
+      "S03",
+      "S02",
+      "S01"
+    ],
+    "y": [
+      "Pathway 24",
+      "Pathway 23",
+      "Pathway 22",
+      "Pathway 21",
+      "Pathway 20",
+      "Pathway 19",
+      "Pathway 18",
+      "Pathway 17",
+      "Pathway 16",
+      "Pathway 15",
+      "Pathway 14",
+      "Pathway 13",
+      "Pathway 12",
+      "Pathway 11",
+      "Pathway 10",
+      "Pathway 09",
+      "Pathway 08",
+      "Pathway 07",
+      "Pathway 06",
+      "Pathway 05",
+      "Pathway 04",
+      "Pathway 03",
+      "Pathway 02",
+      "Pathway 01"
+    ]
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Pathway",
+    "color": "Score"
+  }
+}

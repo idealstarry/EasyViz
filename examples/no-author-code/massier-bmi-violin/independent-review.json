@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "case": "massier-bmi-violin",
+  "status": "ready_with_notes",
+  "reviewer_role": "Independent reviewer; no plotting implementation or author code read",
+  "candidate_render_pass": 1,
+  "additional_renders_requested": 0,
+  "isolation": "Instruction-isolated review, not an operating-system sandbox guarantee",
+  "images_opened": ["inputs/reference.png", "panel.png"],
+  "candidate_sha256": {
+    "panel.png": "54b062fd6b26064339156c62571bf4ea38acf0a9d65ef69fcd010ea82cc2936c",
+    "panel.pdf": "8632b41f597942b5ea116b26711935a0f28206691dfdc7bb389bb8a136d9bbbe",
+    "panel.svg": "d09e7949548ace33517eb908c923732c37cd9babcb2c3bc946b123cb5e45f396"
+  },
+  "visual_assessment": {
+    "status": "passed",
+    "evidence": "Opened the supplied reference and current candidate PNG. Eight horizontal purple violins have the required top-to-bottom cohort order, complete labels, a linear BMI axis with kg/m² units and 20/40/60 labels, faint guides beneath marks, and no unrequested points, central statistics, or legend. No clipping, missing glyphs, label collisions, or row collisions were found."
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Violin density profiles and extrema",
+      "evidence": "The visible lobes and flat extrema differ modestly from the reference; the adopted specification explicitly uses Gaussian KDE, Scott bandwidths, observed-range trimming, and equal displayed-area normalization. Saved curves and exported SVG polygons agree with those decisions.",
+      "requirement": "Preserve supplied observations and disclose unknown original density settings rather than fit data or parameters to pixels.",
+      "action": "No figure correction required. Retain the adopted-method and unknown-author-parameter notes."
+    },
+    {
+      "severity": "note",
+      "location": "Standalone panel proportions",
+      "evidence": "The BMI display is wider than its column in the multi-panel reference. Full cohort labels remain readable with substantial row separation on the requested 132 × 99 mm canvas.",
+      "requirement": "Deliver one standalone panel at the requested dimensions with all text at 8 pt.",
+      "action": "Accepted adaptation; no resizing or extra rendering requested."
+    },
+    {
+      "severity": "note",
+      "location": "Final-size assessment",
+      "evidence": "Readability was judged from the actual PNG together with measured export dimensions and 8 pt type. Screen magnification is not a physical print proof.",
+      "requirement": "Distinguish inspected appearance and measured typography from unperformed print testing.",
+      "action": "No required correction. A physical print proof was not part of this review."
+    }
+  ],
+  "external_checks": {
+    "source_record_and_value_preservation": {
+      "status": "passed",
+      "evidence": "A separate numerical sub-review compared CSVs: all 864 rows retain the four source columns, original BMI strings, and record order. All 858 available values are included; the six blanks remain missing. Cohort labels, counts, and source hash agree."
+    },
+    "density_calculation": {
+      "status": "passed",
+      "evidence": "The numerical sub-review independently evaluated Gaussian mixtures from the supplied values. Eight cohorts each have 512 evenly spaced samples on their observed range; bandwidth/statistic differences are below 9e-16 and raw-density differences below 1.3e-16. Each displayed curve integrates to one; the common multiplier yields maximum full thickness 0.9 rows."
+    },
+    "rendered_svg_uses_saved_density": {
+      "status": "passed",
+      "evidence": "Reviewer independently parsed eight purple SVG polygons and compared them with every saved density sample using the adopted BMI transform and measured row spacing. Maximum x error was 4.9995e-7 pt and maximum y error was 7.7414e-7 pt, consistent with SVG decimal rounding."
+    },
+    "pdf_dimensions_typography_and_bounds": {
+      "status": "passed",
+      "evidence": "Direct PDF inspection found one page measuring 131.999996 × 98.999997 mm; all 12 text spans are 8 pt and inside the page. ArialMT is embedded with 26148 font bytes."
+    },
+    "svg_dimensions_and_type": {
+      "status": "passed",
+      "evidence": "Direct SVG inspection found width 374.173228 pt, height 280.629921 pt and matching viewBox, equivalent to 132 × 99 mm. All 12 editable text elements specify Arial and size 8 in the point-scaled coordinate system."
+    },
+    "png_dimensions_and_resolution": {
+      "status": "passed",
+      "evidence": "Direct PNG inspection found 1559 × 1169 pixels with 299.9994 dpi metadata in both directions, the rounded 300 dpi export at the requested dimensions."
+    },
+    "original_publication_data_authentication": {
+      "status": "not_checked",
+      "required_for_this_review": false,
+      "evidence": "The supplied source CSV was the review input; the original workbook/article and author code were not accessed."
+    },
+    "physical_print_proof": {
+      "status": "not_checked",
+      "required_for_this_review": false,
+      "evidence": "No paper print was inspected."
+    }
+  },
+  "unresolved_items": [
+    "Original KDE estimator, bandwidth, support, normalization, and exact colors remain unknown, as already disclosed."
+  ],
+  "required_corrections": [],
+  "next_action": "Keep this candidate; retain its documented adaptations and statistical limits."
+}

@@ -1,0 +1,83 @@
+{
+  "track": "create",
+  "chart": "cohort_effect_forest",
+  "implementation": "custom Matplotlib renderer; supplied asymmetric interval geometry is outside the five core renderer families",
+  "reference_input_mode": "none",
+  "fields": {
+    "term_id": "feature_key",
+    "term": "display_name",
+    "domain": "source_group",
+    "cohort": "study",
+    "estimate": "beta",
+    "ci_lower": "lower95",
+    "ci_upper": "upper95",
+    "n": "participants",
+    "row_order": "position"
+  },
+  "cohort_order": [
+    "Pilot",
+    "Validation",
+    "External"
+  ],
+  "colors": {
+    "Pilot": "#2581B9",
+    "Validation": "#DF9A3C",
+    "External": "#1AA781"
+  },
+  "palette": "Explicit blue/amber/teal mapping for the synthetic reuse probe",
+  "layout": {
+    "width_mm": 180,
+    "height_mm": 100,
+    "font": "Arial",
+    "fallback_font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "axes_bounds": [
+      0.31,
+      0.13,
+      0.67,
+      0.79
+    ],
+    "domain_label_x_fraction": 0.02,
+    "legend_y_fraction": 0.975,
+    "row_step": 1.0,
+    "header_to_first_row": 0.83,
+    "last_row_to_header": 1.0,
+    "cohort_span": 0.34
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "domain": 8
+  },
+  "marks": {
+    "point_area_pt2": 15.21,
+    "point_edgecolor": "none",
+    "point_linewidth_pt": 0,
+    "interval_linewidth_pt": 0.75,
+    "interval_cap_height": 0.085,
+    "grid_linewidth_pt": 0.4,
+    "axis_linewidth_pt": 0.6,
+    "zero_linewidth_pt": 0.75
+  },
+  "mark_outline_policy": "All estimate dots and legend symbols are borderless fills. Confidence-interval whiskers and their endpoint caps are line encodings, not outlines.",
+  "labels": {
+    "x": "Standardized effect (95% CI)"
+  },
+  "x_limits": null,
+  "x_ticks": null,
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "semantics": {
+    "estimate": "Supplied standardized effect; no transformation",
+    "interval": "Supplied asymmetric 95% confidence interval; endpoints used directly",
+    "cohorts": "Independent participants; matching terms do not imply paired participants",
+    "n": "Independent participant count, descriptive only; no size or weighting mapping",
+    "domain": "Supplied descriptive metadata; preserve contiguous source groups",
+    "statistics": "No statistics recomputed; no fitting, weighting, aggregation, or hypothesis testing"
+  }
+}

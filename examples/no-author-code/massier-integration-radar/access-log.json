@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "case": "massier-integration-radar",
+  "role": "independent implementation agent",
+  "reference_input_mode": "image-data",
+  "author_code_accessed": false,
+  "other_example_implementation_accessed": false,
+  "original_provenance_files_accessed": false,
+  "external_browsing_performed": false,
+  "isolation": {
+    "mode": "instruction-based",
+    "os_sandbox_enforces_input_allowlist": false,
+    "limitation": "The implementer obeyed the task allowlist. The filesystem sandbox was not configured to prevent other workspace reads; this record is not proof of OS-level isolation."
+  },
+  "task_material_content_reads": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "dfc430c4080e0869f093d3f38b9708b41c26178920d49eaa8443b6448e6b5413"
+    },
+    {
+      "path": "skills/easyviz/SKILL.md",
+      "sha256": "28a27eb1d1dc9e190c18bf815052d5dc418ea938a95b76a79472f748b06ce60d"
+    },
+    {
+      "path": "skills/easyviz/references/reproduce.md",
+      "sha256": "4220547cc585f9f0a16a7ac24678631a361e7846cb3bf75bf34c7e2479d8ef67"
+    },
+    {
+      "path": "skills/easyviz/references/panel-layout.md",
+      "sha256": "4c1989c87e7fc38bb214d8c2fd696965a97f9836049bcebbdf16df1b2bab9f57"
+    },
+    {
+      "path": "skills/easyviz/references/reference-spec.md",
+      "sha256": "e9faa9e72fda86449cee9d4b311ecb59ea3a7b099a12695456b3d150d52c10a3"
+    },
+    {
+      "path": "skills/easyviz/references/visual-review.md",
+      "sha256": "90aaf15d0944b757acab958de4f4dfe40d89cc52acfaf163103ca51066441656"
+    },
+    {
+      "path": "skills/easyviz/references/chart-library.md",
+      "sha256": "b740b4cc07572bb8a1d7bef471676a567f1c9adbaee0b955d13ad1929140dfef"
+    },
+    {
+      "path": "examples/blind-inputs/massier-integration-radar/reference.png",
+      "sha256": "5cbc643ed926adcba92e6875c693a5dcf024b84287f365c5851b7058a1f9791b"
+    },
+    {
+      "path": "examples/blind-inputs/massier-integration-radar/reference-spec.json",
+      "sha256": "696dff0ef0a33f67ad83710a9c4d784bc68e307560dad8d64ad6f604da84e206"
+    },
+    {
+      "path": "examples/blind-inputs/massier-integration-radar/request.md",
+      "sha256": "431da545bd9a1962376ee25f669767e43239b395d0b43136db7da28914e91acf"
+    },
+    {
+      "path": "examples/blind-inputs/massier-integration-radar/data-dictionary.md",
+      "sha256": "baea677bfc74b9e89d6f73ca69be6c3ee75b842144e1b376cb209903ae0236b4"
+    },
+    {
+      "path": "examples/blind-inputs/massier-integration-radar/source-data.csv",
+      "sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+    }
+  ],
+  "runtime_font_reads": [
+    "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "Matplotlib bundled DejaVu Sans font for availability check"
+  ],
+  "runtime_libraries": "Python standard library, Matplotlib, NumPy, pandas, Pillow, PyMuPDF; no plotting implementation imported from another example",
+  "generated_outputs_inspected": [
+    "panel.png",
+    "panel.pdf",
+    "panel.svg",
+    "settings.json",
+    "plotting-data.csv",
+    "qa.json",
+    "first-rendering/qa.json"
+  ],
+  "directory_inventory_note": "An initial filename-only inventory also listed unrelated example filenames. No unrelated example contents or implementations were opened.",
+  "permitted_inputs_copied": [
+    {
+      "path": "inputs/reference.png",
+      "sha256": "5cbc643ed926adcba92e6875c693a5dcf024b84287f365c5851b7058a1f9791b"
+    },
+    {
+      "path": "inputs/reference-spec.json",
+      "sha256": "696dff0ef0a33f67ad83710a9c4d784bc68e307560dad8d64ad6f604da84e206"
+    },
+    {
+      "path": "inputs/request.md",
+      "sha256": "431da545bd9a1962376ee25f669767e43239b395d0b43136db7da28914e91acf"
+    },
+    {
+      "path": "inputs/data-dictionary.md",
+      "sha256": "baea677bfc74b9e89d6f73ca69be6c3ee75b842144e1b376cb209903ae0236b4"
+    },
+    {
+      "path": "inputs/source-data.csv",
+      "sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+    }
+  ],
+  "prior_familiarity": "No earlier implementation or author code was supplied to this implementation agent. The supplied independent reference-spec.json was used as the reading.",
+  "independent_reference_reading": "Provided reference-spec.json; image also viewed directly by implementer.",
+  "self_review_passes": 2,
+  "independent_candidate_review": "Delegated separately by parent after delivery.",
+  "artifact_relocation": {
+    "note": "Input directory moved after the recorded run; access entries retain their historical paths.",
+    "from": "examples/blind-inputs/massier-integration-radar",
+    "to": "evals/reproduce-inputs/massier-integration-radar"
+  }
+}

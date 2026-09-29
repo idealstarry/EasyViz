@@ -1,0 +1,36 @@
+{
+  "reviewer": "independent subagent /root/palette_local",
+  "reviewed_at_utc": "2026-09-29T10:24:01.202293+00:00",
+  "scope": "Visual review of user-selected candidate B; no plot code or settings edited.",
+  "candidate_png": "examples/create/cell-atlas-dotplot/output/figure.png",
+  "candidate_png_sha256": "d73dc463a34b1bdcb7899b4459925eeac4861b065ee168d2601b1ae6c0790c2e",
+  "candidate_pdf": "examples/create/cell-atlas-dotplot/output/figure.pdf",
+  "candidate_pdf_sha256": "836525aab4f20904b7900700176cf3e957bd425fe302b2c7a9a8a9cdc1e71826",
+  "pdf_size_mm": [
+    179.99999491373697,
+    119.99999660915799
+  ],
+  "inspection": [
+    "Current exported PNG viewed",
+    "Current PDF rendered with PyMuPDF at 96 dpi and 300 dpi and both renders viewed",
+    "Current PDF text inspected",
+    "Candidate B in documentation comparison card viewed",
+    "Rows with n < 30 checked in plotted-data.csv to contextualize tiny marks"
+  ],
+  "pdf_rendering_note": "The 96 dpi render is a 180 x 120 mm page rasterized at 96 dpi; physical on-screen scale depends on the display. This is not a printed-proof review.",
+  "status": "ready_with_notes",
+  "actionable_findings": [],
+  "observations": {
+    "palette": "The blue, amber, teal, and pink marks visually match candidate B. The same group hue appears in its strip, pooled bar, and legend swatch.",
+    "mark_style": "Dots, pooled bars, grouping strips, and category/size legend marks are consistently borderless. Axis guides and the colorbar frame remain structural lines.",
+    "layout": "No observed label collisions or clipping. Necessary field headers, sample counts, labels, and legends remain readable in the inspected renders.",
+    "manuscript_text": "No overall title, subtitle, or narrative footnote. Remaining headings name data fields or encodings.",
+    "tiny_positive_counts": "The smallest positive dots, including n = 1, 2, and 5, are not reliably resolved in the 96 dpi final-page raster. Larger low-count dots are faint but visible when enlarged. The plot should not be described as making every positive count individually legible. No area inflation or edge outline is recommended because those would alter the chosen proportional-area/borderless design.",
+    "documentation_card": "palette-comparison.png is a documentation/selection card, not a manuscript panel; its candidate headings are appropriate."
+  },
+  "limits": [
+    "No claim of universal color-vision accessibility.",
+    "Numerical equality across revisions and statistical validity were outside this visual review.",
+    "Physical print reproduction was not tested."
+  ]
+}

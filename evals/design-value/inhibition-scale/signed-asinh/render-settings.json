@@ -1,0 +1,207 @@
+{
+  "track": "create",
+  "width_mm": 180,
+  "height_mm": 160,
+  "font": "Arial",
+  "font_size_pt": 8,
+  "title_size_pt": 8,
+  "line_width_pt": 0.6,
+  "dpi": 300,
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "selection_count": 20,
+  "selection": "Rounded 20 equally spaced ranks from 0 to 75, after sorting means descending then strain ID.",
+  "heatmap_mm": [
+    40,
+    34,
+    96,
+    96
+  ],
+  "receiver_mean_mm": [
+    40,
+    136,
+    96,
+    12
+  ],
+  "sender_mean_mm": [
+    143,
+    34,
+    28,
+    96
+  ],
+  "receiver_mean_limits": [
+    0,
+    400
+  ],
+  "receiver_mean_ticks": [
+    0,
+    200,
+    400
+  ],
+  "sender_mean_limits": [
+    0,
+    750
+  ],
+  "sender_mean_ticks": [
+    0,
+    300,
+    600
+  ],
+  "receiver_genome_mm": [
+    40,
+    131.5,
+    96,
+    2
+  ],
+  "sender_genome_mm": [
+    137.5,
+    34,
+    2,
+    96
+  ],
+  "colorbar_mm": [
+    143,
+    17,
+    28,
+    3
+  ],
+  "text_positions_mm": {
+    "sender_axis": [
+      4,
+      82
+    ],
+    "receiver_axis": [
+      88,
+      10
+    ],
+    "receiver_mean": [
+      40,
+      151
+    ],
+    "sender_mean": [
+      143,
+      132.5
+    ],
+    "colorbar_title": [
+      157,
+      22
+    ],
+    "genome_legend": [
+      40,
+      0.2
+    ]
+  },
+  "color_limits": [
+    -400,
+    1000
+  ],
+  "colormap": [
+    "#2581B9",
+    "#F8F7F4",
+    "#E47751"
+  ],
+  "mean_color": "#6197B8",
+  "genome_colors": {
+    "0": "#E5E9EB",
+    "1": "#007F7F"
+  },
+  "grid_color": "#DFE2E5",
+  "palette_family": "experiment-blue-neutral-coral",
+  "palette_preset": null,
+  "palette_source": "https://www.nature.com/articles/s41467-024-52687-7",
+  "palette_status": "Proposed signed blue-neutral-coral scale using previously sourced endpoints; not the author palette.",
+  "panel_title": null,
+  "caption_file": "caption.md",
+  "experiment_scale": "signed-asinh",
+  "experiment_ticks": [
+    -400,
+    0,
+    100,
+    1000
+  ],
+  "experiment_colorbar_label": "GII (min; asinh color)",
+  "colormap_stop_rule": "positions 0, norm(0), 1; neutral is at numeric zero, not midpoint",
+  "palette_sources": [
+    "https://www.nature.com/articles/s41467-024-53700-9",
+    "https://www.nature.com/articles/s41467-024-52687-7"
+  ],
+  "experiment_source_script_sha256": "89b9ef28ba5cdb840378cb5885b0037b75ddf9d37eb9f27fe1420cb6ad160151",
+  "experiment_note": "Proposal only. Fixed input/order/axes/font/canvas; no numeric value transformation in source or summaries. Normalization affects color only.",
+  "normalization_formula": "(asinh(x / 100) - asinh(-400 / 100)) / (asinh(1000 / 100) - asinh(-400 / 100))",
+  "normalization_inverse": "100 * sinh(t * (asinh(1000 / 100) - asinh(-400 / 100)) + asinh(-400 / 100))",
+  "actual_font": "Arial",
+  "source_sha256": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
+  "genome_sha256": "7d3b0170f645acf20dadb4b2ed476241fb9cfd2c28863a2fcdc24e61975e9bf5",
+  "script_sha256": "674cb0bff55e80dde094086a0cc7ff4e2be5c95a2531219afd046865df39ca97",
+  "selected_sender_ids": [
+    "10040100629",
+    "CP23",
+    "9.4",
+    "CIP101354",
+    "LLS R 919",
+    "DSM20624",
+    "CP10",
+    "F84",
+    "CP14",
+    "JIP P04/83",
+    "LLS E 6103",
+    "RFA F54",
+    "RFA 378",
+    "F87",
+    "F42",
+    "JIP 05/93 (3)",
+    "RFA 295",
+    "CP5",
+    "CIP102035",
+    "JIP 28/91"
+  ],
+  "selected_receiver_ids": [
+    "DSM20344",
+    "F1",
+    "5.27",
+    "F14",
+    "DSM20342",
+    "F48",
+    "JIP P04/83",
+    "DSM20624",
+    "IFIP 710",
+    "F44",
+    "N15",
+    "F33",
+    "L2",
+    "CIP100481",
+    "F2",
+    "9.4",
+    "CP23",
+    "ATCC35586",
+    "131120027309",
+    "CP1"
+  ],
+  "selected_ranks_one_based": [
+    1,
+    5,
+    9,
+    13,
+    17,
+    21,
+    25,
+    29,
+    33,
+    37,
+    40,
+    44,
+    48,
+    52,
+    56,
+    60,
+    64,
+    68,
+    72,
+    76
+  ],
+  "source_file": "source-data.csv",
+  "genome_file": "genome-status.csv"
+}

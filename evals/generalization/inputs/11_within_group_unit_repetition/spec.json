@@ -1,0 +1,47 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value",
+    "unit": "unit"
+  },
+  "layout": {
+    "width_mm": 160,
+    "height_mm": 110,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8,
+    "title": 8,
+    "panel": 8
+  },
+  "palette": "okabe-ito",
+  "colormap": "viridis",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "colors": {
+    "A": "#0072B2",
+    "B": "#D55E00"
+  },
+  "statistics": {
+    "method": "welch",
+    "groups": [
+      "A",
+      "B"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "probe": "stats_unit",
+    "status": "pass",
+    "valid_outputs": true,
+    "plotted_input_rows": 6,
+    "stats": {
+      "method": "pearson",
+      "alternative": "two-sided",
+      "n": 6,
+      "statistic": 0.950537133290682,
+      "pvalue": 0.003609355463567543,
+      "multiplicity": "One specified test; no multiple-testing correction."
+    }
+  },
+  {
+    "probe": "negative_area",
+    "error": "need at least one array to concatenate"
+  },
+  {
+    "probe": "zero_area",
+    "status": "pass",
+    "valid_outputs": true,
+    "plotted_input_rows": 6,
+    "stats": {
+      "method": "none",
+      "note": "Descriptive visualization; no inferential test requested."
+    }
+  },
+  {
+    "probe": "negative_area_distribution",
+    "error": "need at least one array to concatenate"
+  },
+  {
+    "probe": "control_unit",
+    "error": "Correlation requires one observation per supplied independent unit"
+  }
+]

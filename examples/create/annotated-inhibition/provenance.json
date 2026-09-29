@@ -1,0 +1,43 @@
+{
+  "track": "create",
+  "author_plotting_code_accessed_or_used": false,
+  "code_origin": "New EasyViz implementation from the data-only create brief. Metadata from the earlier example identifies GII units and inherited source licenses.",
+  "article": {
+    "authors": "Gontijo et al.",
+    "year": 2022,
+    "title": "Mining Biosynthetic Gene Clusters in Carnobacterium maltaromaticum by Interference Competition Network and Genome Analysis",
+    "doi": "10.3390/microorganisms10091794",
+    "url": "https://doi.org/10.3390/microorganisms10091794"
+  },
+  "data_license": "CC BY-NC 4.0, inherited from the supplied repository README as recorded in the established microbiology example.",
+  "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "article_license_context": "CC BY 4.0 per inherited article provenance; no article figure is copied here.",
+  "upstream_conversion": "Existing normalization omitted the interspecific EGDe column and normalized delimiter/decimal formatting. This create example copies the complete resulting 76 x 76 matrix unchanged.",
+  "inputs": [
+    {
+      "file": "source-data.csv",
+      "sha256": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
+      "copied_from": "../../reproduce/microbiology/source-data.csv",
+      "copy_bytes_unchanged": true
+    },
+    {
+      "file": "genome-status.csv",
+      "sha256": "7d3b0170f645acf20dadb4b2ed476241fb9cfd2c28863a2fcdc24e61975e9bf5",
+      "copied_from": "../../reproduce/microbiology/genome-status.csv",
+      "copy_bytes_unchanged": true
+    }
+  ],
+  "selection": "20 rounded, evenly spaced ranks from all 76 rows and independently from all 76 columns, each ordered by descending full-matrix arithmetic mean then strain ID.",
+  "calculations": "Arithmetic means over all 76 partners; no clipping of negative GII, no imputation, no inferential statistics, no bioinformatics software.",
+  "claims": "Descriptive visualization and design showcase only; selected ranks are not a random or prevalence-representative sample.",
+  "palette_refresh": {
+    "source_doi": "10.1038/s41467-024-52687-7",
+    "basis": "Observed PDF vector fills; categorical selections and explicitly interpolated sequential ramps.",
+    "structural_reference": false,
+    "author_code_used": false,
+    "data_and_statistics_changed": false,
+    "caption_policy": "Narrative text removed from panel and provided separately in caption.md."
+  },
+  "structural_reference_image_used": false,
+  "palette_reference_used": true
+}

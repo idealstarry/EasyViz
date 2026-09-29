@@ -1,0 +1,43 @@
+{
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.2,
+      "right": 0.77,
+      "bottom": 0.2,
+      "top": 0.91
+    }
+  },
+  "formats": [
+    "pdf",
+    "png",
+    "svg",
+    "tiff"
+  ],
+  "palette": "somerville-bright",
+  "seed": 417,
+  "chart": "heatmap",
+  "fields": {
+    "row": "feature",
+    "column": "sample",
+    "value": "score"
+  },
+  "colormap": "somerville-blue-coral",
+  "labels": {
+    "x": "Sample",
+    "y": "Feature",
+    "color": "Score"
+  },
+  "options": {
+    "color_limits": [
+      -2,
+      2
+    ],
+    "color_center": 0
+  }
+}

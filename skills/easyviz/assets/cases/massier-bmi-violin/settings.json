@@ -1,0 +1,103 @@
+{
+  "case": "massier-bmi-violin",
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "author_code_accessed": false,
+  "source_data": "inputs/source-data.csv",
+  "reference": "inputs/reference.png",
+  "reference_reading": "inputs/reference-spec.json",
+  "canvas": {
+    "width_mm": 132,
+    "height_mm": 99,
+    "dpi": 300,
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "crop": false
+  },
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "fallback": "DejaVu Sans",
+    "axis_label_pt": 8,
+    "tick_label_pt": 8,
+    "other_text_pt": 8,
+    "resolved_font_path": "/System/Library/Fonts/Supplemental/Arial.ttf"
+  },
+  "layout": {
+    "axes_bounds_fraction": [
+      0.25,
+      0.14,
+      0.72,
+      0.82
+    ],
+    "spine_width_pt": 0.6,
+    "violin_outline_width_pt": 0.5,
+    "grid_width_pt": 0.4,
+    "maximum_violin_thickness_rows": 0.9
+  },
+  "palette": {
+    "name": "reference-estimated muted purple",
+    "fill": "#97769E",
+    "outline": "#4C454E",
+    "grid": "#ECECEC",
+    "background": "#FFFFFF",
+    "text": "#000000",
+    "status": "visual estimate, not recovered author colors"
+  },
+  "axis": {
+    "x_label": "BMI (kg/m\u00b2)",
+    "x_limits": [
+      18,
+      64
+    ],
+    "x_major_ticks": [
+      20,
+      40,
+      60
+    ],
+    "x_minor_ticks": [
+      30,
+      50
+    ],
+    "y_label": null,
+    "y_order_top_to_bottom": [
+      "Krieg",
+      "Petrus",
+      "Arner, E",
+      "Kerr",
+      "Arner, P#1",
+      "Arner, P#2",
+      "Armenise",
+      "Imbert"
+    ]
+  },
+  "cohort_labels": {
+    "Krieg": "Krieg, L et al.",
+    "Petrus": "Petrus, P. et al.",
+    "Arner, E": "Arner, E. et al.",
+    "Kerr": "Kerr, A. et al.",
+    "Arner, P#1": "Arner, P. et al. (#1)",
+    "Arner, P#2": "Arner, P. et al. (#2)",
+    "Armenise": "Armenise, C. et al.",
+    "Imbert": "Imbert, A. et al."
+  },
+  "density": {
+    "kernel": "Gaussian",
+    "implementation": "scipy.stats.gaussian_kde",
+    "bandwidth_rule": "Scott",
+    "bandwidth_formula": "sample standard deviation (ddof=1) * n^(-1/5)",
+    "grid_points_per_cohort": 512,
+    "support": "observed minimum to maximum, inclusive",
+    "normalization": "Each displayed density is normalized to unit area on its own observed range; a common scale maps the largest peak to the maximum violin thickness.",
+    "boundary_correction": "none",
+    "missing": "Exclude only empty BMI from density, retain every source record in plotting-data.csv; no imputation.",
+    "hypothesis_tests": "none",
+    "parameter_provenance": "Independent documented choices; original estimator, bandwidth, support and normalization are unknown."
+  },
+  "expected_records": 864,
+  "expected_available_bmi": 858,
+  "expected_missing_bmi": 6
+}

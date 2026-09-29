@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "track": "reproduce",
+  "reference_input_mode": "image-data",
+  "chart": "five_spoke_radar",
+  "input_data": "inputs/source-data.csv",
+  "reference_image": "inputs/reference.png",
+  "reference_reading": "inputs/reference-spec.json",
+  "author_code_accessed": false,
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font_requested": "Arial",
+    "font_fallback": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "center_mm": [
+      44,
+      52
+    ],
+    "radius_mm": 25,
+    "line_width_pt": 0.75,
+    "marker_diameter_pt": 3.8,
+    "grid_line_width_pt": 0.45,
+    "font_actual": "Arial",
+    "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf"
+  },
+  "typography": {
+    "title": 8,
+    "axis": 8,
+    "tick": 8,
+    "legend": 8
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "radial_scale": {
+    "type": "linear",
+    "limits": [
+      0,
+      0.5
+    ],
+    "origin": 0,
+    "ticks": [
+      0,
+      0.25,
+      0.5
+    ],
+    "zero_semantics": "Valid source values; displayed at the geometric origin without jitter",
+    "unknown_reference_offset": "The reference may use central padding, but it cannot be established from permitted image evidence. No offset is inferred or fitted."
+  },
+  "cell_classes_clockwise_from_top": [
+    {
+      "source": "ALL",
+      "display": "all"
+    },
+    {
+      "source": "FAP",
+      "display": "FAPs"
+    },
+    {
+      "source": "ENDO",
+      "display": "vascular"
+    },
+    {
+      "source": "IMMUNE",
+      "display": "immune"
+    },
+    {
+      "source": "ADIPOCYTES",
+      "display": "adipocytes"
+    }
+  ],
+  "methods_in_legend_and_drawing_order": [
+    {
+      "source": "raw",
+      "display": "raw",
+      "color": "#AAAAAA"
+    },
+    {
+      "source": "harmony",
+      "display": "Harmony",
+      "color": "#F3BC3D"
+    },
+    {
+      "source": "scVI",
+      "display": "scVI",
+      "color": "#3A9D6C"
+    },
+    {
+      "source": "bbknn",
+      "display": "BBKNN",
+      "color": "#195E84"
+    },
+    {
+      "source": "rPCA",
+      "display": "rPCA",
+      "color": "#9874A3"
+    }
+  ],
+  "colors": {
+    "provenance": "Visual estimates supplied in independent reference reading; not recovered author settings",
+    "background": "#F7F7F7",
+    "spokes_and_outer_ring": "#C7C7C7",
+    "intermediate_ring": "#32839A"
+  },
+  "data_transformations": "Map labels, reorder spokes/methods, and convert supplied radius to Cartesian drawing coordinates. No normalization, filtering, imputation, jitter, aggregation, or recomputation.",
+  "statistical_layers": "Supplied acceptance rates only; no new hypothesis tests or uncertainty estimates",
+  "intentional_differences": [
+    "One standalone panel with direct cell-class labels and a two-row method legend replaces the shared whole-figure key.",
+    "The radial origin is explicitly zero; unknown reference origin padding is not inferred, so valid zeros overlap at the center.",
+    "A single-panel title replaces the reference frame around a two-chart depot group.",
+    "All text is 8 pt. Relative marker and margin sizes are adapted to a readable 88 mm square panel."
+  ]
+}

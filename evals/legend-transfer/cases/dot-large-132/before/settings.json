@@ -1,0 +1,78 @@
+{
+  "chart": "dotplot",
+  "layout": {
+    "width_mm": 132.0,
+    "height_mm": 96.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "column",
+    "y": "row",
+    "size": "count",
+    "color": "fraction"
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Feature",
+    "size": "Count",
+    "color": "Fraction"
+  },
+  "colormap": [
+    "#F5FBFE",
+    "#2581B9"
+  ],
+  "options": {
+    "size_max": 200,
+    "max_area_pt2": 144,
+    "size_legend": [
+      20.0,
+      100.0,
+      200
+    ],
+    "color_limits": [
+      0,
+      1
+    ],
+    "x_rotation": 0
+  },
+  "resolved_colors": {},
+  "input_file": "source.csv",
+  "input_sha256": "017f3a20a981225a407fb97d2276646f89476d442e9cf2201f343109fbd6c670",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "e05e77eabd1aec98919330b013dfb13c1c04158e1448324a696d9514c78bd087"
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

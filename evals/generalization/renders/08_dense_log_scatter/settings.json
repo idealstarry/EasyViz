@@ -1,0 +1,303 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "x",
+    "y": "y",
+    "group": "group",
+    "unit": "unit"
+  },
+  "layout": {
+    "width_mm": 175.0,
+    "height_mm": 115.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 8.0,
+    "panel": 8.0
+  },
+  "palette": "okabe-ito",
+  "colormap": "viridis",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "colors": {
+    "Cohort A": "#0072B2",
+    "Cohort B": "#D55E00",
+    "Cohort C": "#009E73"
+  },
+  "options": {
+    "x_scale": "log",
+    "y_scale": "log",
+    "alpha": 0.3,
+    "point_area_pt2": 3
+  },
+  "statistics": {
+    "method": "spearman",
+    "annotate": true
+  },
+  "labels": {
+    "x": "Concentration X",
+    "y": "Response Y"
+  },
+  "resolved_colors": {
+    "Cohort A": "#0072B2",
+    "Cohort B": "#D55E00",
+    "Cohort C": "#009E73"
+  },
+  "input_file": "data.csv",
+  "input_sha256": "11cb07c58b5c057041567a2d3d7121ca4d536de7690d2075698661cd6df44004",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "5a973ebcd461fcd25f5bf9509b91fb7e8998796058f011700eb66283bc8c8ba9",
+    "legend_helper_sha256": "24e85216725ee68d21def0206a3656ba0a87d7c1de7e4580432a0d39116f7a2a"
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "bottom",
+          "ncol": 1,
+          "loc": "upper center",
+          "anchor_mm": [
+            84.87499999999999,
+            15.726907552083338
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.5,
+          "effective_key_height_mm": 1.5
+        },
+        "bbox_mm": [
+          77.86,
+          6.027350260416673,
+          14.029999999999996,
+          9.699557291666665
+        ],
+        "plot_bbox_mm": [
+          38.5,
+          27.6,
+          92.74999999999999,
+          75.89999999999999
+        ],
+        "canvas_mm": [
+          175.0,
+          114.99999999999999
+        ],
+        "area_fraction_of_plot": 0.019330980798551545,
+        "width_fraction_of_plot": 0.15126684636118595,
+        "height_fraction_of_plot": 0.12779390371102325,
+        "area_fraction_of_canvas": 0.00676197708333333,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.05341360862969099,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          173.0,
+          14.726907552083338
+        ],
+        "key_bboxes_mm": [
+          [
+            78.05999999999999,
+            13.549023771367526,
+            1.5000000000000018,
+            1.5000000000000018
+          ],
+          [
+            78.05999999999999,
+            10.249171340811971,
+            1.5000000000000018,
+            1.5000000000000018
+          ],
+          [
+            78.05999999999999,
+            6.949318910256416,
+            1.5000000000000018,
+            1.4999999999999996
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              133.25,
+              93.80044270833334,
+              14.030000000000005,
+              9.69955729166667
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              133.25,
+              97.1002951388889,
+              29.501250000000006,
+              6.399704861111123
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              133.25,
+              100.40014756944444,
+              44.81623046875003,
+              3.099852430555557
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              77.86,
+              105.5,
+              14.029999999999996,
+              9.69955729166667
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              70.12437499999999,
+              105.5,
+              29.501250000000006,
+              6.399704861111123
+            ],
+            "issues": []
+          },
+          {
+            "position": "top",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              62.46688476562499,
+              105.5,
+              44.81623046875,
+              3.099852430555539
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              77.86,
+              6.027350260416673,
+              14.029999999999996,
+              9.699557291666665
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              70.12437499999999,
+              9.327202690972227,
+              29.501250000000006,
+              6.399704861111111
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              62.46688476562499,
+              12.627055121527784,
+              44.81623046875,
+              3.0998524305555546
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 136.08478880208327,
+      "sum_envelope_area_mm2": 136.08478880208327,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.019330980798551545,
+      "area_fraction_of_canvas": 0.00676197708333333,
+      "enclosing_bbox_mm": [
+        77.86,
+        6.027350260416673,
+        14.029999999999996,
+        9.699557291666665
+      ],
+      "max_individual_width_mm": 14.029999999999996,
+      "max_individual_height_mm": 9.699557291666665,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios are diagnostics, not universal publication limits. Check other annotation collisions visually."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

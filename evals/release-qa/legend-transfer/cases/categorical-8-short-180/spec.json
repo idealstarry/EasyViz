@@ -1,0 +1,59 @@
+{
+  "chart": "scatter",
+  "layout": {
+    "width_mm": 180,
+    "height_mm": 96,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "score_x",
+    "y": "score_y",
+    "group": "arm",
+    "unit": "unit"
+  },
+  "colors": {
+    "G1": "#2581B9",
+    "G2": "#DF9A3C",
+    "G3": "#1AA781",
+    "G4": "#D76F3B",
+    "G5": "#007F7F",
+    "G6": "#A37FFF",
+    "G7": "#29ACF3",
+    "G8": "#E47751"
+  },
+  "order": {
+    "group": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8"
+    ]
+  },
+  "labels": {
+    "x": "Score X",
+    "y": "Score Y"
+  },
+  "options": {
+    "point_area_pt2": 12,
+    "alpha": 1,
+    "grid": false
+  }
+}

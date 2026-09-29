@@ -1,0 +1,43 @@
+{
+  "title": "An integrated single cell and spatial transcriptomic map of human white adipose tissue",
+  "authors": "Massier et al.",
+  "year": 2023,
+  "doi": "10.1038/s41467-023-36983-2",
+  "paper_url": "https://www.nature.com/articles/s41467-023-36983-2",
+  "data_url": "https://data.mendeley.com/datasets/y3pxvr4xbf/2",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": "Paper p18 and Mendeley version2 license page; Source_Data_complete is described on dataset page.",
+  "source_origin": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Massier. et al., NC, 2023/data and code/Source Data/Figure_2/Figure_2f.txt",
+  "source_sha256": "9916db017e393742a1c91f4e03c3e554258893dddda1491e6bcf28085ec03a55",
+  "prepared_csv_sha256": "6fd2268a8c9db407912dd33769391e26704898badbe67f7164cc02feb02d0538",
+  "paper_origin": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Massier. et al., NC, 2023/Massier. et al., NC, 2023.pdf",
+  "paper_sha256": "f0bdb437c114b7ad2aced75e7da65ac942191e71e04fae6908d917fd109e8923",
+  "figure": "2d annotations and 2f counts",
+  "source_evidence_page": 5,
+  "track": "create",
+  "original_plot_reproduced": false,
+  "author_plotting_code_read": false,
+  "transformations": [
+    "Reformat the complete 48-row Figure_2f.txt from TSV to CSV; preserve original columns and numeric strings.",
+    "Transcribe selected myeloid labels and two marker examples per subtype from Figure2d.",
+    "Create display groups from explicit Figure2d subtype labels; these are presentation groups, not a new clustering result.",
+    "Plotting script derives within-depot percentages from integer n and verifies original percent values.",
+    "Plotting script sums counts by subtype for aligned marginal bars; verifies n_cluster."
+  ],
+  "caveats": [
+    "Counts pool objects across studies and subjects; they are not independent participant replicates.",
+    "Marker labels are descriptive examples transcribed from the paper, not measured expression in this table.",
+    "percent2 and source group A-D are retained but are not interpreted or plotted."
+  ],
+  "palette_refresh": {
+    "source_doi": "10.1038/s41467-024-53700-9",
+    "basis": "Same-Figure-2b embedded RGB swatches, selected as user-approved candidate B; continuous blue ramp explicitly derived.",
+    "structural_reference": false,
+    "author_code_used": false,
+    "data_and_statistics_changed": false,
+    "caption_policy": "Narrative text removed from panel and provided separately in caption.md.",
+    "mark_style": "Uniform borderless dots, bars, annotation strips and matching legend symbols.",
+    "selection": "User chose B from three actual rendered palette candidates."
+  }
+}

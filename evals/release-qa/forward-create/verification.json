@@ -1,0 +1,93 @@
+{
+  "source_sha256_matches": true,
+  "source_rows": 396,
+  "unique_donor_arm_week_protein_keys": 396,
+  "donors": 24,
+  "expected_changes": 252,
+  "plotting_rows": 252,
+  "max_change_absolute_error": 4.440892098500626e-16,
+  "summary_rows": 24,
+  "max_summary_absolute_error": 4.440892098500626e-16,
+  "independent_recalculation": "stdlib csv dictionary join, statistics.median and explicit linear quantile implementation; same agent, separate code path",
+  "missing_followup_visits": [
+    {
+      "donor_id": "C03",
+      "arm": "Control",
+      "week": 12
+    },
+    {
+      "donor_id": "C08",
+      "arm": "Control",
+      "week": 4
+    },
+    {
+      "donor_id": "C10",
+      "arm": "Control",
+      "week": 12
+    },
+    {
+      "donor_id": "T03",
+      "arm": "Treatment",
+      "week": 12
+    },
+    {
+      "donor_id": "T08",
+      "arm": "Treatment",
+      "week": 4
+    },
+    {
+      "donor_id": "T10",
+      "arm": "Treatment",
+      "week": 12
+    }
+  ],
+  "missing_followup_protein_measurements": 36,
+  "pdf_dimensions_mm": [
+    179.99999491373697,
+    125.00000364515516
+  ],
+  "pdf_page_count": 1,
+  "pdf_fonts": [
+    {
+      "name": "FCJIFU+ArialMT",
+      "type": "Type0",
+      "bytes": 29192,
+      "embedded": true
+    }
+  ],
+  "pdf_text_sizes_pt": [
+    8.0
+  ],
+  "svg_dimensions_mm": [
+    179.99999983333333,
+    125.00000011944444
+  ],
+  "svg_text_count": 21,
+  "svg_font": "Arial; 8px text in SVG point-coordinate viewBox, i.e. 8 pt",
+  "svg_font_embedding": "not embedded; editable text requires Arial on the viewing system",
+  "png_pixels": [
+    2126,
+    1476
+  ],
+  "png_dpi": [
+    299.9994,
+    299.9994
+  ],
+  "png_dimensions_mm_from_metadata": [
+    180.00169333672,
+    124.96824993649989
+  ],
+  "canvas_clipping": "passed, renderer text extents",
+  "horizontal_tick_collisions": "passed, renderer extents",
+  "values_within_axes": "passed; range [-2.203096536365023, 1.5096355347287584]",
+  "limitations": [
+    "Visual review is separate from these numeric checks.",
+    "No inferential tests performed.",
+    "SVG font not embedded; font name preserved as requested."
+  ],
+  "visual_renderers": {
+    "pdf": "PyMuPDF, 144 dpi; panel_pdf_render.png",
+    "svg": "rsvg-convert/librsvg, 144 dpi; panel_svg_render.png"
+  },
+  "visual_inspection": "Complete PNG, PDF and SVG rasterizations actually opened and inspected; no clipping or missing glyphs observed. Same agent self-review."
+}

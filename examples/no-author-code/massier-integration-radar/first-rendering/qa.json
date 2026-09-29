@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0",
+  "overall_status": "needs_revision",
+  "review_packet": {
+    "reference": "inputs/reference.png",
+    "candidate": "panel.png",
+    "specification": "adopted-spec.md",
+    "settings": "settings.json"
+  },
+  "visual_review": {
+    "status": "needs_revision",
+    "reviewer_role": "implementer self-review",
+    "pass_number": 1,
+    "candidate": "first-rendering/panel.png",
+    "findings": [
+      {
+        "severity": "minor",
+        "location": "radial ticks near top spoke and origin",
+        "evidence": "The zero label crowds the nearby blue central marker; the 0.25 label approaches the green trace.",
+        "requirement": "Readable radial labels",
+        "action": "Move radial labels further left from the spoke by 1.7 mm while retaining all 8 pt text."
+      }
+    ],
+    "independent_review": "Pending separate reviewer"
+  },
+  "numerical_checks": {
+    "data_coverage": {
+      "status": "passed",
+      "evidence": {
+        "hypothesis_tests": [],
+        "new_hypothesis_test_performed": false,
+        "upstream_analysis_recomputed": false,
+        "statistical_layer": "Only supplied kBET acceptance rates; no uncertainty or inferential layer",
+        "source_rows": 25,
+        "plotted_vertices": 25,
+        "unique_pairs": 25,
+        "methods": 5,
+        "cell_classes": 5,
+        "missing_values": 0,
+        "zero_values": 3,
+        "minimum": 0.0,
+        "maximum": 0.47525,
+        "excluded_rows": 0,
+        "imputed_rows": 0,
+        "source_sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+      }
+    },
+    "source_text_values_retained": {
+      "status": "passed",
+      "evidence": "plotting-data.csv retains the unchanged acceptance_rate string for each method\u2013class pair"
+    },
+    "pdf_canvas": {
+      "status": "passed",
+      "measured_mm": [
+        88.00000110202366,
+        88.00000110202366
+      ]
+    },
+    "svg_canvas": {
+      "status": "passed",
+      "measured_mm": [
+        88.0000000361111,
+        88.0000000361111
+      ]
+    },
+    "png_canvas": {
+      "status": "passed",
+      "measured_px": [
+        1039,
+        1039
+      ],
+      "expected_px": [
+        1039,
+        1039
+      ],
+      "dpi_metadata": [
+        299.9994,
+        299.9994
+      ]
+    },
+    "pdf_fonts": {
+      "status": "passed",
+      "text_sizes_pt": [
+        8.0
+      ],
+      "fonts": [
+        {
+          "basefont": "ETTVMR+ArialMT",
+          "type": "Type0",
+          "embedded": true
+        }
+      ]
+    },
+    "svg_text_editability": {
+      "status": "passed",
+      "text_elements": 16
+    },
+    "text_canvas_boundaries": {
+      "status": "passed",
+      "measurement": "Matplotlib renderer text bounding boxes",
+      "labels": [
+        {
+          "text": "depot",
+          "bbox_px": [
+            479.1850393700787,
+            982.3902200213254,
+            81.0,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "all",
+          "bbox_px": [
+            503.6850393700787,
+            932.1933696276246,
+            32.0,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "FAPs",
+          "bbox_px": [
+            822.0472440944881,
+            696.563448367782,
+            79.15625,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "vascular",
+          "bbox_px": [
+            711.6141732283463,
+            333.9650231709317,
+            123.0,
+            31.28255208333337
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "immune",
+          "bbox_px": [
+            212.75590551181097,
+            333.9650231709317,
+            115.0,
+            31.28255208333337
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "adipocytes",
+          "bbox_px": [
+            60.322834645669246,
+            696.563448367782,
+            157.0,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "0",
+          "bbox_px": [
+            486.3307086614173,
+            598.53195230479,
+            18.0,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "0.25",
+          "bbox_px": [
+            441.3307086614173,
+            746.1697475803805,
+            63.0,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "0.5",
+          "bbox_px": [
+            459.3307086614173,
+            893.8075428559711,
+            45.0,
+            31.282552083333258
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "kBET",
+          "bbox_px": [
+            479.1850393700787,
+            260.7366767142388,
+            81.0,
+            31.28255208333337
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "(acceptance rate)",
+          "bbox_px": [
+            392.1850393700787,
+            215.85478695045933,
+            255.0,
+            31.282552083333314
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "raw",
+          "bbox_px": [
+            250.39370078740154,
+            123.72880269849081,
+            53.0,
+            31.28255208333333
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "Harmony",
+          "bbox_px": [
+            501.9685039370078,
+            123.72880269849081,
+            133.00000000000006,
+            31.28255208333333
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "scVI",
+          "bbox_px": [
+            840.9448818897637,
+            123.72880269849081,
+            65.0,
+            31.28255208333333
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "BBKNN",
+          "bbox_px": [
+            398.0314960629921,
+            59.949275139435684,
+            114.0,
+            31.282552083333343
+          ],
+          "inside_canvas": true
+        },
+        {
+          "text": "rPCA",
+          "bbox_px": [
+            699.2125984251968,
+            59.949275139435684,
+            79.0,
+            31.282552083333343
+          ],
+          "inside_canvas": true
+        }
+      ]
+    },
+    "text_text_overlap": {
+      "status": "passed",
+      "overlap_pairs": [],
+      "limitation": "Does not detect text\u2013mark overlap; requires visual inspection"
+    }
+  },
+  "residual_notes": [
+    "One standalone panel with direct cell-class labels and a two-row method legend replaces the shared whole-figure key.",
+    "The radial origin is explicitly zero; unknown reference origin padding is not inferred, so valid zeros overlap at the center.",
+    "A single-panel title replaces the reference frame around a two-chart depot group.",
+    "All text is 8 pt. Relative marker and margin sizes are adapted to a readable 88 mm square panel."
+  ]
+}

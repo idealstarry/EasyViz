@@ -1,0 +1,805 @@
+{
+  "renderer_path": "/Users/starry/Desktop/EasyViz/evals/legend-transfer/baseline/skills/easyviz/scripts/render.py",
+  "renderer_sha256": "e05e77eabd1aec98919330b013dfb13c1c04158e1448324a696d9514c78bd087",
+  "legend_helper_sha256": null,
+  "renderer_status": "needs_revision",
+  "error": "SpecError: Canvas QA needs revision: 9 clipped text elements, 0 tick-label overlaps, 0 missing glyph warnings; inspect qa.json and panel.png",
+  "source_sha256": "ca2a2e3e1350a6e327338749ccf0a4d9d129f1bf7b79d8c9fa68aa7f3623c4d1",
+  "source_values_preserved": true,
+  "geometry": {
+    "canvas_mm": [
+      88.0,
+      31.999999999999996
+    ],
+    "plot_bbox_mm": [
+      16.72,
+      7.36,
+      51.04,
+      20.8
+    ],
+    "decorated_plot_bbox_mm": [
+      6.380855,
+      -1.817734,
+      63.246112,
+      29.977734
+    ],
+    "plot_bbox_note": "plot_bbox_mm is the data rectangle; decorated_plot_bbox_mm additionally includes axes/ticks/axis labels but excludes the legend.",
+    "axis_text_bboxes_mm": [
+      {
+        "role": "x label",
+        "text": "Score X",
+        "bbox_mm": [
+          37.287,
+          -1.817734,
+          9.906,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "0.5",
+        "bbox_mm": [
+          20.177623,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "1.0",
+        "bbox_mm": [
+          35.390738,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "1.5",
+        "bbox_mm": [
+          50.603852,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "2.0",
+        "bbox_mm": [
+          65.816967,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "y label",
+        "text": "Score Y",
+        "bbox_mm": [
+          6.380855,
+          12.832797,
+          2.648589,
+          9.854406
+        ]
+      },
+      {
+        "role": "y tick",
+        "text": "0.5",
+        "bbox_mm": [
+          10.440556,
+          8.769754,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "y tick",
+        "text": "1.0",
+        "bbox_mm": [
+          10.440556,
+          15.721626,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "y tick",
+        "text": "1.5",
+        "bbox_mm": [
+          10.440556,
+          22.673497,
+          3.81,
+          2.648589
+        ]
+      }
+    ],
+    "actual_legends": [
+      {
+        "kind": "categorical",
+        "bbox_mm": [
+          68.7808,
+          -5.164271,
+          46.37749,
+          33.324271
+        ],
+        "labels": [
+          "Activated T cells",
+          "Memory B cells",
+          "Inflammatory monocytes",
+          "Dendritic cell precursors",
+          "Cytotoxic lymphocytes",
+          "Vascular endothelial cells",
+          "Stromal progenitor cells",
+          "Tissue resident macrophages"
+        ],
+        "title": "",
+        "items": [
+          {
+            "label": "Activated T cells",
+            "text_bbox_mm": [
+              77.811911,
+              24.382522,
+              20.132146,
+              2.648589
+            ],
+            "fill_color": "#2581b9",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                25.10626,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Memory B cells",
+            "text_bbox_mm": [
+              77.811911,
+              20.322821,
+              18.965333,
+              2.648589
+            ],
+            "fill_color": "#df9a3c",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                21.04656,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Inflammatory monocytes",
+            "text_bbox_mm": [
+              77.811911,
+              16.263121,
+              30.141333,
+              2.648589
+            ],
+            "fill_color": "#1aa781",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                16.986859,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Dendritic cell precursors",
+            "text_bbox_mm": [
+              77.811911,
+              12.20342,
+              29.802667,
+              2.648589
+            ],
+            "fill_color": "#d76f3b",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                12.927159,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Cytotoxic lymphocytes",
+            "text_bbox_mm": [
+              77.811911,
+              8.14372,
+              27.770667,
+              2.648589
+            ],
+            "fill_color": "#007f7f",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                8.867458,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Vascular endothelial cells",
+            "text_bbox_mm": [
+              77.811911,
+              4.084019,
+              30.948313,
+              2.648589
+            ],
+            "fill_color": "#a37fff",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                4.807758,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Stromal progenitor cells",
+            "text_bbox_mm": [
+              77.811911,
+              0.024319,
+              28.956,
+              2.648589
+            ],
+            "fill_color": "#29acf3",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                0.748057,
+                1.222058,
+                1.222058
+              ]
+            ]
+          },
+          {
+            "label": "Tissue resident macrophages",
+            "text_bbox_mm": [
+              77.811911,
+              -4.035382,
+              36.21749,
+              2.648589
+            ],
+            "fill_color": "#e47751",
+            "areas_pt2": [
+              12.0
+            ],
+            "symbol_bboxes_mm": [
+              [
+                72.120882,
+                -3.311643,
+                1.222058,
+                1.222058
+              ]
+            ]
+          }
+        ],
+        "area_fraction_of_plot": 1.4557737945538474,
+        "area_fraction_of_canvas": 0.5488267205468006,
+        "plot_intersection_mm2": 0.0,
+        "inferred_margin_side": "right",
+        "inferred_available_band_mm": [
+          67.75999999999999,
+          0,
+          20.240000000000002,
+          31.999999999999996
+        ],
+        "occupied_fraction_of_inferred_band": 2.3862031328121764
+      }
+    ],
+    "measured_collisions": [
+      {
+        "roles": [
+          "categorical",
+          "x tick: 2.0"
+        ],
+        "intersection_mm2": 2.241148608363022
+      }
+    ],
+    "text_sizes_pt": [
+      8.0
+    ],
+    "data_artist_values": {
+      "collections": [
+        {
+          "offsets": [
+            [
+              0.4,
+              0.35
+            ],
+            [
+              0.67,
+              0.86
+            ],
+            [
+              0.94,
+              1.37
+            ],
+            [
+              1.21,
+              0.35
+            ],
+            [
+              1.48,
+              0.86
+            ],
+            [
+              1.75,
+              1.37
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.1450980392156863,
+              0.5058823529411764,
+              0.7254901960784313,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.425,
+              0.69
+            ],
+            [
+              0.695,
+              1.2
+            ],
+            [
+              0.965,
+              1.71
+            ],
+            [
+              1.235,
+              0.69
+            ],
+            [
+              1.505,
+              1.2
+            ],
+            [
+              1.775,
+              1.71
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.8745098039215686,
+              0.6039215686274509,
+              0.23529411764705882,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.45,
+              1.03
+            ],
+            [
+              0.72,
+              1.54
+            ],
+            [
+              0.99,
+              0.52
+            ],
+            [
+              1.26,
+              1.03
+            ],
+            [
+              1.53,
+              1.54
+            ],
+            [
+              1.8,
+              0.52
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.10196078431372549,
+              0.6549019607843137,
+              0.5058823529411764,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.475,
+              1.37
+            ],
+            [
+              0.745,
+              0.35
+            ],
+            [
+              1.015,
+              0.86
+            ],
+            [
+              1.285,
+              1.37
+            ],
+            [
+              1.555,
+              0.35
+            ],
+            [
+              1.825,
+              0.86
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.8431372549019608,
+              0.43529411764705883,
+              0.23137254901960785,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.5,
+              1.71
+            ],
+            [
+              0.77,
+              0.69
+            ],
+            [
+              1.04,
+              1.2
+            ],
+            [
+              1.31,
+              1.71
+            ],
+            [
+              1.58,
+              0.69
+            ],
+            [
+              1.85,
+              1.2
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.0,
+              0.4980392156862745,
+              0.4980392156862745,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.525,
+              0.52
+            ],
+            [
+              0.795,
+              1.03
+            ],
+            [
+              1.065,
+              1.54
+            ],
+            [
+              1.335,
+              0.52
+            ],
+            [
+              1.605,
+              1.03
+            ],
+            [
+              1.875,
+              1.54
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.6392156862745098,
+              0.4980392156862745,
+              1.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.55,
+              0.86
+            ],
+            [
+              0.82,
+              1.37
+            ],
+            [
+              1.09,
+              0.35
+            ],
+            [
+              1.36,
+              0.86
+            ],
+            [
+              1.63,
+              1.37
+            ],
+            [
+              1.9,
+              0.35
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.1607843137254902,
+              0.6745098039215687,
+              0.9529411764705882,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.575,
+              1.2
+            ],
+            [
+              0.845,
+              1.71
+            ],
+            [
+              1.115,
+              0.69
+            ],
+            [
+              1.385,
+              1.2
+            ],
+            [
+              1.655,
+              1.71
+            ],
+            [
+              1.925,
+              0.69
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.8941176470588236,
+              0.4666666666666667,
+              0.3176470588235294,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "images": []
+    },
+    "canvas_margin_bands_mm": {
+      "right": [
+        67.75999999999999,
+        0,
+        20.240000000000002,
+        31.999999999999996
+      ],
+      "left": [
+        0,
+        0,
+        16.72,
+        31.999999999999996
+      ],
+      "top": [
+        0,
+        28.16,
+        88.0,
+        3.8399999999999963
+      ],
+      "bottom": [
+        0,
+        0,
+        88.0,
+        7.36
+      ]
+    },
+    "margin_band_note": "Geometric space outside the plot rectangle; bands include corners and are not summed. Axis text also occupies these margins. Actual helper reservations are recorded separately."
+  },
+  "reported_legend_layout": null,
+  "clipped_text": [
+    {
+      "text": "Score X",
+      "bounds_px": [
+        440.4,
+        -21.47,
+        557.4,
+        9.81
+      ]
+    },
+    {
+      "text": "Activated T cells",
+      "bounds_px": [
+        919.04,
+        287.98,
+        1156.82,
+        319.27
+      ]
+    },
+    {
+      "text": "Memory B cells",
+      "bounds_px": [
+        919.04,
+        240.03,
+        1143.04,
+        271.32
+      ]
+    },
+    {
+      "text": "Inflammatory monocytes",
+      "bounds_px": [
+        919.04,
+        192.08,
+        1275.04,
+        223.37
+      ]
+    },
+    {
+      "text": "Dendritic cell precursors",
+      "bounds_px": [
+        919.04,
+        144.13,
+        1271.04,
+        175.42
+      ]
+    },
+    {
+      "text": "Cytotoxic lymphocytes",
+      "bounds_px": [
+        919.04,
+        96.19,
+        1247.04,
+        127.47
+      ]
+    },
+    {
+      "text": "Vascular endothelial cells",
+      "bounds_px": [
+        919.04,
+        48.24,
+        1284.57,
+        79.52
+      ]
+    },
+    {
+      "text": "Stromal progenitor cells",
+      "bounds_px": [
+        919.04,
+        0.29,
+        1261.04,
+        31.57
+      ]
+    },
+    {
+      "text": "Tissue resident macrophages",
+      "bounds_px": [
+        919.04,
+        -47.66,
+        1346.8,
+        -16.38
+      ]
+    }
+  ],
+  "tick_overlaps": [],
+  "actual_size_export_checks": null
+}

@@ -1,0 +1,83 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "x",
+    "y": "y",
+    "group": "group",
+    "unit": "unit"
+  },
+  "layout": {
+    "width_mm": 175.0,
+    "height_mm": 115.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 8.0,
+    "panel": 8.0
+  },
+  "palette": "okabe-ito",
+  "colormap": "viridis",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "colors": {
+    "Cohort A": "#0072B2",
+    "Cohort B": "#D55E00",
+    "Cohort C": "#009E73"
+  },
+  "options": {
+    "x_scale": "log",
+    "y_scale": "log",
+    "alpha": 0.3,
+    "point_area_pt2": 3,
+    "x_limits": [
+      0,
+      100
+    ]
+  },
+  "statistics": {
+    "method": "spearman",
+    "annotate": true
+  },
+  "labels": {
+    "x": "Concentration X",
+    "y": "Response Y"
+  },
+  "resolved_colors": {
+    "Cohort A": "#0072B2",
+    "Cohort B": "#D55E00",
+    "Cohort C": "#009E73"
+  },
+  "input_file": "data.csv",
+  "input_sha256": "11cb07c58b5c057041567a2d3d7121ca4d536de7690d2075698661cd6df44004",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "d20c5f77a39663d5bd725d0fdf11983bd45b751ba3d62b22a3601764ae7d59c1"
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-29",
+  "release_version": "0.1.0",
+  "decision": "ready_for_private_initial_release",
+  "archive": "easyviz-0.1.0.zip",
+  "archive_sha256": "0256605fbaed6b174903917cb0b5640eda4eee13d078ffa9bc7a6fdfac3e9c46",
+  "archive_files": 166,
+  "unit_tests_passed": 33,
+  "renderer_transfer": {
+    "valid_renders": 8,
+    "expected_data_rejections": 10,
+    "expected_layout_rejections": 2,
+    "unsupported_method": 1,
+    "unexpected_outcomes": 0
+  },
+  "legend_cases": {
+    "valid_renders": 9,
+    "expected_layout_rejection": 1
+  },
+  "forward_tests": {
+    "create": "ready; original data, all 252 SVG participant positions, 24 medians and IQRs independently verified",
+    "reproduce": "ready_with_notes; 61 source records, 59 SVG circle areas/colors, 3 missing crosses and size keys independently verified"
+  },
+  "clean_runtime": {
+    "python": "3.12.2",
+    "platform": "Darwin",
+    "packages": {
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.3",
+      "pandas": "3.0.6",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.19.0",
+      "PyMuPDF": "1.28.2"
+    }
+  },
+  "fixes": [
+    "Resolve statistical-unit aliases consistently and reject duplicated/missing units before correlation",
+    "Reject blank participant/cohort/subtype IDs before pairing",
+    "Preserve literal NA/null and leading-zero matrix identifiers while rejecting genuinely empty IDs",
+    "Correct portable BMI invocation and use portable temporary cache paths"
+  ],
+  "limits": [
+    "Synthetic held-out tests are engineering evidence, not additional biological validation",
+    "Reproduce initial reading used disclosed main-agent fallback; final visual reviewer was independent",
+    "A tiny near-neutral positive dot remains difficult to see; proportional area and color mappings are retained",
+    "Explicit-path skill workflows and standalone Python package were tested; Codex installation and automatic discovery were not tested",
+    "No physical print proof or arbitrary-domain/general aesthetic superiority claim"
+  ]
+}

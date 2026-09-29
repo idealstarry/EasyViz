@@ -1,0 +1,66 @@
+{
+  "chart": "composition",
+  "fields": {
+    "sample": "sample",
+    "category": "category",
+    "value": "value",
+    "denominator": "total"
+  },
+  "layout": {
+    "width_mm": 170,
+    "height_mm": 105,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8,
+    "title": 8,
+    "panel": 8
+  },
+  "palette": "okabe-ito",
+  "colormap": "viridis",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "colors": {
+    "Lineage 1": "#0072B2",
+    "Lineage 2": "#D55E00",
+    "Lineage 3": "#009E73",
+    "Lineage 4": "#CC79A7",
+    "Lineage 5": "#E69F00",
+    "Lineage 6": "#56B4E9",
+    "Lineage 7": "#575757"
+  },
+  "options": {
+    "normalization": "denominator",
+    "missing_categories": "zero",
+    "percent_axis": true
+  },
+  "order": {
+    "category": [
+      "Lineage 7",
+      "Lineage 6",
+      "Lineage 5",
+      "Lineage 4",
+      "Lineage 3",
+      "Lineage 2",
+      "Lineage 1"
+    ]
+  },
+  "labels": {
+    "x": "Donor",
+    "y": "Fraction of full sample"
+  }
+}

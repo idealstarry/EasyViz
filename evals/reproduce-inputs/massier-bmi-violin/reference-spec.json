@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "case": "massier-bmi-violin",
+  "role": "Independent reference reader; descriptive specification only",
+  "inspection_scope": {
+    "read": ["reference.png", "request.md", "data-dictionary.md"],
+    "source_data_examined": false,
+    "author_code_or_implementation_examined": false,
+    "evidence_policy": "Visible facts derive from direct image inspection. Physical dimensions and text size derive exclusively from the request. Palette and relative geometry are visual estimates, not recovered author settings. Counts derive from the dictionary and have not been independently verified against the source table."
+  },
+  "target": {
+    "chart_type": "Horizontal violin distribution chart",
+    "requested_region": "The BMI distribution column, middle column in the left group of Figure 8a",
+    "excluded_context": ["Age distributions", "HOMA-IR distributions", "Subject-count bubbles", "Four right-hand summary displays", "Original multi-panel figure letter a"],
+    "standalone_panel_count": 1
+  },
+  "visible_facts": {
+    "mapping": {
+      "x": "BMI, labelled BMI (kg/m²)",
+      "y": "Eight cohort categories, one horizontal violin per category",
+      "violin_extent": "Horizontal extent and width profile depict each cohort's BMI distribution",
+      "color": "One muted purple hue shared by all eight BMI violins"
+    },
+    "axes": {
+      "x_tick_labels": [20, 40, 60],
+      "x_tick_spacing": "Evenly spaced in the reference, consistent with a linear BMI scale",
+      "x_axis_label": "BMI (kg/m²)",
+      "y_axis_title": null,
+      "y_category_order_top_to_bottom": [
+        "Krieg, L et al.",
+        "Petrus, P. et al.",
+        "Arner, E. et al.",
+        "Kerr, A. et al.",
+        "Arner, P. et al. (#1)",
+        "Arner, P. et al. (#2)",
+        "Armenise, C. et al.",
+        "Imbert, A. et al."
+      ],
+      "category_label_position": "Left of the complete left-hand group in the reference; labels apply to the BMI column as well",
+      "tick_and_text_color": "Black",
+      "grid": "Faint vertical gray guide lines behind the distributions",
+      "horizontal_grid": "No prominent horizontal grid lines visible"
+    },
+    "layers_back_to_front": [
+      "White plotting background",
+      "Faint vertical gray guide lines",
+      "Eight solid muted-purple violin bodies with fine dark outlines",
+      "Black axis ticks and labels"
+    ],
+    "statistical_marks": {
+      "individual_points": "None visible within the requested BMI column",
+      "boxplots": "None visible",
+      "quartile_lines": "None visible",
+      "central_summary_markers": "None visible in the cohort-wise BMI column; the white dot in the separate right-hand BMI summary is outside scope"
+    },
+    "geometry": {
+      "orientation": "Horizontal, approximately symmetric above and below each category center",
+      "row_spacing": "Eight evenly spaced row centers",
+      "vertical_occupancy": "Violin bodies are separated, with small clear gaps between neighboring rows",
+      "reference_context_frame": "The reference has a shared top boundary and left boundary around the multi-column cohort display, with distinct bottom value axes"
+    },
+    "labels_and_legend": {
+      "title_inside_target": "None visible",
+      "legend": "None visible or needed for the single-color BMI panel",
+      "required_labels": "The shared cohort labels and the BMI axis label must be retained in the standalone output"
+    }
+  },
+  "visual_estimates_not_hard_facts": {
+    "palette": {
+      "violin_fill_hex_approx": "#97769E",
+      "outline_hex_approx": "#4C454E",
+      "grid_hex_approx": "#ECECEC",
+      "background_hex_approx": "#FFFFFF",
+      "confidence": "High for qualitative colors; hex values are unaudited visual estimates"
+    },
+    "relative_geometry": {
+      "bmi_column_width_relative_to_one_row_spacing": "About 4 to 4.5 times one row spacing",
+      "maximum_violin_thickness_relative_to_row_spacing": "About 0.85 to 0.95",
+      "bmi_column_reference_domain_approx": [18, 64],
+      "domain_note": "Estimated from the plotted extent around the 20/40/60 ticks. This is not evidence that source observations should be clipped to these bounds.",
+      "guide_spacing_approx": "Possibly every 10 BMI units, with labels every 20; exact minor-grid construction is not recoverable",
+      "confidence": "Moderate; source crop pixels do not prescribe final physical geometry"
+    },
+    "distribution_appearance": {
+      "Krieg": "Body is concentrated toward higher BMI, approximately the mid-40s through upper-50s",
+      "Petrus": "Several broad or shallow lobes across approximately 20 through low-50s",
+      "Arner, E": "Broad lower-BMI lobe with a longer extension to the right",
+      "Kerr": "Long distribution with a broad lobe toward higher BMI",
+      "Arner, P#1": "Main broad lobe around low-30s with shoulders",
+      "Arner, P#2": "Concentrated around approximately 40, with an extension to the right",
+      "Armenise": "Main lobe around low-30s, tapering to the right",
+      "Imbert": "Main lobe around low-30s, tapering to the right",
+      "use_constraint": "These descriptions are visual cross-checks only; supplied BMI observations determine every density. Do not force data to match these approximate locations."
+    }
+  },
+  "unknown_statistical_choices": [
+    "Density estimator or kernel used by the authors",
+    "Bandwidth value, bandwidth rule, or cohort-specific bandwidth adjustment",
+    "Evaluation-grid size and interpolation",
+    "Tail extension, clipping, and whether densities stop at observed extrema",
+    "Whether violin widths normalize by equal maximum width, equal area, sample size, or another rule",
+    "Whether sharp-looking ends near BMI 20 reflect data, a boundary rule, or clipping",
+    "Any original treatment of missing BMI beyond what the supplied dictionary documents"
+  ],
+  "adopted_requested_modifications": {
+    "assembly": "Extract the BMI column into one standalone panel and include all eight full cohort labels",
+    "canvas_mm": {"width": 132, "height": 99},
+    "typeface": "Arial; document an available fallback if Arial is unavailable",
+    "text_size_pt": 8,
+    "exports": ["PDF", "SVG", "PNG preview at 300 dpi"],
+    "canvas_preservation": "Retain full requested physical canvas; do not crop output to content",
+    "data_usage": "Use every available BMI observation",
+    "statistics": "Density estimation is permitted; explicitly report chosen method and bandwidth rule; no hypothesis test",
+    "reporting": "Report missing BMI and all visualization choices that cannot be recovered from the reference",
+    "layout_principle": "Use the requested standalone dimensions and text size, preserving category order, density orientation, color family, ticks, and readability rather than copying pixel dimensions"
+  },
+  "required_data_semantics": {
+    "grain": "One participant record per source row; no pairing implied between rows or cohorts",
+    "bmi": {"meaning": "BMI in kg/m²", "missing_value": "Empty field preserves source NA", "use": "Nonmissing observations contribute to their cohort density; do not impute or sample"},
+    "cohort": "Original cohort label mapped to publication display label",
+    "traceability_columns": ["source_row", "source_id"],
+    "dictionary_counts": {"all_records": 864, "nonmissing_bmi": 858, "missing_bmi": 6},
+    "cohort_mapping_and_dictionary_counts": [
+      {"source": "Krieg", "display": "Krieg, L et al.", "records": 23, "nonmissing_bmi": 23, "missing_bmi": 0},
+      {"source": "Petrus", "display": "Petrus, P. et al.", "records": 29, "nonmissing_bmi": 29, "missing_bmi": 0},
+      {"source": "Arner, E", "display": "Arner, E. et al.", "records": 56, "nonmissing_bmi": 56, "missing_bmi": 0},
+      {"source": "Kerr", "display": "Kerr, A. et al.", "records": 77, "nonmissing_bmi": 77, "missing_bmi": 0},
+      {"source": "Arner, P#1", "display": "Arner, P. et al. (#1)", "records": 78, "nonmissing_bmi": 78, "missing_bmi": 0},
+      {"source": "Arner, P#2", "display": "Arner, P. et al. (#2)", "records": 80, "nonmissing_bmi": 80, "missing_bmi": 0},
+      {"source": "Armenise", "display": "Armenise, C. et al.", "records": 189, "nonmissing_bmi": 186, "missing_bmi": 3},
+      {"source": "Imbert", "display": "Imbert, A. et al.", "records": 332, "nonmissing_bmi": 329, "missing_bmi": 3}
+    ],
+    "provenance": "Request attributes the image and released source data to Massier et al., Nature Communications 14, 1438 (2023), DOI 10.1038/s41467-023-36983-2, CC BY 4.0"
+  }
+}

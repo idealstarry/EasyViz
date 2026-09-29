@@ -1,0 +1,51 @@
+{
+  "chart": "scatter",
+  "layout": {
+    "width_mm": 132,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "score_x",
+    "y": "score_y",
+    "group": "arm",
+    "unit": "unit"
+  },
+  "colors": {
+    "Activated T cells": "#2581B9",
+    "Memory B cells": "#DF9A3C",
+    "Inflammatory monocytes": "#1AA781",
+    "Dendritic cell precursors": "#D76F3B"
+  },
+  "order": {
+    "group": [
+      "Activated T cells",
+      "Memory B cells",
+      "Inflammatory monocytes",
+      "Dendritic cell precursors"
+    ]
+  },
+  "labels": {
+    "x": "Score X",
+    "y": "Score Y"
+  },
+  "options": {
+    "point_area_pt2": 12,
+    "alpha": 1,
+    "grid": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "chart": "dotplot",
+  "fields": {
+    "x": "gene",
+    "y": "celltype",
+    "size": "fraction",
+    "color": "score"
+  },
+  "layout": {
+    "width_mm": 180,
+    "height_mm": 130,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8,
+    "title": 8,
+    "panel": 8
+  },
+  "palette": "okabe-ito",
+  "colormap": "RdBu_r",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "options": {
+    "size_max": 1,
+    "max_area_pt2": 65,
+    "color_limits": [
+      -2,
+      2
+    ],
+    "color_center": 0,
+    "size_legend": [
+      0.1,
+      0.5,
+      1
+    ]
+  },
+  "labels": {
+    "color": "Score",
+    "size": "Fraction",
+    "x": "Gene",
+    "y": "Cell type"
+  }
+}

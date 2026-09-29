@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "case": "massier-integration-radar",
+  "status": "ready_with_notes",
+  "reviewer_role": "Independent reviewer; no plotting implementation or author code read",
+  "candidate_render_pass": 2,
+  "additional_renders_requested": 0,
+  "isolation": "Instruction-isolated review, not an operating-system sandbox guarantee",
+  "images_opened": ["inputs/reference.png", "panel.png"],
+  "candidate_sha256": {
+    "panel.png": "4d6d8b27a76c8bcb5d800d7aa6fadd1da8b2809967576d44e384861b9734ec3c",
+    "panel.pdf": "32e6f90c504e2ca2746a449651d4f0489f5eb8ccad1e2969a2676b75457eeb29",
+    "panel.svg": "d16686578b5e0ef031db3923c455237d9dcd4ccc2201d5ccec5325e93201bfe9"
+  },
+  "visual_assessment": {
+    "status": "passed",
+    "evidence": "Opened the supplied reference and current candidate PNG. The equal-angle directions are all, FAPs, vascular, immune, adipocytes clockwise from the top. Five unfilled traces and circular markers use the correct gray/gold/green/blue/purple method associations. The linear radial scale, 0/0.25/0.5 labels, pale background, dashed rings, lower-layer spokes, depot heading and kBET caption agree with the adopted specification. The direct labels and two-row legend are readable, with no clipping or avoidable text/mark collision."
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Origin and near-zero vertices",
+      "evidence": "Several markers and segments coincide near the center, including three exact zeros. The explicit zero origin changes some trace shapes relative to the reference's possible central padding. Source, saved-coordinate, and exported SVG checks confirm preservation of all 25 vertices.",
+      "requirement": "Keep valid zeros and all supplied rates unchanged; disclose unknown original scale padding and overlap order.",
+      "action": "No correction required. Retain the explicit-zero and coincidence notes; do not jitter or offset data to make the traces resemble the reference."
+    },
+    {
+      "severity": "note",
+      "location": "Standalone labels and legend",
+      "evidence": "Direct spoke labels and a two-row legend replace shared keys from the six-chart reference, and the depot title replaces the shared frame. All five methods and all five classes remain identifiable on the requested 88 × 88 mm canvas.",
+      "requirement": "Deliver a self-contained standalone chart at 8 pt text while preserving method and class mappings.",
+      "action": "Accepted adaptation; no additional rendering requested."
+    },
+    {
+      "severity": "note",
+      "location": "Final-size assessment",
+      "evidence": "Readability was judged from the actual PNG together with measured export dimensions and 8 pt type. Screen magnification is not a physical print proof.",
+      "requirement": "Distinguish inspected appearance and measured typography from unperformed print testing.",
+      "action": "No required correction. A physical print proof was not part of this review."
+    }
+  ],
+  "external_checks": {
+    "source_value_and_pair_preservation": {
+      "status": "passed",
+      "evidence": "A separate numerical sub-review confirmed all 25 unique method-class pairs and exact acceptance-rate strings are retained. The five-by-five matrix is complete, with no missingness, three valid zeros, and range 0–0.47525. Labels, order and source hash agree."
+    },
+    "saved_coordinates": {
+      "status": "passed",
+      "evidence": "Independent Cartesian calculations match every saved coordinate exactly using the specified order, center (44,52) mm, and linear 0–0.5 radial scale; each zero lies at the geometric origin."
+    },
+    "rendered_svg_vertices_and_paths": {
+      "status": "passed",
+      "evidence": "Reviewer directly parsed the SVG. Each method has five data marker instances plus one legend marker. All 25 data-marker positions match the saved coordinates within 5.576e-7 pt. Each colored trace is unfilled and consists of its five ordered vertices plus a closing segment."
+    },
+    "pdf_dimensions_typography_and_bounds": {
+      "status": "passed",
+      "evidence": "Direct PDF inspection found one page measuring 88.000001 × 88.000001 mm; all 16 text spans are 8 pt and inside the page. ArialMT is embedded with 28464 font bytes."
+    },
+    "svg_dimensions_and_type": {
+      "status": "passed",
+      "evidence": "Direct SVG inspection found width and height 249.448819 pt with matching viewBox, equivalent to 88 × 88 mm. All 16 editable text elements specify Arial and size 8 in the point-scaled coordinate system."
+    },
+    "png_dimensions_and_resolution": {
+      "status": "passed",
+      "evidence": "Direct PNG inspection found 1039 × 1039 pixels with 299.9994 dpi metadata in both directions, the rounded 300 dpi export at the requested dimensions."
+    },
+    "original_publication_data_authentication": {
+      "status": "not_checked",
+      "required_for_this_review": false,
+      "evidence": "The supplied source CSV was the review input; the original workbook/article and author code were not accessed. Upstream kBET and integration calculations are outside the requested visualization scope."
+    },
+    "physical_print_proof": {
+      "status": "not_checked",
+      "required_for_this_review": false,
+      "evidence": "No paper print was inspected."
+    }
+  },
+  "unresolved_items": [
+    "Original radial padding, rendering order at coincidences, and exact stylistic parameters remain unknown, as already disclosed."
+  ],
+  "required_corrections": [],
+  "next_action": "Keep this second-render candidate; no third render is warranted by the review."
+}

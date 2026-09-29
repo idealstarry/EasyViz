@@ -1,0 +1,136 @@
+{
+  "kind": "synthetic evaluation",
+  "cases": [
+    {
+      "id": "categorical-2-short-88",
+      "chart": "scatter",
+      "width_mm": 88,
+      "height_mm": 72,
+      "intent": "2 complete categorical entries with short labels; preserve decoding and keep legend outside the plotting rectangle without shrinking 8 pt type.",
+      "expected_after_status": "pass",
+      "source": "cases/categorical-2-short-88/source.csv",
+      "spec": "cases/categorical-2-short-88/spec.json",
+      "input_rows": 12
+    },
+    {
+      "id": "categorical-4-long-132",
+      "chart": "scatter",
+      "width_mm": 132,
+      "height_mm": 88,
+      "intent": "4 complete categorical entries with long labels; preserve decoding and keep legend outside the plotting rectangle without shrinking 8 pt type.",
+      "expected_after_status": "pass",
+      "source": "cases/categorical-4-long-132/source.csv",
+      "spec": "cases/categorical-4-long-132/spec.json",
+      "input_rows": 24
+    },
+    {
+      "id": "categorical-8-short-180",
+      "chart": "scatter",
+      "width_mm": 180,
+      "height_mm": 96,
+      "intent": "8 complete categorical entries with short labels; preserve decoding and keep legend outside the plotting rectangle without shrinking 8 pt type.",
+      "expected_after_status": "pass",
+      "source": "cases/categorical-8-short-180/source.csv",
+      "spec": "cases/categorical-8-short-180/spec.json",
+      "input_rows": 48
+    },
+    {
+      "id": "categorical-8-long-180",
+      "chart": "scatter",
+      "width_mm": 180,
+      "height_mm": 108,
+      "intent": "8 complete categorical entries with long labels; preserve decoding and keep legend outside the plotting rectangle without shrinking 8 pt type.",
+      "expected_after_status": "pass",
+      "source": "cases/categorical-8-long-180/source.csv",
+      "spec": "cases/categorical-8-long-180/spec.json",
+      "input_rows": 48
+    },
+    {
+      "id": "colorbar-landscape-132",
+      "chart": "heatmap",
+      "width_mm": 132,
+      "height_mm": 76,
+      "intent": "Readable continuous scale with stable 0\u20131 mapping; occupied colorbar length and reserved space are measured, not forced to a universal ratio.",
+      "expected_after_status": "pass",
+      "source": "cases/colorbar-landscape-132/source.csv",
+      "spec": "cases/colorbar-landscape-132/spec.json",
+      "input_rows": 35
+    },
+    {
+      "id": "colorbar-square-88",
+      "chart": "heatmap",
+      "width_mm": 88,
+      "height_mm": 88,
+      "intent": "Readable continuous scale with stable 0\u20131 mapping; occupied colorbar length and reserved space are measured, not forced to a universal ratio.",
+      "expected_after_status": "pass",
+      "source": "cases/colorbar-square-88/source.csv",
+      "spec": "cases/colorbar-square-88/spec.json",
+      "input_rows": 36
+    },
+    {
+      "id": "dot-small-88",
+      "chart": "dotplot",
+      "width_mm": 88,
+      "height_mm": 88,
+      "intent": "Independent size and color keys must be readable and nonoverlapping. Quantitative legend areas must remain exactly proportional to data areas.",
+      "expected_after_status": "pass",
+      "source": "cases/dot-small-88/source.csv",
+      "spec": "cases/dot-small-88/spec.json",
+      "input_rows": 25
+    },
+    {
+      "id": "dot-large-132",
+      "chart": "dotplot",
+      "width_mm": 132,
+      "height_mm": 96,
+      "intent": "Independent size and color keys must be readable and nonoverlapping. Quantitative legend areas must remain exactly proportional to data areas.",
+      "expected_after_status": "pass",
+      "source": "cases/dot-large-132/source.csv",
+      "spec": "cases/dot-large-132/spec.json",
+      "input_rows": 25
+    },
+    {
+      "id": "manual-categorical-132",
+      "chart": "scatter",
+      "width_mm": 132,
+      "height_mm": 96,
+      "intent": "Honor the explicit lower-left legend anchor at (18,76) mm with two columns; preserve the same 132 \u00d7 96 mm canvas and 8 pt type. Historical renderer does not implement this override.",
+      "expected_after_status": "pass",
+      "source": "cases/manual-categorical-132/source.csv",
+      "spec": "cases/manual-categorical-132/spec.json",
+      "input_rows": 24
+    },
+    {
+      "id": "impossible-8-long-88",
+      "chart": "scatter",
+      "width_mm": 88,
+      "height_mm": 32,
+      "intent": "Eight long labels cannot fit this fixed footprint with adequate plot and 8 pt type. Return needs_revision; do not hide entries, shrink typography, or silently expand the canvas.",
+      "expected_after_status": "needs_revision",
+      "source": "cases/impossible-8-long-88/source.csv",
+      "spec": "cases/impossible-8-long-88/spec.json",
+      "input_rows": 48
+    }
+  ],
+  "comparison_control": "The before and after renderer receive identical source bytes and JSON specifications. Font, text sizes, canvas, values, and mappings are fixed within each case.",
+  "acceptance": {
+    "hard": [
+      "No legend/plot or legend/legend intersection unless explicitly authorized",
+      "No clipped output text",
+      "All original source fields and rows retained",
+      "All active text remains 8 pt",
+      "Quantitative legend areas equal supplied size mapping",
+      "Explicit placement honored",
+      "Impossible footprint reports needs_revision"
+    ],
+    "diagnostic_only": [
+      "Legend occupied area divided by plot/canvas area",
+      "Occupied versus available margin-band area",
+      "Colorbar length divided by plot dimension",
+      "Before/after plotting-region size"
+    ],
+    "visual": "Inspect actual candidate images for missing decoding, excessive blank legend space, glyph crowding, and mark balance. Contact sheet is a documentation aid only."
+  },
+  "generator": "tests/check_legend_layouts.py",
+  "generator_sha256": "404805116d66f905072dc57a1ac8d19508319fa221c8060bcaf74a2887178b46"
+}

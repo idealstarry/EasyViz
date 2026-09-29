@@ -1,0 +1,76 @@
+{
+  "chart": "scatter",
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 72.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "score_x",
+    "y": "score_y",
+    "group": "arm",
+    "unit": "unit"
+  },
+  "colors": {
+    "G1": "#2581B9",
+    "G2": "#DF9A3C"
+  },
+  "order": {
+    "group": [
+      "G1",
+      "G2"
+    ]
+  },
+  "labels": {
+    "x": "Score X",
+    "y": "Score Y"
+  },
+  "options": {
+    "point_area_pt2": 12,
+    "alpha": 1,
+    "grid": false
+  },
+  "resolved_colors": {
+    "G1": "#2581B9",
+    "G2": "#DF9A3C"
+  },
+  "input_file": "source.csv",
+  "input_sha256": "3cf6a8285af7a3851ee59dce322bcb765a468756b3c88117526a3131546dc290",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "e05e77eabd1aec98919330b013dfb13c1c04158e1448324a696d9514c78bd087"
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

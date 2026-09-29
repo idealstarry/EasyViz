@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "case": "massier-integration-radar",
+  "role": "Independent reference reader; descriptive specification only",
+  "inspection_scope": {
+    "read": ["reference.png", "request.md", "data-dictionary.md"],
+    "source_data_examined": false,
+    "author_code_or_implementation_examined": false,
+    "evidence_policy": "Visible facts derive from direct image inspection. Physical dimensions and text size derive exclusively from the request. Palette and relative geometry are visual estimates, not recovered author settings. Data semantics and record counts derive from the request and dictionary."
+  },
+  "target": {
+    "chart_type": "Five-spoke radar chart with circular radial grid",
+    "requested_region": "The kBET acceptance-rate chart under the central depot heading in Figure 1e",
+    "excluded_context": ["Method-comparison charts at left", "Depot ARI chart", "Cohort-comparison charts at right", "Original multi-panel figure letter e"],
+    "retained_context_information": ["Method-color legend", "Cell-class direction key"],
+    "standalone_panel_count": 1
+  },
+  "visible_facts": {
+    "mapping": {
+      "angle": "Five cell classes; shared cell-class direction key specifies their positions",
+      "radius": "kBET acceptance rate",
+      "color": "Five integration methods",
+      "marks": "Colored circular point markers joined by straight colored segments into closed five-vertex traces"
+    },
+    "axes": {
+      "spoke_count": 5,
+      "spoke_spacing": "Equal angular spacing",
+      "cell_class_order_clockwise_from_top": ["all", "FAPs", "vascular", "immune", "adipocytes"],
+      "cell_class_directions": {
+        "all": "Top",
+        "FAPs": "Upper right",
+        "vascular": "Lower right",
+        "immune": "Lower left",
+        "adipocytes": "Upper left"
+      },
+      "radial_tick_labels": [0, 0.25, 0.5],
+      "radial_tick_label_position": "At or just left of the top vertical spoke",
+      "radial_scale_appearance": "Increasing outwards; labelled rings and positions are consistent with a linear scale",
+      "outer_label": 0.5,
+      "grid": "Circular rings, with fine gray spokes; the intermediate ring is blue-teal and dashed, and the outer ring is pale gray and dashed",
+      "cell_class_labels_on_requested_chart": "Absent in the original chart; the bottom shared direction key supplies them"
+    },
+    "method_legend_left_to_right": [
+      {"label": "raw", "color_family": "Gray"},
+      {"label": "Harmony", "color_family": "Golden yellow"},
+      {"label": "scVI", "color_family": "Green"},
+      {"label": "BBKNN", "color_family": "Dark blue"},
+      {"label": "rPCA", "color_family": "Muted purple"}
+    ],
+    "layers_back_to_front": [
+      "White page background and a very pale gray circular plot area",
+      "Thin spokes and dashed circular radial grid",
+      "Five unfilled colored polygonal traces",
+      "Filled circular point markers at the five vertices of each trace",
+      "Black radial tick labels and chart labels"
+    ],
+    "fills": "No colored filled areas inside method polygons are visible",
+    "labels": {
+      "group_heading": "depot",
+      "measure_label_below": "kBET\n(acceptance rate)",
+      "reference_method_legend": "Line segment plus circular marker for each method, positioned below the six-chart figure",
+      "reference_cell_class_key": "Small five-arrow direction diagram at bottom right, labelled all, FAPs, vascular, immune, adipocytes",
+      "significance_annotation": "No asterisk is visible on the requested depot kBET chart; the asterisk in the left-hand method chart is outside scope"
+    },
+    "relative_geometry": {
+      "plot_shape": "Circular radar area, approximately as wide as tall",
+      "reference_target_location": "Left chart of the central two-chart depot group",
+      "reference_group_frame": "Thin rectangular outline jointly encloses the depot kBET and ARI charts, with a gap in its top border for the depot title"
+    }
+  },
+  "visual_estimates_not_hard_facts": {
+    "palette": {
+      "raw_hex_approx": "#AAAAAA",
+      "Harmony_hex_approx": "#F3BC3D",
+      "scVI_hex_approx": "#3A9D6C",
+      "BBKNN_hex_approx": "#195E84",
+      "rPCA_hex_approx": "#9874A3",
+      "plot_background_hex_approx": "#F7F7F7",
+      "intermediate_ring_hex_approx": "#32839A",
+      "spoke_and_outer_ring_hex_approx": "#C7C7C7",
+      "confidence": "High for qualitative hues; hex values are visual estimates"
+    },
+    "relative_geometry": {
+      "marker_diameter_relative_to_outer_circle_diameter": "Approximately 0.05 to 0.06",
+      "trace_line_width_relative_to_marker_diameter": "Approximately one fifth",
+      "ring_radius_ratio": "The labelled 0.25 circle appears a little more than half the radius of the 0.5 circle",
+      "radial_origin_caveat": "A small central offset or padding might have been used; the exact radial minimum, origin transform, and border padding cannot be established from the image alone",
+      "confidence": "Moderate; no physical sizes may be inferred from crop pixels"
+    },
+    "trace_appearance_cross_checks": [
+      "scVI reaches furthest outward at the lower-right vascular spoke and has a relatively high top all value",
+      "Harmony extends outward most at the upper-right FAPs spoke",
+      "Several traces lie close to the center at the upper-left adipocytes spoke",
+      "raw extends further outward toward lower-right vascular than its near-central top all point",
+      "These are qualitative visual checks, not numeric substitutes for supplied rates"
+    ],
+    "overlap_order": "Some markers obscure others near the center; the exact method drawing order is not recoverable with confidence"
+  },
+  "unknown_statistical_choices": [
+    "No new statistical calculation is needed: all acceptance rates are supplied",
+    "Underlying kBET settings and biological analysis choices are not recoverable from this image and are outside the requested visualization task",
+    "No error bars, confidence intervals, replicate counts, or uncertainty estimates are supplied or visible; do not invent them"
+  ],
+  "unknown_visualization_choices": [
+    "Exact radial minimum and any intentional offset below zero",
+    "Exact RGB colors, line widths, marker sizes, font metrics, and plotting margins",
+    "Method rendering order at overlapping vertices",
+    "Whether the circular background and outer ring were implemented as axes properties or separate graphical elements"
+  ],
+  "adopted_requested_modifications": {
+    "assembly": "Extract the central depot kBET chart into one standalone chart",
+    "canvas_mm": {"width": 88, "height": 88},
+    "typeface": "Arial; document an available fallback if Arial is unavailable",
+    "text_size_pt": 8,
+    "exports": ["PDF", "SVG", "PNG preview at 300 dpi"],
+    "canvas_preservation": "Retain full requested physical canvas; do not crop output to content",
+    "method_coverage": "All five methods must be represented and identifiable",
+    "class_coverage": "All five cell classes must be represented, with a readable direction key or direct spoke labels",
+    "data_usage": "Display all 25 supplied acceptance rates without recomputing integration or kBET",
+    "statistics": "No new hypothesis test",
+    "layout_principle": "Keep the cell-class orientation, method-color mapping, radar geometry, and rate labels readable within the requested physical canvas; original whole-figure shared legend placement need not be copied"
+  },
+  "required_data_semantics": {
+    "grain": "One already-computed acceptance rate per integration-method and cell-class pair",
+    "expected_unique_pairs": 25,
+    "integration_method": "Original source group label, mapped to publication label",
+    "cell_class": "Original source column label, mapped to publication label and angular position",
+    "acceptance_rate": {"definition": "1 minus kBET rejection rate", "units": "Dimensionless", "valid_data_domain": [0, 1], "zero_semantics": "Zero is a valid measured value, not missingness", "missingness": "Dictionary states all 25 values are present", "data_vs_display_domain": "The valid measure domain [0,1] is distinct from the reference chart's outer labelled ring at 0.5; confirm supplied extrema when setting final display limits"},
+    "method_mapping_in_legend_order": [
+      {"source": "raw", "display": "raw"},
+      {"source": "harmony", "display": "Harmony"},
+      {"source": "scVI", "display": "scVI"},
+      {"source": "bbknn", "display": "BBKNN"},
+      {"source": "rPCA", "display": "rPCA"}
+    ],
+    "cell_class_mapping_clockwise_from_top": [
+      {"source": "ALL", "display": "all"},
+      {"source": "FAP", "display": "FAPs"},
+      {"source": "ENDO", "display": "vascular"},
+      {"source": "IMMUNE", "display": "immune"},
+      {"source": "ADIPOCYTES", "display": "adipocytes"}
+    ],
+    "source_provenance": "KBET_D worksheet of Figure_1e.xlsx, cells A1:F6; D denotes depot comparison; reshaped but not rescaled or recomputed",
+    "attribution": "Request attributes the image and released source data to Massier et al., Nature Communications 14, 1438 (2023), DOI 10.1038/s41467-023-36983-2, CC BY 4.0"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "paper_title": "An integrated single cell and spatial transcriptomic map of human white adipose tissue",
+  "authors": "Lucas Massier et al.",
+  "year": 2023,
+  "doi": "10.1038/s41467-023-36983-2",
+  "paper_url": "https://www.nature.com/articles/s41467-023-36983-2",
+  "dataset_doi": "10.17632/y3pxvr4xbf.2",
+  "dataset_url": "https://data.mendeley.com/datasets/y3pxvr4xbf/2",
+  "license": {
+    "figure": "CC-BY-4.0",
+    "source_data": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "evidence": "Paper PDF page 18 licenses article/images; Mendeley version 2 dataset page explicitly licenses Source_Data_complete under CC BY 4.0; verified 2026-09-29."
+  },
+  "pdf_origin": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Massier. et al., NC, 2023/Massier. et al., NC, 2023.pdf",
+  "pdf_sha256": "f0bdb437c114b7ad2aced75e7da65ac942191e71e04fae6908d917fd109e8923",
+  "code_exposure": {
+    "author_code_used": false,
+    "author_code_read": false,
+    "previous_examples_read": false,
+    "allowed_material": "Local article PDF and local source-data tables only; official dataset landing page used only for license verification."
+  },
+  "original_material_changed": false,
+  "reference_image_processing": "PDF rasterization and rectangular cropping only, no generated visual reconstruction.",
+  "coordinate_system": "PDF points, origin at top-left, 1-based page numbers.",
+  "preparation_date": "2026-09-29",
+  "figure": "1e",
+  "requested_unit": "depot kBET acceptance-rate chart",
+  "reference_page": 3,
+  "caption_page": 4,
+  "methods_page": 14,
+  "reference_crop_pdf_points": [
+    65,
+    490,
+    536,
+    664
+  ],
+  "reference_scale": 3,
+  "data_origin": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Massier. et al., NC, 2023/data and code/Source Data/Figure_1/Figure_1e.xlsx",
+  "data_sha256": "45f849e99c2848e3df8af2d4d549586600e13c8ece843b1cd01a457aaf0a0121",
+  "worksheet": "KBET_D",
+  "worksheet_cells": "A1:F6",
+  "source_shape": {
+    "rows": 5,
+    "value_columns": 5
+  },
+  "prepared_shape": {
+    "rows": 25,
+    "columns": 3
+  },
+  "transformations": [
+    "Read worksheet KBET_D using stored numeric values.",
+    "Reshape five integration method rows and five cell-class columns into 25 long-form records.",
+    "Preserve values without normalization or recomputation."
+  ],
+  "validation": {
+    "numeric_values": 25,
+    "missing_values": 0,
+    "numeric_values_inferred_from_image": 0
+  },
+  "prepared_csv_sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70",
+  "reference_sha256": "5cbc643ed926adcba92e6875c693a5dcf024b84287f365c5851b7058a1f9791b"
+}

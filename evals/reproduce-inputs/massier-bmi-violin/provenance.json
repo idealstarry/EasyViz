@@ -1,0 +1,62 @@
+{
+  "paper_title": "An integrated single cell and spatial transcriptomic map of human white adipose tissue",
+  "authors": "Lucas Massier et al.",
+  "year": 2023,
+  "doi": "10.1038/s41467-023-36983-2",
+  "paper_url": "https://www.nature.com/articles/s41467-023-36983-2",
+  "dataset_doi": "10.17632/y3pxvr4xbf.2",
+  "dataset_url": "https://data.mendeley.com/datasets/y3pxvr4xbf/2",
+  "license": {
+    "figure": "CC-BY-4.0",
+    "source_data": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "evidence": "Paper PDF page 18 licenses article/images; Mendeley version 2 dataset page explicitly licenses Source_Data_complete under CC BY 4.0; verified 2026-09-29."
+  },
+  "pdf_origin": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Massier. et al., NC, 2023/Massier. et al., NC, 2023.pdf",
+  "pdf_sha256": "f0bdb437c114b7ad2aced75e7da65ac942191e71e04fae6908d917fd109e8923",
+  "code_exposure": {
+    "author_code_used": false,
+    "author_code_read": false,
+    "previous_examples_read": false,
+    "allowed_material": "Local article PDF and local source-data tables only; official dataset landing page used only for license verification."
+  },
+  "original_material_changed": false,
+  "reference_image_processing": "PDF rasterization and rectangular cropping only, no generated visual reconstruction.",
+  "coordinate_system": "PDF points, origin at top-left, 1-based page numbers.",
+  "preparation_date": "2026-09-29",
+  "figure": "8a",
+  "requested_unit": "BMI distribution column in left cohort display",
+  "reference_page": 13,
+  "caption_page": 14,
+  "reference_crop_pdf_points": [
+    75,
+    48,
+    524,
+    179
+  ],
+  "reference_scale": 3,
+  "data_origin": "/Users/starry/Desktop/Res/Post-MI/ref/singlecell RNA-seq/Massier. et al., NC, 2023/data and code/Source Data/Figure_8/Figure_8a.txt",
+  "data_sha256": "d553b4fed8ecb7c56d6f52a5681731e75fe146fbe6c4ad8fb3d5e927e222c436",
+  "source_shape": {
+    "rows": 864,
+    "columns": 6
+  },
+  "prepared_shape": {
+    "rows": 864,
+    "columns": 4
+  },
+  "transformations": [
+    "Select ID, Cohort, BMI columns without row filtering.",
+    "Rename columns source_id, cohort, bmi.",
+    "Add source_row equal to original line number for row tracing.",
+    "Serialize source NA as empty CSV field; preserve all other original data strings."
+  ],
+  "validation": {
+    "bmi_nonmissing": 858,
+    "bmi_missing": 6,
+    "cohorts": 8,
+    "numeric_values_inferred_from_image": 0
+  },
+  "prepared_csv_sha256": "7b74fb379e3ad6101a7ec81a641e1bc11c20e0812170d3f1857d72d3e0d41172",
+  "reference_sha256": "cb867fbcf25e57ae55e8a373f872b355a5aef9e5eec9b8a1aeb2ef9a035a7703"
+}

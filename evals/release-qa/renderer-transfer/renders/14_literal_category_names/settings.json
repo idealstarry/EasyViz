@@ -1,0 +1,91 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value"
+  },
+  "layout": {
+    "width_mm": 132.0,
+    "height_mm": 100.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "margins": {
+      "left": 0.22,
+      "right": 0.75,
+      "bottom": 0.24,
+      "top": 0.9
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 8.0,
+    "panel": 8.0
+  },
+  "palette": "okabe-ito",
+  "colormap": "viridis",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "seed": 731904,
+  "colors": {
+    "NA": "#0072B2",
+    "null": "#D55E00",
+    "Control": "#009E73"
+  },
+  "resolved_colors": {
+    "NA": "#0072B2",
+    "null": "#D55E00",
+    "Control": "#009E73"
+  },
+  "input_file": "data.csv",
+  "input_sha256": "21a800dc9f72afcf460f88d904ce539d16b0f30efca2326fc1e4e2a3dd6e12db",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "53215fe608477438f73f8e0e5982807493a081d88126333030c7aa5730e2a9e8",
+    "legend_helper_sha256": "95dd8ed2298c274e56d217ef53a7d9f2c38d7300bb2417b603ea9320803fc65a"
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}
