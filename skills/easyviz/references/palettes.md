@@ -1,6 +1,6 @@
 # Palette selection
 
-Use the [literature color card](../assets/palettes/preview.png) to compare candidates, then inspect them on the actual panel. A publication source establishes provenance, not aesthetic suitability. Prefer coordinated lightness and saturation on white; avoid a dark low-value field or a muted gray-purple scheme as a habitual default. Preserve the user's chosen palette and existing group identities unless a recoloring is requested. In reproduce, use the adopted reference palette or the user's requested override.
+Use the [literature color card](../assets/palettes/palette-swatches.png) to compare candidates, then inspect them on the actual panel. A publication source establishes provenance, not aesthetic suitability. Prefer coordinated lightness and saturation on white; avoid a dark low-value field or a muted gray-purple scheme as a habitual default. Preserve the user's chosen palette and existing group identities unless a recoloring is requested. In reproduce, use the adopted reference palette or the user's requested override.
 
 The colors live in [palettes.json](../assets/palettes/palettes.json), and compatible combinations in [families.json](../assets/palettes/families.json). Record the preset and actual label-to-color mapping in output settings. A paper's biological labels do not transfer to new data when its colors are reused.
 

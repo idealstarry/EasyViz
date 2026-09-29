@@ -55,7 +55,7 @@ Five methods across five cell classes, reconstructed from a reference image and 
 
 **Palette choices**
 
-<p align="center"><a href="skills/easyviz/references/palettes.md"><img src="skills/easyviz/assets/palettes/preview.png?v=arial-fullwidth" alt="Figure-sourced palette choices" width="100%"></a></p>
+<p align="center"><a href="skills/easyviz/references/palettes.md"><img src="skills/easyviz/assets/palettes/palette-swatches.png" alt="Figure-sourced palette choices" width="100%"></a></p>
 
 ## Use
 

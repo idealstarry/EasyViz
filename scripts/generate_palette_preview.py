@@ -50,6 +50,6 @@ def card(entries, filename):
 
 featured=[(k,v) for k,v in PALETTES.items() if v.get('collection')=='literature']
 if featured:
-    card(featured,'preview')
+    card(featured,'palette-swatches')
 card(list(PALETTES.items()),'all-presets')
 print(f'Rendered {len(featured)} literature choices and {len(PALETTES)} total presets.')
