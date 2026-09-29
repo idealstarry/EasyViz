@@ -1,6 +1,6 @@
 # Standalone cohort BMI distributions
 
-Track: **reproduce**. Input mode: **image-data**. Original author plotting code was not supplied, sought, read, or executed. The implementation was written independently using only the permitted blinded inputs and EasyViz instructions.
+Origin: **reproduce**, input mode **image-data**. Current output: **user-requested style adaptation** of that reconstruction. Original author plotting code was not supplied, sought, read, or executed. The implementation was written independently using only the permitted blinded inputs and EasyViz instructions.
 
 ## Evidence and mapping
 
@@ -19,19 +19,23 @@ These choices are not claims about the authors' settings, and the output does no
 | Priority | Requirement | Decision and evidence |
 | --- | --- | --- |
 | Required | Correct data and labels | All available BMI observations; eight full publication cohort labels; original cohort order. |
-| Required | Standalone structure | One horizontal violin per cohort; no surrounding panels, original panel letter, central marks, or extra tests. |
+| Required | Standalone structure | One horizontal violin per cohort; no surrounding panels, overall title, prose, panel letters, or extra tests. White IQR segments and median dots aid comparison. |
 | Required | BMI mapping | Linear axis, kg/m² units; common limits 18–64 include all observations. |
-| Required | Fixed canvas and type | 132 × 99 mm full canvas, all text 8 pt; Arial is available and used. |
+| Required | Fixed canvas and type | 160 × 100 mm full canvas, all text 8 pt; Arial is available and used. |
 | Required | Exports | Full-canvas PDF and SVG, plus 300 dpi PNG; no tight bounding-box cropping. |
-| Preferred | Appearance | Reference-estimated purple fill #97769E, outline #4C454E, white background, faint guides behind violins. |
-| Preferred | Axes | Major labels 20/40/60 and guides every 10 BMI units; top, left, and bottom boundaries adapted from the shared reference frame. |
-| Flexible | Spacing | The single-column source is expanded to the requested 132 × 99 mm standalone layout with room for all cohort labels. |
+| Preferred | Appearance | User-approved blue #2581B9, borderless fills, white background, faint guides behind violins. |
+| Preferred | Axes | Major labels 20/40/60 and guides every 10 BMI units; bottom axis only, with no top/left frame or category tick marks. |
+| Flexible | Spacing | The wider standalone layout reserves room for all cohort labels and the full density ranges. |
 
 Actual geometry, fonts, line widths, colors, and software versions are in `settings.json` and `stats.json`. Settings are read by `plot.py` for a portable rerun.
 
 ## Intentional differences and unresolved choices
 
-The standalone panel is wider than the original BMI column to honor the requested final dimensions and keep labels at 8 pt. The frame and guide spacing are explicit visual decisions. Colors are visual estimates. The independent density choices may produce different lobes or endpoints from the reference even though all supplied BMI values are used. Original KDE settings remain unresolved; none are inferred as facts from pixels. Missingness is documented in data and statistics rather than adding an unrequested annotation inside the panel.
+The requested refresh changes the original muted-purple reconstruction to a blue manuscript graphic on a 160 × 100 mm canvas. These are style choices, not improved reference fidelity. All density samples, bandwidths, support, common width multiplier, source rows, and cohort order are unchanged. Flat trimmed ends remain visible; no extra smoothing or distribution reshaping was introduced.
+
+White horizontal segments show the interquartile range (25th–75th percentiles), and white dots show medians, computed directly from each cohort's available values using NumPy's `quantile(..., method="linear")`. These descriptive summaries are additions to the original reference and are not confidence intervals. Values and their method are recorded in `stats.json` and `settings.json`.
+
+All text remains Arial 8 pt when available. PDF and SVG retain the full physical canvas; the 300 dpi PNG uses the renderer's integer pixel dimensions (1889 × 1181). Original KDE settings remain unresolved. The immutable `first-render/` and existing `independent-review.*` files describe the historical reproduction only; current export and visual checks are recorded in `qa.json`.
 
 ## Reproduction and access limits
 

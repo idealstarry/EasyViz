@@ -20,7 +20,7 @@ TARGET.mkdir()
 shutil.copytree(ROOT / 'plugins/easyviz/.codex-plugin', TARGET / '.codex-plugin')
 shutil.copytree(ROOT / 'skills', TARGET / 'skills', ignore=shutil.ignore_patterns('__pycache__','.DS_Store','*.pyc'))
 shutil.copy2(ROOT / 'plugins/easyviz/README.md', TARGET / 'README.md')
-for name in ('THIRD_PARTY_NOTICES.md',):
+for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):
     if (ROOT / name).exists():
         shutil.copy2(ROOT / name, TARGET / name)
 manifest=json.loads((TARGET / '.codex-plugin/plugin.json').read_text())

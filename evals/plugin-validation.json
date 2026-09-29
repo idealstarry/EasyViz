@@ -1,8 +1,8 @@
 {
   "status": "pass",
-  "archive": "easyviz-0.1.0.zip",
-  "archive_sha256": "0256605fbaed6b174903917cb0b5640eda4eee13d078ffa9bc7a6fdfac3e9c46",
-  "extracted_file_count": 166,
+  "archive": "easyviz-0.1.1.zip",
+  "archive_sha256": "eca1e2462f3d137e3262660a81195d15174433b419ab1ea5cf45c6bd71e8f147",
+  "extracted_file_count": 167,
   "checks": {
     "core_renderer": "pass",
     "cell-atlas-dotplot": "pass; rerendered PNG pixels match the reviewed bundled preview",
@@ -14,5 +14,18 @@
     "forest_renamed_field_transfer": "pass; five terms, three cohorts and renamed field mappings preserve all 15 supplied asymmetric intervals",
     "annotated_heatmap_recipe": "pass; separate synthetic 4\u00d74 matrix, leading-zero IDs, constant binary annotation, negative values and automatic means"
   },
-  "scope": "Same validated Python environment and fonts; isolated extracted files and different working directory. No original paper archives or author code are required. Not a fresh operating-system installation or Codex invocation test."
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Darwin",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0",
+      "PyMuPDF": "1.28.2"
+    }
+  },
+  "scope": "Isolated extracted files and different working directory in the recorded Python environment, using fonts available on this host. No original paper archives or author code are required. Not a fresh operating-system installation or Codex automatic-discovery test."
 }

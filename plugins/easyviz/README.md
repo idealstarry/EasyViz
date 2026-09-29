@@ -1,4 +1,4 @@
-# EasyViz 0.1.0
+# EasyViz 0.1.1
 
 Create and reproduce scientific plots from source data. Export individual manuscript panels at their final physical size so the user can assemble them without resizing text.
 
@@ -42,3 +42,5 @@ Copy bundled case folders into your writable project before running or adapting 
 PDF and SVG preserve physical dimensions; PNG and TIFF include resolution metadata. SVG text references its font and requires that font on the assembly machine. Always inspect the final output and place it at the recorded size.
 
 This is a locally validated initial release, not a claim of universal figure reproduction or journal acceptance. No author plotting code is required for the reproduce track. Known uncertainties and intentional deviations are recorded with the scientific examples.
+
+Original code and documentation are licensed under MIT; see `LICENSE`. Third-party data and images retain the terms in [Source attribution](THIRD_PARTY_NOTICES.md).

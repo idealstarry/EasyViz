@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CASES = {
     'annotated-inhibition': ('examples/create/annotated-inhibition/panel', 180, 160),
     'cell-atlas-dotplot': ('examples/create/cell-atlas-dotplot/output/figure', 180, 120),
-    'massier-bmi-violin': ('examples/no-author-code/massier-bmi-violin/panel', 132, 99),
+    'massier-bmi-violin': ('examples/no-author-code/massier-bmi-violin/panel', 160, 100),
     'massier-integration-radar': ('examples/no-author-code/massier-integration-radar/panel', 88, 88),
 }
 results = {}

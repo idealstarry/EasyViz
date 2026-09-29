@@ -1,8 +1,12 @@
-# Massier Bmi Violin
+# Cohort BMI distributions
 
-Eight cohort BMI distributions, using all 858 available observations and retaining six missing-value records. This reproduce case used a reference image and source data, with author plotting code withheld by instruction.
+Eight cohort BMI distributions, refreshed in the requested blue on a 160 × 100 mm canvas. All 858 available observations and six missing-value records are preserved. This case began as a reconstruction from a reference image and source data, with author plotting code withheld.
 
-![Final panel](panel.png)
+![BMI distributions across eight cohorts](panel.png)
+
+White dots mark medians; white segments span the 25th–75th percentiles (linear interpolation). Violins show Gaussian KDEs with Scott bandwidth, trimmed to observed ranges and normalized to equal displayed area. Width does not encode sample size.
+
+The blue fill, borderless shapes, summary marks, and wider layout are a requested style adaptation. The [first render](first-render/panel.png) and [independent review](independent-review.md) remain historical evidence for the original reconstruction, not an assessment of this refresh.
 
 ## Rerun
 
@@ -20,7 +24,7 @@ Use the EasyViz runtime dependencies. The script locates its inputs relative to 
 | [Source data](inputs/source-data.csv) | Traceable numeric inputs, never inferred from reference pixels |
 | [Reference image](inputs/reference.png) | Target crop from the published figure |
 | [Settings](settings.json) | Physical dimensions, typography, palette, and visual/statistical parameters |
-| [Independent review](independent-review.md) | Actual reference/candidate comparison with disclosed limits |
+| [Independent review](independent-review.md) | Historical reference/first-render comparison with disclosed limits |
 | [QA](qa.json) | Numeric and physical-export checks |
 
 PDF, SVG, and PNG are individual panels. Place them at their recorded physical size. This is a documented reconstruction, not a claim that unknown original parameters or editorial adjustments were recovered.

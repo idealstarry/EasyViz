@@ -20,7 +20,7 @@ The paired case's [independent comparison](../evals/design-value/paired-comparis
 
 | Case | Permitted inputs and scientific limits | Final size | Evidence |
 | --- | --- | --- | --- |
-| [BMI violin](no-author-code/massier-bmi-violin/README.md) | Image, source data, and permitted semantic context; original KDE parameters unknown | 132 × 99 mm; 8 pt | Independent image reader, runnable reconstruction, first render, data checks, independent visual review |
+| [BMI violin](no-author-code/massier-bmi-violin/README.md) | Image, source data, and permitted semantic context; original KDE parameters unknown | 160 × 100 mm; 8 pt | Independent image reader, runnable reconstruction, first render, data checks, independent visual review |
 | [Integration radar](no-author-code/massier-integration-radar/README.md) | Image and 25 supplied rates; original radial-origin padding unknown | 88 × 88 mm; 8 pt | Same process; zero rates retained at an explicitly chosen zero origin |
 
 The evaluations withheld author code from the reader and implementer by instruction. The cases preserve access logs; they do not claim operating-system-enforced isolation. Reference crops and their preparation provenance are under [evals/reproduce-inputs](../evals/reproduce-inputs/).

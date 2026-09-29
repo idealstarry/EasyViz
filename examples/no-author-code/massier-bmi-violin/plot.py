@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce a standalone BMI distribution panel from the permitted real data.
+"""Render a user-requested style adaptation of the standalone BMI reconstruction.
 
 Run from any directory: /path/to/python /path/to/plot.py
 Dependencies: matplotlib, numpy, pandas, scipy, Pillow, pymupdf.
@@ -100,6 +100,7 @@ def main() -> None:
             "missing_source_rows": frame.loc[mask & ~available, "source_row"].tolist(),
             "min_bmi": float(values.min()), "max_bmi": float(values.max()),
             "sample_sd_bmi": float(np.std(values, ddof=1)),
+            "quartiles_bmi": np.quantile(values, [0.25, 0.5, 0.75], method="linear").tolist(),
             "scott_factor": float(kde.factor),
             "bandwidth_bmi_units": float(np.sqrt(kde.covariance[0, 0])),
             "kde_mass_inside_observed_range": visible_mass,
@@ -126,6 +127,11 @@ def main() -> None:
         ax.fill_between(grid, row - width, row + width,
                         facecolor=palette["fill"], edgecolor=palette["outline"],
                         linewidth=settings["layout"]["violin_outline_width_pt"], zorder=3)
+        q1, median, q3 = cohort_stats[row]["quartiles_bmi"]
+        ax.plot([q1, q3], [row, row], color=palette["summary"],
+                linewidth=settings["summary"]["line_width_pt"], solid_capstyle="round", zorder=4)
+        ax.plot(median, row, "o", color=palette["summary"], markeredgewidth=0,
+                markersize=settings["summary"]["median_diameter_pt"], zorder=5)
         for x, raw, density, half_width in zip(grid, raw_density, displayed_density, width):
             density_rows.append({"cohort": cohort, "bmi": x, "raw_kde": raw,
                                  "displayed_density": density, "half_width_rows": half_width})
@@ -135,8 +141,10 @@ def main() -> None:
     ax.tick_params(axis="both", which="major", color=palette["text"], labelcolor=palette["text"],
                    width=0.6, length=3, pad=4, labelsize=8)
     ax.tick_params(axis="x", which="minor", length=0)
-    ax.spines["right"].set_visible(False)
-    for side in ["left", "top", "bottom"]:
+    ax.tick_params(axis="y", length=0, pad=7)
+    for side in ["right", "top", "left"]:
+        ax.spines[side].set_visible(False)
+    for side in ["bottom"]:
         ax.spines[side].set_linewidth(settings["layout"]["spine_width_pt"])
         ax.spines[side].set_color(palette["text"])
 
@@ -166,6 +174,7 @@ def main() -> None:
         "support": settings["density"]["support"], "grid_points_per_cohort": 512,
         "normalization": settings["density"]["normalization"], "density_to_half_width_multiplier": scale,
         "boundary_correction": "none", "hypothesis_test": None,
+        "summary_marks": settings["summary"],
         "unit": "participant record", "all_source_records": len(frame),
         "available_bmi": int(available.sum()), "missing_bmi": int((~available).sum()),
         "missing_value_handling": settings["density"]["missing"], "cohorts": cohort_stats,
@@ -193,7 +202,8 @@ def main() -> None:
     svg = ET.parse(BASE / "panel.svg").getroot()
     svg_pt = [float(svg.attrib[key].removesuffix("pt")) for key in ["width", "height"]]
     svg_mm = [value * 25.4 / 72 for value in svg_pt]
-    expected_px = [round(canvas[key] / 25.4 * canvas["dpi"]) for key in ["width_mm", "height_mm"]]
+    # Agg truncates fractional canvas pixels; vector dimensions stay exact.
+    expected_px = [int(canvas[key] / 25.4 * canvas["dpi"]) for key in ["width_mm", "height_mm"]]
     expected_mm = [canvas["width_mm"], canvas["height_mm"]]
     checks = {
         "all_864_source_rows_preserved": len(plotting) == 864,
@@ -203,8 +213,8 @@ def main() -> None:
         "all_8_cohort_labels_in_pdf": all(settings["cohort_labels"][c] in pdf_text for c in order),
         "all_text_8pt": font_sizes == [8.0],
         "all_text_inside_canvas": all(t["inside_canvas"] for t in text_bounds),
-        "pdf_canvas_132_by_99_mm": bool(np.allclose(pdf_mm, expected_mm, atol=0.001)),
-        "svg_canvas_132_by_99_mm": bool(np.allclose(svg_mm, expected_mm, atol=0.001)),
+        "pdf_canvas_160_by_100_mm": bool(np.allclose(pdf_mm, expected_mm, atol=0.001)),
+        "svg_canvas_160_by_100_mm": bool(np.allclose(svg_mm, expected_mm, atol=0.001)),
         "png_dimensions_at_300dpi": png_size == expected_px,
         "png_resolution_metadata_300dpi": bool(np.allclose(png_dpi, [300, 300], atol=0.01)),
         "pdf_fonts_embedded": all(x["embedded"] for x in embedded_fonts),
@@ -212,7 +222,7 @@ def main() -> None:
     }
     assert all(checks.values()), checks
     qa = {
-        "status": "awaiting_visual_review", "render_pass": 1,
+        "status": "awaiting_visual_review", "render_pass": 2,
         "numerical_checks": {k: {"status": "passed" if value else "failed"} for k, value in checks.items()},
         "measurements": {"pdf_mm": pdf_mm, "svg_mm": svg_mm, "png_pixels": png_size,
                          "png_dpi": png_dpi, "pdf_font_sizes_pt": font_sizes,
@@ -220,8 +230,8 @@ def main() -> None:
         "text_bounds": text_bounds,
         "visual_review": {"status": "pending", "independent": False},
         "residual_uncertainties": ["Original density estimator, bandwidth, support, boundary correction and normalization are unknown.",
-                                   "Colors are reference estimates.",
-                                   "Standalone fixed-size layout adapts the reference column geometry."],
+                                   "Blue fill and white summary marks are user-requested style adaptations.",
+                                   "The 160 × 100 mm canvas adapts the reference column geometry; historical independent reviews do not assess this revision."],
         "output_sha256": {f"panel.{suffix}": sha256(BASE / f"panel.{suffix}") for suffix in canvas["formats"]},
     }
     # Preserve original visual-review results if this is an unchanged portable rerun.
@@ -231,6 +241,8 @@ def main() -> None:
         if old.get("output_sha256", {}).get("panel.png") == qa["output_sha256"]["panel.png"]:
             qa["visual_review"] = old.get("visual_review", qa["visual_review"])
             qa["status"] = old.get("status", qa["status"])
+            if "independent_data_verification" in old:
+                qa["independent_data_verification"] = old["independent_data_verification"]
     dump(prior_qa, qa)
     # Immutable first rendering: later revisions must not erase the evaluation trace.
     first = BASE / "first-render"

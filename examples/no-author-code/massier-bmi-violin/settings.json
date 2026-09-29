@@ -7,8 +7,8 @@
   "reference": "inputs/reference.png",
   "reference_reading": "inputs/reference-spec.json",
   "canvas": {
-    "width_mm": 132,
-    "height_mm": 99,
+    "width_mm": 160,
+    "height_mm": 100,
     "dpi": 300,
     "formats": [
       "pdf",
@@ -28,24 +28,25 @@
   },
   "layout": {
     "axes_bounds_fraction": [
-      0.25,
-      0.14,
-      0.72,
-      0.82
+      0.205,
+      0.135,
+      0.77,
+      0.83
     ],
-    "spine_width_pt": 0.6,
-    "violin_outline_width_pt": 0.5,
-    "grid_width_pt": 0.4,
+    "spine_width_pt": 0.5,
+    "violin_outline_width_pt": 0,
+    "grid_width_pt": 0.35,
     "maximum_violin_thickness_rows": 0.9
   },
   "palette": {
-    "name": "reference-estimated muted purple",
-    "fill": "#97769E",
-    "outline": "#4C454E",
-    "grid": "#ECECEC",
+    "name": "user-requested manuscript blue",
+    "fill": "#2581B9",
+    "outline": "none",
+    "grid": "#E8EDF0",
     "background": "#FFFFFF",
-    "text": "#000000",
-    "status": "visual estimate, not recovered author colors"
+    "text": "#30383D",
+    "status": "User-requested style adaptation; not recovered author colors",
+    "summary": "#FFFFFF"
   },
   "axis": {
     "x_label": "BMI (kg/m²)",
@@ -99,5 +100,17 @@
   },
   "expected_records": 864,
   "expected_available_bmi": 858,
-  "expected_missing_bmi": 6
+  "expected_missing_bmi": 6,
+  "summary": {
+    "method": "numpy.quantile, method=linear",
+    "probabilities": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "encoding": "White horizontal segment: interquartile range; white dot: median",
+    "line_width_pt": 1.4,
+    "median_diameter_pt": 2.8
+  },
+  "style_revision": "User-requested blue manuscript adaptation; historical reproduction review applies to first-render only."
 }

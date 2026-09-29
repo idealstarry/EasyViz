@@ -1,6 +1,6 @@
 # Source attribution
 
-Original EasyViz implementation and documentation are distinguished from third-party data and reference images. A distribution license for original EasyViz code has not been selected; this file does not relicense third-party material.
+Original EasyViz implementation and documentation are licensed under the [MIT License](LICENSE). Third-party data and reference images retain the terms below; the MIT license does not relicense those materials.
 
 | Material | Attribution and terms | Location |
 | --- | --- | --- |
