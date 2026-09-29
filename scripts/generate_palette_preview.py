@@ -6,13 +6,16 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/easyviz-matplotlib")
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 FOLDER = ROOT / 'skills/easyviz/assets/palettes'
 PALETTES = json.loads((FOLDER / 'palettes.json').read_text())
-plt.rcParams.update({'font.family':'DejaVu Sans','font.size':8,'pdf.fonttype':42,'svg.fonttype':'none'})
+# Require the requested typeface instead of silently substituting another font.
+font_manager.findfont('Arial', fallback_to_default=False)
+plt.rcParams.update({'font.family':'Arial','font.size':8,'pdf.fonttype':42,'svg.fonttype':'none'})
 
 
 def card(entries, filename, title, subtitle):
