@@ -29,13 +29,16 @@ from PIL import Image
 _legend_spec = importlib.util.spec_from_file_location("easyviz_legend_layout", Path(__file__).with_name("legend_layout.py"))
 legend_layout = importlib.util.module_from_spec(_legend_spec)
 _legend_spec.loader.exec_module(legend_layout)
+_profile_spec = importlib.util.spec_from_file_location("easyviz_figure_profile", Path(__file__).with_name("figure_profile.py"))
+figure_profile = importlib.util.module_from_spec(_profile_spec)
+_profile_spec.loader.exec_module(figure_profile)
 
 
 class SpecError(ValueError):
     """The requested panel cannot faithfully represent the supplied input."""
 
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 
 REQUIRED = {
@@ -45,18 +48,20 @@ REQUIRED = {
     "scatter": ("x", "y"),
     "distribution": ("group", "value"),
 }
+OPTIONAL_FIELDS = {"scatter": {"group", "unit"}, "distribution": {"unit"}, "composition": {"denominator"}, "dotplot": {"state"}}
 DEFAULT_COLORS = ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#000000", "#F0E442"]
 SHARED_OPTIONS = {"grid", "x_rotation", "x_limits", "y_limits", "x_scale", "y_scale"}
 CHART_OPTIONS = {
     "heatmap": {"color_limits", "color_center", "cell_aspect", "annotate_values", "value_format"},
     "composition": {"normalization", "missing_categories", "bar_width", "percent_axis"},
-    "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend"},
+    "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend", "missing_cells", "state_markers", "small_positive_area_pt2"},
     "scatter": {"point_area_pt2", "alpha", "point_color", "regression", "regression_color"},
     "distribution": {"point_area_pt2", "alpha", "kind", "orientation"},
 }
 SCHEMA = {
     "chart": list(REQUIRED), "fields_by_chart": REQUIRED,
-    "optional_fields": {"scatter": ["group", "unit"], "distribution": ["unit"], "composition": ["denominator"]},
+    "optional_fields": {chart: sorted(fields) for chart, fields in OPTIONAL_FIELDS.items()},
+    "figure_profile": {"profile": "path/to/figure-profile.json", "panel": "named panel", "continuous_scale": "optional named shared continuous scale", "size_scale": "optional named shared dot-area scale"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300, "margins": {"left": .19, "right": .77, "bottom": .23, "top": .88}},
     "typography": {"axis": 8, "tick": 8, "legend": 8, "annotation": 8, "title": 9, "panel": 9},
     "formats": ["pdf", "svg", "png", "tiff"], "seed": 0,
@@ -93,7 +98,25 @@ def number(value, name, minimum=0, strict=True):
     return result
 
 
+def validate_spec(spec):
+    try:
+        figure_profile.validate_spec(spec, REQUIRED, OPTIONAL_FIELDS, CHART_OPTIONS, SHARED_OPTIONS)
+    except figure_profile.ConfigurationError as exc:
+        raise SpecError(str(exc)) from None
+
+
+def resolve_spec(spec, *, profile=None, panel=None, spec_path=None):
+    """Resolve one panel against a shared figure profile without changing inputs."""
+    try:
+        resolved, record = figure_profile.resolve(spec, profile_path=profile, panel=panel, spec_path=spec_path)
+    except figure_profile.ConfigurationError as exc:
+        raise SpecError(str(exc)) from None
+    validate_spec(resolved)
+    return resolved, record
+
+
 def prepare(data_path, spec):
+    validate_spec(spec)
     chart = spec.get("chart")
     require(chart in REQUIRED, f"chart must be one of {list(REQUIRED)}")
     options = spec.get("options", {})
@@ -107,11 +130,22 @@ def prepare(data_path, spec):
     # rejected explicitly below; numeric non-finite tokens still fail validation.
     data = pd.read_csv(data_path, dtype=object, keep_default_na=False)
     require(len(data) > 0, "Input has no observations")
+    require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
+    observed = pd.Series(True, index=data.index)
+    if chart == "dotplot":
+        if "state" in fields:
+            require(fields["state"] in data.columns, f"Missing input column for state: {fields['state']}")
+            states = data[fields["state"]]
+            require(states.isin(["observed", "unmeasured"]).all(), "Dot state must be observed or unmeasured; do not infer it from a blank numeric value")
+            observed = states.eq("observed")
+        data["_easyviz_state"] = np.where(observed, "observed", "unmeasured")
     for role, column in fields.items():
         require(isinstance(column, str) and column in data.columns, f"Missing input column for {role}: {column}")
-        require(not data[column].isna().any(), f"Missing values in {column}; supply an explicit cleaned input")
-        require(not data[column].astype(str).str.strip().eq("").any(), f"Empty values in {column}")
-    require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
+        values = data.loc[observed, column] if chart == "dotplot" and role in ("size", "color") else data[column]
+        require(not values.isna().any(), f"Missing values in {column}; supply an explicit cleaned input")
+        require(not values.astype(str).str.strip().eq("").any(), f"Empty values in {column}")
+        if chart == "dotplot" and role in ("size", "color"):
+            require(data.loc[~observed, column].eq("").all(), f"Unmeasured dots require empty {column}; zero is an observed value")
     numerical = {
         "heatmap": ["value"], "composition": ["value", "denominator"],
         "dotplot": ["size", "color"], "scatter": ["x", "y"], "distribution": ["value"],
@@ -120,18 +154,27 @@ def prepare(data_path, spec):
         if role not in fields:
             continue
         col = fields[role]
+        selected = data.loc[observed, col] if chart == "dotplot" else data[col]
         try:
-            data[col] = pd.to_numeric(data[col], errors="raise")
+            converted = pd.to_numeric(selected, errors="raise")
         except (ValueError, TypeError):
             raise SpecError(f"{col} must contain only numeric values") from None
-        require(np.isfinite(data[col].to_numpy(dtype=float)).all(), f"Non-finite values in {col}")
+        require(np.isfinite(converted.to_numpy(dtype=float)).all(), f"Non-finite values in {col}")
+        if chart == "dotplot":
+            data[col] = pd.Series(np.nan, index=data.index, dtype=float)
+            data.loc[observed, col] = converted.to_numpy(dtype=float)
+        else:
+            data[col] = converted
     if chart in ("heatmap", "dotplot", "composition"):
         pair = {"heatmap": ("row", "column"), "dotplot": ("x", "y"), "composition": ("sample", "category")}[chart]
         require(not data.duplicated([fields[p] for p in pair]).any(), f"Duplicate {pair} cells; aggregate explicitly before rendering")
     if chart == "heatmap":
         require(len(data) == data[fields["row"]].nunique() * data[fields["column"]].nunique(), "Heatmap matrix is incomplete; missing cells are not silently imputed")
     if chart == "dotplot":
-        require((data[fields["size"]] >= 0).all(), "Dot sizes must be nonnegative")
+        require((data.loc[observed, fields["size"]] >= 0).all(), "Dot sizes must be nonnegative")
+        require(options.get("missing_cells", "unsupplied") in ("unsupplied", "unmeasured", "error"), "missing_cells must be unsupplied, unmeasured or error")
+        require(isinstance(options.get("state_markers", True), bool), "state_markers must be a boolean")
+        number(options.get("small_positive_area_pt2", 0), "small_positive_area_pt2", strict=False)
     if chart == "composition":
         require((data[fields["value"]] >= 0).all(), "Composition values must be nonnegative")
         normalization = spec.get("options", {}).get("normalization")
@@ -287,6 +330,11 @@ def statistics(data, spec):
 
 
 def setup(spec):
+    try:
+        figure_profile.validate_layout(spec.get("layout", {}))
+        figure_profile.validate_typography(spec.get("typography", {}))
+    except figure_profile.ConfigurationError as exc:
+        raise SpecError(str(exc)) from None
     layout = {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300}
     layout.update(spec.get("layout", {}))
     for key in ("width_mm", "height_mm", "font_size_pt", "line_width_pt", "dpi"):
@@ -357,20 +405,59 @@ def draw(data, spec, layout, typography, result):
             ax.yaxis.set_major_formatter(PercentFormatter(xmax=1))
     elif chart == "dotplot":
         xs, ys = ordered(data, f["x"], spec, "x"), ordered(data, f["y"], spec, "y")
-        cmap, norm = continuous(spec, data[f["color"]])
-        maximum = number(options.get("size_max", max(float(data[f["size"]].max()), 1)), "size_max")
-        require(data[f["size"]].max() <= maximum, "Dot values exceed size_max")
+        measured = data[data["_easyviz_state"].eq("observed")]
+        default_maximum = max(float(measured[f["size"]].max()), 1) if len(measured) else 1
+        maximum = number(options.get("size_max", default_maximum), "size_max")
+        require(not len(measured) or measured[f["size"]].max() <= maximum, "Dot values exceed size_max")
         max_area = number(options.get("max_area_pt2", 90), "max_area_pt2")
         data["_easyviz_area_pt2"] = data[f["size"]] / maximum * max_area
-        artist = ax.scatter(data[f["x"]].astype(str).map({v: i for i, v in enumerate(xs)}), data[f["y"]].astype(str).map({v: i for i, v in enumerate(ys)}), s=data[f["size"]] / maximum * max_area, c=data[f["color"]], cmap=cmap, norm=norm, edgecolors="none", zorder=3)
+        xmap, ymap = {v: i for i, v in enumerate(xs)}, {v: i for i, v in enumerate(ys)}
+        if len(measured):
+            cmap, norm = continuous(spec, measured[f["color"]])
+            artist = ax.scatter(measured[f["x"]].astype(str).map(xmap), measured[f["y"]].astype(str).map(ymap), s=measured[f["size"]] / maximum * max_area, c=measured[f["color"]], cmap=cmap, norm=norm, edgecolors="none", zorder=3)
+            legend_manager.add_colorbar(artist, labels.get("color", f["color"]))
+            levels = options.get("size_legend", [maximum * .25, maximum * .5, maximum])
+            require(all(0 < float(v) <= maximum for v in levels), "size_legend values must be within 0..size_max")
+            legend_manager.add_size(levels, [float(v) / maximum * max_area for v in levels], title=labels.get("size", f["size"]))
         ax.set_xticks(range(len(xs)), xs, rotation=options.get("x_rotation", 90))
         ax.set_yticks(range(len(ys)), ys)
         ax.set_xlim(-.6, len(xs) - .4)
         ax.set_ylim(len(ys) - .4, -.6)
-        legend_manager.add_colorbar(artist, labels.get("color", f["color"]))
-        levels = options.get("size_legend", [maximum * .25, maximum * .5, maximum])
-        require(all(0 < float(v) <= maximum for v in levels), "size_legend values must be within 0..size_max")
-        legend_manager.add_size(levels, [float(v) / maximum * max_area for v in levels], title=labels.get("size", f["size"]))
+        present = set(zip(data[f["x"]].astype(str), data[f["y"]].astype(str)))
+        absent = [(x, y) for y in ys for x in xs if (x, y) not in present]
+        absent_state = options.get("missing_cells", "unsupplied")
+        require(not absent or absent_state != "error", "Missing dot coordinates; declare missing_cells as unsupplied or unmeasured")
+        threshold = number(options.get("small_positive_area_pt2", 0), "small_positive_area_pt2", strict=False)
+        zeros = data[data["_easyviz_state"].eq("observed") & data[f["size"]].eq(0)]
+        unmeasured = data[data["_easyviz_state"].eq("unmeasured")]
+        small = data[data["_easyviz_area_pt2"].gt(0) & data["_easyviz_area_pt2"].lt(threshold)]
+        state_labels, state_symbols = [], []
+
+        def state_marks(coordinates, marker, label, side=False):
+            if not coordinates:
+                return
+            if options.get("state_markers", True):
+                px, py = zip(*coordinates)
+                # State glyphs have fixed display size and carry no magnitude.
+                # A small-positive flag is beside the exact proportional dot.
+                ax.scatter([xmap[str(x)] + (.18 if side else 0) for x in px], [ymap[str(y)] for y in py], marker=marker, s=16, c="#666666", linewidths=.6, zorder=4)
+                state_labels.append(label)
+                state_symbols.append(marker)
+
+        def coordinates(frame):
+            return list(zip(frame[f["x"]].astype(str), frame[f["y"]].astype(str)))
+
+        state_marks(coordinates(zeros), "_", "Measured zero")
+        unmeasured_coordinates = coordinates(unmeasured)
+        if absent_state == "unmeasured":
+            unmeasured_coordinates += absent
+        state_marks(unmeasured_coordinates, "x", "Not measured")
+        if absent_state == "unsupplied":
+            state_marks(absent, "+", "Not supplied")
+        state_marks(coordinates(small), "|", "Small positive", side=True)
+        if state_labels:
+            legend_manager.add_symbols(state_labels, state_symbols)
+        fig._easyviz_dot_states = {"observed_rows": len(measured), "zero_rows": len(zeros), "unmeasured_rows": len(unmeasured), "missing_coordinates": [list(pair) for pair in absent], "missing_cells_meaning": absent_state, "small_positive_rows": len(small), "small_positive_area_threshold_pt2": threshold, "state_markers": options.get("state_markers", True), "symbols": dict(zip(state_labels, state_symbols)), "note": "State glyphs are separate nonquantitative marks. Observed dot area remains size / size_max * max_area_pt2; an absent row is not a measured zero."}
     elif chart == "scatter":
         if "group" in f:
             groups = ordered(data, f["group"], spec, "group")
@@ -534,7 +621,7 @@ def check_tick_label_overlap(fig, painter):
     return overlaps, skipped
 
 
-def _render(data_path, spec, out):
+def _render(data_path, spec, out, profile_record=None):
     data_path, out = Path(data_path), Path(out)
     data = prepare(data_path, spec)
     results = statistics(data, spec)
@@ -578,11 +665,18 @@ def _render(data_path, spec, out):
             settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=spec.get("formats", ["pdf", "png"]), seed=spec.get("seed", 0), input_file=data_path.name, input_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest())
             settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
             settings["renderer"]["legend_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("legend_layout.py").read_bytes()).hexdigest()
+            settings["renderer"]["profile_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("figure_profile.py").read_bytes()).hexdigest()
+            if profile_record is not None:
+                settings["figure_profile"] = profile_record
             settings["legend_layout"] = legends
+            if chart_states := getattr(fig, "_easyviz_dot_states", None):
+                settings["dot_states"] = chart_states
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}
             passed = not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass"
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover canvas boundaries and same-axis horizontal/vertical tick-label overlap. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
             qa["legend_layout"] = legends
+            if chart_states:
+                qa["dot_states"] = chart_states
             data.to_csv(out / "plotting-data.csv", index=False)
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", results)
@@ -593,14 +687,15 @@ def _render(data_path, spec, out):
             plt.close(fig)
 
 
-def render(data_path, spec, out):
+def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None):
     """Mark every attempted run so stale exports cannot retain a passing QA record."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     status = {"status": "in_progress", "valid_outputs": False, "note": "Until this run passes, any exports in this directory are unverified and may belong to an earlier run."}
     write_json(out / "qa.json", status)
     try:
-        return _render(data_path, spec, out)
+        resolved, profile_record = resolve_spec(spec, profile=profile, panel=panel, spec_path=spec_path)
+        return _render(data_path, resolved, out, profile_record)
     except Exception as exc:
         current = json.loads((out / "qa.json").read_text())
         if current.get("status") == "in_progress":
@@ -614,6 +709,8 @@ def main():
     parser.add_argument("--data", type=Path, help="Source CSV; rows are never silently dropped")
     parser.add_argument("--spec", type=Path, help="JSON plot specification")
     parser.add_argument("--out", type=Path, help="Directory for panel exports, plotting data, settings, statistics, and QA")
+    parser.add_argument("--profile", type=Path, help="Shared figure-profile JSON; conflicts with local settings are errors")
+    parser.add_argument("--panel", help="Panel name whose physical dimensions are declared in the profile")
     parser.add_argument("--describe-spec", action="store_true", help="Print supported fields, options, and semantics as JSON")
     args = parser.parse_args()
     if args.describe_spec:
@@ -622,7 +719,7 @@ def main():
     if not all([args.data, args.spec, args.out]):
         parser.error("--data, --spec and --out are required unless --describe-spec is used")
     try:
-        qa = render(args.data, json.loads(args.spec.read_text()), args.out)
+        qa = render(args.data, json.loads(args.spec.read_text()), args.out, profile=args.profile, panel=args.panel, spec_path=args.spec)
     except (ValueError, OSError, ImportError) as exc:
         parser.exit(2, f"EasyViz: {exc}\n")
     print(json.dumps({"status": qa["status"], "output": str(args.out), "width_mm": qa["width_mm"], "height_mm": qa["height_mm"]}))

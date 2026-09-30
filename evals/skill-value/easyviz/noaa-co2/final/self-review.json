@@ -1,0 +1,71 @@
+{
+  "reviewer_role": "self-review",
+  "overall_status": "ready_with_notes",
+  "independent_review": "not_checked; parent will arrange it separately",
+  "passes": [
+    {
+      "pass": 1,
+      "packet": "noaa-co2/initial/",
+      "images_opened": [
+        "panel.png",
+        "preview-at-96dpi.png"
+      ],
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "final endpoint annotation",
+          "evidence": "The 424.61 text overlaps the rising curve around its text span",
+          "requirement": "Readable essential data annotations",
+          "action": "Move text below curve"
+        }
+      ]
+    },
+    {
+      "pass": 2,
+      "packet": "noaa-co2/review-pass-2/",
+      "images_opened": [
+        "panel.png",
+        "preview-at-96dpi.png"
+      ],
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "detached final endpoint annotation",
+          "evidence": "Moving the text removed overlap but left the endpoint association implicit",
+          "requirement": "Clear association of annotated endpoint value",
+          "action": "Use a short leader anchored to the 2024 point"
+        }
+      ]
+    },
+    {
+      "pass": 3,
+      "packet": "noaa-co2/final/",
+      "images_opened": [
+        "panel.png",
+        "preview-at-96dpi.png"
+      ],
+      "findings": [
+        {
+          "severity": "note",
+          "location": "primary error bars",
+          "evidence": "The original +/-0.12 ppm error bars are subpixel on this range; the aligned lower axis visibly preserves the supplied 0.12 ppm values",
+          "requirement": "Retain uncertainty and its source meaning",
+          "action": "Keep faithful error bars and separate uncertainty axis; define meaning in caption"
+        }
+      ]
+    }
+  ],
+  "numerical_checks": {
+    "source_hash_and_all_original_values": "passed",
+    "PDF_SVG_mm_and_PNG_pixels": "passed",
+    "Arial_embedding_and_8_pt": "passed",
+    "glyph_coverage": "passed",
+    "canvas_text_clipping": "passed"
+  },
+  "residual_issues": [
+    "The uncertainty definition requires the separate caption",
+    "Nominal 96 dpi preview was inspected on screen; physical print was not checked"
+  ],
+  "comparative_preference": "not_checked; no aesthetic superiority claim",
+  "visual_corrections": 2
+}

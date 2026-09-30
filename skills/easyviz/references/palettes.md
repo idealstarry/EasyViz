@@ -32,7 +32,11 @@ The core renderer's technical fallbacks are `somerville-bright` and `somerville-
 
 Categorical colors must not cycle when capacity is exceeded. Supply an explicitly reviewed larger mapping, use redundant encodings, or arrange separate panels. Keep group-color assignments stable across plots. If pale fills need outlines, apply one coherent outline policy to comparable marks and matching legend symbols, or choose stronger fills/direct labels; do not outline only one mark type by accident.
 
+For a panel set, save the complete category-to-color mapping in a [shared figure profile](figure-profile.md). A palette name assigns colors from the current panel's categories; if a group is absent or the order changes, its position in that palette can change. A profile's explicit mapping retains category identity. Omit local `palette` when using shared `colors`; conflicting explicit colors fail instead of overriding the map. New categories must be added to the shared mapping.
+
 For continuous data, record limits and normalization. Recoloring must preserve the established value scale, zero, missing-value meaning and range unless a scientific change is requested. Do not introduce a diverging center only to obtain a preferred appearance. Sequential scales may include negative numbers when no central threshold is being encoded.
+
+When comparing the same quantity across panels, define a named profile `continuous_scales` entry with `colormap`, `color_limits`, and optional `color_center`, then select it using `continuous_scale`. The fixed scale is checked against each panel's actual values; out-of-range values fail rather than being clipped. Use separate scales when units, quantities or the intended comparisons differ.
 
 These source palettes have not been certified as color-vision-deficiency safe. Preserve labels, position, shapes or other distinctions where color alone is insufficient. Derived sequential ramps have monotonic relative luminance; this does not establish perceptual uniformity or equal contrast for every data range.
 

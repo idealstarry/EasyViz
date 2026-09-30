@@ -1,0 +1,67 @@
+{
+  "reviewer_role": "self-review",
+  "overall_status": "ready_with_notes",
+  "independent_review": "not_checked; parent will arrange it separately",
+  "passes": [
+    {
+      "pass": 1,
+      "packet": "usgs-earthquakes/initial/",
+      "images_opened": [
+        "panel.png",
+        "preview-at-96dpi.png"
+      ],
+      "findings": [
+        {
+          "severity": "note",
+          "location": "shared coordinates near 10 km",
+          "evidence": "Exact repeated catalog coordinates overplot, and multiple measurement types may share a coordinate",
+          "requirement": "Retain every event and distinguish measurement types honestly",
+          "action": "Retain all 131 rows without jitter or aggregation; use color and shape, document overlap"
+        },
+        {
+          "severity": "note",
+          "location": "legend and depth axis",
+          "evidence": "Four types have distinct shape/color keys, log depth is explicit in the x label, and 600+ km events remain visible",
+          "requirement": "Comparison of depth and magnitude with measurement-type context",
+          "action": "Retain first complete rendering unchanged"
+        }
+      ]
+    }
+  ],
+  "final_confirmation": "Final PNG opened; SHA256 equality confirms final matches initial PNG",
+  "numerical_checks": {
+    "source_hash_and_all_original_values": "passed",
+    "PDF_SVG_mm_and_PNG_pixels": "passed",
+    "Arial_embedding_and_8_pt": "passed",
+    "glyph_coverage": "passed",
+    "canvas_text_clipping": "passed"
+  },
+  "legend_measurements": {
+    "complete_bounds_mm": [
+      29.684888888888896,
+      60.90393229166666,
+      41.430222222222206,
+      6.284956597222223
+    ],
+    "reserved_region_mm": [
+      16,
+      58,
+      69,
+      11
+    ],
+    "primary_field_mm": [
+      16,
+      14,
+      69,
+      42
+    ],
+    "legend_area_to_primary_field": 0.08985063784676957
+  },
+  "residual_issues": [
+    "Exact repeated coordinates cannot be individually resolved in this scatter; all remain in plotted-values.csv",
+    "Magnitude types are not harmonized measures of energy or intensity",
+    "Physical print was not checked"
+  ],
+  "comparative_preference": "not_checked; no aesthetic superiority claim",
+  "visual_corrections": 0
+}

@@ -76,7 +76,11 @@ Inspect all categorical palettes, continuous maps, annotations, and background c
 
 Save shared settings and each panel's actual width and height in a readable configuration in the output directory, such as `figure-settings.json`. Scripts should read that configuration or preserve equivalent parameters completely.
 
+The core renderer can read one [figure-profile.json](figure-profile.md) for a panel set. Store shared font, `font_size_pt`, line width and dpi there, along with each named panel's `width_mm` and `height_mm`; select a panel with `--profile` and `--panel`, or the equivalent spec fields. Panel-specific internal margins remain local. Conflicting explicit font sizes or dimensions are rejected so a panel cannot silently diverge from the assembly settings. Numeric values carry the units in their key names; unknown keys such as `fontsize_pt` produce a correction hint.
+
 Record the track, input paths, color mappings, mark-outline policy and exceptions, actual fonts, sizes by text role, line widths, export formats, and dpi. Update the record when settings change; do not leave these details only in the conversation.
+
+Profile-based outputs additionally save the absolute profile path, profile SHA-256, selected panel and scale, original panel spec, and shared-settings snapshot. Preserve the shared profile with the individual output specs. Updating it does not rescale or assemble previously exported panels; rerender the affected panels at their declared physical sizes.
 
 ## Executable support
 

@@ -1,0 +1,378 @@
+{
+  "source_file": "/Users/starry/Desktop/EasyViz/evals/skill-value/inputs/usgs-earthquakes-2024-01.csv",
+  "source_sha256": "4cc6216e7b39b090f7c2dfce5e54e2ef518dac56832acedc5e5d4a6e6e327521",
+  "source_provenance": {
+    "id": "usgs-earthquakes",
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=2024-01-01T00%3A00%3A00&endtime=2024-02-01T00%3A00%3A00&minmagnitude=5&eventtype=earthquake&contributor=us&orderby=time-asc",
+    "retrieved_at_utc": "2026-09-30T04:36:43.552139+00:00",
+    "raw_sha256": "4d74be397d6d959b2fe13bcd98698aafffee1b3be260f5945a398a7f33ef473e",
+    "raw_bytes": 25178,
+    "derived_file": "inputs/usgs-earthquakes-2024-01.csv",
+    "derived_sha256": "4cc6216e7b39b090f7c2dfce5e54e2ef518dac56832acedc5e5d4a6e6e327521",
+    "rows": 131,
+    "source_columns": [
+      "id",
+      "time",
+      "depth",
+      "mag",
+      "magType",
+      "net",
+      "status",
+      "locationSource",
+      "magSource"
+    ],
+    "transformation": "USGS: keep January UTC events whose preferred net, locationSource and magSource are us; retain listed fields; no rounding or subsampling",
+    "excluded_preferred_source_rows": 2
+  },
+  "source_rows": 131,
+  "plotted_rows": 131,
+  "filtering": "None; January UTC, reviewed status, magnitude >=5 and preferred USGS sources are validated, not reapplied to omit rows.",
+  "transformations": [
+    "Numeric parsing for plotting; original decimal strings and identifiers preserved in trace.",
+    "Logarithmic display of positive preferred hypocentral depth; no change to depth values.",
+    "Magnitude type mapped to both shape and color.",
+    "No jitter, subsampling, rounding, weighting, aggregation, regression, or significance layer."
+  ],
+  "statistics": {
+    "events": 131,
+    "magnitude_type_counts": {
+      "mb": 53,
+      "mww": 76,
+      "mwb": 1,
+      "mwr": 1
+    },
+    "depth_min_km": "3.426",
+    "depth_max_km": "621.081",
+    "magnitude_min": "5",
+    "magnitude_max": "7.5",
+    "exact_coincident_xy_groups": [
+      {
+        "depth": "10",
+        "mag": "5.8",
+        "event_count": 2
+      },
+      {
+        "depth": "10",
+        "mag": "6.2",
+        "event_count": 2
+      },
+      {
+        "depth": "10",
+        "mag": "5.2",
+        "event_count": 6
+      },
+      {
+        "depth": "10",
+        "mag": "5.6",
+        "event_count": 5
+      },
+      {
+        "depth": "10",
+        "mag": "5",
+        "event_count": 16
+      },
+      {
+        "depth": "10",
+        "mag": "5.1",
+        "event_count": 10
+      },
+      {
+        "depth": "10",
+        "mag": "5.5",
+        "event_count": 5
+      },
+      {
+        "depth": "10",
+        "mag": "5.3",
+        "event_count": 4
+      },
+      {
+        "depth": "10",
+        "mag": "5.4",
+        "event_count": 8
+      }
+    ],
+    "events_in_coincident_xy_groups": 58
+  },
+  "encodings": {
+    "mb": {
+      "marker": "o",
+      "color": "#166b9a"
+    },
+    "mww": {
+      "marker": "^",
+      "color": "#c97421"
+    },
+    "mwb": {
+      "marker": "s",
+      "color": "#208360"
+    },
+    "mwr": {
+      "marker": "D",
+      "color": "#8251a3"
+    }
+  },
+  "axes": {
+    "position": [
+      0.18,
+      0.2,
+      0.78,
+      0.66
+    ],
+    "x_scale": "log",
+    "y_scale": "linear",
+    "x_limits": [
+      3,
+      700
+    ],
+    "y_limits": [
+      4.85,
+      7.7
+    ]
+  },
+  "mark_area_pt2": 15,
+  "mark_linewidth_pt": 0.65,
+  "mark_opacity": 0.75,
+  "grid_zorder": 0,
+  "data_zorder": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "event_uncertainty": "Unavailable in the supplied minimal input; no event error bars drawn.",
+  "canvas_mm": [
+    90,
+    70
+  ],
+  "png_dpi_requested": 300,
+  "png_size_px": [
+    1063,
+    827
+  ],
+  "png_dpi_metadata": [
+    299.9994,
+    299.9994
+  ],
+  "png_raw_renderer_size_px": [
+    1062,
+    826
+  ],
+  "raster_quantization": "Nearest integer pixels; LANCZOS adjustment of <1 pixel per dimension if required. Exact physical canvas in PDF and SVG.",
+  "pdf_page_mm": [
+    89.99999999999278,
+    70.00000000000222
+  ],
+  "font_requested": "Arial",
+  "font_actual": "Arial",
+  "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+  "all_text_font_pt": 8,
+  "matplotlib_version": "3.11.1",
+  "matplotlib_settings": {
+    "font.family": "Arial",
+    "font.size": 8,
+    "axes.labelsize": 8,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 8,
+    "axes.linewidth": 0.6,
+    "xtick.major.width": 0.6,
+    "ytick.major.width": 0.6,
+    "xtick.major.size": 2.5,
+    "ytick.major.size": 2.5,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
+    "savefig.facecolor": "white",
+    "axes.unicode_minus": true,
+    "text.color": "#202020",
+    "axes.labelcolor": "#202020",
+    "xtick.color": "#202020",
+    "ytick.color": "#202020"
+  },
+  "tight_or_cropped_bbox": false,
+  "text_beyond_canvas": [],
+  "visible_text_bounds": [
+    {
+      "text": "Hypocentral depth (km; log scale)",
+      "font_pt": 8.0,
+      "bounds_px": [
+        362.40551181102364,
+        65.28922654199476,
+        487.0,
+        31.28255208333333
+      ]
+    },
+    {
+      "text": "5",
+      "font_pt": 8.0,
+      "bounds_px": [
+        260.0176844587288,
+        113.23844529199476,
+        18.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "10",
+      "font_pt": 8.0,
+      "bounds_px": [
+        356.4216577194461,
+        113.23844529199476,
+        36.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "30",
+      "font_pt": 8.0,
+      "bounds_px": [
+        523.4830027646984,
+        113.23844529199476,
+        36.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "100",
+      "font_pt": 8.0,
+      "bounds_px": [
+        697.5660778069791,
+        113.23844529199476,
+        54.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "300",
+      "font_pt": 8.0,
+      "bounds_px": [
+        864.6274228522316,
+        113.23844529199476,
+        54.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "600",
+      "font_pt": 8.0,
+      "bounds_px": [
+        970.0313961129488,
+        113.23844529199476,
+        53.999999999999886,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "Catalog magnitude",
+      "font_pt": 8.0,
+      "bounds_px": [
+        73.38936392716532,
+        302.1889763779528,
+        31.282552083333357,
+        272.0
+      ]
+    },
+    {
+      "text": "5.0",
+      "font_pt": 8.0,
+      "bounds_px": [
+        125.50524934383199,
+        174.92500407406934,
+        45.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "5.5",
+      "font_pt": 8.0,
+      "bounds_px": [
+        125.50524934383199,
+        270.6564586948734,
+        45.0,
+        31.282552083333314
+      ]
+    },
+    {
+      "text": "6.0",
+      "font_pt": 8.0,
+      "bounds_px": [
+        125.50524934383199,
+        366.3879133156774,
+        45.0,
+        31.282552083333314
+      ]
+    },
+    {
+      "text": "6.5",
+      "font_pt": 8.0,
+      "bounds_px": [
+        125.50524934383199,
+        462.1193679364814,
+        45.0,
+        31.282552083333314
+      ]
+    },
+    {
+      "text": "7.0",
+      "font_pt": 8.0,
+      "bounds_px": [
+        125.50524934383199,
+        557.8508225572851,
+        45.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "7.5",
+      "font_pt": 8.0,
+      "bounds_px": [
+        125.50524934383199,
+        653.5822771780892,
+        45.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "mb",
+      "font_pt": 8.0,
+      "bounds_px": [
+        379.7755905511811,
+        769.7541933234908,
+        45.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "mww",
+      "font_pt": 8.0,
+      "bounds_px": [
+        499.7755905511811,
+        769.7541933234908,
+        74.99999999999994,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "mwb",
+      "font_pt": 8.0,
+      "bounds_px": [
+        649.775590551181,
+        769.7541933234908,
+        69.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "mwr",
+      "font_pt": 8.0,
+      "bounds_px": [
+        793.775590551181,
+        769.7541933234908,
+        62.0,
+        31.28255208333337
+      ]
+    }
+  ],
+  "script_execution_utc": "2026-09-30T04:51:47.604625+00:00"
+}

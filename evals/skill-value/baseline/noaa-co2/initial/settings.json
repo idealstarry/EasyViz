@@ -1,0 +1,314 @@
+{
+  "source_file": "/Users/starry/Desktop/EasyViz/evals/skill-value/inputs/noaa-co2-1980-2024.csv",
+  "source_sha256": "5f0211cf640e5f123d0d976452e5be30fde7575193e1db5398ba5c288f7de39b",
+  "source_provenance": {
+    "id": "noaa-co2",
+    "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt",
+    "retrieved_at_utc": "2026-09-30T04:36:43.551503+00:00",
+    "raw_sha256": "3eea72f254116cd43275fa33b0ed201b14550e6ba21e4d6b4482c24a95f98ab7",
+    "raw_bytes": 3696,
+    "derived_file": "inputs/noaa-co2-1980-2024.csv",
+    "derived_sha256": "5f0211cf640e5f123d0d976452e5be30fde7575193e1db5398ba5c288f7de39b",
+    "rows": 45,
+    "source_columns": [
+      "year",
+      "mean_ppm",
+      "uncertainty_ppm"
+    ],
+    "transformation": "NOAA: whitespace parse, retain annual 1980..2024, rename mean/unc to mean_ppm/uncertainty_ppm"
+  },
+  "source_rows": 45,
+  "plotted_rows": 45,
+  "filtering": "None; all 45 frozen annual observations retained.",
+  "transformations": [
+    "Numeric parsing solely for plotting; original decimal strings preserved in trace.",
+    "Exact Decimal mean minus/plus supplied uncertainty defines band bounds.",
+    "No interpolation, fitted line, weighting, averaging, significance layer, or uncertainty recomputation."
+  ],
+  "statistics": {
+    "first_year": 1980,
+    "last_year": 2024,
+    "first_mean_ppm": "338.76",
+    "last_mean_ppm": "424.61",
+    "overall_change_ppm": "85.85",
+    "uncertainty_min_ppm": "0.12",
+    "uncertainty_max_ppm": "0.12"
+  },
+  "axes": {
+    "main_position": [
+      0.18,
+      0.42,
+      0.78,
+      0.53
+    ],
+    "uncertainty_position": [
+      0.18,
+      0.16,
+      0.78,
+      0.16
+    ],
+    "x_scale": "linear",
+    "main_y_scale": "linear",
+    "uncertainty_y_scale": "linear",
+    "main_y_limits": [
+      331,
+      432
+    ],
+    "uncertainty_y_limits": [
+      0.08,
+      0.16
+    ]
+  },
+  "uncertainty_meaning": "Standard deviation of differences between independent NOAA/ESRL and Scripps annual means; not a confidence interval or temporal spread.",
+  "grid_zorder": 0,
+  "data_zorder": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "canvas_mm": [
+    90,
+    70
+  ],
+  "png_dpi_requested": 300,
+  "png_size_px": [
+    1063,
+    827
+  ],
+  "png_dpi_metadata": [
+    299.9994,
+    299.9994
+  ],
+  "png_raw_renderer_size_px": [
+    1062,
+    826
+  ],
+  "raster_quantization": "Nearest integer pixels; LANCZOS adjustment of <1 pixel per dimension if required. Exact physical canvas in PDF and SVG.",
+  "pdf_page_mm": [
+    89.99999999999278,
+    70.00000000000222
+  ],
+  "font_requested": "Arial",
+  "font_actual": "Arial",
+  "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+  "all_text_font_pt": 8,
+  "matplotlib_version": "3.11.1",
+  "matplotlib_settings": {
+    "font.family": "Arial",
+    "font.size": 8,
+    "axes.labelsize": 8,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 8,
+    "axes.linewidth": 0.6,
+    "xtick.major.width": 0.6,
+    "ytick.major.width": 0.6,
+    "xtick.major.size": 2.5,
+    "ytick.major.size": 2.5,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
+    "savefig.facecolor": "white",
+    "axes.unicode_minus": true,
+    "text.color": "#202020",
+    "axes.labelcolor": "#202020",
+    "xtick.color": "#202020",
+    "ytick.color": "#202020"
+  },
+  "tight_or_cropped_bbox": false,
+  "text_beyond_canvas": [],
+  "visible_text_bounds": [
+    {
+      "text": "338.76",
+      "font_pt": 8.0,
+      "bounds_px": [
+        213.05118110236072,
+        405.9108910891089,
+        99.0,
+        31.282552083333314
+      ]
+    },
+    {
+      "text": "424.61",
+      "font_pt": 8.0,
+      "bounds_px": [
+        899.7598425196848,
+        765.8715210103687,
+        99.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "Δ 85.85 ppm",
+      "font_pt": 8.0,
+      "bounds_px": [
+        329.5275590551173,
+        648.3136627593,
+        182.15625,
+        31.282552083333258
+      ]
+    },
+    {
+      "text": "CO₂ (ppm)",
+      "font_pt": 8.0,
+      "bounds_px": [
+        63.65694205216532,
+        475.3385826771654,
+        32.01497395833336,
+        182.0
+      ]
+    },
+    {
+      "text": "340",
+      "font_pt": 8.0,
+      "bounds_px": [
+        116.50524934383199,
+        367.14187391687614,
+        54.0,
+        31.282552083333314
+      ]
+    },
+    {
+      "text": "360",
+      "font_pt": 8.0,
+      "bounds_px": [
+        116.50524934383199,
+        453.9119682491441,
+        54.0,
+        31.282552083333314
+      ]
+    },
+    {
+      "text": "380",
+      "font_pt": 8.0,
+      "bounds_px": [
+        116.50524934383199,
+        540.6820625814117,
+        54.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "400",
+      "font_pt": 8.0,
+      "bounds_px": [
+        116.50524934383199,
+        627.4521569136797,
+        54.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "420",
+      "font_pt": 8.0,
+      "bounds_px": [
+        116.50524934383199,
+        714.2222512459476,
+        54.0,
+        31.28255208333337
+      ]
+    },
+    {
+      "text": "Year",
+      "font_pt": 8.0,
+      "bounds_px": [
+        572.9367618110236,
+        36.38502706692913,
+        65.9375,
+        31.282552083333336
+      ]
+    },
+    {
+      "text": "1980",
+      "font_pt": 8.0,
+      "bounds_px": [
+        164.55118110236072,
+        80.16757915026247,
+        72.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "1990",
+      "font_pt": 8.0,
+      "bounds_px": [
+        348.80314960629767,
+        80.16757915026247,
+        72.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "2000",
+      "font_pt": 8.0,
+      "bounds_px": [
+        533.0551181102346,
+        80.16757915026247,
+        72.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "2010",
+      "font_pt": 8.0,
+      "bounds_px": [
+        717.3070866141716,
+        80.16757915026247,
+        72.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "2024",
+      "font_pt": 8.0,
+      "bounds_px": [
+        975.2598425196848,
+        80.16757915026247,
+        72.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "Unc. (ppm)",
+      "font_pt": 8.0,
+      "bounds_px": [
+        55.38936392716532,
+        117.42519685039372,
+        31.282552083333357,
+        162.0
+      ]
+    },
+    {
+      "text": "0.08",
+      "font_pt": 8.0,
+      "bounds_px": [
+        107.50524934383199,
+        113.13470154609581,
+        63.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "0.12",
+      "font_pt": 8.0,
+      "bounds_px": [
+        107.50524934383199,
+        179.2764338295604,
+        63.0,
+        31.282552083333343
+      ]
+    },
+    {
+      "text": "0.16",
+      "font_pt": 8.0,
+      "bounds_px": [
+        107.50524934383199,
+        245.41816611302497,
+        63.0,
+        31.282552083333343
+      ]
+    }
+  ],
+  "script_execution_utc": "2026-09-30T04:50:19.928456+00:00"
+}

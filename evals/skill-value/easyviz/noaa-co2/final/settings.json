@@ -1,0 +1,290 @@
+{
+  "track": "create",
+  "input_mode": "source-data",
+  "panel": "noaa-co2",
+  "source_path": "/Users/starry/Desktop/EasyViz/evals/skill-value/inputs/noaa-co2-1980-2024.csv",
+  "source_sha256": "5f0211cf640e5f123d0d976452e5be30fde7575193e1db5398ba5c288f7de39b",
+  "row_count": 45,
+  "implementation": "Custom Matplotlib; no core renderer/profile/legend helper code imported",
+  "width_mm": 90.0,
+  "height_mm": 70.0,
+  "dpi": 300,
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "text_roles_pt": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0
+  },
+  "line_width_pt": 0.6,
+  "filled_mark_outline_policy": "borderless; edgecolors=none and linewidths=0",
+  "grid": "Under all marks; set_axisbelow(True), grid zorder=0",
+  "statistics": "descriptive only; no fitted or significance layer",
+  "filters": [],
+  "versions": {
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3"
+  },
+  "unavailable_checks": [
+    "Physical print was not made; screen preview uses nominal 96 dpi",
+    "Independent reviewer results are not available to the implementer"
+  ],
+  "chart": "Annual mean time-series with aligned supplied-uncertainty axis",
+  "data_mapping": {
+    "x": "year",
+    "main_y": "mean_ppm",
+    "errorbar": "mean_ppm +/- uncertainty_ppm",
+    "lower_y": "uncertainty_ppm"
+  },
+  "transformations": [
+    "Read original decimal strings unchanged",
+    "Convert decimals to float only for Matplotlib coordinates",
+    "Compute exact Decimal endpoint difference and uncertainty bounds; no recomputation of annual means"
+  ],
+  "uncertainty_definition": "Standard deviation of differences between annual means independently determined by NOAA/ESRL and Scripps; not CI or temporal spread",
+  "axes": [
+    {
+      "role": "primary mean",
+      "bbox_mm": [
+        18,
+        30,
+        68,
+        36
+      ],
+      "x_scale": "linear",
+      "y_scale": "linear",
+      "xlim": [
+        1979,
+        2025
+      ],
+      "ylim": [
+        330,
+        430
+      ]
+    },
+    {
+      "role": "supplied uncertainty",
+      "bbox_mm": [
+        18,
+        13,
+        68,
+        10
+      ],
+      "x_scale": "linear",
+      "y_scale": "linear",
+      "xlim": [
+        1979,
+        2025
+      ],
+      "ylim": [
+        0,
+        0.16
+      ]
+    }
+  ],
+  "palette": "notch2-balanced blue",
+  "colors": {
+    "annual mean and supplied uncertainty": "#2581B9"
+  },
+  "legend_layout": {
+    "role": "none; directly labeled axes",
+    "complete_bounds_mm": null,
+    "reserved_region_mm": null
+  },
+  "observations_delivered": 45,
+  "noaa_error_bars_visibility": "Faithful +/-0.12 ppm bounds are subpixel on the 100 ppm primary range; lower axis makes uncertainty values readable without inflation",
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "path": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "size_pt_all_roles": 8.0,
+    "substitution": false,
+    "missing_glyphs": []
+  },
+  "text_bounds_mm": [
+    {
+      "text": "Δ = 85.85 ppm",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        20.956521739130523,
+        59.63570529513889,
+        17.793229166666663,
+        2.6485894097222165
+      ]
+    },
+    {
+      "text": "338.76",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        20.956521739130523,
+        31.08,
+        8.381999999999998,
+        2.64858940972222
+      ]
+    },
+    {
+      "text": "424.61",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        64.31365217391308,
+        62.155705295138866,
+        19.50275588537246,
+        2.6485894097222165
+      ]
+    },
+    {
+      "text": "Annual mean CO2 (ppm)",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        7.0752439236111115,
+        32.67533333333333,
+        2.6485894097222245,
+        30.649333333333328
+      ]
+    },
+    {
+      "text": "340",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        11.487722222222223,
+        31.978738064236094,
+        4.571999999999998,
+        2.64858940972222
+      ]
+    },
+    {
+      "text": "360",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        11.487722222222223,
+        39.17873806423609,
+        4.571999999999998,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "380",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        11.487722222222223,
+        46.37873806423608,
+        4.571999999999998,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "400",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        11.487722222222223,
+        53.5787380642361,
+        4.571999999999998,
+        2.6485894097222316
+      ]
+    },
+    {
+      "text": "420",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        11.487722222222223,
+        60.7787380642361,
+        4.571999999999998,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "Year",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        49.208645833333335,
+        4.351432291666668,
+        5.582708333333326,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "1980",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        16.430260869564833,
+        8.411132812500002,
+        6.095999999999998,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "1990",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        31.21286956521743,
+        8.411132812500002,
+        6.096000000000003,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "2000",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        45.99547826086942,
+        8.411132812500002,
+        6.095999999999998,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "2010",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        60.7780869565214,
+        8.411132812500002,
+        6.096000000000008,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "2024",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        81.47373913043431,
+        8.411132812500002,
+        6.095999999999998,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "Uncertainty\n(ppm)",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        2.8185390625000015,
+        10.972666666666669,
+        6.1432942708333345,
+        14.054666666666668
+      ]
+    },
+    {
+      "text": "0",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        14.535722222222223,
+        11.378738064236112,
+        1.5239999999999996,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "0.12",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.725722222222222,
+        18.878738064236114,
+        5.334,
+        2.64858940972222
+      ]
+    }
+  ]
+}

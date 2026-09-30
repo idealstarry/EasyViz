@@ -1,0 +1,112 @@
+{
+  "status": "pass within recorded scope",
+  "release_status": "locally validated before the source commit; source publication is recorded in Git history; GitHub Release publication is separate",
+  "validated_date": "2026-09-30",
+  "source_base_commit": "43d8ba3ab1f63e24e6a22716a121954a9d40f699",
+  "source_state": "working-tree snapshot at validation time; package identity is authoritative",
+  "package": {
+    "version": "0.2.0",
+    "archive": "easyviz-0.2.0.zip",
+    "sha256": "04af11cfa665ce08aa0f1ab120111d99f67ea724be1a7132d9e54ceb94c471d8",
+    "content_sha256": "fe248eb970a62e8c09be8ddb85dec0f06d7f43857a43fce76020657f20630d0f",
+    "files": 176,
+    "bytes": 3792903
+  },
+  "source_sha256": {
+    "skills/easyviz/SKILL.md": "2644cdd5235f85ab4bc5ddea16096a6c724ea4512f4523a817ff777b2d623c02",
+    "skills/easyviz/scripts/render.py": "1a5ecf7717617e1723c960fc3ac30579d8085c354dbcf58667006da0faa72190",
+    "skills/easyviz/scripts/figure_profile.py": "805db55b9a643ddfea223259966ca99e418e5c2a5c380a90715d72982624e676",
+    "skills/easyviz/scripts/legend_layout.py": "83c76034262b77450e95e363df4bb50ebab41971f3281d26cec7cfe7901695c1",
+    "scripts/install_plugin.py": "9f8d6685cbff7f3624ae9b24fffedeaaff904ee918261078f1f2b93c74705e9d",
+    "scripts/check_package.py": "f35d66297e42da06e2de5023efcc8ced257f9fe5d4dba3686637bd8379dd857e",
+    "scripts/build_plugin.py": "dbe8f2539497a6cb853c51a8c11b9534fbc80efb1ac9abc0d59bf62c6cc573d3",
+    ".github/workflows/qa.yml": "a5e58393aecea0ce92924bb69dbef4a0a86af974598ebf05d19cbfee8a1853fe"
+  },
+  "checks": {
+    "unit_tests": {
+      "status": "pass",
+      "tests": 55,
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0
+    },
+    "package_smoke": {
+      "status": "pass",
+      "version": "0.2.0",
+      "archive": "easyviz-0.2.0.zip",
+      "sha256": "04af11cfa665ce08aa0f1ab120111d99f67ea724be1a7132d9e54ceb94c471d8",
+      "files": 176,
+      "checks": "structure and extracted core smoke"
+    },
+    "portable_case_pixels_and_transfer": {
+      "status": "pass",
+      "record": "package-validation.json"
+    },
+    "build_repeatability": {
+      "status": "pass",
+      "record": "build-reproducibility.json"
+    },
+    "local_installation": {
+      "status": "installed",
+      "record": "local-installation.json",
+      "verification": "complete cache file set, file SHA256 and enabled state"
+    },
+    "fresh_backend_discovery": {
+      "status": "pass",
+      "record": "client-discovery.json",
+      "skills": 3,
+      "working_directories": 2,
+      "reuse_scope": "Final package differs from discovery-time package only in third-party attribution; skill contents and cache paths unchanged."
+    },
+    "skill_format": {
+      "status": "pass",
+      "skills": [
+        "easyviz",
+        "easyviz-reference-reader",
+        "easyviz-figure-reviewer"
+      ],
+      "validator": "skill-creator quick_validate.py"
+    },
+    "dependency_compatibility": {
+      "status": "pass",
+      "checked_packages": 18,
+      "method": "uv pip check against .venv/bin/python"
+    },
+    "independent_implementation_review": {
+      "status": "three reproducible defects repaired; no other blocking defect found",
+      "record": "audit.md"
+    },
+    "dot_state_visual": {
+      "status": "readable; no clipping observed",
+      "record": "dot-states/panel.png",
+      "caption": "dot-states/caption.md"
+    }
+  },
+  "environment": {
+    "python": "3.12.2",
+    "system": "Darwin",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0",
+      "PyMuPDF": "1.28.2"
+    }
+  },
+  "limits": [
+    "Same macOS host; not a fresh operating-system installation.",
+    "No interactive model turn or desktop plugin UI inspected.",
+    "Linux workflow configured; hosted Actions not run in this pass.",
+    "Agent-level comparative value is recorded separately in evals/skill-value, not inferred from unit tests."
+  ]
+}

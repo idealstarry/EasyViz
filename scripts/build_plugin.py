@@ -27,10 +27,18 @@ for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):
 manifest=json.loads((TARGET / '.codex-plugin/plugin.json').read_text())
 version=manifest['version']
 archive=DIST / f'easyviz-{version}.zip'
+content_identity = hashlib.sha256()
 with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED) as z:
     for path in sorted(TARGET.rglob('*')):
         if path.is_file():
-            z.write(path,path.relative_to(DIST))
-summary={'version':version,'archive':archive.name,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'files':sum(p.is_file() for p in TARGET.rglob('*')),'bytes':archive.stat().st_size}
+            # Package identity follows file contents, not checkout timestamps.
+            info = zipfile.ZipInfo(path.relative_to(DIST).as_posix(), date_time=(1980, 1, 1, 0, 0, 0))
+            info.create_system = 3
+            info.external_attr = 0o100644 << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            content = path.read_bytes()
+            z.writestr(info, content)
+            content_identity.update(info.filename.encode() + b'\0' + hashlib.sha256(content).digest())
+summary={'version':version,'archive':archive.name,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'content_sha256':content_identity.hexdigest(),'files':sum(p.is_file() for p in TARGET.rglob('*')),'bytes':archive.stat().st_size}
 (DIST / 'build.json').write_text(json.dumps(summary,indent=2)+'\n')
 print(json.dumps(summary,indent=2))

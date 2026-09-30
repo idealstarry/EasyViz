@@ -1,0 +1,41 @@
+[
+  {
+    "id": "noaa-co2",
+    "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt",
+    "retrieved_at_utc": "2026-09-30T04:36:43.551503+00:00",
+    "raw_sha256": "3eea72f254116cd43275fa33b0ed201b14550e6ba21e4d6b4482c24a95f98ab7",
+    "raw_bytes": 3696,
+    "derived_file": "inputs/noaa-co2-1980-2024.csv",
+    "derived_sha256": "5f0211cf640e5f123d0d976452e5be30fde7575193e1db5398ba5c288f7de39b",
+    "rows": 45,
+    "source_columns": [
+      "year",
+      "mean_ppm",
+      "uncertainty_ppm"
+    ],
+    "transformation": "NOAA: whitespace parse, retain annual 1980..2024, rename mean/unc to mean_ppm/uncertainty_ppm"
+  },
+  {
+    "id": "usgs-earthquakes",
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=2024-01-01T00%3A00%3A00&endtime=2024-02-01T00%3A00%3A00&minmagnitude=5&eventtype=earthquake&contributor=us&orderby=time-asc",
+    "retrieved_at_utc": "2026-09-30T04:36:43.552139+00:00",
+    "raw_sha256": "4d74be397d6d959b2fe13bcd98698aafffee1b3be260f5945a398a7f33ef473e",
+    "raw_bytes": 25178,
+    "derived_file": "inputs/usgs-earthquakes-2024-01.csv",
+    "derived_sha256": "4cc6216e7b39b090f7c2dfce5e54e2ef518dac56832acedc5e5d4a6e6e327521",
+    "rows": 131,
+    "source_columns": [
+      "id",
+      "time",
+      "depth",
+      "mag",
+      "magType",
+      "net",
+      "status",
+      "locationSource",
+      "magSource"
+    ],
+    "transformation": "USGS: keep January UTC events whose preferred net, locationSource and magSource are us; retain listed fields; no rounding or subsampling",
+    "excluded_preferred_source_rows": 2
+  }
+]

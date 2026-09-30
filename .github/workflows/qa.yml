@@ -25,3 +25,5 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_*.py'
       - name: Build the portable plugin
         run: python scripts/build_plugin.py
+      - name: Verify ZIP resources and extracted core runtime
+        run: python scripts/check_package.py

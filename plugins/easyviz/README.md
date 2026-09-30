@@ -1,4 +1,4 @@
-# EasyViz 0.1.2
+# EasyViz
 
 Create and reproduce scientific plots from source data. Export individual manuscript panels at their final physical size so the user can assemble them without resizing text.
 
@@ -11,6 +11,12 @@ Create and reproduce scientific plots from source data. Export individual manusc
 | [Figure Reviewer](skills/easyviz-figure-reviewer/SKILL.md) | Compare a rendered panel with the adopted requirements and reference |
 
 Keep all three skill directories together when using the plugin. The main skill can also be used alone, with its documented non-independent fallback. This package has no network service or automatic analysis hook.
+
+## Install or update
+
+Ask a local Agent: “Install or update https://github.com/idealstarry/EasyViz in my local ChatGPT Desktop; read INSTALL.md and complete it for me.” The [repository installation guide](https://github.com/idealstarry/EasyViz/blob/main/INSTALL.md) tells the Agent how to acquire the source, use the standard-library installer, preserve your other plugins, refresh the installed copy, and verify it. A compatible Codex CLI is required for automatic local installation. Downloading this package alone does not register it.
+
+The manifest records this package's version. Start a new chat after installation; refresh or restart the desktop if an update is not visible. This is a local plugin installation, with client support checked on the installed version.
 
 ## Runtime
 

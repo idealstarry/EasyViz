@@ -8,6 +8,8 @@ python /path/to/easyviz/scripts/render.py --data source.csv --spec plot.json --o
 
 Use the interpreter where [requirements.txt](../scripts/requirements.txt) is installed. The specification uses field mappings instead of fixed biological column names. Runnable, explicitly synthetic inputs and specifications are packaged in [assets/fixtures](../assets/fixtures/). These compact fixtures exercise the API; use [Worked cases](examples.md) for more developed scientific panels, provenance, and review evidence.
 
+For several panels in one manuscript figure, use a [shared figure profile](figure-profile.md). It fixes the common font, base size, line width and dpi; retains a complete category-color mapping across missing or reordered groups; and declares each named panel's actual mm dimensions. Optional named continuous scales preserve comparable value ranges. Select it through `profile` and `panel` in the spec, or `--profile` and `--panel` on the command line. Each invocation exports one panel.
+
 ## Chart selection and source-data contract
 
 | `chart` | Required `fields` | Input grain | Useful for |
@@ -53,8 +55,12 @@ Both tracks use the same [Panel layout](panel-layout.md) and [Visual review](vis
 | `seed` | Deterministic jitter seed |
 | `options` | Family-specific settings below |
 | `statistics` | Explicit requested method, comparisons and pairing; never inferred from a reference image |
+| `profile`, `panel` | Shared figure-profile path and named panel dimensions; conflicting local settings are rejected |
+| `continuous_scale` | Optional named profile scale for a heatmap or dot plot; fixes colormap, limits and optional center |
 
 Use the included specifications as runnable starting points. A panel's dimensions refer to the entire canvas, not only its plotting area. Presets in [presets.json](../assets/layouts/presets.json) are values to copy into `layout`, not a mandatory grid. See [panel-layout.md](panel-layout.md) before changing an agreed panel footprint.
+
+The renderer rejects unknown top-level keys and unknown `layout`, `typography`, `fields`, `labels`, `order`, `statistics` and option keys. Object sections, category lists, boolean switches, numbers and strings must have their documented JSON types. `layout.fontsize_pt`, for example, fails with a `font_size_pt` suggestion. Use numeric mm, pt and dpi values without unit suffixes. This avoids a successful-looking panel that quietly uses defaults after a misspelled setting.
 
 ## Frequent options
 

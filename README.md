@@ -17,6 +17,8 @@ EasyViz helps an Agent turn prepared source data into clear scientific figures. 
 
 Palettes, proportions, dimensions and fonts are configurable. Each panel is exported separately for assembly at its recorded size. General statistics are supported; upstream bioinformatics analysis stays outside the Skill. Explanatory prose belongs in the accompanying caption.
 
+Related panels can share a [figure profile](skills/easyviz/references/figure-profile.md) so category colors, typography and quantitative scales stay consistent. Dot plots distinguish [measured zero, unmeasured and absent data](skills/easyviz/references/dot-states.md) without changing proportional dot areas. Unknown configuration fields fail with a correction hint.
+
 ## Examples
 
 **Create · paired myeloid changes**
@@ -69,15 +71,16 @@ The `$easyviz` shorthand requires a discoverable skill. For an uninstalled check
 
 ## Setup
 
-Download the plugin ZIP from [Releases](https://github.com/idealstarry/EasyViz/releases), or build it locally with Python 3.12:
+Give your local Agent this request:
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements-dev.txt
-.venv/bin/python scripts/build_plugin.py
+```text
+Install or update https://github.com/idealstarry/EasyViz in my local
+ChatGPT Desktop. Read its INSTALL.md and complete the installation for me.
 ```
 
-The portable package is written to `dist/easyviz/`; building it does not register it in Codex. See the [package guide](plugins/easyviz/README.md) for runtime requirements and resource entry points.
+The Agent follows [INSTALL.md](INSTALL.md) to download, install or update, and verify EasyViz. It handles the local requirements and preserves your other plugins. Start a new chat for first use; a running desktop may need to refresh or restart before showing an update.
+
+[Release ZIPs](https://github.com/idealstarry/EasyViz/releases) are available for portable use. Building or downloading a package alone does not install it. See the [package guide](plugins/easyviz/README.md) for runtime requirements and [development guide](docs/development.md) for local builds and release checks.
 
 ## Inside
 
@@ -86,6 +89,8 @@ The portable package is written to `dist/easyviz/`; building it does not registe
 - [Figure Reviewer](skills/easyviz-figure-reviewer/SKILL.md) — actual-image review against the adopted requirements.
 
 [Development](docs/development.md) · [Release QA](evals/release-qa/README.md) · [Generalization limits](docs/generalization.md)
+
+[Skill value pilot](evals/skill-value/README.md) compares Agent outputs with and without EasyViz on the same two official datasets. Its evidence and limits are recorded separately from renderer tests.
 
 ## License
 

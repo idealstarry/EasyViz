@@ -4,7 +4,12 @@ The canonical runtime sources are in `skills/`. `plugins/easyviz/skills` links t
 
 ## Run and validate
 
-Use the environment described in the root README.
+For development and full figure checks, use Python 3.12 and the declared development dependencies:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+```
 
 ```sh
 .venv/bin/python -m unittest discover -s tests -p 'test_*.py'
@@ -14,6 +19,7 @@ Use the environment described in the root README.
 .venv/bin/python tests/check_generalization.py --strict
 .venv/bin/python tests/check_legend_layouts.py
 .venv/bin/python scripts/build_plugin.py
+.venv/bin/python scripts/check_package.py
 .venv/bin/python tests/check_plugin.py
 ```
 
@@ -47,6 +53,14 @@ An accepted result may retain documented differences when the original density e
 
 The plugin includes the main workflow, two helper skills, palettes, layout presets, runtime scripts, synthetic fixtures, and selected CC BY examples. Full paper archives and author scripts are not bundled. Check source terms before adding case data to the package.
 
-The plugin manifest lives at `plugins/easyviz/.codex-plugin/plugin.json`. The build records the ZIP checksum and file count in `dist/build.json`. A build is a packaging result; it does not imply marketplace publication, installation, or end-to-end validation in a fresh Codex session.
+The plugin manifest lives at `plugins/easyviz/.codex-plugin/plugin.json`. The build records the ZIP checksum, a path-and-content checksum, and file count in `dist/build.json`. Entries use fixed timestamps and permissions, so identical files produce the same ZIP under the same packaging runtime regardless of checkout timestamps. A build is a packaging result; it does not imply marketplace publication, installation, or end-to-end validation in a fresh Codex session.
 
-The GitHub `Core checks` workflow runs the numerical, source-contract, geometry and export unit tests and builds the plugin on Linux. It does not replace actual-image review or compare Linux font substitutions pixel-for-pixel with the Arial previews produced on macOS. Full release evidence and the exact archive checksum are recorded under `evals/release-qa/`.
+The GitHub `Core checks` workflow runs the numerical, source-contract, geometry and export unit tests, builds the plugin on Linux, then validates ZIP paths, manifest resources, all three skill entry points and an extracted core render from a separate working directory. The smoke render explicitly selects bundled DejaVu Sans and checks canvas/export QA. It does not compare Linux font substitutions pixel-for-pixel with the Arial previews produced on macOS or replace actual-image review. Full pixel reproduction remains in `tests/check_plugin.py` on the recorded macOS/font environment.
+
+## Local installation and release records
+
+For an installation request, follow [INSTALL.md](../INSTALL.md). `python scripts/install_plugin.py --build` builds using the standard library and refreshes the personal local plugin through the detected Codex CLI. The installer preserves other catalog entries, copies the package to a stable local source, backs up previous EasyViz files, and checks the installed cache and enabled state. `--home <temporary-directory>` isolates installer verification; it does not change the real OS home or desktop installation.
+
+For each release, set the manifest version before building and record the archive SHA-256, file count, source commit, the checks actually run and any installed-client checks. A published version identifies one archive; changes after publication need a new version. Keep historical QA attached to its original archive rather than changing its hashes to match a later build. A metadata-only change can reuse relevant numerical/visual evidence with an explicit scope statement, while validating the changed manifest, package and installation. Plugin discovery in a fresh client is separate from runtime and image checks.
+
+The historical initial release evidence is under `evals/release-qa/`; it identifies its original 0.1.0 archive. Later releases must identify their own archive and applicable checks. GitHub release publication and public plugin-directory submission are separate from building or local installation.

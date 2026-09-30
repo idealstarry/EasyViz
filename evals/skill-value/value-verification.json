@@ -1,0 +1,125 @@
+{
+  "method": "Independent audit of the saved final script's complete Matplotlib artists, plus saved plotted-value CSV and exported PDF text",
+  "records": [
+    {
+      "arm": "baseline",
+      "task": "noaa-co2",
+      "script": "baseline/noaa-co2/final/plot.py",
+      "artist_font_sizes_pt": [
+        8.0
+      ],
+      "artist_font_8pt_pass": true,
+      "text_outside_canvas": [],
+      "text_canvas_bounds_pass": true,
+      "source_rows": 45,
+      "all_annual_mean_coordinates_pass": true,
+      "all_supporting_uncertainty_coordinates_pass": true,
+      "all_45_supplied_uncertainty_endpoints_pass": true,
+      "trace_rows": 45,
+      "trace_source_fields_identical_pass": true,
+      "trace_uncertainty_bounds_pass": true,
+      "pdf_text_font_sizes_pt": [
+        8.0
+      ],
+      "exported_pdf_font_8pt_pass": true,
+      "all_recorded_checks_pass": true
+    },
+    {
+      "arm": "baseline",
+      "task": "usgs-earthquakes",
+      "script": "baseline/usgs-earthquakes/final/plot.py",
+      "artist_font_sizes_pt": [
+        8.0
+      ],
+      "artist_font_8pt_pass": true,
+      "text_outside_canvas": [],
+      "text_canvas_bounds_pass": true,
+      "source_rows": 131,
+      "event_mark_count": 131,
+      "all_event_coordinates_and_multiplicities_pass": true,
+      "separate_type_coordinate_groups_pass": true,
+      "display_axes": [
+        {
+          "x_scale": "log",
+          "y_scale": "linear",
+          "xlim": [
+            3.0,
+            700.0
+          ],
+          "ylim": [
+            4.85,
+            7.7
+          ]
+        }
+      ],
+      "trace_rows": 131,
+      "trace_source_fields_identical_pass": true,
+      "pdf_text_font_sizes_pt": [
+        8.0
+      ],
+      "exported_pdf_font_8pt_pass": true,
+      "all_recorded_checks_pass": true
+    },
+    {
+      "arm": "easyviz",
+      "task": "noaa-co2",
+      "script": "easyviz/noaa-co2/final/plot.py",
+      "artist_font_sizes_pt": [
+        8.0
+      ],
+      "artist_font_8pt_pass": true,
+      "text_outside_canvas": [],
+      "text_canvas_bounds_pass": true,
+      "source_rows": 45,
+      "all_annual_mean_coordinates_pass": true,
+      "all_supporting_uncertainty_coordinates_pass": true,
+      "all_45_supplied_uncertainty_endpoints_pass": true,
+      "trace_rows": 45,
+      "trace_source_fields_identical_pass": true,
+      "trace_uncertainty_bounds_pass": true,
+      "pdf_text_font_sizes_pt": [
+        8.0
+      ],
+      "exported_pdf_font_8pt_pass": true,
+      "all_recorded_checks_pass": true
+    },
+    {
+      "arm": "easyviz",
+      "task": "usgs-earthquakes",
+      "script": "easyviz/usgs-earthquakes/final/plot.py",
+      "artist_font_sizes_pt": [
+        8.0
+      ],
+      "artist_font_8pt_pass": true,
+      "text_outside_canvas": [],
+      "text_canvas_bounds_pass": true,
+      "source_rows": 131,
+      "event_mark_count": 131,
+      "all_event_coordinates_and_multiplicities_pass": true,
+      "separate_type_coordinate_groups_pass": true,
+      "display_axes": [
+        {
+          "x_scale": "log",
+          "y_scale": "linear",
+          "xlim": [
+            3.0,
+            750.0
+          ],
+          "ylim": [
+            4.85,
+            7.7
+          ]
+        }
+      ],
+      "trace_rows": 131,
+      "trace_source_fields_identical_pass": true,
+      "pdf_text_font_sizes_pt": [
+        8.0
+      ],
+      "exported_pdf_font_8pt_pass": true,
+      "all_recorded_checks_pass": true
+    }
+  ],
+  "pass": true,
+  "limits": "Artist-array fidelity verifies that every supplied coordinate is drawn, including overlapping events. It does not imply every overlapping event is separately visible, or that subpixel uncertainty is discernible; those are visual-reading questions. No physical print or browser SVG-font substitution test was performed."
+}

@@ -1,0 +1,31 @@
+{
+  "created_at_utc": "2026-09-30T04:41:09.979181+00:00",
+  "comparison": "same inherited default model configuration; no model override",
+  "token_budget_controlled": false,
+  "token_usage_available": false,
+  "sampling_seed_controlled": false,
+  "tasks": 2,
+  "authors_per_arm": 1,
+  "task_allocation": "each arm author completes both tasks",
+  "baseline_agent": "/root/value_benchmark/baseline_arm",
+  "easyviz_agent": "/root/value_benchmark/easyviz_arm",
+  "reviewer_agent": "/root/value_benchmark/anonymous_reviewer",
+  "known_confounders": [
+    "author variation",
+    "uncontrolled model sampling",
+    "tasks within author not independent",
+    "parallel machine load",
+    "one reviewer"
+  ],
+  "common_inputs": [
+    "required-spec.md",
+    "inputs/SOURCES.md",
+    "inputs/provenance.json",
+    "inputs/noaa-co2-1980-2024.csv",
+    "inputs/usgs-earthquakes-2024-01.csv"
+  ],
+  "baseline_extra_instruction": "Do not read any plotting Skill, repo examples/tests/core plotting scripts, or the other arm. Write a custom script.",
+  "easyviz_extra_instruction": "Read canonical EasyViz Skill and relevant references. No worked examples/tests or other arm. Write a custom script without depending on changing core renderer.",
+  "authors_completed_before_review": true,
+  "review_inputs_frozen": true
+}

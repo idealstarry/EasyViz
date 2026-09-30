@@ -1,0 +1,313 @@
+{
+  "track": "create",
+  "input_mode": "source-data",
+  "panel": "usgs-earthquakes",
+  "source_path": "/Users/starry/Desktop/EasyViz/evals/skill-value/inputs/usgs-earthquakes-2024-01.csv",
+  "source_sha256": "4cc6216e7b39b090f7c2dfce5e54e2ef518dac56832acedc5e5d4a6e6e327521",
+  "row_count": 131,
+  "implementation": "Custom Matplotlib; no core renderer/profile/legend helper code imported",
+  "width_mm": 90.0,
+  "height_mm": 70.0,
+  "dpi": 300,
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "text_roles_pt": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0
+  },
+  "line_width_pt": 0.6,
+  "filled_mark_outline_policy": "borderless; edgecolors=none and linewidths=0",
+  "grid": "Under all marks; set_axisbelow(True), grid zorder=0",
+  "statistics": "descriptive only; no fitted or significance layer",
+  "filters": [],
+  "versions": {
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3"
+  },
+  "unavailable_checks": [
+    "Physical print was not made; screen preview uses nominal 96 dpi",
+    "Independent reviewer results are not available to the implementer"
+  ],
+  "chart": "Magnitude versus hypocentral depth, with redundant categorical color/shape encoding",
+  "data_mapping": {
+    "x": "depth (km)",
+    "y": "mag",
+    "color_and_shape": "magType",
+    "unit": "unique reviewed event id"
+  },
+  "transformations": [
+    "No observation filtering, rounding, aggregation or jitter",
+    "Display depth on logarithmic x axis; retain raw depth in CSV",
+    "Convert decimal strings to float only for plotting"
+  ],
+  "axes": [
+    {
+      "role": "primary event scatter",
+      "bbox_mm": [
+        16,
+        14,
+        69,
+        42
+      ],
+      "x_scale": "log10",
+      "y_scale": "linear",
+      "xlim": [
+        3,
+        750
+      ],
+      "ylim": [
+        4.85,
+        7.7
+      ]
+    }
+  ],
+  "palette": "notch2-balanced; independently evaluated on actual panel",
+  "colors": {
+    "mb": "#2581B9",
+    "mww": "#DF9A3C",
+    "mwb": "#1AA781",
+    "mwr": "#CC86B9"
+  },
+  "markers": {
+    "mb": "o",
+    "mww": "s",
+    "mwb": "D",
+    "mwr": "^"
+  },
+  "mark_area_pt2": 12,
+  "mark_alpha": 0.72,
+  "drawing_order": [
+    "mww",
+    "mb",
+    "mwb",
+    "mwr"
+  ],
+  "legend_layout": {
+    "role": "categorical color and shape; size has no quantitative meaning",
+    "position": "Above primary axes inside fixed canvas",
+    "reserved_region_mm": [
+      16,
+      58,
+      69,
+      11
+    ],
+    "key_geometry": "3.5 pt categorical proxy markers; borderless, alpha 0.72",
+    "font_pt": 8.0,
+    "complete_bounds_mm": [
+      29.684888888888896,
+      60.90393229166666,
+      41.430222222222206,
+      6.284956597222223
+    ],
+    "relative_area_to_primary_field": 0.08985063784676957
+  },
+  "observations_delivered": 131,
+  "missing_or_nonpositive_values": 0,
+  "overplotting": "Repeated exact coordinates overlap; all events are drawn without displacement. Rare types drawn last. Alpha aids dense regions but is not a calibrated count encoding.",
+  "event_uncertainty": "No event uncertainty fields were supplied; no error bars invented",
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "path": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "size_pt_all_roles": 8.0,
+    "substitution": false,
+    "missing_glyphs": []
+  },
+  "text_bounds_mm": [
+    {
+      "text": "Hypocentral depth (km, log scale)",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        29.883666666666677,
+        5.351432291666669,
+        41.23266666666667,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "3",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        15.238,
+        9.411132812500002,
+        1.5239999999999996,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "10",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        29.521678079462628,
+        9.411132812500002,
+        3.047999999999999,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "30",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        43.2506981786303,
+        9.411132812500002,
+        3.047999999999999,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "100",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        57.534376258092934,
+        9.411132812500002,
+        4.571999999999996,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "300",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        71.26339635726062,
+        9.411132812500002,
+        4.571999999999996,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "700",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        81.85181729085521,
+        9.411132812500002,
+        4.572000000000006,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "Catalog magnitude",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        5.837243923611112,
+        23.485333333333337,
+        2.648589409722223,
+        23.02933333333334
+      ]
+    },
+    {
+      "text": "5.0",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.249722222222223,
+        14.58926438002559,
+        3.8099999999999987,
+        2.6485894097222222
+      ]
+    },
+    {
+      "text": "5.5",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.249722222222223,
+        21.957685432657165,
+        3.8099999999999987,
+        2.64858940972222
+      ]
+    },
+    {
+      "text": "6.0",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.249722222222223,
+        29.326106485288733,
+        3.8099999999999987,
+        2.64858940972222
+      ]
+    },
+    {
+      "text": "6.5",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.249722222222223,
+        36.69452753792032,
+        3.8099999999999987,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "7.0",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.249722222222223,
+        44.06294859055189,
+        3.8099999999999987,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "7.5",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        10.249722222222223,
+        51.43136964318348,
+        3.8099999999999987,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "Magnitude type",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        41.002,
+        64.54029947916666,
+        18.796,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "mb",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        32.93044444444445,
+        60.90393229166666,
+        3.81,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "mww",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        42.38488888888889,
+        60.90393229166666,
+        6.3500000000000085,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "mwb",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        54.379333333333335,
+        60.90393229166666,
+        5.8419999999999925,
+        2.648589409722224
+      ]
+    },
+    {
+      "text": "mwr",
+      "font_size_pt": 8.0,
+      "bbox_mm": [
+        65.86577777777778,
+        60.90393229166666,
+        5.249333333333331,
+        2.648589409722224
+      ]
+    }
+  ]
+}

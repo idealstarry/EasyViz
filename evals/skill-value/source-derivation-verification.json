@@ -1,0 +1,20 @@
+{
+  "method": "Separate reparse of preserved temporary raw downloads, verifying SHA256 and exact decimal/identifier strings against the committed minimal input after declared time/source filters",
+  "records": [
+    {
+      "source": "noaa-co2",
+      "downloaded_raw_sha256_pass": true,
+      "downloaded_raw_bytes_pass": true,
+      "declared_derivation_exact_string_and_order_pass": true,
+      "retained_rows": 45
+    },
+    {
+      "source": "usgs-earthquakes",
+      "downloaded_raw_sha256_pass": true,
+      "downloaded_raw_bytes_pass": true,
+      "declared_derivation_exact_string_and_order_pass": true,
+      "retained_rows": 131
+    }
+  ],
+  "pass": true
+}

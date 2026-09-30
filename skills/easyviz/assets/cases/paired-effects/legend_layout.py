@@ -126,6 +126,12 @@ class LegendLayout:
             raise ValueError("Size legend needs matching values and positive finite marker areas")
         self.requests.append({"kind": "size", "labels": [f"{float(v):g}" for v in values], "values": list(map(float, values)), "areas_pt2": list(map(float, areas_pt2)), "title": title, "color": color, "edgecolor": edgecolor, "linewidth_pt": linewidth_pt})
 
+    def add_symbols(self, labels, markers, color="#666666", linewidth_pt=.6):
+        """Decode nonquantitative data-state symbols without changing dot areas."""
+        if len(labels) != len(markers) or not labels or any(m not in ("x", "+", "_", "|") for m in markers):
+            raise ValueError("State symbols need matching labels and supported markers")
+        self.requests.append({"kind": "categorical", "labels": list(map(str, labels)), "colors": [color] * len(labels), "shape": "symbols", "markers": list(markers), "title": None, "edgecolor": color, "linewidth_pt": linewidth_pt})
+
     def add_colorbar(self, mappable, label):
         self.requests.append({"kind": "colorbar", "mappable": mappable, "label": label})
 
@@ -194,10 +200,12 @@ class LegendLayout:
             stroke = _positive(cfg.get("linewidth_pt", request["linewidth_pt"]), "linewidth_pt", zero=True)
             if request["shape"] == "patch":
                 handles = [Patch(facecolor=c, edgecolor=edge, linewidth=stroke) for c in request["colors"]]
+            elif request["shape"] == "symbols":
+                handles = [Line2D([], [], linestyle="none", marker=m, color=c, markeredgecolor=c, markeredgewidth=request["linewidth_pt"], markersize=cfg["key_height_mm"] * PT_PER_MM) for m, c in zip(request["markers"], request["colors"])]
             else:
                 handles = [Line2D([], [], linestyle="none", marker="o", markerfacecolor=c, markeredgecolor=edge, markeredgewidth=stroke, markersize=cfg["key_height_mm"] * PT_PER_MM) for c in request["colors"]]
             key_w, key_h = cfg["key_width_mm"], cfg["key_height_mm"]
-            if request["shape"] == "marker":
+            if request["shape"] in ("marker", "symbols"):
                 key_h += stroke / PT_PER_MM
                 key_w = max(key_w, key_h)
         else:
