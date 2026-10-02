@@ -119,9 +119,12 @@ describe the extraction methods and use conditions.
 For a local Agent that can run Python and inspect images, a plain request is enough:
 
 ```text
-用 EasyViz 画这份数据。做点图：横轴是 condition，纵轴是 gene，
-点面积表示 fraction，颜色表示 mean_score。尺寸 120 × 90 mm，字号 8 pt。
-请保留所有数据，检查实际成图，导出 PDF、SVG 和 PNG，图注单独保存。
+Use EasyViz to plot this dataset as a dot plot.
+Put condition on the x-axis and gene on the y-axis.
+Encode fraction with dot area and mean_score with color.
+Use a 120 × 90 mm panel and 8 pt text.
+Retain all data, inspect the rendered figure, and export PDF, SVG and PNG.
+Save the figure caption in a separate file.
 ```
 
 The Agent follows the [first-panel workflow](skills/easyviz/references/quick-start.md); the user need not write plotting code or JSON. Specify the scientific meaning of ambiguous columns, proportions and independent samples when needed. The Python resources are portable to local coding Agents; installation and skill discovery depend on the client.
