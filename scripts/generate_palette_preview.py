@@ -1,5 +1,6 @@
-"""Render the literature palette card and a complete preset reference."""
+"""Render palette reference cards and text-free README swatches."""
 from pathlib import Path
+import argparse
 import json
 import os
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/easyviz-matplotlib")
@@ -9,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 FOLDER = ROOT / 'skills/easyviz/assets/palettes'
@@ -48,8 +50,38 @@ def card(entries, filename):
     plt.close(fig)
 
 
+def readme_swatches(entries):
+    """Keep names, provenance and HEX labels in Markdown, outside the pixels."""
+    output = ROOT / 'docs/assets/palettes'
+    output.mkdir(parents=True, exist_ok=True)
+    width, height = 640, 40
+    for name, entry in entries:
+        if entry['type'] == 'categorical':
+            image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+            draw = ImageDraw.Draw(image)
+            colors = entry['colors']
+            gap = 4
+            available = width - gap * (len(colors) - 1)
+            for index, color in enumerate(colors):
+                left = round(index * available / len(colors)) + index * gap
+                right = round((index + 1) * available / len(colors)) + index * gap
+                draw.rectangle((left, 0, right - 1, height - 1), fill=color)
+        else:
+            cmap = LinearSegmentedColormap.from_list(name, entry['colors'], N=width)
+            pixels = np.rint(cmap(np.linspace(0, 1, width))[:, :3] * 255).astype('uint8')
+            image = Image.fromarray(np.repeat(pixels[None, :, :], height, axis=0))
+        image.save(output / f'{name}.png', optimize=True)
+
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--readme-only', action='store_true',
+                    help='Refresh only text-free documentation assets; retain existing reference cards')
+args = parser.parse_args()
 featured=[(k,v) for k,v in PALETTES.items() if v.get('collection')=='literature']
-if featured:
-    card(featured,'palette-swatches')
-card(list(PALETTES.items()),'all-presets')
-print(f'Rendered {len(featured)} literature choices and {len(PALETTES)} total presets.')
+readme_swatches(featured)
+if not args.readme_only:
+    if featured:
+        card(featured,'palette-swatches')
+    card(list(PALETTES.items()),'all-presets')
+print(f'Rendered {len(featured)} text-free README swatches.' if args.readme_only else
+      f'Rendered {len(featured)} literature choices and {len(PALETTES)} total presets, plus README swatches.')
