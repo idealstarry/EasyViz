@@ -54,6 +54,19 @@ with tempfile.TemporaryDirectory(prefix='easyviz-package-') as temporary:
             assert before.size == after.size
             assert ImageChops.difference(before, after).getbbox(alpha_only=False) is None, f'Portable render pixels differ: {case}'
         checks[case] = 'pass; rerendered PNG pixels match the reviewed bundled preview'
+    timecourse = skill / 'assets/cases/shi-timecourse'
+    for view, track, rows in (('', 'reproduce', 120), ('transfer-reproduce', 'reproduce', 12), ('transfer', 'create', 18)):
+        folder = timecourse / view
+        output = sandbox / ('shi-' + (view or 'paper'))
+        run(timecourse / 'plot.py', '--data', folder / 'source-data.csv', '--spec', folder / 'spec.json',
+            '--out', output, '--track', track)
+        qa = json.loads((output / 'qa.json').read_text())
+        assert qa['status'] == 'pass' and qa['input_rows'] == rows
+        with Image.open(folder / 'output/panel.png') as bundled, Image.open(output / 'panel.png') as actual:
+            assert bundled.size == actual.size
+            assert ImageChops.difference(bundled.convert('RGBA'), actual.convert('RGBA')).getbbox(alpha_only=False) is None
+        assert (folder / 'output/plotting-data.csv').read_bytes() == (output / 'plotting-data.csv').read_bytes()
+        checks['shi_' + (view or 'paper')] = f'pass; {rows} supplied summaries and all band endpoints; reviewed PNG and plotting CSV replay identically'
     paired = skill / 'assets/cases/paired-myeloid-remodeling'
     run(paired / 'plot.py', '--out', sandbox / 'paired-output')
     paired_qa = json.loads((sandbox / 'paired-output/qa.json').read_text())

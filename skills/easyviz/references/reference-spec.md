@@ -42,6 +42,8 @@ The main Agent records the decisions used to render and review a panel. This can
 | `colors` | Palette identity and resolved category-color mapping or continuous scale with its domain and center. |
 | `intentional_differences` | User-requested changes and necessary adaptations relative to the reference, each with a reason. |
 | `open_items` | Remaining questions and how they limit the current output. |
+| `implementation` | A compatible core/focused recipe or an explicit custom-script path, plus why its contract can express the adopted structure. Unfamiliar reference families may require new code. |
+| `layer_plan` | Every material mark, summary, guide, annotation and legend: source evidence IDs, real-data fields, transformation, artist/backend, verification, adoption priority and any intentional omission. See [Reference to code](reference-to-code.md). |
 
 Use requirement priorities that support review:
 
@@ -52,6 +54,28 @@ Use requirement priorities that support review:
 | `flexible` | Minor margin adjustments, tick density, label wrapping. | May change to fit the real data and final canvas. |
 
 Match structure and semantic relationships when data differs. A new range, category count, or distribution does not need to resemble the reference's numbers. Do not change values, omit inconvenient observations, or distort scales to improve apparent similarity.
+
+## Machine-readable reading and implementation scaffold
+
+[reference_packet.py](../scripts/reference_packet.py) can stage an image-data
+task and validate structured reader JSON against the exact reference SHA-256.
+Its reading contract serializes the evidence label as `state` and identifies
+permitted sources as `reference`, `caption-N` and `methods-N`. It records
+self-reported reader identity, image access, independence and limitations; a
+valid hash/schema does not prove an image was viewed or independently read.
+Use `--describe-reading` for the complete field contract.
+
+The generated `implementation-plan.json` deliberately leaves adopted decisions,
+data mappings, transforms, artist/backend choices and checks unresolved. It is
+not accepted by `render.py` and is not an execution-ready specification. The
+main Agent completes it and translates relevant decisions into the actual
+recipe's validated settings or a custom script. Inferred/unknown scientific
+details cannot become established merely because the scaffold contains them.
+
+Paper Source Data is optional external evidence for learning/validation cases;
+the reproduce runtime uses the user's real data. Keep those origins separate
+in `inputs` and numerical comparisons. No author-code access is authorized by
+packet creation, an ambiguous layer, or an unsuccessful recipe search.
 
 ## Minimal decision example
 

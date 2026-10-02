@@ -1,6 +1,6 @@
 # Release QA — EasyViz 0.1.0
 
-Latest validation: [0.2.0 installation, shared settings and data-state checks](v0.2.0/README.md). The evidence below remains attached to the original 0.1.0 archive.
+Latest validation: [0.4.0 two-track workflows, Source Data case and local workbench](v0.4.0/README.md). The evidence below remains attached to the original 0.1.0 archive.
 
 **Decision: ready for an initial private GitHub release within the tested scope.** Completed 2026-09-29. Three demonstrated scientific input defects were fixed before rebuilding. No unresolved critical or major failure remains in this evaluation. This is a bounded acceptance record, not a claim that every future scientific figure will work or improve.
 

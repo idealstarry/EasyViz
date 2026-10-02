@@ -1,0 +1,248 @@
+{
+  "chart": "timecourse",
+  "fields": {
+    "x": "concentration_nm",
+    "estimate": "response",
+    "series": "formulation",
+    "lower": "bound_low",
+    "upper": "bound_high"
+  },
+  "uncertainty": {
+    "kind": "supplied_bounds",
+    "label": "Synthetic supplied asymmetric bounds; no inferential coverage asserted"
+  },
+  "colors": {
+    "NA": "#2581B9",
+    "null": "#D76F3B",
+    "001": "#1AA781"
+  },
+  "order": {
+    "series": [
+      "001",
+      "NA",
+      "null"
+    ]
+  },
+  "options": {
+    "x_scale": "log",
+    "x_limits": [
+      0.02,
+      30
+    ],
+    "x_ticks": [
+      0.03,
+      0.1,
+      0.4,
+      1.5,
+      5,
+      20
+    ],
+    "y_limits": [
+      0,
+      105
+    ],
+    "y_ticks": [
+      0,
+      25,
+      50,
+      75,
+      100
+    ],
+    "band_alpha": 0.2,
+    "curve_line_width_pt": 0.8,
+    "marker_diameter_pt": 2
+  },
+  "layout": {
+    "width_mm": 100.0,
+    "height_mm": 76.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.11866422743055556,
+      "right": 0.9800000000000002,
+      "bottom": 0.19725791529605263,
+      "top": 0.9736842105263157
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "labels": {
+    "x": "Concentration (nM)",
+    "y": "Response (a.u.)"
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 3
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/transfer/source-data.csv",
+  "input_sha256": "e55ea0e4e8fbcd872095f8e0ea5ab82d4c92218ec4650f35989489d88b675553",
+  "supplied_spec": {
+    "chart": "timecourse",
+    "fields": {
+      "x": "concentration_nm",
+      "estimate": "response",
+      "series": "formulation",
+      "lower": "bound_low",
+      "upper": "bound_high"
+    },
+    "uncertainty": {
+      "kind": "supplied_bounds",
+      "label": "Synthetic supplied asymmetric bounds; no inferential coverage asserted"
+    },
+    "colors": {
+      "NA": "#2581B9",
+      "null": "#D76F3B",
+      "001": "#1AA781"
+    },
+    "order": {
+      "series": [
+        "001",
+        "NA",
+        "null"
+      ]
+    },
+    "options": {
+      "x_scale": "log",
+      "x_limits": [
+        0.02,
+        30
+      ],
+      "x_ticks": [
+        0.03,
+        0.1,
+        0.4,
+        1.5,
+        5,
+        20
+      ],
+      "y_limits": [
+        0,
+        105
+      ],
+      "y_ticks": [
+        0,
+        25,
+        50,
+        75,
+        100
+      ],
+      "band_alpha": 0.2,
+      "curve_line_width_pt": 0.8,
+      "marker_diameter_pt": 2
+    },
+    "layout": {
+      "width_mm": 100,
+      "height_mm": 76,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "labels": {
+      "x": "Concentration (nM)",
+      "y": "Response (a.u.)"
+    },
+    "legends": {
+      "categorical": {
+        "position": "bottom",
+        "ncol": 3
+      }
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ]
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "script_sha256": "8dca93dcac89a34b4d10b189845a5158c7e4fc28603b5c3400d0bca5e1a074ab",
+    "helper_sha256": {
+      "render.py": "71bc588e3eab3a706c18cca09ab896f62da7ebab80620906cb6149261a6cd719",
+      "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "93419ee9aaa68f4664e3abb80f2c6610c2a806f9ea95b499f10f7b3879b7565a"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "axis_by_series": {
+    "001": "left",
+    "NA": "left",
+    "null": "left"
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.11866422743055556,
+      "right": 0.9800000000000002,
+      "bottom": 0.19725791529605263,
+      "top": 0.9736842105263157
+    },
+    "data_region_mm": [
+      11.866422743055557,
+      14.991601562500001,
+      86.13357725694445,
+      59.00839843749999
+    ],
+    "data_area_fraction": 0.6687637428453903,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 5.048589409722222,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.6687637428453903
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "axes": {
+    "left": {
+      "y_scale": "linear",
+      "y_limits": [
+        0.0,
+        105.0
+      ]
+    }
+  },
+  "x_scale": "log",
+  "x_limits": [
+    0.02,
+    30.0
+  ],
+  "curve_interpretation": "Straight connections between supplied summaries; no fit or new observations",
+  "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/transfer/spec.json",
+  "spec_file_sha256": "f9e6d0c5d0f625d206a1dd4203278f31c179a845231ca8b5fc28276fa74e0070"
+}

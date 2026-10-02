@@ -2,6 +2,8 @@
 
 Use these cases after resolving the user's data mappings and track. In reproduce, the independent reader must describe the reference before the implementer inspects reusable code. A case is implementation support, not permission to inherit its scientific choices.
 
+For an undecided data directory, begin with [create exploration](data-exploration.md) and an [adopted analysis plan](statistical-analysis.md). For reproduce, the reference and user data are sufficient inputs; [new code](reference-to-code.md) can implement unfamiliar layers. Literature Source Data cases provide auditable learning evidence rather than a runtime prerequisite. Both tracks can save version-bound edit requests in the [figure workbench](figure-workbench.md), then rerender from the revised source.
+
 ## Advanced create
 
 | Resource | Reusable design | Data contract and limit |
@@ -29,6 +31,7 @@ The paired case has no single design winner: its reviewed ledger modestly improv
 | [Supplied area scatter](../assets/cases/xiang-bubble-volcano/README.md) | Nature Communications Source Data: 1,457 coordinates/classes, proportional circle area, 37 zeros, explicit reference lines | Grey means small median difference within a prefiltered sheet; two source gene identifiers are Excel dates. A renamed-column synthetic probe is engineering transfer. |
 | [Supplied OR forest](../assets/cases/vabistsevits-forest/README.md) | Nature Communications Source Data: 24 OR/asymmetric 95% CI per standalone panel, log axis, exposure blocks and outcome colors | Per-estimate n remains unknown. Panel b tests same-study reuse; physical typography/geometry are declared adaptations. |
 | [Paired observations](../assets/cases/urschel-paired/README.md) | Complete source pairs, four median/IQR swarms, log display; optional connected create view | Source-positive infection classifications are pooled according to the caption. Adopted Weibull quartiles are explicit, with a small unresolved published rounding difference; automatic tests are omitted. |
+| [Supplied time-course summaries](../assets/cases/shi-timecourse/README.md) | Shi Nature Communications Fig. 1d: 120 supplied means/SD summaries, two colored y axes and complete bands; fresh image reading, source/artist audit and independent review with notes | Summary rows are not raw cell trajectories; 146 followed cells do not establish independent biological replicates. Wider bounds retain the full SD bands. A changed-data reproduce probe and separate synthetic log-dose create fixture support bounded transfer only. |
 
 These cases were reconstructed from reference images, source data, and permitted semantic context without author plotting code. Their development evaluations used fresh agents with instruction-based access restrictions, not an enforced filesystem sandbox. Independent reviews accepted the candidates with documented notes; they do not establish pixel identity or unseen statistical equivalence.
 

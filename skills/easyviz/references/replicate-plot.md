@@ -15,7 +15,7 @@ reset their working directory; a fresh output directory prevents overwriting
 an accepted attempt. Check renderer/input hashes in `settings.json` and copy
 installed cases into a writable project before use.
 
-Keep `render.py`, `legend_layout.py`, `auto_layout.py`, `figure_profile.py` and `annotation_review.py` beside the script. Preserve the skill's `assets/palettes` directory for named palettes, or provide complete explicit colors when copying the runtime alone.
+Keep `render.py`, `legend_layout.py`, `auto_layout.py`, `figure_profile.py`, `annotation_review.py` and `figure_elements.py` beside the script. Preserve the skill's `assets/palettes` directory for named palettes, or provide complete explicit colors when copying the runtime alone.
 
 ## Choose the quantity first
 

@@ -8,6 +8,8 @@ python /path/to/easyviz/scripts/render.py --data source.csv --spec plot.json --o
 
 Use the interpreter where [requirements.txt](../scripts/requirements.txt) is installed. The specification uses field mappings instead of fixed biological column names. Runnable, explicitly synthetic inputs and specifications are packaged in [assets/fixtures](../assets/fixtures/). These compact fixtures exercise the API; use [Worked cases](examples.md) for more developed scientific panels, provenance, and review evidence.
 
+In create, [directory exploration](data-exploration.md) can suggest a few reading tasks before a chart is chosen; adopt the real field meanings and study design before drawing. In reproduce, the reference and user's data define the structure. Use [Reference to code](reference-to-code.md) to implement unsupported layers explicitly. The paper need not provide Source Data or author code.
+
 For several panels in one manuscript figure, use a [shared figure profile](figure-profile.md). It fixes the common font, base size, line width and dpi; retains a complete category-color mapping across missing or reordered groups; and declares each named panel's actual mm dimensions. Optional named continuous scales preserve comparable value ranges. Select it through `profile` and `panel` in the spec, or `--profile` and `--panel` on the command line. Each invocation exports one panel.
 
 ## Chart selection and source-data contract
@@ -20,7 +22,7 @@ For several panels in one manuscript figure, use a [shared figure profile](figur
 | `scatter` | `x`, `y`; optional `group`, `unit`, `size` | One numeric pair per observation | Association or supplied coordinates, optionally with quantitative circle area |
 | `distribution` | `group`, `value`; optional `unit` | One measurement per defined independent observation | Group distributions with raw observations |
 
-The following focused scripts extend those five core families. The Agent maps
+The following five focused scripts extend those five core families. The Agent maps
 the user's columns according to each contract; the user need not prepare JSON.
 They use the same final canvas, typography and export helpers, with their own
 source and layer checks. They are outside `draft_spec.py`.
@@ -31,6 +33,7 @@ source and layer checks. They are outside `draft_spec.py`.
 | Paired observations / connected changes | Explicit unit ID, condition, numeric measurement; optional block | The same unit was measured across conditions, and correspondence matters | [Paired observations](paired-plot.md) |
 | Replicate component bars | Explicit replicate ID, condition, component and numeric value | Comparing contributions and totals while retaining replicate variation | [Replicate bars](replicate-plot.md) |
 | Empirical cumulative distribution (ECDF) | One raw numeric measurement per observation; optional group/unit | Comparing distributions, tails or the fraction at/below a value without density smoothing | [ECDF](ecdf-plot.md) |
+| Supplied summary lines and bands | Numeric x, central estimate and supplied SD or lower/upper bounds; optional series | Following time or dose summaries with explicitly defined uncertainty, optionally on adopted dual y axes | [Time-course summaries](timecourse-plot.md) |
 
 Choose the view for its reading task. A stacked component bar emphasizes a
 total and its composition; a grouped component view gives each component a
@@ -39,6 +42,11 @@ an ECDF shows marginal distributions and does not encode individual pairing.
 Median/IQR describes observed spread, sample SD describes replicate variation,
 and supplied confidence intervals describe a different quantity. Keep these
 definitions distinct when adapting a reference.
+
+Summary lines connect the supplied coordinates with straight segments. Their
+bands preserve supplied SD or explicit endpoints; they do not reconstruct raw
+replicates, fit a model or manufacture confidence intervals. Dual-axis summaries
+require explicit quantity/unit labels and one series per y axis.
 
 Prepare reshaped/aggregated plotting data explicitly. The renderer rejects invalid mapped values, duplicate matrix cells, and incomplete heatmaps instead of silently imputing or aggregating. Preserve the unmodified user input and record any excluded missing values before creating a cleaned plotting table. A complete table is not automatically evidence of independent biological replicates.
 
@@ -117,16 +125,29 @@ uncertainty. It is outside the five-family `draft_spec.py` interface.
 
 ## Statistical support
 
+For create-track summaries and planned inference, use the separate
+[analysis-plan workflow](statistical-analysis.md). It retains experimental-unit
+and pairing declarations, source-row accounting, effect direction, supported
+pointwise intervals and explicit multiplicity families. Chart selection and
+styling do not change those results.
+
+The following table describes the core renderer's older single-comparison
+interface, which remains narrower than the separate analysis helper:
+
 | Method | Preconditions |
 | --- | --- |
 | `pearson`, `spearman` | Scatter with nonconstant numeric pairs; verify independent units and the intended population |
 | `welch`, `mannwhitney` | Distribution with exactly two named groups for the comparison; verify independence |
 | `wilcoxon` | Paired distribution with an explicit pairing ID and matching IDs across groups |
 
-Tests are two-sided. The built-in helper handles one requested comparison; multiple comparisons, adjusted P values, repeated measures, covariates, and other designs require an explicitly implemented appropriate analysis. Do not label an unadjusted P value as adjusted. Where supported, results include group sample sizes and effect summaries. Request `annotate: true` only when the annotation fits without changing the shared typography.
+Tests are two-sided. This built-in interface handles one requested comparison. The separate analysis helper supports declared multiple-comparison families and adjustments; repeated-measures models, covariates and other unsupported designs need an explicit appropriate implementation. Do not label an unadjusted P value as adjusted. Where supported, results include group sample sizes and effect summaries. Request `annotate: true` only when the annotation fits without changing the shared typography.
 
 ## Outputs and review
 
 The core renderer's output directory contains panel exports, the plotting table, resolved settings, statistical results, and machine-readable QA. It checks canvas clipping, same-axis horizontal/vertical tick collisions and heatmap value annotations against their cells; oblique ticks are recorded as unchecked. [First panel](quick-start.md) documents the validated spec helper and optional measured layout. Other overlaps and very small marks still need visual inspection. Custom implementations must provide equivalent traceability and export checks, plus any derived metadata or summary tables needed to recreate their layers. A clipping, collision or export-size failure is not a publication-ready result. Numeric/file checks do not establish visual quality; inspect exports and apply the reviewer workflow to both create and reproduce.
 
 The two historical development cases are code-assisted evidence, not proof of image-only reconstruction. Bundled synthetic fixtures exercise reusable code; independent no-author-code cases are identified separately in the example catalog.
+
+Both tracks can use the [figure workbench](figure-workbench.md) to save requests
+against the reviewed SVG version. Apply those requests to the source/specification,
+then rerender all requested formats and review the new attempt.

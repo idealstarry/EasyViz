@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "artifacts": [
+    {
+      "id": "reference",
+      "original_path": "/private/tmp/easyviz-forward-reproduce/input/reference.png",
+      "path": "reader-inputs/reference.png",
+      "bytes": 39449,
+      "sha256": "ca5e2f86003b79987f3c48ed6045b7e28f66a2d69b5d26eee719782631acaa5e"
+    },
+    {
+      "id": "methods-1",
+      "original_path": "/private/tmp/easyviz-forward-reproduce/input/user-notes.txt",
+      "path": "reader-inputs/methods-1-user-notes.txt",
+      "bytes": 790,
+      "sha256": "10091d01e15cb91342949de1800b0d33e0997815c030f47cf414a9f43c2130c1"
+    },
+    {
+      "id": "data-1",
+      "original_path": "/private/tmp/easyviz-forward-reproduce/input/user-summaries.csv",
+      "path": "data/data-1-user-summaries.csv",
+      "bytes": 302,
+      "sha256": "5f528844403212217522789cca36dfae5c41b2afa2c9805ab9985bac8ab4b341"
+    },
+    {
+      "id": "reading",
+      "original_path": "/private/tmp/easyviz-forward-reproduce/result/reference-reading.json",
+      "path": "reference-reading.json",
+      "bytes": 5188,
+      "sha256": "be974c79fde993f4b3a63e15a101648c3841e3ffa23860dd7d97b61e192bd3a2"
+    }
+  ],
+  "reading": {
+    "provided": true,
+    "schema_validated": true,
+    "reader_provenance": {
+      "agent_id": "/root/reproduce_forward_test",
+      "independence": "main-agent",
+      "image_viewed": true,
+      "limitations": [
+        "No new independent subagent was used because the task explicitly prohibits other subagents.",
+        "The saved independent-reading.md for this exact image was consulted. Its reader reports an earlier caption access; that caption is absent from current inputs. Those original-paper caption claims are not adopted as user-data facts.",
+        "This reading is my own image inspection with inherited saved-reading context; it is not a fresh independent reading."
+      ]
+    },
+    "semantic_reading_verified": false,
+    "independence_verified": false
+  },
+  "plan": "implementation-plan.json",
+  "reader_input_ids": [
+    "methods-1",
+    "reference"
+  ],
+  "limitations": [
+    "The tool stages bytes; no image semantics or statistical meanings are inspected.",
+    "Reader separation is an input/instruction contract, not an operating-system sandbox.",
+    "Independent reading and visual review are self-reported evidence, never certified by packet creation.",
+    "Author code and paper Source Data are not required and are not retrieved or executed."
+  ]
+}

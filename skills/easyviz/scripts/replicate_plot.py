@@ -392,6 +392,9 @@ def render(data_path, spec, out, *, spec_path=None):
             overlap, oblique = core.check_tick_label_overlap(fig, fig.canvas.get_renderer())
             legends = fig._easyviz_legend_layout.validate()
             fitted = getattr(fig, "_easyviz_auto_layout", None)
+            fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_script = Path(__file__).resolve()
+            fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != digest:
                 audit["status"] = "needs_revision"
@@ -400,7 +403,7 @@ def render(data_path, spec, out, *, spec_path=None):
             passed = not clipped and not overlap and not missing and all(item["status"] == "pass" for item in (audit, geometry, legends)) and (not fitted or fitted["status"] == "pass")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "input_sha256": digest, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "auto_layout": fitted, "visual_review_required": True}
             settings = deepcopy(resolved)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py")}})
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")}})
             if spec_path is not None:
                 settings["spec_file_sha256"] = hashlib.sha256(Path(spec_path).read_bytes()).hexdigest()
             data.to_csv(out / "plotting-data.csv", index=False)

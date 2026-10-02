@@ -1,0 +1,47 @@
+{
+  "chart": "custom-dual-axis-time-course",
+  "track": "reproduce",
+  "layout": {
+    "width_mm": 120,
+    "height_mm": 90,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.165,
+      "right": 0.858,
+      "bottom": 0.17,
+      "top": 0.89
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8,
+    "title": 8,
+    "panel": 8
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "colors": {
+    "Width": "#0072B2",
+    "Length": "#E76F51"
+  },
+  "labels": {
+    "x": "Time (min)",
+    "y": "Width (µm)"
+  },
+  "custom": {
+    "band_alpha": 0.28,
+    "line_width_pt": 0.8,
+    "no_markers": true,
+    "no_grid": true,
+    "shared_x": true,
+    "independent_y": true
+  }
+}

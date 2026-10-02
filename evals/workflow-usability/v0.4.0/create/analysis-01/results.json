@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "track": "create",
+  "plan": {
+    "schema_version": 1,
+    "question": "Describe the primary fluorescence signal and exploratory viability by independent condition",
+    "design": {
+      "unit": "sample_id",
+      "unit_definition": "One independent specimen, explicitly established by study-notes.txt",
+      "structure": "independent",
+      "confirmed": true
+    },
+    "missing_tokens": [
+      ""
+    ],
+    "missing_policy": "error",
+    "comparisons": [
+      {
+        "name": "primary_signal_summary",
+        "method": "descriptive",
+        "fields": {
+          "group": "condition",
+          "value": "signal"
+        }
+      },
+      {
+        "name": "exploratory_viability_summary",
+        "method": "descriptive",
+        "fields": {
+          "group": "condition",
+          "value": "viability_pct"
+        }
+      }
+    ]
+  },
+  "comparisons": [
+    {
+      "name": "primary_signal_summary",
+      "method": "descriptive",
+      "fields": {
+        "group": "condition",
+        "value": "signal"
+      },
+      "counts": {
+        "source_rows": 24,
+        "selected_rows": 24,
+        "included_rows": 24,
+        "excluded_rows": 0,
+        "unselected_rows": 0,
+        "included_units": 24,
+        "independent_unit_count": 24
+      },
+      "exclusions": [],
+      "statistic": null,
+      "pvalue": null,
+      "adjusted_pvalue": null,
+      "adjustment": null,
+      "effect": null,
+      "interval": null,
+      "interval_note": "No effect confidence interval computed for this method.",
+      "summaries": [
+        {
+          "variable": "signal",
+          "group": "Control",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 5.209791666666667,
+          "median": 5.468249999999999,
+          "sd": 1.3639815064450993,
+          "q1": 4.890475,
+          "q3": 6.048150000000001,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 2.5364,
+          "maximum": 7.086,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        },
+        {
+          "variable": "signal",
+          "group": "Treatment",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 6.942008333333334,
+          "median": 6.521850000000001,
+          "sd": 1.1625751709485543,
+          "q1": 6.0045,
+          "q3": 7.989875,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 5.4431,
+          "maximum": 8.6828,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        }
+      ],
+      "notes": [
+        "Rows are descriptive observations. Independent sample counts are only reported for a confirmed sampling-unit design."
+      ]
+    },
+    {
+      "name": "exploratory_viability_summary",
+      "method": "descriptive",
+      "fields": {
+        "group": "condition",
+        "value": "viability_pct"
+      },
+      "counts": {
+        "source_rows": 24,
+        "selected_rows": 24,
+        "included_rows": 24,
+        "excluded_rows": 0,
+        "unselected_rows": 0,
+        "included_units": 24,
+        "independent_unit_count": 24
+      },
+      "exclusions": [],
+      "statistic": null,
+      "pvalue": null,
+      "adjusted_pvalue": null,
+      "adjustment": null,
+      "effect": null,
+      "interval": null,
+      "interval_note": "No effect confidence interval computed for this method.",
+      "summaries": [
+        {
+          "variable": "viability_pct",
+          "group": "Control",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 83.13645833333334,
+          "median": 83.417,
+          "sd": 2.563606258045078,
+          "q1": 81.25375,
+          "q3": 85.4007,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 78.7547,
+          "maximum": 86.7316,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        },
+        {
+          "variable": "viability_pct",
+          "group": "Treatment",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 80.33028333333333,
+          "median": 78.83834999999999,
+          "sd": 3.379014884638136,
+          "q1": 78.21289999999999,
+          "q3": 82.998175,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 75.91,
+          "maximum": 86.0356,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        }
+      ],
+      "notes": [
+        "Rows are descriptive observations. Independent sample counts are only reported for a confirmed sampling-unit design."
+      ]
+    }
+  ],
+  "provenance": {
+    "created_utc": "2026-10-02T13:41:43.507495+00:00",
+    "data": {
+      "path": "/private/tmp/easyviz-forward-create/result/source/observations.csv",
+      "sha256": "ca10e5d39578b2f67f8efbc8d6ef552e98df98ca3c261a8c8877c72f3afac11d",
+      "csv_records": 24
+    },
+    "plan": {
+      "path": "/private/tmp/easyviz-forward-create/result/analysis-plan.json",
+      "sha256": "fa455ca9faf9226a83a635f86cd34a43bd147b7956b384ba12ce4b28d35e0601",
+      "hash_encoding": "saved normalized plan.json bytes",
+      "source_sha256": "fa455ca9faf9226a83a635f86cd34a43bd147b7956b384ba12ce4b28d35e0601"
+    },
+    "helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/analyze.py",
+      "sha256": "0811428b74926b60b291360e1a73ec3985a2619a38fa3713c2fbaf6c10cf0dd1"
+    },
+    "runtime": {
+      "python": "3.12.2",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "artifacts": {
+    "plan.json": {
+      "sha256": "fa455ca9faf9226a83a635f86cd34a43bd147b7956b384ba12ce4b28d35e0601",
+      "bytes": 759
+    },
+    "analyzed-data.csv": {
+      "sha256": "9c883b0fc588366f78e210b26bb419ad1c798aae41c3abd95a5076a6c1821562",
+      "bytes": 3377
+    },
+    "summary.csv": {
+      "sha256": "8d1afc3e20e9756c35c7ce8fe150fcea4c35c44911a79042021d50aed842b549",
+      "bytes": 1233
+    },
+    "methodology.md": {
+      "sha256": "4eb1084eb0f97d59bb7f327da564b070331b633f9383fc6fc915412f33b0daa3",
+      "bytes": 2061
+    }
+  }
+}

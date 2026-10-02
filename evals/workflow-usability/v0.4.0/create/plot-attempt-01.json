@@ -1,0 +1,40 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "condition",
+    "value": "signal",
+    "unit": "sample_id"
+  },
+  "layout": {
+    "auto_fit": true
+  },
+  "profile": "/private/tmp/easyviz-forward-create/result/figure-profile.json",
+  "panel": "primary_signal",
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "order": {
+    "group": [
+      "Control",
+      "Treatment"
+    ]
+  },
+  "seed": 23,
+  "labels": {
+    "x": "Condition",
+    "y": "Fluorescence signal (a.u.)"
+  },
+  "options": {
+    "kind": "box",
+    "orientation": "vertical",
+    "point_area_pt2": 16,
+    "alpha": 0.9,
+    "grid": true,
+    "y_limits": [
+      0,
+      10
+    ]
+  }
+}

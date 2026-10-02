@@ -26,7 +26,7 @@ SpecError, require, write_json = core.SpecError, core.require, core.write_json
 VERSION = "0.1.0"
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "legends"}
 OPTIONS = {"x_scale", "x_limits", "x_ticks", "x_tick_format", "curve_line_width_pt", "grid"}
-HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py")
+HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")
 SCHEMA = {
     "chart": "ecdf", "fields": {"value": "raw numeric observation", "group": "optional category", "unit": "optional observation identifier"},
     "layout": {"width_mm": 88, "height_mm": 70, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
@@ -351,6 +351,9 @@ def render(data_path, spec, out, *, spec_path=None):
             clipped = _clipped_text(fig)
             overlap, oblique = core.check_tick_label_overlap(fig, fig.canvas.get_renderer())
             legends, fitted = fig._easyviz_legend_layout.validate(), getattr(fig, "_easyviz_auto_layout", None)
+            fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_script = Path(__file__).resolve()
+            fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"

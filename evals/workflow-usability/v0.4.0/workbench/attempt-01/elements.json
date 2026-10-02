@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "chart": "scatter",
+  "panel": {
+    "width_mm": 120.0,
+    "height_mm": 90.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "0fb259ca9d113c74ffffb45fa772370d09f25790cbc3c0e9030ca1b4ebd8129e",
+    "spec_sha256": "5ce466b45bf6ba76cb372c08e4cca0fbf161b92d235957b65484420d2714d225",
+    "input_sha256": "bcab99aba7da5c505235f87dc50fdeb0af0dbf660362aa52ae619252968ff935",
+    "source_script_sha256": "c84a3cb2781814c359f0cf14026e31efe9ec1fc908ae4d3c06a7d04cfaefcab6"
+  },
+  "input": {
+    "data_file": "/private/tmp/easyviz-workbench-demo/source.csv",
+    "spec_file": "/private/tmp/easyviz-workbench-demo/spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+    "supplied_spec_sha256": "3f0f9010a5985258426c5a451026b74f0aea67a26d74e43d7dcdabb526511227"
+  },
+  "elements": [
+    {
+      "id": "easyviz-point-group-1c420bbc7ab49043",
+      "role": "point-group",
+      "label": "Control",
+      "source_keys": [
+        {
+          "group": "Control",
+          "records": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Control"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-point-group-956841fe8c2ee38e",
+      "role": "point-group",
+      "label": "Treatment",
+      "source_keys": [
+        {
+          "group": "Treatment",
+          "records": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Treatment"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        11.087555555555557,
+        21.580555555555556,
+        106.91244444444445,
+        66.10953864634034
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Dose (a.u.)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        55.65377777777778,
+        11.350000000000001,
+        17.78,
+        3.175
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Response (a.u.)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        1.9999999999999996,
+        42.09142904539239,
+        3.175000000000002,
+        25.087791666666668
+      ]
+    },
+    {
+      "id": "easyviz-legend-8b71e03a6c288d1c",
+      "role": "legend",
+      "label": "Categorical guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/categorical"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        54.9596736111111,
+        2.0,
+        19.16820833333334,
+        7.350000000000001
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-fd60442377fe552b",
+      "role": "legend-key",
+      "label": "Control",
+      "source_keys": [
+        {
+          "category": "Control"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Control"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.4096736111111,
+        6.932263371394232,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-23884f0b1032bfb2",
+      "role": "legend-key",
+      "label": "Treatment",
+      "source_keys": [
+        {
+          "category": "Treatment"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Treatment"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.4096736111111,
+        3.157263371394231,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

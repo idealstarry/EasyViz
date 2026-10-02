@@ -2,6 +2,14 @@
 
 Recreate the adopted visual structure and styling of a reference using the user's source data. Differences caused by new data are expected. Establish what should match before judging similarity.
 
+The default task is **a reference image plus the user's real data**, including
+references whose papers publish no Source Data or author code. Literature
+Source Data cases are useful numerical/visual validation examples, not required
+runtime inputs. A reference can use layers or geometry outside the current chart
+library; implement them from scratch when needed. Follow
+[Reference to code](reference-to-code.md) for a staged input packet, progressive
+pattern search, a layer-to-code plan and the custom-script route.
+
 ## Input modes and evidence
 
 | Mode | Available inputs | Record and limitation |
@@ -25,6 +33,13 @@ Use a fresh context without inherited implementation history when the collaborat
 
 If independent delegation is unavailable, perform the reading in the main Agent with the same evidence rules and disclose that limitation. If a file cannot be viewed, report that rather than claiming a reading.
 
+Optionally stage explicit files with
+[reference_packet.py](../scripts/reference_packet.py) before delegation. Its
+`reader-inputs/` contains only the reference and supplied caption/methods;
+`data/` stays with the main Agent. Pass the reader only the permitted inputs and
+reading contract. The tool copies bytes and validates evidence structure; it
+does not read image semantics, infer measurements or verify independence.
+
 ## 2. Adopt a specification
 
 Use [Reference specification](reference-spec.md) to combine the reading, user request, and real data into implementation requirements. The reader records observations; the main Agent owns the decisions.
@@ -41,7 +56,18 @@ Use [Reference specification](reference-spec.md) to combine the reading, user re
 | Statistical uncertainty | Use the caption or methods when supplied. Ask for missing design information before computing an unsupported statistic; keep the rest of the plot moving. |
 | Intentional differences | Record data-driven changes, layout adaptations, font substitutions, and omitted unsupported layers so the reviewer does not treat them as defects. |
 
-Only after adoption, inspect reusable implementations. Reproduce visual relationships before tuning small styling details: chart geometry and scales, data-to-layer mappings, grouping and colors, then typography and spacing. Reuse library components without inheriting their sample filtering or scientific assumptions. Do not impose a fixed top-left title template or retain an empty header band after moving prose to the caption. Record omitted reference titles and explanatory text as intentional manuscript adaptations, not missing features.
+Only after adoption, inspect reusable implementations. Search progressively by
+layers and visual relationships, check recipe/data contracts, then choose a
+supported recipe or an explicit custom script. In the layer-to-code plan, map
+each layer to its real data, transform, artist, backend and verification; record
+intentional omissions rather than silently dropping unsupported content.
+Reproduce visual relationships before tuning small styling details: chart
+geometry and scales, data-to-layer mappings, grouping and colors, then
+typography and spacing. Reuse library components without inheriting their sample
+filtering or scientific assumptions. Do not impose a fixed top-left title
+template or retain an empty header band after moving prose to the caption.
+Record omitted reference titles and explanatory text as intentional manuscript
+adaptations, not missing features.
 
 For related manuscript panels, carry accepted category colors, typography, continuous scales, and each panel's dimensions in a [Figure profile](figure-profile.md). Resolve conflicts before rendering; a category missing from one panel must keep its established color. For dot plots, use the [Dot data states](dot-states.md) contract: an empty position in a reference does not establish whether a measurement was zero, unmeasured, or omitted from the supplied data. Preserve the user's explicit measurement states and the quantitative area mapping.
 
@@ -52,6 +78,13 @@ For structural adaptations, use [Design decisions](design-decisions.md) to compa
 ## 3. Implement and compare
 
 Render individual panels using the adopted specification and final-size layout. Save the script, settings, data transformations, and evidence sources. Write a separate `caption.md` with explanatory prose, abbreviation definitions, methods, attribution, and caveats under the [Panel layout](panel-layout.md) caption rules. Use known figure/panel identifiers only; do not inherit the reference's numbering for a new manuscript. The reproducibility record must identify the actual inputs accessed, including optional author code.
+
+Custom implementations reuse the physical-size/font/export helpers and provide
+their own source-to-artist, layer and alignment checks. Save a baseline before
+structural adaptations and compare at the same final size. Review the
+[implementation gap checklist](reference-to-code.md) so an unfamiliar visual
+grammar remains a reproduction task rather than an excuse to switch tracks or
+force a familiar template.
 
 Delegate comparison to the [Figure Reviewer](../../easyviz-figure-reviewer/SKILL.md) with the reference image, rendered candidate, separate caption, adopted specification, and export measurements. The reviewer compares observable output and accepted requirements; it does not infer statistical correctness from appearance or request restoration of reference prose intentionally moved to the caption. Follow [Visual review](visual-review.md) for actionable findings, correction limits, and final status.
 

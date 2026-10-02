@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "requests": [
+    {
+      "id": "786c1a4e-af67-43c5-8f41-fb8314968107",
+      "created_at": "2026-10-02T13:33:41+00:00",
+      "status": "pending",
+      "version": {
+        "figure_sha256": "0fb259ca9d113c74ffffb45fa772370d09f25790cbc3c0e9030ca1b4ebd8129e",
+        "spec_sha256": "5ce466b45bf6ba76cb372c08e4cca0fbf161b92d235957b65484420d2714d225",
+        "input_sha256": "bcab99aba7da5c505235f87dc50fdeb0af0dbf660362aa52ae619252968ff935",
+        "source_script_sha256": "c84a3cb2781814c359f0cf14026e31efe9ec1fc908ae4d3c06a7d04cfaefcab6"
+      },
+      "input": {
+        "data_file": "/private/tmp/easyviz-workbench-demo/source.csv",
+        "spec_file": "/private/tmp/easyviz-workbench-demo/spec.json",
+        "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "supplied_spec_sha256": "3f0f9010a5985258426c5a451026b74f0aea67a26d74e43d7dcdabb526511227"
+      },
+      "element_id": "easyviz-legend-8b71e03a6c288d1c",
+      "instruction": "Move this categorical legend 2 mm to the right. Keep the font size and panel dimensions.",
+      "element": {
+        "id": "easyviz-legend-8b71e03a6c288d1c",
+        "role": "legend",
+        "label": "Categorical guide",
+        "source_keys": [],
+        "spec_paths": [
+          "/legends/categorical"
+        ],
+        "editable": [
+          "layout"
+        ]
+      }
+    },
+    {
+      "id": "2dbdb632-3569-4644-983f-6efaa79635a8",
+      "created_at": "2026-10-02T13:40:20+00:00",
+      "status": "pending",
+      "version": {
+        "figure_sha256": "0fb259ca9d113c74ffffb45fa772370d09f25790cbc3c0e9030ca1b4ebd8129e",
+        "spec_sha256": "5ce466b45bf6ba76cb372c08e4cca0fbf161b92d235957b65484420d2714d225",
+        "input_sha256": "bcab99aba7da5c505235f87dc50fdeb0af0dbf660362aa52ae619252968ff935",
+        "source_script_sha256": "c84a3cb2781814c359f0cf14026e31efe9ec1fc908ae4d3c06a7d04cfaefcab6"
+      },
+      "input": {
+        "data_file": "/private/tmp/easyviz-workbench-demo/source.csv",
+        "spec_file": "/private/tmp/easyviz-workbench-demo/spec.json",
+        "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "supplied_spec_sha256": "3f0f9010a5985258426c5a451026b74f0aea67a26d74e43d7dcdabb526511227"
+      },
+      "element_id": "easyviz-point-group-1c420bbc7ab49043",
+      "instruction": "Set Control marks and the corresponding legend key to this color, preserving measurements, point area and dimensions.",
+      "element": {
+        "id": "easyviz-point-group-1c420bbc7ab49043",
+        "role": "point-group",
+        "label": "Control",
+        "source_keys": [
+          {
+            "group": "Control",
+            "records": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "spec_paths": [
+          "/colors/Control"
+        ],
+        "editable": [
+          "color"
+        ]
+      },
+      "property": "color",
+      "value": "#1AA781"
+    },
+    {
+      "id": "ddb4db2d-7fb1-426e-98c1-d6d5a3fb6724",
+      "created_at": "2026-10-02T13:40:50+00:00",
+      "status": "undone",
+      "version": {
+        "figure_sha256": "0fb259ca9d113c74ffffb45fa772370d09f25790cbc3c0e9030ca1b4ebd8129e",
+        "spec_sha256": "5ce466b45bf6ba76cb372c08e4cca0fbf161b92d235957b65484420d2714d225",
+        "input_sha256": "bcab99aba7da5c505235f87dc50fdeb0af0dbf660362aa52ae619252968ff935",
+        "source_script_sha256": "c84a3cb2781814c359f0cf14026e31efe9ec1fc908ae4d3c06a7d04cfaefcab6"
+      },
+      "input": {
+        "data_file": "/private/tmp/easyviz-workbench-demo/source.csv",
+        "spec_file": "/private/tmp/easyviz-workbench-demo/spec.json",
+        "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "supplied_spec_sha256": "3f0f9010a5985258426c5a451026b74f0aea67a26d74e43d7dcdabb526511227"
+      },
+      "element_id": null,
+      "instruction": "Check whether this region is crowded; retain every observation. This is a review note, not a request to move data coordinates.",
+      "region_mm": {
+        "x": 82.20972691836458,
+        "y": 15.671350461847341,
+        "width": 35.701616065975344,
+        "height": 15.982703658173774
+      },
+      "coordinate_origin": "top-left of full canvas",
+      "undone_at": "2026-10-02T13:40:51+00:00"
+    }
+  ],
+  "version": {
+    "figure_sha256": "0fb259ca9d113c74ffffb45fa772370d09f25790cbc3c0e9030ca1b4ebd8129e",
+    "spec_sha256": "5ce466b45bf6ba76cb372c08e4cca0fbf161b92d235957b65484420d2714d225",
+    "input_sha256": "bcab99aba7da5c505235f87dc50fdeb0af0dbf660362aa52ae619252968ff935",
+    "source_script_sha256": "c84a3cb2781814c359f0cf14026e31efe9ec1fc908ae4d3c06a7d04cfaefcab6"
+  },
+  "updated_at": "2026-10-02T13:40:51+00:00"
+}

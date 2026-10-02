@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "question": "Describe the primary fluorescence signal and exploratory viability by independent condition",
+  "design": {
+    "unit": "sample_id",
+    "unit_definition": "One independent specimen, explicitly established by study-notes.txt",
+    "structure": "independent",
+    "confirmed": true
+  },
+  "missing_tokens": [
+    ""
+  ],
+  "missing_policy": "error",
+  "comparisons": [
+    {
+      "name": "primary_signal_summary",
+      "method": "descriptive",
+      "fields": {
+        "group": "condition",
+        "value": "signal"
+      }
+    },
+    {
+      "name": "exploratory_viability_summary",
+      "method": "descriptive",
+      "fields": {
+        "group": "condition",
+        "value": "viability_pct"
+      }
+    }
+  ]
+}

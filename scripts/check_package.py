@@ -30,6 +30,18 @@ def validate_plugin(plugin: Path) -> dict:
                 "skills/easyviz/scripts/paired_plot.py",
                 "skills/easyviz/scripts/replicate_plot.py",
                 "skills/easyviz/scripts/ecdf_plot.py",
+                "skills/easyviz/scripts/timecourse_plot.py",
+                "skills/easyviz/scripts/inspect_data.py",
+                "skills/easyviz/scripts/analyze.py",
+                "skills/easyviz/scripts/reference_packet.py",
+                "skills/easyviz/scripts/figure_elements.py",
+                "skills/easyviz/scripts/figure_workbench.py",
+                "skills/easyviz/scripts/workbench/index.html",
+                "skills/easyviz/scripts/workbench/workbench.js",
+                "skills/easyviz/scripts/workbench/workbench.css",
+                "skills/easyviz/assets/cases/shi-timecourse/plot.py",
+                "skills/easyviz/assets/cases/shi-timecourse/source-data.csv",
+                "skills/easyviz/assets/cases/shi-timecourse/spec.json",
                 "skills/easyviz/assets/cases/xiang-bubble-volcano/plot.py",
                 "skills/easyviz/assets/cases/xiang-bubble-volcano/source-data.csv",
                 "skills/easyviz/assets/cases/xiang-bubble-volcano/spec.json",
@@ -120,7 +132,7 @@ def main() -> int:
             if discovery.returncode:
                 raise RuntimeError(discovery.stdout + discovery.stderr)
             routes = json.loads(discovery.stdout).get("focused_recipes", {})
-            if set(routes) != {"interval", "paired", "replicate", "ecdf"}:
+            if set(routes) != {"interval", "paired", "replicate", "ecdf", "timecourse"}:
                 raise ValueError("Extracted chart discovery does not identify every focused recipe")
             for route in routes.values():
                 script, documentation = Path(route["script"]), Path(route["doc"])
@@ -133,6 +145,17 @@ def main() -> int:
                     raise RuntimeError(described.stdout + described.stderr)
                 if not isinstance(json.loads(described.stdout), dict):
                     raise ValueError("Focused recipe specification must be a JSON object")
+            workflows = json.loads(discovery.stdout).get("workflow_tools", {})
+            if set(workflows) != {"inspect_data", "analyze", "reference_packet", "figure_workbench"}:
+                raise ValueError("Extracted workflow discovery is incomplete")
+            for route in workflows.values():
+                if not all(Path(route[key]).is_relative_to(skill) and Path(route[key]).is_file()
+                           for key in ("script", "doc")):
+                    raise ValueError("Extracted workflow points outside the selected skill")
+                described = subprocess.run([sys.executable, route["script"], "--help"],
+                                           cwd=isolated, env=env, capture_output=True, text=True)
+                if described.returncode:
+                    raise RuntimeError(described.stdout + described.stderr)
             result = subprocess.run([sys.executable, str(skill / "scripts/render.py"),
                                      "--data", str(fixture / "data.csv"), "--spec", str(spec_path),
                                      "--out", str(isolated / "output")],
@@ -142,6 +165,24 @@ def main() -> int:
             qa = json.loads((isolated / "output/qa.json").read_text())
             if qa.get("status") != "pass" or not qa.get("valid_outputs"):
                 raise ValueError("Extracted core smoke failed canvas/export QA")
+            teaching = skill / "assets/fixtures/statistical-analysis"
+            for name, arguments, expected in (
+                ("inspect_data", ["--input", str(teaching), "--out", str(isolated / "intake")], "analysis-options.json"),
+                ("analyze", ["--data", str(teaching / "independent.csv"), "--plan", str(teaching / "independent-plan.json"),
+                             "--out", str(isolated / "analysis")], "results.json"),
+                ("reference_packet", ["--reference", str(isolated / "output/panel.png"), "--data", str(fixture / "data.csv"),
+                                      "--out", str(isolated / "reference-packet")], "implementation-plan.json"),
+            ):
+                result = subprocess.run([sys.executable, workflows[name]["script"], *arguments],
+                                        cwd=isolated, env=env, capture_output=True, text=True)
+                if result.returncode:
+                    raise RuntimeError(result.stdout + result.stderr)
+                output = Path(arguments[arguments.index("--out") + 1])
+                if not (output / expected).is_file():
+                    raise ValueError(f"Extracted {name} did not produce its documented output")
+            packet_plan = json.loads((isolated / "reference-packet/implementation-plan.json").read_text())
+            if packet_plan.get("execution_ready") is not False:
+                raise ValueError("A packet without image reading must remain unresolved")
             draft_path = isolated / "draft-spec.json"
             draft_command = [sys.executable, str(skill / "scripts/draft_spec.py"),
                              "--data", str(fixture / "data.csv"), "--chart", spec["chart"],
@@ -167,6 +208,7 @@ def main() -> int:
                 ("urschel-paired", "source-data.csv", "spec.json", 254),
                 ("truong-components", "inputs/components.csv", "components-spec.json", 63),
                 ("urschel-ecdf", "source-data.csv", "spec.json", 254),
+                ("shi-timecourse", "source-data.csv", "spec.json", 120),
             ):
                 case = skill / "assets/cases" / name
                 case_spec = json.loads((case / spec_name).read_text())
@@ -186,7 +228,7 @@ def main() -> int:
                     raise ValueError(f"Extracted {name} case failed source/canvas QA")
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted focused-recipe discovery, core, draft/measured layout and five Source Data case wrappers"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout and six Source Data case wrappers"}, indent=2))
     return 0
 
 

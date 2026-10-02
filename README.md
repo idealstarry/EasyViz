@@ -12,14 +12,16 @@ EasyViz helps an Agent turn prepared source data into clear scientific figures. 
 
 | Track | Input | Approach |
 | --- | --- | --- |
-| **Create** | Source data and a chart type or scientific question | Choose useful encodings, grouping and summaries; compare alternatives when the design matters. |
-| **Reproduce** | A reference image and source data | Read the visual structure, adapt it to your data, and check the result. Author code is optional. |
+| **Create** | A data directory or prepared tables, with an optional chart type or scientific question | Inspect the data, recommend useful views, and use an adopted analysis plan when summaries or comparisons are needed. |
+| **Reproduce** | A reference image and your source data | Read the visual structure independently, implement it from your data, and check the result. New plotting code can cover unfamiliar layers. |
 
 Palettes, proportions, dimensions and fonts are configurable. Each panel is exported separately for assembly at its recorded size. General statistics are supported; upstream bioinformatics analysis stays outside the Skill. Explanatory prose belongs in the accompanying caption.
 
 Related panels can share a [figure profile](skills/easyviz/references/figure-profile.md) so category colors, typography and quantitative scales stay consistent. Dot plots distinguish [measured zero, unmeasured and absent data](skills/easyviz/references/dot-states.md) without changing proportional dot areas. Unknown configuration fields fail with a correction hint.
 
 For a first panel, the Agent can [generate a validated specification](skills/easyviz/references/quick-start.md) from explicit column meanings and use measured layout to fit labels and legends inside the requested canvas. Dense heatmap value labels are checked against their cells. These helpers reduce repeated configuration work; actual image review still determines readability and balance.
+
+A directory is enough to begin [create exploration](skills/easyviz/references/data-exploration.md): the Agent inventories CSV, TSV or XLSX tables and proposes a few concrete figures. [Planned analysis](skills/easyviz/references/statistical-analysis.md) records experimental units, comparisons, effects, supported intervals and any multiplicity adjustment separately from styling. Reproduce starts from the reference and your data; the paper need not publish Source Data or author code. [Reference to code](skills/easyviz/references/reference-to-code.md) supports an explicit implementation when a recipe does not fit.
 
 Choose a view for the question the reader needs to answer:
 
@@ -30,6 +32,7 @@ Choose a view for the question the reader needs to answer:
 | Follow measurements from the same unit | Paired or repeated-condition points with optional connectors, participant correspondence matrix |
 | Compare components and replicate variation | Stacked or grouped component bars with raw observations and explicitly defined SD; separate supplied-ratio summaries |
 | Compare supplied coordinates or estimated effects | Scatter with optional proportional circle area; linear/log forest plots with supplied asymmetric intervals |
+| Follow supplied time or dose summaries | Mean lines with supplied SD or explicit lower/upper bands; one y axis or an adopted two-axis view |
 
 The [chart library](skills/easyviz/references/chart-library.md) links the input
 contracts and reusable scripts. Specialized views preserve their scientific
@@ -92,6 +95,12 @@ published structure with recorded differences; the ECDF and separate component
 views are explicitly new designs. They demonstrate specific aesthetic and data
 choices, rather than establishing a universal journal style.
 
+**Reproduce · supplied time-course summaries**
+
+Shi's Nature Communications Figure 1d supplies width and length means and SD at 60 time points. The reconstruction retains all 120 summaries, colored y axes and uncertainty bands. Its expanded bounds preserve the full SD bands; a changed-data reproduction and a separate synthetic dose view exercise the [time-course recipe](skills/easyviz/references/timecourse-plot.md).
+
+<p align="center"><a href="examples/no-author-code/shi-timecourse/"><img src="examples/no-author-code/shi-timecourse/output/panel.png" alt="Supplied cell-width and cell-length means with standard-deviation bands and two labelled y axes" width="440"></a></p>
+
 [Browse all examples](examples/README.md) · [Design decisions](skills/easyviz/references/design-decisions.md)
 
 **Palette choices**
@@ -135,7 +144,24 @@ Use blue / amber / teal / pink, Arial 8 pt, and a 180 × 120 mm panel.
 Export PDF, SVG and PNG, with the caption in a separate file.
 ```
 
-For reproduction, attach a reference image and state any requested changes. Deliverables include the individual panel, caption, runnable script, settings, plotting data and relevant checks.
+For an undecided directory or a reference-led panel, requests can be equally direct:
+
+```text
+Use EasyViz to inspect /path/to/my-data and recommend two or three useful figures.
+Show descriptive previews first. Before tests, confirm the independent unit,
+pairing and planned comparisons from my study notes.
+```
+
+```text
+Use EasyViz to reproduce the attached reference with my measurements.csv.
+Keep its layers and axis structure, use a 100 × 76 mm panel and 8 pt text,
+and write new plotting code for any layers the recipes do not cover.
+Export PDF, SVG and PNG, with a separate caption.
+```
+
+In either track, ask the Agent to open the [local figure workbench](skills/easyviz/references/figure-workbench.md). Select a layer or canvas region and save a request such as “Move this legend 2 mm right; keep 8 pt text.” The page saves the figure version with the request. The Agent then edits the specification or plotting code and rerenders every requested format into a new attempt for review.
+
+Deliverables include the individual panel, caption, runnable script, settings, plotting data and relevant checks. Literature Source Data cases provide auditable learning examples; they are not prerequisites for your own reproduction.
 
 The `$easyviz` shorthand requires a discoverable skill. For an uninstalled checkout, ask the Agent to read and use the absolute path to `skills/easyviz/SKILL.md`.
 

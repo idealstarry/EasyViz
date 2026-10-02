@@ -1,0 +1,210 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "x",
+    "y": "y",
+    "group": "group"
+  },
+  "colors": {
+    "Control": "#1AA781",
+    "Treatment": "#E47751"
+  },
+  "labels": {
+    "x": "Dose (a.u.)",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 120.0,
+    "height_mm": 90.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 9.0,
+    "line_width_pt": 0.6,
+    "dpi": 150,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.0923962962962963,
+      "right": 0.9833333333333333,
+      "bottom": 0.23978395061728394,
+      "top": 0.9743343800210655
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "options": {
+    "point_area_pt2": 32
+  },
+  "legends": {
+    "categorical": {
+      "position": "manual",
+      "anchor_mm": [
+        66.54377777777778,
+        9.350000000000001
+      ],
+      "loc": "upper center",
+      "ncol": 1
+    }
+  },
+  "typography": {
+    "axis": 9.0,
+    "tick": 9.0,
+    "legend": 9.0,
+    "annotation": 9.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Control": "#1AA781",
+    "Treatment": "#E47751"
+  },
+  "seed": 0,
+  "input_file": "source.csv",
+  "input_sha256": "bcab99aba7da5c505235f87dc50fdeb0af0dbf660362aa52ae619252968ff935",
+  "renderer": {
+    "version": "0.4.0",
+    "sha256": "71bc588e3eab3a706c18cca09ab896f62da7ebab80620906cb6149261a6cd719",
+    "legend_helper_sha256": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "profile_helper_sha256": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+  },
+  "track": "create",
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "manual",
+          "anchor_mm": [
+            66.54377777777778,
+            9.350000000000001
+          ],
+          "loc": "upper center",
+          "ncol": 1,
+          "font_size_pt": 9.0,
+          "effective_key_width_mm": 1.5,
+          "effective_key_height_mm": 1.5
+        },
+        "bbox_mm": [
+          56.95967361111111,
+          2.0000000000000013,
+          19.16820833333334,
+          7.350000000000001
+        ],
+        "plot_bbox_mm": [
+          11.087555555555557,
+          21.58055555555556,
+          106.91244444444445,
+          66.10953864634034
+        ],
+        "canvas_mm": [
+          120.0,
+          90.0
+        ],
+        "area_fraction_of_plot": 0.019933174756031985,
+        "width_fraction_of_plot": 0.1792888417521295,
+        "height_fraction_of_plot": 0.11117911500365431,
+        "area_fraction_of_canvas": 0.0130450306712963,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.013567635906201851,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          118.00000000000001,
+          88.0
+        ],
+        "key_bboxes_mm": [
+          [
+            57.15967361111111,
+            6.932263371394233,
+            1.5000000000000056,
+            1.5000000000000007
+          ],
+          [
+            57.15967361111111,
+            3.157263371394232,
+            1.5000000000000056,
+            1.5000000000000007
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "manual",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              56.95967361111111,
+              2.0000000000000013,
+              19.16820833333334,
+              7.350000000000001
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 140.88633125000007,
+      "sum_envelope_area_mm2": 140.88633125000007,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.019933174756031985,
+      "area_fraction_of_canvas": 0.0130450306712963,
+      "enclosing_bbox_mm": [
+        56.95967361111111,
+        2.0000000000000013,
+        19.16820833333334,
+        7.350000000000001
+      ],
+      "max_individual_width_mm": 19.16820833333334,
+      "max_individual_height_mm": 7.350000000000001,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "fixed_matplotlib_size_parameter",
+    "marker_size_parameter_pt2": 32.0,
+    "circle_fill_area_pt2": 25.132741228718345,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "diameter_pt": 5.656854249492381,
+    "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+    "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

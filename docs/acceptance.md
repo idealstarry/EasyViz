@@ -1,5 +1,7 @@
 # Acceptance record
 
+The current workflow update is recorded separately in [0.4.0 checks](../evals/release-qa/v0.4.0/README.md). The historical acceptance evidence below retains its original scope and artifact hashes.
+
 Validated on **2026-09-29**. See the [final release QA](../evals/release-qa/README.md) for fresh forward tests, corrected defects, clean-runtime results and the released archive identity. This record separates numerical checks, actual visual inspection, and packaging evidence. It covers the listed cases and supported behavior; it does not establish universal reproduction quality.
 
 **Design assessment correction:** the earlier legend review established usable decoding and technical fit. It did not establish that each revised panel was better than its baseline. User feedback rejected some revisions, and [comparative reassessment](../evals/design-value/critique.md) identifies dense top legends, unchanged unused margins, and unresolved data-to-color hierarchy. Keep the engineering checks below as correctness evidence; do not use their pass counts as evidence of scientific design quality.

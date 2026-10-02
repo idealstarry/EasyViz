@@ -166,7 +166,7 @@ files in the same directory. Those older files must not be delivered as a
 passing result. Detailed `needs_revision` records remain available for repair.
 
 For portable execution, copy `ecdf_plot.py`, `render.py`, `legend_layout.py`,
-`auto_layout.py`, `figure_profile.py` and `annotation_review.py` together.
+`auto_layout.py`, `figure_profile.py`, `annotation_review.py` and `figure_elements.py` together.
 Explicit colors require no palette catalog. Use the same Python dependencies
 as the core renderer and keep the adopted spec, caption and visual review
 beside the output.

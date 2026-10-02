@@ -10,7 +10,7 @@ import unittest
 
 SKILL = Path(__file__).resolve().parents[1] / "skills/easyviz"
 CORE = {"heatmap", "composition", "dotplot", "scatter", "distribution"}
-RECIPES = {"paired", "replicate", "ecdf", "interval"}
+RECIPES = {"paired", "replicate", "ecdf", "interval", "timecourse"}
 
 
 class RecipeDiscoveryTests(unittest.TestCase):
@@ -69,6 +69,18 @@ class RecipeDiscoveryTests(unittest.TestCase):
         for chart in RECIPES:
             self.assertIn(f"{chart}_plot.py", help_result.stdout)
 
+    def test_workflows_route_to_real_commands_with_only_two_tracks(self):
+        routes = self.discovery()["workflow_tools"]
+        self.assertEqual(set(routes), {"inspect_data", "analyze", "reference_packet", "figure_workbench"})
+        for name, route in routes.items():
+            with self.subTest(workflow=name):
+                self.assertTrue(Path(route["doc"]).is_file())
+                self.assertTrue(set(route["tracks"]) <= {"create", "reproduce"})
+                result = self.cli(route["script"], "--help")
+                self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(routes["analyze"]["tracks"], ["create"])
+        self.assertEqual(routes["reference_packet"]["tracks"], ["reproduce"])
+
     def test_core_rejects_recipe_specs_with_truthful_failed_qa_and_route(self):
         before = self.source.read_bytes()
         for chart, route in self.discovery()["focused_recipes"].items():
@@ -105,8 +117,13 @@ class RecipeDiscoveryTests(unittest.TestCase):
         (copied / "references").mkdir()
         for chart in RECIPES:
             shutil.copy2(SKILL / "references" / f"{chart}-plot.md", copied / "references" / f"{chart}-plot.md")
+        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "figure-workbench.md"):
+            shutil.copy2(SKILL / "references" / name, copied / "references" / name)
         described = self.discovery(copied)
         for chart, route in described["focused_recipes"].items():
+            self.assertEqual(Path(route["script"]).parent, (copied / "scripts").resolve())
+            self.assertEqual(Path(route["doc"]).parent, (copied / "references").resolve())
+        for route in described["workflow_tools"].values():
             self.assertEqual(Path(route["script"]).parent, (copied / "scripts").resolve())
             self.assertEqual(Path(route["doc"]).parent, (copied / "references").resolve())
         # At least one public focused CLI must work through its relocated path.

@@ -2,6 +2,8 @@
 
 Create and reproduce use the same physical-size, typography, data, and review rules. The catalog records the inputs actually used, so source-data design, image-data reconstruction, and author-code-assisted adaptation remain distinguishable.
 
+Create can begin with a [data directory and figure recommendations](../skills/easyviz/references/data-exploration.md), then an [adopted analysis plan](../skills/easyviz/references/statistical-analysis.md). Reproduce begins with a reference and the user's data, including unfamiliar layers implemented from scratch; the paper need not supply Source Data or author code. Both tracks share the [local figure workbench](../skills/easyviz/references/figure-workbench.md) for version-bound requests followed by Agent code/specification edits and rerendering.
+
 ## Create showcases
 
 | Case | Design and data | Final size | Implementation |
@@ -27,8 +29,11 @@ The paired case's [independent comparison](../evals/design-value/paired-comparis
 | [Supplied area scatter](no-author-code/xiang-bubble-volcano/README.md) | Nature Communications Fig. 3E Source Data; 1,457 rows/37 zeros, supplied classes and explicit direction | 88 × 120 mm; 8 pt | Independent reading/review; actual export geometry audit; renamed-field synthetic transfer |
 | [Supplied OR forest](no-author-code/vabistsevits-forest/README.md) | Nature Communications Fig. 3a–b Source Data; 24 OR/asymmetric 95% CI each; unknown per-estimate n | Each 105 × 135 mm; 8 pt | Independent reading/review; direct PDF vector/source audit; same-study panel-b transfer |
 | [Paired median/IQR swarms](no-author-code/urschel-paired/README.md) | Nature Communications Fig. 2b; all 127 complete pairs, explicit infection classification, raw-scale summaries on a log axis | 105 × 96 mm; 8 pt | Fresh reference reading; source-cell/master-sheet and actual export audit; generic changed-schema/repeated-condition checks |
+| [Supplied time-course summaries](no-author-code/shi-timecourse/README.md) | Shi et al., Nature Communications 2021 Fig. 1d; 120 means/SD summaries, width/length on distinct colored y axes, all 360 numeric source strings preserved | 100 × 76 mm; 8 pt | Fresh reading and independent review with notes; source/line/band/export audit; changed-data reproduce probe and separate synthetic log-dose create fixture |
 
 The evaluations withheld author code from the reader and implementer by instruction. The cases preserve access logs; they do not claim operating-system-enforced isolation. Reference crops and their preparation provenance are under [evals/reproduce-inputs](../evals/reproduce-inputs/).
+
+The Shi sheet contains summaries rather than 146 individual cell trajectories. Its SD is preserved as SD, and the caption's cell count is not assumed to establish independent biological replication. Expanded y bounds retain complete bands. The dual-axis transfer retains reproduce; the separate three-series, supplied-bound dose fixture uses create. These are bounded input checks, not evidence of model fitting or arbitrary-reference support.
 
 ## Historical code-assisted adaptations
 

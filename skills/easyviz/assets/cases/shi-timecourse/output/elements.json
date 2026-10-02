@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "chart": "timecourse",
+  "track": "reproduce",
+  "panel": {
+    "width_mm": 100.0,
+    "height_mm": 76.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "dd4bca775076b190999004f35ee9313af07d443188c268689e25118df3b1e3ea",
+    "spec_sha256": "8f07b6174b3291ad0c6f7dfaa29664b8b987f46287955fab9ea3b5594b241179",
+    "input_sha256": "eff9f0be392ee699c29af48494b6c6113df7c67a31e1a323ea57da9828308953",
+    "source_script_sha256": "8dca93dcac89a34b4d10b189845a5158c7e4fc28603b5c3400d0bca5e1a074ab"
+  },
+  "input": {
+    "data_file": "source-data.csv",
+    "spec_file": "spec.json",
+    "source_script": "timecourse_plot.py",
+    "supplied_spec_sha256": "7022ce3da3a2c8c0fba84feb7a1e15022dbf7319aa7fcdc3963bd1dc8e84aa67"
+  },
+  "elements": [
+    {
+      "id": "easyviz-mean-curve-c1c287cb0b20e9fe",
+      "role": "mean-curve",
+      "label": "Cell width",
+      "source_keys": [
+        {
+          "series": "Cell width",
+          "source_rows": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25,
+            27,
+            29,
+            31,
+            33,
+            35,
+            37,
+            39,
+            41,
+            43,
+            45,
+            47,
+            49,
+            51,
+            53,
+            55,
+            57,
+            59,
+            61,
+            63,
+            65,
+            67,
+            69,
+            71,
+            73,
+            75,
+            77,
+            79,
+            81,
+            83,
+            85,
+            87,
+            89,
+            91,
+            93,
+            95,
+            97,
+            99,
+            101,
+            103,
+            105,
+            107,
+            109,
+            111,
+            113,
+            115,
+            117,
+            119
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Cell width",
+        "/options/curve_line_width_pt",
+        "/options/marker_diameter_pt"
+      ],
+      "editable": [
+        "color",
+        "linewidth",
+        "marker-size"
+      ],
+      "bbox_mm": [
+        12.209736429398147,
+        18.64038910273382,
+        79.20114638310184,
+        40.968584869194586
+      ]
+    },
+    {
+      "id": "easyviz-uncertainty-band-f56a86b02557ebdf",
+      "role": "uncertainty-band",
+      "label": "Cell width",
+      "source_keys": [
+        {
+          "series": "Cell width",
+          "source_rows": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25,
+            27,
+            29,
+            31,
+            33,
+            35,
+            37,
+            39,
+            41,
+            43,
+            45,
+            47,
+            49,
+            51,
+            53,
+            55,
+            57,
+            59,
+            61,
+            63,
+            65,
+            67,
+            69,
+            71,
+            73,
+            75,
+            77,
+            79,
+            81,
+            83,
+            85,
+            87,
+            89,
+            91,
+            93,
+            95,
+            97,
+            99,
+            101,
+            103,
+            105,
+            107,
+            109,
+            111,
+            113,
+            115,
+            117,
+            119
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Cell width",
+        "/options/band_alpha"
+      ],
+      "editable": [
+        "color",
+        "opacity"
+      ],
+      "bbox_mm": [
+        12.439041984953704,
+        12.379217620070156,
+        78.74253527199073,
+        58.1677755842799
+      ]
+    },
+    {
+      "id": "easyviz-mean-curve-4fcb9b40e68d51d0",
+      "role": "mean-curve",
+      "label": "Cell length",
+      "source_keys": [
+        {
+          "series": "Cell length",
+          "source_rows": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            56,
+            58,
+            60,
+            62,
+            64,
+            66,
+            68,
+            70,
+            72,
+            74,
+            76,
+            78,
+            80,
+            82,
+            84,
+            86,
+            88,
+            90,
+            92,
+            94,
+            96,
+            98,
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114,
+            116,
+            118,
+            120
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Cell length",
+        "/options/curve_line_width_pt",
+        "/options/marker_diameter_pt"
+      ],
+      "editable": [
+        "color",
+        "linewidth",
+        "marker-size"
+      ],
+      "bbox_mm": [
+        12.209736429398147,
+        18.21949432982043,
+        79.20114638310184,
+        27.181133054030227
+      ]
+    },
+    {
+      "id": "easyviz-uncertainty-band-ad8138b357d72f3e",
+      "role": "uncertainty-band",
+      "label": "Cell length",
+      "source_keys": [
+        {
+          "series": "Cell length",
+          "source_rows": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            56,
+            58,
+            60,
+            62,
+            64,
+            66,
+            68,
+            70,
+            72,
+            74,
+            76,
+            78,
+            80,
+            82,
+            84,
+            86,
+            88,
+            90,
+            92,
+            94,
+            96,
+            98,
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114,
+            116,
+            118,
+            120
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Cell length",
+        "/options/band_alpha"
+      ],
+      "editable": [
+        "color",
+        "opacity"
+      ],
+      "bbox_mm": [
+        12.439041984953704,
+        13.084093203816655,
+        78.74253527199073,
+        48.83700156412333
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-af946ccd77b08380",
+      "role": "axis-label",
+      "label": "Cell width (\u00b5m)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0,
+        32.742839409722215,
+        2.6485894097222236,
+        18.457333333333338
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-cf3ace8e139b3fb7",
+      "role": "axis-label",
+      "label": "Cell length (\u00b5m)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/right_y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        95.35141059027778,
+        32.23483940972221,
+        2.648589409722216,
+        19.47333333333334
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        11.104422743055556,
+        9.943012152777778,
+        80.07715451388889,
+        64.0569878472222
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Time (min)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        44.63358854166667,
+        1.9999999999999996,
+        13.018822916666666,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axes-80f59f16ea6a58b2",
+      "role": "axes",
+      "label": "Data region 2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        11.104422743055556,
+        9.943012152777778,
+        80.07715451388889,
+        64.0569878472222
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

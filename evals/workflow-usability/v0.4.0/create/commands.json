@@ -1,0 +1,87 @@
+[
+  {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/inspect_data.py",
+      "--input",
+      "/private/tmp/easyviz-forward-create/input",
+      "--design",
+      "/private/tmp/easyviz-forward-create/result/intake-design.json",
+      "--out",
+      "/private/tmp/easyviz-forward-create/result/exploration-02-design"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"inspected\", \"track\": \"create\", \"mode\": \"create_recommendations\", \"tables\": 1, \"errors\": 0, \"out\": \"/private/tmp/easyviz-forward-create/result/exploration-02-design\", \"inference_run\": false}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/analyze.py",
+      "--data",
+      "/private/tmp/easyviz-forward-create/result/source/observations.csv",
+      "--plan",
+      "/private/tmp/easyviz-forward-create/result/analysis-plan.json",
+      "--out",
+      "/private/tmp/easyviz-forward-create/result/analysis-01"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"complete\", \"results\": \"/private/tmp/easyviz-forward-create/result/analysis-01/results.json\", \"comparisons\": 2, \"note\": \"Inspect the saved methodology and exclusions before interpreting results.\"}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/draft_spec.py",
+      "--data",
+      "/private/tmp/easyviz-forward-create/result/source/observations.csv",
+      "--chart",
+      "distribution",
+      "--field",
+      "group=condition",
+      "--field",
+      "value=signal",
+      "--field",
+      "unit=sample_id",
+      "--profile",
+      "/private/tmp/easyviz-forward-create/result/figure-profile.json",
+      "--panel",
+      "primary_signal",
+      "--out",
+      "/private/tmp/easyviz-forward-create/result/draft-plot.json"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"draft\", \"specification\": \"/private/tmp/easyviz-forward-create/result/draft-plot.json\", \"chart\": \"distribution\", \"note\": \"Data and mappings validated; render the draft and inspect the exported panel.\"}\n",
+    "stderr": "\nFontconfig error: No writable cache directories\n\t/opt/homebrew/var/cache/fontconfig\n\t/Users/starry/.cache/fontconfig\n\t/Users/starry/.fontconfig\nMatplotlib is building the font cache; this may take a moment.\n"
+  },
+  {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+      "--data",
+      "/private/tmp/easyviz-forward-create/result/source/observations.csv",
+      "--spec",
+      "/private/tmp/easyviz-forward-create/result/plot.json",
+      "--out",
+      "/private/tmp/easyviz-forward-create/result/attempt-01"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-forward-create/result/attempt-01\", \"width_mm\": 120.0, \"height_mm\": 90.0}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+      "--data",
+      "/private/tmp/easyviz-forward-create/result/source/observations.csv",
+      "--spec",
+      "/private/tmp/easyviz-forward-create/result/plot.json",
+      "--out",
+      "/private/tmp/easyviz-forward-create/result/attempt-02"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-forward-create/result/attempt-02\", \"width_mm\": 120.0, \"height_mm\": 90.0}\n",
+    "stderr": ""
+  }
+]

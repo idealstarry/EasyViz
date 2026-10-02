@@ -1,0 +1,47 @@
+{
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "script": "/private/tmp/easyviz-forward-reproduce/result/packet/implementation/plot_panel.py",
+  "script_sha256": "1991ea5ea24a0f020c5550e69480f9b006bdbf15b018bf0e0a5f8df0e276e578",
+  "inputs": [
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/result/packet/data/data-1-user-summaries.csv",
+      "sha256": "5f528844403212217522789cca36dfae5c41b2afa2c9805ab9985bac8ab4b341"
+    },
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/result/packet/reader-inputs/reference.png",
+      "sha256": "ca5e2f86003b79987f3c48ed6045b7e28f66a2d69b5d26eee719782631acaa5e"
+    },
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/result/packet/reader-inputs/methods-1-user-notes.txt",
+      "sha256": "10091d01e15cb91342949de1800b0d33e0997815c030f47cf414a9f43c2130c1"
+    }
+  ],
+  "generic_helpers_used": [
+    "render.py setup/export",
+    "figure_elements.py register/attach_layout/write"
+  ],
+  "author_code_accessed": false,
+  "paper_source_data_accessed": false,
+  "no_examples_cases_evals_tests_access": true,
+  "saved_reading_consulted": "/private/tmp/easyviz-forward-reproduce/result/prior-independent-reading.md",
+  "fresh_independent_reading": false,
+  "transforms": [
+    "Sort channel and time",
+    "Calculate supplied mean ± supplied SD",
+    "Straight connections; no aggregation, fitted model or synthetic rows"
+  ],
+  "outputs": {
+    "panel.svg": "598d7a48e660ac43d11c9e484d181802976bb5bcbd49e15123bdd6c97ff50f40",
+    "panel.pdf": "a57f7d21f4038e7720292560ca29ad4c645a5c38446cb808c39579e7f4f58248",
+    "panel.png": "41b1e7b18332a7299d533ac9cd20cc3632bd2a2d072018b2960180e86c5a07db"
+  },
+  "visual_self_review_pending": false,
+  "review_file": "visual-review.json",
+  "reviewer_role": "self-review",
+  "generic_resource_discovery": {
+    "via": "render.py --describe-spec",
+    "timecourse_document_read_after_custom_render": true,
+    "note": "The generic timecourse recipe documents support for this dual-axis contract; custom code was permitted and retained. No missing recipe capability is claimed."
+  }
+}

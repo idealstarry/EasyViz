@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "reader": {
+    "agent_id": "/root/reproduce_forward_test",
+    "independence": "main-agent",
+    "image_viewed": true,
+    "limitations": [
+      "No new independent subagent was used because the task explicitly prohibits other subagents.",
+      "The saved independent-reading.md for this exact image was consulted. Its reader reports an earlier caption access; that caption is absent from current inputs. Those original-paper caption claims are not adopted as user-data facts.",
+      "This reading is my own image inspection with inherited saved-reading context; it is not a fresh independent reading."
+    ]
+  },
+  "reference": {
+    "sha256": "ca5e2f86003b79987f3c48ed6045b7e28f66a2d69b5d26eee719782631acaa5e",
+    "region": "entire supplied single panel"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "property": "structure",
+      "description": "One shared-time Cartesian plot with two central curves, two translucent bands, a left blue y axis, a right coral/orange y axis, and no top spine.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E2",
+      "property": "axes",
+      "description": "Time (min) is the common horizontal axis; Cell width (µm) is left and Cell length (µm) is right. Tick values are evenly spaced.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E3",
+      "property": "scales",
+      "description": "Three coordinate scales appear linear.",
+      "state": "inferred",
+      "source": "reference",
+      "uncertainty": "Even tick spacing suggests linear scales; the image does not identify a transform explicitly."
+    },
+    {
+      "id": "E4",
+      "property": "appearance",
+      "description": "Blue and orange curves match the colors of their respective y-axis titles, tick labels, ticks, and spines. Pale bands overlap behind the central curves. White background, black bottom axis, no grid.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E5",
+      "property": "geometry",
+      "description": "Approximate plot box [0.165,0.110,0.858,0.858] in top-left normalized image coordinates. No separate legend or colorbar is visible.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": "Relative geometry is estimated; physical size is not known from pixels."
+    },
+    {
+      "id": "E6",
+      "property": "marks",
+      "description": "Tiny dot-like marks follow the curves; a black letter d appears in the upper left.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": "The role of tiny dots is unavailable from this image."
+    },
+    {
+      "id": "E7",
+      "property": "statistics.image",
+      "description": "The image alone does not establish the shaded-band statistic or sample size.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "No currently supplied original caption or methods excerpt identifies these statistics."
+    },
+    {
+      "id": "E8",
+      "property": "statistics.user",
+      "description": "The user notes define the line as supplied_mean and band as supplied_mean ± supplied_sd; input summaries are synthetic and sampling design is unknown.",
+      "state": "observed",
+      "source": "methods-1",
+      "uncertainty": ""
+    }
+  ],
+  "layers": [
+    {
+      "id": "width_band",
+      "evidence_ids": [
+        "E1",
+        "E4",
+        "E7",
+        "E8"
+      ],
+      "description": "Width uncertainty band",
+      "required_data_meanings": [
+        "time",
+        "width mean",
+        "width supplied SD"
+      ]
+    },
+    {
+      "id": "length_band",
+      "evidence_ids": [
+        "E1",
+        "E4",
+        "E7",
+        "E8"
+      ],
+      "description": "Length uncertainty band",
+      "required_data_meanings": [
+        "time",
+        "length mean",
+        "length supplied SD"
+      ]
+    },
+    {
+      "id": "width_mean",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E4",
+        "E8"
+      ],
+      "description": "Blue width trajectory",
+      "required_data_meanings": [
+        "time",
+        "width supplied mean"
+      ]
+    },
+    {
+      "id": "length_mean",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E4",
+        "E8"
+      ],
+      "description": "Coral length trajectory",
+      "required_data_meanings": [
+        "time",
+        "length supplied mean"
+      ]
+    },
+    {
+      "id": "axes",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "description": "Shared x and independent colored y axes",
+      "required_data_meanings": [
+        "time in minutes",
+        "width and length in micrometres"
+      ]
+    },
+    {
+      "id": "dots",
+      "evidence_ids": [
+        "E6"
+      ],
+      "description": "Tiny reference line-associated dots",
+      "required_data_meanings": [
+        "unknown dot semantics"
+      ]
+    },
+    {
+      "id": "letter",
+      "evidence_ids": [
+        "E6"
+      ],
+      "description": "Reference panel letter",
+      "required_data_meanings": []
+    }
+  ]
+}

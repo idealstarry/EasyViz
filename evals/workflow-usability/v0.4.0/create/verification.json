@@ -1,0 +1,214 @@
+{
+  "scope": "Accepted attempt-02; 24 source rows; signal plotted, two endpoints described; self review is separate",
+  "checks": [
+    {
+      "check": "All specimens traced to exact string IDs",
+      "status": "passed",
+      "evidence": "24 original and plotted rows; identical ordered sample IDs; 12 per condition"
+    },
+    {
+      "check": "Source values numerically preserved",
+      "status": "passed",
+      "evidence": "String identity for categories and decimal equality for both measured outcomes"
+    },
+    {
+      "check": "Numerical summary: primary_signal_summary/Control",
+      "status": "passed",
+      "evidence": {
+        "mean": 5.209791666666667,
+        "median": 5.468249999999999,
+        "sd": 1.3639815064450993,
+        "q1": 4.890475,
+        "q3": 6.048150000000001,
+        "minimum": 2.5364,
+        "maximum": 7.086,
+        "group": "Control",
+        "variable": "signal",
+        "n": 12,
+        "whisker_lower": 4.0468,
+        "whisker_upper": 7.086
+      }
+    },
+    {
+      "check": "Numerical summary: exploratory_viability_summary/Control",
+      "status": "passed",
+      "evidence": {
+        "mean": 83.13645833333334,
+        "median": 83.417,
+        "sd": 2.563606258045078,
+        "q1": 81.25375,
+        "q3": 85.4007,
+        "minimum": 78.7547,
+        "maximum": 86.7316,
+        "group": "Control",
+        "variable": "viability_pct",
+        "n": 12
+      }
+    },
+    {
+      "check": "Numerical summary: primary_signal_summary/Treatment",
+      "status": "passed",
+      "evidence": {
+        "mean": 6.942008333333334,
+        "median": 6.521850000000001,
+        "sd": 1.1625751709485543,
+        "q1": 6.0045,
+        "q3": 7.989875,
+        "minimum": 5.4431,
+        "maximum": 8.6828,
+        "group": "Treatment",
+        "variable": "signal",
+        "n": 12,
+        "whisker_lower": 5.4431,
+        "whisker_upper": 8.6828
+      }
+    },
+    {
+      "check": "Numerical summary: exploratory_viability_summary/Treatment",
+      "status": "passed",
+      "evidence": {
+        "mean": 80.33028333333333,
+        "median": 78.83834999999999,
+        "sd": 3.379014884638136,
+        "q1": 78.21289999999999,
+        "q3": 82.998175,
+        "minimum": 75.91,
+        "maximum": 86.0356,
+        "group": "Treatment",
+        "variable": "viability_pct",
+        "n": 12
+      }
+    },
+    {
+      "check": "Per-comparison row accounting",
+      "status": "passed",
+      "evidence": "24 unchanged source rows per descriptive endpoint; repeated rows across two comparisons are expected"
+    },
+    {
+      "check": "Actual font and role sizes",
+      "status": "passed",
+      "evidence": "Arial selected without substitution; active axis/tick roles 8 pt"
+    },
+    {
+      "check": "PDF physical dimensions",
+      "status": "passed",
+      "evidence": [
+        120.00000000001387,
+        89.99999999999278
+      ]
+    },
+    {
+      "check": "PDF font embedding",
+      "status": "passed",
+      "evidence": [
+        {
+          "resource": "/F1",
+          "base_font": "/HKTMYE+ArialMT",
+          "embedded": true
+        }
+      ]
+    },
+    {
+      "check": "SVG physical dimensions and editable text",
+      "status": "passed",
+      "evidence": {
+        "mm": [
+          119.99999988888891,
+          89.99999991666667
+        ],
+        "text_elements": 10
+      }
+    },
+    {
+      "check": "PNG pixel dimensions and dpi",
+      "status": "passed",
+      "evidence": {
+        "pixels": [
+          1417,
+          1063
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ]
+      }
+    },
+    {
+      "check": "Raw circle center separation",
+      "status": "passed",
+      "evidence": {
+        "minimum_center_distance_mm": 1.5261441115559422,
+        "circle_diameter_mm": 1.411111111111111
+      }
+    },
+    {
+      "check": "Renderer clipping/glyph/tick checks",
+      "status": "passed",
+      "evidence": "Renderer QA pass; 24/24 source rows plotted"
+    },
+    {
+      "check": "Original sources preserved",
+      "status": "passed",
+      "evidence": "Byte-identical source snapshots"
+    }
+  ],
+  "recomputed_summaries": [
+    {
+      "mean": 5.209791666666667,
+      "median": 5.468249999999999,
+      "sd": 1.3639815064450993,
+      "q1": 4.890475,
+      "q3": 6.048150000000001,
+      "minimum": 2.5364,
+      "maximum": 7.086,
+      "group": "Control",
+      "variable": "signal",
+      "n": 12,
+      "whisker_lower": 4.0468,
+      "whisker_upper": 7.086
+    },
+    {
+      "mean": 83.13645833333334,
+      "median": 83.417,
+      "sd": 2.563606258045078,
+      "q1": 81.25375,
+      "q3": 85.4007,
+      "minimum": 78.7547,
+      "maximum": 86.7316,
+      "group": "Control",
+      "variable": "viability_pct",
+      "n": 12
+    },
+    {
+      "mean": 6.942008333333334,
+      "median": 6.521850000000001,
+      "sd": 1.1625751709485543,
+      "q1": 6.0045,
+      "q3": 7.989875,
+      "minimum": 5.4431,
+      "maximum": 8.6828,
+      "group": "Treatment",
+      "variable": "signal",
+      "n": 12,
+      "whisker_lower": 5.4431,
+      "whisker_upper": 8.6828
+    },
+    {
+      "mean": 80.33028333333333,
+      "median": 78.83834999999999,
+      "sd": 3.379014884638136,
+      "q1": 78.21289999999999,
+      "q3": 82.998175,
+      "minimum": 75.91,
+      "maximum": 86.0356,
+      "group": "Treatment",
+      "variable": "viability_pct",
+      "n": 12
+    }
+  ],
+  "formats_sha256": {
+    "pdf": "9ef5d9cea35edb822451b14f2fd6c01a23c248cba6588c34ab2e1cc1d7eab7ee",
+    "svg": "55203d2d7371df44e7f8c6c6c4c7254ed1b0756e7cda070d55f26bae83fd7959",
+    "png": "b1e9990477aa7cc9228b535b9aecdfe395e5d989ebb9b7abca24679b66a98670"
+  }
+}

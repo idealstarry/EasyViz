@@ -2,6 +2,14 @@
 
 Create an individual scientific panel from source data, a communication goal or chart type, optional additions, and export preferences. Reuse the same data, typography, palette, and physical-size rules as reproduce.
 
+If the user supplies a directory without a clear question or chart, start with
+[Data exploration](data-exploration.md). Inventory the tables, inspect actual
+values, and propose a few concrete reading tasks with field mappings and small
+descriptive previews. Candidate fields are hints, not established units or study
+design. Ask only for scientific facts that change a proposed analysis; keep
+descriptive exploration moving while those facts remain unknown. The user need
+not choose a renderer or write a specification.
+
 ## 1. Choose the visual mapping
 
 Honor the user's requested chart when the data supports it. Otherwise use the [Chart library](chart-library.md) to choose a visual encoding for the question. Explain consequential changes such as switching from cell-level observations to sample-level summaries before using them.
@@ -38,6 +46,12 @@ For a related panel set, save and reuse a [figure profile](figure-profile.md) so
 
 Add descriptive statistics, tests, fitted models, uncertainty intervals, or significance annotations only when supported by the user's data and study design. Record calculation details and exact sample sizes. A missing replicate identifier cannot be replaced by treating every row as an independent biological sample.
 
+Use [Statistical analysis](statistical-analysis.md) for an explicit executable
+analysis plan, supported effect intervals and declared comparison families.
+Keep its saved results separate from styling. A different view of the same
+analysis must retain its units, comparisons, exclusions and calculated results.
+Multiple groups do not authorize trying all tests until one is significant.
+
 Use [Panel layout](panel-layout.md) for physical dimensions and typography, and [Palettes](palettes.md) for colors. Reuse existing category-color assignments. Determine canvas proportions from chart shape, label length, category count, and expected density before the first render. Include space for adopted annotation tracks, marginal axes, and legends inside the same fixed canvas; their text uses the shared typography roles.
 
 Default comparable filled dots, bars, and matching legend swatches to one borderless policy. Set edge styling explicitly, and record any scientific or readability exception by mark role. Inspect palette combinations together on the actual panel, including small marks and adjacent annotation tracks; a palette's appearance in a paper is not evidence that it suits this data or works with the other colors.
@@ -59,6 +73,11 @@ Inspect the recipe's input contract and supported options in the chart library. 
 Treat each case's schema, selection, denominators, annotation joins, and layout capacity as an explicit applicability boundary. Reuse directly only when they fit; otherwise adapt and verify them, or write a new implementation. If a requested feature remains unsupported, state that boundary without silently replacing the chart, deleting observations, or claiming the existing example validated the new use.
 
 For edits to an existing panel, reuse its data, script, and accepted settings. Record the requested addition and any consequent layout change. Do not silently change denominators, tests, category colors, axis limits, or experimental units while adding a layer.
+
+For detailed changes, the [Figure workbench](figure-workbench.md) records selected
+layers or canvas regions and the version the user inspected. Apply requests to
+the original spec/profile or script, preserve the accepted attempt, and redraw
+the affected formats. It is a shared editing tool, not another plotting track.
 
 ## 4. Render and refine
 

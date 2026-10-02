@@ -168,7 +168,7 @@ as passing outputs.
 
 For execution outside the installed skill directory, copy `interval_plot.py`,
 `render.py`, `legend_layout.py`, `auto_layout.py`, `figure_profile.py`, and
-`annotation_review.py` together. Include `assets/palettes/palettes.json` under
+`annotation_review.py` and `figure_elements.py` together. Include `assets/palettes/palettes.json` under
 the skill directory layout when using named EasyViz palettes, or supply
 explicit category colors. Use the same Python dependencies as the core
 renderer. Keep the adopted spec, caption and review beside the output.

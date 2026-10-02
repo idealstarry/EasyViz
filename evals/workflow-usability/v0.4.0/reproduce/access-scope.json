@@ -1,0 +1,51 @@
+{
+  "inputs": [
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/input/reference.png",
+      "access": "viewed original reference"
+    },
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/input/user-summaries.csv",
+      "access": "read 14 rows, copied bytes, plotted and audited"
+    },
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/input/user-notes.txt",
+      "access": "read scientific definitions and explicit requested style"
+    },
+    {
+      "path": "/private/tmp/easyviz-forward-reproduce/input/independent-reading.md",
+      "access": "read permitted saved interpretation; original caption itself absent"
+    }
+  ],
+  "direct_skill_resources": [
+    "skills/easyviz/SKILL.md",
+    "skills/easyviz/references/reproduce.md",
+    "skills/easyviz/references/reference-to-code.md",
+    "skills/easyviz/references/reference-spec.md",
+    "skills/easyviz/references/panel-layout.md",
+    "skills/easyviz/references/visual-review.md",
+    "skills/easyviz/references/timecourse-plot.md"
+  ],
+  "generic_implementation_resources": [
+    "skills/easyviz/scripts/reference_packet.py (CLI help/describe/packet execution)",
+    "skills/easyviz/scripts/render.py (API source, setup/export, describe-spec)",
+    "skills/easyviz/scripts/figure_elements.py (API source and artist registration)"
+  ],
+  "indirect_generic_imports": [
+    "legend_layout.py",
+    "figure_profile.py",
+    "auto_layout.py",
+    "annotation_review.py"
+  ],
+  "forbidden_access": {
+    "examples": false,
+    "assets_cases": false,
+    "evals": false,
+    "tests": false,
+    "author_code": false,
+    "paper_source_tables": false
+  },
+  "write_scope": "/private/tmp/easyviz-forward-reproduce/result",
+  "repo_writes_intended": false,
+  "subagents_spawned": 0
+}

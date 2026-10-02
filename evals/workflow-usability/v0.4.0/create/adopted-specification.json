@@ -1,0 +1,81 @@
+{
+  "track": "create",
+  "source_paths": [
+    "/private/tmp/easyviz-forward-create/input/observations.csv",
+    "/private/tmp/easyviz-forward-create/input/study-notes.txt"
+  ],
+  "evidence": "study-notes.txt establishes independent specimens, units, primary endpoint and final size",
+  "primary_question": "How does fluorescence signal differ between independent conditions?",
+  "chart": "distribution",
+  "fields": {
+    "group": "condition",
+    "value": "signal",
+    "unit": "sample_id"
+  },
+  "order": [
+    "Control",
+    "Treatment"
+  ],
+  "transformation": "None; all source values and all 24 specimens retained",
+  "layers": [
+    "All 24 raw observations",
+    "Median and interquartile box",
+    "Whiskers to observations within 1.5 IQR"
+  ],
+  "analysis_plan": "analysis-plan.json; descriptive only; no inferential method selected",
+  "analysis_rationale": "The user asks for useful scientific views and an initial panel. Raw distributions answer the primary question; synthetic teaching data do not warrant a biological significance claim. Independent design is retained for possible explicitly requested inference.",
+  "uncertainty": "Box and whiskers describe observed spread, not confidence intervals",
+  "text": "English; Arial 8 pt; no in-image title, subtitle, panel letter or narrative",
+  "canvas_mm": [
+    120,
+    90
+  ],
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "dpi": 300,
+  "palette": "Somerville bright sky/coral, explicit stable category mapping in figure-profile.json",
+  "outline_policy": {
+    "raw_points": "Borderless filled circles, linewidth 0",
+    "box_summary_exception": "Colored 0.6 pt box boundary to make Q1/Q3 readable against white; box is a statistical summary, not another raw-observation mark",
+    "statistical_lines": "0.6 pt median, whiskers and caps; line encodings"
+  },
+  "legend": "No categorical legend: conditions directly identified by the x axis",
+  "review_role": "Self review; no independent reviewer requested",
+  "candidate_views": [
+    {
+      "priority": 1,
+      "view": "Boxplot with all raw signal observations",
+      "fields": [
+        "condition",
+        "signal",
+        "sample_id"
+      ],
+      "purpose": "Compare central signal and within-group spread; selected first panel"
+    },
+    {
+      "priority": 2,
+      "view": "Signal ECDF",
+      "fields": [
+        "condition",
+        "signal",
+        "sample_id"
+      ],
+      "purpose": "Compare the full signal distribution and tails without kernel smoothing"
+    },
+    {
+      "priority": 3,
+      "view": "Signal versus viability scatter, colored by condition",
+      "fields": [
+        "signal",
+        "viability_pct",
+        "condition",
+        "sample_id"
+      ],
+      "purpose": "Explore whether signal covaries with viable fraction; no pooled fit or causal claim"
+    }
+  ],
+  "rejected_candidate": "Paired chart: notes explicitly define independent groups, and each sample ID appears once"
+}

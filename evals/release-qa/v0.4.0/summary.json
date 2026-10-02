@@ -1,0 +1,62 @@
+{
+  "version": "0.4.0",
+  "date": "2026-10-02",
+  "source_base": "8bc11b6",
+  "source_identity": "Final published source is identified by the v0.4.0 tag; the checks bind this archive and recorded helper hashes.",
+  "archive": {
+    "version": "0.4.0",
+    "archive": "easyviz-0.4.0.zip",
+    "sha256": "1c6a05100f1f1297959f7943d1af0e4bda9bae2d7b706a53662d81f5735cc2ea",
+    "content_sha256": "5e85203d5aeca70b870d3ca1597746343ee83383689ac7c2f8973b8abf6df88c",
+    "files": 421,
+    "bytes": 7746360
+  },
+  "checks": {
+    "development_unit_suite": {
+      "status": "pass",
+      "tests": 235,
+      "log": "unit-tests.log"
+    },
+    "portable_pixel_invariance": {
+      "status": "pass",
+      "tests": 7,
+      "log": "portable-element-test.log",
+      "note": "Updated same-font two-render pixel check after the full suite; preserves coverage on Linux without requiring Arial."
+    },
+    "skill_validators": {
+      "status": "pass",
+      "skills": [
+        "easyviz",
+        "easyviz-reference-reader",
+        "easyviz-figure-reviewer"
+      ]
+    },
+    "clean_dependency_compatibility": {
+      "status": "pass",
+      "check": "pip check: No broken requirements found"
+    },
+    "clean_extracted_runtime": {
+      "status": "pass",
+      "report": "package-smoke.json"
+    },
+    "clean_reviewed_preview_replay": {
+      "status": "pass",
+      "report": "clean-pixel-replay.json"
+    },
+    "agent_workflow_trials": {
+      "status": "pass_with_documented_limits",
+      "evidence": "../../workflow-usability/v0.4.0/README.md"
+    },
+    "new_literature_case": {
+      "status": "ready_with_notes",
+      "evidence": "../../../examples/no-author-code/shi-timecourse/independent-review.json"
+    },
+    "clean_unit_suite": {
+      "status": "pass",
+      "tests": 235,
+      "log": "clean-unit-tests.log",
+      "scope": "Fresh Python virtual environment, no system site packages, latest compatible declared runtime dependencies on same macOS host."
+    }
+  },
+  "scope": "Same macOS host with installed fonts; isolated Python runtime and extracted portable package. Agent trials use instruction-based access restrictions. Fresh desktop plugin discovery, WorkBuddy model comparisons, physical print proof and arbitrary unseen charts are outside this recorded check."
+}

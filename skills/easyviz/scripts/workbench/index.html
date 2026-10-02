@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EasyViz · Figure review</title>
+  <link rel="stylesheet" href="/workbench.css">
+  <script src="/workbench.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">ev</span><div><strong>EasyViz</strong><span class="subtle">Figure review</span></div></div>
+    <div class="top-actions"><span id="track" class="pill" hidden></span><button id="reload" type="button">Reload figure</button></div>
+  </header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">REFINE YOUR PANEL</p><h1 id="figure-name">Loading figure…</h1><p id="selection-message" class="subtle">Open a figure, select an element and describe what you want to change.</p></div><div id="dimensions" class="dimensions"></div></div>
+    <div class="layout">
+      <section class="preview-card" aria-label="Figure preview">
+        <div class="preview-toolbar"><div class="mode-group" aria-label="Selection mode"><button id="element-mode" type="button" class="active" aria-pressed="true">Select element</button><button id="region-mode" type="button" aria-pressed="false">Select region</button><button id="clear" type="button">Clear</button></div><span class="subtle" id="preview-size">Full canvas</span></div>
+        <div id="figure-host" tabindex="0" aria-label="Interactive SVG figure; use the element list to select with a keyboard"></div>
+        <div class="preview-footer"><span>Original exports stay intact. Your requests are saved separately.</span><div id="downloads"></div></div>
+      </section>
+      <aside class="review-card" aria-label="Edit requests">
+        <form id="request-form">
+          <div class="section-title"><h2>Describe a change</h2><span class="step">01</span></div>
+          <label for="element-list">Selected element</label><select id="element-list"><option value="">Whole figure / general note</option></select>
+          <p id="selection-details" class="selection-details">Leave a general note, choose an element or mark a region.</p>
+          <label for="property">What to change</label><select id="property"><option value="">Free-form instruction</option></select>
+          <div id="value-field" hidden><label for="property-value">New value</label><input id="property-value" type="text" placeholder="For example: #2581B9 or 0.8 pt" maxlength="4000"></div>
+          <label for="instruction">Your instruction</label><textarea id="instruction" rows="4" maxlength="8000" required placeholder="Move this legend 2 mm to the right. Keep the font size and panel dimensions."></textarea>
+          <button class="primary" id="save" type="submit">Save request</button>
+          <p class="help">Your Agent reads <code>requests.json</code>, updates the plotting code and renders a new attempt. This page records changes; it does not run code.</p>
+        </form>
+        <section class="queue-section" aria-label="Saved requests"><div class="section-title"><h2>Saved requests</h2><button id="undo" type="button" class="text-button" disabled>Undo last</button></div><div id="request-list"><p class="empty">No changes requested yet.</p></div><a id="download-requests" class="small-link" href="/files/requests.json" download>Download requests</a></section>
+      </aside>
+    </div>
+    <p id="message" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

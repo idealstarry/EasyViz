@@ -32,7 +32,7 @@ FIELDS = REQUIRED | {"series", "color", "mark_state"}
 OPTIONS = {"x_scale", "x_limits", "x_ticks", "reference_value", "grid", "marker_area_pt2", "series_span", "series_layout", "cap_height", "mark_fill"}
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "palette", "legends"}
 _HELPER_HASHES = {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-                  for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py")}
+                  for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")}
 SCHEMA = {
     "chart": "interval", "fields": {"label": "label", "estimate": "estimate", "lower": "lower", "upper": "upper", "series": "optional category", "color": "optional categorical color role", "mark_state": "optional filled/hollow input"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
@@ -493,6 +493,9 @@ def render(data_path, spec, out, *, spec_path=None):
             legends = fig._easyviz_legend_layout.validate()
             geometry = _mark_geometry(fig)
             fitted = getattr(fig, "_easyviz_auto_layout", None)
+            fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_script = Path(__file__).resolve()
+            fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"

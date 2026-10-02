@@ -1,0 +1,45 @@
+{
+  "track": "create",
+  "reviewer_role": "self-review",
+  "overall_status": "ready_with_notes",
+  "accepted_attempt": "attempt-02",
+  "specification": "adopted-specification.json",
+  "caption": "caption.md",
+  "passes": [
+    {
+      "pass": 1,
+      "image_opened": "/private/tmp/easyviz-forward-create/result/attempt-01/panel.png",
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "Control, around 5.17 a.u.",
+          "evidence": "C005 and C009 partially overlap; center separation 0.796 mm is smaller than the 1.411 mm circle diameter.",
+          "requirement": "Raw observations should remain readily distinguishable at the recorded final size.",
+          "action": "Change only deterministic horizontal jitter placement; preserve all values, summaries, colors, text sizes and canvas."
+        }
+      ],
+      "correction": "Seed 23 to 37; preserve attempt-01 and rerender PDF, SVG and PNG in attempt-02."
+    },
+    {
+      "pass": 2,
+      "image_opened": "/private/tmp/easyviz-forward-create/result/attempt-02/panel.png",
+      "findings": [],
+      "observations": [
+        "All 24 raw points are visible; the near-equal Control points now have distinct centers and do not geometrically overlap.",
+        "Condition labels and the fluorescence axis label are fully visible; English glyphs render correctly.",
+        "Blue Control and coral Treatment dots remain readable against white and lightly filled boxes.",
+        "Median, quartile boundaries and whiskers remain visible; no legend is needed because the categories are directly labeled.",
+        "No in-image title, subtitle, panel letter, sample-count summary or explanatory footnote was added.",
+        "Grid lines sit beneath marks and statistical lines. The full canvas retains its stated proportions."
+      ]
+    }
+  ],
+  "numerical_and_export_checks": "verification.json: 15 independently performed checks passed",
+  "comparative_preference": "candidate",
+  "comparative_reason": "The same-size candidate separates C005 and C009; minimum raw-point center distance increases from 0.796 to 1.526 mm, with no source-value or summary change.",
+  "residual_notes": [
+    "This is self-review, not an independent visual review or a calibrated physical print test.",
+    "Colored box-summary boundaries are an explicitly recorded readability exception to borderless observation marks; the core renderer hard-codes this styling.",
+    "The dataset is synthetic; the panel is suitable for a teaching demonstration, and no biological inference or publication acceptance is claimed."
+  ]
+}

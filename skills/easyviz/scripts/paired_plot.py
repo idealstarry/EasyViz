@@ -30,7 +30,7 @@ REQUIRED = {"unit", "condition", "value"}
 FIELDS = REQUIRED | {"block"}
 OPTIONS = {"y_scale", "y_limits", "y_ticks", "quantile_method", "point_layout", "point_spread", "point_area_pt2", "point_alpha", "point_edge_color", "point_edge_width_pt", "point_color", "connect_pairs", "pair_alpha", "pair_line_width_pt", "summary_color", "summary_width", "summary_cap_width", "summary_line_width_pt", "block_gap", "grid", "seed"}
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "palette", "legends"}
-HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py")
+HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")
 SCHEMA = {
     "chart": "paired", "fields": {"unit": "participant ID", "condition": "time point or repeated condition", "value": "raw numerical measurement", "block": "optional mutually exclusive group"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
@@ -391,6 +391,9 @@ def render(data_path, spec, out, *, spec_path=None):
             legends = fig._easyviz_legend_layout.validate()
             geometry = _geometry(fig, resolved)
             fitted = getattr(fig, "_easyviz_auto_layout", None)
+            fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_script = Path(__file__).resolve()
+            fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"

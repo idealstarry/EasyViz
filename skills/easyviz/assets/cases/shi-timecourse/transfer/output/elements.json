@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "chart": "timecourse",
+  "track": "create",
+  "panel": {
+    "width_mm": 100.0,
+    "height_mm": 76.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "8e3c8857f7338e3e725db92885da9acf7f33a0f687f7b0214aeae95d91e459f6",
+    "spec_sha256": "4a31ea40e1958a1dbf90f41ee2de5ec4942a565bd3bcb026fcb23c073b2ea288",
+    "input_sha256": "e55ea0e4e8fbcd872095f8e0ea5ab82d4c92218ec4650f35989489d88b675553",
+    "source_script_sha256": "8dca93dcac89a34b4d10b189845a5158c7e4fc28603b5c3400d0bca5e1a074ab"
+  },
+  "input": {
+    "data_file": "source-data.csv",
+    "spec_file": "spec.json",
+    "source_script": "timecourse_plot.py",
+    "supplied_spec_sha256": "f9e6d0c5d0f625d206a1dd4203278f31c179a845231ca8b5fc28276fa74e0070"
+  },
+  "elements": [
+    {
+      "id": "easyviz-mean-curve-2632bf475dfd9651",
+      "role": "mean-curve",
+      "label": "001",
+      "source_keys": [
+        {
+          "series": "001",
+          "source_rows": [
+            7,
+            16,
+            8,
+            17,
+            9,
+            18
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/001",
+        "/options/curve_line_width_pt",
+        "/options/marker_diameter_pt"
+      ],
+      "editable": [
+        "color",
+        "linewidth",
+        "marker-size"
+      ],
+      "bbox_mm": [
+        16.289128044644553,
+        31.49836619543651,
+        77.28816665376647,
+        33.86265562996031
+      ]
+    },
+    {
+      "id": "easyviz-uncertainty-band-54c9527fc623b23a",
+      "role": "uncertainty-band",
+      "label": "001",
+      "source_keys": [
+        {
+          "series": "001",
+          "source_rows": [
+            7,
+            16,
+            8,
+            17,
+            9,
+            18
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/001",
+        "/options/band_alpha"
+      ],
+      "editable": [
+        "color",
+        "opacity"
+      ],
+      "bbox_mm": [
+        16.64190582242233,
+        28.76022786458333,
+        76.5826110982109,
+        38.49595517113095
+      ]
+    },
+    {
+      "id": "easyviz-mean-curve-e8002de94e4785cc",
+      "role": "mean-curve",
+      "label": "NA",
+      "source_keys": [
+        {
+          "series": "NA",
+          "source_rows": [
+            1,
+            10,
+            2,
+            11,
+            3,
+            12
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/NA",
+        "/options/curve_line_width_pt",
+        "/options/marker_diameter_pt"
+      ],
+      "editable": [
+        "color",
+        "linewidth",
+        "marker-size"
+      ],
+      "bbox_mm": [
+        16.289128044644553,
+        66.90340525793651,
+        77.28816665376647,
+        1.8295250496031652
+      ]
+    },
+    {
+      "id": "easyviz-uncertainty-band-0b90ef1d0d5f05b2",
+      "role": "uncertainty-band",
+      "label": "NA",
+      "source_keys": [
+        {
+          "series": "NA",
+          "source_rows": [
+            1,
+            10,
+            2,
+            11,
+            3,
+            12
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/NA",
+        "/options/band_alpha"
+      ],
+      "editable": [
+        "color",
+        "opacity"
+      ],
+      "bbox_mm": [
+        16.64190582242233,
+        64.44625930059524,
+        76.5826110982109,
+        7.727290271577378
+      ]
+    },
+    {
+      "id": "easyviz-mean-curve-eacf552101f64f95",
+      "role": "mean-curve",
+      "label": "null",
+      "source_keys": [
+        {
+          "series": "null",
+          "source_rows": [
+            4,
+            13,
+            5,
+            14,
+            6,
+            15
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/null",
+        "/options/curve_line_width_pt",
+        "/options/marker_diameter_pt"
+      ],
+      "editable": [
+        "color",
+        "linewidth",
+        "marker-size"
+      ],
+      "bbox_mm": [
+        16.289128044644553,
+        19.1347017609127,
+        77.28816665376647,
+        47.35028955853174
+      ]
+    },
+    {
+      "id": "easyviz-uncertainty-band-a18eaecfc14511bf",
+      "role": "uncertainty-band",
+      "label": "null",
+      "source_keys": [
+        {
+          "series": "null",
+          "source_rows": [
+            4,
+            13,
+            5,
+            14,
+            6,
+            15
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/null",
+        "/options/band_alpha"
+      ],
+      "editable": [
+        "color",
+        "opacity"
+      ],
+      "bbox_mm": [
+        16.64190582242233,
+        16.396563430059523,
+        76.5826110982109,
+        51.98358909970238
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-af946ccd77b08380",
+      "role": "axis-label",
+      "label": "Response (a.u.)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0,
+        34.63213411458334,
+        2.6485894097222236,
+        19.727333333333334
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        11.866422743055557,
+        14.991601562500001,
+        86.13357725694445,
+        59.00839843749999
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Concentration (nM)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        43.12221137152778,
+        7.048589409722221,
+        23.622,
+        2.648589409722222
+      ]
+    },
+    {
+      "id": "easyviz-legend-8b71e03a6c288d1c",
+      "role": "legend",
+      "label": "Categorical guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/categorical"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        36.333211371527774,
+        1.999999999999999,
+        37.2,
+        3.048589409722222
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-fa84c1983ce7a57a",
+      "role": "legend-key",
+      "label": "001",
+      "source_keys": [
+        {
+          "category": "001"
+        }
+      ],
+      "spec_paths": [
+        "/colors/001"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        36.53321137152778,
+        3.737096854967948,
+        6.000000000000003,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-cc7851d0ba8065c8",
+      "role": "legend-key",
+      "label": "NA",
+      "source_keys": [
+        {
+          "category": "NA"
+        }
+      ],
+      "spec_paths": [
+        "/colors/NA"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        49.805211371527776,
+        3.737096854967948,
+        6.000000000000003,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-8eb81ef474eee025",
+      "role": "legend-key",
+      "label": "null",
+      "source_keys": [
+        {
+          "category": "null"
+        }
+      ],
+      "spec_paths": [
+        "/colors/null"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        62.399878038194444,
+        3.737096854967948,
+        6.000000000000003,
+        0.0
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

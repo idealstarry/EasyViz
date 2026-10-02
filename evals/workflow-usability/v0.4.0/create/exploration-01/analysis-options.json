@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "track": "create",
+  "status": "candidate_reading_tasks",
+  "inference_run": false,
+  "selection_rule": "Data-type hints propose readings; scientific roles and study design require explicit evidence.",
+  "tables": [
+    {
+      "table_id": "observations.csv",
+      "profile_scope": "complete source rows",
+      "candidate_columns": {
+        "numeric": [
+          "signal",
+          "viability_pct"
+        ],
+        "group": [
+          "condition"
+        ],
+        "identifier": [
+          "sample_id"
+        ],
+        "date_time": []
+      },
+      "declared_design": null,
+      "options": [
+        {
+          "id": "distribution",
+          "reading_task": "Read the spread, skew and raw observations of a measurement",
+          "recommended_charts": [
+            "distribution",
+            "ecdf"
+          ],
+          "field_candidates": {
+            "value": [
+              "signal",
+              "viability_pct"
+            ],
+            "group": [
+              "condition"
+            ]
+          },
+          "proposed_fields": {
+            "value": "signal",
+            "group": "condition"
+          },
+          "mapping_status": "candidate; confirm field meanings before plotting",
+          "descriptive_analysis_plan": {
+            "schema_version": 1,
+            "question": "Describe the supplied measurement distribution",
+            "design": {
+              "unit": null,
+              "unit_definition": "unknown; row-level descriptive summaries only",
+              "structure": "unknown",
+              "confirmed": false
+            },
+            "missing_policy": "error",
+            "missing_tokens": [
+              "",
+              "NA",
+              "N/A",
+              "NaN",
+              "nan",
+              "NULL",
+              "null",
+              "None"
+            ],
+            "comparisons": [
+              {
+                "name": "descriptive_preview",
+                "method": "descriptive",
+                "fields": {
+                  "value": "signal",
+                  "group": "condition"
+                }
+              }
+            ]
+          },
+          "inference": {
+            "status": "not_selected",
+            "methods_to_consider_after_design": [
+              "welch or mannwhitney for independent two-group questions",
+              "paired_t or wilcoxon for explicitly paired two-condition questions"
+            ],
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?"
+            ]
+          },
+          "notes": [
+            "Display raw observations and summary definitions explicitly; an observed row is not automatically a biological replicate."
+          ]
+        },
+        {
+          "id": "association",
+          "reading_task": "Read whether two supplied numeric measurements vary together",
+          "recommended_charts": [
+            "scatter"
+          ],
+          "field_candidates": {
+            "x": [
+              "signal",
+              "viability_pct"
+            ],
+            "y": [
+              "signal",
+              "viability_pct"
+            ],
+            "group": [
+              "condition"
+            ]
+          },
+          "proposed_fields": {
+            "x": "signal",
+            "y": "viability_pct"
+          },
+          "mapping_status": "candidate; confirm field meanings before plotting",
+          "inference": {
+            "status": "not_selected",
+            "methods_to_consider_after_design": [
+              "pearson for an adopted linear association question",
+              "spearman for an adopted monotonic association question"
+            ],
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?",
+              "Are scales or transformations required, and does each unit contribute one independent pair?"
+            ]
+          },
+          "notes": [
+            "A scatter preview does not establish causation or justify a fitted curve."
+          ]
+        },
+        {
+          "id": "paired_candidate",
+          "reading_task": "Check whether an explicit unit has measurements in multiple conditions",
+          "recommended_charts": [
+            "paired"
+          ],
+          "field_candidates": {
+            "unit": [
+              "sample_id"
+            ],
+            "group": [
+              "condition"
+            ],
+            "value": [
+              "signal",
+              "viability_pct"
+            ]
+          },
+          "mapping_status": "requires explicit pairing verification",
+          "inference": {
+            "status": "blocked",
+            "questions": [
+              "Does this identifier refer to the same unit across conditions?",
+              "Is there one value per unit and condition, or are technical repeats present?",
+              "How should unmatched units be handled without silently dropping them?"
+            ]
+          },
+          "notes": [
+            "Matching-looking identifiers are a candidate relationship; the command has not established or created pairs."
+          ]
+        }
+      ]
+    }
+  ]
+}

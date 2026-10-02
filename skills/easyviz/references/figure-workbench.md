@@ -1,0 +1,176 @@
+# Local figure review
+
+Use the same review page in **create** and **reproduce**. It records requested
+changes to a rendered panel; it does not choose or replace the track. In
+reproduce, compare each change with the adopted reference specification. In
+create, retain the accepted scientific question, analysis and data encodings.
+
+## Open a panel
+
+Run this standard-library tool from the discovered EasyViz skill directory:
+
+```sh
+python /absolute/path/to/easyviz/scripts/figure_workbench.py \
+  --figure-dir /absolute/path/to/project/attempt-01 --port 0
+```
+
+Open the printed `http://127.0.0.1:PORT/` address in a browser. Keep the process
+running during review and close it with Ctrl+C afterwards. `--port 0` chooses an
+available port; a requested fixed port is also accepted. The service listens on
+`127.0.0.1` only and requires no model API, API key or additional package.
+
+The directory must contain `panel.svg` with a finite viewBox and physical width
+and height. Existing `panel.pdf`, `panel.png`, `settings.json`, `qa.json` and
+`elements.json` are optional. SVG, PDF and PNG downloads return the original
+exports. The SVG displayed on the page excludes scripts, active HTML and
+external-resource references while retaining safe symbol and arrow-marker
+definitions and their local references.
+
+## Select and request a change
+
+- Select an SVG element on the figure or in the keyboard-accessible element
+  list. Mapped elements can include marks, axes, labels, legends and colorbars.
+- Choose a supported property, such as color or line width, and enter the value;
+  or leave a free-form instruction such as “Move this legend 2 mm to the right.”
+- Use **Select region** to drag a rectangle over a crowded area. Region
+  coordinates are measured in millimetres from the **top-left of the entire
+  canvas**, including margins and guides. They are not data-axis values.
+- Save the request. **Undo last** marks the last pending request as undone;
+  the record remains in the queue. Downloading requests is optional because the
+  Agent can read `requests.json` directly in the attempt directory.
+
+The browser correctly maps a nonzero SVG viewBox origin, zoomed display and
+letterboxed preview through the SVG screen transformation. Each region retains
+its physical dimensions. A region is a visual location, not an identification
+of the observations inside it.
+
+A matching `elements.json` enables semantic selection. Its `schema_version: 1`
+manifest contains `panel`, `version`, optional `input`, and an `elements` list.
+Each element names an actual SVG ID and may record `role`, `label`, `source_keys`,
+`spec_paths` and `editable`. `version.figure_sha256` must match the full original
+`panel.svg` bytes; physical dimensions must also match. Optional spec, input and
+source-script hashes are preserved with the figure version. The manifest can
+also express these hashes at the top level for compatibility.
+
+Without a matching map, the page supports general and region notes and explains
+that element identity is unavailable. An external SVG can be reviewed this way.
+Fallback coordinates use the SVG's actual physical dimensions. Stale or malformed
+maps supply neither source/spec provenance nor additional version hashes to a
+new note; regenerate the map to restore that traceability.
+A PDF alone cannot supply semantic SVG IDs or recover its source code; export an
+SVG from the plotting script, or collect PDF annotations separately.
+
+## Add selection to a custom plotting script
+
+Scripts written from a reference can use the shared `figure_elements.py` helper
+without adopting a bundled chart recipe. Register real Matplotlib artists before
+export, identify the relevant source records and specification paths, and write
+the manifest after saving the final SVG:
+
+```python
+# Import figure_elements from the discovered EasyViz scripts directory.
+figure_elements.register(
+    fig, fitted_line, "fitted-line", "Treatment trend", key="treatment-trend",
+    source_keys=[{"condition": "Treatment"}],
+    spec_paths=["/style/treatment_line"], editable=["color", "linewidth"],
+)
+fig._easyviz_data_file = source_csv
+fig._easyviz_spec_file = adopted_spec_json
+fig._easyviz_source_script = __file__
+fig.savefig(output_dir / "panel.svg", bbox_inches=None)
+figure_elements.write(
+    fig, output_dir, {**spec, "formats": ["svg", "pdf", "png"]},
+    {"width_mm": 120, "height_mm": 90},
+)
+```
+
+Set `fig._easyviz_track` to the adopted `"create"` or `"reproduce"` track when
+using a custom script. The core CLI accepts `--track create|reproduce`; it never
+invents the track from chart geometry.
+
+Use the actual adopted dimensions, output formats and resolved specification;
+export the PDF and PNG from the same figure. Call `attach_layout(fig, spec)` before
+export when shared axes/guide registration is appropriate, or explicitly register
+the custom legend artists. A scatter collection selects its entire registered
+group. Core scatter `source_keys.records` are one-based observation positions
+in the parsed plotting table, excluding its header; they are not physical CSV
+line numbers. Other implementations should explicitly state their key scheme. Per-point editing requires per-point identity and traceable source keys;
+the helper does not fabricate those identities from image coordinates. Register
+only cosmetic properties that the plotting script can actually change. Preserve
+stable category identity across reordering and never make quantitative marker
+position or area freely draggable.
+
+## Agent handoff
+
+1. Read `requests.json`, the original manifest, adopted specification and plotting
+   script. Process only `status: "pending"` records bound to the intended
+   version. Each request retains its own SHA256 binding, element identity,
+   original source keys, relevant specification paths and optional input paths.
+   Do not apply an older request to a new figure merely because an element ID
+   happens to match.
+2. Translate the instruction into explicit specification or script edits. Keep
+   the data, transformations, uncertainty semantics, category-color assignments,
+   agreed fonts and canvas dimensions unless the instruction expressly changes
+   them. Moving a label or guide is a layout edit; moving a data mark could change
+   its scientific meaning. Recolor a category through its stable mapping, rather
+   than editing a random SVG path.
+3. Save a fresh specification/script and render into `attempt-02`, preserving
+   accepted and previously reviewed exports. Recompute the element map for the
+   new outputs. Never patch the SVG alone and then deliver a PDF from old code.
+4. Inspect the resulting SVG/PNG at the recorded panel proportions and check the
+   PDF dimensions and content. Record the request ID, files changed and validation
+   in the attempt's review notes. Update the separate caption if meaning changed.
+5. Open the new attempt for review. If files change in an already open page,
+   **Reload figure** refreshes the version. Requests saved against a stale
+   browser version are rejected, and older queue records are labelled clearly.
+   Saving is disabled during reload. The displayed SVG and its version change
+   together only after the replacement preview succeeds; a failed reload keeps
+   the original SVG, coordinates and version. Successful reload clears the old
+   selection.
+
+The first workbench is an instruction handoff, not an automatic editing engine.
+There is no shell execution, model call, drag-to-mutate-data operation or promise
+that arbitrary author SVGs expose their original plotting parameters. The Agent
+must make the code edits and inspect the rerendered panel.
+
+## Request format and local API
+
+`requests.json` is the only file the service writes. The root has
+`schema_version: 1`, the latest `version`, `updated_at`, and a `requests` list.
+Each saved request resembles:
+
+```json
+{
+  "id": "generated-uuid",
+  "created_at": "UTC timestamp",
+  "status": "pending",
+  "version": {
+    "figure_sha256": "original-svg-sha256",
+    "spec_sha256": "original-spec-sha256"
+  },
+  "element_id": "easyviz-legend-main",
+  "element": {
+    "role": "legend",
+    "label": "Group legend",
+    "source_keys": [],
+    "spec_paths": ["legend"],
+    "editable": ["position"]
+  },
+  "instruction": "Move this legend 2 mm to the right; keep the font size."
+}
+```
+
+Region/general notes have a null `element_id`; regions add `region_mm` with
+`x`, `y`, `width`, `height` and an explicit coordinate origin. Supported property
+requests add `property` and `value`. Undo changes `status` to `undone` and adds
+`undone_at`, preserving the original ID and content.
+
+`GET /api/state` returns the current version, manifest validity, available
+exports, queue and ephemeral session token. `GET /api/preview.svg?v=HASH` returns
+the safe preview only when the supplied figure hash is current. `POST
+/api/requests` accepts a version, instruction, optional element/region and
+optional supported property/value. `POST /api/undo` accepts a version and
+request ID. Writes require JSON, the exact local `Origin` and the
+`X-EasyViz-Token` from the current state. These constraints reject cross-site
+requests and DNS-rebinding hosts. No paths or executable commands are accepted;
+only a fixed list of figure files is downloadable.

@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "tool": "easyviz.inspect_data",
+  "track": "create",
+  "mode": "create_recommendations",
+  "input": "/private/tmp/easyviz-forward-create/input",
+  "input_root": "/private/tmp/easyviz-forward-create/input",
+  "limits": {
+    "tables": 100,
+    "file_bytes": 20971520,
+    "total_bytes": 104857600,
+    "rows_per_table": 100000,
+    "columns": 200,
+    "directory_entries": 10000,
+    "depth": 8
+  },
+  "missing_tokens": [
+    ""
+  ],
+  "missing_note": "Tokens are treated as missing for profiles only; no source cell is replaced or omitted.",
+  "tables": [
+    {
+      "table_id": "observations.csv",
+      "path": "observations.csv",
+      "sheet": null,
+      "sha256": "ca10e5d39578b2f67f8efbc8d6ef552e98df98ca3c261a8c8877c72f3afac11d",
+      "file_bytes": 755,
+      "rows_inspected": 24,
+      "rows_complete": true,
+      "row_count": 24,
+      "duplicate_rows_in_inspected_scope": 0,
+      "grain": {
+        "observed": "one source table row",
+        "scientific_unit": "unconfirmed",
+        "warning": "Row counts do not establish independent experimental units.",
+        "declared_design": {
+          "unit": "sample_id",
+          "unit_definition": "One independent specimen, explicitly established by study-notes.txt",
+          "structure": "independent",
+          "confirmed": true
+        }
+      },
+      "columns": [
+        {
+          "name": "sample_id",
+          "storage": "string",
+          "type_hint": "identifier_candidate",
+          "missing": 0,
+          "nonmissing": 24,
+          "unique_nonmissing": 24,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "C001",
+            "C002",
+            "C003",
+            "C004",
+            "C005"
+          ],
+          "numeric_parseable": 0,
+          "levels": [
+            "C001",
+            "C002",
+            "C003",
+            "C004",
+            "C005",
+            "C006",
+            "C007",
+            "C008",
+            "C009",
+            "C010",
+            "C011",
+            "C012",
+            "T001",
+            "T002",
+            "T003",
+            "T004",
+            "T005",
+            "T006",
+            "T007",
+            "T008",
+            "T009",
+            "T010",
+            "T011",
+            "T012"
+          ]
+        },
+        {
+          "name": "condition",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 24,
+          "unique_nonmissing": 2,
+          "duplicate_nonmissing": 22,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "Control",
+            "Treatment"
+          ],
+          "numeric_parseable": 0,
+          "levels": [
+            "Control",
+            "Treatment"
+          ]
+        },
+        {
+          "name": "signal",
+          "storage": "string",
+          "type_hint": "numeric",
+          "missing": 0,
+          "nonmissing": 24,
+          "unique_nonmissing": 24,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "2.5364",
+            "6.0345",
+            "6.7251",
+            "5.4007",
+            "5.1752"
+          ],
+          "numeric_parseable": 24,
+          "levels": [
+            "2.5364",
+            "6.0345",
+            "6.7251",
+            "5.4007",
+            "5.1752",
+            "5.603",
+            "5.5358",
+            "3.1132",
+            "5.1717",
+            "6.0891",
+            "7.086",
+            "4.0468",
+            "8.1266",
+            "6.436",
+            "8.5592",
+            "6.6077",
+            "8.6828",
+            "5.9019",
+            "7.5756",
+            "5.4431",
+            "6.0387",
+            "6.2211",
+            "5.7671",
+            "7.9443"
+          ],
+          "descriptive": {
+            "n": 24,
+            "min": 2.5364,
+            "max": 8.6828,
+            "mean": 6.075900000000001,
+            "median": 6.0366,
+            "sample_sd": 1.5228083301698814,
+            "q1": 5.432500000000001,
+            "q3": 6.815325
+          }
+        },
+        {
+          "name": "viability_pct",
+          "storage": "string",
+          "type_hint": "numeric",
+          "missing": 0,
+          "nonmissing": 24,
+          "unique_nonmissing": 24,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "85.3527",
+            "82.9093",
+            "81.9236",
+            "84.4524",
+            "81.3939"
+          ],
+          "numeric_parseable": 24,
+          "levels": [
+            "85.3527",
+            "82.9093",
+            "81.9236",
+            "84.4524",
+            "81.3939",
+            "83.9247",
+            "78.7547",
+            "79.9812",
+            "85.5447",
+            "85.8354",
+            "80.8333",
+            "86.7316",
+            "85.465",
+            "83.9341",
+            "77.0602",
+            "82.6862",
+            "75.91",
+            "78.7496",
+            "78.9271",
+            "86.0356",
+            "77.876",
+            "78.3252",
+            "80.4996",
+            "78.4948"
+          ],
+          "descriptive": {
+            "n": 24,
+            "min": 75.91,
+            "max": 86.7316,
+            "mean": 81.73337083333332,
+            "median": 81.65875,
+            "sample_sd": 3.264670659130962,
+            "q1": 78.753425,
+            "q3": 84.67747499999999
+          }
+        }
+      ],
+      "sample_rows": [
+        {
+          "sample_id": "C001",
+          "condition": "Control",
+          "signal": "2.5364",
+          "viability_pct": "85.3527"
+        },
+        {
+          "sample_id": "C002",
+          "condition": "Control",
+          "signal": "6.0345",
+          "viability_pct": "82.9093"
+        },
+        {
+          "sample_id": "C003",
+          "condition": "Control",
+          "signal": "6.7251",
+          "viability_pct": "81.9236"
+        }
+      ],
+      "sample_values_max_chars": 160,
+      "notes": []
+    }
+  ],
+  "skipped": [],
+  "errors": [],
+  "inference_run": false,
+  "sources_modified": false
+}

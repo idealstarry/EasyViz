@@ -1,0 +1,78 @@
+{
+  "chart": "timecourse",
+  "fields": {
+    "x": "concentration_nm",
+    "estimate": "response",
+    "series": "formulation",
+    "lower": "bound_low",
+    "upper": "bound_high"
+  },
+  "uncertainty": {
+    "kind": "supplied_bounds",
+    "label": "Synthetic supplied asymmetric bounds; no inferential coverage asserted"
+  },
+  "colors": {
+    "NA": "#2581B9",
+    "null": "#D76F3B",
+    "001": "#1AA781"
+  },
+  "order": {
+    "series": [
+      "001",
+      "NA",
+      "null"
+    ]
+  },
+  "options": {
+    "x_scale": "log",
+    "x_limits": [
+      0.02,
+      30
+    ],
+    "x_ticks": [
+      0.03,
+      0.1,
+      0.4,
+      1.5,
+      5,
+      20
+    ],
+    "y_limits": [
+      0,
+      105
+    ],
+    "y_ticks": [
+      0,
+      25,
+      50,
+      75,
+      100
+    ],
+    "band_alpha": 0.2,
+    "curve_line_width_pt": 0.8,
+    "marker_diameter_pt": 2
+  },
+  "layout": {
+    "width_mm": 100,
+    "height_mm": 76,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "labels": {
+    "x": "Concentration (nM)",
+    "y": "Response (a.u.)"
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 3
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

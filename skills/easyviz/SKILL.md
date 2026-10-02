@@ -5,13 +5,13 @@ description: Create or reproduce scientific plots from bioinformatics source dat
 
 # EasyViz
 
-Turn source data, a chart type or reference image, requested changes, and export preferences into individual panels ready for manuscript assembly. Preserve the final canvas dimensions and text sizes so the user can arrange panels at their recorded size.
+Turn a data directory or prepared tables, a scientific question or reference image, requested changes, and export preferences into individual panels ready for manuscript assembly. Preserve the final canvas dimensions and text sizes so the user can arrange panels at their recorded size.
 
 ## Inputs and scope
 
 | Input | Establish |
 | --- | --- |
-| Source data | Field meanings, units, missing values, groups, and independent experimental units. |
+| Data directory or source tables | Inventory relevant files and tables; establish field meanings, units, missing values, groups, and independent experimental units. |
 | Chart type or reference | The intended visual message and the appropriate track. |
 | Additions or changes | Layers, labels, statistics, palette, or styling to retain or modify. |
 | Layout and export | Existing figure settings, physical panel dimensions, font, and requested formats. |
@@ -24,10 +24,15 @@ Choose statistics from the study design: establish pairing, independent replicat
 
 | Track | Trigger | Read |
 | --- | --- | --- |
-| **reproduce** | A reference or “standard” defines the visual structure or style. Default input is a reference image plus user data, without author code. | [Reproduce](references/reproduce.md) |
-| **create** | Build from data and a specified or yet-to-be-selected chart type. | [Create](references/create.md) |
+| **reproduce** | A reference or “standard” defines the visual structure or style. Default input is a reference image plus user data, without author code. The reference paper need not publish Source Data. | [Reproduce](references/reproduce.md), then [Reference to code](references/reference-to-code.md) when staging inputs or implementing unfamiliar layers. |
+| **create** | Build from data and a specified or yet-to-be-selected question/chart. A directory and no plot idea are valid inputs. | [Create](references/create.md); start with [Data exploration](references/data-exploration.md) when files or useful comparisons are unresolved. |
 
 Honor an explicit track. Color-only inspiration can remain in create. For additions to an existing plot, retain its track, script, and accepted settings, then review the changed result.
+
+Literature Source Data supplies auditable learning and validation cases for
+reproduce; it is not required for runtime reproduction with the user's own data.
+Directory inventory may help either track, but create recommendations must not
+replace an adopted reference's structure. Keep only these two tracks.
 
 ## Shared resources
 
@@ -36,6 +41,8 @@ Read the resources needed for the current chart rather than loading the whole li
 | Resource | Use |
 | --- | --- |
 | [First panel](references/quick-start.md) | Generate a validated core-chart spec from explicit column roles; measure text and guide space within the fixed canvas. |
+| [Statistical analysis](references/statistical-analysis.md) | Execute an explicit design and comparison plan separately from drawing; retain effects, supported intervals, exclusions and multiplicity. |
+| [Figure workbench](references/figure-workbench.md) | Select SVG layers or canvas regions, save version-bound change requests, then edit source/spec and redraw all formats in either track. |
 | [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
 | [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
 | [Palettes](references/palettes.md) | Palette selection and consistent category-to-color mappings. |
@@ -45,6 +52,7 @@ Read the resources needed for the current chart rather than loading the whole li
 | [Chart library](references/chart-library.md) | Supported chart recipes, input contracts, reusable scripts, and examples. |
 | [Worked cases](references/examples.md) | Rich create panels and reviewed image-data reconstructions with scripts and provenance. |
 | [Literature Source Data](references/literature-source-data.md) | Select auditable paper panels, retain source semantics, and extract reusable implementations with bounded transfer checks. |
+| [Time courses](references/timecourse-plot.md) | Supplied estimates with SD or explicit interval bands, irregular x grids and explicitly labelled single/dual axes. |
 | [Supplied intervals](references/interval-plot.md) | Plot estimates and asymmetric intervals with explicit log/reference/fill semantics; no sample-size requirement or model fitting. |
 | [Paired observations](references/paired-plot.md) | Keep explicit unit correspondence across conditions; display raw values with median/IQR and optionally adopted connectors. |
 | [Replicate bars](references/replicate-plot.md) | Stacked or grouped component summaries with raw replicate layers, or supplied ratio observations; distinguish component SD from total SD. |

@@ -1,0 +1,440 @@
+{
+  "version": 1,
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "adopted_before_implementation_inspection": true,
+  "inputs": {
+    "reference": "/private/tmp/easyviz-forward-reproduce/input/reference.png",
+    "data": "/private/tmp/easyviz-forward-reproduce/input/user-summaries.csv",
+    "user_notes": "/private/tmp/easyviz-forward-reproduce/input/user-notes.txt",
+    "saved_reading": "/private/tmp/easyviz-forward-reproduce/input/independent-reading.md",
+    "author_code_accessed": false,
+    "paper_source_data_accessed": false,
+    "original_caption_accessed": false
+  },
+  "data_mapping": {
+    "t_min": "elapsed time in minutes",
+    "channel": "Width or Length; distinct quantities",
+    "supplied_mean": "provided summary in µm",
+    "supplied_sd": "provided SD in µm",
+    "grain": "one summary per time/channel",
+    "experimental_unit": "unknown",
+    "rows": 14,
+    "times": [
+      0,
+      2,
+      5,
+      9,
+      14,
+      20,
+      28
+    ],
+    "group_order": [
+      "Width",
+      "Length"
+    ],
+    "sorting": [
+      "channel",
+      "t_min"
+    ],
+    "missingness": "Reject missing/nonfinite values and duplicate time/channel keys; omit no rows.",
+    "interpolation": "Straight segments between supplied time points only; no fitted model, smoothing, aggregation or derived observations."
+  },
+  "statistical_layers": {
+    "status": "supplied summaries only",
+    "uncertainty": "supplied_mean ± supplied_sd",
+    "sample_size": "unknown",
+    "pairing": "unknown",
+    "multiple_testing": "not applicable; no comparisons or tests"
+  },
+  "requirements": [
+    {
+      "id": "R1",
+      "requirement": "Shared-time plot with independent left and right y axes; means and bands for both channels",
+      "priority": "required",
+      "basis": [
+        "E1",
+        "E2",
+        "E8"
+      ]
+    },
+    {
+      "id": "R2",
+      "requirement": "Blue Width, coral Length, color-associated y axes; no standalone legend",
+      "priority": "required",
+      "basis": [
+        "E4",
+        "E5",
+        "user_notes"
+      ]
+    },
+    {
+      "id": "R3",
+      "requirement": "No markers, in-image title, panel letter or explanatory prose",
+      "priority": "required",
+      "basis": [
+        "user_notes",
+        "skill manuscript defaults"
+      ]
+    },
+    {
+      "id": "R4",
+      "requirement": "120 × 90 mm; Arial 8 pt; SVG PDF PNG; separate caption",
+      "priority": "required",
+      "basis": [
+        "user_notes"
+      ]
+    },
+    {
+      "id": "R5",
+      "requirement": "All 14 summary rows retained; plot full mean ± SD range without clipping",
+      "priority": "required",
+      "basis": [
+        "user data",
+        "E8"
+      ]
+    },
+    {
+      "id": "R6",
+      "requirement": "White background, colored left/right spines, black bottom spine, no top spine, inward ticks, pale fills behind lines",
+      "priority": "preferred",
+      "basis": [
+        "E1",
+        "E4"
+      ]
+    }
+  ],
+  "layout": {
+    "width_mm": 120,
+    "height_mm": 90,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "tick_font_size_pt": 8,
+    "axis_font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.8,
+    "spine_width_pt": 0.6,
+    "axes_bounds": [
+      0.165,
+      0.17,
+      0.693,
+      0.72
+    ],
+    "legend_layout": {
+      "roles": [],
+      "placement": "none",
+      "reason": "Colored y axes decode channel identity, as in reference",
+      "complete_bounds": null,
+      "reserved_region": null
+    }
+  },
+  "axes": {
+    "x_label": "Time (min)",
+    "left_label": "Width (µm)",
+    "right_label": "Length (µm)",
+    "x_limits": [
+      0,
+      29
+    ],
+    "x_ticks": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25
+    ],
+    "left_limits": [
+      0.75,
+      1.2
+    ],
+    "left_ticks": [
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2
+    ],
+    "right_limits": [
+      1.8,
+      4.6
+    ],
+    "right_ticks": [
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5
+    ],
+    "scale": "linear"
+  },
+  "colors": {
+    "Width": "#0072B2",
+    "Length": "#E76F51",
+    "band_alpha": 0.28,
+    "outline_policy": "Both filled bands borderless, matching central curves have 0.8 pt solid strokes; axes are separate roles."
+  },
+  "legend_layout": {
+    "roles": [],
+    "placement": "none",
+    "reason": "Colored y axes decode channel identity, as in reference",
+    "complete_bounds": null,
+    "reserved_region": null
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "intentional_differences": [
+    "Real user time range is 0–28 min and the trajectories differ from the reference; no reference values or paper sample sizes are imported.",
+    "Axis labels use Width and Length because supplied data names quantities without identifying cell measurements.",
+    "Reference dots are omitted by explicit user instruction.",
+    "Reference panel letter d is omitted because assembly lettering is not requested.",
+    "120 × 90 mm and equal 8 pt text follow the user, rather than estimating typography from screenshot pixels.",
+    "Y limits/ticks fit complete supplied mean ± SD intervals."
+  ],
+  "open_items": [
+    "Sampling design and sample sizes remain unknown; no inferential statistics performed.",
+    "Reference colors are approximate; explicit user blue/coral mapping controls final colors."
+  ],
+  "implementation": {
+    "route": "custom-script",
+    "path": "packet/implementation/plot_panel.py",
+    "reason": "Twin y axes with two supplied SD bands are implemented directly from user summaries; no example, case, author code or original tables will be read."
+  },
+  "layer_plan": [
+    {
+      "source_layer_id": "width_band",
+      "evidence_ids": [
+        "E1",
+        "E4",
+        "E7",
+        "E8"
+      ],
+      "reading_description": "Width uncertainty band",
+      "required_data_meanings": [
+        "time",
+        "width mean",
+        "width supplied SD"
+      ],
+      "status": "adopted",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "x": "t_min",
+        "y": "supplied_mean",
+        "group": "channel=Width",
+        "spread": "supplied_sd"
+      },
+      "transform": "Sort by t_min; derive low=mean−SD, high=mean+SD; straight-segment polygons",
+      "artist": "borderless PolyCollection with stable semantic ID",
+      "backend": "Matplotlib fill_between; independent left Width/right Length data coordinates",
+      "verification": [
+        "Compare all 7 mean coordinates per channel against source rows",
+        "Compare band vertices at each input time against independently read mean±SD",
+        "Check full interval ranges lie within axes"
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required supplied summaries, matching observed curve+band structure"
+      }
+    },
+    {
+      "source_layer_id": "length_band",
+      "evidence_ids": [
+        "E1",
+        "E4",
+        "E7",
+        "E8"
+      ],
+      "reading_description": "Length uncertainty band",
+      "required_data_meanings": [
+        "time",
+        "length mean",
+        "length supplied SD"
+      ],
+      "status": "adopted",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "x": "t_min",
+        "y": "supplied_mean",
+        "group": "channel=Length",
+        "spread": "supplied_sd"
+      },
+      "transform": "Sort by t_min; derive low=mean−SD, high=mean+SD; straight-segment polygons",
+      "artist": "borderless PolyCollection with stable semantic ID",
+      "backend": "Matplotlib fill_between; independent left Width/right Length data coordinates",
+      "verification": [
+        "Compare all 7 mean coordinates per channel against source rows",
+        "Compare band vertices at each input time against independently read mean±SD",
+        "Check full interval ranges lie within axes"
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required supplied summaries, matching observed curve+band structure"
+      }
+    },
+    {
+      "source_layer_id": "width_mean",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E4",
+        "E8"
+      ],
+      "reading_description": "Blue width trajectory",
+      "required_data_meanings": [
+        "time",
+        "width supplied mean"
+      ],
+      "status": "adopted",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "x": "t_min",
+        "y": "supplied_mean",
+        "group": "channel=Width"
+      },
+      "transform": "Sort by t_min; no aggregation; straight segments between supplied means",
+      "artist": "markerless Line2D with stable semantic ID",
+      "backend": "Matplotlib plot; independent left Width/right Length data coordinates",
+      "verification": [
+        "Compare all 7 mean coordinates per channel against source rows",
+        "Compare band vertices at each input time against independently read mean±SD",
+        "Check full interval ranges lie within axes"
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required supplied summaries, matching observed curve+band structure"
+      }
+    },
+    {
+      "source_layer_id": "length_mean",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E4",
+        "E8"
+      ],
+      "reading_description": "Coral length trajectory",
+      "required_data_meanings": [
+        "time",
+        "length supplied mean"
+      ],
+      "status": "adopted",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "x": "t_min",
+        "y": "supplied_mean",
+        "group": "channel=Length"
+      },
+      "transform": "Sort by t_min; no aggregation; straight segments between supplied means",
+      "artist": "markerless Line2D with stable semantic ID",
+      "backend": "Matplotlib plot; independent left Width/right Length data coordinates",
+      "verification": [
+        "Compare all 7 mean coordinates per channel against source rows",
+        "Compare band vertices at each input time against independently read mean±SD",
+        "Check full interval ranges lie within axes"
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required supplied summaries, matching observed curve+band structure"
+      }
+    },
+    {
+      "source_layer_id": "axes",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "reading_description": "Shared x and independent colored y axes",
+      "required_data_meanings": [
+        "time in minutes",
+        "width and length in micrometres"
+      ],
+      "status": "adopted",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "x": "t_min in min",
+        "left": "Width summaries in µm",
+        "right": "Length summaries in µm"
+      },
+      "transform": "Independent linear y scales; shared linear x scale with new user-data limits",
+      "artist": "two overlaid Axes; colored y labels/ticks/spines, shared black x axis",
+      "backend": "Matplotlib add_axes/twinx, data and axes coordinates",
+      "verification": [
+        "Twin axis positions and x limits identical",
+        "Labels, scales, ticks and colors equal adopted-spec.json",
+        "Visible text fits fixed canvas; no top spine or grid"
+      ],
+      "adoption": {
+        "decision": "adapt",
+        "priority": "required",
+        "reason": "Reference geometry and channel decoding retained, scales fitted to new data"
+      }
+    },
+    {
+      "source_layer_id": "dots",
+      "evidence_ids": [
+        "E6"
+      ],
+      "reading_description": "Tiny reference line-associated dots",
+      "required_data_meanings": [
+        "unknown dot semantics"
+      ],
+      "status": "omitted-intentionally",
+      "data_artifacts": [],
+      "field_mapping": {},
+      "transform": "none",
+      "artist": "none",
+      "backend": "none",
+      "verification": [
+        "No nonempty markers or panel lettering artists present"
+      ],
+      "adoption": {
+        "decision": "omit intentionally",
+        "priority": "required",
+        "reason": "Explicit no markers request"
+      }
+    },
+    {
+      "source_layer_id": "letter",
+      "evidence_ids": [
+        "E6"
+      ],
+      "reading_description": "Reference panel letter",
+      "required_data_meanings": [],
+      "status": "omitted-intentionally",
+      "data_artifacts": [],
+      "field_mapping": {},
+      "transform": "none",
+      "artist": "none",
+      "backend": "none",
+      "verification": [
+        "No nonempty markers or panel lettering artists present"
+      ],
+      "adoption": {
+        "decision": "omit intentionally",
+        "priority": "required",
+        "reason": "Panel lettering not requested; assembly default"
+      }
+    }
+  ]
+}
