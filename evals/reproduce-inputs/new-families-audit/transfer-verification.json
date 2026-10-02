@@ -1,0 +1,307 @@
+{
+  "status": "pass",
+  "scope": "Synthetic engineering transfer only, not independent literature evidence or new biological replication.",
+  "independence": "Public CLI only; independent SVG/PDF evaluator imports no plotting implementation.",
+  "passed": 33,
+  "total": 33,
+  "checks": [
+    {
+      "check": "Changed schema ecdf: public CLI render",
+      "status": "pass",
+      "return_code": 0,
+      "output": "{\"status\": \"pass\", \"output\": \"/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/new-families-audit/transfer/ecdf/output\", \"width_mm\": 110.0, \"height_mm\": 90.0}",
+      "error": ""
+    },
+    {
+      "check": "Changed schema ecdf: literal IDs and category strings preserved",
+      "status": "pass",
+      "mapped_string_columns": [
+        "phase",
+        "pid"
+      ]
+    },
+    {
+      "check": "ecdf/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        866,
+        709
+      ],
+      "pdf_mm": [
+        110.00000406901042,
+        89.99999745686848
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "DejaVuSans"
+      ],
+      "svg_mm": [
+        110.00000013333332,
+        89.99999991666667
+      ]
+    },
+    {
+      "check": "ecdf/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": null
+    },
+    {
+      "check": "ecdf/output: SVG exact right-continuous empirical jumps",
+      "status": "pass",
+      "source_counts": [
+        {
+          "group": "001",
+          "observations": 4,
+          "distinct_values": 2,
+          "maximum_tie": 3
+        },
+        {
+          "group": "NA",
+          "observations": 3,
+          "distinct_values": 2,
+          "maximum_tie": 2
+        }
+      ],
+      "smoothing_applied": false
+    },
+    {
+      "check": "ecdf/output: PDF exact empirical curve segments",
+      "status": "pass",
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "Changed schema ecdf: source row permutation preserves picture",
+      "status": "pass",
+      "original_png_sha256": "8e75b2439f528aadbec9cd6a362028890d46f04e61676f1420a250f28c35b162",
+      "return_code": 0
+    },
+    {
+      "check": "Changed schema ecdf: ambiguity rejected and old exports invalidated",
+      "status": "pass",
+      "return_code": 2,
+      "attempt_status": "failed",
+      "error": "Duplicate unit/group rows; aggregate or select observations explicitly upstream"
+    },
+    {
+      "check": "Changed schema ecdf: repaired run returns original picture",
+      "status": "pass"
+    },
+    {
+      "check": "Changed schema paired: public CLI render",
+      "status": "pass",
+      "return_code": 0,
+      "output": "{\"status\": \"pass\", \"output\": \"/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/new-families-audit/transfer/paired/output\", \"width_mm\": 110.0, \"height_mm\": 90.0}",
+      "error": ""
+    },
+    {
+      "check": "Changed schema paired: literal IDs and category strings preserved",
+      "status": "pass",
+      "mapped_string_columns": [
+        "wid",
+        "visit",
+        "arm"
+      ]
+    },
+    {
+      "check": "paired/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        866,
+        709
+      ],
+      "pdf_mm": [
+        110.00000406901042,
+        89.99999745686848
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "DejaVuSans"
+      ],
+      "svg_mm": [
+        110.00000013333332,
+        89.99999991666667
+      ]
+    },
+    {
+      "check": "paired/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": null
+    },
+    {
+      "check": "paired/output: SVG/PDF all source points retain cohort, condition and raw value",
+      "status": "pass",
+      "cell_counts": [
+        {
+          "block": "Arm Z",
+          "condition": "Follow-up",
+          "n": 2
+        },
+        {
+          "block": "Arm Z",
+          "condition": "Baseline",
+          "n": 2
+        },
+        {
+          "block": "Arm Z",
+          "condition": "Interim",
+          "n": 2
+        },
+        {
+          "block": "Arm A",
+          "condition": "Follow-up",
+          "n": 2
+        },
+        {
+          "block": "Arm A",
+          "condition": "Baseline",
+          "n": 2
+        },
+        {
+          "block": "Arm A",
+          "condition": "Interim",
+          "n": 2
+        }
+      ],
+      "mismatches": []
+    },
+    {
+      "check": "paired/output: SVG/PDF medians and IQRs computed on raw scale",
+      "status": "pass",
+      "intervals": 6,
+      "quantile_method": "weibull",
+      "interval_meaning": "IQR of observations, not CI"
+    },
+    {
+      "check": "paired/output: actual SVG connectors retain declared within-unit pairs",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Changed schema paired: source row permutation preserves picture",
+      "status": "pass",
+      "original_png_sha256": "4017e39cd47d33a76d7495f6c0b0c8ac787fce70d85f78105d08fac11c5d1965",
+      "return_code": 0
+    },
+    {
+      "check": "Changed schema paired: ambiguity rejected and old exports invalidated",
+      "status": "pass",
+      "return_code": 2,
+      "attempt_status": "failed",
+      "error": "Incomplete repeated measurements: every unit must have exactly one value for every declared condition; no pair is dropped or filled"
+    },
+    {
+      "check": "Changed schema paired: repaired run returns original picture",
+      "status": "pass"
+    },
+    {
+      "check": "Changed schema replicate: public CLI render",
+      "status": "pass",
+      "return_code": 0,
+      "output": "{\"status\": \"pass\", \"output\": \"/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/new-families-audit/transfer/replicate/output\", \"width_mm\": 110.0, \"height_mm\": 90.0}",
+      "error": ""
+    },
+    {
+      "check": "Changed schema replicate: literal IDs and category strings preserved",
+      "status": "pass",
+      "mapped_string_columns": [
+        "treatment",
+        "run",
+        "analyte"
+      ]
+    },
+    {
+      "check": "replicate/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        866,
+        709
+      ],
+      "pdf_mm": [
+        110.00000406901042,
+        89.99999745686848
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "DejaVuSans"
+      ],
+      "svg_mm": [
+        110.00000013333332,
+        89.99999991666667
+      ]
+    },
+    {
+      "check": "replicate/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": null
+    },
+    {
+      "check": "replicate/output: SVG bars are exact unnormalized supplied-value means",
+      "status": "pass",
+      "bars": 6,
+      "mismatches": []
+    },
+    {
+      "check": "replicate/output: SVG intervals use correct sample SD endpoints",
+      "status": "pass",
+      "intervals": 6,
+      "mismatches": [],
+      "quantity": "supplied values"
+    },
+    {
+      "check": "replicate/output: SVG raw-point positions match every source unit",
+      "status": "pass",
+      "points": 12,
+      "mismatches": []
+    },
+    {
+      "check": "replicate/output: actual SVG circle size and borderless policy",
+      "status": "pass",
+      "geometric_fill_area_pt2": 7,
+      "mismatches": []
+    },
+    {
+      "check": "replicate/output: SVG component colors and declared control hatches",
+      "status": "pass",
+      "color_mismatches": [],
+      "hatch_mismatches": []
+    },
+    {
+      "check": "replicate/output: PDF raw-point centers independently match SVG/source",
+      "status": "pass",
+      "audited_points": 12,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "replicate/output: actual PDF sample SD endpoints",
+      "status": "pass",
+      "audited_intervals": 6,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "Changed schema replicate: source row permutation preserves picture",
+      "status": "pass",
+      "original_png_sha256": "fab0f6ab6513a7cab4c29b1cf188a9cb44e6514199f593ce60bdcac72f1c9efe",
+      "return_code": 0
+    },
+    {
+      "check": "Changed schema replicate: ambiguity rejected and old exports invalidated",
+      "status": "pass",
+      "return_code": 2,
+      "attempt_status": "failed",
+      "error": "Every condition-unit must contain all components exactly once; missing is not zero"
+    },
+    {
+      "check": "Changed schema replicate: repaired run returns original picture",
+      "status": "pass"
+    }
+  ]
+}

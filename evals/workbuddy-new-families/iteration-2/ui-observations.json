@@ -1,0 +1,16 @@
+{
+  "status": "visibly_completed",
+  "kind": "intentional one-prompt correction replay in same WorkBuddy conversation, not replication",
+  "ui_request_time": "16:20",
+  "ui_model_label": "GLM-5.3-Flash",
+  "prompt_additions": "Updated resource reread and actual-facts check; no prescribed unit/tie answers or implementation script named.",
+  "completion": {
+    "duration_display": "2m40s",
+    "time_display": "16:23",
+    "usage_display": 4.14,
+    "usage_unit": "not named in UI",
+    "model_label": "GLM-5.3-Flash",
+    "visual_revisions_reported": 0
+  },
+  "encountered_issue": "Shell cwd reset caused one accidental replay of old helper into original /tmp output; Agent detected it and switched to absolute helper/data/spec/out paths. Earlier repo-frozen original stayed unchanged."
+}

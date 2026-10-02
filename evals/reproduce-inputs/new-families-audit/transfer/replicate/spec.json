@@ -1,0 +1,57 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "treatment",
+    "unit": "run",
+    "value": "observation",
+    "component": "analyte"
+  },
+  "order": {
+    "condition": [
+      "Zulu",
+      "Alpha"
+    ],
+    "component": [
+      "003",
+      "001",
+      "002"
+    ]
+  },
+  "colors": {
+    "003": "#4E78A0",
+    "001": "#A05272",
+    "002": "#C49E54"
+  },
+  "labels": {
+    "y": "Measurement"
+  },
+  "options": {
+    "mode": "grouped",
+    "uncertainty": "sample_sd",
+    "bar_width": 0.6,
+    "marker_area_pt2": 7,
+    "y_limits": [
+      -5,
+      15
+    ]
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 90,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 200,
+    "auto_fit": true
+  },
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 3
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ]
+}

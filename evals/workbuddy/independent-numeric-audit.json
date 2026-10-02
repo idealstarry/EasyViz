@@ -1,0 +1,1075 @@
+{
+  "audited_at_utc": "2026-10-02T06:37:03.781480+00:00",
+  "audit_author": "independent audit agent; neither WorkBuddy author nor blind visual reviewer",
+  "manifest_before": {
+    "status": "pass",
+    "evidence": {
+      "files_checked": 207,
+      "mismatches": []
+    }
+  },
+  "scope": "One synthetic 8 x 3 dot-panel task, once in each arm. No model-wide effectiveness, cost-efficiency, backend identity, or journal acceptance conclusion follows.",
+  "arms": {
+    "baseline": {
+      "source_sha256": "6735e7fba407c55d9f28045d0d59efedfbf8dabfad378b683ac413cd7fb4b322",
+      "table": {
+        "status": "pass",
+        "evidence": {
+          "source_rows": 24,
+          "plotted_rows": 24,
+          "comparison": "Every original categorical value and numeric value in the original row order; extra derived columns allowed.",
+          "measured_zero_count": 2
+        }
+      },
+      "svg": {
+        "checks": {
+          "physical_canvas_mm": {
+            "status": "pass",
+            "evidence": [
+              120.0,
+              90.0
+            ]
+          },
+          "viewbox_point_canvas": {
+            "status": "pass",
+            "evidence": [
+              0.0,
+              0.0,
+              340.15748,
+              255.11811
+            ]
+          },
+          "editable_text": {
+            "status": "pass",
+            "evidence": {
+              "text_node_count": 24,
+              "not_outline_only": true
+            }
+          },
+          "font_8_pt": {
+            "status": "pass",
+            "evidence": {
+              "svg_font_sizes": [
+                8.0
+              ],
+              "font_family_Arial_in_every_text_style": true
+            }
+          },
+          "category_order": {
+            "status": "pass",
+            "evidence": {
+              "x": [
+                "Control",
+                "Low dose",
+                "High dose"
+              ],
+              "y_top_to_bottom": [
+                "Resident macrophages",
+                "Activated monocytes",
+                "Interferon macrophages",
+                "Lipid-associated cells",
+                "Antigen-presenting cells",
+                "Cycling myeloid cells",
+                "Inflammatory macrophages",
+                "Tissue monocytes"
+              ]
+            }
+          },
+          "actual_row_coordinate_coverage": {
+            "status": "pass",
+            "evidence": {
+              "source_rows": 24,
+              "positive_circle_paths": 22,
+              "degenerate_zero_circle_paths": 0,
+              "separate_zero_symbols": 2,
+              "invalid_source_coordinates": 0
+            }
+          },
+          "area_proportional_to_fraction": {
+            "status": "pass",
+            "evidence": {
+              "source_of_measurement": "written SVG circle-path extrema, excluding stroke",
+              "diameter_squared_over_fraction_expected_pt2": 251.98437596875195,
+              "max_abs_error_pt2": 1.7840961703541325e-05,
+              "physical_circle_area_relation": "nominal filled-circle area = pi/4 * diameter_pt^2; therefore proportional to fraction",
+              "note": "The tiny cubic approximation error and rim/antialiasing do not change the proportional mapping."
+            }
+          },
+          "circular_not_distorted_markers": {
+            "status": "pass",
+            "evidence": {
+              "max_abs_diameter_xy_difference_pt": 1.0000000258969521e-06
+            }
+          },
+          "size_legend_matches_actual_marker_scale": {
+            "status": "pass",
+            "evidence": {
+              "legend_values": [
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "measured_legend_diameters_pt": [
+                7.937007999999992,
+                11.224624000000006,
+                13.747300999999993,
+                15.874015999999983
+              ],
+              "max_abs_error_diameter_squared_pt2": 7.999503509381611e-06,
+              "measurement": "Four actual written SVG circle legend paths, same coefficient as source markers"
+            }
+          },
+          "measured_zeros": {
+            "status": "pass",
+            "evidence": {
+              "quantitative_circle_diameters_pt": [
+                0.0,
+                0.0
+              ],
+              "separate_symbol_path": "M -2.5 2.5  L 2.5 -2.5  M -2.5 -2.5  L 2.5 2.5",
+              "zero_rows": [
+                {
+                  "Cell type": "Resident macrophages",
+                  "Treatment arm": "Control"
+                },
+                {
+                  "Cell type": "Cycling myeloid cells",
+                  "Treatment arm": "Low dose"
+                }
+              ],
+              "note": "A finite non-quantitative state glyph is allowed; neither arm substitutes a small positive quantitative circle."
+            }
+          },
+          "actual_positive_fill_colors": {
+            "status": "pass",
+            "evidence": {
+              "colormap": "viridis",
+              "color_limits": [
+                -0.22,
+                1.66
+              ],
+              "positive_rows_checked": 22,
+              "hex_mismatches": 0,
+              "source_of_measurement": "written SVG fill values compared with an independent colormap calculation"
+            }
+          },
+          "no_in_image_title_or_narrative": {
+            "status": "pass",
+            "evidence": {
+              "unexpected_text": [],
+              "measurement": "Actual editable SVG text nodes; category names, axis/legend identifiers and numeric ticks/keys allowed"
+            }
+          }
+        },
+        "per_source_row_svg_measurements": [
+          {
+            "cell_type": "Resident macrophages",
+            "treatment_arm": "Control",
+            "fraction": 0.0,
+            "score": 0.12,
+            "circle_diameter_pt": 0.0,
+            "circle_diameter_mm": 0.0,
+            "nominal_circle_area_pt2": 0.0,
+            "observed_fill": null,
+            "expected_fill": "#433e85"
+          },
+          {
+            "cell_type": "Resident macrophages",
+            "treatment_arm": "Low dose",
+            "fraction": 0.15,
+            "score": -0.05,
+            "circle_diameter_pt": 6.14797999999999,
+            "circle_diameter_mm": 2.168870722222218,
+            "nominal_circle_area_pt2": 29.686211237070783,
+            "observed_fill": "#482173",
+            "expected_fill": "#482173"
+          },
+          {
+            "cell_type": "Resident macrophages",
+            "treatment_arm": "High dose",
+            "fraction": 0.3,
+            "score": -0.22,
+            "circle_diameter_pt": 8.694555999999977,
+            "circle_diameter_mm": 3.0672461444444363,
+            "nominal_circle_area_pt2": 59.37241295223801,
+            "observed_fill": "#440154",
+            "expected_fill": "#440154"
+          },
+          {
+            "cell_type": "Activated monocytes",
+            "treatment_arm": "Control",
+            "fraction": 0.35,
+            "score": 0.34,
+            "circle_diameter_pt": 9.391194999999982,
+            "circle_diameter_mm": 3.3130049027777715,
+            "nominal_circle_area_pt2": 69.26783250858688,
+            "observed_fill": "#355f8d",
+            "expected_fill": "#355f8d"
+          },
+          {
+            "cell_type": "Activated monocytes",
+            "treatment_arm": "Low dose",
+            "fraction": 0.5,
+            "score": 0.17,
+            "circle_diameter_pt": 11.224624000000006,
+            "circle_diameter_mm": 3.9597979111111132,
+            "nominal_circle_area_pt2": 98.95402986999028,
+            "observed_fill": "#404688",
+            "expected_fill": "#404688"
+          },
+          {
+            "cell_type": "Activated monocytes",
+            "treatment_arm": "High dose",
+            "fraction": 0.65,
+            "score": -0.0,
+            "circle_diameter_pt": 12.798040000000015,
+            "circle_diameter_mm": 4.514864111111116,
+            "nominal_circle_area_pt2": 128.64022996997718,
+            "observed_fill": "#482979",
+            "expected_fill": "#482979"
+          },
+          {
+            "cell_type": "Interferon macrophages",
+            "treatment_arm": "Control",
+            "fraction": 0.7,
+            "score": 0.56,
+            "circle_diameter_pt": 13.281155000000012,
+            "circle_diameter_mm": 4.685296347222226,
+            "nominal_circle_area_pt2": 138.5356580098325,
+            "observed_fill": "#287c8e",
+            "expected_fill": "#287c8e"
+          },
+          {
+            "cell_type": "Interferon macrophages",
+            "treatment_arm": "Low dose",
+            "fraction": 0.85,
+            "score": 0.39,
+            "circle_diameter_pt": 14.635119000000003,
+            "circle_diameter_mm": 5.162944758333334,
+            "nominal_circle_area_pt2": 168.22184720056939,
+            "observed_fill": "#31668e",
+            "expected_fill": "#31668e"
+          },
+          {
+            "cell_type": "Interferon macrophages",
+            "treatment_arm": "High dose",
+            "fraction": 0.05,
+            "score": 0.22,
+            "circle_diameter_pt": 3.549537999999984,
+            "circle_diameter_mm": 1.252198127777772,
+            "nominal_circle_area_pt2": 9.895404258799202,
+            "observed_fill": "#3d4d8a",
+            "expected_fill": "#3d4d8a"
+          },
+          {
+            "cell_type": "Lipid-associated cells",
+            "treatment_arm": "Control",
+            "fraction": 0.1,
+            "score": 0.78,
+            "circle_diameter_pt": 5.019805000000019,
+            "circle_diameter_mm": 1.7708756527777845,
+            "nominal_circle_area_pt2": 19.790810254221675,
+            "observed_fill": "#1f988b",
+            "expected_fill": "#1f988b"
+          },
+          {
+            "cell_type": "Lipid-associated cells",
+            "treatment_arm": "Low dose",
+            "fraction": 0.25,
+            "score": 0.61,
+            "circle_diameter_pt": 7.937007999999992,
+            "circle_diameter_mm": 2.8000000444444413,
+            "nominal_circle_area_pt2": 49.47701809337631,
+            "observed_fill": "#26828e",
+            "expected_fill": "#26828e"
+          },
+          {
+            "cell_type": "Lipid-associated cells",
+            "treatment_arm": "High dose",
+            "fraction": 0.4,
+            "score": 0.44,
+            "circle_diameter_pt": 10.039608999999984,
+            "circle_diameter_mm": 3.541750952777772,
+            "nominal_circle_area_pt2": 79.16322524670412,
+            "observed_fill": "#2f6c8e",
+            "expected_fill": "#2f6c8e"
+          },
+          {
+            "cell_type": "Antigen-presenting cells",
+            "treatment_arm": "Control",
+            "fraction": 0.45,
+            "score": 1.0,
+            "circle_diameter_pt": 10.648613000000012,
+            "circle_diameter_mm": 3.7565940305555596,
+            "nominal_circle_area_pt2": 89.05862160239084,
+            "observed_fill": "#2fb47c",
+            "expected_fill": "#2fb47c"
+          },
+          {
+            "cell_type": "Antigen-presenting cells",
+            "treatment_arm": "Low dose",
+            "fraction": 0.6,
+            "score": 0.83,
+            "circle_diameter_pt": 12.295960000000008,
+            "circle_diameter_mm": 4.337741444444447,
+            "nominal_circle_area_pt2": 118.74484494828367,
+            "observed_fill": "#1f9e89",
+            "expected_fill": "#1f9e89"
+          },
+          {
+            "cell_type": "Antigen-presenting cells",
+            "treatment_arm": "High dose",
+            "fraction": 0.75,
+            "score": 0.66,
+            "circle_diameter_pt": 13.747300999999993,
+            "circle_diameter_mm": 4.849742297222219,
+            "nominal_circle_area_pt2": 148.4310517734594,
+            "observed_fill": "#23888e",
+            "expected_fill": "#23888e"
+          },
+          {
+            "cell_type": "Cycling myeloid cells",
+            "treatment_arm": "Control",
+            "fraction": 0.8,
+            "score": 1.22,
+            "circle_diameter_pt": 14.198150999999996,
+            "circle_diameter_mm": 5.008792158333332,
+            "nominal_circle_area_pt2": 158.32644583838436,
+            "observed_fill": "#67cc5c",
+            "expected_fill": "#67cc5c"
+          },
+          {
+            "cell_type": "Cycling myeloid cells",
+            "treatment_arm": "Low dose",
+            "fraction": 0.0,
+            "score": 1.05,
+            "circle_diameter_pt": 0.0,
+            "circle_diameter_mm": 0.0,
+            "nominal_circle_area_pt2": 0.0,
+            "observed_fill": null,
+            "expected_fill": "#38b977"
+          },
+          {
+            "cell_type": "Cycling myeloid cells",
+            "treatment_arm": "High dose",
+            "fraction": 0.15,
+            "score": 0.88,
+            "circle_diameter_pt": 6.147980000000018,
+            "circle_diameter_mm": 2.1688707222222288,
+            "nominal_circle_area_pt2": 29.686211237071056,
+            "observed_fill": "#20a486",
+            "expected_fill": "#20a486"
+          },
+          {
+            "cell_type": "Inflammatory macrophages",
+            "treatment_arm": "Control",
+            "fraction": 0.2,
+            "score": 1.44,
+            "circle_diameter_pt": 7.099074999999999,
+            "circle_diameter_mm": 2.5043959027777776,
+            "nominal_circle_area_pt2": 39.58160588399544,
+            "observed_fill": "#b2dd2d",
+            "expected_fill": "#b2dd2d"
+          },
+          {
+            "cell_type": "Inflammatory macrophages",
+            "treatment_arm": "Low dose",
+            "fraction": 0.35,
+            "score": 1.27,
+            "circle_diameter_pt": 9.39119500000001,
+            "circle_diameter_mm": 3.3130049027777813,
+            "nominal_circle_area_pt2": 69.26783250858729,
+            "observed_fill": "#75d054",
+            "expected_fill": "#75d054"
+          },
+          {
+            "cell_type": "Inflammatory macrophages",
+            "treatment_arm": "High dose",
+            "fraction": 0.5,
+            "score": 1.1,
+            "circle_diameter_pt": 11.224624000000006,
+            "circle_diameter_mm": 3.9597979111111132,
+            "nominal_circle_area_pt2": 98.95402986999028,
+            "observed_fill": "#44bf70",
+            "expected_fill": "#44bf70"
+          },
+          {
+            "cell_type": "Tissue monocytes",
+            "treatment_arm": "Control",
+            "fraction": 0.55,
+            "score": 1.66,
+            "circle_diameter_pt": 11.772485000000017,
+            "circle_diameter_mm": 4.153071097222228,
+            "nominal_circle_area_pt2": 108.8494334379575,
+            "observed_fill": "#fde725",
+            "expected_fill": "#fde725"
+          },
+          {
+            "cell_type": "Tissue monocytes",
+            "treatment_arm": "Low dose",
+            "fraction": 0.7,
+            "score": 1.49,
+            "circle_diameter_pt": 13.281155000000012,
+            "circle_diameter_mm": 4.685296347222226,
+            "nominal_circle_area_pt2": 138.5356580098325,
+            "observed_fill": "#c2df23",
+            "expected_fill": "#c2df23"
+          },
+          {
+            "cell_type": "Tissue monocytes",
+            "treatment_arm": "High dose",
+            "fraction": 0.85,
+            "score": 1.32,
+            "circle_diameter_pt": 14.635120000000029,
+            "circle_diameter_mm": 5.162945111111121,
+            "nominal_circle_area_pt2": 168.22187018936194,
+            "observed_fill": "#86d549",
+            "expected_fill": "#86d549"
+          }
+        ]
+      },
+      "pdf": {
+        "checks": {
+          "single_exact_page": {
+            "status": "pass",
+            "evidence": {
+              "pages": 1,
+              "size_mm": [
+                119.99999660915799,
+                89.99999745686848
+              ]
+            }
+          },
+          "actual_embedded_Arial_8pt_text": {
+            "status": "pass",
+            "evidence": {
+              "text_spans": 24,
+              "font_families": [
+                "ArialMT"
+              ],
+              "font_sizes_pt": [
+                8.0
+              ],
+              "font_records": [
+                {
+                  "base_font": "CAXPDD+ArialMT",
+                  "font_type": "Type0",
+                  "extracted_font_name": "CAXPDD+ArialMT",
+                  "extension": "ttf",
+                  "embedded_bytes": 28136
+                }
+              ]
+            }
+          },
+          "text_inside_page": {
+            "status": "pass",
+            "evidence": {
+              "outside_text": [],
+              "measurement": "actual decoded PDF text-span boxes; does not prove absence of internal overlaps"
+            }
+          }
+        },
+        "extracted_text": "Control\nLow dose\nHigh dose\nTreatment arm\nResident macrophages\nActivated monocytes\nInterferon macrophages\nLipid-associated cells\nAntigen-presenting cells\nCycling myeloid cells\nInflammatory macrophages\nTissue monocytes\nCell type\n0.0\n0.5\n1.0\n1.5\nPrepared score\nDetected fraction\n0\n0.25\n0.50\n0.75\n1.00\n"
+      },
+      "png": {
+        "checks": {
+          "raster_geometry_and_300dpi": {
+            "status": "pass",
+            "evidence": {
+              "pixels": [
+                1417,
+                1062
+              ],
+              "expected_fractional_pixels": [
+                1417.3228346456694,
+                1062.992125984252
+              ],
+              "stored_dpi": [
+                299.9994,
+                299.9994
+              ],
+              "note": "At most one pixel of integer rounding is accepted when vector page boxes are exact."
+            }
+          },
+          "ink_clear_of_canvas_boundary": {
+            "status": "pass",
+            "evidence": {
+              "threshold_rgb": 245,
+              "clearance_mm": {
+                "left": 1.9473333333333331,
+                "right": 2.2013333333333334,
+                "top": 2.6246666666666667,
+                "bottom": 2.6246666666666667
+              },
+              "note": "This detects boundary contact at this threshold; it is not an aesthetic or overlap review."
+            }
+          }
+        }
+      },
+      "relocated_clean_rerun": {
+        "status": "pass",
+        "evidence": {
+          "exit_code": 0,
+          "entry_script": "make_figure.py",
+          "temporary_directory_only": true,
+          "all_existing_output_files_removed_before_execution": true,
+          "png_pixels_exactly_equal_to_frozen_export": true,
+          "regenerated_table_preserves_source_values": true,
+          "stdout_tail": "', 'Cycling myeloid cells', 'Inflammatory macrophages', 'Tissue monocytes']\ntreatment arms in order  : ['Control', 'Low dose', 'High dose']\nDetected fraction min/max: 0 / 0.85\nPrepared score  min/max  : -0.22 / 1.66\nobserved zeros           : 2 -> Resident macrophages / Control; Cycling myeloid cells / Low dose\nsmallest non-zero value  : 0.05 (dot diameter 1.2522 mm)\nlargest value            : 0.85 (dot diameter 5.1629 mm)\nscatter s at fraction 1.0: 251.9844 pt^2 (marker diameter 5.6 mm)\nresolved Arial file      : /System/Library/Fonts/Supplemental/Arial.ttf\ncanvas                   : 120 x 90 mm (1417 x 1063 px at 300 dpi)\nmeasured longest y label : 'Antigen-presenting cells' 29.464 mm\nmain axes (mm, l/b/w/h)  : 39.9616 / 9.2642 / 64.472 / 66.5358\nrow pitch (mm)           : 8.317\ncolumn pitch (mm)        : 21.4907\n\nauto-fit trace:\n  iter ink bbox mm: x -1.241..117.762 y 2.097..87.800\n  iter ink bbox mm: x 2.000..117.762 y 2.097..87.800\n  iter ink bbox mm: x 2.000..117.762 y 2.097..87.800\n  final clear canvas (mm): left 2 | right 2.2381 | top 2.2 | bottom 2.0973\n\nwritten:\n  output/panel.pdf\n  output/panel.svg\n  output/panel.png\n  data/plot_data.csv\n  settings/figure_settings.json\n\n",
+          "stderr_tail": "\nFontconfig error: No writable cache directories\n\t/opt/homebrew/var/cache/fontconfig\n\t/Users/starry/.cache/fontconfig\n\t/Users/starry/.fontconfig\nMatplotlib is building the font cache; this may take a moment.\n",
+          "portability_limit": "Both entry scripts resolve local inputs relative to themselves and ran from a relocated directory. Arial and the scientific libraries remain local runtime dependencies; the EasyViz arm additionally needs its supplied skill snapshot."
+        }
+      },
+      "statistics": {
+        "status": "pass",
+        "evidence": {
+          "evidence": "The audited supplied driver performs descriptive mappings only; no inferential results appear in the exports/caption. EasyViz stats.json additionally records method=none; its own QA is not used as independent proof.",
+          "independent_replicates": "not supplied",
+          "no_upstream_validity_claim": true
+        }
+      }
+    },
+    "easyviz": {
+      "source_sha256": "6735e7fba407c55d9f28045d0d59efedfbf8dabfad378b683ac413cd7fb4b322",
+      "table": {
+        "status": "pass",
+        "evidence": {
+          "source_rows": 24,
+          "plotted_rows": 24,
+          "comparison": "Every original categorical value and numeric value in the original row order; extra derived columns allowed.",
+          "measured_zero_count": 2
+        }
+      },
+      "svg": {
+        "checks": {
+          "physical_canvas_mm": {
+            "status": "pass",
+            "evidence": [
+              119.99999988888891,
+              89.99999991666667
+            ]
+          },
+          "viewbox_point_canvas": {
+            "status": "pass",
+            "evidence": [
+              0.0,
+              0.0,
+              340.15748,
+              255.11811
+            ]
+          },
+          "editable_text": {
+            "status": "pass",
+            "evidence": {
+              "text_node_count": 23,
+              "not_outline_only": true
+            }
+          },
+          "font_8_pt": {
+            "status": "pass",
+            "evidence": {
+              "svg_font_sizes": [
+                8.0
+              ],
+              "font_family_Arial_in_every_text_style": true
+            }
+          },
+          "category_order": {
+            "status": "pass",
+            "evidence": {
+              "x": [
+                "Control",
+                "Low dose",
+                "High dose"
+              ],
+              "y_top_to_bottom": [
+                "Resident macrophages",
+                "Activated monocytes",
+                "Interferon macrophages",
+                "Lipid-associated cells",
+                "Antigen-presenting cells",
+                "Cycling myeloid cells",
+                "Inflammatory macrophages",
+                "Tissue monocytes"
+              ]
+            }
+          },
+          "actual_row_coordinate_coverage": {
+            "status": "pass",
+            "evidence": {
+              "source_rows": 24,
+              "positive_circle_paths": 22,
+              "degenerate_zero_circle_paths": 2,
+              "separate_zero_symbols": 2,
+              "invalid_source_coordinates": 0
+            }
+          },
+          "area_proportional_to_fraction": {
+            "status": "pass",
+            "evidence": {
+              "source_of_measurement": "written SVG circle-path extrema, excluding stroke",
+              "diameter_squared_over_fraction_expected_pt2": 165.0,
+              "max_abs_error_pt2": 1.6255790711738882e-05,
+              "physical_circle_area_relation": "nominal filled-circle area = pi/4 * diameter_pt^2; therefore proportional to fraction",
+              "note": "The tiny cubic approximation error and rim/antialiasing do not change the proportional mapping."
+            }
+          },
+          "circular_not_distorted_markers": {
+            "status": "pass",
+            "evidence": {
+              "max_abs_diameter_xy_difference_pt": 1.0000000258969521e-06
+            }
+          },
+          "size_legend_matches_actual_marker_scale": {
+            "status": "pass",
+            "evidence": {
+              "legend_values": [
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "measured_legend_diameters_pt": [
+                6.422616000000005,
+                9.082951000000037,
+                11.12429800000001,
+                12.845231999999953
+              ],
+              "max_abs_error_diameter_squared_pt2": 1.4866177195926866e-05,
+              "measurement": "Four actual written SVG circle legend paths, same coefficient as source markers"
+            }
+          },
+          "measured_zeros": {
+            "status": "pass",
+            "evidence": {
+              "quantitative_circle_diameters_pt": [
+                0.0,
+                0.0
+              ],
+              "separate_symbol_path": "M 2 0  L -2 -0",
+              "zero_rows": [
+                {
+                  "Cell type": "Resident macrophages",
+                  "Treatment arm": "Control"
+                },
+                {
+                  "Cell type": "Cycling myeloid cells",
+                  "Treatment arm": "Low dose"
+                }
+              ],
+              "note": "A finite non-quantitative state glyph is allowed; neither arm substitutes a small positive quantitative circle."
+            }
+          },
+          "actual_positive_fill_colors": {
+            "status": "pass",
+            "evidence": {
+              "colormap": "notch2-blue",
+              "color_limits": [
+                -0.22,
+                1.66
+              ],
+              "positive_rows_checked": 22,
+              "hex_mismatches": 0,
+              "source_of_measurement": "written SVG fill values compared with an independent colormap calculation"
+            }
+          },
+          "no_in_image_title_or_narrative": {
+            "status": "pass",
+            "evidence": {
+              "unexpected_text": [],
+              "measurement": "Actual editable SVG text nodes; category names, axis/legend identifiers and numeric ticks/keys allowed"
+            }
+          }
+        },
+        "per_source_row_svg_measurements": [
+          {
+            "cell_type": "Resident macrophages",
+            "treatment_arm": "Control",
+            "fraction": 0.0,
+            "score": 0.12,
+            "circle_diameter_pt": 0.0,
+            "circle_diameter_mm": 0.0,
+            "nominal_circle_area_pt2": 0.0,
+            "observed_fill": "#b4d4e7",
+            "expected_fill": "#b4d4e7"
+          },
+          {
+            "cell_type": "Resident macrophages",
+            "treatment_arm": "Low dose",
+            "fraction": 0.15,
+            "score": -0.05,
+            "circle_diameter_pt": 4.974937000000011,
+            "circle_diameter_mm": 1.7550472194444484,
+            "nominal_circle_area_pt2": 19.438603094217576,
+            "observed_fill": "#c3ddec",
+            "expected_fill": "#c3ddec"
+          },
+          {
+            "cell_type": "Resident macrophages",
+            "treatment_arm": "High dose",
+            "fraction": 0.3,
+            "score": -0.22,
+            "circle_diameter_pt": 7.035622999999987,
+            "circle_diameter_mm": 2.4820114472222174,
+            "nominal_circle_area_pt2": 38.87720201812059,
+            "observed_fill": "#d3e6f1",
+            "expected_fill": "#d3e6f1"
+          },
+          {
+            "cell_type": "Activated monocytes",
+            "treatment_arm": "Control",
+            "fraction": 0.35,
+            "score": 0.34,
+            "circle_diameter_pt": 7.599342000000007,
+            "circle_diameter_mm": 2.6808789833333355,
+            "nominal_circle_area_pt2": 45.3567430196148,
+            "observed_fill": "#a0c8e0",
+            "expected_fill": "#a0c8e0"
+          },
+          {
+            "cell_type": "Activated monocytes",
+            "treatment_arm": "Low dose",
+            "fraction": 0.5,
+            "score": 0.17,
+            "circle_diameter_pt": 9.082951000000008,
+            "circle_diameter_mm": 3.2042632694444473,
+            "nominal_circle_area_pt2": 64.79534759153383,
+            "observed_fill": "#afd1e5",
+            "expected_fill": "#afd1e5"
+          },
+          {
+            "cell_type": "Activated monocytes",
+            "treatment_arm": "High dose",
+            "fraction": 0.65,
+            "score": -0.0,
+            "circle_diameter_pt": 10.356156999999996,
+            "circle_diameter_mm": 3.653422052777776,
+            "nominal_circle_area_pt2": 84.23394344931158,
+            "observed_fill": "#bfdbeb",
+            "expected_fill": "#bfdbeb"
+          },
+          {
+            "cell_type": "Interferon macrophages",
+            "treatment_arm": "Control",
+            "fraction": 0.7,
+            "score": 0.56,
+            "circle_diameter_pt": 10.747093000000007,
+            "circle_diameter_mm": 3.791335586111113,
+            "nominal_circle_area_pt2": 90.71349411683052,
+            "observed_fill": "#8bbcda",
+            "expected_fill": "#8bbcda"
+          },
+          {
+            "cell_type": "Interferon macrophages",
+            "treatment_arm": "Low dose",
+            "fraction": 0.85,
+            "score": 0.39,
+            "circle_diameter_pt": 11.842718999999988,
+            "circle_diameter_mm": 4.177848091666663,
+            "nominal_circle_area_pt2": 110.15208716450375,
+            "observed_fill": "#9bc5df",
+            "expected_fill": "#9bc5df"
+          },
+          {
+            "cell_type": "Interferon macrophages",
+            "treatment_arm": "High dose",
+            "fraction": 0.05,
+            "score": 0.22,
+            "circle_diameter_pt": 2.8722809999999868,
+            "circle_diameter_mm": 1.0132769083333286,
+            "nominal_circle_area_pt2": 6.479533389513869,
+            "observed_fill": "#abcfe4",
+            "expected_fill": "#abcfe4"
+          },
+          {
+            "cell_type": "Lipid-associated cells",
+            "treatment_arm": "Control",
+            "fraction": 0.1,
+            "score": 0.78,
+            "circle_diameter_pt": 4.062018999999992,
+            "circle_diameter_mm": 1.4329900361111083,
+            "nominal_circle_area_pt2": 12.959068405146795,
+            "observed_fill": "#76b0d3",
+            "expected_fill": "#76b0d3"
+          },
+          {
+            "cell_type": "Lipid-associated cells",
+            "treatment_arm": "Low dose",
+            "fraction": 0.25,
+            "score": 0.61,
+            "circle_diameter_pt": 6.4226170000000025,
+            "circle_diameter_mm": 2.2657565527777788,
+            "nominal_circle_area_pt2": 32.39768140980034,
+            "observed_fill": "#86b9d8",
+            "expected_fill": "#86b9d8"
+          },
+          {
+            "cell_type": "Lipid-associated cells",
+            "treatment_arm": "High dose",
+            "fraction": 0.4,
+            "score": 0.44,
+            "circle_diameter_pt": 8.12403900000001,
+            "circle_diameter_mm": 2.8659804250000036,
+            "nominal_circle_area_pt2": 51.83628638179734,
+            "observed_fill": "#97c3dd",
+            "expected_fill": "#97c3dd"
+          },
+          {
+            "cell_type": "Antigen-presenting cells",
+            "treatment_arm": "Control",
+            "fraction": 0.45,
+            "score": 1.0,
+            "circle_diameter_pt": 8.616844000000015,
+            "circle_diameter_mm": 3.039831077777783,
+            "nominal_circle_area_pt2": 58.31581404093168,
+            "observed_fill": "#62a4cd",
+            "expected_fill": "#62a4cd"
+          },
+          {
+            "cell_type": "Antigen-presenting cells",
+            "treatment_arm": "Low dose",
+            "fraction": 0.6,
+            "score": 0.83,
+            "circle_diameter_pt": 9.949874999999992,
+            "circle_diameter_mm": 3.5100947916666634,
+            "nominal_circle_area_pt2": 77.75442800609613,
+            "observed_fill": "#72add2",
+            "expected_fill": "#72add2"
+          },
+          {
+            "cell_type": "Antigen-presenting cells",
+            "treatment_arm": "High dose",
+            "fraction": 0.75,
+            "score": 0.66,
+            "circle_diameter_pt": 11.124297000000013,
+            "circle_diameter_mm": 3.924404775000004,
+            "nominal_circle_area_pt2": 97.19300995316605,
+            "observed_fill": "#82b6d7",
+            "expected_fill": "#82b6d7"
+          },
+          {
+            "cell_type": "Cycling myeloid cells",
+            "treatment_arm": "Control",
+            "fraction": 0.8,
+            "score": 1.22,
+            "circle_diameter_pt": 11.489125000000001,
+            "circle_diameter_mm": 4.053107986111112,
+            "nominal_circle_area_pt2": 103.67255227929743,
+            "observed_fill": "#4e98c6",
+            "expected_fill": "#4e98c6"
+          },
+          {
+            "cell_type": "Cycling myeloid cells",
+            "treatment_arm": "Low dose",
+            "fraction": 0.0,
+            "score": 1.05,
+            "circle_diameter_pt": 0.0,
+            "circle_diameter_mm": 0.0,
+            "nominal_circle_area_pt2": 0.0,
+            "observed_fill": "#5ea2cb",
+            "expected_fill": "#5ea2cb"
+          },
+          {
+            "cell_type": "Cycling myeloid cells",
+            "treatment_arm": "High dose",
+            "fraction": 0.15,
+            "score": 0.88,
+            "circle_diameter_pt": 4.974937000000011,
+            "circle_diameter_mm": 1.7550472194444484,
+            "nominal_circle_area_pt2": 19.438603094217576,
+            "observed_fill": "#6dabd0",
+            "expected_fill": "#6dabd0"
+          },
+          {
+            "cell_type": "Inflammatory macrophages",
+            "treatment_arm": "Control",
+            "fraction": 0.2,
+            "score": 1.44,
+            "circle_diameter_pt": 5.744562999999999,
+            "circle_diameter_mm": 2.026554169444444,
+            "nominal_circle_area_pt2": 25.91814258159338,
+            "observed_fill": "#398cbf",
+            "expected_fill": "#398cbf"
+          },
+          {
+            "cell_type": "Inflammatory macrophages",
+            "treatment_arm": "Low dose",
+            "fraction": 0.35,
+            "score": 1.27,
+            "circle_diameter_pt": 7.599342000000007,
+            "circle_diameter_mm": 2.6808789833333355,
+            "nominal_circle_area_pt2": 45.3567430196148,
+            "observed_fill": "#4a96c5",
+            "expected_fill": "#4a96c5"
+          },
+          {
+            "cell_type": "Inflammatory macrophages",
+            "treatment_arm": "High dose",
+            "fraction": 0.5,
+            "score": 1.1,
+            "circle_diameter_pt": 9.082951000000008,
+            "circle_diameter_mm": 3.2042632694444473,
+            "nominal_circle_area_pt2": 64.79534759153383,
+            "observed_fill": "#599fca",
+            "expected_fill": "#599fca"
+          },
+          {
+            "cell_type": "Tissue monocytes",
+            "treatment_arm": "Control",
+            "fraction": 0.55,
+            "score": 1.66,
+            "circle_diameter_pt": 9.526278999999988,
+            "circle_diameter_mm": 3.3606595361111067,
+            "nominal_circle_area_pt2": 71.27487671985322,
+            "observed_fill": "#2581b9",
+            "expected_fill": "#2581b9"
+          },
+          {
+            "cell_type": "Tissue monocytes",
+            "treatment_arm": "Low dose",
+            "fraction": 0.7,
+            "score": 1.49,
+            "circle_diameter_pt": 10.747093000000007,
+            "circle_diameter_mm": 3.791335586111113,
+            "nominal_circle_area_pt2": 90.71349411683052,
+            "observed_fill": "#358abe",
+            "expected_fill": "#358abe"
+          },
+          {
+            "cell_type": "Tissue monocytes",
+            "treatment_arm": "High dose",
+            "fraction": 0.85,
+            "score": 1.32,
+            "circle_diameter_pt": 11.842718999999988,
+            "circle_diameter_mm": 4.177848091666663,
+            "nominal_circle_area_pt2": 110.15208716450375,
+            "observed_fill": "#4593c3",
+            "expected_fill": "#4593c3"
+          }
+        ]
+      },
+      "pdf": {
+        "checks": {
+          "single_exact_page": {
+            "status": "pass",
+            "evidence": {
+              "pages": 1,
+              "size_mm": [
+                119.99999660915799,
+                89.99999745686848
+              ]
+            }
+          },
+          "actual_embedded_Arial_8pt_text": {
+            "status": "pass",
+            "evidence": {
+              "text_spans": 23,
+              "font_families": [
+                "ArialMT"
+              ],
+              "font_sizes_pt": [
+                8.0
+              ],
+              "font_records": [
+                {
+                  "base_font": "FBLWNS+ArialMT",
+                  "font_type": "Type0",
+                  "extracted_font_name": "FBLWNS+ArialMT",
+                  "extension": "ttf",
+                  "embedded_bytes": 30084
+                }
+              ]
+            }
+          },
+          "text_inside_page": {
+            "status": "pass",
+            "evidence": {
+              "outside_text": [],
+              "measurement": "actual decoded PDF text-span boxes; does not prove absence of internal overlaps"
+            }
+          }
+        },
+        "extracted_text": "Control\nLow dose\nHigh dose\nTreatment arm\nResident macrophages\nActivated monocytes\nInterferon macrophages\nLipid-associated cells\nAntigen-presenting cells\nCycling myeloid cells\nInflammatory macrophages\nTissue monocytes\nCell type\n−0.22\n0.72\n1.66\nPrepared score\nDetected fraction\n0.25\n0.5\n0.75\n1\nMeasured zero\n"
+      },
+      "png": {
+        "checks": {
+          "raster_geometry_and_300dpi": {
+            "status": "pass",
+            "evidence": {
+              "pixels": [
+                1417,
+                1063
+              ],
+              "expected_fractional_pixels": [
+                1417.3228346456694,
+                1062.992125984252
+              ],
+              "stored_dpi": [
+                299.9994,
+                299.9994
+              ],
+              "note": "At most one pixel of integer rounding is accepted when vector page boxes are exact."
+            }
+          },
+          "ink_clear_of_canvas_boundary": {
+            "status": "pass",
+            "evidence": {
+              "threshold_rgb": 245,
+              "clearance_mm": {
+                "left": 1.9473333333333331,
+                "right": 2.286,
+                "top": 1.9473333333333331,
+                "bottom": 2.54
+              },
+              "note": "This detects boundary contact at this threshold; it is not an aesthetic or overlap review."
+            }
+          }
+        }
+      },
+      "relocated_clean_rerun": {
+        "status": "pass",
+        "evidence": {
+          "exit_code": 0,
+          "entry_script": "make_panel.py",
+          "temporary_directory_only": true,
+          "all_existing_output_files_removed_before_execution": true,
+          "png_pixels_exactly_equal_to_frozen_export": true,
+          "regenerated_table_preserves_source_values": true,
+          "stdout_tail": "ates\": [],\n  \"state_symbols\": {\n    \"Measured zero\": \"_\"\n  },\n  \"area_mapping\": \"area_pt2 = detected_fraction / 1 * 165\",\n  \"area_max_abs_error\": 1.4210854715202004e-14,\n  \"zero_area_pt2\": [\n    0.0,\n    0.0\n  ],\n  \"max_dot_diameter_mm\": 4.714,\n  \"min_positive_diameter_mm\": 1.143,\n  \"font_family\": \"Arial\",\n  \"font_size_pt\": 8.0,\n  \"dpi\": 300,\n  \"canvas_mm\": [\n    120.0,\n    90.0\n  ],\n  \"colormap\": \"notch2-blue\",\n  \"color_limits\": [\n    -0.22,\n    1.66\n  ],\n  \"exports\": {\n    \"pdf\": {\n      \"width_mm\": 120.00000000001388,\n      \"height_mm\": 89.99999999999278\n    },\n    \"svg\": {\n      \"width_mm\": 119.99999988888888,\n      \"height_mm\": 89.99999991666667,\n      \"text_preserved\": true,\n      \"font_embedding\": \"SVG references the recorded font; install it on the assembly system.\"\n    },\n    \"png\": {\n      \"pixels\": [\n        1417,\n        1063\n      ],\n      \"dpi\": [\n        299.9994,\n        299.9994\n      ]\n    }\n  },\n  \"statistics\": \"none requested; synthetic descriptive quantities without independent replicates\"\n}\n\nwrote /private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-wb-audit-easyviz-q1lh8h6r/easyviz/output/panel.pdf, panel.svg, panel.png and the traceability files\n",
+          "stderr_tail": "",
+          "portability_limit": "Both entry scripts resolve local inputs relative to themselves and ran from a relocated directory. Arial and the scientific libraries remain local runtime dependencies; the EasyViz arm additionally needs its supplied skill snapshot."
+        }
+      },
+      "statistics": {
+        "status": "pass",
+        "evidence": {
+          "evidence": "The audited supplied driver performs descriptive mappings only; no inferential results appear in the exports/caption. EasyViz stats.json additionally records method=none; its own QA is not used as independent proof.",
+          "independent_replicates": "not supplied",
+          "no_upstream_validity_claim": true
+        }
+      }
+    }
+  },
+  "frozen_files_unchanged": {
+    "status": "pass",
+    "evidence": {
+      "files_checked": 207,
+      "changed": []
+    }
+  },
+  "documentation_findings": [
+    {
+      "arm": "baseline",
+      "severity": "wording",
+      "file": "baseline/caption.md",
+      "finding": "The clause 'a separate non-quantitative symbol whose area is exactly zero' is literally false for the finite grey cross. The quantitative circle area is zero; the visible state glyph has nonzero ink. The actual implementation follows the allowed zero-state rule."
+    },
+    {
+      "arm": "easyviz",
+      "severity": "metadata",
+      "file": "easyviz/caption.md and easyviz/output/check-summary.json",
+      "finding": "The declared 165 pt² is the maximum Matplotlib scatter-size parameter at fraction=1, not the largest supplied marker (maximum fraction=0.85, so s=140.25), nor literal filled-circle geometric area. Actual positive circle diameter is sqrt(s) pt; the submitted diameter check uses 2*sqrt(s/pi), overstating diameter by sqrt(4/pi)≈1.1284. The exported circle geometry and legends nevertheless share the correct linear area mapping."
+    }
+  ]
+}

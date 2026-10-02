@@ -1,0 +1,196 @@
+{
+  "review_scope": "Independent visual comparison of the supplied reference with the adopted scientific scatter specification. No plotting code, source-data rows, author code or other examples were inspected.",
+  "status": "ready_with_notes",
+  "status_reason": "Visual requirements pass with no critical, major or minor visual finding. Required written-export numerical correspondence and SVG export checks passed in the separate independent auditor report for the exact reviewed PNG/PDF hashes. Notes concern expected dense overlap, caption-dependent interpretation and uncalibrated screen-size evidence.",
+  "visual_status": "ready_with_notes",
+  "review_pass": "Independent review of the current saved candidate; no earlier candidate baseline was supplied or inspected.",
+  "inspected_files_sha256": {
+    "reference.png": "bac15a228d694dd390b857f4ea55a599b046b319fed13d41d717f0439a919655",
+    "output/panel.png": "e946688e4832ba46539612ee8d2426415611f762132552e0246eb3095f4aeea5",
+    "output/panel.pdf": "d90897a7b4446c58b76792d3de18d4744ab3be2ba9241bdeecfa55bfef03910b",
+    "adopted-spec.md": "c833ae565eceafbec8c5ba804a3b537f8e9faf2bdce5324495dfcb178f97186d",
+    "caption.md": "1c64f246efb339996435a0aa9f74eba352ae2622f36092c2794b4369303fe28a",
+    "output/qa.json": "7645ea0b7bd2bf7546d203a0cfa6c6bb7ef915eaf98b8f1d9db7377ee6a6718d",
+    "output/settings.json": "9daed02371ff458bd4a4beb909424bd8bba3c7eeb62fbbd694f15475c98df57c",
+    "independent-reading.md": "f71121b83b0e1154142302b2a7b1eb9966e60edc1850ca5e6d9436247e7f808c"
+  },
+  "actual_image_inspections": [
+    {
+      "path": "reference.png",
+      "detail": "original",
+      "pixels": [
+        429,
+        660
+      ]
+    },
+    {
+      "path": "output/panel.png",
+      "detail": "original",
+      "pixels": [
+        1039,
+        1417
+      ]
+    },
+    {
+      "path": "/private/tmp/xiang-review-size-proxy.png",
+      "detail": "original",
+      "pixels": [
+        333,
+        454
+      ],
+      "method": "Downsampled from the inspected candidate using Lanczos; 88 × 120 mm at nominal 96 ppi. Uncalibrated screen proxy, not print proof."
+    }
+  ],
+  "reference_comparison": [
+    {
+      "property": "Two-sided scatter structure",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "The tall blue negative side, shorter red positive arm, grey central strip, sparse outliers and dense low-y cloud match the supplied reference structure."
+    },
+    {
+      "property": "Adopted axes and class aliases",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "The x label explicitly reads Median difference (C3 − C5); the y label reads −log10(adjusted P). The class guide uses C3 lower, C3 higher and Small effect."
+    },
+    {
+      "property": "Manual legend clearance and hierarchy",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "The complete categorical guide is in the upper-right white region to the right of both vertical references. The size guide is also to their right, above the red arm. No legend text, key or header collides with reference lines or data marks. Both guides occupy compact regions while the scatter remains visually primary."
+    },
+    {
+      "property": "Legend proportions",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "Approximate manual image bounds: plot [177,43,998,1220] px; categorical guide [781,48,978,157] px; size guide [813,500,972,681] px. These visually estimated complete-guide bounds occupy about 5% of the plot in total, with no reserved outside band. They are approximate inspection guides, not the implementation QA bounding boxes."
+    },
+    {
+      "property": "Marks and outlines",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "Filled circles vary in size; blue, red and grey class keys match their clouds. No contrasting outline appears on quantitative marks or size keys. The size guide visibly increases from 0.25 through 0.5 to 1; exact area correspondence was checked separately by the independent numerical auditor."
+    },
+    {
+      "property": "Reference lines",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "Two grey vertical dashed references bracket x = 0 and remain clear above the low-y cloud. The horizontal dashed reference near y = 2 remains visible at both sides; marks cover it in the dense central base as expected."
+    },
+    {
+      "property": "Information density and balance",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "The occupied lower cloud conveys many observations, and the sparse tall left side needs its white space. The unoccupied upper-right region accommodates guides without compressing the data box. The full 88 × 120 mm canvas uses adequate margins for the axes and keeps their text readable in the proxy."
+    },
+    {
+      "property": "Intentional omissions and caption",
+      "result": "passed",
+      "evidence_state": "observed",
+      "evidence": "No source E, adjacent pathway tables, title, overview counts or explanatory footnotes were added to the image. The supplied caption carries source attribution, area meaning, grey-class caveat, zero-area statement and supplied-results-only limitations."
+    }
+  ],
+  "refinement_preference": {
+    "result": "not_checked",
+    "evidence": "No accepted earlier candidate baseline was inspected. The reference is a comparison target with intentional adaptations; no superiority over an earlier rendering is claimed."
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Dense base of the blue/red clouds and central grey strip",
+      "evidence": "At original PNG resolution and in the 333 × 454 screen proxy, substantial circle overlap remains around adjusted-P coordinates about 2–8. Individual rows cannot be counted there, but the opposed clouds, grey strip, sparse blue outliers and red arm remain distinguishable.",
+      "requirement": "Preserve every supplied row and the declared 18 pt² maximum geometric circle fill area. No aggregation, filtering, jitter or invented positive area.",
+      "action": "Retain this geometry. Treat the panel as a distribution-level view; the accompanying data carries individual-row detail."
+    },
+    {
+      "severity": "note",
+      "location": "Grey class and separate caption",
+      "evidence": "The candidate legend says Small effect. The caption explicitly says all 1,457 supplied rows already have adjusted P below 0.01 and grey means absolute median difference below 0.2.",
+      "requirement": "Do not imply that grey means P-nonsignificance in this filtered dataset.",
+      "action": "Deliver caption.md with the panel; preserve this interpretation caveat in the manuscript caption."
+    },
+    {
+      "severity": "note",
+      "location": "Zero-probability rows",
+      "evidence": "The caption states that 37 zero-probability rows retain zero area and stay in the accompanying data. Invisible zero-area marks cannot be counted or verified from the raster.",
+      "requirement": "Do not invent visible positive size for a quantitative zero.",
+      "action": "Keep the caption statement. The separate independent numerical audit confirms the 37 zero-size written circle paths; the image itself cannot verify their count."
+    },
+    {
+      "severity": "note",
+      "location": "Final-size readability evidence",
+      "evidence": "The original 1039 × 1417 PNG and a 333 × 454 proxy corresponding to 88 × 120 mm at nominal 96 ppi were actually opened. Axes, short class labels, size labels and dashed references remain readable in the proxy. The screen is uncalibrated.",
+      "requirement": "Evaluate intended proportions without claiming print proof or journal certification.",
+      "action": "No visual correction is required by this inspection. Print legibility and journal acceptance are not established."
+    },
+    {
+      "severity": "note",
+      "location": "Required numerical correspondence checks",
+      "evidence": "qa.json/settings.json were treated as implementation reports only. The separate independent numerical auditor confirmed 17 paper-only checks passed on the exact saved PNG/PDF hashes; this role did not inspect source rows or plotting code.",
+      "requirement": "Source-to-artist preservation and area semantics require separate evidence for the same candidate hashes. No new statistical test is requested.",
+      "action": "Retain the independent audit record with the exported panel and this visual review. No numerical or visual correction is requested."
+    },
+    {
+      "severity": "note",
+      "location": "Companion source identifiers",
+      "evidence": "The independent auditor reports: A968 and A1306 are already numeric Excel dates in the official gene column. The prepared CSV preserves decoded date strings; original gene names cannot be recovered from this sheet. Plot coordinates, classes and probabilities are unaffected. Recorded at verification.json → official_workbook_to_CSV.evidence.source_identifier_limitation.",
+      "requirement": "Do not imply this plotting-only adaptation repairs upstream identifiers or reconstructs the original gene-name intent.",
+      "action": "Retain the source-identifier limitation in the provenance/audit record; no visual alteration is requested."
+    }
+  ],
+  "external_numerical_and_export_checks": [
+    {
+      "check": "Reference and candidate image access",
+      "status": "passed",
+      "evidence": "Both reference.png and output/panel.png were opened with original-detail image inspection."
+    },
+    {
+      "check": "PNG dimensions and density metadata",
+      "status": "passed",
+      "evidence": "Pillow independently read 1039 × 1417 pixels, RGB, dpi 299.9994 × 299.9994."
+    },
+    {
+      "check": "PDF page dimensions",
+      "status": "passed",
+      "evidence": "pypdf independently read one page with MediaBox 249.4488188976 × 340.157480315 pt, equivalent to 87.99999999998666 × 120.00000000001387 mm."
+    },
+    {
+      "check": "PDF text size and named font",
+      "status": "passed",
+      "evidence": "pypdf text visitor returned 21 nonempty text runs, all 8.0 pt, all /CNLMZG+ArialMT. No text-size claim is inferred from raster pixels."
+    },
+    {
+      "check": "Source-to-artist rows, coordinates, source classes, 37 zero areas and quantitative circle/legend mapping",
+      "status": "passed",
+      "evidence": "Separate independent /root/workbuddy_audit confirmed these exact PNG/PDF hashes. All 1,457 written circle paths, including 37 zero-size circles, preserve source order, coordinates and class aliases. Group counts are 471/143/843. Maximum coordinate error 6.35e-7 pt and geometric area error 5.85e-6 pt²; size keys equal probability × 18 pt². Written dashed references agree with x ±0.2 and y = 2. This evidence was supplied by the independent numerical auditor, not derived from visual appearance or implementation QA."
+    },
+    {
+      "check": "PDF font embedding",
+      "status": "passed",
+      "evidence": "pypdf independently found /FontFile2 in the /CNLMZG+ArialMT descendant font descriptor; decoded embedded stream length 29,656 bytes."
+    },
+    {
+      "check": "SVG output details",
+      "status": "passed",
+      "evidence": "Separate independent /root/workbuddy_audit reported editable Arial 8 pt SVG and matching physical dimensions. SVG was not directly opened in this visual role. The auditor confirmed no candidate rerender or edits and exact matching PNG/PDF hashes."
+    },
+    {
+      "check": "New differential-expression tests or biological validity",
+      "status": "not_checked",
+      "required": false,
+      "evidence": "Outside the plotting-only task. The caption states supplied results were not recomputed and upstream filtering universe, independent units and test are not reconstructed."
+    },
+    {
+      "check": "Print proof and journal acceptance",
+      "status": "not_checked",
+      "required": false,
+      "evidence": "Only an uncalibrated screen proxy was inspected. No publication certification is made."
+    }
+  ],
+  "unresolved": [],
+  "next_action": "No required visual correction remains. Deliver the panel with caption and independent numerical/export audit evidence. Screen-size inspection remains a proxy, not print proof.",
+  "external_audit_source": "Direct messages from /root/workbuddy_audit confirmed the exact candidate hashes and 17 paper-only audit checks on 2026-10-02; recorded as external independent evidence, not a calculation performed by this visual reviewer.",
+  "external_audit_record": "/Users/starry/Desktop/EasyViz/examples/no-author-code/xiang-bubble-volcano/verification.json",
+  "external_audit_scope": "17 passing paper-only and official-input checks. Engineering transfer validation is outside this visual pass and is not endorsed here."
+}

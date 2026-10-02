@@ -24,6 +24,27 @@ def validate_plugin(plugin: Path) -> dict:
     required = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md",
                 "skills/easyviz/scripts/render.py", "skills/easyviz/scripts/figure_profile.py",
                 "skills/easyviz/scripts/legend_layout.py", "skills/easyviz/scripts/requirements.txt",
+                "skills/easyviz/scripts/auto_layout.py", "skills/easyviz/scripts/annotation_review.py",
+                "skills/easyviz/scripts/draft_spec.py",
+                "skills/easyviz/scripts/interval_plot.py",
+                "skills/easyviz/scripts/paired_plot.py",
+                "skills/easyviz/scripts/replicate_plot.py",
+                "skills/easyviz/scripts/ecdf_plot.py",
+                "skills/easyviz/assets/cases/xiang-bubble-volcano/plot.py",
+                "skills/easyviz/assets/cases/xiang-bubble-volcano/source-data.csv",
+                "skills/easyviz/assets/cases/xiang-bubble-volcano/spec.json",
+                "skills/easyviz/assets/cases/vabistsevits-forest/plot.py",
+                "skills/easyviz/assets/cases/vabistsevits-forest/inputs/source-data-a.csv",
+                "skills/easyviz/assets/cases/vabistsevits-forest/panel-a-spec.json",
+                "skills/easyviz/assets/cases/urschel-paired/plot.py",
+                "skills/easyviz/assets/cases/urschel-paired/source-data.csv",
+                "skills/easyviz/assets/cases/urschel-paired/spec.json",
+                "skills/easyviz/assets/cases/truong-components/plot.py",
+                "skills/easyviz/assets/cases/truong-components/inputs/components.csv",
+                "skills/easyviz/assets/cases/truong-components/components-spec.json",
+                "skills/easyviz/assets/cases/urschel-ecdf/plot.py",
+                "skills/easyviz/assets/cases/urschel-ecdf/source-data.csv",
+                "skills/easyviz/assets/cases/urschel-ecdf/spec.json",
                 "skills/easyviz/assets/palettes/palettes.json",
                 "skills/easyviz/assets/fixtures/heatmap/data.csv",
                 "skills/easyviz/assets/fixtures/heatmap/spec.json"]
@@ -85,7 +106,7 @@ def main() -> int:
         if build and (manifest["version"] != build["version"] or file_count != build["files"]):
             raise ValueError("ZIP version or file count differs from dist/build.json")
         if not args.structure_only:
-            skill = plugin / "skills/easyviz"
+            skill = (plugin / "skills/easyviz").resolve()
             fixture = skill / "assets/fixtures/heatmap"
             spec = json.loads((fixture / "spec.json").read_text())
             spec["layout"]["font"] = "DejaVu Sans"
@@ -93,6 +114,25 @@ def main() -> int:
             spec_path.write_text(json.dumps(spec))
             env = os.environ.copy()
             env.update(MPLCONFIGDIR=str(isolated / "matplotlib"), MPLBACKEND="Agg")
+            discovery = subprocess.run([sys.executable, str(skill / "scripts/render.py"),
+                                        "--describe-spec"], cwd=isolated, env=env,
+                                       capture_output=True, text=True)
+            if discovery.returncode:
+                raise RuntimeError(discovery.stdout + discovery.stderr)
+            routes = json.loads(discovery.stdout).get("focused_recipes", {})
+            if set(routes) != {"interval", "paired", "replicate", "ecdf"}:
+                raise ValueError("Extracted chart discovery does not identify every focused recipe")
+            for route in routes.values():
+                script, documentation = Path(route["script"]), Path(route["doc"])
+                if not all(path.is_relative_to(skill) and path.is_file()
+                           for path in (script, documentation)):
+                    raise ValueError("Extracted recipe discovery points outside the selected skill")
+                described = subprocess.run([sys.executable, str(script), "--describe-spec"],
+                                           cwd=isolated, env=env, capture_output=True, text=True)
+                if described.returncode:
+                    raise RuntimeError(described.stdout + described.stderr)
+                if not isinstance(json.loads(described.stdout), dict):
+                    raise ValueError("Focused recipe specification must be a JSON object")
             result = subprocess.run([sys.executable, str(skill / "scripts/render.py"),
                                      "--data", str(fixture / "data.csv"), "--spec", str(spec_path),
                                      "--out", str(isolated / "output")],
@@ -102,9 +142,51 @@ def main() -> int:
             qa = json.loads((isolated / "output/qa.json").read_text())
             if qa.get("status") != "pass" or not qa.get("valid_outputs"):
                 raise ValueError("Extracted core smoke failed canvas/export QA")
+            draft_path = isolated / "draft-spec.json"
+            draft_command = [sys.executable, str(skill / "scripts/draft_spec.py"),
+                             "--data", str(fixture / "data.csv"), "--chart", spec["chart"],
+                             "--font", "DejaVu Sans", "--out", str(draft_path)]
+            for role, column in spec["fields"].items():
+                draft_command.extend(["--field", f"{role}={column}"])
+            draft_result = subprocess.run(draft_command, cwd=isolated, env=env,
+                                          capture_output=True, text=True)
+            if draft_result.returncode:
+                raise RuntimeError(draft_result.stdout + draft_result.stderr)
+            auto_result = subprocess.run([sys.executable, str(skill / "scripts/render.py"),
+                                          "--data", str(fixture / "data.csv"), "--spec", str(draft_path),
+                                          "--out", str(isolated / "measured-output")],
+                                         cwd=isolated, env=env, capture_output=True, text=True)
+            if auto_result.returncode:
+                raise RuntimeError(auto_result.stdout + auto_result.stderr)
+            auto_qa = json.loads((isolated / "measured-output/qa.json").read_text())
+            if auto_qa.get("status") != "pass" or auto_qa.get("auto_layout", {}).get("status") != "pass":
+                raise ValueError("Extracted draft and measured layout failed QA")
+            for name, data_name, spec_name, expected_rows in (
+                ("xiang-bubble-volcano", "source-data.csv", "spec.json", 1457),
+                ("vabistsevits-forest", "inputs/source-data-a.csv", "panel-a-spec.json", 24),
+                ("urschel-paired", "source-data.csv", "spec.json", 254),
+                ("truong-components", "inputs/components.csv", "components-spec.json", 63),
+                ("urschel-ecdf", "source-data.csv", "spec.json", 254),
+            ):
+                case = skill / "assets/cases" / name
+                case_spec = json.loads((case / spec_name).read_text())
+                case_spec["layout"]["font"] = "DejaVu Sans"
+                case_spec["formats"] = ["pdf", "svg", "png"]
+                case_spec_path = isolated / f"{name}-spec.json"
+                case_spec_path.write_text(json.dumps(case_spec))
+                case_out = isolated / f"{name}-output"
+                run = subprocess.run([sys.executable, str(case / "plot.py"),
+                                      "--data", str(case / data_name), "--spec", str(case_spec_path),
+                                      "--out", str(case_out)], cwd=isolated, env=env,
+                                     capture_output=True, text=True)
+                if run.returncode:
+                    raise RuntimeError(run.stdout + run.stderr)
+                case_qa = json.loads((case_out / "qa.json").read_text())
+                if case_qa.get("status") != "pass" or case_qa.get("input_rows") != expected_rows:
+                    raise ValueError(f"Extracted {name} case failed source/canvas QA")
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure and extracted core smoke"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted focused-recipe discovery, core, draft/measured layout and five Source Data case wrappers"}, indent=2))
     return 0
 
 

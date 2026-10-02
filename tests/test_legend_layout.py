@@ -17,11 +17,15 @@ from matplotlib.transforms import Affine2D, Bbox
 import numpy as np
 from PIL import Image
 from scipy.ndimage import label, find_objects
+from marker_geometry import collection_fill_areas_pt2
 
 SCRIPT = Path(__file__).resolve().parents[1] / "skills/easyviz/scripts/legend_layout.py"
 loader = importlib.util.spec_from_file_location("easyviz_legend_layout", SCRIPT)
 helper = importlib.util.module_from_spec(loader)
 loader.loader.exec_module(helper)
+benchmark_loader = importlib.util.spec_from_file_location("easyviz_legend_benchmark", Path(__file__).with_name("check_legend_layouts.py"))
+benchmark = importlib.util.module_from_spec(benchmark_loader)
+benchmark_loader.loader.exec_module(benchmark)
 
 
 class LegendLayoutTests(unittest.TestCase):
@@ -34,11 +38,12 @@ class LegendLayoutTests(unittest.TestCase):
         ax.set_axis_off()
         return fig, ax
 
-    def size_guide(self):
+    def size_guide(self, area_semantics="matplotlib_size_parameter", dpi=100):
         fig, ax = self.figure()
+        fig.set_dpi(dpi)
         manager = helper.LegendLayout(fig, ax, {"legend": 8}, {
             "size": {"position": "manual", "anchor_mm": [10, 18], "ncol": 3}})
-        manager.add_size([10, 40, 160], [9, 36, 144], title="Count", color="#ff0000")
+        manager.add_size([10, 40, 160], [9, 36, 144], title="Count", color="#ff0000", area_semantics=area_semantics)
         report = manager.layout()
         self.assertEqual(report["status"], "pass")
         return fig, manager, report
@@ -94,6 +99,47 @@ class LegendLayoutTests(unittest.TestCase):
         broken = manager.validate()
         self.assertEqual(broken["status"], "needs_revision")
         self.assertGreater(broken["legends"][0]["bbox_mm"][2], report["legends"][0]["bbox_mm"][2])
+
+    def test_geometric_circle_area_keys_use_actual_path_area_and_separate_parameter(self):
+        fig, ax = self.figure()
+        manager = helper.LegendLayout(fig, ax, {"legend": 8}, {
+            "size": {"position": "manual", "anchor_mm": [10, 18], "ncol": 3}})
+        manager.add_size([10, 40, 160], [9, 36, 144], title="Count", area_semantics="geometric_circle_area")
+        report = manager.layout()
+        self.assertEqual(report["status"], "pass")
+        handles = manager.entries[0]["artist"].legend_handles
+        np.testing.assert_allclose([collection_fill_areas_pt2(handle, fig)[0] for handle in handles], [9, 36, 144], rtol=1e-6)
+        item = report["legends"][0]
+        self.assertEqual(item["marker_areas_pt2"], [9, 36, 144])
+        np.testing.assert_allclose(item["marker_size_parameters_pt2"], np.array([9, 36, 144]) * 4 / math.pi)
+        self.assertEqual(item["area_semantics"], "geometric_circle_area")
+        handles[-1].set_sizes([144])
+        self.assertIn("quantitative_marker_area_changed", manager.validate()["legends"][0]["issues"])
+
+    def test_legacy_size_keys_keep_rendering_and_correctly_record_fill_area(self):
+        fig, manager, report = self.size_guide()
+        handles = manager.entries[0]["artist"].legend_handles
+        self.assertEqual([float(handle.get_sizes()[0]) for handle in handles], [9, 36, 144])
+        geometric = np.array([9, 36, 144]) * math.pi / 4
+        np.testing.assert_allclose([collection_fill_areas_pt2(handle, fig)[0] for handle in handles], geometric, rtol=1e-6)
+        item = report["legends"][0]
+        self.assertEqual(item["marker_size_parameters_pt2"], [9, 36, 144])
+        np.testing.assert_allclose(item["marker_areas_pt2"], geometric)
+        self.assertEqual(item["area_semantics"], "matplotlib_size_parameter")
+
+    def test_geometric_area_export_benchmark_checks_actual_svg_and_png(self):
+        fig, _, _ = self.size_guide(area_semantics="geometric_circle_area", dpi=300)
+        spec = {"chart": "dotplot", "layout": {"width_mm": 100, "height_mm": 70, "dpi": 300},
+                "options": {"size_max": 160, "max_area_pt2": 144, "size_legend": [10, 40, 160]}}
+        geometry = benchmark.inspect_figure(fig, spec)
+        with tempfile.TemporaryDirectory(prefix="easyviz-circle-export-") as folder:
+            folder = Path(folder)
+            fig.savefig(folder / "panel.png", dpi=300)
+            fig.savefig(folder / "panel.svg")
+            checked = benchmark.inspect_size_exports(folder, geometry, spec)
+        self.assertTrue(checked["svg_pass"], checked)
+        self.assertTrue(checked["png_pass"], checked)
+        np.testing.assert_allclose(checked["expected_diameters_pt"], 2 * np.sqrt(np.array([9, 36, 144]) / math.pi))
 
     def test_explicit_placement_columns_and_font_are_honored(self):
         fig, ax = self.figure(132, 96)

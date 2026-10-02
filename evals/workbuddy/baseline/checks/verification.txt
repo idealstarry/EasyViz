@@ -1,0 +1,43 @@
+verify_figure.py - 15 passed, 0 failed
+
+[PASS] PNG pixel size matches the 120x90 mm canvas at 300 dpi: 1417x1062 px = 119.973 x 89.916 mm (nominal 1417.32 x 1062.99 px; matplotlib truncates the fractional height, the vector formats carry the exact page box)
+[PASS] all content inside the canvas (no glyph clipped at an edge): actual ink clearance mm -> left 1.95, right 2.29, top 2.63, bottom 2.71
+[PASS] declared layout clearance is honoured by the real ink: layout clearance (text boxes) left 2.00, right 2.24, top 2.20, bottom 2.10 | ink clearance (dark pixels) left 1.95, right 2.29, top 2.63, bottom 2.71 - the gap is the unused ascent/descent inside each text box
+[PASS] zero rows declare a marker area of exactly 0 in the plotting data: s_pt2 == 0.0 and diameter_mm == 0.0 for every Detected fraction of 0
+[PASS] zero rows are drawn as a non-quantitative symbol, not a filled disc: Resident macrophages/Control: fill ratio 0.24 (disc would be 0.79); Cycling myeloid cells/Low dose: fill ratio 0.24 (disc would be 0.79)
+[PASS] drawn marker diameter follows sqrt(fraction) with the declared maximum: least-squares fit rendered_d_mm = 5.6241 * sqrt(fraction) + +0.1372 (n = 22); declared maximum diameter 5.6 mm -> slope within 0.4 %, and the constant +0.137 mm is the antialiased rim / edge stroke
+[PASS] drawn area is proportional to Detected fraction (radius is not the variable): area(0.25):area(0.50):area(0.75):area(1.00) = 1.0000 : 2.0000 : 2.9999 : 4.0000  |  diameters 2.800 : 3.960 : 4.850 : 5.600 mm  |  a radius-linear encoding would need areas 1 : 4 : 9 : 16 mm-free but diameters 1 : 2 : 3 : 4
+[PASS] PDF page box is exactly 120 x 90 mm: MediaBox 340.16 x 255.12 pt = 120.000 x 90.000 mm
+[PASS] PDF text is embedded TrueType, not converted to outlines: font objects present: ['CIDFontType2', 'Type0'], embedded font file: FontFile2 (TrueType), BaseFont ['CAXPDD+ArialMT'] - the text stays selectable and editable
+[PASS] independently rasterised PDF reproduces the page and keeps the ink inside: poppler raster at 300 dpi -> 1418x1063 px = 120.06 x 90.00 mm, ink clearance mm 1.10, 2.28, 2.71, 2.71
+[PASS] PDF raster and PNG raster agree: mean absolute grey-level difference 4.78 / 255 between the poppler PDF render and the matplotlib PNG (both at 300 dpi)
+[PASS] SVG declares the 120 x 90 mm physical size: width="120mm" height="90mm" viewBox="0 0 340.15748 255.11811" = 120.000 x 90.000 mm
+[PASS] SVG keeps editable text (real <text> elements, no glyph outlines): 24 <text> elements, 38 <path> elements (the dots/legend circles), all expected strings present, font-family declared as font-family: 'Arial', sans-serif
+[PASS] no title, subtitle or explanatory footnote in the image: text actually drawn: 0, 0.0, 0.25, 0.5, 0.50, 0.75, 1.0, 1.00, 1.5, Activated, Antigen-presenting, Cell, Control, Cycling, Detected, High, Inflammatory, Interferon, Lipid-associated, Low, Prepared, Resident, Tissue, Treatment, arm, cells, dose, fraction, macrophages, monocytes, myeloid, score, type
+[PASS] all 24 input rows are plotted: 24 rows in data/plot_data.csv, 8 cell types x 3 treatment arms
+
+per-marker measurements taken from the 300 dpi raster
+  Resident macrophages | Control | fraction 0 -> symbol span 1.95 x 1.95 mm, ink 0.926 mm^2, fill ratio inside its own box 0.24 (a filled disc of the same span would be 0.79); declared marker area 0
+  Resident macrophages | Low dose | fraction 0.15 | intended 2.169 mm | rendered 2.287 mm | delta  5.4 % | inked  98.1 % of the probe disc
+  Resident macrophages | High dose | fraction  0.3 | intended 3.067 mm | rendered 3.218 mm | delta  4.9 % | inked  99.3 % of the probe disc
+  Activated monocytes | Control | fraction 0.35 | intended 3.313 mm | rendered 3.472 mm | delta  4.8 % | inked  98.9 % of the probe disc
+  Activated monocytes | Low dose | fraction  0.5 | intended 3.960 mm | rendered 4.150 mm | delta  4.8 % | inked  99.3 % of the probe disc
+  Activated monocytes | High dose | fraction 0.65 | intended 4.515 mm | rendered 4.658 mm | delta  3.2 % | inked  99.5 % of the probe disc
+  Interferon macrophages | Control | fraction  0.7 | intended 4.685 mm | rendered 4.827 mm | delta  3.0 % | inked  99.7 % of the probe disc
+  Interferon macrophages | Low dose | fraction 0.85 | intended 5.163 mm | rendered 5.335 mm | delta  3.3 % | inked  99.7 % of the probe disc
+  Interferon macrophages | High dose | fraction 0.05 | intended 1.252 mm | rendered 1.440 mm | delta 15.0 % | inked  99.4 % of the probe disc
+  Lipid-associated cells | Control | fraction  0.1 | intended 1.771 mm | rendered 1.863 mm | delta  5.2 % | inked  99.7 % of the probe disc
+  Lipid-associated cells | Low dose | fraction 0.25 | intended 2.800 mm | rendered 2.964 mm | delta  5.9 % | inked  99.9 % of the probe disc
+  Lipid-associated cells | High dose | fraction  0.4 | intended 3.542 mm | rendered 3.641 mm | delta  2.8 % | inked  99.9 % of the probe disc
+  Antigen-presenting cells | Control | fraction 0.45 | intended 3.757 mm | rendered 3.896 mm | delta  3.7 % | inked  99.9 % of the probe disc
+  Antigen-presenting cells | Low dose | fraction  0.6 | intended 4.338 mm | rendered 4.488 mm | delta  3.5 % | inked 100.0 % of the probe disc
+  Antigen-presenting cells | High dose | fraction 0.75 | intended 4.850 mm | rendered 4.996 mm | delta  3.0 % | inked 100.0 % of the probe disc
+  Cycling myeloid cells | Control | fraction  0.8 | intended 5.009 mm | rendered 5.166 mm | delta  3.1 % | inked  99.9 % of the probe disc
+  Cycling myeloid cells | Low dose | fraction 0 -> symbol span 1.95 x 1.95 mm, ink 0.926 mm^2, fill ratio inside its own box 0.24 (a filled disc of the same span would be 0.79); declared marker area 0
+  Cycling myeloid cells | High dose | fraction 0.15 | intended 2.169 mm | rendered 2.287 mm | delta  5.4 % | inked 100.0 % of the probe disc
+  Inflammatory macrophages | Control | fraction  0.2 | intended 2.504 mm | rendered 2.710 mm | delta  8.2 % | inked 100.0 % of the probe disc
+  Inflammatory macrophages | Low dose | fraction 0.35 | intended 3.313 mm | rendered 3.472 mm | delta  4.8 % | inked 100.0 % of the probe disc
+  Inflammatory macrophages | High dose | fraction  0.5 | intended 3.960 mm | rendered 4.150 mm | delta  4.8 % | inked 100.0 % of the probe disc
+  Tissue monocytes | Control | fraction 0.55 | intended 4.153 mm | rendered 4.319 mm | delta  4.0 % | inked 100.0 % of the probe disc
+  Tissue monocytes | Low dose | fraction  0.7 | intended 4.685 mm | rendered 4.827 mm | delta  3.0 % | inked 100.0 % of the probe disc
+  Tissue monocytes | High dose | fraction 0.85 | intended 5.163 mm | rendered 5.335 mm | delta  3.3 % | inked 100.0 % of the probe disc

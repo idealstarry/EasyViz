@@ -1,0 +1,55 @@
+{
+  "chart": "ecdf",
+  "fields": {
+    "value": "v",
+    "group": "phase",
+    "unit": "pid"
+  },
+  "order": {
+    "group": [
+      "001",
+      "NA"
+    ]
+  },
+  "colors": {
+    "001": "#A05272",
+    "NA": "#4E78A0"
+  },
+  "labels": {
+    "x": "Measurement",
+    "y": "Cumulative fraction"
+  },
+  "options": {
+    "x_scale": "linear",
+    "x_limits": [
+      -1,
+      3
+    ],
+    "x_ticks": [
+      -1,
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 90,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 200,
+    "auto_fit": true
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 2
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ]
+}

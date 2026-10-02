@@ -84,6 +84,17 @@ Profile-based outputs additionally save the absolute profile path, profile SHA-2
 
 ## Executable support
 
+For the core renderer, `layout.auto_fit: true` measures actual text and guide
+envelopes and reallocates margins within the same physical canvas. Use it when
+starting a basic panel without accepted manual margins. It conflicts with
+explicit margins and manual guide coordinates. [First panel](quick-start.md)
+describes its scope and recorded evidence. Existing specifications retain their
+manual layout unless they opt in.
+Automatic guides are tried together on the right, bottom and top. Multiple
+guides stack by their measured envelopes, while explicit side choices remain
+fixed. The largest feasible data region among these side candidates is a
+technical allocation of space; it does not establish visual preference.
+
 Copy starting dimensions from [presets.json](../assets/layouts/presets.json) into the renderer's `layout` settings. Use [chart-library.md](chart-library.md) for the supported data mappings and options. Resolved output settings record the actual font and physical dimensions; the renderer also writes export checks. A successful render still requires visual inspection, especially for overlaps between labels that remain inside the canvas.
 
 Keep grids underneath primary marks, labels, and annotations. A fixed canvas should preserve scientific content; it is not a reason to crop observations, reduce the shared font size, or invent a simpler statistical result.

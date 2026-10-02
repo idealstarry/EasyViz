@@ -1,0 +1,546 @@
+{
+  "status": "pass",
+  "independence": "Independent raw XLSX XML parsing, decimal-value/cell/classification checks, Python statistics, and actual SVG/PDF geometry; no extraction or plotting implementation imported.",
+  "checks": [
+    {
+      "check": "Official Urschel workbook identity",
+      "status": "pass",
+      "sha256": "d902e7608caa56172bac12515bb0e0b79efb075b669424b8b63858ad21d371be"
+    },
+    {
+      "check": "Official Truong workbook identity",
+      "status": "pass",
+      "sha256": "5a9283a1a16e5ca2f8fe0db16af0656e06ddb275dbfe64751643eb2a6dd8cc51"
+    },
+    {
+      "check": "Urschel: all 127 pairs retained exactly once",
+      "status": "pass",
+      "rows": 254,
+      "pairs": 127
+    },
+    {
+      "check": "Urschel: all raw decimal measurements preserved",
+      "status": "pass",
+      "mismatches": [],
+      "literal_lexeme_changes": []
+    },
+    {
+      "check": "Urschel: worksheet-cell trace is correct",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Urschel: infection classes including NCAP+ preserved",
+      "status": "pass",
+      "source_classes": {
+        "yes": 60,
+        "no": 63,
+        "yes/NCAP+": 4
+      },
+      "mismatches": []
+    },
+    {
+      "check": "Urschel: selected sheet agrees with independent master sheet",
+      "status": "pass",
+      "audited_measurements": 254,
+      "mismatches": []
+    },
+    {
+      "check": "Urschel: no selected formula, missing or nonpositive measurement",
+      "status": "pass"
+    },
+    {
+      "check": "ECDF: real-data adaptation uses same complete source table",
+      "status": "pass",
+      "input_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb"
+    },
+    {
+      "check": "Paired: final case input matches independently traced source table",
+      "status": "pass",
+      "sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb"
+    },
+    {
+      "check": "Truong: all 84 selected numeric cells retained once",
+      "status": "pass",
+      "component_rows": 63,
+      "supplied_ratio_rows": 21
+    },
+    {
+      "check": "Truong: exact numeric lexemes and true zeros preserved",
+      "status": "pass",
+      "source_zeros": 3,
+      "mismatches": []
+    },
+    {
+      "check": "Truong: all cell coordinates and literal labels traced",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Truong: wide and both long tables agree with raw source",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Truong: supplied ratio semantics include shared component",
+      "status": "pass",
+      "maximum_absolute_residual": 6.217248937900877e-15,
+      "formula_checked": "(HDR-only + shared)/(mutEJ-only + shared)",
+      "ratio_values_recomputed": false
+    },
+    {
+      "check": "Truong: control ambiguity explicit and ratio states retained",
+      "status": "pass",
+      "note": "Control display names resolved by figure/caption; workbook alone has duplicate '-'."
+    },
+    {
+      "check": "Truong: complete components for each condition-local unit",
+      "status": "pass",
+      "cross_condition_pairing_inferred": false
+    },
+    {
+      "check": "Truong: means and sample SD derived from correct quantities",
+      "status": "pass",
+      "mismatches": [],
+      "sd_ddof": 1,
+      "total_sd": "SD of per-unit sums, not sum of component SDs"
+    },
+    {
+      "check": "Truong: no formulas in selected numeric cells",
+      "status": "pass"
+    },
+    {
+      "check": "Truong: final case inputs match independently traced tables",
+      "status": "pass",
+      "hashes": {
+        "components.csv": "2396b56a4e2dc998a259f8f832591bca07517e3407b0058ac388d870c938590d",
+        "ratios.csv": "4ce0abe122280eee24ca14b64da4157089463d303b33f65c4614262de329c99c"
+      }
+    },
+    {
+      "check": "urschel-ecdf/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1240,
+        1004
+      ],
+      "pdf_mm": [
+        104.99999703301324,
+        85.00000118679469
+      ],
+      "pdf_font_sizes": [
+        5.6,
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        104.99999990277777,
+        85.00000003888889
+      ]
+    },
+    {
+      "check": "urschel-ecdf/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": 5.6
+    },
+    {
+      "check": "urschel-ecdf/output: SVG exact right-continuous empirical jumps",
+      "status": "pass",
+      "source_counts": [
+        {
+          "group": "Before",
+          "observations": 127,
+          "distinct_values": 127,
+          "maximum_tie": 1
+        },
+        {
+          "group": "After",
+          "observations": 127,
+          "distinct_values": 127,
+          "maximum_tie": 1
+        }
+      ],
+      "smoothing_applied": false
+    },
+    {
+      "check": "urschel-ecdf/output: PDF exact empirical curve segments",
+      "status": "pass",
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "truong-components/output-components: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1772,
+        1181
+      ],
+      "pdf_mm": [
+        149.99999576144748,
+        100.00000076293945
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        149.9999998611111,
+        100.00000002499999
+      ]
+    },
+    {
+      "check": "truong-components/output-components: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": null
+    },
+    {
+      "check": "truong-components/output-components: SVG bars are exact unnormalized supplied-value means",
+      "status": "pass",
+      "bars": 21,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-components: SVG intervals use correct sample SD endpoints",
+      "status": "pass",
+      "intervals": 7,
+      "mismatches": [],
+      "quantity": "per-unit total"
+    },
+    {
+      "check": "truong-components/output-components: SVG raw-point positions match every source unit",
+      "status": "pass",
+      "points": 21,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-components: actual SVG circle size and borderless policy",
+      "status": "pass",
+      "geometric_fill_area_pt2": 7,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-components: SVG component colors and declared control hatches",
+      "status": "pass",
+      "color_mismatches": [],
+      "hatch_mismatches": []
+    },
+    {
+      "check": "truong-components/output-components: PDF raw-point centers independently match SVG/source",
+      "status": "pass",
+      "audited_points": 21,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "truong-components/output-components: actual PDF sample SD endpoints",
+      "status": "pass",
+      "audited_intervals": 7,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "truong-components/output-ratios: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1772,
+        1181
+      ],
+      "pdf_mm": [
+        149.99999576144748,
+        100.00000076293945
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        149.9999998611111,
+        100.00000002499999
+      ]
+    },
+    {
+      "check": "truong-components/output-ratios: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": null
+    },
+    {
+      "check": "truong-components/output-ratios: SVG bars are exact unnormalized supplied-value means",
+      "status": "pass",
+      "bars": 7,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-ratios: SVG intervals use correct sample SD endpoints",
+      "status": "pass",
+      "intervals": 7,
+      "mismatches": [],
+      "quantity": "supplied values"
+    },
+    {
+      "check": "truong-components/output-ratios: SVG raw-point positions match every source unit",
+      "status": "pass",
+      "points": 21,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-ratios: actual SVG circle size and borderless policy",
+      "status": "pass",
+      "geometric_fill_area_pt2": 7,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-ratios: SVG component colors and declared control hatches",
+      "status": "pass",
+      "color_mismatches": [],
+      "hatch_mismatches": []
+    },
+    {
+      "check": "truong-components/output-ratios: PDF raw-point centers independently match SVG/source",
+      "status": "pass",
+      "audited_points": 21,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "truong-components/output-ratios: actual PDF sample SD endpoints",
+      "status": "pass",
+      "audited_intervals": 7,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "truong-components/output-grouped: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        2067,
+        1181
+      ],
+      "pdf_mm": [
+        174.99999864366316,
+        100.00000076293945
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        174.99999995555555,
+        100.00000002499999
+      ]
+    },
+    {
+      "check": "truong-components/output-grouped: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": null
+    },
+    {
+      "check": "truong-components/output-grouped: SVG bars are exact unnormalized supplied-value means",
+      "status": "pass",
+      "bars": 21,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-grouped: SVG intervals use correct sample SD endpoints",
+      "status": "pass",
+      "intervals": 21,
+      "mismatches": [],
+      "quantity": "supplied values"
+    },
+    {
+      "check": "truong-components/output-grouped: SVG raw-point positions match every source unit",
+      "status": "pass",
+      "points": 63,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-grouped: actual SVG circle size and borderless policy",
+      "status": "pass",
+      "geometric_fill_area_pt2": 4,
+      "mismatches": []
+    },
+    {
+      "check": "truong-components/output-grouped: SVG component colors and declared control hatches",
+      "status": "pass",
+      "color_mismatches": [],
+      "hatch_mismatches": []
+    },
+    {
+      "check": "truong-components/output-grouped: PDF raw-point centers independently match SVG/source",
+      "status": "pass",
+      "audited_points": 63,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "truong-components/output-grouped: actual PDF sample SD endpoints",
+      "status": "pass",
+      "audited_intervals": 21,
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "urschel-paired/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1240,
+        1134
+      ],
+      "pdf_mm": [
+        104.99999703301324,
+        95.99999728732638
+      ],
+      "pdf_font_sizes": [
+        5.6,
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        104.99999990277777,
+        95.99999991111112
+      ]
+    },
+    {
+      "check": "urschel-paired/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": 5.6
+    },
+    {
+      "check": "urschel-paired/output: SVG/PDF all source points retain cohort, condition and raw value",
+      "status": "pass",
+      "cell_counts": [
+        {
+          "block": "Prior infection",
+          "condition": "Before",
+          "n": 64
+        },
+        {
+          "block": "Prior infection",
+          "condition": "After",
+          "n": 64
+        },
+        {
+          "block": "No prior infection",
+          "condition": "Before",
+          "n": 63
+        },
+        {
+          "block": "No prior infection",
+          "condition": "After",
+          "n": 63
+        }
+      ],
+      "mismatches": []
+    },
+    {
+      "check": "urschel-paired/output: SVG/PDF medians and IQRs computed on raw scale",
+      "status": "pass",
+      "intervals": 4,
+      "quantile_method": "weibull",
+      "interval_meaning": "IQR of observations, not CI"
+    },
+    {
+      "check": "urschel-paired/output-connectors: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1240,
+        1134
+      ],
+      "pdf_mm": [
+        104.99999703301324,
+        95.99999728732638
+      ],
+      "pdf_font_sizes": [
+        5.6,
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        104.99999990277777,
+        95.99999991111112
+      ]
+    },
+    {
+      "check": "urschel-paired/output-connectors: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": 5.6
+    },
+    {
+      "check": "urschel-paired/output-connectors: SVG/PDF all source points retain cohort, condition and raw value",
+      "status": "pass",
+      "cell_counts": [
+        {
+          "block": "Prior infection",
+          "condition": "Before",
+          "n": 64
+        },
+        {
+          "block": "Prior infection",
+          "condition": "After",
+          "n": 64
+        },
+        {
+          "block": "No prior infection",
+          "condition": "Before",
+          "n": 63
+        },
+        {
+          "block": "No prior infection",
+          "condition": "After",
+          "n": 63
+        }
+      ],
+      "mismatches": []
+    },
+    {
+      "check": "urschel-paired/output-connectors: SVG/PDF medians and IQRs computed on raw scale",
+      "status": "pass",
+      "intervals": 4,
+      "quantile_method": "weibull",
+      "interval_meaning": "IQR of observations, not CI"
+    },
+    {
+      "check": "urschel-paired/output-connectors: actual SVG connectors retain declared within-unit pairs",
+      "status": "pass",
+      "mismatches": []
+    }
+  ],
+  "passed": 60,
+  "total": 60,
+  "scope": "Source integrity and selected actual export geometry. Aesthetic review is separate.",
+  "current_export_hashes": {
+    "examples/create/urschel-ecdf/output/panel.png": "a4046f094617a2f4491f15aafff58c40363cc8725e66bd66241ebc29c4ca0070",
+    "examples/create/urschel-ecdf/output/panel.pdf": "1196ea9e04e85bfc21b2b79107d8d25936538b278bfb5254e6cf08da328fa562",
+    "examples/create/urschel-ecdf/output/panel.svg": "fbcc88458228f228a8880f3b1531daf87f50faf6ea399b6dbd15c3e40a4ab84e",
+    "examples/no-author-code/truong-components/output-ratios/panel.tiff": "3e923e50e75f536bd3758a9b4d53434d4286a3ca8dc1b62fad273a16158f0e09",
+    "examples/no-author-code/truong-components/output-ratios/panel.png": "c5f06b1b51fa4f582b66426460ef70cc8c29ab8ed6b9a665c5b5b206350ab70e",
+    "examples/no-author-code/truong-components/output-ratios/panel.pdf": "2a29ba4da92395a47ccbdd5f48e019879db136aa9cafb055ec3e2cd56075c689",
+    "examples/no-author-code/truong-components/output-ratios/panel.svg": "ed7777d56971727886642c26cfc8f9f4aad68ba9468506bf05d005b5e8aa7c7f",
+    "examples/no-author-code/truong-components/output-grouped/panel.tiff": "14624249a0ad426919e115001c8087f0646b3de464194aa52b810387000c5b00",
+    "examples/no-author-code/truong-components/output-grouped/panel.png": "fbe198903517f2ec046993f4c0e8bdf6e71272d8841a61ef5ba0b38c61b40aaa",
+    "examples/no-author-code/truong-components/output-grouped/panel.pdf": "adb1cd04b87d607b9e9ad7a9b074e97a6907f21a1ea9bf02ddb919f214e03e6f",
+    "examples/no-author-code/truong-components/output-grouped/panel.svg": "a2cb6bf3f2f545346aee9992ceef5f6e3a73b2230649b685dca86dd0af66f8fd",
+    "examples/no-author-code/truong-components/output-components/panel.tiff": "b6fb213977e71254d2ebe0b4889130a010e6aa28c37eeeb08e85225f60aa8d5f",
+    "examples/no-author-code/truong-components/output-components/panel.png": "e0dd7e35052639b10e932bf95a965879e0d82ad908e480ebc13a3d1261b03e78",
+    "examples/no-author-code/truong-components/output-components/panel.pdf": "2d759902195aa56b8e6398a82155774d628f7807355c3fbab8ec2402100951c7",
+    "examples/no-author-code/truong-components/output-components/panel.svg": "8ac49f80b347df1f9aae0d7c43d69ce039658d4ff123f4965d42d8ff0c4ffcf1",
+    "examples/no-author-code/urschel-paired/output/panel.tiff": "5a72e8817494bdd5ab863130075b99349e73606a1c5e7bdc8f3d81f18720ebd2",
+    "examples/no-author-code/urschel-paired/output/panel.png": "8dc155b52e6e156625bd72c63d716cb454fa898a0fa234e833a70b156605fa88",
+    "examples/no-author-code/urschel-paired/output/panel.pdf": "e553ce04e7b71ecfd03b5350a71bf8eb7604c874ae0e1eaae73eda02a894051e",
+    "examples/no-author-code/urschel-paired/output/panel.svg": "227f7a04024149094b53353c0faf5d0c1799c10d3cdf97d80a2e9792464d7a1c",
+    "examples/no-author-code/urschel-paired/output-connectors/panel.tiff": "dbeed584e6bb52de2b8c9391ec6b860fa49b2930ed41f1e335de482fa9d31883",
+    "examples/no-author-code/urschel-paired/output-connectors/panel.png": "2c871e67170eae09eeaf65d4ef5962ecf840bd05b10eef9606d950c1322739e0",
+    "examples/no-author-code/urschel-paired/output-connectors/panel.pdf": "36e6dcb0ce108f11ad1908b6592a0cbdbbaa6c6925399937216321333db78a14",
+    "examples/no-author-code/urschel-paired/output-connectors/panel.svg": "5f3794ef538bb303c9ca03ad583348d5c204e9315556749b4233d3974ef23b4d"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "mdd",
+    "y": "logq",
+    "size": "prob",
+    "group": "display_class"
+  },
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 120,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.17,
+      "right": 0.96,
+      "bottom": 0.14,
+      "top": 0.97
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "C3 lower": "#3E4D89",
+    "C3 higher": "#B52B2D",
+    "Small effect": "#BEBEBE"
+  },
+  "order": {
+    "group": [
+      "C3 lower",
+      "C3 higher",
+      "Small effect"
+    ]
+  },
+  "labels": {
+    "x": "Median difference (C3 − C5)",
+    "y": "−log10(adjusted P)",
+    "size": "Expression\nprobability"
+  },
+  "options": {
+    "size_max": 1,
+    "max_area_pt2": 18,
+    "size_legend": [
+      0.25,
+      0.5,
+      1
+    ],
+    "alpha": 1,
+    "x_limits": [
+      -6,
+      3
+    ],
+    "y_limits": [
+      0,
+      55
+    ],
+    "reference_lines": {
+      "x": [
+        -0.2,
+        0.2
+      ],
+      "y": [
+        2
+      ]
+    },
+    "grid": false
+  },
+  "legends": {
+    "categorical": {
+      "position": "manual",
+      "anchor_mm": [
+        83,
+        116
+      ],
+      "loc": "upper right",
+      "allow_plot_overlap": true,
+      "key_width_mm": 1.5,
+      "key_height_mm": 1.5,
+      "handletext_gap_mm": 0.7,
+      "row_gap_mm": 0.5
+    },
+    "size": {
+      "position": "manual",
+      "anchor_mm": [
+        83,
+        78
+      ],
+      "loc": "upper right",
+      "allow_plot_overlap": true
+    }
+  }
+}

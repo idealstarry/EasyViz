@@ -1,0 +1,21 @@
+{
+  "attempt": 1,
+  "observed_result": "failed",
+  "source_of_evidence": "Actual initial renderer exit 1 and written failed qa.json, preserved before the API fix and successful rerun",
+  "entry_point": "render.py",
+  "explicit_descriptive_contract": {
+    "statistics": {
+      "method": "none"
+    },
+    "regression": false
+  },
+  "spec_sha256": "f868c46a4d9d60a19d9744585e3641067bc6d62d6b288736da4086b59b43042d",
+  "initial_qa": {
+    "status": "failed",
+    "valid_outputs": false,
+    "note": "Until this run passes, any exports in this directory are unverified and may belong to an earlier run.",
+    "error": "Scatter statistics supports pearson or spearman"
+  },
+  "historical_runtime_sha256": "not captured at the failed attempt; no guessed hash",
+  "resolution": "Pending support for explicit method none; no implicit test or removal of the explicit descriptive contract"
+}

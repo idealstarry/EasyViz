@@ -1,0 +1,64 @@
+{
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "author_code_accessed": false,
+  "reader_independence": "Fresh image-only reader report obtained before implementation selection; implementer received project context and then used shared EasyViz runtime.",
+  "isolation": "Instruction-based; not OS-enforced.",
+  "prior_context": "Implementer had inherited repository-maintenance context and read existing Massier case wrapper/documentation after the independent reading. This is an image-data reconstruction using an established shared recipe, not a blind implementation benchmark.",
+  "source_inputs": [
+    {
+      "path": "inputs/independent-reading.md",
+      "sha256": "8bebf7c7fc1f260e8b8c49fea8d86098f65ac21ead37513200c9d965552cd133"
+    },
+    {
+      "path": "inputs/request.md",
+      "sha256": "007ece60e76c5db8e91c012f7ba3cc41926c60be7161f189d17f34032f331fc4"
+    },
+    {
+      "path": "inputs/data-dictionary.md",
+      "sha256": "dfbc55627fee754f0c1929fb28fda026b0bbbaeb9ce35406a5a79c505d008350"
+    },
+    {
+      "path": "inputs/reference.png",
+      "sha256": "ea1fad74377024bb27440f5617a0e15435fc570ad4d8a323577f06c262053fa6"
+    },
+    {
+      "path": "inputs/source-data.csv",
+      "sha256": "9828fcac3d6622d8ac10b01ed4c3b84074725242ddc9aca7ff62627ee85be0a0"
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "092a59a57e7401163c0a72e71b6e37cf3445f5bde75e643b5a798a5585878244"
+    }
+  ],
+  "implementation_resources_read": [
+    "skills/easyviz/SKILL.md",
+    "skills/easyviz/references/reproduce.md",
+    "skills/easyviz/references/panel-layout.md",
+    "skills/easyviz/scripts/interval_plot.py",
+    "skills/easyviz/scripts/legend_layout.py",
+    "skills/easyviz/scripts/auto_layout.py",
+    "examples/no-author-code/massier-bmi-violin/plot.py (first 70 lines)",
+    "examples/no-author-code/massier-bmi-violin/README.md (first 70 lines)",
+    "examples/no-author-code/massier-bmi-violin/access-log.json (first 70 lines)",
+    "scripts/sync_skill_cases.py"
+  ],
+  "new_statistics": false,
+  "numeric_preparation": "Exact panel partitions; only effect_direction-to-mark_state string mapping added.",
+  "visual_review": "Implementer inspected the source reference crop; output inspection and independent review follow rendering.",
+  "output_inspection": "Implementer actually viewed both output-a/panel.png and output-b/panel.png after their passing renders.",
+  "export_verification": "verify_exports.py independently reads exported PDF vector geometry, actual text/font embedding, source rows, SVG text, and PNG dimensions. It does not import the plotting implementation or trust its QA.",
+  "final_outputs": {
+    "output-a/panel.png": "6f92ee38e250baef3f465207f8cf93c98f3ef540bda7bfa5a9e362aaad55c554",
+    "output-a/panel.pdf": "1ffe9f4ff070f01742f6e555f915c97a4ef6d0c0a5539ca7193c08ef705c185e",
+    "output-b/panel.png": "96ff894dc6ed0a6f10f4a74c6fa723ad7e246d8ab5460576ff2890cac492b48c",
+    "output-b/panel.pdf": "912ffac130df041212115d1e909495a37d53479ca14e9ea174156c3bd5746f70",
+    "verification.json": "56943700f14256d666363ee3aad9f618efac59019a3653379c90caf49441c4d6"
+  },
+  "independent_review": {
+    "status": "pass_with_minor_concerns",
+    "report_sha256": "1d720ff0bb1b3dcf0b09d01109556ac17bc725e5dc058596373fa3dddef6efd8",
+    "candidate_regeneration_requested": false,
+    "residual": "Pale yellow requires production-proof checking; no calibrated print proof performed."
+  }
+}

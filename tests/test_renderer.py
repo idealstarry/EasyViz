@@ -20,6 +20,7 @@ loader.loader.exec_module(renderer)
 from PIL import Image
 from pypdf import PdfReader
 import pandas as pd
+from marker_geometry import collection_fill_areas_pt2
 
 
 class RendererTests(unittest.TestCase):
@@ -109,6 +110,28 @@ class RendererTests(unittest.TestCase):
         with self.assertRaises(renderer.SpecError):
             renderer.statistics(constant, spec)
         self.assertEqual(renderer.statistics(data, self.base)["method"], "none")
+
+    def test_explicit_none_is_descriptive_and_rejects_incompatible_statistical_requests(self):
+        source = self.csv("x,y,subject\n1,2,S1\n2,3,S1\n3,4,S2\n")
+        spec = deepcopy(self.base)
+        spec["fields"]["unit"] = "subject"
+        spec["statistics"] = {"method": "none", "annotate": False}
+        qa = renderer.render(source, spec, self.root / "explicit-none")
+        self.assertEqual(qa["status"], "pass")
+        result = json.loads((self.root / "explicit-none/stats.json").read_text())
+        self.assertEqual(result["method"], "none")
+        self.assertNotIn("pvalue", result)
+        self.assertEqual(len(pd.read_csv(self.root / "explicit-none/plotting-data.csv")), 3)
+        data = renderer.prepare(source, spec)
+        self.assertEqual(result, renderer.statistics(data, self.base))
+        for forbidden in ({"annotate": True}, {"groups": ["A", "B"]}, {"unit": "subject"}):
+            with self.subTest(forbidden=forbidden):
+                conflict = deepcopy(spec)
+                conflict["statistics"].update(forbidden)
+                with self.assertRaisesRegex(renderer.SpecError, "cannot be combined"):
+                    renderer.prepare(source, conflict)
+                with self.assertRaisesRegex(renderer.SpecError, "cannot be combined"):
+                    renderer.statistics(data, conflict)
 
     def test_welch_and_independence_checks(self):
         spec = {"chart": "distribution", "fields": {"group": "g", "value": "v", "unit": "id"}, "statistics": {"method": "welch", "groups": ["A", "B"]}}
@@ -208,6 +231,14 @@ class RendererTests(unittest.TestCase):
         renderer.render(data, spec, self.root / "dots")
         plotted = pd.read_csv(self.root / "dots/plotting-data.csv")
         self.assertEqual(list(plotted["_easyviz_area_pt2"]), [0, 25, 100, 50])
+        renderer.np.testing.assert_allclose(plotted["_easyviz_marker_size_parameter_pt2"], [0, 25 * 4 / math.pi, 100 * 4 / math.pi, 50 * 4 / math.pi])
+        data = renderer.prepare(data, spec)
+        layout, typography, rc = renderer.setup(spec)
+        with renderer.plt.rc_context(rc):
+            fig, _ = renderer.draw(data, spec, layout, typography, {"method": "none"})
+            renderer.np.testing.assert_allclose(collection_fill_areas_pt2(fig.axes[0].collections[0], fig), [0, 25, 100, 50], rtol=1e-6, atol=1e-10)
+        settings = json.loads((self.root / "dots/settings.json").read_text())
+        self.assertEqual(settings["mark_geometry"]["mode"], "mapped_circle_fill_area")
         with self.assertRaises(renderer.SpecError):
             renderer.continuous({"options": {"color_limits": [0, 1]}}, [-1, 0, 1])
 

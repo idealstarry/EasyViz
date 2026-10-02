@@ -1,0 +1,134 @@
+--- before-runtime/scripts/auto_layout.py
++++ after-runtime/scripts/auto_layout.py
+@@ -51,14 +51,17 @@
+         if side in by_side:
+             by_side[side].append((manager._bounds(entry), entry["chosen_settings"]["gap_mm"]))
+     mm = 25.4 / fig.dpi
++    tight = manager._tight_plot()
+     for side, entries in by_side.items():
+         if not entries:
+             continue
+         if side == "right":
+             # Right guides stack vertically; the widest envelope sets the band.
+             reserved[side] = max(box.width * mm + gap for box, gap in entries)
++        elif side == "top":
++            reserved[side] = max(0., max(box.y1 for box, _ in entries) - tight.y1) * mm
+         else:
+-            reserved[side] = sum(box.height * mm + gap for box, gap in entries)
++            reserved[side] = max(0., tight.y0 - min(box.y0 for box, _ in entries)) * mm
+         reserved[side] += max(0., max(entry["chosen_settings"]["canvas_padding_mm"]
+                                     for entry in manager.entries
+                                     if entry["chosen_settings"]["position"] == side) - padding_mm)
+@@ -88,8 +91,7 @@
+ def fit(fig, ax, manager, tick_check, *, annotation_check=None, padding_mm=2.):
+     """Return measured layout evidence; retain user guide settings when supplied.
+ 
+-    A single automatic guide is tried on the right, bottom and top. Multiple
+-    automatic guides use the helper's vertical stack on the right. Choose a
++    Automatic guides are tried as a group on the right, bottom and top. Choose a
+     technically feasible arrangement with the largest data region; the final
+     image still requires a visual review. Explicit guide positions stay fixed.
+     """
+@@ -97,9 +99,9 @@
+     if manager.override is not None or any(original.get(kind, {}).get("position") == "manual"
+                                           for kind in ("categorical", "size", "colorbar")):
+         raise ValueError("layout.auto_fit cannot be combined with manual legend coordinates or main_plot_bbox_mm; use explicit margins for that layout")
+-    sole_auto = (len(manager.requests) == 1 and
+-                 original.get(manager.requests[0]["kind"], {}).get("position", "auto") == "auto")
+-    sides = ["right", "bottom", "top"] if sole_auto else ["right"]
++    has_auto = any(original.get(request["kind"], {}).get("position", "auto") == "auto"
++                   for request in manager.requests)
++    sides = ["right", "bottom", "top"] if has_auto else ["right"]
+     attempts, solutions = [], []
+     for side in sides:
+         _clear(manager)
+@@ -110,7 +112,7 @@
+                 cfg["position"] = side
+         reserve = {"right": 0., "bottom": 0., "top": 0.}
+         possible = True
+-        for _ in range(3):
++        for _ in range(6):
+             _clear(manager)
+             if not _fit_axis(fig, ax, reserve, padding_mm):
+                 possible = False
+@@ -121,10 +123,18 @@
+             if max(abs(updated[e] - reserve[e]) for e in reserve) < .05:
+                 break
+             reserve = updated
++        # Apply the last reservation even if a changing tick locator or guide
++        # variant used the bounded iteration budget. Candidate evidence must
++        # describe the geometry actually checked, not an unapplied update.
++        if possible:
++            _clear(manager)
++            possible = _fit_axis(fig, ax, reserve, padding_mm)
++            if possible:
++                manager.layout()
+         issues = _issues(fig, ax, manager, tick_check, annotation_check) if possible else ["no_positive_data_region"]
+         bounds = list(ax.get_position(original=True).bounds)
+         area = ax.get_window_extent().width * ax.get_window_extent().height / (fig.bbox.width * fig.bbox.height)
+-        record = {"automatic_guide_side": side if manager.requests else None,
++        record = {"automatic_guide_side": side if has_auto else None,
+                   "reserved_mm": reserve, "issues": issues,
+                   "data_area_fraction": area if possible else 0.}
+         attempts.append(record)
+--- before-runtime/scripts/legend_layout.py
++++ after-runtime/scripts/legend_layout.py
+@@ -200,8 +200,18 @@
+                 if box.x0 >= plot.x1:
+                     y = min(y, box.y0 - gap)
+             return np.array([band.x0, y]), "upper left"
+-        if position == "top": return np.array([(plot.x0 + plot.x1) / 2, band.y0]), "lower center"
+-        return np.array([(plot.x0 + plot.x1) / 2, band.y1]), "upper center"
++        if position == "top": return np.array([(plot.x0 + plot.x1) / 2, self._stack_edge(position, cfg)]), "lower center"
++        return np.array([(plot.x0 + plot.x1) / 2, self._stack_edge(position, cfg)]), "upper center"
++
++    def _stack_edge(self, position, cfg):
++        """Advance outward from complete preceding envelopes on this side."""
++        band = self._band(position, cfg)
++        gap = cfg["gap_mm"] * self.fig.dpi / 25.4
++        prior = [self._bounds(entry) for entry in self.entries
++                 if entry["chosen_settings"]["position"] == position]
++        if position == "top":
++            return max([band.y0, *(box.y1 + gap for box in prior)])
++        return min([band.y1, *(box.y0 - gap for box in prior)])
+ 
+     def _categorical_or_size(self, request, cfg, position, ncol):
+         kind = request["kind"]
+@@ -255,8 +265,8 @@
+         else:
+             w, h = (thickness * px, length * px) if orientation == "vertical" else (length * px, thickness * px)
+             if position == "right": box = Bbox.from_bounds(band.x0, plot.y1 - h, w, h)
+-            elif position == "top": box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, band.y0, w, h)
+-            else: box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, band.y1 - h, w, h)
++            elif position == "top": box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, self._stack_edge(position, cfg), w, h)
++            else: box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, self._stack_edge(position, cfg) - h, w, h)
+         cax = self.fig.add_axes([box.x0 / self.fig.bbox.width, box.y0 / self.fig.bbox.height, box.width / self.fig.bbox.width, box.height / self.fig.bbox.height])
+         norm = request["mappable"].norm
+         default_ticks = [float(norm.vmin), float(getattr(norm, "vcenter", (norm.vmin + norm.vmax) / 2)), float(norm.vmax)]
+@@ -275,6 +285,16 @@
+         cb.set_label(cfg.get("label", request["label"]), fontsize=self.typography["legend"], labelpad=.8 * PT_PER_MM)
+         cax.tick_params(labelsize=self.typography["legend"], length=.7 * PT_PER_MM, pad=.6 * PT_PER_MM)
+         cb.outline.set_linewidth(.5)
++        if position in ("top", "bottom") and any(entry["chosen_settings"]["position"] == position for entry in self.entries):
++            # A colorbar's tick/label envelope may extend toward the preceding
++            # guide. Translate the complete envelope beyond the shared gap.
++            self.fig.canvas.draw()
++            envelope = cax.get_tightbbox(self.fig.canvas.get_renderer())
++            edge = self._stack_edge(position, cfg)
++            dy = max(0., edge - envelope.y0) if position == "top" else min(0., edge - envelope.y1)
++            if dy:
++                box = box.translated(0, dy)
++                cax.set_position([box.x0 / self.fig.bbox.width, box.y0 / self.fig.bbox.height, box.width / self.fig.bbox.width, box.height / self.fig.bbox.height])
+         chosen = {**cfg, "position": position, "orientation": orientation, "rect_mm": _bbox_mm(self.fig, box), "length_mm": max(box.width, box.height) / px, "thickness_mm": min(box.width, box.height) / px, "ticks": list(map(float, ticks)), "font_size_pt": self.typography["legend"]}
+         return {"kind": "colorbar", "artist": cax, "colorbar": cb, "request": request, "chosen_settings": chosen, "mapped_range": [float(norm.vmin), float(norm.vmax)]}
+ 
+@@ -405,6 +425,9 @@
+                     self._remove(entry)
+             _, position, variant = best
+             chosen = self._colorbar(request, cfg, position, variant) if kind == "colorbar" else self._categorical_or_size(request, cfg, position, variant)
++            # Quantitative key centers are aligned by inspection. Complete
++            # that adjustment before the next guide uses this envelope.
++            self._inspect(chosen)
+             chosen["attempts"] = candidates
+             self.entries.append(chosen)
+         return self.validate()

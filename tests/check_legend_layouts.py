@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from copy import deepcopy
 import hashlib
 import importlib.util
 import json
@@ -30,6 +31,7 @@ from matplotlib.legend import Legend
 from matplotlib.text import Text
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
+from marker_geometry import collection_fill_areas_pt2
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "evals" / "legend-transfer"
@@ -187,7 +189,8 @@ def inspect_figure(fig, spec):
             if isinstance(handle, PathCollection):
                 if len(handle.get_facecolors()):
                     item["fill_color"] = to_hex(handle.get_facecolors()[0])
-                item["areas_pt2"] = handle.get_sizes().tolist()
+                item["marker_size_parameters_pt2"] = handle.get_sizes().tolist()
+                item["areas_pt2"] = collection_fill_areas_pt2(handle, fig).tolist()
                 offsets = handle.get_offset_transform().transform(handle.get_offsets())
                 symbols = []
                 for center, area in zip(offsets, handle.get_sizes()):
@@ -239,7 +242,8 @@ def inspect_figure(fig, spec):
     return add_reserved_bands({"canvas_mm": [float(width), float(height)], "plot_bbox_mm": plot,
             "decorated_plot_bbox_mm": box_mm(primary.get_tightbbox(painter, bbox_extra_artists=[]), dpi),
             "plot_bbox_note": "plot_bbox_mm is the data rectangle; decorated_plot_bbox_mm additionally includes axes/ticks/axis labels but excludes the legend.", "axis_text_bboxes_mm": axis_text, "actual_legends": legends,
-            "measured_collisions": collisions, "text_sizes_pt": font_sizes, "data_artist_values": signal})
+            "measured_collisions": collisions, "text_sizes_pt": font_sizes, "data_artist_values": signal,
+            "mark_geometry": getattr(fig, "_easyviz_mark_geometry", None)})
 
 
 def values_preserved(source, plotted):
@@ -268,7 +272,8 @@ def inspect_size_exports(destination, geometry, spec):
         return None
     options = spec["options"]
     expected_areas = [float(v) / options["size_max"] * options["max_area_pt2"] for v in options["size_legend"]]
-    output = {"expected_areas_pt2": expected_areas, "expected_diameters_pt": [math.sqrt(v) for v in expected_areas]}
+    output = {"expected_areas_pt2": expected_areas, "expected_diameters_pt": [2 * math.sqrt(v / math.pi) for v in expected_areas],
+              "area_contract": "Geometric circle fill area, excluding stroke; raw Matplotlib s is 4/pi times this area."}
     svg_path = destination / "panel.svg"
     if svg_path.exists():
         root = ET.parse(svg_path).getroot()
@@ -311,7 +316,7 @@ def inspect_size_exports(destination, geometry, spec):
         output["svg_diameter_tolerance_pt"] = .001
         output["svg_marker_extents"] = extents
         output["svg_pass"] = len(extents) == len(expected_areas) == len(expected_centers) and all(
-            abs(item["diameter_x_pt"] - math.sqrt(area)) < .001 and abs(item["diameter_y_pt"] - math.sqrt(area)) < .001
+            abs(item["diameter_x_pt"] - 2 * math.sqrt(area / math.pi)) < .001 and abs(item["diameter_y_pt"] - 2 * math.sqrt(area / math.pi)) < .001
             and np.allclose(item["center_pt"], center, atol=.25) and not item["transform"] and not item["definition_transform"]
             for item, area, center in zip(extents, expected_areas, expected_centers))
     else:
@@ -335,7 +340,7 @@ def inspect_size_exports(destination, geometry, spec):
                     mask = (np.abs(pixels - rgb) <= 4).all(axis=2)
                     yy, xx = np.where(mask)
                     measured = [int(xx.max() - xx.min() + 1), int(yy.max() - yy.min() + 1)] if len(xx) else [0, 0]
-                    expected = math.sqrt(float(area)) / 72 * spec["layout"]["dpi"]
+                    expected = 2 * math.sqrt(float(area) / math.pi) / 72 * spec["layout"]["dpi"]
                     raster.append({"label": item["label"], "expected_diameter_px": expected, "same_fill_ink_extent_px": measured,
                                    "tolerance_px": 2.5, "passed": all(abs(value - expected) <= 2.5 for value in measured)})
     output["png_ink_checks"] = raster
@@ -419,7 +424,7 @@ def evaluate(case, before, after):
             options = spec["options"]
             intended = [float(value) / options["size_max"] * options["max_area_pt2"] for value in options["size_legend"]]
             observed = [item["areas_pt2"][0] for legend in geometry.get("actual_legends", []) if legend["kind"] == "size" for item in legend["items"] if "areas_pt2" in item]
-            if len(observed) != len(intended) or not np.allclose(observed, intended, atol=1e-10):
+            if len(observed) != len(intended) or not np.allclose(observed, intended, rtol=1e-6, atol=1e-10):
                 failures.append(f"Quantitative symbol area changed: {observed} vs {intended} pt².")
             exported = after.get("actual_size_export_checks") or {}
             if not exported.get("svg_pass"):
@@ -435,7 +440,17 @@ def evaluate(case, before, after):
                 failures.append("Manual anchor not honored within 0.5 mm border-padding tolerance.")
             notes.append("Historical renderer ignores the manual override; no baseline support is implied.")
     if before and before.get("geometry") and geometry:
-        if before["geometry"]["data_artist_values"] != geometry["data_artist_values"]:
+        before_signal = before["geometry"]["data_artist_values"]
+        after_signal = deepcopy(geometry["data_artist_values"])
+        before_mode = (before["geometry"].get("mark_geometry") or {}).get("mode")
+        after_mode = (geometry.get("mark_geometry") or {}).get("mode")
+        if case["chart"] == "dotplot" and before_mode is None and after_mode == "mapped_circle_fill_area":
+            for original, current in zip(before_signal["collections"], after_signal["collections"]):
+                expected_parameters = np.asarray(original["sizes"]) * 4 / math.pi
+                if np.shape(current["sizes"]) == expected_parameters.shape and np.allclose(current["sizes"], expected_parameters, rtol=1e-10, atol=1e-10):
+                    current["sizes"] = original["sizes"]
+            notes.append("Historical max_area_pt2 was passed as raw Matplotlib s. Current core converts desired geometric circle fill area to s=4/pi*area; the intentional physical-size correction is checked separately and unchanged circle diameter is not claimed.")
+        if before_signal != after_signal:
             failures.append("Before/after data artist values, areas, or color mappings differ.")
         if before["source_sha256"] != after["source_sha256"]:
             failures.append("Before/after source bytes differ.")

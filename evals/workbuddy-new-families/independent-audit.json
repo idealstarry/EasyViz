@@ -1,0 +1,160 @@
+{
+  "status": "pass",
+  "scope": "One completed practical WorkBuddy ECDF task; source values, real exported paths, canvas, editable ticks and font inspected. No baseline, quality score or generic model conclusion.",
+  "auditor_sha256": "35f41292043efea45a616c1c98028b15cdef66f6d952b60af6a7a46d99741c29",
+  "shared_export_auditor_sha256": "b5e0405dd8a32bf5af9a68b4b3f289e54c0b10207d547b1e8b5bae075835520b",
+  "input_sha256": "91c77f81f0ffa901e2b5e7a940f6965777a67053090e155e68ed7d97a4ba3162",
+  "output_sha256": {
+    "panel.png": "191ee1f90461b74591bbb072e36c92f8175f9ce984f9771ed04e83d6c6780b1f",
+    "panel.pdf": "d955e19d9a5611334ca941bb9cdf339d48f681dee0d59d0e1846ad71310037fd",
+    "panel.svg": "bc1e265ecf780149d46fdba4a212ec11a474db03590d0451742b84d0a6af92b3"
+  },
+  "numeric_serialization_note": {
+    "normalized_source_lexemes": 22,
+    "parsed_float_values_all_equal": true,
+    "meaning": "Original prepared.csv retains exact XML text; a plotting numeric column may normalize float lexemes without changing parsed values. A supplied raw source text column is checked separately.",
+    "examples": [
+      {
+        "source_cell": "D7",
+        "source_numeric_text": "5240.4399999999996",
+        "output_numeric_text": "5240.44"
+      },
+      {
+        "source_cell": "D8",
+        "source_numeric_text": "2117.2600000000002",
+        "output_numeric_text": "2117.26"
+      },
+      {
+        "source_cell": "D9",
+        "source_numeric_text": "2180.5700000000002",
+        "output_numeric_text": "2180.57"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "check": "Prepared source: header renaming alone, all public values and trace preserved",
+      "status": "pass",
+      "rows": 254,
+      "supplied_sha256": "91c77f81f0ffa901e2b5e7a940f6965777a67053090e155e68ed7d97a4ba3162"
+    },
+    {
+      "check": "Exported plotting data: every parsed numeric value, ID, category and source cell preserved",
+      "status": "pass",
+      "observations": 254
+    },
+    {
+      "check": "Source design: 127 complete distinct Before/After pairs",
+      "status": "pass",
+      "independent_people": 127,
+      "repeated_measurements": 254
+    },
+    {
+      "check": "agent-result/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1240,
+        1004
+      ],
+      "pdf_mm": [
+        104.99999703301324,
+        85.00000118679469
+      ],
+      "pdf_font_sizes": [
+        5.6,
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        104.99999990277777,
+        85.00000003888889
+      ]
+    },
+    {
+      "check": "agent-result/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8,
+      "mathematical_superscript_size_pt": 5.6
+    },
+    {
+      "check": "agent-result/output: SVG exact right-continuous empirical jumps",
+      "status": "pass",
+      "source_counts": [
+        {
+          "group": "Before",
+          "observations": 127,
+          "distinct_values": 127,
+          "maximum_tie": 1
+        },
+        {
+          "group": "After",
+          "observations": 127,
+          "distinct_values": 127,
+          "maximum_tie": 1
+        }
+      ],
+      "smoothing_applied": false
+    },
+    {
+      "check": "agent-result/output: PDF exact empirical curve segments",
+      "status": "pass",
+      "numerical_tolerance_pt": 0.002
+    },
+    {
+      "check": "Actual SVG: five editable power-of-ten ticks",
+      "status": "pass",
+      "labels": [
+        [
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "2"
+        ],
+        [
+          "1",
+          "0",
+          "3"
+        ],
+        [
+          "1",
+          "0",
+          "4"
+        ],
+        [
+          "1",
+          "0",
+          "5"
+        ]
+      ]
+    },
+    {
+      "check": "Actual PDF: Arial used for base text and mathematical exponents",
+      "status": "pass",
+      "fonts": [
+        "ArialMT"
+      ]
+    },
+    {
+      "check": "Recorded scientific scope: no invented tests or uncertainty",
+      "status": "pass",
+      "statistics_record": {
+        "method": "unweighted_empirical_distribution",
+        "tests_performed": false,
+        "smoothing_applied": false,
+        "distributions_fitted": false,
+        "confidence_intervals_computed": false,
+        "experimental_independence_inferred": false,
+        "observation_counts": {
+          "Before": 127,
+          "After": 127
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "chart": "paired",
+  "fields": {
+    "unit": "wid",
+    "condition": "visit",
+    "value": "measurement",
+    "block": "arm"
+  },
+  "order": {
+    "condition": [
+      "Follow-up",
+      "Baseline",
+      "Interim"
+    ],
+    "block": [
+      "Arm Z",
+      "Arm A"
+    ]
+  },
+  "colors": {
+    "Arm Z": "#4E78A0",
+    "Arm A": "#A05272"
+  },
+  "labels": {
+    "y": "Measurement"
+  },
+  "options": {
+    "y_scale": "linear",
+    "y_limits": [
+      -4,
+      12
+    ],
+    "quantile_method": "weibull",
+    "point_layout": "jitter",
+    "point_area_pt2": 7,
+    "connect_pairs": true,
+    "block_gap": 0.4
+  },
+  "layout": {
+    "width_mm": 110.0,
+    "height_mm": 90.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 200,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.11606161616161616,
+      "right": 0.9818181818181816,
+      "bottom": 0.13937148919753084,
+      "top": 0.96586540316358
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 2
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Arm Z": "#4E78A0",
+    "Arm A": "#A05272"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/new-families-audit/transfer/paired/source.csv",
+  "input_sha256": "47fc087cac8d99fab78edc2132319d255e008cf8aae8e6e4fc17eb048bb43f07",
+  "supplied_spec": {
+    "chart": "paired",
+    "fields": {
+      "unit": "wid",
+      "condition": "visit",
+      "value": "measurement",
+      "block": "arm"
+    },
+    "order": {
+      "condition": [
+        "Follow-up",
+        "Baseline",
+        "Interim"
+      ],
+      "block": [
+        "Arm Z",
+        "Arm A"
+      ]
+    },
+    "colors": {
+      "Arm Z": "#4E78A0",
+      "Arm A": "#A05272"
+    },
+    "labels": {
+      "y": "Measurement"
+    },
+    "options": {
+      "y_scale": "linear",
+      "y_limits": [
+        -4,
+        12
+      ],
+      "quantile_method": "weibull",
+      "point_layout": "jitter",
+      "point_area_pt2": 7,
+      "connect_pairs": true,
+      "block_gap": 0.4
+    },
+    "layout": {
+      "width_mm": 110,
+      "height_mm": 90,
+      "font": "DejaVu Sans",
+      "font_size_pt": 8,
+      "dpi": 200,
+      "auto_fit": true
+    },
+    "legends": {
+      "categorical": {
+        "position": "bottom",
+        "ncol": 2
+      }
+    },
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ]
+  },
+  "spec_sha256": "ca070562a74ca3ac4623ff236979b47d3ee3190b76f3415cd96176591256cb0b",
+  "axis": {
+    "y_scale": "linear",
+    "y_limits": [
+      -4.0,
+      12.0
+    ],
+    "condition_order": [
+      "Follow-up",
+      "Baseline",
+      "Interim"
+    ]
+  },
+  "summary_policy": {
+    "method": "median_iqr",
+    "scale": "raw measurements",
+    "quantile_method": "weibull",
+    "interval_meaning": "interquartile range of observations, not a confidence interval",
+    "tests_performed": false
+  },
+  "mark_policy": {
+    "geometric_circle_area_pt2": 7,
+    "matplotlib_s": 8.91267681314614,
+    "diameter_pt": 2.985410660720923,
+    "placement": "jitter",
+    "placement_measured_after_layout": true,
+    "connect_pairs": true,
+    "jitter_shared_within_unit": true,
+    "outline_width_pt": 0
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "c5afbdbf0974d874aeca10beaffa7345130c20a87799018e87792ac5598e4b8b",
+    "path_simplification": false,
+    "connector_representation": "one exact two-point segment per adjacent condition and unit",
+    "helper_sha256": {
+      "render.py": "86e090ca5e9a2b0e1447404dbc10484bca1a0c3c9740d046aed995220f934ccb",
+      "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "spec_file": "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/new-families-audit/transfer/paired/spec.json",
+  "spec_file_sha256": "bc5f7f0f8876770ee62ca6804928c69bc42381d0596c8027c44decad5263ff23",
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.11606161616161616,
+      "right": 0.9818181818181816,
+      "bottom": 0.13937148919753084,
+      "top": 0.96586540316358
+    },
+    "data_region_mm": [
+      12.76677777777778,
+      12.543434027777776,
+      95.23322222222221,
+      74.38445225694444
+    ],
+    "data_area_fraction": 0.7155425324912997,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 5.236994791666667,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.7155425324912997
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  }
+}

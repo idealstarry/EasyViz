@@ -1,0 +1,64 @@
+{
+  "chart": "dotplot",
+  "fields": {
+    "x": "cohort_key",
+    "y": "assay_name",
+    "size": "n_cells",
+    "color": "prepared_score",
+    "state": "measurement_state"
+  },
+  "labels": {
+    "x": "Preparation cohort",
+    "y": "",
+    "size": "Observed cells",
+    "color": "Prepared score"
+  },
+  "colormap": "viridis",
+  "options": {
+    "size_max": 20,
+    "max_area_pt2": 80,
+    "size_legend": [
+      5,
+      10,
+      20
+    ],
+    "color_limits": [
+      0,
+      1
+    ],
+    "small_positive_area_pt2": 1
+  },
+  "legends": {
+    "colorbar": {
+      "position": "auto",
+      "length_mm": 24,
+      "ticks": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    "size": {
+      "ncol": 3
+    },
+    "categorical": {
+      "ncol": 2
+    }
+  },
+  "layout": {
+    "width_mm": 140,
+    "height_mm": 100,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "statistics": {
+    "method": "none"
+  }
+}

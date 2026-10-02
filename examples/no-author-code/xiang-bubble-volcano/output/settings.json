@@ -1,0 +1,416 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "mdd",
+    "y": "logq",
+    "size": "prob",
+    "group": "display_class"
+  },
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 120.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.17,
+      "right": 0.96,
+      "bottom": 0.14,
+      "top": 0.97
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "C3 lower": "#3E4D89",
+    "C3 higher": "#B52B2D",
+    "Small effect": "#BEBEBE"
+  },
+  "order": {
+    "group": [
+      "C3 lower",
+      "C3 higher",
+      "Small effect"
+    ]
+  },
+  "labels": {
+    "x": "Median difference (C3 − C5)",
+    "y": "−log10(adjusted P)",
+    "size": "Expression\nprobability"
+  },
+  "options": {
+    "size_max": 1,
+    "max_area_pt2": 18,
+    "size_legend": [
+      0.25,
+      0.5,
+      1
+    ],
+    "alpha": 1,
+    "x_limits": [
+      -6,
+      3
+    ],
+    "y_limits": [
+      0,
+      55
+    ],
+    "reference_lines": {
+      "x": [
+        -0.2,
+        0.2
+      ],
+      "y": [
+        2
+      ]
+    },
+    "grid": false
+  },
+  "legends": {
+    "categorical": {
+      "position": "manual",
+      "anchor_mm": [
+        83,
+        116
+      ],
+      "loc": "upper right",
+      "allow_plot_overlap": true,
+      "key_width_mm": 1.5,
+      "key_height_mm": 1.5,
+      "handletext_gap_mm": 0.7,
+      "row_gap_mm": 0.5
+    },
+    "size": {
+      "position": "manual",
+      "anchor_mm": [
+        83,
+        78
+      ],
+      "loc": "upper right",
+      "allow_plot_overlap": true
+    }
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "C3 lower": "#3E4D89",
+    "C3 higher": "#B52B2D",
+    "Small effect": "#BEBEBE"
+  },
+  "seed": 0,
+  "input_file": "source-data.csv",
+  "input_sha256": "c86e6006617322b080ca7cf1596f8b664ebb86bd9b90db73aa08993575464f3c",
+  "renderer": {
+    "version": "0.2.0",
+    "sha256": "8489c3f59fdc4ce953a25acaf567b8fa98d74573564a6ddbd910ceb05e157b35",
+    "legend_helper_sha256": "4ad31580fe0a5dc93c5301f633083884a7a581c67a28b0cba63418fed1816859",
+    "profile_helper_sha256": "b78d351b3b35f59ac6b451c0bf11f8faf02244855427196e97d494e047d0c958",
+    "auto_layout_helper_sha256": "3d9905cc9f4fc64b762f8803a53d7fb60833403d0cc1a2624821455a21a6de61",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.5,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "manual",
+          "anchor_mm": [
+            83.0,
+            116.0
+          ],
+          "loc": "upper right",
+          "allow_plot_overlap": true,
+          "ncol": 1,
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.5,
+          "effective_key_height_mm": 1.5
+        },
+        "bbox_mm": [
+          66.05826041666667,
+          106.65423177083332,
+          16.94173958333334,
+          9.345768229166657
+        ],
+        "plot_bbox_mm": [
+          14.959999999999999,
+          16.800000000000004,
+          69.52,
+          99.6
+        ],
+        "canvas_mm": [
+          88.0,
+          120.0
+        ],
+        "area_fraction_of_plot": 0.022866721712039743,
+        "width_fraction_of_plot": 0.24369590885117,
+        "height_fraction_of_plot": 0.09383301434906283,
+        "area_fraction_of_canvas": 0.014993709426584458,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.015602441027269598,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          85.99999999999999,
+          118.00000000000001
+        ],
+        "key_bboxes_mm": [
+          [
+            66.25826041666667,
+            113.8733792401175,
+            1.5000000000000056,
+            1.5000000000000056
+          ],
+          [
+            66.25826041666667,
+            110.72478983039528,
+            1.5000000000000056,
+            1.5000000000000056
+          ],
+          [
+            66.25826041666667,
+            107.57620042067305,
+            1.5000000000000056,
+            1.5000000000000056
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "manual",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              66.05826041666667,
+              106.65423177083332,
+              16.94173958333334,
+              9.345768229166657
+            ],
+            "issues": []
+          },
+          {
+            "position": "manual",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              49.92026041666668,
+              109.80282118055555,
+              33.079739583333335,
+              6.197178819444439
+            ],
+            "issues": []
+          },
+          {
+            "position": "manual",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              34.79826041666666,
+              112.95141059027777,
+              48.201739583333335,
+              3.0485894097222213
+            ],
+            "issues": []
+          }
+        ]
+      },
+      {
+        "kind": "size",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "manual",
+          "anchor_mm": [
+            83.0,
+            78.0
+          ],
+          "loc": "upper right",
+          "allow_plot_overlap": true,
+          "ncol": 1,
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.688855653699398,
+          "effective_key_height_mm": 1.688855653699398
+        },
+        "bbox_mm": [
+          68.79933333333334,
+          61.710937500000014,
+          14.200666666666672,
+          16.2890625
+        ],
+        "plot_bbox_mm": [
+          14.959999999999999,
+          16.800000000000004,
+          69.52,
+          99.6
+        ],
+        "canvas_mm": [
+          88.0,
+          120.0
+        ],
+        "area_fraction_of_plot": 0.033406864927344605,
+        "width_fraction_of_plot": 0.20426735711545846,
+        "height_fraction_of_plot": 0.16354480421686748,
+        "area_fraction_of_canvas": 0.021904881332859855,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.022794200519806868,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          85.99999999999999,
+          118.00000000000001
+        ],
+        "key_bboxes_mm": [
+          [
+            72.46045275324182,
+            69.31019711088072,
+            0.8444278268497017,
+            0.8444278268497017
+          ],
+          [
+            72.28556602407863,
+            65.88672097199532,
+            1.1942012851760897,
+            1.1942012851760897
+          ],
+          [
+            72.03823883981698,
+            62.39080437801143,
+            1.6888556536994035,
+            1.6888556536994035
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "marker_areas_pt2": [
+          4.5,
+          9.0,
+          18.0
+        ],
+        "marker_size_parameters_pt2": [
+          5.729577951308232,
+          11.459155902616464,
+          22.91831180523293
+        ],
+        "area_semantics": "geometric_circle_area",
+        "fill_area_definition": "Ideal circle geometric fill area in pt², excluding edge stroke; Matplotlib s is squared diameter in pt².",
+        "attempts": [
+          {
+            "position": "manual",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              68.79933333333334,
+              61.710937500000014,
+              14.200666666666672,
+              16.2890625
+            ],
+            "issues": []
+          },
+          {
+            "position": "manual",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              68.79933333333334,
+              64.95952690972224,
+              14.200666666666672,
+              13.040473090277777
+            ],
+            "issues": []
+          },
+          {
+            "position": "manual",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              60.76543303890182,
+              68.20811631944446,
+              22.234566961098196,
+              9.791883680555554
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 2,
+      "occupied_envelope_union_area_mm2": 389.64911841973196,
+      "sum_envelope_area_mm2": 389.64911841973196,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.05627358663938435,
+      "area_fraction_of_canvas": 0.036898590759444315,
+      "enclosing_bbox_mm": [
+        66.05826041666667,
+        61.710937500000014,
+        16.94173958333334,
+        54.289062499999964
+      ],
+      "max_individual_width_mm": 16.941739583333337,
+      "max_individual_height_mm": 16.2890625,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "mapped_circle_fill_area",
+    "source_field": "prob",
+    "size_max": 1.0,
+    "max_area_pt2": 18.0,
+    "max_marker_size_parameter_pt2": 22.91831180523293,
+    "area_formula": "circle_fill_area_pt2 = size / size_max * max_area_pt2",
+    "parameter_formula": "matplotlib_s = 4 / pi * circle_fill_area_pt2",
+    "diameter_formula": "diameter_pt = 2 * sqrt(circle_fill_area_pt2 / pi)",
+    "stroke_policy": "Fill area excludes edge stroke; core quantitative circles are borderless."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "status": "pass within recorded scope",
+  "validated_date": "2026-10-02",
+  "release_tag": "v0.3.0",
+  "source_base_commit": "719ffdd5e9d72c7c38a4c811999ff4ca928215aa",
+  "source_state": "working-tree snapshot at validation time; published source identified by v0.3.0 tag",
+  "package": {
+    "version": "0.3.0",
+    "archive": "easyviz-0.3.0.zip",
+    "sha256": "10e211c1981ddb6a7b610b34687ca0d8a83f88fc7aeebbdf2084f6120662aaa0",
+    "content_sha256": "b84d1570ad07682b1f7403c0704ac2d8d6020fe32a536f912d7223be0429b7f6",
+    "files": 356,
+    "bytes": 7180125
+  },
+  "checks": {
+    "unit_tests": {
+      "status": "pass",
+      "tests": 155,
+      "seconds": 98.831,
+      "exit_code": 0,
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py"
+      ],
+      "log_sha256": "5c0dfbb068373188d716b9cc9bac6a7b51833d9a75563c03e4ef8d089ce08f68"
+    },
+    "package_smoke": {
+      "status": "pass",
+      "record": "package-smoke.json",
+      "record_sha256": "a6c010cf3a35f50f43a34c74a9b9d89a57cd78361fccf2789893f0f02c86da66"
+    },
+    "portable_regressions": {
+      "status": "pass",
+      "record": "portable-regressions.json",
+      "record_sha256": "7ae73bff06938d5c462d41430817d69017094accef225d1ecc919300340b8fdb"
+    },
+    "six_view_replay": {
+      "status": "pass",
+      "record": "portable-new-views.json",
+      "record_sha256": "0e5059fa17ab8eadd1a453d63108818b6586b97644f04e179618025378adced4"
+    },
+    "isolated_cli_install": {
+      "status": "pass",
+      "record": "isolated-installation.json",
+      "record_sha256": "743efec03cf0273a1a98f402c69a2fac982b6a51b644acb54cba0eb07684d8b9"
+    },
+    "build_repeatability": {
+      "status": "pass",
+      "record": "build-reproducibility.json",
+      "record_sha256": "35b96362b7467812413ed921b4032437cf08086c7350f3ac8a1298a31eaec3c0"
+    }
+  },
+  "source_sha256": {
+    "skills/easyviz/scripts/annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "skills/easyviz/scripts/auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "skills/easyviz/scripts/draft_spec.py": "30c41a761a94d39ebeba5813e9da79956874160c3dbce5eeabbc7c0678999ceb",
+    "skills/easyviz/scripts/ecdf_plot.py": "cc28302749f5971e8de63197552696019b3b7b69249fb54dbeb6e7c04ef76401",
+    "skills/easyviz/scripts/figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "skills/easyviz/scripts/interval_plot.py": "7dcf5f37cc16a2aeaaedf1619a3213328b5838a6bd0b1cff69da70cd4a2c8b1d",
+    "skills/easyviz/scripts/legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "skills/easyviz/scripts/paired_plot.py": "de0440a4b79cd8d6307d8614d2f3b4ee0637b586ffc2485da01f5da4be4d2aad",
+    "skills/easyviz/scripts/render.py": "e0ea875eeb34e28907b5efbe9edf7e34e2dbd5a2f83f1841a86a12cea5a397ac",
+    "skills/easyviz/scripts/replicate_plot.py": "3f0b5fb2d0e6e14b7ae44f12ec5316f92dc174c85acade0196f42506c1b520d7",
+    "skills/easyviz/SKILL.md": "ef6142528fd287f1b1a42e2bb1b09c63561729755034dade4b70b1bca382af05",
+    "scripts/check_package.py": "061db9e3522481399ea20820430af65d09a331b95cb234fc8d49fb8cb6944774",
+    "scripts/sync_skill_cases.py": "dbdb7a0c7357eb1fdf9e1dd64588828c7baf71359e701bf1767b4138f78cd7e5",
+    "scripts/build_plugin.py": "dbe8f2539497a6cb853c51a8c11b9534fbc80efb1ac9abc0d59bf62c6cc573d3",
+    "scripts/install_plugin.py": "9f8d6685cbff7f3624ae9b24fffedeaaff904ee918261078f1f2b93c74705e9d",
+    "plugins/easyviz/.codex-plugin/plugin.json": "71e0e5688d6389bc43f3792db51a9c3ee21acc121c590b562284778c9bcf39d8",
+    "requirements-dev.txt": "8652d7826c97d55f8ac5973f097621852e650ff5544d0aa502c3e24a55254cb9",
+    ".github/workflows/qa.yml": "a5e58393aecea0ce92924bb69dbef4a0a86af974598ebf05d19cbfee8a1853fe"
+  },
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Darwin",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0",
+      "PyMuPDF": "1.28.2"
+    }
+  },
+  "scope": "Documented data/statistical contracts, actual extracted runtime and same-environment PNG replay; isolated real-CLI install. Independent visual/source records retain original candidate hashes. Hosted Linux workflow and fresh desktop discovery are separate checks."
+}

@@ -1,0 +1,93 @@
+{
+  "chart": "interval",
+  "fields": {
+    "label": "outcome",
+    "series": "exposure",
+    "color": "outcome",
+    "estimate": "estimate",
+    "lower": "ci_low",
+    "upper": "ci_high",
+    "mark_state": "mark_state"
+  },
+  "options": {
+    "series_layout": "blocks",
+    "x_scale": "log",
+    "reference_value": 1,
+    "x_limits": [
+      0.28,
+      2.8
+    ],
+    "marker_area_pt2": 20,
+    "cap_height": 0,
+    "mark_fill": "input",
+    "grid": false,
+    "x_ticks": [
+      0.5,
+      1,
+      2
+    ]
+  },
+  "layout": {
+    "width_mm": 105,
+    "height_mm": 135,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6,
+    "auto_fit": true
+  },
+  "order": {
+    "label": [
+      "Overall breast cancer",
+      "ER+ breast cancer",
+      "ER- breast cancer",
+      "Luminal A subtype",
+      "Luminal B1 subtype",
+      "Luminal B2 subtype",
+      "HER2-enriched subtype",
+      "Triple-negative subtype"
+    ],
+    "series": [
+      "Dense area",
+      "Non-dense area",
+      "Percent density"
+    ],
+    "color": [
+      "Overall breast cancer",
+      "ER+ breast cancer",
+      "ER- breast cancer",
+      "Luminal A subtype",
+      "Luminal B1 subtype",
+      "Luminal B2 subtype",
+      "HER2-enriched subtype",
+      "Triple-negative subtype"
+    ]
+  },
+  "labels": {
+    "x": "Odds ratio (95% CI)",
+    "filled": "CI excludes 1",
+    "hollow": "CI includes 1"
+  },
+  "colors": {
+    "Overall breast cancer": "#972c8d",
+    "ER+ breast cancer": "#1794ce",
+    "ER- breast cancer": "#ffea5e",
+    "Luminal A subtype": "#6351a0",
+    "Luminal B1 subtype": "#9ddaf5",
+    "Luminal B2 subtype": "#f5bacf",
+    "HER2-enriched subtype": "#fbbb68",
+    "Triple-negative subtype": "#eb5291"
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "key_width_mm": 1.5,
+      "key_height_mm": 1.5
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

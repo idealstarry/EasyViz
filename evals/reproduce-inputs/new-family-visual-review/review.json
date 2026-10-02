@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "review_scope": "Independent rendered-image visual review and direct export inspection only.",
+  "status": "ready_with_notes",
+  "summary": "No critical or major visual findings. One minor legend-outline mismatch affects both Urschel paired views. The initial grouped point-size wording conflict is now resolved explicitly in the adopted brief. Numerical source/statistical correctness remains outside this review.",
+  "review_method": {
+    "opened_original_pngs": true,
+    "opened_reference_images": true,
+    "pdf_proxy_dpi": 96,
+    "implementation_code_read": false,
+    "renderer_qa_used": false,
+    "source_numerical_records_used": false,
+    "browsing_used": false,
+    "earlier_candidate_images_used": false
+  },
+  "adopted_inputs_sha256": [
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/urschel-ecdf/spec.json",
+      "sha256": "a283fd278c23d09766792bd6f1f45ce0114bb7f233f81bfc59e6b75ad7e62799"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/urschel-ecdf/caption.md",
+      "sha256": "bc74279c4e16190c233cc4ec9416d7457e51986de1746ccbcdfd8c9592b9c36a"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/spec.json",
+      "sha256": "de7383d7f9d31d69b7acca459f08f74b3cc455cb7fa4e407f01a5dbdb98af39f"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/adopted-spec.md",
+      "sha256": "8b84325073b73725fe2b6dfb31970925741bb656ae790001cfe49949c2c3e02d"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/caption.md",
+      "sha256": "e4d9a37b010d76982c89a828dc5ddeca5e56a7f3f8712ffdc41976337c653efe"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/connectors-spec.json",
+      "sha256": "e4b0766ef262f41d5956693d199ccdf1bffcb6972d1ffeff811ef16a651fb829"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/urschel-paired/reference-figure2b.png",
+      "sha256": "e519b4653620c546dccba9734f0ac821872c0ad7402d31558a0a7dba8b094abb"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/urschel-paired/reference-reading.md",
+      "sha256": "d23e25304418615b9abfd0c2acb0f55fc89dbd0eddd825a146d942210d570522"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/urschel-paired/reference-caption.md",
+      "sha256": "3db7560da3e7c6804b9dcf102929e9ab75a133deab1ddf312259292e848f36d2"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/adopted-spec.md",
+      "sha256": "ac9f1e831b97d3fcfd9e575f1c9d85d988657b20b11553db6a1303cae698b699"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/components-spec.json",
+      "sha256": "8ba6917b523e8c5aa8739d7ead9f609704c7b2df64291ad49f51fb0802543d36"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/ratios-spec.json",
+      "sha256": "405ecac9703b03ae1c677ec8d809845cc92363be2005dfa8b2564f9c40d39d68"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/grouped-spec.json",
+      "sha256": "bbf7b44e864df3b5866596f17373a2be56f4ee3578e1afd2b821f0093f7509d4"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/caption-components.md",
+      "sha256": "f2e441e8e48e6108865a790943c7148b2dd8184b3989b0637fcdd3155a6ea942"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/caption-ratios.md",
+      "sha256": "40ae619ac9f8f8bc21c29527db5600c2dbb5c1b84d31cec7e62c479e41299b55"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/caption-grouped.md",
+      "sha256": "8286fbbc2b61cee6ffc40df926d69aae4efbba485bb4f1136b46f78b7ba0d5ad"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/reference.png",
+      "sha256": "de799d0c5762e7edb6f5f7852388922d3c32348666d7ab87fcc2f42f430b50b4"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/reference-reading.md",
+      "sha256": "308427289d6ec8b845602aab1578377e09015235d672fae343844ceb0bae3955"
+    }
+  ],
+  "cases": [
+    {
+      "case": "ecdf",
+      "status": "ready_with_notes",
+      "mapping": "A new marginal ECDF: blue Before and orange After; stepped lines run from fraction 0 to 1 on the adopted four-decade logarithmic IgG axis. This is not a reproduction of an ECDF in the paper.",
+      "visual_evidence": "The distributions stay separated through most of the central range; both low tails and their terminal plateaus are visible. Blue and orange strokes remain distinct in the 397\u00d7322 proxy. The two-entry guide uses roughly one quarter of the data-region width and a single short row; the large data region remains primary.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "ECDF caption and legend",
+          "evidence": "The color meaning is time point, while the paper reference uses color for prior-infection cohorts; the supplied caption discloses this new marginal view and the loss of individual pairing. No extra panel prose or title is present.",
+          "requirement": "A new create view must be explicit about its mapping and keep explanatory prose in the caption.",
+          "action": "Keep the supplied separate caption with this panel."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "/Users/starry/Desktop/EasyViz/examples/create/urschel-ecdf/output/panel.png",
+        "candidate_pdf": "/Users/starry/Desktop/EasyViz/examples/create/urschel-ecdf/output/panel.pdf",
+        "sha256": {
+          "png": "a4046f094617a2f4491f15aafff58c40363cc8725e66bd66241ebc29c4ca0070",
+          "pdf": "1196ea9e04e85bfc21b2b79107d8d25936538b278bfb5254e6cf08da328fa562"
+        },
+        "page_mm": [
+          105.00000000000334,
+          85.00000000001278
+        ],
+        "font_command_counts_pt": {
+          "8.0": 14,
+          "5.6": 5
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nVAGDZA+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            1240,
+            1004
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          397,
+          322
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "101 102 103 104 105\nIgG (BAU/ml)\n0\n0.25\n0.5\n0.75\n1\nCumulative fraction\nBefore After"
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[105.00000000000334, 85.00000000001278] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1240, 1004], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [397, 322]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        }
+      ]
+    },
+    {
+      "case": "paired",
+      "status": "ready_with_notes",
+      "mapping": "Four equally spaced unconnected point distributions, orange prior-infection pair then blue no-prior-infection pair; raw median and Q1\u2013Q3 overlays are visible on the adopted logarithmic axis.",
+      "visual_evidence": "Swarm points remain individually readable in each cloud at the 397\u00d7363 proxy; black summary strokes are prominent without hiding the concentration pattern. The full two-entry bottom guide occupies about 46% of the data-region width but only one small text row, so the data remain primary. Orange/blue fills separate the two blocks.",
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "bottom categorical legend, Urschel paired panels",
+          "evidence": "Both cohorts use filled circles with visible thin gray edges in the data region; the bottom legend circles are solid fill without the same gray edge, visible in the original PNGs. Color association is still clear at the 96 dpi proxy.",
+          "requirement": "The paired adopted specification uses a 0.25 pt gray circle outline; the reviewer checks consistent fill/outline treatment between dots and their categorical proxies.",
+          "action": "Give both categorical legend circles the same gray outline as the data dots, while retaining 8 pt guide text and the current compact footprint."
+        },
+        {
+          "severity": "note",
+          "location": "reference comparison",
+          "evidence": "The source crop includes p-value brackets, dotted guides, sample counts, boxed IgG and a panel letter. Their omission, the narrower displayed range and the new bottom cohort guide are explicitly adopted. Median/IQR geometry, color grouping and four-position structure remain visible. The candidate-specific caption is now supplied and was read.",
+          "requirement": "Judge the adopted derivative rather than restoring intentionally omitted source annotations.",
+          "action": "Retain the adopted omissions and separate caption."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/first-render/panel.png",
+        "candidate_pdf": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/first-render/panel.pdf",
+        "sha256": {
+          "png": "8dc155b52e6e156625bd72c63d716cb454fa898a0fa234e833a70b156605fa88",
+          "pdf": "e553ce04e7b71ecfd03b5350a71bf8eb7604c874ae0e1eaae73eda02a894051e"
+        },
+        "page_mm": [
+          105.00000000000334,
+          96.00000000001111
+        ],
+        "font_command_counts_pt": {
+          "8.0": 10,
+          "5.6": 3
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGDMTZR+ArialMT                       CID TrueType      Identity-H       yes yes yes     19  0\n",
+        "png": {
+          "pixels": [
+            1240,
+            1134
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          397,
+          363
+        ],
+        "marker_form_bounds": [
+          {
+            "name": "/M0",
+            "bbox_pt": [
+              -3.0341241162,
+              -3.0341241162,
+              3.0341241162,
+              3.0341241162
+            ]
+          },
+          {
+            "name": "/M1",
+            "bbox_pt": [
+              -3.0341241162,
+              -3.0341241162,
+              3.0341241162,
+              3.0341241162
+            ]
+          },
+          {
+            "name": "/M2",
+            "bbox_pt": [
+              -3.0341241162,
+              -3.0341241162,
+              3.0341241162,
+              3.0341241162
+            ]
+          },
+          {
+            "name": "/M3",
+            "bbox_pt": [
+              -3.0341241162,
+              -3.0341241162,
+              3.0341241162,
+              3.0341241162
+            ]
+          }
+        ],
+        "pdf_text": "Before After Before After\n102\n103\n104\nIgG (BAU/ml)\nPrior infection No prior infection",
+        "delivery_alias": {
+          "base": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/output/panel",
+          "sha256": {
+            "png": "8dc155b52e6e156625bd72c63d716cb454fa898a0fa234e833a70b156605fa88",
+            "pdf": "e553ce04e7b71ecfd03b5350a71bf8eb7604c874ae0e1eaae73eda02a894051e"
+          },
+          "byte_identical": true
+        }
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[105.00000000000334, 96.00000000001111] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1240, 1134], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [397, 363]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        }
+      ]
+    },
+    {
+      "case": "paired-connectors",
+      "status": "ready_with_notes",
+      "mapping": "A separate create view adds thin low-opacity within-participant segments to jittered orange and blue points; black median/Q1\u2013Q3 summaries stay prominent.",
+      "visual_evidence": "At 397\u00d7363 the orange and blue connector bands visibly encode the predominant upward change. Crossings make exact single-participant path lookup difficult, as expected for 127 participants; this does not conceal the four distributions or summary strokes. The point/guide layout matches the unconnected panel.",
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "bottom categorical legend, Urschel paired panels",
+          "evidence": "Both cohorts use filled circles with visible thin gray edges in the data region; the bottom legend circles are solid fill without the same gray edge, visible in the original PNGs. Color association is still clear at the 96 dpi proxy.",
+          "requirement": "The paired adopted specification uses a 0.25 pt gray circle outline; the reviewer checks consistent fill/outline treatment between dots and their categorical proxies.",
+          "action": "Give both categorical legend circles the same gray outline as the data dots, while retaining 8 pt guide text and the current compact footprint."
+        },
+        {
+          "severity": "note",
+          "location": "connector layer and caption",
+          "evidence": "Connecting segments are absent from the supplied paper crop. The new adopted brief and caption explicitly identify them as an added paired view and explain crossings.",
+          "requirement": "Distinguish a new layer from observed reference features.",
+          "action": "Use the connector-specific caption paragraph and describe this as a separate paired create view."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/output-connectors/panel.png",
+        "candidate_pdf": "/Users/starry/Desktop/EasyViz/examples/no-author-code/urschel-paired/output-connectors/panel.pdf",
+        "sha256": {
+          "png": "2c871e67170eae09eeaf65d4ef5962ecf840bd05b10eef9606d950c1322739e0",
+          "pdf": "36e6dcb0ce108f11ad1908b6592a0cbdbbaa6c6925399937216321333db78a14"
+        },
+        "page_mm": [
+          105.00000000000334,
+          96.00000000001111
+        ],
+        "font_command_counts_pt": {
+          "8.0": 10,
+          "5.6": 3
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGDMTZR+ArialMT                       CID TrueType      Identity-H       yes yes yes     19  0\n",
+        "png": {
+          "pixels": [
+            1240,
+            1134
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          397,
+          363
+        ],
+        "pdf_text": "Before After Before After\n102\n103\n104\nIgG (BAU/ml)\nPrior infection No prior infection"
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[105.00000000000334, 96.00000000001111] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1240, 1134], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [397, 363]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        }
+      ]
+    },
+    {
+      "case": "components",
+      "status": "ready_with_notes",
+      "mapping": "Seven conditions, HDR rose at the base, peach both-signal in the middle, green mutEJ on top. Dark raw total dots and one total-SD stroke sit around each stack top.",
+      "visual_evidence": "Rose/peach/green segments are distinguishable together; the thin SD strokes and dark dots stay visible above the fills. The one-row top component guide occupies about one third of the data-region width and a small shallow band. All seven rotated labels remain readable in the 567\u00d7378 proxy. The two near-zero controls are visible as three dark dots close to zero, but their tiny component contributions cannot be visually compared on the common scale.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "control totals and separate caption",
+          "evidence": "The common 0\u201360% reading scale makes the two control stacks extremely short. Their raw total dots remain visible, and the caption explicitly identifies near-zero controls.",
+          "requirement": "Keep all conditions and preserve the scientific scale without inventing a reference appearance.",
+          "action": "Retain the common scale and the supplied control explanation in the caption."
+        },
+        {
+          "severity": "note",
+          "location": "reference adaptation",
+          "evidence": "The paper crop combines colored stacks and gray ratio bars on dual axes. This candidate splits the axes and adds total points and total SD, rather than copying the uncertain component-boundary intervals or unverified stars.",
+          "requirement": "Respect the disclosed create adaptation and distinguish total uncertainty from component uncertainty.",
+          "action": "Keep the explicit total-SD caption with this panel."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/output-components/panel.png",
+        "candidate_pdf": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/output-components/panel.pdf",
+        "sha256": {
+          "png": "e0dd7e35052639b10e932bf95a965879e0d82ad908e480ebc13a3d1261b03e78",
+          "pdf": "2d759902195aa56b8e6398a82155774d628f7807355c3fbab8ec2402100951c7"
+        },
+        "page_mm": [
+          149.99999999999972,
+          99.99999999998805
+        ],
+        "font_command_counts_pt": {
+          "8.0": 18
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nBAVPWO+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            1772,
+            1181
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          567,
+          378
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "No donor/Cas9\nNTC DMSO\nNU-7441 (1 \u00b5M)\nKU-0060548 (0.25 \u00b5M)\nL755507 (5 \u00b5M)\nSCR7 pyrazine (1 \u00b5M)\n0\n10\n20\n30\n40\n50\n60Cells (%)\nHDR HDR and mutEJ mutEJ"
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[149.99999999999972, 99.99999999998805] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1772, 1181], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [567, 378]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        }
+      ]
+    },
+    {
+      "case": "ratios",
+      "status": "ready_with_notes",
+      "mapping": "Seven conditions on a single HDR/mutEJ ratio axis, gray means with dark raw dots and SD strokes; the first two control bars are diagonally hatched and mapped to Low-event control in the top guide.",
+      "visual_evidence": "The current axis reads HDR/mutEJ ratio. Hatching identifies the controls clearly at the 567\u00d7378 proxy, with raw points visible above/on their bars. Informative treatment bars use calm gray fills, dark points and readable strokes. The complete two-entry guide is about one third of the data-region width; it remains a shallow band above the data. Long rotated source-spelled compound labels fit.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "low-event controls and ratio caption",
+          "evidence": "Both control values remain visible even though the supplied source caveat labels their ratios uninformative due to low fluorescence event counts. The separate caption explains this explicitly.",
+          "requirement": "Retain source values and communicate the state without adding prose inside the panel.",
+          "action": "Keep the supplied caption and the hatched state guide."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/output-ratios/panel.png",
+        "candidate_pdf": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/output-ratios/panel.pdf",
+        "sha256": {
+          "png": "c5f06b1b51fa4f582b66426460ef70cc8c29ab8ed6b9a665c5b5b206350ab70e",
+          "pdf": "2a29ba4da92395a47ccbdd5f48e019879db136aa9cafb055ec3e2cd56075c689"
+        },
+        "page_mm": [
+          149.99999999999972,
+          99.99999999998805
+        ],
+        "font_command_counts_pt": {
+          "8.0": 15
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGICFLR+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            1772,
+            1181
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          567,
+          378
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "No donor/Cas9\nNTC DMSO\nNU-7441 (1 \u00b5M)\nKU-0060548 (0.25 \u00b5M)\nL755507 (5 \u00b5M)\nSCR7 pyrazine (1 \u00b5M)\n0\n0.5\n1\n1.5\n2\nHDR/mutEJ ratio\nInformative Low-event control"
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[149.99999999999972, 99.99999999998805] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1772, 1181], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [567, 378]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        }
+      ]
+    },
+    {
+      "case": "grouped",
+      "status": "ready_with_notes",
+      "mapping": "Seven conditions with three side-by-side component colors and their raw component dots/SD strokes; this is an alternative create view rather than a published extra panel.",
+      "visual_evidence": "At 662\u00d7378 the three colors are distinct and the 4 pt\u00b2 dots are small but distinguishable, including the near-zero control rows. Component-specific intervals remain adjacent to their component means. The wider 175 mm canvas keeps all rotated labels readable. The full three-entry guide is about 28% of the data-region width and remains subordinate to the data.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "point-size brief, resolved during this review",
+          "evidence": "The initially supplied adopted wording declared 7 pt\u00b2 for all raw points, while grouped-spec.json declared 4 pt\u00b2 and the grouped marks were visibly smaller. The current adopted wording explicitly states 7 pt\u00b2 for stack/ratio and 4 pt\u00b2 for the denser grouped alternative. Output PNG/PDF hashes were checked again and remain unchanged.",
+          "requirement": "The adopted specification and candidate must agree about physical mark sizes.",
+          "action": "Resolved by the explicit grouped exception in the current adopted brief; retain that exception with the portable example."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/output-grouped/panel.png",
+        "candidate_pdf": "/Users/starry/Desktop/EasyViz/examples/no-author-code/truong-components/output-grouped/panel.pdf",
+        "sha256": {
+          "png": "fbe198903517f2ec046993f4c0e8bdf6e71272d8841a61ef5ba0b38c61b40aaa",
+          "pdf": "adb1cd04b87d607b9e9ad7a9b074e97a6907f21a1ea9bf02ddb919f214e03e6f"
+        },
+        "page_mm": [
+          175.00000000000554,
+          99.99999999998805
+        ],
+        "font_command_counts_pt": {
+          "8.0": 17
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nBAVPWO+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            2067,
+            1181
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          662,
+          378
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "No donor/Cas9\nNTC DMSO\nNU-7441 (1 \u00b5M)\nKU-0060548 (0.25 \u00b5M)\nL755507 (5 \u00b5M)\nSCR7 pyrazine (1 \u00b5M)\n0\n10\n20\n30\n40\n50Cells (%)\nHDR HDR and mutEJ mutEJ"
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[175.00000000000554, 99.99999999998805] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [2067, 1181], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [662, 378]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        }
+      ]
+    }
+  ],
+  "external_checks": [
+    {
+      "name": "source numerical coverage and calculated statistics",
+      "status": "not_checked",
+      "evidence": "Intentionally excluded from this independent visual review. No source data, plotting code, renderer QA, or statistical check records were used."
+    },
+    {
+      "name": "printed copy or journal acceptance",
+      "status": "not_checked",
+      "evidence": "96 dpi PDF renders are final-size screen proxies; they are not print proof or journal assessment."
+    },
+    {
+      "name": "baseline refinement preference",
+      "status": "not_checked",
+      "evidence": "No refinement comparison was commissioned; earlier candidate outputs were excluded. Different adopted views are not ranked as an improvement."
+    }
+  ],
+  "unresolved_items": [
+    "Minor: add matching thin gray edges to both Urschel categorical legend circles.",
+    "Numerical coverage/statistics require the separate independent audit; no numerical correctness claim is made here."
+  ],
+  "ready_scope_note": "This status concerns the inspected supplied panels and their export properties only. It does not establish print proof, journal acceptance, aesthetic improvement over a baseline, or performance on other datasets."
+}

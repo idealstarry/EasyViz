@@ -1,0 +1,71 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "effect_axis",
+    "y": "prepared_height",
+    "size": "measured_share",
+    "group": "series_label"
+  },
+  "layout": {
+    "width_mm": 100,
+    "height_mm": 85,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "Batch C": "#346C83",
+    "Batch A": "#A5424F",
+    "Batch B": "#D99C32"
+  },
+  "order": {
+    "group": [
+      "Batch C",
+      "Batch A",
+      "Batch B"
+    ]
+  },
+  "labels": {
+    "x": "Prepared axis X",
+    "y": "Prepared axis Y",
+    "size": "Prepared fraction"
+  },
+  "options": {
+    "size_max": 1,
+    "max_area_pt2": 36,
+    "size_legend": [
+      0.02,
+      0.5,
+      1
+    ],
+    "alpha": 1,
+    "x_limits": [
+      -3,
+      4
+    ],
+    "y_limits": [
+      0,
+      14
+    ],
+    "reference_lines": {
+      "x": [
+        0
+      ],
+      "y": [
+        5
+      ]
+    },
+    "grid": false,
+    "regression": false
+  },
+  "statistics": {
+    "method": "none"
+  }
+}

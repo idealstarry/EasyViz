@@ -1,0 +1,58 @@
+{
+  "chart": "paired",
+  "fields": {
+    "unit": "wid",
+    "condition": "visit",
+    "value": "measurement",
+    "block": "arm"
+  },
+  "order": {
+    "condition": [
+      "Follow-up",
+      "Baseline",
+      "Interim"
+    ],
+    "block": [
+      "Arm Z",
+      "Arm A"
+    ]
+  },
+  "colors": {
+    "Arm Z": "#4E78A0",
+    "Arm A": "#A05272"
+  },
+  "labels": {
+    "y": "Measurement"
+  },
+  "options": {
+    "y_scale": "linear",
+    "y_limits": [
+      -4,
+      12
+    ],
+    "quantile_method": "weibull",
+    "point_layout": "jitter",
+    "point_area_pt2": 7,
+    "connect_pairs": true,
+    "block_gap": 0.4
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 90,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 200,
+    "auto_fit": true
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 2
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ]
+}

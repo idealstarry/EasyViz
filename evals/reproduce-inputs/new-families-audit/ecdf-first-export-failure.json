@@ -1,0 +1,167 @@
+{
+  "status": "fail",
+  "independence": "Independent raw XLSX XML parsing, decimal-value/cell/classification checks, Python statistics, and actual SVG/PDF geometry; no extraction or plotting implementation imported.",
+  "checks": [
+    {
+      "check": "Official Urschel workbook identity",
+      "status": "pass",
+      "sha256": "d902e7608caa56172bac12515bb0e0b79efb075b669424b8b63858ad21d371be"
+    },
+    {
+      "check": "Official Truong workbook identity",
+      "status": "pass",
+      "sha256": "5a9283a1a16e5ca2f8fe0db16af0656e06ddb275dbfe64751643eb2a6dd8cc51"
+    },
+    {
+      "check": "Urschel: all 127 pairs retained exactly once",
+      "status": "pass",
+      "rows": 254,
+      "pairs": 127
+    },
+    {
+      "check": "Urschel: all raw decimal measurements preserved",
+      "status": "pass",
+      "mismatches": [],
+      "literal_lexeme_changes": []
+    },
+    {
+      "check": "Urschel: worksheet-cell trace is correct",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Urschel: infection classes including NCAP+ preserved",
+      "status": "pass",
+      "source_classes": {
+        "yes": 60,
+        "no": 63,
+        "yes/NCAP+": 4
+      },
+      "mismatches": []
+    },
+    {
+      "check": "Urschel: selected sheet agrees with independent master sheet",
+      "status": "pass",
+      "audited_measurements": 254,
+      "mismatches": []
+    },
+    {
+      "check": "Urschel: no selected formula, missing or nonpositive measurement",
+      "status": "pass"
+    },
+    {
+      "check": "ECDF: real-data adaptation uses same complete source table",
+      "status": "pass",
+      "input_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb"
+    },
+    {
+      "check": "Truong: all 84 selected numeric cells retained once",
+      "status": "pass",
+      "component_rows": 63,
+      "supplied_ratio_rows": 21
+    },
+    {
+      "check": "Truong: exact numeric lexemes and true zeros preserved",
+      "status": "pass",
+      "source_zeros": 3,
+      "mismatches": []
+    },
+    {
+      "check": "Truong: all cell coordinates and literal labels traced",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Truong: wide and both long tables agree with raw source",
+      "status": "pass",
+      "mismatches": []
+    },
+    {
+      "check": "Truong: supplied ratio semantics include shared component",
+      "status": "pass",
+      "maximum_absolute_residual": 6.217248937900877e-15,
+      "formula_checked": "(HDR-only + shared)/(mutEJ-only + shared)",
+      "ratio_values_recomputed": false
+    },
+    {
+      "check": "Truong: control ambiguity explicit and ratio states retained",
+      "status": "pass",
+      "note": "Control display names resolved by figure/caption; workbook alone has duplicate '-'."
+    },
+    {
+      "check": "Truong: complete components for each condition-local unit",
+      "status": "pass",
+      "cross_condition_pairing_inferred": false
+    },
+    {
+      "check": "Truong: means and sample SD derived from correct quantities",
+      "status": "pass",
+      "mismatches": [],
+      "sd_ddof": 1,
+      "total_sd": "SD of per-unit sums, not sum of component SDs"
+    },
+    {
+      "check": "Truong: no formulas in selected numeric cells",
+      "status": "pass"
+    },
+    {
+      "check": "urschel-ecdf/output: actual fixed canvas",
+      "status": "pass",
+      "png_pixels": [
+        1240,
+        1004
+      ],
+      "pdf_mm": [
+        104.99999703301324,
+        85.00000118679469
+      ],
+      "pdf_font_sizes": [
+        8.0
+      ],
+      "pdf_fonts": [
+        "ArialMT"
+      ],
+      "svg_mm": [
+        104.99999990277777,
+        85.00000003888889
+      ]
+    },
+    {
+      "check": "urschel-ecdf/output: actual PDF text size",
+      "status": "pass",
+      "requested_font_size_pt": 8
+    },
+    {
+      "check": "urschel-ecdf/output: SVG exact right-continuous empirical jumps",
+      "status": "fail",
+      "source_counts": [
+        {
+          "group": "Before",
+          "observations": 127,
+          "distinct_values": 127,
+          "maximum_tie": 1
+        },
+        {
+          "group": "After",
+          "observations": 127,
+          "distinct_values": 127,
+          "maximum_tie": 1
+        }
+      ],
+      "smoothing_applied": false
+    },
+    {
+      "check": "urschel-ecdf/output: PDF exact empirical curve segments",
+      "status": "fail",
+      "numerical_tolerance_pt": 0.002
+    }
+  ],
+  "passed": 20,
+  "total": 22,
+  "scope": "Source integrity and selected actual export geometry. Aesthetic review is separate.",
+  "current_export_hashes": {
+    "examples/create/urschel-ecdf/output/panel.png": "e6eee4d060985e68830b3742bf02ad4b55eaa06e3e28d3aabaa26233af4e8064",
+    "examples/create/urschel-ecdf/output/panel.pdf": "b64359d04650a132ebef74ec175fea9e9a403887b36a3ad3a94e20def96cf09c",
+    "examples/create/urschel-ecdf/output/panel.svg": "2e252096822714f1991879dbb9b823925b0895e121be63d38713650be74ca398"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "An integrated single cell and spatial transcriptomic map of human white adipose tissue",
+  "authors": "Massier et al.",
+  "year": 2023,
+  "doi": "10.1038/s41467-023-36983-2",
+  "paper_url": "https://www.nature.com/articles/s41467-023-36983-2",
+  "data_url": "https://data.mendeley.com/datasets/y3pxvr4xbf/2",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": "Article page 18 and the previously verified source dataset version 2 CC BY 4.0 license.",
+  "source_origin": "Figure_8d_8e.xlsx",
+  "source_sha256": "8b58d84d79dd09294e62a29ca2df321fadb19ef510ca662b28f4074abe0299b5",
+  "prepared_csv_sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
+  "paper_origin": "Massier. et al., NC, 2023.pdf",
+  "source_context_pages": [
+    11,
+    12,
+    14
+  ],
+  "source_figure": "8d and 8e",
+  "track": "create",
+  "author_plotting_code_read": false,
+  "original_plot_reproduced": false,
+  "input_scope": "Published already-computed deconvolution scores; no upstream bioinformatics analysis.",
+  "selection": "All 16 Myeloid_* columns; all 15 Petrus participants and 37 Kerr participants. Baseline/2y main comparison; Kerr 5y retained for transfer.",
+  "time_mapping": {
+    "Petrus": {
+      "F\u00f6re": 0,
+      "Efter": 2
+    },
+    "Kerr": {
+      "B": 0,
+      "C": 2,
+      "D": 5
+    }
+  },
+  "time_mapping_evidence": "Figure 8e caption on paper page 14 specifies baseline versus two years; workbook annotation sheet defines B baseline, C 2 years, D 5 years.",
+  "score_unit": "Source-reported deconvolution score; its supplied normalization is preserved. Values are not reinterpreted as proportions.",
+  "transformations": [
+    "Reshape selected workbook columns to tidy CSV, retaining source worksheet, Excel row and column.",
+    "Match within cohort and participant, subtract baseline from follow-up.",
+    "Compute sample median and linear quartiles of paired differences; compute percentage strictly below zero.",
+    "Order matrix columns by within-participant median change across all 16 displayed subtypes, separately by cohort.",
+    "Use published subtype descriptions from Figure 2d for row labels and display groups."
+  ],
+  "limitations": [
+    "IQR is participant dispersion, not a confidence interval.",
+    "No causal effect estimate or inferential test is added.",
+    "Cohort deconvolution scores retain source normalization; their summary differences do not estimate an adjusted cohort effect.",
+    "The transfer evaluation changes time point and cohort selection within the same study source; it is not an independent study or arbitrary-schema test."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "dose_ml",
+    "y": "response_mean",
+    "group": "preparation_name",
+    "size": "observed_cells"
+  },
+  "labels": {
+    "x": "Dose (ml)",
+    "y": "Prepared response",
+    "size": "Observed cells"
+  },
+  "colors": {
+    "Preparation A": "#0072B2",
+    "Preparation B": "#D55E00"
+  },
+  "options": {
+    "size_max": 20,
+    "max_area_pt2": 80,
+    "size_legend": [
+      5,
+      10,
+      20
+    ],
+    "x_limits": [
+      0,
+      6
+    ],
+    "y_limits": [
+      0,
+      8
+    ]
+  },
+  "layout": {
+    "width_mm": 140,
+    "height_mm": 100,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "statistics": {
+    "method": "none"
+  }
+}

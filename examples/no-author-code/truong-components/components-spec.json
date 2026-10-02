@@ -1,0 +1,73 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "condition",
+    "unit": "unit",
+    "value": "value",
+    "component": "component"
+  },
+  "layout": {
+    "width_mm": 150,
+    "height_mm": 100,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png",
+    "tiff"
+  ],
+  "order": {
+    "condition": [
+      "No donor/Cas9",
+      "NTC",
+      "DMSO",
+      "NU-7441 (1 µM)",
+      "KU-0060548 (0.25 µM)",
+      "L755507 (5 µM)",
+      "SCR7 pyrazine (1 µM)"
+    ],
+    "component": [
+      "HDR",
+      "HDR and mutEJ",
+      "mutEJ"
+    ]
+  },
+  "labels": {
+    "y": "Cells (%)"
+  },
+  "options": {
+    "mode": "stacked",
+    "uncertainty": "sample_sd",
+    "bar_width": 0.55,
+    "marker_area_pt2": 7,
+    "x_rotation": 45,
+    "y_limits": [
+      -2,
+      60
+    ],
+    "y_ticks": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60
+    ]
+  },
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 3
+    }
+  },
+  "colors": {
+    "HDR": "#C990A4",
+    "HDR and mutEJ": "#F0C49D",
+    "mutEJ": "#9ACCAE"
+  }
+}

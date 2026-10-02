@@ -1,0 +1,22 @@
+# Design decisions and transfer conditions
+
+The scientific unit is the participant. A bar per group or a plot of pooled cell counts would conceal the paired study design. All candidates therefore calculate one change per participant and subtype before summarizing. No candidate turns the 832 subtype-level observations into 832 independent people.
+
+| Decision | Why it is useful here | Transfer condition | Failure mode |
+| --- | --- | --- | --- |
+| Keep a competent box/point baseline | It provides a familiar reference for the redesign, including spread and extreme observations. | Paired changes are scalar and cohort labels fit. | Treating the baseline as deliberately unattractive would invalidate the comparison. |
+| One participant per matrix column | Repeated vertical patterns can be followed across subtypes. | Each participant has every displayed subtype; identity correspondence is part of the question. | Sorting each row independently would destroy correspondence. Missing cells cannot become zero. |
+| Separate cohort blocks | Different study populations remain visible and their sample sizes are stated. | Cohort is an explicit source field. | Pooling would hide composition and scale differences; color similarity is not evidence of equal biological effects. |
+| Sort by the participant's median change | Exposes the breadth of within-person change while reducing column noise. | The selected subtype set and ordering calculation are declared. | The resulting gradient is partly created by ordering; it is not an independent clustering discovery. |
+| Retain original zero-centered score units | Decrease, increase and unchanged keep their scientific meaning. | Scores support within-participant subtraction. | Row z-scores would erase absolute differences. Scores must not be called cell fractions. |
+| Use one symmetric continuous scale | The same change receives the same color throughout. | The range is checked before export. | An isolated large value could wash out most rows; that needs an explicit scale/encoding decision, not silent clipping. |
+| Use a median/IQR margin | Places coarse cohort distributions next to participant patterns without duplicating another full chart. | Fine effect-size comparison is secondary. | The narrow margin is weaker than the baseline/ledger for exact magnitude comparisons and must not be sold as superior for every task. |
+| Use a distribution ledger as the competing design | Positional encoding and a common zero make magnitude, variation and direction consistency easy to compare. | Readers need cohort-level comparison more than within-person cross-row structure. | Jittered points do not preserve participant identity across rows. IQR is not uncertainty in an estimated effect. |
+| Put below-zero percentages in an aligned margin | Distinguishes widespread small changes from averages driven by a minority. | The sign threshold is scientifically meaningful and denominator is visible. | It is descriptive, not a response rate, p-value or proof of intervention causality. |
+| Keep all typography at 8 pt and every panel 180 × 125 mm | Candidate differences come from visual organization, not larger canvas or text. | This capped problem fits the available physical space. | New labels, additional subtypes or more cohorts may exceed capacity; reject the layout instead of shrinking type. |
+
+## What this example establishes
+
+The same source question was expressed as three distinct reading tasks, then the matrix recipe was exercised on a second set of 592 paired changes at five years with one cohort rather than two. This is a bounded transfer check of matched longitudinal data, explicit grouping, participant-preserving order and physical export. It does not establish that the recipe supports arbitrary single-cell analysis, missing longitudinal observations, a large number of cohorts, or unknown measurement scales.
+
+Selection should follow the user's question and the rendered evidence. For a manuscript claim about subtype-change magnitude, the distribution ledger or conventional baseline may be preferable. For an exploratory or descriptive claim about participant-coincident changes across subtypes, the matrix adds information that those plots do not expose. More elaborate appearance is not an acceptance criterion.

@@ -1,0 +1,52 @@
+{
+  "chart": "interval",
+  "fields": {
+    "label": "Readout",
+    "series": "Preparation batch",
+    "estimate": "Prepared ratio",
+    "lower": "Lower 95",
+    "upper": "Upper 95"
+  },
+  "options": {
+    "x_scale": "log",
+    "reference_value": 1,
+    "x_limits": [0.15, 7.0],
+    "x_ticks": [0.2, 0.5, 1, 2, 5],
+    "series_layout": "aligned",
+    "series_span": 0.6,
+    "mark_fill": "reference_overlap",
+    "marker_area_pt2": 20,
+    "cap_height": 0,
+    "grid": false
+  },
+  "order": {
+    "label": [
+      "Signal recovery after dilution",
+      "Low-input stability",
+      "Long-run drift response",
+      "Background suppression",
+      "Temperature sensitivity",
+      "Operator transfer",
+      "Storage response"
+    ],
+    "series": ["Batch A", "Batch B"]
+  },
+  "colors": {
+    "Batch A": "#0072B2",
+    "Batch B": "#D55E00"
+  },
+  "labels": {
+    "x": "Prepared ratio",
+    "filled": "Interval excludes 1",
+    "hollow": "Interval includes 1"
+  },
+  "layout": {
+    "width_mm": 140,
+    "height_mm": 100,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": ["pdf", "svg", "png"]
+}

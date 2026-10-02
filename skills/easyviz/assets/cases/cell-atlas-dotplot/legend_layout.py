@@ -16,6 +16,7 @@ from matplotlib.transforms import Affine2D, Bbox, IdentityTransform
 import numpy as np
 
 PT_PER_MM = 72 / 25.4
+CIRCLE_AREA_PER_SIZE_PARAMETER = math.pi / 4
 DEFAULTS = {
     "key_width_mm": 1.5, "key_height_mm": 1.5, "handletext_gap_mm": .7,
     "row_gap_mm": .6, "column_gap_mm": 2., "borderpad_mm": .2,
@@ -121,10 +122,21 @@ class LegendLayout:
             raise ValueError("Categorical legend needs matching labels/colors and patch or marker shape")
         self.requests.append({"kind": "categorical", "labels": list(map(str, labels)), "colors": list(colors), "shape": shape, "title": title, "edgecolor": edgecolor, "linewidth_pt": linewidth_pt})
 
-    def add_size(self, values, areas_pt2, title=None, color="#777777", edgecolor="none", linewidth_pt=0):
+    def add_size(self, values, areas_pt2, title=None, color="#777777", edgecolor="none", linewidth_pt=0, *, area_semantics="matplotlib_size_parameter"):
+        """Register circular keys with an explicit physical-size interpretation.
+
+        Legacy callers retain their raw Matplotlib ``s`` parameters. New callers
+        can pass true circle fill areas, excluding stroke, by selecting
+        ``geometric_circle_area``. Both quantities are recorded separately.
+        """
         if len(values) != len(areas_pt2) or not values or not np.isfinite(areas_pt2).all() or min(areas_pt2) <= 0:
             raise ValueError("Size legend needs matching values and positive finite marker areas")
-        self.requests.append({"kind": "size", "labels": [f"{float(v):g}" for v in values], "values": list(map(float, values)), "areas_pt2": list(map(float, areas_pt2)), "title": title, "color": color, "edgecolor": edgecolor, "linewidth_pt": linewidth_pt})
+        if area_semantics not in ("matplotlib_size_parameter", "geometric_circle_area"):
+            raise ValueError("Size legend area_semantics must be matplotlib_size_parameter or geometric_circle_area")
+        supplied = np.asarray(areas_pt2, dtype=float)
+        parameters = supplied / CIRCLE_AREA_PER_SIZE_PARAMETER if area_semantics == "geometric_circle_area" else supplied
+        geometric = supplied if area_semantics == "geometric_circle_area" else supplied * CIRCLE_AREA_PER_SIZE_PARAMETER
+        self.requests.append({"kind": "size", "labels": [f"{float(v):g}" for v in values], "values": list(map(float, values)), "areas_pt2": geometric.tolist(), "marker_size_parameters_pt2": parameters.tolist(), "area_semantics": area_semantics, "title": title, "color": color, "edgecolor": edgecolor, "linewidth_pt": linewidth_pt})
 
     def add_symbols(self, labels, markers, color="#666666", linewidth_pt=.6):
         """Decode nonquantitative data-state symbols without changing dot areas."""
@@ -188,8 +200,18 @@ class LegendLayout:
                 if box.x0 >= plot.x1:
                     y = min(y, box.y0 - gap)
             return np.array([band.x0, y]), "upper left"
-        if position == "top": return np.array([(plot.x0 + plot.x1) / 2, band.y0]), "lower center"
-        return np.array([(plot.x0 + plot.x1) / 2, band.y1]), "upper center"
+        if position == "top": return np.array([(plot.x0 + plot.x1) / 2, self._stack_edge(position, cfg)]), "lower center"
+        return np.array([(plot.x0 + plot.x1) / 2, self._stack_edge(position, cfg)]), "upper center"
+
+    def _stack_edge(self, position, cfg):
+        """Advance outward from complete preceding envelopes on this side."""
+        band = self._band(position, cfg)
+        gap = cfg["gap_mm"] * self.fig.dpi / 25.4
+        prior = [self._bounds(entry) for entry in self.entries
+                 if entry["chosen_settings"]["position"] == position]
+        if position == "top":
+            return max([band.y0, *(box.y1 + gap for box in prior)])
+        return min([band.y1, *(box.y0 - gap for box in prior)])
 
     def _categorical_or_size(self, request, cfg, position, ncol):
         kind = request["kind"]
@@ -213,9 +235,9 @@ class LegendLayout:
             # An explicitly set identity transform is essential: otherwise the
             # legend DrawingArea assigns its scale/translation to the path too,
             # displacing keys and changing their size at PDF/PNG export DPI.
-            handles = [PathCollection([plt.matplotlib.markers.MarkerStyle("o").get_path().transformed(plt.matplotlib.markers.MarkerStyle("o").get_transform())], sizes=[area], transform=IdentityTransform(), facecolors=cfg.get("color", request["color"]), edgecolors=cfg.get("edgecolor", request["edgecolor"]), linewidths=cfg.get("linewidth_pt", request["linewidth_pt"])) for area in request["areas_pt2"]]
+            handles = [PathCollection([plt.matplotlib.markers.MarkerStyle("o").get_path().transformed(plt.matplotlib.markers.MarkerStyle("o").get_transform())], sizes=[parameter], transform=IdentityTransform(), facecolors=cfg.get("color", request["color"]), edgecolors=cfg.get("edgecolor", request["edgecolor"]), linewidths=cfg.get("linewidth_pt", request["linewidth_pt"])) for parameter in request["marker_size_parameters_pt2"]]
             # The largest quantitative key sets the row box. Its area is unchanged.
-            diameter = math.sqrt(max(request["areas_pt2"])) / PT_PER_MM
+            diameter = math.sqrt(max(request["marker_size_parameters_pt2"])) / PT_PER_MM
             key_w = key_h = max(diameter, 1.5)
         anchor, loc = self._anchor(position, cfg)
         # Matplotlib's legend row box subtracts a font-relative descent. Undo
@@ -224,7 +246,8 @@ class LegendLayout:
         legend = self.fig.legend(handles, request["labels"], title=cfg.get("title", request.get("title")), fontsize=font_pt, title_fontsize=font_pt, loc=loc, bbox_to_anchor=tuple(anchor / np.array([self.fig.bbox.width, self.fig.bbox.height])), bbox_transform=self.fig.transFigure, ncol=ncol, frameon=False, borderaxespad=0, borderpad=cfg["borderpad_mm"] / font_mm, handlelength=key_w / font_mm, handleheight=handle_height, handletextpad=cfg["handletext_gap_mm"] / font_mm, labelspacing=cfg["row_gap_mm"] / font_mm, columnspacing=cfg["column_gap_mm"] / font_mm, markerscale=1, scatterpoints=1, scatteryoffsets=[.5])
         chosen = {**cfg, "position": position, "ncol": ncol, "loc": loc, "anchor_mm": (anchor * 25.4 / self.fig.dpi).tolist(), "font_size_pt": font_pt, "effective_key_width_mm": key_w, "effective_key_height_mm": key_h}
         entry = {"kind": kind, "artist": legend, "request": request, "chosen_settings": chosen}
-        if kind == "size": entry["marker_areas_pt2"] = request["areas_pt2"]
+        if kind == "size":
+            entry.update(marker_areas_pt2=request["areas_pt2"], marker_size_parameters_pt2=request["marker_size_parameters_pt2"], area_semantics=request["area_semantics"])
         return entry
 
     def _colorbar(self, request, cfg, position, length):
@@ -242,8 +265,8 @@ class LegendLayout:
         else:
             w, h = (thickness * px, length * px) if orientation == "vertical" else (length * px, thickness * px)
             if position == "right": box = Bbox.from_bounds(band.x0, plot.y1 - h, w, h)
-            elif position == "top": box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, band.y0, w, h)
-            else: box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, band.y1 - h, w, h)
+            elif position == "top": box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, self._stack_edge(position, cfg), w, h)
+            else: box = Bbox.from_bounds((plot.x0 + plot.x1 - w) / 2, self._stack_edge(position, cfg) - h, w, h)
         cax = self.fig.add_axes([box.x0 / self.fig.bbox.width, box.y0 / self.fig.bbox.height, box.width / self.fig.bbox.width, box.height / self.fig.bbox.height])
         norm = request["mappable"].norm
         default_ticks = [float(norm.vmin), float(getattr(norm, "vcenter", (norm.vmin + norm.vmax) / 2)), float(norm.vmax)]
@@ -262,6 +285,16 @@ class LegendLayout:
         cb.set_label(cfg.get("label", request["label"]), fontsize=self.typography["legend"], labelpad=.8 * PT_PER_MM)
         cax.tick_params(labelsize=self.typography["legend"], length=.7 * PT_PER_MM, pad=.6 * PT_PER_MM)
         cb.outline.set_linewidth(.5)
+        if position in ("top", "bottom") and any(entry["chosen_settings"]["position"] == position for entry in self.entries):
+            # A colorbar's tick/label envelope may extend toward the preceding
+            # guide. Translate the complete envelope beyond the shared gap.
+            self.fig.canvas.draw()
+            envelope = cax.get_tightbbox(self.fig.canvas.get_renderer())
+            edge = self._stack_edge(position, cfg)
+            dy = max(0., edge - envelope.y0) if position == "top" else min(0., edge - envelope.y1)
+            if dy:
+                box = box.translated(0, dy)
+                cax.set_position([box.x0 / self.fig.bbox.width, box.y0 / self.fig.bbox.height, box.width / self.fig.bbox.width, box.height / self.fig.bbox.height])
         chosen = {**cfg, "position": position, "orientation": orientation, "rect_mm": _bbox_mm(self.fig, box), "length_mm": max(box.width, box.height) / px, "thickness_mm": min(box.width, box.height) / px, "ticks": list(map(float, ticks)), "font_size_pt": self.typography["legend"]}
         return {"kind": "colorbar", "artist": cax, "colorbar": cb, "request": request, "chosen_settings": chosen, "mapped_range": [float(norm.vmin), float(norm.vmax)]}
 
@@ -350,7 +383,7 @@ class LegendLayout:
             issues.append("legend_keys_overlap")
         if entry["kind"] == "size":
             actual = [float(h.get_sizes()[0]) for h in entry["artist"].legend_handles]
-            if not np.allclose(actual, entry["marker_areas_pt2"], rtol=0, atol=1e-10): issues.append("quantitative_marker_area_changed")
+            if not np.allclose(actual, entry["marker_size_parameters_pt2"], rtol=0, atol=1e-10): issues.append("quantitative_marker_area_changed")
         geometry = measure_bbox(self.fig, box, _bbox_mm(self.fig, plot), available_region_mm=_bbox_mm(self.fig, band) if band.width > 0 and band.height > 0 else None)
         messages = []
         for key, threshold in self.thresholds.items():
@@ -358,7 +391,7 @@ class LegendLayout:
                 raise ValueError(f"Unknown legend review threshold: {key}")
             if threshold is not None and geometry[key] is not None and geometry[key] > _positive(threshold, key):
                 messages.append(f"Review {key}={geometry[key]:.3f} above adjustable threshold {threshold}; this is not a journal limit.")
-        return {"kind": entry["kind"], "chosen_settings": cfg, **geometry, "key_bboxes_mm": [_bbox_mm(self.fig, key) for key in keys], "issues": sorted(set(issues)), "warnings": messages, "text_overlaps": text_overlaps, **({"marker_areas_pt2": entry["marker_areas_pt2"]} if entry["kind"] == "size" else {}), **({"mapped_range": entry["mapped_range"]} if entry["kind"] == "colorbar" else {})}
+        return {"kind": entry["kind"], "chosen_settings": cfg, **geometry, "key_bboxes_mm": [_bbox_mm(self.fig, key) for key in keys], "issues": sorted(set(issues)), "warnings": messages, "text_overlaps": text_overlaps, **({"marker_areas_pt2": entry["marker_areas_pt2"], "marker_size_parameters_pt2": entry["marker_size_parameters_pt2"], "area_semantics": entry["area_semantics"], "fill_area_definition": "Ideal circle geometric fill area in pt², excluding edge stroke; Matplotlib s is squared diameter in pt²."} if entry["kind"] == "size" else {}), **({"mapped_range": entry["mapped_range"]} if entry["kind"] == "colorbar" else {})}
 
     def _remove(self, entry):
         if entry["kind"] == "colorbar": self.fig.delaxes(entry["artist"])
@@ -392,6 +425,9 @@ class LegendLayout:
                     self._remove(entry)
             _, position, variant = best
             chosen = self._colorbar(request, cfg, position, variant) if kind == "colorbar" else self._categorical_or_size(request, cfg, position, variant)
+            # Quantitative key centers are aligned by inspection. Complete
+            # that adjustment before the next guide uses this envelope.
+            self._inspect(chosen)
             chosen["attempts"] = candidates
             self.entries.append(chosen)
         return self.validate()

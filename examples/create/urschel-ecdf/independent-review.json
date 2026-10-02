@@ -1,0 +1,191 @@
+{
+  "schema_version": 2,
+  "review_scope": "Independent rendered-image visual review and direct export inspection only.",
+  "status": "ready_with_notes",
+  "review_method": {
+    "opened_original_pngs": true,
+    "opened_reference_images": true,
+    "pdf_proxy_dpi": 96,
+    "implementation_code_read": false,
+    "renderer_qa_used": false,
+    "source_numerical_records_used": false,
+    "browsing_used": false,
+    "earlier_candidate_images_used": true,
+    "final_refinement_original_pngs_opened": [
+      "ecdf",
+      "paired",
+      "paired-connectors"
+    ],
+    "final_refinement_pdf_proxies_opened": [
+      "ecdf",
+      "paired",
+      "paired-connectors"
+    ],
+    "baseline_proxy_comparisons_opened": true,
+    "current_truong_png_pdf_hashes_verified_against_prior": true,
+    "earlier_candidate_images_scope": "Only the preserved 96 dpi proxies from the initial independent image review, for the three requested final legend revisions."
+  },
+  "external_checks": [
+    {
+      "name": "source numerical coverage and calculated statistics",
+      "status": "not_checked",
+      "evidence": "Intentionally excluded from this independent visual review. No source data, plotting code, renderer QA, or statistical check records were used."
+    },
+    {
+      "name": "printed copy or journal acceptance",
+      "status": "not_checked",
+      "evidence": "96 dpi PDF renders are final-size screen proxies; they are not print proof or journal assessment."
+    },
+    {
+      "name": "baseline refinement preference",
+      "status": "passed",
+      "evidence": "Preserved baseline and new candidate 96 dpi PDF proxies were opened at equal final size for ECDF and both paired views. Preference is candidate for limited legend reading/style consistency; no overall aesthetic improvement is claimed."
+    }
+  ],
+  "ready_scope_note": "This status concerns the inspected supplied panels and export properties only. It does not establish print proof, journal acceptance, broad aesthetic improvement beyond the limited legend comparison, or performance on other datasets.",
+  "review_pass": 2,
+  "packaging_note": "Case-specific records extracted by the main agent from the independent final review. Reviewer findings and candidate hashes are unchanged. Development-only paths identify evidence retained outside this portable case.",
+  "independent_full_review": {
+    "path": "evals/reproduce-inputs/new-family-visual-review/final-review.json",
+    "sha256": "5afb4174f02e40c2b31d7a59830e39b5f2d2a8fa23323efcf1f63cb98f072112"
+  },
+  "cases": [
+    {
+      "case": "ecdf",
+      "status": "ready_with_notes",
+      "mapping": "A new marginal ECDF: blue Before and orange After; stepped lines run from fraction 0 to 1 on the adopted four-decade logarithmic IgG axis. This is not a reproduction of an ECDF in the paper.",
+      "visual_evidence": "The two marginal step curves remain distinct in the 397\u00d7322 proxy. Current legend keys are independently measured as 6.000 mm with 0.9 pt strokes and the same blue/orange colors as the plotted curves. The guide now uses about one third of data-region width, remains a shallow single row, and leaves the curves visually primary. The current separate caption explicitly states one participant at one time point as the observation unit and describes the dataset-specific jump rule; those numerical claims were not audited here.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "ECDF caption and legend",
+          "evidence": "The color meaning is time point, while the paper reference uses color for prior-infection cohorts; the supplied caption discloses this new marginal view and the loss of individual pairing. No extra panel prose or title is present.",
+          "requirement": "A new create view must be explicit about its mapping and keep explanatory prose in the caption.",
+          "action": "Keep the supplied separate caption with this panel."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "output/panel.png",
+        "candidate_pdf": "output/panel.pdf",
+        "sha256": {
+          "png": "57a4351ceb77f4208e107818cb87137382a284f49988c74c3ebef402c0c0e67c",
+          "pdf": "371f3abdc04c0d0c6779ff6df62f87c09018b8ee91a0660252a5c7eb2e299970"
+        },
+        "page_mm": [
+          105.00000000000334,
+          85.00000000001278
+        ],
+        "font_command_counts_pt": {
+          "8.0": 14,
+          "5.6": 5
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nVAGDZA+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            1240,
+            1004
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          397,
+          322
+        ],
+        "proxy_path": "Development repository evidence: evals/reproduce-inputs/new-family-visual-review/final-ecdf-pdf-96dpi.png",
+        "legend_objects_independently_read_from_pdf": [
+          {
+            "object_type": "curve",
+            "x0": 120.436032,
+            "x1": 137.443906,
+            "top": 230.3323658898,
+            "bottom": 230.3323658898,
+            "width": 17.007874,
+            "height": 0.0,
+            "linewidth": 0.9,
+            "stroke": true,
+            "fill": false,
+            "stroking_color": [
+              0.3215686275,
+              0.4705882353,
+              0.6588235294
+            ],
+            "non_stroking_color": 0.0
+          },
+          {
+            "object_type": "curve",
+            "x0": 168.6912,
+            "x1": 185.699074,
+            "top": 230.3323658898,
+            "bottom": 230.3323658898,
+            "width": 17.007873999999987,
+            "height": 0.0,
+            "linewidth": 0.9,
+            "stroke": true,
+            "fill": false,
+            "stroking_color": [
+              0.7607843137,
+              0.462745098,
+              0.3058823529
+            ],
+            "non_stroking_color": 0.0
+          }
+        ],
+        "baseline_proxy_path": "Development repository evidence: evals/reproduce-inputs/new-family-visual-review/ecdf-pdf-96dpi.png",
+        "baseline_png_pdf_sha256": {
+          "png": "a4046f094617a2f4491f15aafff58c40363cc8725e66bd66241ebc29c4ca0070",
+          "pdf": "1196ea9e04e85bfc21b2b79107d8d25936538b278bfb5254e6cf08da328fa562"
+        },
+        "inspection": "Opened current original PNG and new 96 dpi PDF proxy. Reopened the preserved earlier 96 dpi PDF proxy for the limited legend refinement comparison."
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[105.00000000000334, 85.00000000001278] mm, independently read from the final PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "Final pdffonts output reports embedded ArialMT. All ordinary text commands use 8 pt, with 5.6 pt power-of-ten exponents."
+        },
+        {
+          "name": "PNG dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1240, 1004], 'dpi_metadata': [299.9994, 299.9994]}; correct rounded 300 dpi export."
+        },
+        {
+          "name": "current original PNG and final-size PDF proxy",
+          "status": "passed",
+          "evidence": "Both opened. 96 dpi proxy [397, 322] pixels. Data, guides and labels remain readable within intended proportions."
+        }
+      ],
+      "resolved_findings": [
+        {
+          "original_severity": "note",
+          "location": "bottom categorical line guide",
+          "evidence": "Independent PDF object bounds give both line keys a length of 17.007874 pt = 6.000 mm, linewidth=0.9 pt. The visible color samples match the two curves.",
+          "requirement": "A categorical line guide should use readable physical line samples matching the plotted line styling.",
+          "action": "Accepted final revision; no further correction requested."
+        }
+      ],
+      "refinement_preference": {
+        "choice": "candidate",
+        "evidence": "At equal 96 dpi final size, the new longer blue/orange samples are easier to recognize and associate with the corresponding curves than the earlier short dash keys. The two-entry guide remains one short row occupying about one third of the data-region width; the plot geometry and curve reading are preserved."
+      }
+    }
+  ],
+  "adopted_inputs_sha256": [
+    {
+      "path": "spec.json",
+      "sha256": "a283fd278c23d09766792bd6f1f45ce0114bb7f233f81bfc59e6b75ad7e62799"
+    },
+    {
+      "path": "caption.md",
+      "sha256": "c748dbcb3a7807eca69827a7c8c76952bbe34c56d376954ee8556a20f4f0ef04"
+    }
+  ],
+  "unresolved_items": []
+}

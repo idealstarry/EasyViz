@@ -32,13 +32,19 @@ _legend_spec.loader.exec_module(legend_layout)
 _profile_spec = importlib.util.spec_from_file_location("easyviz_figure_profile", Path(__file__).with_name("figure_profile.py"))
 figure_profile = importlib.util.module_from_spec(_profile_spec)
 _profile_spec.loader.exec_module(figure_profile)
+_auto_spec = importlib.util.spec_from_file_location("easyviz_auto_layout", Path(__file__).with_name("auto_layout.py"))
+auto_layout = importlib.util.module_from_spec(_auto_spec)
+_auto_spec.loader.exec_module(auto_layout)
+_annotation_spec = importlib.util.spec_from_file_location("easyviz_annotation_review", Path(__file__).with_name("annotation_review.py"))
+annotation_review = importlib.util.module_from_spec(_annotation_spec)
+_annotation_spec.loader.exec_module(annotation_review)
 
 
 class SpecError(ValueError):
     """The requested panel cannot faithfully represent the supplied input."""
 
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 
 
 REQUIRED = {
@@ -48,21 +54,37 @@ REQUIRED = {
     "scatter": ("x", "y"),
     "distribution": ("group", "value"),
 }
-OPTIONAL_FIELDS = {"scatter": {"group", "unit"}, "distribution": {"unit"}, "composition": {"denominator"}, "dotplot": {"state"}}
+# Discovery metadata only: focused recipes remain separate scientific contracts.
+FOCUSED_RECIPES = {
+    chart: {"script": str(Path(__file__).resolve().with_name(f"{chart}_plot.py")),
+            "required_roles": roles,
+            "doc": str(Path(__file__).resolve().parents[1] / "references" / f"{chart}-plot.md")}
+    for chart, roles in {
+        "paired": ["unit", "condition", "value"],
+        "replicate": ["condition", "unit", "value"],
+        "ecdf": ["value"],
+        "interval": ["label", "estimate", "lower", "upper"],
+    }.items()
+}
+FOCUSED_RECIPES["replicate"]["conditional_roles"] = {
+    "component": "Required for stacked/grouped modes; rejected for summary mode."
+}
+OPTIONAL_FIELDS = {"scatter": {"group", "unit", "size"}, "distribution": {"unit"}, "composition": {"denominator"}, "dotplot": {"state"}}
 DEFAULT_COLORS = ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#000000", "#F0E442"]
 SHARED_OPTIONS = {"grid", "x_rotation", "x_limits", "y_limits", "x_scale", "y_scale"}
 CHART_OPTIONS = {
     "heatmap": {"color_limits", "color_center", "cell_aspect", "annotate_values", "value_format"},
     "composition": {"normalization", "missing_categories", "bar_width", "percent_axis"},
     "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend", "missing_cells", "state_markers", "small_positive_area_pt2"},
-    "scatter": {"point_area_pt2", "alpha", "point_color", "regression", "regression_color"},
+    "scatter": {"point_area_pt2", "alpha", "point_color", "regression", "regression_color", "size_max", "max_area_pt2", "size_legend", "reference_lines"},
     "distribution": {"point_area_pt2", "alpha", "kind", "orientation"},
 }
 SCHEMA = {
     "chart": list(REQUIRED), "fields_by_chart": REQUIRED,
+    "focused_recipes": FOCUSED_RECIPES,
     "optional_fields": {chart: sorted(fields) for chart, fields in OPTIONAL_FIELDS.items()},
-    "figure_profile": {"profile": "path/to/figure-profile.json", "panel": "named panel", "continuous_scale": "optional named shared continuous scale", "size_scale": "optional named shared dot-area scale"},
-    "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300, "margins": {"left": .19, "right": .77, "bottom": .23, "top": .88}},
+    "figure_profile": {"profile": "path/to/figure-profile.json", "panel": "named panel", "continuous_scale": "optional named shared continuous scale", "size_scale": "optional named shared area scale for dotplot or scatter with fields.size"},
+    "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300, "auto_fit": False, "margins": {"left": .19, "right": .77, "bottom": .23, "top": .88}},
     "typography": {"axis": 8, "tick": 8, "legend": 8, "annotation": 8, "title": 9, "panel": 9},
     "formats": ["pdf", "svg", "png", "tiff"], "seed": 0,
     "colors": {"category label": "#0072B2"}, "palette": "somerville-bright",
@@ -73,14 +95,24 @@ SCHEMA = {
     "legend_semantics": ["Size marker areas are immutable; key dimensions/markerscale are not accepted for size legends.", "Colorbar default length is 18-28 mm, guided by plot side; labels/range are measured.", "Manual categorical/size settings: position=manual, anchor_mm=[x,y], loc, ncol. Manual colorbar settings: position=manual, rect_mm=[x,y,w,h], orientation. Coordinates start at canvas lower left."],
     "shared_options": sorted(SHARED_OPTIONS),
     "chart_options": {k: sorted(v) for k, v in CHART_OPTIONS.items()},
-    "statistics": {"method": "pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)", "groups": ["A", "B"], "unit": "pairing ID column (mandatory for wilcoxon)", "annotate": False},
-    "semantics": ["Margins are subplot bounds in 0..1, not padding widths.", "orders must include every category exactly once.", "dot size maps linearly to marker area, not radius; zero means zero area.", "composition normalization is mandatory; sample_sum uses only supplied categories.", "denominator values repeat for all categories within a sample; incomplete composition remains below 1.", "No test is run unless requested; default distributions are descriptive boxplots and all observations.", "SVG preserves editable text and references the font; PDF embeds the selected font."]
+    "scatter_reference_lines": {"x": [-1, 1], "y": [1.3]},
+    "statistics": {"method": "none; pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)", "groups": ["A", "B"], "unit": "pairing ID column (mandatory for wilcoxon)", "annotate": False},
+    "semantics": ["Margins are subplot bounds in 0..1, not padding widths.", "layout.auto_fit=true measures labels and guides within the unchanged canvas; do not combine it with margins or manual guide coordinates. It is a technical fit, not aesthetic certification.", "orders must include every category exactly once.", "dotplot and mapped scatter max_area_pt2 denote true circle geometric fill area, excluding stroke; area=size/size_max*max_area_pt2 and Matplotlib s=4/pi*area. Zero means zero area.", "Legacy point_area_pt2 for fixed scatter/distribution marks is the Matplotlib s parameter (squared diameter), not geometric circle fill area; settings record both quantities.", "Scatter size options require fields.size and cannot be combined with point_area_pt2.", "Scatter options.reference_lines draws supplied numeric positions only; it does not compute classes or significance.", "composition normalization is mandatory; sample_sum uses only supplied categories.", "denominator values repeat for all categories within a sample; incomplete composition remains below 1.", "No test is run unless requested; default distributions are descriptive boxplots and all observations.", "SVG preserves editable text and references the font; PDF embeds the selected font."]
 }
 
 
 def require(condition, message):
     if not condition:
         raise SpecError(message)
+
+
+def require_core_chart(chart):
+    """Reject a recipe at the core boundary with an actionable entry point."""
+    if isinstance(chart, str) and chart in FOCUSED_RECIPES:
+        script = FOCUSED_RECIPES[chart]["script"]
+        raise SpecError(f"chart '{chart}' uses the focused recipe {script}; inspect it with --describe-spec. "
+                        f"The core renderer and draft helper support only {list(REQUIRED)}.")
+    require(isinstance(chart, str) and chart in REQUIRED, f"chart must be one of {list(REQUIRED)}")
 
 
 def write_json(path, obj):
@@ -99,6 +131,8 @@ def number(value, name, minimum=0, strict=True):
 
 
 def validate_spec(spec):
+    if isinstance(spec, dict) and isinstance(spec.get("chart"), str) and spec["chart"] in FOCUSED_RECIPES:
+        require_core_chart(spec["chart"])
     try:
         figure_profile.validate_spec(spec, REQUIRED, OPTIONAL_FIELDS, CHART_OPTIONS, SHARED_OPTIONS)
     except figure_profile.ConfigurationError as exc:
@@ -113,6 +147,41 @@ def resolve_spec(spec, *, profile=None, panel=None, spec_path=None):
         raise SpecError(str(exc)) from None
     validate_spec(resolved)
     return resolved, record
+
+
+def scatter_area_scale(values, options):
+    """Resolve proportional scatter areas without changing supplied values."""
+    require((values >= 0).all(), "Scatter sizes must be nonnegative")
+    maximum = number(options.get("size_max", max(float(values.max()), 1)), "size_max")
+    require(values.max() <= maximum, "Scatter values exceed size_max")
+    max_area = number(options.get("max_area_pt2", 90), "max_area_pt2")
+    levels = options.get("size_legend", [maximum * .25, maximum * .5, maximum])
+    require(all(0 < float(v) <= maximum for v in levels), "size_legend values must be within 0..size_max")
+    return maximum, max_area, levels
+
+
+def circle_size_parameter(area_pt2):
+    """Convert ideal circular fill area, excluding stroke, to Matplotlib s."""
+    return area_pt2 / legend_layout.CIRCLE_AREA_PER_SIZE_PARAMETER
+
+
+def mapped_circle_geometry(field, maximum, max_area):
+    return {"mode": "mapped_circle_fill_area", "source_field": field, "size_max": maximum,
+            "max_area_pt2": max_area, "max_marker_size_parameter_pt2": float(circle_size_parameter(max_area)),
+            "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+            "area_formula": "circle_fill_area_pt2 = size / size_max * max_area_pt2",
+            "parameter_formula": "matplotlib_s = 4 / pi * circle_fill_area_pt2",
+            "diameter_formula": "diameter_pt = 2 * sqrt(circle_fill_area_pt2 / pi)",
+            "stroke_policy": "Fill area excludes edge stroke; core quantitative circles are borderless."}
+
+
+def fixed_circle_geometry(parameter):
+    return {"mode": "fixed_matplotlib_size_parameter", "marker_size_parameter_pt2": float(parameter),
+            "circle_fill_area_pt2": float(parameter) * legend_layout.CIRCLE_AREA_PER_SIZE_PARAMETER,
+            "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+            "diameter_pt": math.sqrt(float(parameter)),
+            "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+            "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."}
 
 
 def prepare(data_path, spec):
@@ -148,7 +217,7 @@ def prepare(data_path, spec):
             require(data.loc[~observed, column].eq("").all(), f"Unmeasured dots require empty {column}; zero is an observed value")
     numerical = {
         "heatmap": ["value"], "composition": ["value", "denominator"],
-        "dotplot": ["size", "color"], "scatter": ["x", "y"], "distribution": ["value"],
+        "dotplot": ["size", "color"], "scatter": ["x", "y", "size"], "distribution": ["value"],
     }[chart]
     for role in numerical:
         if role not in fields:
@@ -175,6 +244,8 @@ def prepare(data_path, spec):
         require(options.get("missing_cells", "unsupplied") in ("unsupplied", "unmeasured", "error"), "missing_cells must be unsupplied, unmeasured or error")
         require(isinstance(options.get("state_markers", True), bool), "state_markers must be a boolean")
         number(options.get("small_positive_area_pt2", 0), "small_positive_area_pt2", strict=False)
+    if chart == "scatter" and "size" in fields:
+        scatter_area_scale(data[fields["size"]], options)
     if chart == "composition":
         require((data[fields["value"]] >= 0).all(), "Composition values must be nonnegative")
         normalization = spec.get("options", {}).get("normalization")
@@ -274,6 +345,9 @@ def statistics(data, spec):
         return {"method": "none", "note": "Descriptive visualization; no inferential test requested."}
     require(isinstance(config, dict), "statistics must be an object")
     require(not (set(config) - {"method", "groups", "unit", "annotate"}), "Unknown statistics options; supported: method, groups, unit, annotate")
+    if config.get("method") == "none":
+        require("groups" not in config and "unit" not in config and not config.get("annotate", False), "statistics.method='none' cannot be combined with groups, unit, or annotate=true")
+        return {"method": "none", "note": "Descriptive visualization; no inferential test requested."}
     from scipy import stats
     chart, f = spec["chart"], spec["fields"]
     if "unit" in config and "unit" in f:
@@ -377,11 +451,13 @@ def draw(data, spec, layout, typography, result):
         ax.set_yticks(range(len(rows)), rows)
         legend_manager.add_colorbar(artist, labels.get("color", f["value"]))
         if options.get("annotate_values", False):
+            fig._easyviz_cell_annotations = []
             for i in range(len(rows)):
                 for j in range(len(cols)):
                     rgba = cmap(norm(matrix.iloc[i, j]))
                     luminance = .2126 * rgba[0] + .7152 * rgba[1] + .0722 * rgba[2]
-                    ax.text(j, i, format(matrix.iloc[i, j], options.get("value_format", ".2g")), ha="center", va="center", color="black" if luminance > .55 else "white", fontsize=typography["annotation"])
+                    text = ax.text(j, i, format(matrix.iloc[i, j], options.get("value_format", ".2g")), ha="center", va="center", color="black" if luminance > .55 else "white", fontsize=typography["annotation"])
+                    fig._easyviz_cell_annotations.append({"text": text, "row": i, "column": j})
     elif chart == "composition":
         samples, groups = ordered(data, f["sample"], spec, "sample"), ordered(data, f["category"], spec, "category")
         resolved_colors = palette_colors(spec, groups)
@@ -411,14 +487,17 @@ def draw(data, spec, layout, typography, result):
         require(not len(measured) or measured[f["size"]].max() <= maximum, "Dot values exceed size_max")
         max_area = number(options.get("max_area_pt2", 90), "max_area_pt2")
         data["_easyviz_area_pt2"] = data[f["size"]] / maximum * max_area
+        data["_easyviz_marker_size_parameter_pt2"] = circle_size_parameter(data["_easyviz_area_pt2"])
+        fig._easyviz_mark_geometry = mapped_circle_geometry(f["size"], maximum, max_area)
+        fig._easyviz_mark_geometry["observed_rows"] = len(measured)
         xmap, ymap = {v: i for i, v in enumerate(xs)}, {v: i for i, v in enumerate(ys)}
         if len(measured):
             cmap, norm = continuous(spec, measured[f["color"]])
-            artist = ax.scatter(measured[f["x"]].astype(str).map(xmap), measured[f["y"]].astype(str).map(ymap), s=measured[f["size"]] / maximum * max_area, c=measured[f["color"]], cmap=cmap, norm=norm, edgecolors="none", zorder=3)
+            artist = ax.scatter(measured[f["x"]].astype(str).map(xmap), measured[f["y"]].astype(str).map(ymap), marker="o", s=data.loc[measured.index, "_easyviz_marker_size_parameter_pt2"], c=measured[f["color"]], cmap=cmap, norm=norm, edgecolors="none", zorder=3)
             legend_manager.add_colorbar(artist, labels.get("color", f["color"]))
             levels = options.get("size_legend", [maximum * .25, maximum * .5, maximum])
             require(all(0 < float(v) <= maximum for v in levels), "size_legend values must be within 0..size_max")
-            legend_manager.add_size(levels, [float(v) / maximum * max_area for v in levels], title=labels.get("size", f["size"]))
+            legend_manager.add_size(levels, [float(v) / maximum * max_area for v in levels], title=labels.get("size", f["size"]), area_semantics="geometric_circle_area")
         ax.set_xticks(range(len(xs)), xs, rotation=options.get("x_rotation", 90))
         ax.set_yticks(range(len(ys)), ys)
         ax.set_xlim(-.6, len(xs) - .4)
@@ -457,17 +536,28 @@ def draw(data, spec, layout, typography, result):
         state_marks(coordinates(small), "|", "Small positive", side=True)
         if state_labels:
             legend_manager.add_symbols(state_labels, state_symbols)
-        fig._easyviz_dot_states = {"observed_rows": len(measured), "zero_rows": len(zeros), "unmeasured_rows": len(unmeasured), "missing_coordinates": [list(pair) for pair in absent], "missing_cells_meaning": absent_state, "small_positive_rows": len(small), "small_positive_area_threshold_pt2": threshold, "state_markers": options.get("state_markers", True), "symbols": dict(zip(state_labels, state_symbols)), "note": "State glyphs are separate nonquantitative marks. Observed dot area remains size / size_max * max_area_pt2; an absent row is not a measured zero."}
+        fig._easyviz_dot_states = {"observed_rows": len(measured), "zero_rows": len(zeros), "unmeasured_rows": len(unmeasured), "missing_coordinates": [list(pair) for pair in absent], "missing_cells_meaning": absent_state, "small_positive_rows": len(small), "small_positive_area_threshold_pt2": threshold, "state_markers": options.get("state_markers", True), "symbols": dict(zip(state_labels, state_symbols)), "note": "State glyphs are separate nonquantitative marks. Observed geometric circle fill area remains size / size_max * max_area_pt2, with Matplotlib s = 4/pi times that area; an absent row is not a measured zero."}
     elif chart == "scatter":
+        if "size" in f:
+            maximum, max_area, levels = scatter_area_scale(data[f["size"]], options)
+            data["_easyviz_area_pt2"] = data[f["size"]] / maximum * max_area
+            data["_easyviz_marker_size_parameter_pt2"] = circle_size_parameter(data["_easyviz_area_pt2"])
+            fig._easyviz_mark_geometry = mapped_circle_geometry(f["size"], maximum, max_area)
+        else:
+            fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 12))
         if "group" in f:
             groups = ordered(data, f["group"], spec, "group")
             resolved_colors = palette_colors(spec, groups)
             for group in groups:
                 part = data[data[f["group"]].astype(str) == group]
-                ax.scatter(part[f["x"]], part[f["y"]], label=group, color=resolved_colors[group], s=options.get("point_area_pt2", 12), alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+                areas = part["_easyviz_marker_size_parameter_pt2"] if "size" in f else options.get("point_area_pt2", 12)
+                ax.scatter(part[f["x"]], part[f["y"]], label=group, color=resolved_colors[group], marker="o", s=areas, alpha=options.get("alpha", .85), linewidths=0, zorder=3)
             legend_manager.add_categorical(groups, [resolved_colors[g] for g in groups], shape="marker")
         else:
-            ax.scatter(data[f["x"]], data[f["y"]], color=options.get("point_color", DEFAULT_COLORS[0]), s=options.get("point_area_pt2", 12), alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+            areas = data["_easyviz_marker_size_parameter_pt2"] if "size" in f else options.get("point_area_pt2", 12)
+            ax.scatter(data[f["x"]], data[f["y"]], color=options.get("point_color", DEFAULT_COLORS[0]), marker="o", s=areas, alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+        if "size" in f:
+            legend_manager.add_size(levels, [float(v) / maximum * max_area for v in levels], title=labels.get("size", f["size"]), area_semantics="geometric_circle_area")
         if options.get("regression", False):
             from scipy.stats import linregress
             require(options.get("x_scale", "linear") == options.get("y_scale", "linear") == "linear", "OLS regression overlay currently requires linear x and y axes; fit and draw a transformed model explicitly for logarithmic axes")
@@ -478,6 +568,7 @@ def draw(data, spec, layout, typography, result):
             ax.plot(ends, fit.intercept + fit.slope * ends, color=options.get("regression_color", "#333333"), zorder=4)
             result["regression"] = {"method": "ordinary least squares, pooled observations", "slope": float(fit.slope), "intercept": float(fit.intercept), "n": len(data), "interval": "none"}
     elif chart == "distribution":
+        fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 9))
         groups = ordered(data, f["group"], spec, "group")
         resolved_colors = palette_colors(spec, groups)
         samples = [data.loc[data[f["group"]].astype(str) == g, f["value"]].to_numpy(float) for g in groups]
@@ -501,7 +592,7 @@ def draw(data, spec, layout, typography, result):
         for i, (sample, group) in enumerate(zip(samples, groups)):
             positions = i + rng.uniform(-.13, .13, len(sample))
             data.loc[data[f["group"]].astype(str) == group, "_easyviz_jitter_position"] = positions
-            ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, color=resolved_colors[group], s=options.get("point_area_pt2", 9), alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+            ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, color=resolved_colors[group], marker="o", s=options.get("point_area_pt2", 9), alpha=options.get("alpha", .85), linewidths=0, zorder=3)
         if orientation == "vertical":
             ax.set_xticks(range(len(groups)), groups, rotation=options.get("x_rotation", 0))
             ax.set_xlim(-.6, len(groups) - .4)
@@ -530,6 +621,11 @@ def draw(data, spec, layout, typography, result):
             role = dimension if chart == "scatter" else "value"
             require((data[f[role]] > 0).all(), "Log axes require strictly positive values")
             getattr(ax, f"set_{dimension}scale")("log")
+    if chart == "scatter":
+        for dimension, positions in options.get("reference_lines", {}).items():
+            draw_line = ax.axvline if dimension == "x" else ax.axhline
+            for position in positions:
+                draw_line(position, color="#999999", linewidth=layout["line_width_pt"], linestyle="--", zorder=1)
     if labels.get("title"):
         ax.set_title(labels["title"], fontsize=typography["title"], pad=6)
     if labels.get("panel"):
@@ -545,7 +641,16 @@ def draw(data, spec, layout, typography, result):
         ax.text(.02, .98, note, ha="left", va="top", transform=ax.transAxes, fontsize=typography["annotation"], bbox={"facecolor": "white", "edgecolor": "none", "alpha": .85, "pad": 1}, zorder=6)
     if chart != "heatmap":
         ax.spines[["top", "right"]].set_visible(False)
-    legend_manager.layout()
+    if layout.get("auto_fit", False):
+        try:
+            fig._easyviz_auto_layout = auto_layout.fit(fig, ax, legend_manager, check_tick_label_overlap,
+                annotation_check=lambda canvas, axes: annotation_review.check_heatmap_annotations(
+                    canvas, axes, getattr(canvas, "_easyviz_cell_annotations", [])))
+        except ValueError as exc:
+            raise SpecError(str(exc)) from None
+        layout["margins"] = fig._easyviz_auto_layout["margins"]
+    else:
+        legend_manager.layout()
     fig._easyviz_legend_layout = legend_manager
     return fig, resolved_colors
 
@@ -659,6 +764,8 @@ def _render(data_path, spec, out, profile_record=None):
                     clipped.append({"text": artist.get_text(), "bounds_px": [round(v, 2) for v in bounds.extents]})
             overlaps, oblique_labels = check_tick_label_overlap(fig, renderer)
             legends = fig._easyviz_legend_layout.validate()
+            cell_annotations = annotation_review.check_heatmap_annotations(fig, fig.axes[0], getattr(fig, "_easyviz_cell_annotations", []))
+            fitted = getattr(fig, "_easyviz_auto_layout", None)
             exports = export(fig, out, spec, layout)
             missing_glyphs = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             settings = dict(spec)
@@ -666,22 +773,31 @@ def _render(data_path, spec, out, profile_record=None):
             settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
             settings["renderer"]["legend_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("legend_layout.py").read_bytes()).hexdigest()
             settings["renderer"]["profile_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("figure_profile.py").read_bytes()).hexdigest()
+            settings["renderer"]["auto_layout_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("auto_layout.py").read_bytes()).hexdigest()
+            settings["renderer"]["annotation_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("annotation_review.py").read_bytes()).hexdigest()
+            if fitted:
+                settings["auto_layout"] = fitted
             if profile_record is not None:
                 settings["figure_profile"] = profile_record
             settings["legend_layout"] = legends
+            if mark_geometry := getattr(fig, "_easyviz_mark_geometry", None):
+                settings["mark_geometry"] = mark_geometry
             if chart_states := getattr(fig, "_easyviz_dot_states", None):
                 settings["dot_states"] = chart_states
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}
-            passed = not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass"
-            qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover canvas boundaries and same-axis horizontal/vertical tick-label overlap. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
+            passed = not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass" and cell_annotations["status"] == "pass" and (not fitted or fitted["status"] == "pass")
+            qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover canvas boundaries, same-axis horizontal/vertical tick-label overlap and heatmap cell annotations. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
             qa["legend_layout"] = legends
+            qa["cell_annotations"] = cell_annotations
+            if fitted:
+                qa["auto_layout"] = fitted
             if chart_states:
                 qa["dot_states"] = chart_states
             data.to_csv(out / "plotting-data.csv", index=False)
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", results)
             write_json(out / "qa.json", qa)
-            require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png")
+            require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text sizes; explicitly enlarge or split a panel that cannot fit.")
             return qa
         finally:
             plt.close(fig)

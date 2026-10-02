@@ -1,0 +1,46 @@
+{
+  "experiment": "Post-hoc engineering diagnostic. This is not a WorkBuddy or model run, and does not replace the frozen GLM outputs or blind review.",
+  "before": "Current canonical runtime snapshot before the multiple-guide layout fix; earlier area-contract and explicit statistics fixes already included.",
+  "frozen_inputs": [
+    {
+      "original_path": "evals/workbuddy-glm/easyviz/prepared.csv",
+      "copy": "inputs/interval.csv",
+      "sha256": "b9d1c0eef736267344770a2f42bf2033eda1073e538ce352829ed93317f98d99"
+    },
+    {
+      "original_path": "evals/workbuddy-glm/easyviz/interval-spec.json",
+      "copy": "inputs/interval.json",
+      "sha256": "176c09f21b0726f1dd2c42992bce43640649c7695f416b12c8dde7c8b0d8058b"
+    }
+  ],
+  "before_runtime": {
+    "before-runtime/assets/palettes/families.json": "9ad8abdabb509194d47cbc8a51f2d45b022c57c3794ae1bd151d29844ce18ea3",
+    "before-runtime/assets/palettes/palettes.json": "ffe03e48f02ec8c39493396ea7878f3548ddce78313252cb93d5d7ebaf0e59ae",
+    "before-runtime/assets/palettes/sources.json": "971181aed021402e88a114e32dae114a3b9de1ada99791a78f9e247903a41351",
+    "before-runtime/scripts/annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "before-runtime/scripts/auto_layout.py": "3d9905cc9f4fc64b762f8803a53d7fb60833403d0cc1a2624821455a21a6de61",
+    "before-runtime/scripts/draft_spec.py": "6745405a4f594bf6e9e436f43d26eccf9ffe045170f0a4aa99adf646749f2cfc",
+    "before-runtime/scripts/figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "before-runtime/scripts/interval_plot.py": "7dcf5f37cc16a2aeaaedf1619a3213328b5838a6bd0b1cff69da70cd4a2c8b1d",
+    "before-runtime/scripts/legend_layout.py": "4ad31580fe0a5dc93c5301f633083884a7a581c67a28b0cba63418fed1816859",
+    "before-runtime/scripts/render.py": "86e090ca5e9a2b0e1447404dbc10484bca1a0c3c9740d046aed995220f934ccb"
+  },
+  "after_runtime": {
+    "after-runtime/assets/palettes/families.json": "9ad8abdabb509194d47cbc8a51f2d45b022c57c3794ae1bd151d29844ce18ea3",
+    "after-runtime/assets/palettes/palettes.json": "ffe03e48f02ec8c39493396ea7878f3548ddce78313252cb93d5d7ebaf0e59ae",
+    "after-runtime/assets/palettes/sources.json": "971181aed021402e88a114e32dae114a3b9de1ada99791a78f9e247903a41351",
+    "after-runtime/scripts/annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "after-runtime/scripts/auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "after-runtime/scripts/draft_spec.py": "6745405a4f594bf6e9e436f43d26eccf9ffe045170f0a4aa99adf646749f2cfc",
+    "after-runtime/scripts/figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "after-runtime/scripts/interval_plot.py": "7dcf5f37cc16a2aeaaedf1619a3213328b5838a6bd0b1cff69da70cd4a2c8b1d",
+    "after-runtime/scripts/legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "after-runtime/scripts/render.py": "86e090ca5e9a2b0e1447404dbc10484bca1a0c3c9740d046aed995220f934ccb"
+  },
+  "probes": {
+    "interval": "Exact frozen GLM CSV/spec copied without edits; canonical before/after runtimes, not the model result itself.",
+    "scatter": "Synthetic grouped mapped-area scatter with distinct column schema; zero magnitude preserved.",
+    "dot": "Synthetic color+area+state dotplot with explicit right colorbar and two automatic guides; missing/zero/small states explicitly declared.",
+    "dot-auto": "Same synthetic dotplot with all three guides automatic; verifies actual colorbar+size+state packing at bottom/top, with defaults choosing horizontal colorbar there."
+  }
+}

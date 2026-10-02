@@ -1,0 +1,152 @@
+{
+  "status": "passed",
+  "scope": "One separately authored synthetic reuse probe; not arbitrary-data support",
+  "inputs": [
+    "evaluation/source.csv",
+    "evaluation/figure-settings.json"
+  ],
+  "source_rows": 15,
+  "terms": 5,
+  "cohorts": 3,
+  "domains": 2,
+  "all_nine_field_names_changed": true,
+  "physical_source_row_order_reversed": true,
+  "display_order": [
+    "V01",
+    "V02",
+    "V03",
+    "V04",
+    "V05"
+  ],
+  "asymmetric_supplied_intervals": 15,
+  "positive_and_negative_estimates": true,
+  "no_statistical_recomputation": true,
+  "n_used_for_weighting": false,
+  "original_source_sha256_unchanged": "d18da70f4c6c87a17cf2e715cc15924972297e9783e9c75ce32c6ac0b36887d3",
+  "source_to_plotting_values": "passed for all 15 records and numeric fields",
+  "dimensions_mm": [
+    180,
+    100
+  ],
+  "text_sizes_pt": [
+    8.0
+  ],
+  "font": {
+    "requested": "Arial",
+    "actual_family": "Arial",
+    "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "fallback_used": false
+  },
+  "export_measurements": {
+    "pdf": {
+      "page_count": 1,
+      "dimensions_mm": [
+        179.99999999998556,
+        99.99999999998805
+      ],
+      "fonts": [
+        {
+          "base_font": "/HBPRKV+Arial-BoldMT",
+          "subtype": "/Type0",
+          "embedded": true
+        },
+        {
+          "base_font": "/FPCLCB+ArialMT",
+          "subtype": "/Type0",
+          "embedded": true
+        }
+      ]
+    },
+    "svg": {
+      "dimensions_mm": [
+        179.99999983333333,
+        100.00000002499999
+      ],
+      "text_node_count": 20,
+      "editable_text": true
+    },
+    "png": {
+      "pixels": [
+        2125,
+        1181
+      ],
+      "expected_rounded_pixels": [
+        2126,
+        1181
+      ],
+      "dpi_metadata": [
+        299.9994,
+        299.9994
+      ],
+      "allowed_pixel_rounding_error": 1
+    }
+  },
+  "implementation_correction": "Automatic tick selection proposed an out-of-range 1.50 label before first export. The renderer now retains only automatic ticks within the adopted limits; no data or scale was changed. Explicit original-case ticks were unaffected.",
+  "limitations": [
+    "Only this 5 \u00d7 3 probe and the original 14 \u00d7 2 case were executed.",
+    "Different label lengths and densities require renewed visual review and possibly explicit layout changes.",
+    "Raster dimensions use at most one pixel of quantization. SVG text depends on font availability."
+  ],
+  "previous_visual_review": {
+    "role": "implementer self-review",
+    "pass": 1,
+    "candidate": "evaluation/panel.png",
+    "opened_image": true,
+    "findings": [],
+    "observations": "Five ordered terms, three separate cohort positions, two domain groups, readable 8 pt labels and legend, intact signed intervals and zero line; no clipping or forbidden prose. Different source columns, ordering and category counts are honored."
+  },
+  "prior_independent_svg_coordinate_checks": {
+    "Pilot": {
+      "intervals": 5,
+      "points": 5,
+      "maximum_coordinate_error_pt": 4.520034053712152e-07
+    },
+    "Validation": {
+      "intervals": 5,
+      "points": 5,
+      "maximum_coordinate_error_pt": 4.80758444609819e-07
+    },
+    "External": {
+      "intervals": 5,
+      "points": 5,
+      "maximum_coordinate_error_pt": 4.790792331732519e-07
+    }
+  },
+  "visual_review": {
+    "role": "implementer self-review",
+    "reviewer": "/root/track_design",
+    "opened_image": true,
+    "candidate": "evaluation/panel.png",
+    "candidate_sha256": "d40c4fe38b5729bd3291a5994215c8afd5c6d42b637432de39e603cffc2a5485",
+    "status": "ready_with_notes",
+    "findings": [],
+    "observations": "Opened the rerendered PNG. Compact categorical markers and labels remain clearly grouped at the existing top-right anchor, with fixed 8 pt text, unchanged borderless marks and no legend clipping or data overlap. Plot remains visually primary.",
+    "limitations": "This checks the legend revision; it is not a new independent review or physical print proof.",
+    "metadata_refresh_note": "The final-helper rerender preserves the exact PNG hash previously opened for this legend self-review; only metadata/export serialization changed."
+  },
+  "current_candidate_sha256": {
+    "source.csv": "2752accbf0ae1dd20b09bf3934761b55943ecdc8fc892ffa07af63f20513fab1",
+    "figure-settings.json": "1b7d5436a97a8426b9e81bb6097b45c4e98cb29d628b3def4945d3d3aa144eae",
+    "plotting-data.csv": "f3b846ad38efa0845ecd00699afac9785d0c74899aeb5eef2d9bc07f18fb3c37",
+    "panel.png": "d40c4fe38b5729bd3291a5994215c8afd5c6d42b637432de39e603cffc2a5485",
+    "panel.pdf": "c77a338ec065c614312bc7d0ebf9c0aa370f87987af9f7662f37fdacc8cc75f4",
+    "panel.svg": "55813679d3cd2f81a28b187f3d334a5d0be9419762eb0a5a4b5af4e1b2db92cb",
+    "numeric-qa.json": "000953210beee049575b2a22030557892b91eae9bbdba36a173f77aa13fbd0e4",
+    "actual-settings.json": "082050264d54e5ad25c37c83e4c3ad4cd2f99bc91b69c1f536f6dd81523e1653"
+  },
+  "legend_revision_checks": {
+    "source_bytes_unchanged": true,
+    "source_settings_unchanged": true,
+    "plotted_data_bytes_unchanged": true,
+    "svg_data_axis_primitives_unchanged": true,
+    "numeric_axis_limits_unchanged": true,
+    "cohort_offsets_unchanged": true,
+    "term_order_unchanged": true,
+    "canvas_unchanged": true,
+    "text_sizes_still_8pt": true,
+    "legend_layout_fits": true
+  },
+  "legend_revision_evidence": "legend-update-review.json",
+  "prior_numeric_evidence_note": "Original coordinate-inversion measurements are historical. This revision independently compares every SVG data-axis primitive and confirms identical geometry; legend-only primitives changed.",
+  "legend_helper_sha256": "95dd8ed2298c274e56d217ef53a7d9f2c38d7300bb2417b603ea9320803fc65a"
+}

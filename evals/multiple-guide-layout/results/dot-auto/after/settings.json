@@ -1,0 +1,497 @@
+{
+  "chart": "dotplot",
+  "fields": {
+    "x": "cohort_key",
+    "y": "assay_name",
+    "size": "n_cells",
+    "color": "prepared_score",
+    "state": "measurement_state"
+  },
+  "labels": {
+    "x": "Preparation cohort",
+    "y": "",
+    "size": "Observed cells",
+    "color": "Prepared score"
+  },
+  "colormap": "viridis",
+  "options": {
+    "size_max": 20,
+    "max_area_pt2": 80,
+    "size_legend": [
+      5,
+      10,
+      20
+    ],
+    "color_limits": [
+      0,
+      1
+    ],
+    "small_positive_area_pt2": 1
+  },
+  "legends": {
+    "colorbar": {
+      "position": "auto",
+      "length_mm": 24,
+      "ticks": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    "size": {
+      "ncol": 3
+    },
+    "categorical": {
+      "ncol": 2
+    }
+  },
+  "layout": {
+    "width_mm": 140.0,
+    "height_mm": 100.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.30645815972222223,
+      "right": 0.9857142857142858,
+      "bottom": 0.17445934027777776,
+      "top": 0.6890646334392707
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "statistics": {
+    "method": "none"
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {},
+  "seed": 0,
+  "input_file": "dot-auto.csv",
+  "input_sha256": "9def9a965ad7648943bcc12e8d5d3b39974335e41c041ae221c2a05badcbf87b",
+  "renderer": {
+    "version": "0.2.0",
+    "sha256": "86e090ca5e9a2b0e1447404dbc10484bca1a0c3c9740d046aed995220f934ccb",
+    "legend_helper_sha256": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "profile_helper_sha256": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.30645815972222223,
+      "right": 0.9857142857142858,
+      "bottom": 0.17445934027777776,
+      "top": 0.6890646334392707
+    },
+    "data_region_mm": [
+      42.90414236111111,
+      17.445934027777778,
+      95.0958576388889,
+      51.4605293161493
+    ],
+    "data_area_fraction": 0.34954879784788584,
+    "attempts": [
+      {
+        "automatic_guide_side": "right",
+        "reserved_mm": {
+          "right": 49.06164583333333,
+          "bottom": 0.0,
+          "top": 1.0721137152777842
+        },
+        "issues": [],
+        "data_area_fraction": 0.2613492160653739
+      },
+      {
+        "automatic_guide_side": "bottom",
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 29.771531447739562,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.34494347669158315
+      },
+      {
+        "automatic_guide_side": "top",
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 29.09353665607292
+        },
+        "issues": [],
+        "data_area_fraction": 0.34954879784788584
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "colorbar",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "top",
+          "length_mm": 23.99999999999999,
+          "ticks": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "orientation": "horizontal",
+          "rect_mm": [
+            78.45207118055556,
+            70.90646334392709,
+            23.999999999999993,
+            1.9999999999999978
+          ],
+          "thickness_mm": 1.9999999999999976,
+          "font_size_pt": 8.0
+        },
+        "bbox_mm": [
+          76.25073784722223,
+          70.90646334392709,
+          28.40266666666667,
+          9.066449652777795
+        ],
+        "plot_bbox_mm": [
+          42.90414236111111,
+          17.445934027777778,
+          95.0958576388889,
+          51.4605293161493
+        ],
+        "canvas_mm": [
+          140.0,
+          100.0
+        ],
+        "area_fraction_of_plot": 0.05262117272393486,
+        "width_fraction_of_plot": 0.29867406816521064,
+        "height_fraction_of_plot": 0.17618259612290016,
+        "area_fraction_of_canvas": 0.018393667666997387,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.06642183499060535,
+        "available_region_mm": [
+          1.0,
+          70.90646334392709,
+          138.0,
+          28.093536656072917
+        ],
+        "key_bboxes_mm": [],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "mapped_range": [
+          0.0,
+          1.0
+        ],
+        "attempts": [
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 24,
+            "bbox_mm": [
+              76.25073784722223,
+              70.90646334392709,
+              28.40266666666667,
+              9.066449652777795
+            ],
+            "issues": []
+          }
+        ]
+      },
+      {
+        "kind": "size",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "ncol": 3,
+          "position": "top",
+          "loc": "lower center",
+          "anchor_mm": [
+            90.45207118055556,
+            81.97291299670488
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 3.560420336628448,
+          "effective_key_height_mm": 3.560420336628448
+        },
+        "bbox_mm": [
+          77.4164406756129,
+          81.97291299670488,
+          26.071261009885358,
+          7.3826425588506766
+        ],
+        "plot_bbox_mm": [
+          42.90414236111111,
+          17.445934027777778,
+          95.0958576388889,
+          51.4605293161493
+        ],
+        "canvas_mm": [
+          140.0,
+          100.0
+        ],
+        "area_fraction_of_plot": 0.039331275526687026,
+        "width_fraction_of_plot": 0.27415769369141973,
+        "height_fraction_of_plot": 0.14346223517242102,
+        "area_fraction_of_canvas": 0.013748200078177421,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.04964647038007496,
+        "available_region_mm": [
+          1.0,
+          70.90646334392709,
+          138.0,
+          28.093536656072917
+        ],
+        "key_bboxes_mm": [
+          [
+            78.50654575977002,
+            82.86931296026222,
+            1.7802101683142237,
+            1.7802101683142237
+          ],
+          [
+            86.17627249860334,
+            82.50061936246709,
+            2.517597363904465,
+            2.517597363904465
+          ],
+          [
+            95.47128134886981,
+            81.97920787610511,
+            3.5604203366284475,
+            3.5604203366284475
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "marker_areas_pt2": [
+          20.0,
+          40.0,
+          80.0
+        ],
+        "marker_size_parameters_pt2": [
+          25.464790894703256,
+          50.92958178940651,
+          101.85916357881302
+        ],
+        "area_semantics": "geometric_circle_area",
+        "fill_area_definition": "Ideal circle geometric fill area in pt², excluding edge stroke; Matplotlib s is squared diameter in pt².",
+        "attempts": [
+          {
+            "position": "top",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              77.4164406756129,
+              81.97291299670488,
+              26.071261009885358,
+              7.3826425588506766
+            ],
+            "issues": []
+          }
+        ]
+      },
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "ncol": 2,
+          "position": "top",
+          "loc": "lower center",
+          "anchor_mm": [
+            90.45207118055556,
+            91.35555555555555
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.7116666666666667,
+          "effective_key_height_mm": 1.7116666666666667
+        },
+        "bbox_mm": [
+          66.9212482638889,
+          91.35555555555555,
+          47.06164583333336,
+          6.644444444444455
+        ],
+        "plot_bbox_mm": [
+          42.90414236111111,
+          17.445934027777778,
+          95.0958576388889,
+          51.4605293161493
+        ],
+        "canvas_mm": [
+          140.0,
+          100.0
+        ],
+        "area_fraction_of_plot": 0.0638983931630346,
+        "width_fraction_of_plot": 0.49488639149816943,
+        "height_fraction_of_plot": 0.12911729694080898,
+        "area_fraction_of_canvas": 0.02233560651455031,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.08065666930507999,
+        "available_region_mm": [
+          1.0,
+          70.90646334392709,
+          138.0,
+          28.093536656072917
+        ],
+        "key_bboxes_mm": [
+          [
+            67.1212482638889,
+            95.72681957799145,
+            1.7116666666666722,
+            1.7116666666666722
+          ],
+          [
+            67.1212482638889,
+            92.30459735576923,
+            1.7116666666666722,
+            1.7116666666666722
+          ],
+          [
+            91.89789409722225,
+            95.72681957799145,
+            1.7116666666666722,
+            1.7116666666666722
+          ],
+          [
+            91.89789409722225,
+            92.30459735576923,
+            1.7116666666666722,
+            1.7116666666666722
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "top",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              66.9212482638889,
+              91.35555555555555,
+              47.06164583333336,
+              6.644444444444455
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 3,
+      "occupied_envelope_union_area_mm2": 762.6846396361518,
+      "sum_envelope_area_mm2": 762.6846396361517,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.1558508414136565,
+      "area_fraction_of_canvas": 0.05447747425972513,
+      "enclosing_bbox_mm": [
+        66.9212482638889,
+        70.90646334392709,
+        47.06164583333336,
+        27.09353665607293
+      ],
+      "max_individual_width_mm": 47.06164583333336,
+      "max_individual_height_mm": 9.066449652777795,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "mapped_circle_fill_area",
+    "source_field": "n_cells",
+    "size_max": 20.0,
+    "max_area_pt2": 80.0,
+    "max_marker_size_parameter_pt2": 101.85916357881302,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "area_formula": "circle_fill_area_pt2 = size / size_max * max_area_pt2",
+    "parameter_formula": "matplotlib_s = 4 / pi * circle_fill_area_pt2",
+    "diameter_formula": "diameter_pt = 2 * sqrt(circle_fill_area_pt2 / pi)",
+    "stroke_policy": "Fill area excludes edge stroke; core quantitative circles are borderless.",
+    "observed_rows": 7
+  },
+  "dot_states": {
+    "observed_rows": 7,
+    "zero_rows": 1,
+    "unmeasured_rows": 1,
+    "missing_coordinates": [
+      [
+        "Pilot C",
+        "Operator response assay"
+      ]
+    ],
+    "missing_cells_meaning": "unsupplied",
+    "small_positive_rows": 1,
+    "small_positive_area_threshold_pt2": 1.0,
+    "state_markers": true,
+    "symbols": {
+      "Measured zero": "_",
+      "Not measured": "x",
+      "Not supplied": "+",
+      "Small positive": "|"
+    },
+    "note": "State glyphs are separate nonquantitative marks. Observed geometric circle fill area remains size / size_max * max_area_pt2, with Matplotlib s = 4/pi times that area; an absent row is not a measured zero."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

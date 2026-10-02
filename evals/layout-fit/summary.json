@@ -1,0 +1,92 @@
+{
+  "evidence": "synthetic layout transfer, not biological or model-performance evidence",
+  "cases": [
+    {
+      "case": "scatter",
+      "source_sha256": "6a57c265c73f1dead9bd35533dc670edf3317a2f3c26144461a4572d907286a4",
+      "input_rows": 17,
+      "fixed": {
+        "status": "pass",
+        "error": null,
+        "data_area_fraction": 0.37700000000000006,
+        "clipped_text": 0,
+        "tick_collisions": 0,
+        "legend_issues": 0,
+        "font": "Arial",
+        "font_size_pt": 8.0,
+        "width_mm": 88.0,
+        "height_mm": 70.0
+      },
+      "measured": {
+        "status": "pass",
+        "error": null,
+        "data_area_fraction": 0.6733824357503063,
+        "clipped_text": 0,
+        "tick_collisions": 0,
+        "legend_issues": 0,
+        "font": "Arial",
+        "font_size_pt": 8.0,
+        "width_mm": 88.0,
+        "height_mm": 70.0
+      }
+    },
+    {
+      "case": "long-label-distribution",
+      "source_sha256": "889d3bf0c0163ae800e0019e65d514562b443919ceea21af1ccb9c4519729eec",
+      "input_rows": 32,
+      "fixed": {
+        "status": "needs_revision",
+        "error": "Canvas QA needs revision: 4 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text sizes; explicitly enlarge or split a panel that cannot fit.",
+        "data_area_fraction": 0.37700000000000006,
+        "clipped_text": 4,
+        "tick_collisions": 0,
+        "legend_issues": 0,
+        "font": "Arial",
+        "font_size_pt": 8.0,
+        "width_mm": 88.0,
+        "height_mm": 70.0
+      },
+      "measured": {
+        "status": "pass",
+        "error": null,
+        "data_area_fraction": 0.48028241070723987,
+        "clipped_text": 0,
+        "tick_collisions": 0,
+        "legend_issues": 0,
+        "font": "Arial",
+        "font_size_pt": 8.0,
+        "width_mm": 88.0,
+        "height_mm": 70.0
+      }
+    },
+    {
+      "case": "rectangular-heatmap",
+      "source_sha256": "8d74a594e50a8d2782b72bb2a6cfd38248faed080f818da492b61d94479a11a2",
+      "input_rows": 63,
+      "fixed": {
+        "status": "needs_revision",
+        "error": "Canvas QA needs revision: 1 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text sizes; explicitly enlarge or split a panel that cannot fit.",
+        "data_area_fraction": 0.37700000000000006,
+        "clipped_text": 1,
+        "tick_collisions": 0,
+        "legend_issues": 0,
+        "font": "Arial",
+        "font_size_pt": 8.0,
+        "width_mm": 88.0,
+        "height_mm": 70.0
+      },
+      "measured": {
+        "status": "pass",
+        "error": null,
+        "data_area_fraction": 0.4298887569262569,
+        "clipped_text": 0,
+        "tick_collisions": 0,
+        "legend_issues": 0,
+        "font": "Arial",
+        "font_size_pt": 8.0,
+        "width_mm": 88.0,
+        "height_mm": 70.0
+      }
+    }
+  ]
+}

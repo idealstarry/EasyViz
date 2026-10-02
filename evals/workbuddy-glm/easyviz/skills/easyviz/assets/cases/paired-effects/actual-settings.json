@@ -1,0 +1,272 @@
+{
+  "track": "create",
+  "chart": "cohort_effect_forest",
+  "implementation": "custom Matplotlib renderer; supplied asymmetric interval geometry is outside the five core renderer families",
+  "reference_input_mode": "none",
+  "fields": {
+    "term_id": "term_id",
+    "term": "term",
+    "domain": "domain",
+    "cohort": "cohort",
+    "estimate": "estimate",
+    "ci_lower": "ci_lower",
+    "ci_upper": "ci_upper",
+    "n": "n",
+    "row_order": "row_order"
+  },
+  "cohort_order": [
+    "Discovery",
+    "Replication"
+  ],
+  "colors": {
+    "Discovery": "#2581B9",
+    "Replication": "#DF9A3C"
+  },
+  "palette": "User-approved blue and amber; corresponding notch2-bright colors",
+  "layout": {
+    "width_mm": 180,
+    "height_mm": 120,
+    "font": "Arial",
+    "fallback_font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "axes_bounds": [
+      0.31,
+      0.13,
+      0.67,
+      0.79
+    ],
+    "domain_label_x_fraction": 0.02,
+    "legend_y_fraction": 0.975,
+    "row_step": 1.0,
+    "header_to_first_row": 0.83,
+    "last_row_to_header": 1.0,
+    "cohort_span": 0.34
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "domain": 8
+  },
+  "marks": {
+    "point_area_pt2": 15.21,
+    "point_edgecolor": "none",
+    "point_linewidth_pt": 0,
+    "interval_linewidth_pt": 0.75,
+    "interval_cap_height": 0.085,
+    "grid_linewidth_pt": 0.4,
+    "axis_linewidth_pt": 0.6,
+    "zero_linewidth_pt": 0.75
+  },
+  "mark_outline_policy": "All estimate dots and legend symbols are borderless fills. Confidence-interval whiskers and their endpoint caps are line encodings, not outlines.",
+  "labels": {
+    "x": "Standardized effect (95% CI)"
+  },
+  "x_limits": [
+    -1.0,
+    1.2
+  ],
+  "x_ticks": [
+    -1.0,
+    -0.5,
+    0.0,
+    0.5,
+    1.0
+  ],
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "semantics": {
+    "estimate": "Supplied standardized effect; no transformation",
+    "interval": "Supplied asymmetric 95% confidence interval; endpoints used directly",
+    "cohorts": "Independent participants; matching terms do not imply paired participants",
+    "n": "Independent participant count, descriptive only; no size or weighting mapping",
+    "domain": "Supplied descriptive metadata; preserve contiguous source groups",
+    "statistics": "No statistics recomputed; no fitting, weighting, aggregation, or hypothesis testing"
+  },
+  "source": {
+    "input_path": "source.csv",
+    "saved_copy": "source.csv",
+    "sha256": "d18da70f4c6c87a17cf2e715cc15924972297e9783e9c75ce32c6ac0b36887d3"
+  },
+  "font_resolution": {
+    "requested": "Arial",
+    "actual_family": "Arial",
+    "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "fallback_used": false
+  },
+  "actual_x_limits": [
+    -1.0,
+    1.2
+  ],
+  "actual_term_order": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14"
+  ],
+  "actual_domain_order": [
+    "Immune",
+    "Metabolism",
+    "Tissue remodeling",
+    "Cell maintenance"
+  ],
+  "cohort_offsets": {
+    "Discovery": -0.17,
+    "Replication": 0.17
+  },
+  "participant_counts_by_cohort": {
+    "Discovery": [
+      42
+    ],
+    "Replication": [
+      37
+    ]
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.3758333333333332,
+          "key_height_mm": 1.3758333333333332,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "manual",
+          "anchor_mm": [
+            176.4,
+            117.0
+          ],
+          "loc": "upper right",
+          "ncol": 2,
+          "font_size_pt": 8,
+          "effective_key_width_mm": 1.3758333333333332,
+          "effective_key_height_mm": 1.3758333333333332
+        },
+        "bbox_mm": [
+          123.19699999999999,
+          113.95141059027779,
+          53.203000000000024,
+          3.0485894097222213
+        ],
+        "plot_bbox_mm": [
+          55.8,
+          15.600000000000003,
+          120.60000000000001,
+          94.80000000000003
+        ],
+        "canvas_mm": [
+          180.0,
+          120.0
+        ],
+        "area_fraction_of_plot": 0.014186635595357539,
+        "width_fraction_of_plot": 0.4411525704809288,
+        "height_fraction_of_plot": 0.03215811613631033,
+        "area_fraction_of_canvas": 0.007508986220622749,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.0077220578159137,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          178.0,
+          118.00000000000001
+        ],
+        "key_bboxes_mm": [
+          [
+            123.39699999999998,
+            114.90680872729702,
+            1.3758333333333335,
+            1.3758333333333335
+          ],
+          [
+            150.1635,
+            114.90680872729702,
+            1.3758333333333335,
+            1.3758333333333335
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "manual",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              123.19699999999999,
+              113.95141059027779,
+              53.203000000000024,
+              3.0485894097222213
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 162.19410236545139,
+      "sum_envelope_area_mm2": 162.19410236545139,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.014186635595357542,
+      "area_fraction_of_canvas": 0.007508986220622749,
+      "enclosing_bbox_mm": [
+        123.19699999999999,
+        113.95141059027779,
+        53.203000000000024,
+        3.0485894097222213
+      ],
+      "max_individual_width_mm": 53.20300000000002,
+      "max_individual_height_mm": 3.048589409722221,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "legend_helper": {
+    "file": "legend_layout.py",
+    "sha256": "95dd8ed2298c274e56d217ef53a7d9f2c38d7300bb2417b603ea9320803fc65a"
+  },
+  "transformations": [
+    "Sort unique terms by supplied row_order",
+    "Insert domain-heading spacing",
+    "Offset cohort y positions within each term"
+  ],
+  "statistics_recomputed": false,
+  "values_transformed": false,
+  "software": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3"
+  },
+  "svg_font_note": "SVG preserves editable text and names Arial; viewing on another system requires that font or a compatible substitute. PDF embeds its fonts."
+}

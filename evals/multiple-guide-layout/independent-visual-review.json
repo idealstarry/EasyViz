@@ -1,0 +1,172 @@
+{
+  "review_type": "independent anonymous rendered visual comparison",
+  "blinding": {
+    "identities_inspected": false,
+    "author_code_inspected": false,
+    "source_data_inspected": false,
+    "qa_records_inspected": false,
+    "prior_reviews_inspected": false,
+    "metadata_used_to_infer_identity_or_phase": false,
+    "allowed_inputs": "/Users/starry/Desktop/EasyViz/evals/multiple-guide-layout/blind/{interval,scatter,dot}/{A,B}/panel.{png,pdf}",
+    "preferences_frozen_before_unblinding": true
+  },
+  "scope": {
+    "assessed": [
+      "rendered readability",
+      "space distribution",
+      "label lookup",
+      "guide decoding",
+      "visible clipping and overlap"
+    ],
+    "not_assessed": [
+      "numeric correctness",
+      "statistical validity",
+      "exact font size",
+      "font embedding",
+      "author geometry checks",
+      "model performance",
+      "journal suitability or certification"
+    ],
+    "caveat": "All comparisons used equal nominal 96 dpi final-size screen proxies. These are screen observations, not a print proof or certification of print legibility. Same-program metadata was not used to infer identity or phase."
+  },
+  "inspection_method": {
+    "source_png_pixels": [
+      1654,
+      1181
+    ],
+    "pdf_pages_each": 1,
+    "pdf_page_points_each": [
+      396.85,
+      283.465
+    ],
+    "nominal_physical_mm_each": [
+      140,
+      100
+    ],
+    "nominal_96dpi_proxy_pixels_each": [
+      530,
+      378
+    ],
+    "png_proxy_method": "Original PNG resampled to the PDF-derived nominal 96 dpi pixel dimensions without modifying originals.",
+    "pdf_proxy_method": "Each source PDF independently rendered by Poppler at 96 dpi.",
+    "format_agreement": "PNG and independently rendered PDF showed the same material layout and the same A/B preferences in all three cases; minor rasterization differences did not change the judgments."
+  },
+  "preferences": {
+    "interval": "B",
+    "scatter": "B",
+    "dot": "B"
+  },
+  "cases": [
+    {
+      "case": "interval",
+      "preference": "B",
+      "strength": "clear for the supplied endpoint-reading task",
+      "conditional_statement": "Prefer B when interval endpoints, relation to the reference at 1, and lookup across seven labels are the main reading tasks on this fixed canvas.",
+      "observations": {
+        "A": "The data region is a narrow strip beside long row labels, with guides across the upper right and a large blank area beneath them. Intervals and ticks remain discernible, but near-1 endpoints are compressed into a short horizontal span.",
+        "B": "The bottom guides allow a much wider horizontal scale. Endpoint positions and the dashed reference at 1 are easier to separate while row labels and all visible marks remain legible. The color guide and hollow/filled guide are separate and fully visible.",
+        "shared": "Seven labels, 11 visible interval marks, asymmetric horizontal intervals, batch colors, and hollow/filled keys are visible. No clipping, mark overlap that prevents reading, or guide collision was observed. This is visual observation, not source-data validation."
+      },
+      "blockers": [],
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "A data region and upper-right guide reservation",
+          "evidence": "Most horizontal reading width is given to the guides and otherwise empty right-hand area; short intervals near the reference line occupy a visibly compact span.",
+          "requirement": "Preserve endpoint reading and let the data remain visually primary.",
+          "action": "For this case, use the wider data region seen in B while retaining the agreed fonts and quantitative mappings."
+        },
+        {
+          "severity": "note",
+          "location": "B bottom guides",
+          "evidence": "The guides use more vertical room below the axis than A, reducing row spacing, but the seven labels and their marks still have clear separation at the screen proxy.",
+          "requirement": "Maintain label lookup and independently decode batch color and interval inclusion.",
+          "action": "Retain the distinct color and hollow/filled keys; no additional change is required by this comparison."
+        }
+      ],
+      "scoped_visual_status": "ready_with_notes"
+    },
+    {
+      "case": "scatter",
+      "preference": "B",
+      "strength": "small",
+      "conditional_statement": "Prefer B for fast decoding of the quantitative size key; treat this as a modest guide-order preference because the data region and point visibility are materially the same.",
+      "observations": {
+        "A": "The size samples wrap into two rows: 5 and 20 on the first row, with 10 below. Each sample is labeled, but the eye must reconstruct the increasing-size sequence.",
+        "B": "The size guide lists 5, 10, and 20 in one vertical sequence beneath the category key. The additional guide height occupies unused space to the right without shrinking or obscuring the data.",
+        "shared": "The same four marks, axes, category colors, and size samples are visible in both versions. The smallest orange point is a tiny speck at this final-size screen proxy. Category color and quantitative size are separately decodable."
+      },
+      "blockers": [],
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "A observed-cells guide",
+          "evidence": "The top row presents 5 beside 20, with 10 on the row below.",
+          "requirement": "Make quantitative size decoding quick and preserve the plotted area mapping.",
+          "action": "Use the orderly 5, 10, 20 arrangement seen in B; keep the size samples at their true plotted mapping."
+        },
+        {
+          "severity": "note",
+          "location": "Smallest plotted orange point, both variants",
+          "evidence": "The smallest orange point is discernible but easy to miss at nominal 96 dpi.",
+          "requirement": "Keep visible data marks readable at the intended display or proof size.",
+          "action": "Consider this a common screen limitation and check the required proof medium if this smallest mark must draw attention; this does not distinguish A from B."
+        }
+      ],
+      "scoped_visual_status": "ready_with_notes"
+    },
+    {
+      "case": "dot",
+      "preference": "B",
+      "strength": "moderate for balance and categorical lookup",
+      "conditional_statement": "Prefer B when the categorical matrix should remain visually primary and readers need to decode continuous color, area, and special states independently.",
+      "observations": {
+        "A": "The matrix is tall and narrow, while the right-hand guides occupy a broad region. The three column positions are close together compared with the row spacing. Color, area, and special-state keys remain visible.",
+        "B": "The wider matrix separates the categorical columns more clearly, and the shorter height still leaves the three row labels distinct. The color scale sits to the right of the matrix, while the area key and special-state keys sit beneath it and remain fully visible.",
+        "shared": "Colored circles and special-state symbols are visible with a separately labeled continuous color scale and neutral area samples. The small gray dash, cross, plus, and short vertical line need attention at this screen size, especially the short vertical line for small positive. No text or guide clipping was observed."
+      },
+      "blockers": [],
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "A matrix and right-hand guide reservation",
+          "evidence": "The matrix gives substantially more separation to rows than to columns, beside a large guide reservation.",
+          "requirement": "Balance categorical lookup and data/guide visibility on the fixed canvas.",
+          "action": "Use B's wider matrix and separated guide positions for this supplied case while keeping font size and marker mappings fixed."
+        },
+        {
+          "severity": "note",
+          "location": "Special-state marks and keys, both variants",
+          "evidence": "The neutral symbols are small and light; the short vertical line is particularly subtle at nominal 96 dpi, although its labeled key is visible.",
+          "requirement": "Keep special states distinct from quantitative area and continuous color.",
+          "action": "Retain the separate labeled state key and verify the symbols in the intended proof medium; this common limitation does not reverse the B preference."
+        }
+      ],
+      "scoped_visual_status": "ready_with_notes"
+    }
+  ],
+  "external_checks": [
+    {
+      "check": "source PNG pixel dimensions",
+      "status": "passed",
+      "evidence": "PNG IHDR dimension fields inspected for all six originals: 1654 × 1181 px."
+    },
+    {
+      "check": "PDF physical page dimensions and count",
+      "status": "passed",
+      "evidence": "Page-size and page-count fields only: one page each, 396.85 × 283.465 pt, about 140 × 100 mm."
+    },
+    {
+      "check": "exact fonts, numeric correctness, statistical correctness, and authored geometry",
+      "status": "not_checked",
+      "evidence": "Outside the blind visual scope; separate author/QA records must supply this evidence."
+    },
+    {
+      "check": "physical print proof",
+      "status": "not_checked",
+      "evidence": "Assessment used screen proxies only."
+    }
+  ],
+  "overall_scoped_visual_status": "ready_with_notes",
+  "conclusion": "B is preferred in all three supplied engineering cases, with the scatter preference small. There are no observed hard visual blockers. These observations describe these actual outputs at fixed fonts and canvas; they are not model runs or evidence of model performance."
+}

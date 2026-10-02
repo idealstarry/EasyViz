@@ -35,6 +35,7 @@ Read the resources needed for the current chart rather than loading the whole li
 
 | Resource | Use |
 | --- | --- |
+| [First panel](references/quick-start.md) | Generate a validated core-chart spec from explicit column roles; measure text and guide space within the fixed canvas. |
 | [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
 | [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
 | [Palettes](references/palettes.md) | Palette selection and consistent category-to-color mappings. |
@@ -43,6 +44,11 @@ Read the resources needed for the current chart rather than loading the whole li
 | [Design decisions](references/design-decisions.md) | Reference-informed choices about grouping, alignment, visual priority, and competing layouts. |
 | [Chart library](references/chart-library.md) | Supported chart recipes, input contracts, reusable scripts, and examples. |
 | [Worked cases](references/examples.md) | Rich create panels and reviewed image-data reconstructions with scripts and provenance. |
+| [Literature Source Data](references/literature-source-data.md) | Select auditable paper panels, retain source semantics, and extract reusable implementations with bounded transfer checks. |
+| [Supplied intervals](references/interval-plot.md) | Plot estimates and asymmetric intervals with explicit log/reference/fill semantics; no sample-size requirement or model fitting. |
+| [Paired observations](references/paired-plot.md) | Keep explicit unit correspondence across conditions; display raw values with median/IQR and optionally adopted connectors. |
+| [Replicate bars](references/replicate-plot.md) | Stacked or grouped component summaries with raw replicate layers, or supplied ratio observations; distinguish component SD from total SD. |
+| [Empirical cumulative distributions](references/ecdf-plot.md) | Compare complete raw distributions as unsmoothed cumulative steps, retaining tied values and explicit linear/log scales. |
 | [Reference specification](references/reference-spec.md) | Separate image observations from decisions and record adopted requirements. |
 | [Visual review](references/visual-review.md) | Inspect rendered images, prioritize corrections, and record unresolved differences. |
 
@@ -51,7 +57,7 @@ Read the resources needed for the current chart rather than loading the whole li
 1. Inspect the data and user requirements. Fill missing cosmetic preferences from recorded project settings or the shared defaults; clarify only consequential ambiguity.
 2. Follow the chosen track to produce an adopted plotting specification. In reproduce, obtain an independent image reading before selecting implementation templates.
 3. Establish physical width and height, text sizes, font availability, palette, mark-outline policy, and formats. Reuse the figure's shared profile when one exists; save stable category-color assignments and named panel sizes when starting a related panel set. A category disappearing or changing order must not change its color. Resolve configuration conflicts and unknown fields before rendering. Evaluate all palettes together on the actual panel. Defaults are adjustable EasyViz starting values, not journal standards.
-4. Select an implementation after checking its input contract and supported layers. Examples demonstrate specific reusable contracts, not arbitrary-data support. Copy bundled cases into the user's writable project before running or adapting them. Reuse, adapt, or write a script according to the real data; report unsupported requirements explicitly without silently substituting a chart or dropping data.
+4. Select an implementation after checking its input contract and supported layers. For a basic create panel, use [First panel](references/quick-start.md) to generate a validated spec from explicit fields and render it with measured layout. Examples demonstrate specific reusable contracts, not arbitrary-data support. Copy bundled cases into the user's writable project before running or adapting them. Reuse, adapt, or write a script according to the real data; report unsupported requirements explicitly without silently substituting a chart or dropping data.
 5. Render the full canvas. Check exported dimensions and inspect crowding, clipping, missing glyphs, labels, and visual hierarchy. Assess the complete legend footprint and reserved space relative to the data region; no overlap alone is insufficient. Follow [Legend layout](references/legend-layout.md) and the bounded correction process in [Visual review](references/visual-review.md).
 6. Deliver the individual panels, a separate `caption.md`, runnable plotting script, actual settings, traceable plotting data or input references, and review findings. Include computed statistics when used.
 

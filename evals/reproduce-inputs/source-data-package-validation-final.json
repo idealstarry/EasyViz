@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "archive": "easyviz-0.2.0.zip",
+  "archive_sha256": "57106451febea750372d9792d426086f4fd3d76df5958a049815b20832452592",
+  "extracted_file_count": 252,
+  "checks": {
+    "core_renderer": "pass",
+    "cell-atlas-dotplot": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "massier-bmi-violin": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "massier-integration-radar": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "paired-effects": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "paired_myeloid_alternatives": "pass; all three PNGs match reviewed previews; 832 matched changes from prepared CSV",
+    "paired_myeloid_same_study_transfer": "pass; same recipe on 592 five-year changes, without original workbook or author code",
+    "forest_renamed_field_transfer": "pass; five terms, three cohorts and renamed field mappings preserve all 15 supplied asymmetric intervals",
+    "annotated_heatmap_recipe": "pass; separate synthetic 4\u00d74 matrix, leading-zero IDs, constant binary annotation, negative values and automatic means"
+  },
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Darwin",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0",
+      "PyMuPDF": "1.28.2"
+    }
+  },
+  "scope": "Isolated extracted files and different working directory in the recorded Python environment, using fonts available on this host. No original paper archives or author code are required. Not a fresh operating-system installation or Codex automatic-discovery test."
+}

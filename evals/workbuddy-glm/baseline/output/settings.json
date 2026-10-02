@@ -1,0 +1,51 @@
+{
+  "figure_size_mm": [
+    140.0,
+    100.0
+  ],
+  "figure_size_in": [
+    5.511811023622047,
+    3.937007874015748
+  ],
+  "png_dpi": 300,
+  "font_family": "Arial",
+  "font_size_pt": 8,
+  "colors": {
+    "Batch A": "#0072B2",
+    "Batch B": "#D55E00",
+    "reference_line": "#7F7F7F",
+    "grid": "#D9D9D9"
+  },
+  "x_scale": "log",
+  "x_limits": [
+    0.13,
+    8.0
+  ],
+  "x_major_ticks": [
+    0.2,
+    0.5,
+    1,
+    2,
+    5
+  ],
+  "reference_line_x": 1.0,
+  "point_fill_rule": "hollow if Lower95 <= 1 <= Upper95 (given interval contains 1), else solid",
+  "category_order": [
+    "Signal recovery after dilution",
+    "Low-input stability",
+    "Long-run drift response",
+    "Background suppression",
+    "Temperature sensitivity",
+    "Operator transfer",
+    "Storage response"
+  ],
+  "rows_kept": 11,
+  "missing_combinations": [
+    "Background suppression / Batch B",
+    "Temperature sensitivity / Batch A",
+    "Storage response / Batch B"
+  ],
+  "intervals": "used exactly as provided (no refit, no weighting, no recalculation, no tests)",
+  "svg_text_editable": true,
+  "pdf_fonttype": 42
+}

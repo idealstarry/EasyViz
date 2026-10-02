@@ -1,0 +1,165 @@
+{
+  "status": "passed_style_adaptation_checks",
+  "render_pass": 2,
+  "numerical_checks": {
+    "all_864_source_rows_preserved": {
+      "status": "passed"
+    },
+    "all_858_available_bmi_used": {
+      "status": "passed"
+    },
+    "all_6_missing_bmi_reported": {
+      "status": "passed"
+    },
+    "all_available_bmi_inside_axis": {
+      "status": "passed"
+    },
+    "all_8_cohort_labels_in_pdf": {
+      "status": "passed"
+    },
+    "all_text_8pt": {
+      "status": "passed"
+    },
+    "all_text_inside_canvas": {
+      "status": "passed"
+    },
+    "pdf_canvas_160_by_100_mm": {
+      "status": "passed"
+    },
+    "svg_canvas_160_by_100_mm": {
+      "status": "passed"
+    },
+    "png_dimensions_at_300dpi": {
+      "status": "passed"
+    },
+    "png_resolution_metadata_300dpi": {
+      "status": "passed"
+    },
+    "pdf_fonts_embedded": {
+      "status": "passed"
+    },
+    "all_displayed_densities_integrate_to_one": {
+      "status": "passed"
+    }
+  },
+  "measurements": {
+    "pdf_mm": [
+      159.99999906751842,
+      100.00000076293945
+    ],
+    "svg_mm": [
+      159.99999996944445,
+      100.00000002499999
+    ],
+    "png_pixels": [
+      1889,
+      1181
+    ],
+    "png_dpi": [
+      299.9994,
+      299.9994
+    ],
+    "pdf_font_sizes_pt": [
+      8.0
+    ],
+    "pdf_fonts": [
+      {
+        "font_name": "DGUGMZ+ArialMT",
+        "embedded": true
+      }
+    ],
+    "resolved_font": "Arial"
+  },
+  "text_bounds": [
+    {
+      "text": "BMI (kg/m\u00b2)",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "20",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "40",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "60",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Krieg, L et al.",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Petrus, P. et al.",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Arner, E. et al.",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Kerr, A. et al.",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Arner, P. et al. (#1)",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Arner, P. et al. (#2)",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Armenise, C. et al.",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    },
+    {
+      "text": "Imbert, A. et al.",
+      "font_size_pt": 8.0,
+      "inside_canvas": true
+    }
+  ],
+  "visual_review": {
+    "status": "passed",
+    "independent": true,
+    "scope": "Current style adaptation, not a renewed claim of reference fidelity.",
+    "reviewer": "Separate read-only verification agent",
+    "findings": [
+      "Actual panel.png inspected: balanced spacing; labels and summary marks readable; no clipping or overlaps.",
+      "Faint grid is beneath blue borderless violins; no overall title, prose, or panel letters."
+    ]
+  },
+  "residual_uncertainties": [
+    "Original density estimator, bandwidth, support, boundary correction and normalization are unknown.",
+    "Blue fill and white summary marks are user-requested style adaptations.",
+    "The 160 \u00d7 100 mm canvas adapts the reference column geometry; historical independent reviews do not assess this revision."
+  ],
+  "output_sha256": {
+    "panel.pdf": "4da3afd72a0ba5240c10960ef6f383b0a2df784b4a6e9b661ab7de902801aad3",
+    "panel.svg": "bf2c0520ebdf3484ed5e514c6e130bb81849f5c615ada2fa2144f8c7684af059",
+    "panel.png": "74eeef085b4b9888bf20d7cc8aa41505eaf5c1047cc6290fe5118e71912c8a8e"
+  },
+  "independent_data_verification": {
+    "status": "passed",
+    "density_data_byte_identical_to_prior_output": true,
+    "plotting_data_byte_identical_to_prior_output": true,
+    "source_checksum_matches_stats": true,
+    "historical_input_first_render_and_review_files_byte_identical_to_git_head": 14,
+    "all_cohort_quartiles_exactly_match_independent_linear_quantiles": true,
+    "available_bmi": 858,
+    "missing_bmi": 6
+  }
+}

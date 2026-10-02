@@ -1,0 +1,17 @@
+{
+  "chart": "ecdf",
+  "fields": {"value": "IgG_BAU_ml", "group": "时间点", "unit": "受试者"},
+  "order": {"group": ["Before", "After"]},
+  "colors": {"Before": "#5278A8", "After": "#C2764E"},
+  "options": {
+    "x_scale": "log",
+    "x_limits": [10, 100000],
+    "x_ticks": [10, 100, 1000, 10000, 100000],
+    "x_tick_format": "power10",
+    "curve_line_width_pt": 0.8
+  },
+  "layout": {"width_mm": 105, "height_mm": 85, "font": "Arial", "font_size_pt": 8, "dpi": 300},
+  "labels": {"x": "Spike IgG (BAU/ml)", "y": "Cumulative fraction"},
+  "formats": ["pdf", "svg", "png"],
+  "legends": {"categorical": {"position": "auto"}}
+}

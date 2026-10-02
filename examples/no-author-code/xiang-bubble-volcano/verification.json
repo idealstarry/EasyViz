@@ -1,0 +1,635 @@
+{
+  "verified_at_utc": "2026-10-02T06:49:58.890430+00:00",
+  "independent_audit": true,
+  "scope": "Numerical and export verification, not aesthetic certification or validation of upstream biological analysis",
+  "official_workbook_to_CSV": {
+    "status": "pass",
+    "evidence": {
+      "actual_workbook_sha256": "f334d85f2da212c68f8d49524da7a8d2ce4378dab495f92f92e1304e6df06d58",
+      "expected_workbook_sha256": "f334d85f2da212c68f8d49524da7a8d2ce4378dab495f92f92e1304e6df06d58",
+      "sheet": "Figure 3E",
+      "source_rows": [
+        2,
+        1458
+      ],
+      "source_row_count": 1457,
+      "columns_compared": [
+        "gene",
+        "me3",
+        "me5",
+        "md3",
+        "md5",
+        "meand",
+        "mdd",
+        "pv",
+        "fdr",
+        "color",
+        "prob",
+        "logq"
+      ],
+      "method": "Direct read of cached official XLSX cell XML, shared strings and built-in date formats, independent of the original extraction script and renderer",
+      "Excel_date_cells_in_gene_column": [
+        {
+          "cell": "A968",
+          "serial_value": "45354",
+          "number_format_id": 16,
+          "decoded_value": "2024-03-03 00:00:00"
+        },
+        {
+          "cell": "A1306",
+          "serial_value": "45358",
+          "number_format_id": 16,
+          "decoded_value": "2024-03-07 00:00:00"
+        }
+      ],
+      "source_identifier_limitation": "A968 and A1306 are already numeric Excel dates in the official gene column. The prepared CSV preserves decoded date strings; original gene names cannot be recovered from this sheet. Plot coordinates, classes and probabilities are unaffected.",
+      "mismatches": []
+    }
+  },
+  "scientific_inputs": {
+    "source_CSV_hash": {
+      "status": "pass",
+      "evidence": {
+        "actual": "c86e6006617322b080ca7cf1596f8b664ebb86bd9b90db73aa08993575464f3c",
+        "provenance_record": "c86e6006617322b080ca7cf1596f8b664ebb86bd9b90db73aa08993575464f3c"
+      }
+    },
+    "all_source_classes_and_aliases_preserved": {
+      "status": "pass",
+      "evidence": {
+        "source_class_counts": {
+          "C3up": 143,
+          "Not_sig": 843,
+          "C5up": 471
+        },
+        "display_aliases": {
+          "C5up": "C3 lower",
+          "C3up": "C3 higher",
+          "Not_sig": "Small effect"
+        },
+        "all_rows_checked": 1457
+      }
+    },
+    "coordinate_semantics_crosscheck": {
+      "status": "pass",
+      "evidence": {
+        "mdd_equals_md3_minus_md5_max_abs_error": 9.769962616701378e-15,
+        "logq_equals_negative_log10_fdr_max_abs_error": 4.973799150320701e-14,
+        "note": "These identities check supplied column semantics; neither coordinate was regenerated for plotting."
+      }
+    },
+    "small_effect_class_is_not_P_nonsignificance": {
+      "status": "pass",
+      "evidence": {
+        "all_1457_supplied_fdr_below_0_01": true,
+        "grey_source_class_matches_abs_mdd_below_0_2": true,
+        "scope": "The already selected Source Data sheet; not the full assayed gene universe."
+      }
+    }
+  },
+  "paper_scatter": {
+    "source_sha256": "c86e6006617322b080ca7cf1596f8b664ebb86bd9b90db73aa08993575464f3c",
+    "spec_sha256": "34a32a12f552211c98385a4f335989f56a948d81c1a64fef7e5127fb467f6e4e",
+    "output_sha256": {
+      "panel.png": "e946688e4832ba46539612ee8d2426415611f762132552e0246eb3095f4aeea5",
+      "panel.pdf": "d90897a7b4446c58b76792d3de18d4744ab3be2ba9241bdeecfa55bfef03910b",
+      "panel.svg": "07b00eebb4c49dc04c9174b386bfb6ea33e7c91524520a94b357a0f4a63f07c8"
+    },
+    "checks": {
+      "source_table_retained": {
+        "status": "pass",
+        "evidence": {
+          "source_rows": 1457,
+          "plotted_rows": 1457,
+          "all_original_columns_and_original_row_order_compared": true,
+          "numeric_relative_tolerance": 2e-13,
+          "numeric_absolute_tolerance": 0,
+          "mismatches": [],
+          "zero_size_rows": 37
+        }
+      },
+      "svg_canvas": {
+        "status": "pass",
+        "evidence": {
+          "actual_mm": [
+            88.00000003611109,
+            119.99999988888891
+          ],
+          "requested_mm": [
+            88,
+            120
+          ]
+        }
+      },
+      "editable_svg_Arial_8pt": {
+        "status": "pass",
+        "evidence": {
+          "text_node_count": 21,
+          "sizes_in_point_scaled_viewbox": [
+            8.0
+          ],
+          "Arial_in_all_text_styles": true
+        }
+      },
+      "no_title_or_narrative_inside_panel": {
+        "status": "pass",
+        "evidence": {
+          "unexpected_text_nodes": []
+        }
+      },
+      "actual_scatter_geometry": {
+        "status": "pass",
+        "evidence": {
+          "measurement": "Actual written SVG path extrema and linear transforms fitted from all numeric axis ticks; no renderer import or artist self-report",
+          "group_order": [
+            "C3 lower",
+            "C3 higher",
+            "Small effect"
+          ],
+          "groups": [
+            {
+              "group": "C3 lower",
+              "source_rows": 471,
+              "source_zero_rows": 0,
+              "actual_svg_paths": 471,
+              "max_coordinate_error_pt": 6.099585618812853e-07,
+              "max_geometric_area_error_pt2": 5.845353115319085e-06,
+              "color_mismatches": 0,
+              "noncircular_paths": 0,
+              "source_order_within_group_checked": true,
+              "status": "pass"
+            },
+            {
+              "group": "C3 higher",
+              "source_rows": 143,
+              "source_zero_rows": 0,
+              "actual_svg_paths": 143,
+              "max_coordinate_error_pt": 6.320190948372328e-07,
+              "max_geometric_area_error_pt2": 5.214081641113921e-06,
+              "color_mismatches": 0,
+              "noncircular_paths": 0,
+              "source_order_within_group_checked": true,
+              "status": "pass"
+            },
+            {
+              "group": "Small effect",
+              "source_rows": 843,
+              "source_zero_rows": 37,
+              "actual_svg_paths": 843,
+              "max_coordinate_error_pt": 6.344629071008967e-07,
+              "max_geometric_area_error_pt2": 4.630320238341312e-06,
+              "color_mismatches": 0,
+              "noncircular_paths": 0,
+              "source_order_within_group_checked": true,
+              "status": "pass"
+            }
+          ],
+          "total_svg_data_paths": 1457,
+          "retained_zero_area_paths": 37,
+          "maximum_coordinate_error_pt": 6.344629071008967e-07,
+          "maximum_geometric_area_error_pt2": 5.845353115319085e-06,
+          "area_formula": "geometric circle fill area = prob / 1 * 18 pt²",
+          "note": "Nominal circular fill area excludes stroke; the negligible fixed cubic circle approximation error does not affect relative proportionality."
+        }
+      },
+      "actual_size_legend_geometry": {
+        "status": "pass",
+        "evidence": {
+          "levels": [
+            0.25,
+            0.5,
+            1
+          ],
+          "written_svg_nominal_fill_areas_pt2": [
+            4.499997434183344,
+            8.999997334478511,
+            17.99999725661704
+          ],
+          "max_area_error_pt2": 2.743382960801455e-06
+        }
+      },
+      "actual_reference_lines": {
+        "status": "pass",
+        "evidence": {
+          "expected_source_positions": [
+            [
+              "x",
+              -0.2
+            ],
+            [
+              "x",
+              0.2
+            ],
+            [
+              "y",
+              2.0
+            ]
+          ],
+          "actual_positions_recovered_from_written_paths": [
+            [
+              "x",
+              -0.19999997259781077
+            ],
+            [
+              "x",
+              0.20000001826812652
+            ],
+            [
+              "y",
+              1.9999999925787526
+            ]
+          ],
+          "note": "Drawn supplied locations do not infer significance or change source classes."
+        }
+      },
+      "actual_PDF_page_and_embedded_font": {
+        "status": "pass",
+        "evidence": {
+          "pages": 1,
+          "actual_page_mm": [
+            87.99999999998666,
+            120.00000000001387
+          ],
+          "selected_text_fragment_count": 21,
+          "actual_text_fonts": [
+            "/CNLMZG+ArialMT"
+          ],
+          "actual_text_sizes_pt": [
+            8.0
+          ],
+          "font_resources": [
+            {
+              "resource": "/F1",
+              "base_font": "/CNLMZG+ArialMT",
+              "subtype": "/Type0",
+              "embedded_TrueType_bytes": 29656
+            }
+          ],
+          "selectable_text_extracted": true
+        }
+      },
+      "actual_PNG_canvas_and_dpi": {
+        "status": "pass",
+        "evidence": {
+          "pixels": [
+            1039,
+            1417
+          ],
+          "expected_fractional_pixels": [
+            1039.3700787401576,
+            1417.3228346456694
+          ],
+          "metadata_dpi": [
+            299.9994,
+            299.9994
+          ]
+        }
+      },
+      "ink_clear_of_canvas_edge": {
+        "status": "pass",
+        "evidence": {
+          "minimum_clearance_px": 40.0,
+          "all_clearances_px_left_right_top_bottom": [
+            63.0,
+            40.0,
+            42.0,
+            90.0
+          ],
+          "threshold": "Any RGB channel <245; internal overlap and aesthetics remain independent visual questions."
+        }
+      },
+      "no_new_statistical_inference": {
+        "status": "pass",
+        "evidence": {
+          "stats_json": {
+            "method": "none",
+            "note": "Descriptive visualization; no inferential test requested."
+          },
+          "plotting_scope": "Supplied descriptive coordinates, classes and sizes only; upstream P values are preserved inputs."
+        }
+      }
+    },
+    "actual_tick_transforms": {
+      "x": {
+        "slope_pt_per_unit": 21.896063,
+        "intercept_pt": 173.78267699999995,
+        "max_tick_fit_residual_pt": 6.394884621840902e-14,
+        "tick_values": [
+          -6.0,
+          -4.0,
+          -2.0,
+          0.0,
+          2.0
+        ],
+        "tick_positions_pt": [
+          42.406299,
+          86.198425,
+          129.990551,
+          173.782677,
+          217.574803
+        ]
+      },
+      "y": {
+        "slope_pt_per_unit": -5.133285614285713,
+        "intercept_pt": 292.53543319047606,
+        "max_tick_fit_residual_pt": 4.7619038667789937e-07,
+        "tick_values": [
+          0.0,
+          10.0,
+          20.0,
+          30.0,
+          40.0,
+          50.0
+        ],
+        "tick_positions_pt": [
+          292.535433,
+          241.202577,
+          189.869721,
+          138.536865,
+          87.204009,
+          35.871152
+        ]
+      }
+    }
+  },
+  "engineering_transfer": {
+    "source_sha256": "d70d8ad07feb273e61e77af8ffaf5ced64c685003c7974fea1f808073b495d22",
+    "spec_sha256": "f868c46a4d9d60a19d9744585e3641067bc6d62d6b288736da4086b59b43042d",
+    "output_sha256": {
+      "panel.png": "80b626795bbc0b965b6bfcace077593cc65bc3c2d77b8d3cca3fbc2aeedd469f",
+      "panel.pdf": "6693249600a7b3756ffc0461d15655dd19416942c7966fbaffba46ad071d0bd8",
+      "panel.svg": "5e252c8bf97205848dbbf2d4a2f271888fedcae967b3b780ef043a8aee812cbf"
+    },
+    "checks": {
+      "source_table_retained": {
+        "status": "pass",
+        "evidence": {
+          "source_rows": 9,
+          "plotted_rows": 9,
+          "all_original_columns_and_original_row_order_compared": true,
+          "numeric_relative_tolerance": 2e-13,
+          "numeric_absolute_tolerance": 0,
+          "mismatches": [],
+          "zero_size_rows": 1
+        }
+      },
+      "svg_canvas": {
+        "status": "pass",
+        "evidence": {
+          "actual_mm": [
+            100.00000002499999,
+            85.00000003888889
+          ],
+          "requested_mm": [
+            100,
+            85
+          ]
+        }
+      },
+      "editable_svg_Arial_8pt": {
+        "status": "pass",
+        "evidence": {
+          "text_node_count": 25,
+          "sizes_in_point_scaled_viewbox": [
+            8.0
+          ],
+          "Arial_in_all_text_styles": true
+        }
+      },
+      "no_title_or_narrative_inside_panel": {
+        "status": "pass",
+        "evidence": {
+          "unexpected_text_nodes": []
+        }
+      },
+      "actual_scatter_geometry": {
+        "status": "pass",
+        "evidence": {
+          "measurement": "Actual written SVG path extrema and linear transforms fitted from all numeric axis ticks; no renderer import or artist self-report",
+          "group_order": [
+            "Batch C",
+            "Batch A",
+            "Batch B"
+          ],
+          "groups": [
+            {
+              "group": "Batch C",
+              "source_rows": 3,
+              "source_zero_rows": 0,
+              "actual_svg_paths": 3,
+              "max_coordinate_error_pt": 2.2857145154375758e-07,
+              "max_geometric_area_error_pt2": 4.7754054079973685e-06,
+              "color_mismatches": 0,
+              "noncircular_paths": 0,
+              "source_order_within_group_checked": true,
+              "status": "pass"
+            },
+            {
+              "group": "Batch A",
+              "source_rows": 3,
+              "source_zero_rows": 1,
+              "actual_svg_paths": 3,
+              "max_coordinate_error_pt": 4.49999959073466e-07,
+              "max_geometric_area_error_pt2": 2.6655215634718843e-06,
+              "color_mismatches": 0,
+              "noncircular_paths": 0,
+              "source_order_within_group_checked": true,
+              "status": "pass"
+            },
+            {
+              "group": "Batch B",
+              "source_rows": 3,
+              "source_zero_rows": 0,
+              "actual_svg_paths": 3,
+              "max_coordinate_error_pt": 2.500000277905201e-07,
+              "max_geometric_area_error_pt2": 2.7433831739642756e-06,
+              "color_mismatches": 0,
+              "noncircular_paths": 0,
+              "source_order_within_group_checked": true,
+              "status": "pass"
+            }
+          ],
+          "total_svg_data_paths": 9,
+          "retained_zero_area_paths": 1,
+          "maximum_coordinate_error_pt": 4.49999959073466e-07,
+          "maximum_geometric_area_error_pt2": 4.7754054079973685e-06,
+          "area_formula": "geometric circle fill area = measured_share / 1 * 36 pt²",
+          "note": "Nominal circular fill area excludes stroke; the negligible fixed cubic circle approximation error does not affect relative proportionality."
+        }
+      },
+      "actual_size_legend_geometry": {
+        "status": "pass",
+        "evidence": {
+          "levels": [
+            0.02,
+            0.5,
+            1
+          ],
+          "written_svg_nominal_fill_areas_pt2": [
+            0.7199992886740516,
+            17.999997256616826,
+            35.99999997263634
+          ],
+          "max_area_error_pt2": 2.7433831739642756e-06
+        }
+      },
+      "actual_reference_lines": {
+        "status": "pass",
+        "evidence": {
+          "expected_source_positions": [
+            [
+              "x",
+              0.0
+            ],
+            [
+              "y",
+              5.0
+            ]
+          ],
+          "actual_positions_recovered_from_written_paths": [
+            [
+              "x",
+              -1.1362666812343078e-08
+            ],
+            [
+              "y",
+              4.999999975915051
+            ]
+          ],
+          "note": "Drawn supplied locations do not infer significance or change source classes."
+        }
+      },
+      "actual_PDF_page_and_embedded_font": {
+        "status": "pass",
+        "evidence": {
+          "pages": 1,
+          "actual_page_mm": [
+            99.99999999998805,
+            85.00000000001278
+          ],
+          "selected_text_fragment_count": 25,
+          "actual_text_fonts": [
+            "/VTTOYQ+ArialMT"
+          ],
+          "actual_text_sizes_pt": [
+            8.0
+          ],
+          "font_resources": [
+            {
+              "resource": "/F1",
+              "base_font": "/VTTOYQ+ArialMT",
+              "subtype": "/Type0",
+              "embedded_TrueType_bytes": 25960
+            }
+          ],
+          "selectable_text_extracted": true
+        }
+      },
+      "actual_PNG_canvas_and_dpi": {
+        "status": "pass",
+        "evidence": {
+          "pixels": [
+            1181,
+            1004
+          ],
+          "expected_fractional_pixels": [
+            1181.1023622047244,
+            1003.9370078740158
+          ],
+          "metadata_dpi": [
+            299.9994,
+            299.9994
+          ]
+        }
+      },
+      "ink_clear_of_canvas_edge": {
+        "status": "pass",
+        "evidence": {
+          "minimum_clearance_px": 23.0,
+          "all_clearances_px_left_right_top_bottom": [
+            23.0,
+            27.0,
+            23.0,
+            23.0
+          ],
+          "threshold": "Any RGB channel <245; internal overlap and aesthetics remain independent visual questions."
+        }
+      },
+      "no_new_statistical_inference": {
+        "status": "pass",
+        "evidence": {
+          "stats_json": {
+            "method": "none",
+            "note": "Descriptive visualization; no inferential test requested."
+          },
+          "plotting_scope": "Supplied descriptive coordinates, classes and sizes only; upstream P values are preserved inputs."
+        }
+      }
+    },
+    "actual_tick_transforms": {
+      "x": {
+        "slope_pt_per_unit": 25.14500317857144,
+        "intercept_pt": 108.25211328571429,
+        "max_tick_fit_residual_pt": 4.6428570499301713e-07,
+        "tick_values": [
+          -3.0,
+          -2.0,
+          -1.0,
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "tick_positions_pt": [
+          32.817104,
+          57.962107,
+          83.10711,
+          108.252113,
+          133.397116,
+          158.54212,
+          183.687123,
+          208.832126
+        ]
+      },
+      "y": {
+        "slope_pt_per_unit": -14.334183202380943,
+        "intercept_pt": 209.25996566666663,
+        "max_tick_fit_residual_pt": 4.523809593592887e-07,
+        "tick_values": [
+          0.0,
+          2.0,
+          4.0,
+          6.0,
+          8.0,
+          10.0,
+          12.0,
+          14.0
+        ],
+        "tick_positions_pt": [
+          209.259966,
+          180.591599,
+          151.923233,
+          123.254866,
+          94.5865,
+          65.918134,
+          37.249767,
+          8.581401
+        ]
+      }
+    },
+    "scope": "Synthetic field-name, category-order, scale and automatic-layout transfer; no new study or model performance claim."
+  },
+  "first_render_history_unchanged": {
+    "status": "pass",
+    "evidence": {
+      "files_checked": 7,
+      "historical_export_files_were_only_hashed": true
+    }
+  },
+  "check_summary": {
+    "passed": 28,
+    "failed": 0,
+    "failures": []
+  }
+}

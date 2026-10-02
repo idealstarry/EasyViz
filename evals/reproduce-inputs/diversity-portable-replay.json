@@ -1,0 +1,396 @@
+{
+  "status": "pass",
+  "scope": "Actual ZIP extraction and public wrapper execution outside checkout, in the same Python/library/font environment. Byte-identical PNG replay and physical PDF dimensions; no cross-platform or new aesthetic claim.",
+  "archive": "/Users/starry/Desktop/EasyViz/dist/easyviz-0.2.0.zip",
+  "archive_sha256": "779c6237bb0294dd03a817140db93466f25b2c63d080a8410c2cf88188609b1f",
+  "archive_files": 356,
+  "snapshot_archive": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/package.zip",
+  "extracted_package": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz",
+  "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+  "python_executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+  "python_version": "3.12.2",
+  "runtime_code_loaded_from_extracted_package": true,
+  "views_passed": 6,
+  "views_total": 6,
+  "results": [
+    {
+      "view": "urschel-paired",
+      "return_code": 0,
+      "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+      "wrapper": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/plot.py",
+      "arguments": [
+        "--out",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired"
+      ],
+      "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired\", \"width_mm\": 105.0, \"height_mm\": 96.0}",
+      "stderr": "Fontconfig error: No writable cache directories\n\t/opt/homebrew/var/cache/fontconfig\n\t/Users/starry/.cache/fontconfig\n\t/Users/starry/.fontconfig\nMatplotlib is building the font cache; this may take a moment.",
+      "input_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb",
+      "spec_sha256": "de7383d7f9d31d69b7acca459f08f74b3cc455cb7fa4e407f01a5dbdb98af39f",
+      "reviewed_repo_spec_sha256": "de7383d7f9d31d69b7acca459f08f74b3cc455cb7fa4e407f01a5dbdb98af39f",
+      "spec_file_byte_identical_to_reviewed_case": true,
+      "spec_semantically_equals_reviewed_case": true,
+      "spec_serialization_note": "Packaged JSON may encode \u00b5 as \\u00b5; decoded keys and values must remain identical.",
+      "reviewed_repo_png_sha256": "f4a637ecbc37da5b3cf96221a9d7cfe23ec00613eb6e532c9db7afe3f9c9601c",
+      "packaged_case_png_sha256": "f4a637ecbc37da5b3cf96221a9d7cfe23ec00613eb6e532c9db7afe3f9c9601c",
+      "source_data_byte_identical_to_reviewed_case": true,
+      "source_inputs_equal_reviewed_case": true,
+      "packaged_inputs_unchanged": true,
+      "packaged_case_png_equals_reviewed_case": true,
+      "output": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired",
+      "observed_child_commands": [
+        {
+          "executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+          "argv": [
+            "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/paired_plot.py",
+            "--data",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/source-data.csv",
+            "--spec",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/spec.json",
+            "--out",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired"
+          ],
+          "cwd": null
+        }
+      ],
+      "discovered_runtime": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/paired_plot.py",
+      "wrapper_discovered_extracted_runtime": true,
+      "renderer_hash_matches_extracted_runtime": true,
+      "helper_hashes_match_extracted_runtime": true,
+      "settings_source_path_matches_extracted_input": true,
+      "settings_input_sha_matches_unchanged_input": true,
+      "font_preserved": true,
+      "pdf_physical_mm": [
+        104.99999703301324,
+        95.99999728732638
+      ],
+      "requested_mm": [
+        105.0,
+        96.0
+      ],
+      "pdf_dimensions_match": true,
+      "replayed_png_sha256": "f4a637ecbc37da5b3cf96221a9d7cfe23ec00613eb6e532c9db7afe3f9c9601c",
+      "png_byte_identical_to_reviewed_case": true,
+      "qa_pass": true,
+      "status": "pass"
+    },
+    {
+      "view": "urschel-paired-connectors",
+      "return_code": 0,
+      "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+      "wrapper": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/plot.py",
+      "arguments": [
+        "--spec",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/connectors-spec.json",
+        "--out",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired-connectors"
+      ],
+      "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired-connectors\", \"width_mm\": 105.0, \"height_mm\": 96.0}",
+      "stderr": "",
+      "input_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb",
+      "spec_sha256": "e4b0766ef262f41d5956693d199ccdf1bffcb6972d1ffeff811ef16a651fb829",
+      "reviewed_repo_spec_sha256": "e4b0766ef262f41d5956693d199ccdf1bffcb6972d1ffeff811ef16a651fb829",
+      "spec_file_byte_identical_to_reviewed_case": true,
+      "spec_semantically_equals_reviewed_case": true,
+      "spec_serialization_note": "Packaged JSON may encode \u00b5 as \\u00b5; decoded keys and values must remain identical.",
+      "reviewed_repo_png_sha256": "2b97507aa6bcfaa6c156179afdb1857db3ce60344c4eda917a35dc0fbea5a79f",
+      "packaged_case_png_sha256": "2b97507aa6bcfaa6c156179afdb1857db3ce60344c4eda917a35dc0fbea5a79f",
+      "source_data_byte_identical_to_reviewed_case": true,
+      "source_inputs_equal_reviewed_case": true,
+      "packaged_inputs_unchanged": true,
+      "packaged_case_png_equals_reviewed_case": true,
+      "output": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired-connectors",
+      "observed_child_commands": [
+        {
+          "executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+          "argv": [
+            "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/paired_plot.py",
+            "--data",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/source-data.csv",
+            "--spec",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-paired/connectors-spec.json",
+            "--out",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-paired-connectors"
+          ],
+          "cwd": null
+        }
+      ],
+      "discovered_runtime": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/paired_plot.py",
+      "wrapper_discovered_extracted_runtime": true,
+      "renderer_hash_matches_extracted_runtime": true,
+      "helper_hashes_match_extracted_runtime": true,
+      "settings_source_path_matches_extracted_input": true,
+      "settings_input_sha_matches_unchanged_input": true,
+      "font_preserved": true,
+      "pdf_physical_mm": [
+        104.99999703301324,
+        95.99999728732638
+      ],
+      "requested_mm": [
+        105.0,
+        96.0
+      ],
+      "pdf_dimensions_match": true,
+      "replayed_png_sha256": "2b97507aa6bcfaa6c156179afdb1857db3ce60344c4eda917a35dc0fbea5a79f",
+      "png_byte_identical_to_reviewed_case": true,
+      "qa_pass": true,
+      "status": "pass"
+    },
+    {
+      "view": "urschel-ecdf",
+      "return_code": 0,
+      "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+      "wrapper": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-ecdf/plot.py",
+      "arguments": [
+        "--out",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-ecdf"
+      ],
+      "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-ecdf\", \"width_mm\": 105.0, \"height_mm\": 85.0}",
+      "stderr": "",
+      "input_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb",
+      "spec_sha256": "a283fd278c23d09766792bd6f1f45ce0114bb7f233f81bfc59e6b75ad7e62799",
+      "reviewed_repo_spec_sha256": "a283fd278c23d09766792bd6f1f45ce0114bb7f233f81bfc59e6b75ad7e62799",
+      "spec_file_byte_identical_to_reviewed_case": true,
+      "spec_semantically_equals_reviewed_case": true,
+      "spec_serialization_note": "Packaged JSON may encode \u00b5 as \\u00b5; decoded keys and values must remain identical.",
+      "reviewed_repo_png_sha256": "57a4351ceb77f4208e107818cb87137382a284f49988c74c3ebef402c0c0e67c",
+      "packaged_case_png_sha256": "57a4351ceb77f4208e107818cb87137382a284f49988c74c3ebef402c0c0e67c",
+      "source_data_byte_identical_to_reviewed_case": true,
+      "source_inputs_equal_reviewed_case": true,
+      "packaged_inputs_unchanged": true,
+      "packaged_case_png_equals_reviewed_case": true,
+      "output": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-ecdf",
+      "observed_child_commands": [
+        {
+          "executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+          "argv": [
+            "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/ecdf_plot.py",
+            "--data",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-ecdf/source-data.csv",
+            "--spec",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/urschel-ecdf/spec.json",
+            "--out",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/urschel-ecdf"
+          ],
+          "cwd": null
+        }
+      ],
+      "discovered_runtime": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/ecdf_plot.py",
+      "wrapper_discovered_extracted_runtime": true,
+      "renderer_hash_matches_extracted_runtime": true,
+      "helper_hashes_match_extracted_runtime": true,
+      "settings_source_path_matches_extracted_input": true,
+      "settings_input_sha_matches_unchanged_input": true,
+      "font_preserved": true,
+      "pdf_physical_mm": [
+        104.99999703301324,
+        85.00000118679469
+      ],
+      "requested_mm": [
+        105.0,
+        85.0
+      ],
+      "pdf_dimensions_match": true,
+      "replayed_png_sha256": "57a4351ceb77f4208e107818cb87137382a284f49988c74c3ebef402c0c0e67c",
+      "png_byte_identical_to_reviewed_case": true,
+      "qa_pass": true,
+      "status": "pass"
+    },
+    {
+      "view": "truong-components-stacked",
+      "return_code": 0,
+      "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+      "wrapper": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/plot.py",
+      "arguments": [
+        "--out",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-stacked"
+      ],
+      "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-stacked\", \"width_mm\": 150.0, \"height_mm\": 100.0}",
+      "stderr": "",
+      "input_sha256": "2396b56a4e2dc998a259f8f832591bca07517e3407b0058ac388d870c938590d",
+      "spec_sha256": "823537d7e1b302ab413b60cb3b4efed7622f1a88f6bc46bf7b6c17df621e159f",
+      "reviewed_repo_spec_sha256": "8ba6917b523e8c5aa8739d7ead9f609704c7b2df64291ad49f51fb0802543d36",
+      "spec_file_byte_identical_to_reviewed_case": false,
+      "spec_semantically_equals_reviewed_case": true,
+      "spec_serialization_note": "Packaged JSON may encode \u00b5 as \\u00b5; decoded keys and values must remain identical.",
+      "reviewed_repo_png_sha256": "e0dd7e35052639b10e932bf95a965879e0d82ad908e480ebc13a3d1261b03e78",
+      "packaged_case_png_sha256": "e0dd7e35052639b10e932bf95a965879e0d82ad908e480ebc13a3d1261b03e78",
+      "source_data_byte_identical_to_reviewed_case": true,
+      "source_inputs_equal_reviewed_case": true,
+      "packaged_inputs_unchanged": true,
+      "packaged_case_png_equals_reviewed_case": true,
+      "output": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-stacked",
+      "observed_child_commands": [
+        {
+          "executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+          "argv": [
+            "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/replicate_plot.py",
+            "--data",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/inputs/components.csv",
+            "--spec",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/components-spec.json",
+            "--out",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-stacked"
+          ],
+          "cwd": null
+        }
+      ],
+      "discovered_runtime": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/replicate_plot.py",
+      "wrapper_discovered_extracted_runtime": true,
+      "renderer_hash_matches_extracted_runtime": true,
+      "helper_hashes_match_extracted_runtime": true,
+      "settings_source_path_matches_extracted_input": true,
+      "settings_input_sha_matches_unchanged_input": true,
+      "font_preserved": true,
+      "pdf_physical_mm": [
+        149.99999576144748,
+        100.00000076293945
+      ],
+      "requested_mm": [
+        150.0,
+        100.0
+      ],
+      "pdf_dimensions_match": true,
+      "replayed_png_sha256": "e0dd7e35052639b10e932bf95a965879e0d82ad908e480ebc13a3d1261b03e78",
+      "png_byte_identical_to_reviewed_case": true,
+      "qa_pass": true,
+      "status": "pass"
+    },
+    {
+      "view": "truong-components-ratios",
+      "return_code": 0,
+      "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+      "wrapper": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/plot.py",
+      "arguments": [
+        "--data",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/inputs/ratios.csv",
+        "--spec",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/ratios-spec.json",
+        "--out",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-ratios"
+      ],
+      "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-ratios\", \"width_mm\": 150.0, \"height_mm\": 100.0}",
+      "stderr": "",
+      "input_sha256": "4ce0abe122280eee24ca14b64da4157089463d303b33f65c4614262de329c99c",
+      "spec_sha256": "eefc0c41bdd0a031e1d745db6988d12d166f3c5dca7cf1ff123759d21d9c13cf",
+      "reviewed_repo_spec_sha256": "405ecac9703b03ae1c677ec8d809845cc92363be2005dfa8b2564f9c40d39d68",
+      "spec_file_byte_identical_to_reviewed_case": false,
+      "spec_semantically_equals_reviewed_case": true,
+      "spec_serialization_note": "Packaged JSON may encode \u00b5 as \\u00b5; decoded keys and values must remain identical.",
+      "reviewed_repo_png_sha256": "c5f06b1b51fa4f582b66426460ef70cc8c29ab8ed6b9a665c5b5b206350ab70e",
+      "packaged_case_png_sha256": "c5f06b1b51fa4f582b66426460ef70cc8c29ab8ed6b9a665c5b5b206350ab70e",
+      "source_data_byte_identical_to_reviewed_case": true,
+      "source_inputs_equal_reviewed_case": true,
+      "packaged_inputs_unchanged": true,
+      "packaged_case_png_equals_reviewed_case": true,
+      "output": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-ratios",
+      "observed_child_commands": [
+        {
+          "executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+          "argv": [
+            "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/replicate_plot.py",
+            "--data",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/inputs/ratios.csv",
+            "--spec",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/ratios-spec.json",
+            "--out",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-ratios"
+          ],
+          "cwd": null
+        }
+      ],
+      "discovered_runtime": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/replicate_plot.py",
+      "wrapper_discovered_extracted_runtime": true,
+      "renderer_hash_matches_extracted_runtime": true,
+      "helper_hashes_match_extracted_runtime": true,
+      "settings_source_path_matches_extracted_input": true,
+      "settings_input_sha_matches_unchanged_input": true,
+      "font_preserved": true,
+      "pdf_physical_mm": [
+        149.99999576144748,
+        100.00000076293945
+      ],
+      "requested_mm": [
+        150.0,
+        100.0
+      ],
+      "pdf_dimensions_match": true,
+      "replayed_png_sha256": "c5f06b1b51fa4f582b66426460ef70cc8c29ab8ed6b9a665c5b5b206350ab70e",
+      "png_byte_identical_to_reviewed_case": true,
+      "qa_pass": true,
+      "status": "pass"
+    },
+    {
+      "view": "truong-components-grouped",
+      "return_code": 0,
+      "working_directory": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp",
+      "wrapper": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/plot.py",
+      "arguments": [
+        "--spec",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/grouped-spec.json",
+        "--out",
+        "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-grouped"
+      ],
+      "stdout": "{\"status\": \"pass\", \"output\": \"/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-grouped\", \"width_mm\": 175.0, \"height_mm\": 100.0}",
+      "stderr": "",
+      "input_sha256": "2396b56a4e2dc998a259f8f832591bca07517e3407b0058ac388d870c938590d",
+      "spec_sha256": "7f98b5c4aa833a73e2f7d9602a7ff6514285c1b2255df810f55f327137d7716d",
+      "reviewed_repo_spec_sha256": "bbf7b44e864df3b5866596f17373a2be56f4ee3578e1afd2b821f0093f7509d4",
+      "spec_file_byte_identical_to_reviewed_case": false,
+      "spec_semantically_equals_reviewed_case": true,
+      "spec_serialization_note": "Packaged JSON may encode \u00b5 as \\u00b5; decoded keys and values must remain identical.",
+      "reviewed_repo_png_sha256": "fbe198903517f2ec046993f4c0e8bdf6e71272d8841a61ef5ba0b38c61b40aaa",
+      "packaged_case_png_sha256": "fbe198903517f2ec046993f4c0e8bdf6e71272d8841a61ef5ba0b38c61b40aaa",
+      "source_data_byte_identical_to_reviewed_case": true,
+      "source_inputs_equal_reviewed_case": true,
+      "packaged_inputs_unchanged": true,
+      "packaged_case_png_equals_reviewed_case": true,
+      "output": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-grouped",
+      "observed_child_commands": [
+        {
+          "executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+          "argv": [
+            "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/replicate_plot.py",
+            "--data",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/inputs/components.csv",
+            "--spec",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/assets/cases/truong-components/grouped-spec.json",
+            "--out",
+            "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/outputs/truong-components-grouped"
+          ],
+          "cwd": null
+        }
+      ],
+      "discovered_runtime": "/private/tmp/easyviz-diversity-replay-779c6237-innimiwp/extracted/easyviz/skills/easyviz/scripts/replicate_plot.py",
+      "wrapper_discovered_extracted_runtime": true,
+      "renderer_hash_matches_extracted_runtime": true,
+      "helper_hashes_match_extracted_runtime": true,
+      "settings_source_path_matches_extracted_input": true,
+      "settings_input_sha_matches_unchanged_input": true,
+      "font_preserved": true,
+      "pdf_physical_mm": [
+        174.99999864366316,
+        100.00000076293945
+      ],
+      "requested_mm": [
+        175.0,
+        100.0
+      ],
+      "pdf_dimensions_match": true,
+      "replayed_png_sha256": "fbe198903517f2ec046993f4c0e8bdf6e71272d8841a61ef5ba0b38c61b40aaa",
+      "png_byte_identical_to_reviewed_case": true,
+      "qa_pass": true,
+      "status": "pass"
+    }
+  ],
+  "checkout_roles": [
+    "audit orchestrator",
+    "reviewed reference exports and source/spec comparisons",
+    "same Python/library environment"
+  ]
+}

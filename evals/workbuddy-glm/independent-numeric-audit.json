@@ -1,0 +1,1313 @@
+{
+  "audited_at_utc": "2026-10-02T07:15:17.388801+00:00",
+  "protocol_sha256": "4fbe30ef6fef3525d19735058462433c6222e535278ca25020fe7ec6728c0e03",
+  "independent_written_export_audit": true,
+  "freeze_manifest_initial": {
+    "status": "pass",
+    "evidence": {
+      "files_checked": 208,
+      "mismatches": []
+    }
+  },
+  "arms": {
+    "baseline": {
+      "input_hash": {
+        "status": "pass",
+        "evidence": {
+          "actual": "b9d1c0eef736267344770a2f42bf2033eda1073e538ce352829ed93317f98d99",
+          "protocol_expected": "b9d1c0eef736267344770a2f42bf2033eda1073e538ce352829ed93317f98d99"
+        }
+      },
+      "source_values_and_rows": {
+        "status": "pass",
+        "evidence": {
+          "input_rows": 11,
+          "export_table_representation": {
+            "original_export_rows": 14,
+            "observed_source_rows": 11,
+            "explicit_blank_unsupplied_coordinates": [
+              [
+                "Background suppression",
+                "Batch B"
+              ],
+              [
+                "Temperature sensitivity",
+                "Batch A"
+              ],
+              [
+                "Storage response",
+                "Batch B"
+              ]
+            ],
+            "blank_placeholders_are_allowed_traceability_coordinates_not_imputed_observations": true,
+            "column_role_mapping": {
+              "Readout": "readout",
+              "Preparation batch": "batch",
+              "Prepared ratio": "prepared_ratio",
+              "Lower 95": "lower_95",
+              "Upper 95": "upper_95"
+            },
+            "invalid_rows": []
+          },
+          "all_five_original_roles_compared_by_unique_readout_batch_identity": true,
+          "table_observed_row_order_retained": true,
+          "note": "Axis first-appearance order is checked separately. Renaming columns or adding explicit blank coordinate records does not create an estimate or lose a supplied observation."
+        }
+      },
+      "geometry": {
+        "checks": {
+          "logarithmic_axis_from_written_ticks": {
+            "status": "pass",
+            "evidence": {
+              "log_x_slope_pt": 69.81688646048204,
+              "log_x_intercept_pt": 243.6054660000001,
+              "log_tick_fit_max_residual_pt": 5.5570126278325915e-09,
+              "tick_values": [
+                0.2,
+                0.5,
+                1.0,
+                2.0,
+                5.0
+              ],
+              "tick_positions_pt": [
+                131.239522,
+                195.212088,
+                243.605466,
+                291.998844,
+                355.97141
+              ]
+            }
+          },
+          "first_appearance_readout_order": {
+            "status": "pass",
+            "evidence": [
+              {
+                "text": "Signal recovery after dilution",
+                "y_pt": 44.6717055,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              },
+              {
+                "text": "Low-input stability",
+                "y_pt": 77.068575,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              },
+              {
+                "text": "Long-run drift response",
+                "y_pt": 109.4654445,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              },
+              {
+                "text": "Background suppression",
+                "y_pt": 141.86231400000003,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              },
+              {
+                "text": "Temperature sensitivity",
+                "y_pt": 174.2591835,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              },
+              {
+                "text": "Operator transfer",
+                "y_pt": 206.6583185,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              },
+              {
+                "text": "Storage response",
+                "y_pt": 238.753118,
+                "measurement": "Mean written text baseline proxy; tick glyph suppressed"
+              }
+            ]
+          },
+          "all_actual_estimates_endpoints_and_overlap_states": {
+            "status": "pass",
+            "evidence": {
+              "measurement": "Actual written SVG circle centers, fill/stroke styles and horizontal interval endpoints; x recovered from written log tick positions",
+              "rows_checked": 11,
+              "errors": []
+            }
+          },
+          "sparse_rows_without_extra_data_markers": {
+            "status": "pass",
+            "evidence": {
+              "actual_data_circle_count": 11,
+              "matched_source_rows": 11,
+              "three_unsupplied_combinations": [
+                [
+                  "Background suppression",
+                  "Batch B"
+                ],
+                [
+                  "Temperature sensitivity",
+                  "Batch A"
+                ],
+                [
+                  "Storage response",
+                  "Batch B"
+                ]
+              ]
+            }
+          },
+          "stable_distinct_batch_colors": {
+            "status": "pass",
+            "evidence": {
+              "Batch A": "#0072b2",
+              "Batch B": "#d55e00"
+            }
+          },
+          "actual_batch_color_decoding": {
+            "status": "pass",
+            "evidence": {
+              "matched_batch_decodings": [
+                {
+                  "batch_label": "Batch A",
+                  "legend_handle_color": "#0072b2",
+                  "actual_data_color": "#0072b2",
+                  "horizontal_distance_pt": 8.799999999999997
+                },
+                {
+                  "batch_label": "Batch B",
+                  "legend_handle_color": "#d55e00",
+                  "actual_data_color": "#d55e00",
+                  "horizontal_distance_pt": 8.799999999999997
+                }
+              ],
+              "decoded_batches": [
+                "Batch A",
+                "Batch B"
+              ],
+              "measurement": "Actual SVG batch text paired with the nearest preceding legend glyph, or explicitly colored direct batch text"
+            }
+          },
+          "aligned_consistent_batch_offsets": {
+            "status": "pass",
+            "evidence": {
+              "actual_y_offsets_from_readout_label_anchor_pt": {
+                "Batch A": [
+                  -7.903874500000001,
+                  -7.903874999999999,
+                  -7.903874500000001,
+                  -7.90387400000003,
+                  -7.906139499999995,
+                  -7.604070000000007
+                ],
+                "Batch B": [
+                  1.4800465000000003,
+                  1.4800460000000015,
+                  1.4800465000000003,
+                  1.480046499999986,
+                  1.4777814999999919
+                ]
+              },
+              "actual_between_batch_gaps_in_four_paired_readouts_pt": [
+                9.383921,
+                9.383921,
+                9.383921,
+                9.383920999999987
+              ],
+              "note": "When tick glyphs are suppressed, wrapped text baselines are grouping proxies, not exact ticks; consistent series separation is checked from actual paired marker centers. Spacing aesthetics are a separate visual question."
+            }
+          },
+          "reference_line_at_ratio_1": {
+            "status": "pass",
+            "evidence": {
+              "actual_full_reference_paths": [
+                {
+                  "endpoints_pt": [
+                    [
+                      243.605466,
+                      250.4196
+                    ],
+                    [
+                      243.605466,
+                      26.8812
+                    ]
+                  ],
+                  "style": {
+                    "fill": " none",
+                    "stroke": " #d9d9d9",
+                    "stroke-width": " 0.5",
+                    "stroke-linecap": " square"
+                  }
+                },
+                {
+                  "endpoints_pt": [
+                    [
+                      243.605466,
+                      250.4196
+                    ],
+                    [
+                      243.605466,
+                      26.8812
+                    ]
+                  ],
+                  "style": {
+                    "fill": " none",
+                    "stroke-dasharray": " 2.1,1.4",
+                    "stroke-dashoffset": " 0",
+                    "stroke": " #7f7f7f",
+                    "stroke-width": " 0.7"
+                  }
+                }
+              ],
+              "expected_point_coordinate_pt": 243.6054660000001,
+              "note": "A coincident major grid line is allowed alongside the explicit reference; overlapping guide paths are not extra observations."
+            }
+          },
+          "complete_intervals_and_markers_inside_plot_viewport": {
+            "status": "pass",
+            "evidence": {
+              "written_plot_bbox_pt": [
+                101.1636,
+                26.8812,
+                388.7856,
+                250.4196
+              ],
+              "source_rows_with_geometry_outside_plot": [],
+              "measurement": "Written interval endpoints and circle extrema against the actual axes rectangle; prevents hidden clipping from passing solely on raw path coordinates."
+            }
+          },
+          "actual_circle_marker_geometry": {
+            "status": "pass",
+            "evidence": {
+              "actual_circle_diameters_pt": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "equal_sizes_observed": true,
+              "note": "The protocol does not prescribe a marker diameter or require uniform sizes. Any weighting claim requires source-code/semantic evidence; size variation alone is not treated as statistical weighting."
+            }
+          }
+        },
+        "per_source_row_actual_geometry": [
+          {
+            "source_row": 0,
+            "Readout": "Signal recovery after dilution",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 1.42,
+            "supplied_lower": 0.83,
+            "supplied_upper": 2.11,
+            "written_point_center_pt": [
+              268.087237,
+              36.767831
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                230.596515,
+                36.767831
+              ],
+              [
+                295.736894,
+                36.767831
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 1,
+            "Readout": "Signal recovery after dilution",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 0.88,
+            "supplied_lower": 0.61,
+            "supplied_upper": 1.18,
+            "written_point_center_pt": [
+              234.680538,
+              46.151752
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                209.095236,
+                46.151752
+              ],
+              [
+                255.161169,
+                46.151752
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 2,
+            "Readout": "Low-input stability",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 0.64,
+            "supplied_lower": 0.33,
+            "supplied_upper": 0.89,
+            "written_point_center_pt": [
+              212.44709,
+              69.1647
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                166.202093,
+                69.1647
+              ],
+              [
+                235.469438,
+                69.1647
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 3,
+            "Readout": "Low-input stability",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 1.34,
+            "supplied_lower": 1.05,
+            "supplied_upper": 1.87,
+            "written_point_center_pt": [
+              264.038747,
+              78.548621
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                247.011843,
+                78.548621
+              ],
+              [
+                287.306538,
+                78.548621
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 4,
+            "Readout": "Long-run drift response",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 2.15,
+            "supplied_lower": 1.27,
+            "supplied_upper": 3.84,
+            "written_point_center_pt": [
+              297.048047,
+              101.56157
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                260.292882,
+                101.56157
+              ],
+              [
+                337.542157,
+                101.56157
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 5,
+            "Readout": "Long-run drift response",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 1.62,
+            "supplied_lower": 0.72,
+            "supplied_upper": 2.94,
+            "written_point_center_pt": [
+              277.286958,
+              110.945491
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                220.670335,
+                110.945491
+              ],
+              [
+                318.896665,
+                110.945491
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 6,
+            "Readout": "Background suppression",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 0.39,
+            "supplied_lower": 0.17,
+            "supplied_upper": 0.78,
+            "written_point_center_pt": [
+              177.865289,
+              133.95844
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                119.892956,
+                133.95844
+              ],
+              [
+                226.258667,
+                133.95844
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 7,
+            "Readout": "Temperature sensitivity",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 3.41,
+            "supplied_lower": 1.56,
+            "supplied_upper": 6.28,
+            "written_point_center_pt": [
+              329.250699,
+              175.73923
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                274.652045,
+                175.73923
+              ],
+              [
+                371.884917,
+                175.73923
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 8,
+            "Readout": "Operator transfer",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 1.09,
+            "supplied_lower": 0.77,
+            "supplied_upper": 1.63,
+            "written_point_center_pt": [
+              249.622124,
+              198.752179
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                225.357792,
+                198.752179
+              ],
+              [
+                277.716601,
+                198.752179
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 9,
+            "Readout": "Operator transfer",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 0.73,
+            "supplied_lower": 0.49,
+            "supplied_upper": 1.14,
+            "written_point_center_pt": [
+              221.633342,
+              208.1361
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                193.801598,
+                208.1361
+              ],
+              [
+                252.753451,
+                208.1361
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 4.0
+          },
+          {
+            "source_row": 10,
+            "Readout": "Storage response",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 0.94,
+            "supplied_lower": 0.51,
+            "supplied_upper": 1.42,
+            "written_point_center_pt": [
+              239.285518,
+              231.149048
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                196.594646,
+                231.149048
+              ],
+              [
+                268.087237,
+                231.149048
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 4.0
+          }
+        ]
+      },
+      "exports": {
+        "checks": {
+          "exact_vector_canvas": {
+            "status": "fail",
+            "evidence": {
+              "SVG_mm": [
+                139.954,
+                99.82199999999999
+              ],
+              "PDF_mm": [
+                139.954,
+                99.82199999999999
+              ],
+              "PDF_pages": 1
+            }
+          },
+          "editable_SVG_text": {
+            "status": "pass",
+            "evidence": {
+              "text_node_count": 23
+            }
+          },
+          "actual_embedded_Arial_8pt_text": {
+            "status": "pass",
+            "evidence": {
+              "actual_fonts": [
+                "/GKPMKV+ArialMT"
+              ],
+              "actual_sizes_pt": [
+                8.0
+              ],
+              "font_resources": [
+                {
+                  "resource": "/F1",
+                  "base_font": "/GKPMKV+ArialMT",
+                  "subtype": "/Type0",
+                  "embedded_bytes": 29896,
+                  "embedding": "font stream"
+                }
+              ],
+              "nonmatching_text": []
+            }
+          },
+          "PNG_300dpi_canvas": {
+            "status": "fail",
+            "evidence": {
+              "pixels": [
+                1653,
+                1179
+              ],
+              "stored_dpi": [
+                299.9994,
+                299.9994
+              ],
+              "integer_rounding_tolerance_px": 1
+            }
+          },
+          "ink_inside_canvas": {
+            "status": "pass",
+            "evidence": {
+              "clearances_px_left_right_top_bottom": [
+                152.0,
+                31.0,
+                7.0,
+                45.0
+              ],
+              "threshold_RGB": 245,
+              "does_not_prove_internal_overlap_absence": true
+            }
+          }
+        }
+      },
+      "relocated_clean_rerun": {
+        "status": "pass",
+        "evidence": {
+          "entry_script": "plot_panel.py",
+          "entry_arguments": [],
+          "exit_code": 0,
+          "fresh_output_directory": true,
+          "existing_plotting_table_removed_before_run": true,
+          "identical_PNG_pixels": true,
+          "regenerated_source_values_preserved": true,
+          "stdout_tail": "category order: ['Signal recovery after dilution', 'Low-input stability', 'Long-run drift response', 'Background suppression', 'Temperature sensitivity', 'Operator transfer', 'Storage response']\nrows plotted: 11\nmissing: ['Background suppression / Batch B', 'Temperature sensitivity / Batch A', 'Storage response / Batch B']\nhollow (interval includes 1): ['Signal recovery after dilution/Batch A', 'Signal recovery after dilution/Batch B', 'Long-run drift response/Batch B', 'Operator transfer/Batch A', 'Operator transfer/Batch B', 'Storage response/Batch A']\ndone -> output/panel.{png,pdf,svg}\n",
+          "stderr_tail": "/Users/starry/.matplotlib is not a writable directory\nMatplotlib created a temporary cache directory at /var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/matplotlib-ldwmy52i because there was an issue with the default path ({configdir}); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.\n\nFontconfig error: No writable cache directories\n\t/opt/homebrew/var/cache/fontconfig\n\t/Users/starry/.cache/fontconfig\n\t/Users/starry/.fontconfig\nMatplotlib is building the font cache; this may take a moment.\n",
+          "limit": "Same installed scientific runtime and fonts; this is relocation/reuse evidence, not cross-machine installation."
+        }
+      }
+    },
+    "easyviz": {
+      "input_hash": {
+        "status": "pass",
+        "evidence": {
+          "actual": "b9d1c0eef736267344770a2f42bf2033eda1073e538ce352829ed93317f98d99",
+          "protocol_expected": "b9d1c0eef736267344770a2f42bf2033eda1073e538ce352829ed93317f98d99"
+        }
+      },
+      "source_values_and_rows": {
+        "status": "pass",
+        "evidence": {
+          "input_rows": 11,
+          "export_table_representation": {
+            "original_export_rows": 11,
+            "observed_source_rows": 11,
+            "explicit_blank_unsupplied_coordinates": [],
+            "blank_placeholders_are_allowed_traceability_coordinates_not_imputed_observations": true,
+            "column_role_mapping": {
+              "Readout": "Readout",
+              "Preparation batch": "Preparation batch",
+              "Prepared ratio": "Prepared ratio",
+              "Lower 95": "Lower 95",
+              "Upper 95": "Upper 95"
+            },
+            "invalid_rows": []
+          },
+          "all_five_original_roles_compared_by_unique_readout_batch_identity": true,
+          "table_observed_row_order_retained": true,
+          "note": "Axis first-appearance order is checked separately. Renaming columns or adding explicit blank coordinate records does not create an estimate or lose a supplied observation."
+        }
+      },
+      "geometry": {
+        "checks": {
+          "logarithmic_axis_from_written_ticks": {
+            "status": "pass",
+            "evidence": {
+              "log_x_slope_pt": 32.54903671528415,
+              "log_x_intercept_pt": 173.0587194000001,
+              "log_tick_fit_max_residual_pt": 5.708585604224936e-07,
+              "tick_values": [
+                0.2,
+                0.5,
+                1.0,
+                2.0,
+                5.0
+              ],
+              "tick_positions_pt": [
+                120.673066,
+                150.497446,
+                173.058719,
+                195.619993,
+                225.444373
+              ]
+            }
+          },
+          "first_appearance_readout_order": {
+            "status": "pass",
+            "evidence": [
+              {
+                "text": "Signal recovery after dilution",
+                "y_pt": 23.248603,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              },
+              {
+                "text": "Low-input stability",
+                "y_pt": 58.407225,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              },
+              {
+                "text": "Long-run drift response",
+                "y_pt": 93.565848,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              },
+              {
+                "text": "Background suppression",
+                "y_pt": 128.724471,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              },
+              {
+                "text": "Temperature sensitivity",
+                "y_pt": 163.883094,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              },
+              {
+                "text": "Operator transfer",
+                "y_pt": 199.041716,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              },
+              {
+                "text": "Storage response",
+                "y_pt": 234.200339,
+                "measurement": "Visible tick glyph; exact axis tick coordinate"
+              }
+            ]
+          },
+          "all_actual_estimates_endpoints_and_overlap_states": {
+            "status": "pass",
+            "evidence": {
+              "measurement": "Actual written SVG circle centers, fill/stroke styles and horizontal interval endpoints; x recovered from written log tick positions",
+              "rows_checked": 11,
+              "errors": []
+            }
+          },
+          "sparse_rows_without_extra_data_markers": {
+            "status": "pass",
+            "evidence": {
+              "actual_data_circle_count": 11,
+              "matched_source_rows": 11,
+              "three_unsupplied_combinations": [
+                [
+                  "Background suppression",
+                  "Batch B"
+                ],
+                [
+                  "Temperature sensitivity",
+                  "Batch A"
+                ],
+                [
+                  "Storage response",
+                  "Batch B"
+                ]
+              ]
+            }
+          },
+          "stable_distinct_batch_colors": {
+            "status": "pass",
+            "evidence": {
+              "Batch A": "#0072b2",
+              "Batch B": "#d55e00"
+            }
+          },
+          "actual_batch_color_decoding": {
+            "status": "pass",
+            "evidence": {
+              "matched_batch_decodings": [
+                {
+                  "batch_label": "Batch A",
+                  "legend_handle_color": "#0072b2",
+                  "actual_data_color": "#0072b2",
+                  "horizontal_distance_pt": 4.110236000000015
+                },
+                {
+                  "batch_label": "Batch B",
+                  "legend_handle_color": "#d55e00",
+                  "actual_data_color": "#d55e00",
+                  "horizontal_distance_pt": 4.110236000000015
+                }
+              ],
+              "decoded_batches": [
+                "Batch A",
+                "Batch B"
+              ],
+              "measurement": "Actual SVG batch text paired with the nearest preceding legend glyph, or explicitly colored direct batch text"
+            }
+          },
+          "aligned_consistent_batch_offsets": {
+            "status": "pass",
+            "evidence": {
+              "actual_y_offsets_from_readout_label_anchor_pt": {
+                "Batch A": [
+                  -10.547587499999999,
+                  -10.547586499999994,
+                  -10.547586500000008,
+                  -10.547586499999994,
+                  -10.547586500000023,
+                  -10.547586500000023
+                ],
+                "Batch B": [
+                  10.547586499999998,
+                  10.547587500000006,
+                  10.547587500000006,
+                  10.547586499999994,
+                  10.547587499999992
+                ]
+              },
+              "actual_between_batch_gaps_in_four_paired_readouts_pt": [
+                21.095173999999997,
+                21.095174,
+                21.095174000000014,
+                21.095174000000014
+              ],
+              "note": "When tick glyphs are suppressed, wrapped text baselines are grouping proxies, not exact ticks; consistent series separation is checked from actual paired marker centers. Spacing aesthetics are a separate visual question."
+            }
+          },
+          "reference_line_at_ratio_1": {
+            "status": "pass",
+            "evidence": {
+              "actual_full_reference_paths": [
+                {
+                  "endpoints_pt": [
+                    [
+                      173.058719,
+                      251.779651
+                    ],
+                    [
+                      173.058719,
+                      5.669291
+                    ]
+                  ],
+                  "style": {
+                    "fill": " none",
+                    "stroke-dasharray": " 2.22,0.96",
+                    "stroke-dashoffset": " 0",
+                    "stroke": " #999999",
+                    "stroke-width": " 0.6"
+                  }
+                }
+              ],
+              "expected_point_coordinate_pt": 173.0587194000001,
+              "note": "A coincident major grid line is allowed alongside the explicit reference; overlapping guide paths are not extra observations."
+            }
+          },
+          "complete_intervals_and_markers_inside_plot_viewport": {
+            "status": "pass",
+            "evidence": {
+              "written_plot_bbox_pt": [
+                111.309291,
+                5.669291,
+                236.39622,
+                251.779651
+              ],
+              "source_rows_with_geometry_outside_plot": [],
+              "measurement": "Written interval endpoints and circle extrema against the actual axes rectangle; prevents hidden clipping from passing solely on raw path coordinates."
+            }
+          },
+          "actual_circle_marker_geometry": {
+            "status": "pass",
+            "evidence": {
+              "actual_circle_diameters_pt": [
+                5.046265000000005,
+                5.046265000000005,
+                5.046264999999977,
+                5.046265000000005,
+                5.046265000000005,
+                5.046265000000005,
+                5.046265000000005,
+                5.046265000000005,
+                5.046265000000005,
+                5.046265000000005,
+                5.046265000000005
+              ],
+              "equal_sizes_observed": true,
+              "note": "The protocol does not prescribe a marker diameter or require uniform sizes. Any weighting claim requires source-code/semantic evidence; size variation alone is not treated as statistical weighting."
+            }
+          }
+        },
+        "per_source_row_actual_geometry": [
+          {
+            "source_row": 0,
+            "Readout": "Signal recovery after dilution",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 1.42,
+            "supplied_lower": 0.83,
+            "supplied_upper": 2.11,
+            "written_point_center_pt": [
+              184.4722625,
+              12.7010155
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                166.993871,
+                12.701016
+              ],
+              [
+                197.362693,
+                12.701016
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 1,
+            "Readout": "Signal recovery after dilution",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 0.88,
+            "supplied_lower": 0.61,
+            "supplied_upper": 1.18,
+            "written_point_center_pt": [
+              168.8978665,
+              33.7961895
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                156.96985,
+                33.79619
+              ],
+              [
+                178.446055,
+                33.79619
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 2,
+            "Readout": "Low-input stability",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 0.64,
+            "supplied_lower": 0.33,
+            "supplied_upper": 0.89,
+            "written_point_center_pt": [
+              158.53250450000002,
+              47.8596385
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                136.972819,
+                47.859639
+              ],
+              [
+                169.265656,
+                47.859639
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 5.046264999999977
+          },
+          {
+            "source_row": 3,
+            "Readout": "Low-input stability",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 1.34,
+            "supplied_lower": 1.05,
+            "supplied_upper": 1.87,
+            "written_point_center_pt": [
+              182.5848335,
+              68.9548125
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                174.646792,
+                68.954812
+              ],
+              [
+                193.432412,
+                68.954812
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 4,
+            "Readout": "Long-run drift response",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 2.15,
+            "supplied_lower": 1.27,
+            "supplied_upper": 3.84,
+            "written_point_center_pt": [
+              197.9739605,
+              83.0182615
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                180.838489,
+                83.018261
+              ],
+              [
+                216.852549,
+                83.018261
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 5,
+            "Readout": "Long-run drift response",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 1.62,
+            "supplied_lower": 0.72,
+            "supplied_upper": 2.94,
+            "written_point_center_pt": [
+              188.7612255,
+              104.11343550000001
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                162.366229,
+                104.113435
+              ],
+              [
+                208.159913,
+                104.113435
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 6,
+            "Readout": "Background suppression",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 0.39,
+            "supplied_lower": 0.17,
+            "supplied_upper": 0.78,
+            "written_point_center_pt": [
+              142.4102685,
+              118.1768845
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                115.383231,
+                118.176884
+              ],
+              [
+                164.971542,
+                118.176884
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 7,
+            "Readout": "Temperature sensitivity",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 3.41,
+            "supplied_lower": 1.56,
+            "supplied_upper": 6.28,
+            "written_point_center_pt": [
+              212.9870225,
+              174.4306805
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                187.532815,
+                174.430681
+              ],
+              [
+                232.863343,
+                174.430681
+              ]
+            ],
+            "actual_hollow": false,
+            "expected_hollow": false,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 8,
+            "Readout": "Operator transfer",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 1.09,
+            "supplied_lower": 0.77,
+            "supplied_upper": 1.63,
+            "written_point_center_pt": [
+              175.8637205,
+              188.49412949999999
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                164.551548,
+                188.49413
+              ],
+              [
+                188.961528,
+                188.49413
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 9,
+            "Readout": "Operator transfer",
+            "Preparation batch": "Batch B",
+            "supplied_estimate": 0.73,
+            "supplied_lower": 0.49,
+            "supplied_upper": 1.14,
+            "written_point_center_pt": [
+              162.8151875,
+              209.5893035
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                149.839868,
+                209.589303
+              ],
+              [
+                177.323563,
+                209.589303
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#d55e00",
+            "actual_circle_diameter_pt": 5.046265000000005
+          },
+          {
+            "source_row": 10,
+            "Readout": "Storage response",
+            "Preparation batch": "Batch A",
+            "supplied_estimate": 0.94,
+            "supplied_lower": 0.51,
+            "supplied_upper": 1.42,
+            "written_point_center_pt": [
+              171.0447345,
+              223.6527525
+            ],
+            "written_interval_endpoints_pt": [
+              [
+                151.142003,
+                223.652752
+              ],
+              [
+                184.472263,
+                223.652752
+              ]
+            ],
+            "actual_hollow": true,
+            "expected_hollow": true,
+            "batch_color": "#0072b2",
+            "actual_circle_diameter_pt": 5.046265000000005
+          }
+        ]
+      },
+      "exports": {
+        "checks": {
+          "exact_vector_canvas": {
+            "status": "pass",
+            "evidence": {
+              "SVG_mm": [
+                140.00000010555556,
+                100.00000002499999
+              ],
+              "PDF_mm": [
+                140.00000000000443,
+                99.99999999998805
+              ],
+              "PDF_pages": 1
+            }
+          },
+          "editable_SVG_text": {
+            "status": "pass",
+            "evidence": {
+              "text_node_count": 17
+            }
+          },
+          "actual_embedded_Arial_8pt_text": {
+            "status": "pass",
+            "evidence": {
+              "actual_fonts": [
+                "/CLOPPV+ArialMT"
+              ],
+              "actual_sizes_pt": [
+                8.0
+              ],
+              "font_resources": [
+                {
+                  "resource": "/F1",
+                  "base_font": "/CLOPPV+ArialMT",
+                  "subtype": "/Type0",
+                  "embedded_bytes": 29484,
+                  "embedding": "font stream"
+                }
+              ],
+              "nonmatching_text": []
+            }
+          },
+          "PNG_300dpi_canvas": {
+            "status": "pass",
+            "evidence": {
+              "pixels": [
+                1654,
+                1181
+              ],
+              "stored_dpi": [
+                299.9994,
+                299.9994
+              ],
+              "integer_rounding_tolerance_px": 1
+            }
+          },
+          "ink_inside_canvas": {
+            "status": "pass",
+            "evidence": {
+              "clearances_px_left_right_top_bottom": [
+                25.0,
+                31.0,
+                23.0,
+                23.0
+              ],
+              "threshold_RGB": 245,
+              "does_not_prove_internal_overlap_absence": true
+            }
+          }
+        }
+      },
+      "relocated_clean_rerun": {
+        "status": "pass",
+        "evidence": {
+          "entry_script": "plot_scripts/interval_plot.py",
+          "entry_arguments": [
+            "--data",
+            "prepared.csv",
+            "--spec",
+            "interval-spec.json",
+            "--out",
+            "output"
+          ],
+          "exit_code": 0,
+          "fresh_output_directory": true,
+          "existing_plotting_table_removed_before_run": true,
+          "identical_PNG_pixels": true,
+          "regenerated_source_values_preserved": true,
+          "stdout_tail": "{\"status\": \"pass\", \"output\": \"output\", \"width_mm\": 140.0, \"height_mm\": 100.0}\n",
+          "stderr_tail": "",
+          "limit": "Same installed scientific runtime and fonts; this is relocation/reuse evidence, not cross-machine installation."
+        }
+      }
+    }
+  },
+  "frozen_files_unchanged": {
+    "status": "pass",
+    "evidence": {
+      "files_checked": 208,
+      "changed_files": []
+    }
+  },
+  "check_summary": {
+    "passed": 36,
+    "failed": 2,
+    "failures": [
+      "arms.baseline.exports.checks.exact_vector_canvas",
+      "arms.baseline.exports.checks.PNG_300dpi_canvas"
+    ]
+  }
+}

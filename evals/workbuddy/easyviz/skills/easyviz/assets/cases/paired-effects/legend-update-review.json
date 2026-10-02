@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "change": "Replace oversized default line-handle slots with the canonical measured categorical marker legend helper.",
+  "scope": "Main two-cohort case and existing three-cohort evaluation only.",
+  "helper": {
+    "file": "legend_layout.py",
+    "sha256": "95dd8ed2298c274e56d217ef53a7d9f2c38d7300bb2417b603ea9320803fc65a"
+  },
+  "script_sha256": "dd821d29684b5eb2626498972127e0c22ecc9506939d63fa61decc77d6bd5b87",
+  "original_independent_review": "review-independent.json and review-independent.md remain unchanged and apply only to their original hashes.",
+  "cases": {
+    "main": {
+      "checks": {
+        "source_bytes_unchanged": true,
+        "source_settings_unchanged": true,
+        "plotted_data_bytes_unchanged": true,
+        "svg_data_axis_primitives_unchanged": true,
+        "numeric_axis_limits_unchanged": true,
+        "cohort_offsets_unchanged": true,
+        "term_order_unchanged": true,
+        "canvas_unchanged": true,
+        "text_sizes_still_8pt": true,
+        "legend_layout_fits": true
+      },
+      "original_candidate_sha256": {
+        "panel.png": "8a6304b8c914a0ff40150507e0e9104270385e6b47c7afdd1d21eab816dad4c6",
+        "panel.svg": "ae7fe7e6b72a7c805cbf2c8bff73bf3e2d05ee9aa5a555a9768d5e16d58ef4e5",
+        "panel.pdf": "3b6364be11804091e5a8bbb9501b4e2a8c69b8f855979b8d6df24bcf612b555b"
+      },
+      "current_candidate_sha256": {
+        "source.csv": "d18da70f4c6c87a17cf2e715cc15924972297e9783e9c75ce32c6ac0b36887d3",
+        "figure-settings.json": "64fea72de8cce74c406364f39310796e081a09b86932d8f1ebfe9cbae7487d11",
+        "plotting-data.csv": "8f52d4e4d25cff94faef43774c05c7d74977c48aa1cf6a7ad9f27b7fb5629590",
+        "panel.png": "136ddb65108d46995b35c7dd06978361a5d7d2ba6e0867adbed4f547a1e4bc2b",
+        "panel.pdf": "3a8467f5cbd3796ee5fbca92234b3a4ef79f81c165f466634aa9f3c6fc2ff2ce",
+        "panel.svg": "d502d0409f864cd49b1e1f25aa316a2de574f032b699cf1f2ef8663a022f807f",
+        "numeric-qa.json": "82f450014d5e1512e033c06b0328f4999e365b135c5bcf624ac37eb5fe0b7b98",
+        "actual-settings.json": "7217caf512929b00be9e2ed743a8df930c14481d2d24b336a26ef158ab864365"
+      },
+      "svg_data_axis_primitive_count": 261,
+      "geometry_comparison_method": "Compare all SVG axes_1 element tags, non-ID attributes and text; ignore only generated IDs, clipping-reference IDs and marker-reference IDs. All path, coordinate, transform, stroke, fill, and text geometry is unchanged.",
+      "legend_layout": {
+        "status": "pass",
+        "legends": [
+          {
+            "kind": "categorical",
+            "chosen_settings": {
+              "key_width_mm": 1.3758333333333332,
+              "key_height_mm": 1.3758333333333332,
+              "handletext_gap_mm": 0.7,
+              "row_gap_mm": 0.6,
+              "column_gap_mm": 2.0,
+              "borderpad_mm": 0.2,
+              "gap_mm": 2.0,
+              "canvas_padding_mm": 1.0,
+              "position": "manual",
+              "anchor_mm": [
+                176.4,
+                117.0
+              ],
+              "loc": "upper right",
+              "ncol": 2,
+              "font_size_pt": 8,
+              "effective_key_width_mm": 1.3758333333333332,
+              "effective_key_height_mm": 1.3758333333333332
+            },
+            "bbox_mm": [
+              123.19699999999999,
+              113.95141059027779,
+              53.203000000000024,
+              3.0485894097222213
+            ],
+            "plot_bbox_mm": [
+              55.8,
+              15.600000000000003,
+              120.60000000000001,
+              94.80000000000003
+            ],
+            "canvas_mm": [
+              180.0,
+              120.0
+            ],
+            "area_fraction_of_plot": 0.014186635595357539,
+            "width_fraction_of_plot": 0.4411525704809288,
+            "height_fraction_of_plot": 0.03215811613631033,
+            "area_fraction_of_canvas": 0.007508986220622749,
+            "reserved_band_fraction": null,
+            "reserved_band_mm": null,
+            "available_region_fraction": 0.0077220578159137,
+            "available_region_mm": [
+              1.0,
+              1.0,
+              178.0,
+              118.00000000000001
+            ],
+            "key_bboxes_mm": [
+              [
+                123.39699999999998,
+                114.90680872729702,
+                1.3758333333333335,
+                1.3758333333333335
+              ],
+              [
+                150.1635,
+                114.90680872729702,
+                1.3758333333333335,
+                1.3758333333333335
+              ]
+            ],
+            "issues": [],
+            "warnings": [],
+            "text_overlaps": [],
+            "attempts": [
+              {
+                "position": "manual",
+                "ncol": 2,
+                "length_mm": null,
+                "bbox_mm": [
+                  123.19699999999999,
+                  113.95141059027779,
+                  53.203000000000024,
+                  3.0485894097222213
+                ],
+                "issues": []
+              }
+            ]
+          }
+        ],
+        "combined": {
+          "guide_count": 1,
+          "occupied_envelope_union_area_mm2": 162.19410236545139,
+          "sum_envelope_area_mm2": 162.19410236545139,
+          "envelope_overlap_area_mm2": 0.0,
+          "has_envelope_overlap": false,
+          "area_fraction_of_plot": 0.014186635595357542,
+          "area_fraction_of_canvas": 0.007508986220622749,
+          "enclosing_bbox_mm": [
+            123.19699999999999,
+            113.95141059027779,
+            53.203000000000024,
+            3.0485894097222213
+          ],
+          "max_individual_width_mm": 53.20300000000002,
+          "max_individual_height_mm": 3.048589409722221,
+          "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+        },
+        "issues": [],
+        "warnings": [],
+        "review_thresholds": {
+          "area_fraction_of_plot": 0.2,
+          "area_fraction_of_canvas": 0.12,
+          "available_region_fraction": 0.85
+        },
+        "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+        "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+        "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+      },
+      "visual_review": {
+        "role": "implementer self-review",
+        "reviewer": "/root/track_design",
+        "opened_image": true,
+        "candidate": "panel.png",
+        "candidate_sha256": "136ddb65108d46995b35c7dd06978361a5d7d2ba6e0867adbed4f547a1e4bc2b",
+        "status": "ready_with_notes",
+        "findings": [],
+        "observations": "Opened the rerendered PNG. Compact categorical markers and labels remain clearly grouped at the existing top-right anchor, with fixed 8 pt text, unchanged borderless marks and no legend clipping or data overlap. Plot remains visually primary.",
+        "limitations": "This checks the legend revision; it is not a new independent review or physical print proof.",
+        "metadata_refresh_note": "The final-helper rerender preserves the exact PNG hash previously opened for this legend self-review; only metadata/export serialization changed."
+      }
+    },
+    "evaluation": {
+      "checks": {
+        "source_bytes_unchanged": true,
+        "source_settings_unchanged": true,
+        "plotted_data_bytes_unchanged": true,
+        "svg_data_axis_primitives_unchanged": true,
+        "numeric_axis_limits_unchanged": true,
+        "cohort_offsets_unchanged": true,
+        "term_order_unchanged": true,
+        "canvas_unchanged": true,
+        "text_sizes_still_8pt": true,
+        "legend_layout_fits": true
+      },
+      "original_candidate_sha256": {
+        "panel.png": "70ac1fb6c0aaeeb23c26662e0b541d8f24ca785276520496db0eb2db18c28e6f",
+        "panel.svg": "31e61fc02c5bcd75ada5e3a3f53a3662ce0de854b89b9a928d72b2dfebabf224",
+        "panel.pdf": "fc5ce74f680b4451ecbca381e9a7a65de730e8bbc243fd82c9e397e30ec35109"
+      },
+      "current_candidate_sha256": {
+        "source.csv": "2752accbf0ae1dd20b09bf3934761b55943ecdc8fc892ffa07af63f20513fab1",
+        "figure-settings.json": "1b7d5436a97a8426b9e81bb6097b45c4e98cb29d628b3def4945d3d3aa144eae",
+        "plotting-data.csv": "f3b846ad38efa0845ecd00699afac9785d0c74899aeb5eef2d9bc07f18fb3c37",
+        "panel.png": "d40c4fe38b5729bd3291a5994215c8afd5c6d42b637432de39e603cffc2a5485",
+        "panel.pdf": "c77a338ec065c614312bc7d0ebf9c0aa370f87987af9f7662f37fdacc8cc75f4",
+        "panel.svg": "55813679d3cd2f81a28b187f3d334a5d0be9419762eb0a5a4b5af4e1b2db92cb",
+        "numeric-qa.json": "000953210beee049575b2a22030557892b91eae9bbdba36a173f77aa13fbd0e4",
+        "actual-settings.json": "082050264d54e5ad25c37c83e4c3ad4cd2f99bc91b69c1f536f6dd81523e1653"
+      },
+      "svg_data_axis_primitive_count": 198,
+      "geometry_comparison_method": "Compare all SVG axes_1 element tags, non-ID attributes and text; ignore only generated IDs, clipping-reference IDs and marker-reference IDs. All path, coordinate, transform, stroke, fill, and text geometry is unchanged.",
+      "legend_layout": {
+        "status": "pass",
+        "legends": [
+          {
+            "kind": "categorical",
+            "chosen_settings": {
+              "key_width_mm": 1.3758333333333332,
+              "key_height_mm": 1.3758333333333332,
+              "handletext_gap_mm": 0.7,
+              "row_gap_mm": 0.6,
+              "column_gap_mm": 2.0,
+              "borderpad_mm": 0.2,
+              "gap_mm": 2.0,
+              "canvas_padding_mm": 1.0,
+              "position": "manual",
+              "anchor_mm": [
+                176.4,
+                97.5
+              ],
+              "loc": "upper right",
+              "ncol": 3,
+              "font_size_pt": 8,
+              "effective_key_width_mm": 1.3758333333333332,
+              "effective_key_height_mm": 1.3758333333333332
+            },
+            "bbox_mm": [
+              107.47685416666666,
+              94.45141059027779,
+              68.92314583333336,
+              3.0485894097222213
+            ],
+            "plot_bbox_mm": [
+              55.8,
+              13.0,
+              120.60000000000001,
+              79.00000000000001
+            ],
+            "canvas_mm": [
+              180.0,
+              100.0
+            ],
+            "area_fraction_of_plot": 0.022054114708340178,
+            "width_fraction_of_plot": 0.5715020384190161,
+            "height_fraction_of_plot": 0.038589739363572406,
+            "area_fraction_of_canvas": 0.011673242915124461,
+            "reserved_band_fraction": null,
+            "reserved_band_mm": null,
+            "available_region_fraction": 0.01204530913048844,
+            "available_region_mm": [
+              1.0,
+              1.0,
+              178.0,
+              97.99999999999999
+            ],
+            "key_bboxes_mm": [
+              [
+                107.67685416666664,
+                95.40680872729702,
+                1.3758333333333335,
+                1.3758333333333335
+              ],
+              [
+                127.41602083333332,
+                95.40680872729702,
+                1.3758333333333335,
+                1.3758333333333335
+              ],
+              [
+                153.63483333333332,
+                95.40680872729702,
+                1.3758333333333335,
+                1.3758333333333335
+              ]
+            ],
+            "issues": [],
+            "warnings": [],
+            "text_overlaps": [],
+            "attempts": [
+              {
+                "position": "manual",
+                "ncol": 3,
+                "length_mm": null,
+                "bbox_mm": [
+                  107.47685416666666,
+                  94.45141059027779,
+                  68.92314583333336,
+                  3.0485894097222213
+                ],
+                "issues": []
+              }
+            ]
+          }
+        ],
+        "combined": {
+          "guide_count": 1,
+          "occupied_envelope_union_area_mm2": 210.1183724722403,
+          "sum_envelope_area_mm2": 210.1183724722403,
+          "envelope_overlap_area_mm2": 0.0,
+          "has_envelope_overlap": false,
+          "area_fraction_of_plot": 0.022054114708340185,
+          "area_fraction_of_canvas": 0.011673242915124461,
+          "enclosing_bbox_mm": [
+            107.47685416666666,
+            94.45141059027779,
+            68.92314583333336,
+            3.0485894097222213
+          ],
+          "max_individual_width_mm": 68.92314583333335,
+          "max_individual_height_mm": 3.048589409722221,
+          "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+        },
+        "issues": [],
+        "warnings": [],
+        "review_thresholds": {
+          "area_fraction_of_plot": 0.2,
+          "area_fraction_of_canvas": 0.12,
+          "available_region_fraction": 0.85
+        },
+        "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+        "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+        "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+      },
+      "visual_review": {
+        "role": "implementer self-review",
+        "reviewer": "/root/track_design",
+        "opened_image": true,
+        "candidate": "evaluation/panel.png",
+        "candidate_sha256": "d40c4fe38b5729bd3291a5994215c8afd5c6d42b637432de39e603cffc2a5485",
+        "status": "ready_with_notes",
+        "findings": [],
+        "observations": "Opened the rerendered PNG. Compact categorical markers and labels remain clearly grouped at the existing top-right anchor, with fixed 8 pt text, unchanged borderless marks and no legend clipping or data overlap. Plot remains visually primary.",
+        "limitations": "This checks the legend revision; it is not a new independent review or physical print proof.",
+        "metadata_refresh_note": "The final-helper rerender preserves the exact PNG hash previously opened for this legend self-review; only metadata/export serialization changed."
+      }
+    }
+  },
+  "invalid_capacity_probe": {
+    "status": "passed",
+    "probe": "categorical_legend.key_width_mm=250 at unchanged 180 \u00d7 120 mm canvas",
+    "renderer_rejected_unfit_legend": true,
+    "export_written": false,
+    "reported_issues": [
+      "categorical: legend_outside_canvas"
+    ],
+    "helper_sha256": "372efb00d4b89b3d72d328080f26e82b9576f8187a49b86b79a9ed10f1b0621e"
+  },
+  "limitations": [
+    "No new independent review of the revised legend.",
+    "These runs do not establish fit for arbitrary label lengths, cohort counts or panel sizes.",
+    "Proportional thresholds in helper reports are project review prompts, not journal requirements."
+  ],
+  "metadata_refresh": {
+    "previous_helper_sha256": "11e90a2cc17d1ce727544e557fbe666ce423fc6df47cdc792f54d16bc3da0df5",
+    "reason": "Refresh finalized helper metadata: measured complete guide bounds, combined guide envelopes, and available-region semantics distinct from explicitly reserved bands.",
+    "png_identical_to_visually_opened_candidate": {
+      "main": true,
+      "evaluation": true
+    },
+    "historical_independent_review_sha256_unchanged": {
+      "review-independent.json": "02b06b80fd7f7595e6da1af55dd72a30019c9dc13e091c0b3e543305dacaacc6",
+      "review-independent.md": "8b285c6148905e507c7fb6106546b47e62430f87939b2edce8b2c059fa48d223"
+    }
+  },
+  "metadata_refresh_note": "Recomputed reports after final measured-key bounds and alignment validation; both forest PNG hashes are identical to the visually reviewed revised candidates."
+}

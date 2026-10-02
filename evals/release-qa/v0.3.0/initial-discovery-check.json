@@ -1,0 +1,8 @@
+{
+  "status": "fail",
+  "archive_sha256": "10e211c1981ddb6a7b610b34687ca0d8a83f88fc7aeebbdf2084f6120662aaa0",
+  "check": "initial extracted discovery containment check",
+  "error": "Extracted recipe discovery points outside the selected skill",
+  "diagnosis": "macOS aliases /var and /private/var identify the same temporary directory. The checker compared an unresolved skill root against resolved discovery paths. The package runtime successfully relocated; only the checker path comparison was wrong.",
+  "repair": "Resolve the extracted skill root before checking path containment; package content unchanged."
+}

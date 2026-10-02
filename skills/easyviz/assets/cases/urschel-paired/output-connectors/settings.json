@@ -1,0 +1,252 @@
+{
+  "chart": "paired",
+  "fields": {
+    "unit": "participant_id",
+    "condition": "timepoint",
+    "value": "igg_bau_ml",
+    "block": "infection_group"
+  },
+  "options": {
+    "y_scale": "log",
+    "y_limits": [
+      40,
+      50000
+    ],
+    "y_ticks": [
+      100,
+      1000,
+      10000
+    ],
+    "quantile_method": "weibull",
+    "point_layout": "jitter",
+    "point_spread": 0.55,
+    "point_area_pt2": 10,
+    "point_edge_color": "#777777",
+    "point_edge_width_pt": 0.25,
+    "point_alpha": 1,
+    "summary_width": 0.72,
+    "summary_cap_width": 0.25,
+    "summary_line_width_pt": 0.8,
+    "block_gap": 0,
+    "connect_pairs": true,
+    "seed": 0,
+    "pair_alpha": 0.16,
+    "pair_line_width_pt": 0.4
+  },
+  "order": {
+    "condition": [
+      "Before",
+      "After"
+    ],
+    "block": [
+      "Prior infection",
+      "No prior infection"
+    ]
+  },
+  "colors": {
+    "Prior infection": "#F1B771",
+    "No prior infection": "#81ACE6"
+  },
+  "layout": {
+    "width_mm": 105.0,
+    "height_mm": 96.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.12316011078042327,
+      "right": 0.980952380952381,
+      "bottom": 0.12673565899884257,
+      "top": 0.9791666666666666
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "labels": {
+    "y": "IgG (BAU/ml)"
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 2
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png",
+    "tiff"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Prior infection": "#F1B771",
+    "No prior infection": "#81ACE6"
+  },
+  "input_file": "source-data.csv",
+  "input_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb",
+  "supplied_spec": {
+    "chart": "paired",
+    "fields": {
+      "unit": "participant_id",
+      "condition": "timepoint",
+      "value": "igg_bau_ml",
+      "block": "infection_group"
+    },
+    "options": {
+      "y_scale": "log",
+      "y_limits": [
+        40,
+        50000
+      ],
+      "y_ticks": [
+        100,
+        1000,
+        10000
+      ],
+      "quantile_method": "weibull",
+      "point_layout": "jitter",
+      "point_spread": 0.55,
+      "point_area_pt2": 10,
+      "point_edge_color": "#777777",
+      "point_edge_width_pt": 0.25,
+      "point_alpha": 1,
+      "summary_width": 0.72,
+      "summary_cap_width": 0.25,
+      "summary_line_width_pt": 0.8,
+      "block_gap": 0,
+      "connect_pairs": true,
+      "seed": 0,
+      "pair_alpha": 0.16,
+      "pair_line_width_pt": 0.4
+    },
+    "order": {
+      "condition": [
+        "Before",
+        "After"
+      ],
+      "block": [
+        "Prior infection",
+        "No prior infection"
+      ]
+    },
+    "colors": {
+      "Prior infection": "#F1B771",
+      "No prior infection": "#81ACE6"
+    },
+    "layout": {
+      "width_mm": 105,
+      "height_mm": 96,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "labels": {
+      "y": "IgG (BAU/ml)"
+    },
+    "legends": {
+      "categorical": {
+        "position": "bottom",
+        "ncol": 2
+      }
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png",
+      "tiff"
+    ]
+  },
+  "spec_sha256": "e1c8c40edee6865938623d1750c108c7d5354ebd313c9c0424c7aa6b5565bb23",
+  "axis": {
+    "y_scale": "log",
+    "y_limits": [
+      40.0,
+      50000.0
+    ],
+    "condition_order": [
+      "Before",
+      "After"
+    ]
+  },
+  "summary_policy": {
+    "method": "median_iqr",
+    "scale": "raw measurements",
+    "quantile_method": "weibull",
+    "interval_meaning": "interquartile range of observations, not a confidence interval",
+    "tests_performed": false
+  },
+  "mark_policy": {
+    "geometric_circle_area_pt2": 10,
+    "matplotlib_s": 12.732395447351628,
+    "diameter_pt": 3.5682482323055424,
+    "placement": "jitter",
+    "placement_measured_after_layout": true,
+    "connect_pairs": true,
+    "jitter_shared_within_unit": true,
+    "outline_width_pt": 0.25
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "de0440a4b79cd8d6307d8614d2f3b4ee0637b586ffc2485da01f5da4be4d2aad",
+    "path_simplification": false,
+    "connector_representation": "one exact two-point segment per adjacent condition and unit",
+    "helper_sha256": {
+      "render.py": "86e090ca5e9a2b0e1447404dbc10484bca1a0c3c9740d046aed995220f934ccb",
+      "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "spec_file": "connectors-spec.json",
+  "spec_file_sha256": "e4b0766ef262f41d5956693d199ccdf1bffcb6972d1ffeff811ef16a651fb829",
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.12316011078042327,
+      "right": 0.980952380952381,
+      "bottom": 0.12673565899884257,
+      "top": 0.9791666666666666
+    },
+    "data_region_mm": [
+      12.931811631944447,
+      12.166623263888885,
+      90.06818836805559,
+      81.83337673611112
+    ],
+    "data_area_fraction": 0.7312087292323524,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 5.048589409722222,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.7312087292323524
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  }
+}

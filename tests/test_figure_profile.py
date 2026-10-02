@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 from PIL import Image
 from pypdf import PdfReader
 import pandas as pd
+from marker_geometry import collection_fill_areas_pt2
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "skills/easyviz/scripts/render.py"
@@ -120,7 +121,8 @@ class FigureProfileTests(unittest.TestCase):
             layout, typography, rc = renderer.setup(resolved)
             with renderer.plt.rc_context(rc):
                 fig, _ = renderer.draw(prepared, resolved, layout, typography, {"method": "none"})
-                self.assertEqual(fig.axes[0].collections[0].get_sizes()[0], 25, "The actual scatter collection must use the shared physical area")
+                self.assertAlmostEqual(collection_fill_areas_pt2(fig.axes[0].collections[0], fig)[0], 25, places=4, msg="The actual circular path must use the shared geometric fill area")
+                self.assertAlmostEqual(fig.axes[0].collections[0].get_sizes()[0], 25 * 4 / renderer.math.pi)
                 renderer.plt.close(fig)
             # The first supplied quantity is identical across panels. Compare its
             # serialized marker shape in page points, independently of settings.
@@ -130,6 +132,8 @@ class FigureProfileTests(unittest.TestCase):
             numbers = [float(value) for value in re.findall(r"-?\d+(?:\.\d+)?(?:e[+-]?\d+)?", path, flags=re.I)]
             xs, ys = numbers[::2], numbers[1::2]
             common_marker_dimensions.append((max(xs) - min(xs), max(ys) - min(ys)))
+            for diameter in common_marker_dimensions[-1]:
+                self.assertAlmostEqual(diameter, 2 * (25 / renderer.math.pi) ** .5, places=5)
             self.assertEqual(data.read_bytes(), body)
         for first, second in zip(*common_marker_dimensions):
             self.assertAlmostEqual(first, second, places=5, msg="Equal quantities must export equal marker dimensions at different canvas sizes")

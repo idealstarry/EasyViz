@@ -1,0 +1,52 @@
+{
+  "title": "SARS-CoV-2-specific cellular and humoral immunity after bivalent BA.4/5 COVID-19-vaccination in previously infected and non-infected individuals",
+  "authors": "Urschel et al.",
+  "journal": "Nature Communications",
+  "year": 2024,
+  "doi": "10.1038/s41467-024-47429-8",
+  "article_url": "https://www.nature.com/articles/s41467-024-47429-8",
+  "figure": "Figure 2b; raw IgG observations and median/IQR encodings",
+  "source_data_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47429-8/MediaObjects/41467_2024_47429_MOESM4_ESM.xlsx",
+  "source_sheet": "figure 2",
+  "source_rows": "4:130",
+  "selected_columns": {
+    "A": "NatCom_ID",
+    "B": "prior SARS-CoV-2 infection",
+    "C": "Spike IgG before",
+    "D": "Spike IgG after"
+  },
+  "source_bytes": 727299,
+  "source_sha256": "d902e7608caa56172bac12515bb0e0b79efb075b669424b8b63858ad21d371be",
+  "pdf_url": "https://www.nature.com/articles/s41467-024-47429-8.pdf",
+  "pdf_sha256": "55df0455ba52ada218f3b0b1302a570fa889c1b07effec8a30a2f113cef703bd",
+  "csv_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb",
+  "reference_crop": {
+    "pdf_page_index": 3,
+    "rectangle_pdf_pt": [
+      268,
+      44,
+      426,
+      194
+    ],
+    "dpi": 240,
+    "sha256": "e519b4653620c546dccba9734f0ac821872c0ad7402d31558a0a7dba8b094abb"
+  },
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "observations": 254,
+  "participants": 127,
+  "independent_reference_reading": "Fresh reader inspected the actual official crop and permitted caption before implementation selection; reference-reading.md is preserved.",
+  "transformations": [
+    "Selected original A/B/C/D values; all 127 source rows retain both measurements.",
+    "Long-format derivative preserves numerical XML text, stable IDs, raw infection status and original source sheet/row/cell.",
+    "60 yes and 4 yes/NCAP+ entries grouped as Prior infection; 63 no entries grouped as No prior infection, matching source definition.",
+    "Added raw-scale median/IQR using explicit Weibull quantile method; no inferential test or data filtering.",
+    "Default unconnected swarm adapts source encodings and removes narrative annotations; optional connector view is separately labelled as an addition."
+  ],
+  "semantic_caveats": [
+    "Source quartile estimator unstated; Weibull matches three rounded article IQR values, but no-prior after IQR is 4750.06 versus article reported 4751.",
+    "Article paired-test transformation unspecified; no tests are performed or source P values recomputed.",
+    "Figure caption does not identify dotted guides; full-method assay thresholds 25.6/35.2 BAU/ml are plausible meanings. Both lie below the adopted 40 lower display limit and every selected measurement, so guides are omitted as a documented adaptation.",
+    "After-vaccination samples were scheduled 13\u201318 days, not assumed all exactly day 14."
+  ]
+}

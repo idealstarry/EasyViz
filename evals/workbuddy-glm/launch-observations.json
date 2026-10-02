@@ -1,0 +1,110 @@
+{
+  "app": "WorkBuddy",
+  "app_version_displayed": "5.6.2",
+  "selected_model_label": "GLM-5.3-Flash",
+  "backend_model_verified": false,
+  "permission_mode_displayed": "默认权限",
+  "settings_changed": [
+    "Selected task model to user-authorized GLM-5.3-Flash"
+  ],
+  "comparison": "Same model, same supplied 11-row synthetic interval data, independent new tasks with and without provided EasyViz skill",
+  "launch_method": "Native WorkBuddy UI through cua_repl only",
+  "prompts": "Exact text from each pre-existing request.txt; app rich-text editor exposes zero-width separators between paragraphs",
+  "baseline": {
+    "workspace": "/tmp/easyviz-workbuddy-glm-interval/baseline",
+    "task_title": "用 prepared.csv 绘制论文横向区间图",
+    "submitted_time_displayed": "15:01",
+    "date": "2026-10-02",
+    "timezone": "Asia/Shanghai",
+    "running_model_label_verified": "GLM-5.3-Flash",
+    "status": "completed",
+    "progress_observation": {
+      "elapsed_displayed": "5m58s",
+      "estimated_consumption_displayed": "0.39 ~ 9.67",
+      "consumed_displayed": "3.05",
+      "consumption_units": "App units; not verified as currency"
+    },
+    "observed_visual_revision_rounds": 2,
+    "observed_self_corrections": [
+      "First visual revision: category order reversed, minor tick label overlap, legend covering data row, cramped multi-line labels",
+      "Second visual revision: reduced right whitespace and increased marker size for print readability"
+    ],
+    "final_model_label_displayed": "GLM-5.3-Flash",
+    "final_time_displayed": "15:08",
+    "final_consumption_displayed": "3.6",
+    "consumption_units": "App units; not verified as currency",
+    "exact_final_duration_observed": true,
+    "final_duration_displayed": "6m29s",
+    "visual_revision_rounds_self_reported": 2,
+    "completion_evidence": [
+      "WorkBuddy displays 已完成 6m29s",
+      "Final response toolbar shows GLM-5.3-Flash 15:08 and 共消耗 3.6",
+      "Stop button replaced by disabled send"
+    ],
+    "final_self_report": {
+      "rows_retained": 11,
+      "missing_combinations": 3,
+      "hollow_points": 6,
+      "filled_points": 5,
+      "PNG_dimensions": [
+        1653,
+        1179
+      ],
+      "SVG_editable_text_elements": 23,
+      "font": "Arial",
+      "checks_unperformed": [
+        "Opening vector files in Illustrator or Inkscape"
+      ],
+      "residual_issues_self_reported": [
+        "Hollow legend sample uses black outline",
+        "Missing combinations left blank without placeholder marks"
+      ]
+    }
+  },
+  "easyviz": {
+    "workspace": "/tmp/easyviz-workbuddy-glm-interval/easyviz",
+    "task_title": "绘制论文用横向区间图",
+    "submitted_time_displayed": "15:02",
+    "date": "2026-10-02",
+    "timezone": "Asia/Shanghai",
+    "running_model_label_verified": "GLM-5.3-Flash",
+    "status": "completed",
+    "observed_reads": [
+      "skills/easyviz/SKILL.md",
+      "prepared.csv",
+      "skills/easyviz/references/interval-plot.md"
+    ],
+    "progress_observation": {
+      "elapsed_displayed": "16s",
+      "estimated_consumption_displayed": "0.39 ~ 9.67",
+      "consumed_displayed": "0.54",
+      "consumption_units": "App units; not verified as currency"
+    },
+    "final_model_label_displayed": "GLM-5.3-Flash",
+    "final_time_displayed": "15:06",
+    "final_consumption_displayed": "3.42",
+    "consumption_units": "App units; not verified as currency",
+    "exact_final_duration_observed": false,
+    "duration_from_minute_timestamps": "Approximately 4 minutes; timestamps have minute precision",
+    "visual_revision_rounds_self_reported": 0,
+    "completion_evidence": [
+      "Stop button replaced by disabled send",
+      "Final response toolbar shows model and final time",
+      "Artifact tabs show panel.png, panel.pdf, panel.svg, interval-spec.json, run-log.md"
+    ],
+    "observed_visual_check": "Process says local crop checks of legend, marker fill, reference line and missing combinations completed; auditor must verify actual outputs independently"
+  },
+  "ui_limitations": [
+    "First CUA app binding took about 11 minutes; some accessibility state returned asynchronously after actions",
+    "Menu model selection verified twice in AX; screenshot during early model switching remained visibly stale",
+    "One coordinate attempt returned noWindowsAvailable; rebinding app and direct AX file navigation succeeded",
+    "Attempt to scroll EasyViz final response to retrieve exact duration returned noWindowsAvailable; exact duration remains unknown rather than inferred from stale screenshots."
+  ],
+  "evaluation_limits": [
+    "Task model UI label does not independently verify model backend",
+    "Instruction-based directory restrictions, not OS-enforced isolation",
+    "Two one-shot tasks; model stochasticity and broader generalization not controlled"
+  ],
+  "completed_at_observation_utc": "2026-10-02T07:11:01Z",
+  "completed_at_observation_note": "Clock read after both completion states were observed; final task timestamps are the observed UI values recorded per arm."
+}

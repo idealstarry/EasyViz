@@ -1,0 +1,28 @@
+{
+  "status": "pass",
+  "checked_at_utc": "2026-10-02T07:38:25.008121+00:00",
+  "archive_sha256": "4686550a79030356d95960ac899e60c37fd6968f8eb76d2bd6112a9702d3d0b6",
+  "scope": "Clean extracted latest runtime replays of both newly reviewed paper cases, including the second interval panel; exact Arial PNG comparison then independent numerical export audit. No original archives or development history.",
+  "checks": {
+    "xiang-bubble-volcano/output": {
+      "clean_rerender_exit": 0,
+      "reviewed_png_pixels_identical": true
+    },
+    "vabistsevits-forest/output-a": {
+      "clean_rerender_exit": 0,
+      "reviewed_png_pixels_identical": true
+    },
+    "vabistsevits-forest/output-b": {
+      "clean_rerender_exit": 0,
+      "reviewed_png_pixels_identical": true
+    },
+    "xiang-bubble-volcano/independent-auditor": {
+      "exit_code": 0,
+      "result": "{\n  \"passed\": 26,\n  \"failed\": 0,\n  \"failures\": []\n}"
+    },
+    "vabistsevits-forest/independent-auditor": {
+      "exit_code": 0,
+      "result": "{\"status\": \"pass\", \"verified_source_rows\": 48}"
+    }
+  }
+}

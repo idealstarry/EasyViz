@@ -1,0 +1,73 @@
+{
+  "chart": "paired",
+  "fields": {
+    "unit": "participant_id",
+    "condition": "timepoint",
+    "value": "igg_bau_ml",
+    "block": "infection_group"
+  },
+  "options": {
+    "y_scale": "log",
+    "y_limits": [
+      40,
+      50000
+    ],
+    "y_ticks": [
+      100,
+      1000,
+      10000
+    ],
+    "quantile_method": "weibull",
+    "point_layout": "jitter",
+    "point_spread": 0.55,
+    "point_area_pt2": 10,
+    "point_edge_color": "#777777",
+    "point_edge_width_pt": 0.25,
+    "point_alpha": 1,
+    "summary_width": 0.72,
+    "summary_cap_width": 0.25,
+    "summary_line_width_pt": 0.8,
+    "block_gap": 0,
+    "connect_pairs": true,
+    "seed": 0,
+    "pair_alpha": 0.16,
+    "pair_line_width_pt": 0.4
+  },
+  "order": {
+    "condition": [
+      "Before",
+      "After"
+    ],
+    "block": [
+      "Prior infection",
+      "No prior infection"
+    ]
+  },
+  "colors": {
+    "Prior infection": "#F1B771",
+    "No prior infection": "#81ACE6"
+  },
+  "layout": {
+    "width_mm": 105,
+    "height_mm": 96,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "labels": {
+    "y": "IgG (BAU/ml)"
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "ncol": 2
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png",
+    "tiff"
+  ]
+}

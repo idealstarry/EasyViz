@@ -1,0 +1,30 @@
+make_figure.py - run report
+input file               : /private/tmp/easyviz-workbuddy-test/baseline/prepared.csv
+rows read                : 24 (expected 24)
+cell types in order      : ['Resident macrophages', 'Activated monocytes', 'Interferon macrophages', 'Lipid-associated cells', 'Antigen-presenting cells', 'Cycling myeloid cells', 'Inflammatory macrophages', 'Tissue monocytes']
+treatment arms in order  : ['Control', 'Low dose', 'High dose']
+Detected fraction min/max: 0 / 0.85
+Prepared score  min/max  : -0.22 / 1.66
+observed zeros           : 2 -> Resident macrophages / Control; Cycling myeloid cells / Low dose
+smallest non-zero value  : 0.05 (dot diameter 1.2522 mm)
+largest value            : 0.85 (dot diameter 5.1629 mm)
+scatter s at fraction 1.0: 251.9844 pt^2 (marker diameter 5.6 mm)
+resolved Arial file      : /System/Library/Fonts/Supplemental/Arial.ttf
+canvas                   : 120 x 90 mm (1417 x 1063 px at 300 dpi)
+measured longest y label : 'Antigen-presenting cells' 29.464 mm
+main axes (mm, l/b/w/h)  : 39.9616 / 9.2642 / 64.472 / 66.5358
+row pitch (mm)           : 8.317
+column pitch (mm)        : 21.4907
+
+auto-fit trace:
+  iter ink bbox mm: x -1.241..117.762 y 2.097..87.800
+  iter ink bbox mm: x 2.000..117.762 y 2.097..87.800
+  iter ink bbox mm: x 2.000..117.762 y 2.097..87.800
+  final clear canvas (mm): left 2 | right 2.2381 | top 2.2 | bottom 2.0973
+
+written:
+  output/panel.pdf
+  output/panel.svg
+  output/panel.png
+  data/plot_data.csv
+  settings/figure_settings.json

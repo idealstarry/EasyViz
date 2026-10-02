@@ -1,0 +1,478 @@
+{
+  "chart": "interval",
+  "fields": {
+    "label": "outcome",
+    "series": "exposure",
+    "color": "outcome",
+    "estimate": "estimate",
+    "lower": "ci_low",
+    "upper": "ci_high",
+    "mark_state": "mark_state"
+  },
+  "options": {
+    "series_layout": "blocks",
+    "x_scale": "log",
+    "reference_value": 1,
+    "x_limits": [
+      0.28,
+      2.8
+    ],
+    "marker_area_pt2": 20,
+    "cap_height": 0,
+    "mark_fill": "input",
+    "grid": false
+  },
+  "layout": {
+    "width_mm": 105.0,
+    "height_mm": 135.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.32317566137566134,
+      "right": 0.9809523809523809,
+      "bottom": 0.16181425861625515,
+      "top": 0.9851851851851852
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "order": {
+    "label": [
+      "Overall breast cancer",
+      "ER+ breast cancer",
+      "ER- breast cancer",
+      "Luminal A subtype",
+      "Luminal B1 subtype",
+      "Luminal B2 subtype",
+      "HER2-enriched subtype",
+      "Triple-negative subtype"
+    ],
+    "series": [
+      "Dense area",
+      "Non-dense area",
+      "Percent density"
+    ],
+    "color": [
+      "Overall breast cancer",
+      "ER+ breast cancer",
+      "ER- breast cancer",
+      "Luminal A subtype",
+      "Luminal B1 subtype",
+      "Luminal B2 subtype",
+      "HER2-enriched subtype",
+      "Triple-negative subtype"
+    ]
+  },
+  "labels": {
+    "x": "Odds ratio (95% CI)",
+    "filled": "CI excludes 1",
+    "hollow": "CI includes 1"
+  },
+  "colors": {
+    "Overall breast cancer": "#972c8d",
+    "ER+ breast cancer": "#1794ce",
+    "ER- breast cancer": "#ffea5e",
+    "Luminal A subtype": "#6351a0",
+    "Luminal B1 subtype": "#9ddaf5",
+    "Luminal B2 subtype": "#f5bacf",
+    "HER2-enriched subtype": "#fbbb68",
+    "Triple-negative subtype": "#eb5291"
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom",
+      "key_width_mm": 1.5,
+      "key_height_mm": 1.5
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Overall breast cancer": "#972c8d",
+    "ER+ breast cancer": "#1794ce",
+    "ER- breast cancer": "#ffea5e",
+    "Luminal A subtype": "#6351a0",
+    "Luminal B1 subtype": "#9ddaf5",
+    "Luminal B2 subtype": "#f5bacf",
+    "HER2-enriched subtype": "#fbbb68",
+    "Triple-negative subtype": "#eb5291"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/inputs/source-data-a.csv",
+  "input_sha256": "0039ee4739a3bf368755dba2ab157d662eefc42824df2102cd0f8c8413ad3a47",
+  "supplied_spec": {
+    "chart": "interval",
+    "fields": {
+      "label": "outcome",
+      "series": "exposure",
+      "color": "outcome",
+      "estimate": "estimate",
+      "lower": "ci_low",
+      "upper": "ci_high",
+      "mark_state": "mark_state"
+    },
+    "options": {
+      "series_layout": "blocks",
+      "x_scale": "log",
+      "reference_value": 1,
+      "x_limits": [
+        0.28,
+        2.8
+      ],
+      "marker_area_pt2": 20,
+      "cap_height": 0,
+      "mark_fill": "input",
+      "grid": false
+    },
+    "layout": {
+      "width_mm": 105,
+      "height_mm": 135,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "line_width_pt": 0.6,
+      "auto_fit": true
+    },
+    "order": {
+      "label": [
+        "Overall breast cancer",
+        "ER+ breast cancer",
+        "ER- breast cancer",
+        "Luminal A subtype",
+        "Luminal B1 subtype",
+        "Luminal B2 subtype",
+        "HER2-enriched subtype",
+        "Triple-negative subtype"
+      ],
+      "series": [
+        "Dense area",
+        "Non-dense area",
+        "Percent density"
+      ],
+      "color": [
+        "Overall breast cancer",
+        "ER+ breast cancer",
+        "ER- breast cancer",
+        "Luminal A subtype",
+        "Luminal B1 subtype",
+        "Luminal B2 subtype",
+        "HER2-enriched subtype",
+        "Triple-negative subtype"
+      ]
+    },
+    "labels": {
+      "x": "Odds ratio (95% CI)",
+      "filled": "CI excludes 1",
+      "hollow": "CI includes 1"
+    },
+    "colors": {
+      "Overall breast cancer": "#972c8d",
+      "ER+ breast cancer": "#1794ce",
+      "ER- breast cancer": "#ffea5e",
+      "Luminal A subtype": "#6351a0",
+      "Luminal B1 subtype": "#9ddaf5",
+      "Luminal B2 subtype": "#f5bacf",
+      "HER2-enriched subtype": "#fbbb68",
+      "Triple-negative subtype": "#eb5291"
+    },
+    "legends": {
+      "categorical": {
+        "position": "bottom",
+        "key_width_mm": 1.5,
+        "key_height_mm": 1.5
+      }
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ]
+  },
+  "spec_sha256": "a5b1d48e967c33c75d7407e163797449ec174366301efb87785003982247d67f",
+  "axis": {
+    "x_scale": "log",
+    "x_limits": [
+      0.28,
+      2.8
+    ],
+    "reference_value": 1,
+    "reference_drawn": true
+  },
+  "mark_policy": {
+    "shape": "circle",
+    "area_pt2": 20,
+    "fill": "input",
+    "filled_outline": "none",
+    "hollow_outline": "mapped category color",
+    "reference_overlap_semantics": null
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "08edd1d4b2adb9292b3853e218e0365b56ed92ad730dcb95e51ecb729bd8c48f",
+    "helper_sha256": {
+      "render.py": "b6fa721e0363f8d3a4bf97e5e0fe0c16e97f53a19f5380ffd2211c809c790d8e",
+      "legend_layout.py": "83c76034262b77450e95e363df4bb50ebab41971f3281d26cec7cfe7901695c1",
+      "auto_layout.py": "3d9905cc9f4fc64b762f8803a53d7fb60833403d0cc1a2624821455a21a6de61",
+      "figure_profile.py": "cf018bdcaf8f983474a83a31d9ef13778291aa484f80e60271d5035e2167851b",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/panel-a-spec.json",
+  "spec_file_sha256": "8222ae588ad89bfeb6ac169289e25945fa4d7f206437d4c56432eae7110a67bd",
+  "auto_layout": {
+    "status": "needs_revision",
+    "issues": [
+      "tick_label_overlap",
+      "categorical: legend_overlaps_categorical",
+      "categorical: legend_overlaps_categorical"
+    ],
+    "margins": {
+      "left": 0.32317566137566134,
+      "right": 0.9809523809523809,
+      "bottom": 0.16181425861625515,
+      "top": 0.9851851851851852
+    },
+    "data_region_mm": [
+      33.93344444444445,
+      21.844924913194443,
+      69.06655555555557,
+      111.15507508680555
+    ],
+    "data_area_fraction": 0.5415942270733549,
+    "attempts": [
+      {
+        "automatic_guide_side": "right",
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 10.097178819444444,
+          "top": 0.0
+        },
+        "issues": [
+          "tick_label_overlap",
+          "categorical: legend_overlaps_categorical",
+          "categorical: legend_overlaps_categorical"
+        ],
+        "data_area_fraction": 0.5415942270733549
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "needs_revision",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "bottom",
+          "ncol": 1,
+          "loc": "upper center",
+          "anchor_mm": [
+            68.46672222222222,
+            10.097178819444444
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.5,
+          "effective_key_height_mm": 1.5
+        },
+        "bbox_mm": [
+          58.74238888888889,
+          7.048589409722222,
+          19.44866666666667,
+          3.048589409722222
+        ],
+        "plot_bbox_mm": [
+          33.93344444444445,
+          21.844924913194443,
+          69.06655555555557,
+          111.15507508680555
+        ],
+        "canvas_mm": [
+          105.00000000000001,
+          135.0
+        ],
+        "area_fraction_of_plot": 0.007723100308193288,
+        "width_fraction_of_plot": 0.28159311710604423,
+        "height_fraction_of_plot": 0.027426452704399272,
+        "area_fraction_of_canvas": 0.004182786542025933,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.06327684446788676,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          103.00000000000001,
+          9.097178819444444
+        ],
+        "key_bboxes_mm": [
+          [
+            58.94238888888889,
+            7.970558059561966,
+            1.5000000000000056,
+            1.5000000000000007
+          ]
+        ],
+        "issues": [
+          "legend_overlaps_categorical"
+        ],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "bottom",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              58.74238888888889,
+              7.048589409722222,
+              19.44866666666667,
+              3.048589409722222
+            ],
+            "issues": []
+          }
+        ]
+      },
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "bottom",
+          "ncol": 1,
+          "loc": "upper center",
+          "anchor_mm": [
+            68.46672222222222,
+            10.097178819444444
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.7116666666666667,
+          "effective_key_height_mm": 1.7116666666666667
+        },
+        "bbox_mm": [
+          59.059888888888885,
+          7.048589409722222,
+          18.813666666666673,
+          3.048589409722222
+        ],
+        "plot_bbox_mm": [
+          33.93344444444445,
+          21.844924913194443,
+          69.06655555555557,
+          111.15507508680555
+        ],
+        "canvas_mm": [
+          105.00000000000001,
+          135.0
+        ],
+        "area_fraction_of_plot": 0.0074709406727922634,
+        "width_fraction_of_plot": 0.27239908687111786,
+        "height_fraction_of_plot": 0.027426452704399272,
+        "area_fraction_of_canvas": 0.004046218339191816,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.06121085213402799,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          103.00000000000001,
+          9.097178819444444
+        ],
+        "key_bboxes_mm": [
+          [
+            59.25988888888889,
+            7.913570880074786,
+            1.7116666666666722,
+            1.7116666666666673
+          ]
+        ],
+        "issues": [
+          "legend_overlaps_categorical"
+        ],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "bottom",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              59.059888888888885,
+              7.048589409722222,
+              18.813666666666673,
+              3.048589409722222
+            ],
+            "issues": [
+              "legend_overlaps_categorical"
+            ]
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 2,
+      "occupied_envelope_union_area_mm2": 59.290999233217605,
+      "sum_envelope_area_mm2": 116.64614419126161,
+      "envelope_overlap_area_mm2": 57.35514495804401,
+      "has_envelope_overlap": true,
+      "area_fraction_of_plot": 0.007723100308193288,
+      "area_fraction_of_canvas": 0.004182786542025933,
+      "enclosing_bbox_mm": [
+        58.74238888888889,
+        7.048589409722222,
+        19.44866666666667,
+        3.048589409722222
+      ],
+      "max_individual_width_mm": 19.44866666666667,
+      "max_individual_height_mm": 3.048589409722222,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [
+      "categorical: legend_overlaps_categorical",
+      "categorical: legend_overlaps_categorical"
+    ],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  }
+}

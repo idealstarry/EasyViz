@@ -1,0 +1,9 @@
+请直接完成这项 EasyViz 新图形试跑，不需要询问审美偏好。工作目录 /private/tmp/easyviz-workbuddy-new-families/ecdf，读取 prepared.csv；先阅读该目录 skills/easyviz/SKILL.md，再按需要查看它指向的图形选择文档和资源，可复用 EasyViz 通用工具。只读取本目录输入、技能资源与本机 Python 科学运行环境，不读取其他项目或旧评估输出。可以使用 /Users/starry/Desktop/EasyViz/.venv/bin/python，无需安装软件或联网。
+
+输入来自公开 Nature Communications Source Data（Urschel et al., DOI 10.1038/s41467-024-47429-8；CC BY 4.0），来源和公开性记录在 input-provenance.json 与 public-source-check.md。列名“受试者”是公开论文中的编码编号；“时间点”为 Before/After；“IgG_BAU_ml”是 spike-specific IgG，单位 BAU/ml。共有 127 位受试者的完整前后配对、254 条测量，既往感染组 64 人、未感染组 63 人。保留全部值及来源单元格记录，两个时间点分别汇总各 127 条观测，感染分组合并；不得把 254 次测量当作 254 位独立受试者。
+
+任务：画一张论文用经验累计分布图，让读者直接看出 Before 与 After 的测量分布。横轴 Spike IgG (BAU/ml)，对数范围 10–100000，主刻度显示 10¹、10²、10³、10⁴、10⁵ 的幂形式；纵轴为测量值不超过横坐标的累计比例，范围 0–1。曲线应保留真实经验分布的阶梯与重复值跳跃，不进行分箱、平滑、统计检验或区间推断。Before 用 #5278A8，After 用 #C2764E，图例清楚、留白协调。
+
+成图固定 105×85 mm，Arial 8 pt，300 dpi；不添加标题、副标题、样本数说明或解释性脚注。输出 output/panel.pdf、panel.svg、panel.png，保留完整画布和可编辑 SVG 文字。另存英文 caption.md，说明公开数据来源、IgG 单位、配对设计、每条曲线分母 127、合并的 64/63 人分组，以及该累计分布是描述性补充视图。保留可重复运行脚本、实际绘图数据、所用尺寸/字体/颜色/尺度设置与真实检查结果。
+
+实际执行脚本并查看 PNG 或 PDF，根据实际图像至多进行两轮有依据的修改。只写当前工作目录，不改个人设置，不调用其他 Agent，不使用网络或付费 API。完成后在 REPORT.md 简要记录 EasyViz 资源如何被选用、实际检查、遇到的问题和剩余限制；未检查的内容明确标记。

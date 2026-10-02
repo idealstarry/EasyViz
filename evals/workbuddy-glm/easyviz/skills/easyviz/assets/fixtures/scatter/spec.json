@@ -1,0 +1,40 @@
+{
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.2,
+      "right": 0.77,
+      "bottom": 0.2,
+      "top": 0.91
+    }
+  },
+  "formats": [
+    "pdf",
+    "png",
+    "svg",
+    "tiff"
+  ],
+  "palette": "somerville-bright",
+  "seed": 417,
+  "chart": "scatter",
+  "fields": {
+    "x": "x_score",
+    "y": "y_score"
+  },
+  "labels": {
+    "x": "Score X",
+    "y": "Score Y"
+  },
+  "statistics": {
+    "method": "pearson",
+    "annotate": true
+  },
+  "options": {
+    "regression": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "chart": "heatmap",
+  "fields": {
+    "row": "row",
+    "column": "column",
+    "value": "value"
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Gene",
+    "color": "Score"
+  },
+  "options": {
+    "color_limits": [
+      -2,
+      2
+    ],
+    "color_center": 0
+  },
+  "colormap": "somerville-blue-coral",
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

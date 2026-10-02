@@ -1,0 +1,49 @@
+{
+  "title": "Interrogations of single-cell RNA splicing landscapes with SCASL define new cell identities with physiological relevance",
+  "authors": "Xiang et al.",
+  "journal": "Nature Communications",
+  "year": 2024,
+  "doi": "10.1038/s41467-024-46480-9",
+  "article_url": "https://www.nature.com/articles/s41467-024-46480-9",
+  "figure": "Figure 3E; quantitative scatter subcomponent only",
+  "source_data_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-46480-9/MediaObjects/41467_2024_46480_MOESM4_ESM.xlsx",
+  "source_sheet": "Figure 3E",
+  "source_rows": "2:1458",
+  "selected_columns": [
+    "gene",
+    "me3",
+    "me5",
+    "md3",
+    "md5",
+    "meand",
+    "mdd",
+    "pv",
+    "fdr",
+    "color",
+    "prob",
+    "logq"
+  ],
+  "retrieved_at_utc": "2026-10-02T06:31:54.673188+00:00",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sha256": "f334d85f2da212c68f8d49524da7a8d2ce4378dab495f92f92e1304e6df06d58",
+  "pdf_sha256": "61dd4c11f7c3e5cc31c39d375563f4573e4b1bfa4f441fe991832891607a14f1",
+  "csv_sha256": "c86e6006617322b080ca7cf1596f8b664ebb86bd9b90db73aa08993575464f3c",
+  "transformations": [
+    "All 1457 supplied rows and all 12 source columns preserved; added spreadsheet row/sheet identifiers and explicit display_class aliases.",
+    "Numerical mdd/logq/prob copied unchanged. Source classification retained in color.",
+    "No author plotting code, gene-selection reconstruction, new test, imputation or biological reanalysis.",
+    "Two gene cells A968/A1306 are Excel date-typed values; decoded dates 2024-03-03 and 2024-03-07 are preserved literally. Original gene symbols cannot be established and are not guessed."
+  ],
+  "semantic_caveats": [
+    "This sheet is already filtered: all supplied fdr<0.01. Grey Not_sig class actually has abs(mdd)<0.2; do not label it P-nonsignificant.",
+    "mdd numerically equals md3-md5. Published axis wording C5/C3 is ambiguous; use C3\u2212C5 with caption explanation.",
+    "Upstream biological independence and differential-test reproducibility are outside this plotting-only adaptation.",
+    "Two source gene identifiers are already Excel date cells; no gene-identity recovery is claimed. Numeric coordinates/classes are unchanged."
+  ],
+  "display_aliases": {
+    "C5up": "C3 lower",
+    "C3up": "C3 higher",
+    "Not_sig": "Small effect"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "schema_version": 2,
+  "review_scope": "Independent rendered-image visual review and direct export inspection only.",
+  "status": "ready_with_notes",
+  "review_method": {
+    "opened_original_pngs": true,
+    "opened_reference_images": true,
+    "pdf_proxy_dpi": 96,
+    "implementation_code_read": false,
+    "renderer_qa_used": false,
+    "source_numerical_records_used": false,
+    "browsing_used": false,
+    "earlier_candidate_images_used": true,
+    "final_refinement_original_pngs_opened": [
+      "ecdf",
+      "paired",
+      "paired-connectors"
+    ],
+    "final_refinement_pdf_proxies_opened": [
+      "ecdf",
+      "paired",
+      "paired-connectors"
+    ],
+    "baseline_proxy_comparisons_opened": true,
+    "current_truong_png_pdf_hashes_verified_against_prior": true,
+    "earlier_candidate_images_scope": "Only the preserved 96 dpi proxies from the initial independent image review, for the three requested final legend revisions."
+  },
+  "external_checks": [
+    {
+      "name": "source numerical coverage and calculated statistics",
+      "status": "not_checked",
+      "evidence": "Intentionally excluded from this independent visual review. No source data, plotting code, renderer QA, or statistical check records were used."
+    },
+    {
+      "name": "printed copy or journal acceptance",
+      "status": "not_checked",
+      "evidence": "96 dpi PDF renders are final-size screen proxies; they are not print proof or journal assessment."
+    },
+    {
+      "name": "baseline refinement preference",
+      "status": "passed",
+      "evidence": "Preserved baseline and new candidate 96 dpi PDF proxies were opened at equal final size for ECDF and both paired views. Preference is candidate for limited legend reading/style consistency; no overall aesthetic improvement is claimed."
+    }
+  ],
+  "ready_scope_note": "This status concerns the inspected supplied panels and export properties only. It does not establish print proof, journal acceptance, broad aesthetic improvement beyond the limited legend comparison, or performance on other datasets.",
+  "review_pass": 2,
+  "packaging_note": "Case-specific records extracted by the main agent from the independent final review. Reviewer findings and candidate hashes are unchanged. Development-only paths identify evidence retained outside this portable case.",
+  "independent_full_review": {
+    "path": "evals/reproduce-inputs/new-family-visual-review/final-review.json",
+    "sha256": "5afb4174f02e40c2b31d7a59830e39b5f2d2a8fa23323efcf1f63cb98f072112"
+  },
+  "cases": [
+    {
+      "case": "paired",
+      "status": "ready_with_notes",
+      "mapping": "Four equally spaced unconnected point distributions, orange prior-infection pair then blue no-prior-infection pair; raw median and Q1\u2013Q3 overlays are visible on the adopted logarithmic axis.",
+      "visual_evidence": "Swarm points remain individually readable in each cloud at the 397\u00d7363 proxy; black summary strokes are prominent without hiding the concentration pattern. The full two-entry bottom guide occupies about 46% of the data-region width but only one small text row, so the data remain primary. Orange/blue fills separate the two blocks.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "reference comparison",
+          "evidence": "The source crop includes p-value brackets, dotted guides, sample counts, boxed IgG and a panel letter. Their omission, the narrower displayed range and the new bottom cohort guide are explicitly adopted. Median/IQR geometry, color grouping and four-position structure remain visible. The candidate-specific caption is now supplied and was read.",
+          "requirement": "Judge the adopted derivative rather than restoring intentionally omitted source annotations.",
+          "action": "Retain the adopted omissions and separate caption."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "output/panel.png",
+        "candidate_pdf": "output/panel.pdf",
+        "sha256": {
+          "png": "f4a637ecbc37da5b3cf96221a9d7cfe23ec00613eb6e532c9db7afe3f9c9601c",
+          "pdf": "acccb7acd3047ee2b220bcc1c60a22387a85bef76c71f2b28d4f56c7edbf7a20"
+        },
+        "page_mm": [
+          105.00000000000334,
+          96.00000000001111
+        ],
+        "font_command_counts_pt": {
+          "8.0": 10,
+          "5.6": 3
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGDMTZR+ArialMT                       CID TrueType      Identity-H       yes yes yes     19  0\n",
+        "png": {
+          "pixels": [
+            1240,
+            1134
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          397,
+          363
+        ],
+        "proxy_path": "Development repository evidence: evals/reproduce-inputs/new-family-visual-review/final-paired-pdf-96dpi.png",
+        "legend_objects_independently_read_from_pdf": [
+          {
+            "object_type": "curve",
+            "x0": 100.382563,
+            "x1": 104.634531,
+            "top": 259.537484252,
+            "bottom": 263.78945225200005,
+            "width": 4.251967999999991,
+            "height": 4.251968,
+            "linewidth": 0.25,
+            "stroke": true,
+            "fill": true,
+            "stroking_color": 0.4666666667,
+            "non_stroking_color": [
+              0.9450980392,
+              0.7176470588,
+              0.4431372549
+            ]
+          },
+          {
+            "object_type": "curve",
+            "x0": 161.4912,
+            "x1": 165.743168,
+            "top": 259.537484252,
+            "bottom": 263.78945225200005,
+            "width": 4.251968000000005,
+            "height": 4.251968,
+            "linewidth": 0.25,
+            "stroke": true,
+            "fill": true,
+            "stroking_color": 0.4666666667,
+            "non_stroking_color": [
+              0.5058823529,
+              0.6745098039,
+              0.9019607843
+            ]
+          }
+        ],
+        "baseline_proxy_path": "Development repository evidence: evals/reproduce-inputs/new-family-visual-review/paired-pdf-96dpi.png",
+        "baseline_png_pdf_sha256": {
+          "png": "8dc155b52e6e156625bd72c63d716cb454fa898a0fa234e833a70b156605fa88",
+          "pdf": "e553ce04e7b71ecfd03b5350a71bf8eb7604c874ae0e1eaae73eda02a894051e"
+        },
+        "inspection": "Opened current original PNG and new 96 dpi PDF proxy. Reopened the preserved earlier 96 dpi PDF proxy for the limited legend refinement comparison."
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[105.00000000000334, 96.00000000001111] mm, independently read from the final PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "Final pdffonts output reports embedded ArialMT. All ordinary text commands use 8 pt, with 5.6 pt power-of-ten exponents."
+        },
+        {
+          "name": "PNG dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1240, 1134], 'dpi_metadata': [299.9994, 299.9994]}; correct rounded 300 dpi export."
+        },
+        {
+          "name": "current original PNG and final-size PDF proxy",
+          "status": "passed",
+          "evidence": "Both opened. 96 dpi proxy [397, 363] pixels. Data, guides and labels remain readable within intended proportions."
+        }
+      ],
+      "resolved_findings": [
+        {
+          "original_severity": "minor",
+          "location": "bottom categorical legend",
+          "evidence": "Current original PNG shows the same thin gray edge on each legend circle as on plotted circles. Independent PDF object inspection reports stroke=True, fill=True, linewidth=0.25 pt and gray 119/255 (#777777) on both legend keys.",
+          "requirement": "The adopted paired filled-circle outline policy must also be carried by matching categorical proxies.",
+          "action": "Resolved; no further correction requested."
+        }
+      ],
+      "refinement_preference": {
+        "choice": "candidate",
+        "evidence": "The candidate aligns the guide outline with the visible data marks. At the final-size proxy the overall distributions, summary visibility, cohort order, legend footprint and connector reading remain effectively unchanged. This is a limited style-consistency preference."
+      }
+    },
+    {
+      "case": "paired-connectors",
+      "status": "ready_with_notes",
+      "mapping": "A separate create view adds thin low-opacity within-participant segments to jittered orange and blue points; black median/Q1\u2013Q3 summaries stay prominent.",
+      "visual_evidence": "At 397\u00d7363 the orange and blue connector bands visibly encode the predominant upward change. Crossings make exact single-participant path lookup difficult, as expected for 127 participants; this does not conceal the four distributions or summary strokes. The point/guide layout matches the unconnected panel.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "connector layer and caption",
+          "evidence": "Connecting segments are absent from the supplied paper crop. The new adopted brief and caption explicitly identify them as an added paired view and explain crossings.",
+          "requirement": "Distinguish a new layer from observed reference features.",
+          "action": "Use the connector-specific caption paragraph and describe this as a separate paired create view."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "output-connectors/panel.png",
+        "candidate_pdf": "output-connectors/panel.pdf",
+        "sha256": {
+          "png": "2b97507aa6bcfaa6c156179afdb1857db3ce60344c4eda917a35dc0fbea5a79f",
+          "pdf": "3bb59b8d9676dbcab60bc357a09afadb741b40e4ea311c4ac12d2fabeb2de0aa"
+        },
+        "page_mm": [
+          105.00000000000334,
+          96.00000000001111
+        ],
+        "font_command_counts_pt": {
+          "8.0": 10,
+          "5.6": 3
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGDMTZR+ArialMT                       CID TrueType      Identity-H       yes yes yes     19  0\n",
+        "png": {
+          "pixels": [
+            1240,
+            1134
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          397,
+          363
+        ],
+        "proxy_path": "Development repository evidence: evals/reproduce-inputs/new-family-visual-review/final-paired-connectors-pdf-96dpi.png",
+        "legend_objects_independently_read_from_pdf": [
+          {
+            "object_type": "curve",
+            "x0": 100.382563,
+            "x1": 104.634531,
+            "top": 259.537484252,
+            "bottom": 263.78945225200005,
+            "width": 4.251967999999991,
+            "height": 4.251968,
+            "linewidth": 0.25,
+            "stroke": true,
+            "fill": true,
+            "stroking_color": 0.4666666667,
+            "non_stroking_color": [
+              0.9450980392,
+              0.7176470588,
+              0.4431372549
+            ]
+          },
+          {
+            "object_type": "curve",
+            "x0": 161.4912,
+            "x1": 165.743168,
+            "top": 259.537484252,
+            "bottom": 263.78945225200005,
+            "width": 4.251968000000005,
+            "height": 4.251968,
+            "linewidth": 0.25,
+            "stroke": true,
+            "fill": true,
+            "stroking_color": 0.4666666667,
+            "non_stroking_color": [
+              0.5058823529,
+              0.6745098039,
+              0.9019607843
+            ]
+          }
+        ],
+        "baseline_proxy_path": "Development repository evidence: evals/reproduce-inputs/new-family-visual-review/paired-connectors-pdf-96dpi.png",
+        "baseline_png_pdf_sha256": {
+          "png": "2c871e67170eae09eeaf65d4ef5962ecf840bd05b10eef9606d950c1322739e0",
+          "pdf": "36e6dcb0ce108f11ad1908b6592a0cbdbbaa6c6925399937216321333db78a14"
+        },
+        "inspection": "Opened current original PNG and new 96 dpi PDF proxy. Reopened the preserved earlier 96 dpi PDF proxy for the limited legend refinement comparison."
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[105.00000000000334, 96.00000000001111] mm, independently read from the final PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "Final pdffonts output reports embedded ArialMT. All ordinary text commands use 8 pt, with 5.6 pt power-of-ten exponents."
+        },
+        {
+          "name": "PNG dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1240, 1134], 'dpi_metadata': [299.9994, 299.9994]}; correct rounded 300 dpi export."
+        },
+        {
+          "name": "current original PNG and final-size PDF proxy",
+          "status": "passed",
+          "evidence": "Both opened. 96 dpi proxy [397, 363] pixels. Data, guides and labels remain readable within intended proportions."
+        }
+      ],
+      "resolved_findings": [
+        {
+          "original_severity": "minor",
+          "location": "bottom categorical legend",
+          "evidence": "Current original PNG shows the same thin gray edge on each legend circle as on plotted circles. Independent PDF object inspection reports stroke=True, fill=True, linewidth=0.25 pt and gray 119/255 (#777777) on both legend keys.",
+          "requirement": "The adopted paired filled-circle outline policy must also be carried by matching categorical proxies.",
+          "action": "Resolved; no further correction requested."
+        }
+      ],
+      "refinement_preference": {
+        "choice": "candidate",
+        "evidence": "The candidate aligns the guide outline with the visible data marks. At the final-size proxy the overall distributions, summary visibility, cohort order, legend footprint and connector reading remain effectively unchanged. This is a limited style-consistency preference."
+      }
+    }
+  ],
+  "adopted_inputs_sha256": [
+    {
+      "path": "spec.json",
+      "sha256": "de7383d7f9d31d69b7acca459f08f74b3cc455cb7fa4e407f01a5dbdb98af39f"
+    },
+    {
+      "path": "adopted-spec.md",
+      "sha256": "8b84325073b73725fe2b6dfb31970925741bb656ae790001cfe49949c2c3e02d"
+    },
+    {
+      "path": "caption.md",
+      "sha256": "e4d9a37b010d76982c89a828dc5ddeca5e56a7f3f8712ffdc41976337c653efe"
+    },
+    {
+      "path": "connectors-spec.json",
+      "sha256": "e4b0766ef262f41d5956693d199ccdf1bffcb6972d1ffeff811ef16a651fb829"
+    }
+  ],
+  "unresolved_items": []
+}

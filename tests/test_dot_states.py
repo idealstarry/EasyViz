@@ -8,6 +8,7 @@ import unittest
 
 import numpy as np
 import pandas as pd
+from marker_geometry import collection_fill_areas_pt2
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'skills/easyviz/scripts/render.py'
 loader = importlib.util.spec_from_file_location('easyviz_dot_states_test', SCRIPT)
@@ -46,12 +47,15 @@ class DotStateTests(unittest.TestCase):
         self.assertEqual(len(plotted),5)
         self.assertEqual(plotted.loc[3,'_easyviz_area_pt2'],'')
         np.testing.assert_allclose(pd.to_numeric(plotted.loc[[0,1,2,4],'_easyviz_area_pt2']),[90,0,.0009,18])
+        np.testing.assert_allclose(pd.to_numeric(plotted.loc[[0,1,2,4],'_easyviz_marker_size_parameter_pt2']),np.array([90,0,.0009,18])*4/np.pi)
         self.assertEqual(self.input.read_text(),self.body)
         data=renderer.prepare(self.input,self.spec)
         layout,typography,rc=renderer.setup(self.spec)
         with renderer.plt.rc_context(rc):
             fig,_=renderer.draw(data,self.spec,layout,typography,{'method':'none'})
-            np.testing.assert_allclose(fig.axes[0].collections[0].get_sizes(),[90,0,.0009,18])
+            np.testing.assert_allclose(collection_fill_areas_pt2(fig.axes[0].collections[0],fig),[90,0,.0009,18],rtol=1e-6,atol=1e-12)
+            keys=next(entry for entry in fig._easyviz_legend_layout.entries if entry['kind']=='size')
+            np.testing.assert_allclose([collection_fill_areas_pt2(handle,fig)[0] for handle in keys['artist'].legend_handles],[22.5,45,90],rtol=1e-6)
             self.assertEqual(len(fig.axes[0].collections[0].get_offsets()),4)
             self.assertEqual(len(fig.axes[0].collections),5)
 

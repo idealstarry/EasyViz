@@ -1,0 +1,45 @@
+{
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.2,
+      "right": 0.77,
+      "bottom": 0.2,
+      "top": 0.91
+    }
+  },
+  "formats": [
+    "pdf",
+    "png",
+    "svg",
+    "tiff"
+  ],
+  "palette": "somerville-bright",
+  "seed": 417,
+  "chart": "composition",
+  "fields": {
+    "sample": "sample",
+    "category": "cell_type",
+    "value": "count"
+  },
+  "options": {
+    "normalization": "sample_sum",
+    "percent_axis": true
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Composition (%)"
+  },
+  "order": {
+    "category": [
+      "Type A",
+      "Type B",
+      "Type C"
+    ]
+  }
+}

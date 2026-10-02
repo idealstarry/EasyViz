@@ -1,0 +1,343 @@
+{
+  "schema_version": 2,
+  "review_scope": "Independent rendered-image visual review and direct export inspection only.",
+  "status": "ready_with_notes",
+  "review_method": {
+    "opened_original_pngs": true,
+    "opened_reference_images": true,
+    "pdf_proxy_dpi": 96,
+    "implementation_code_read": false,
+    "renderer_qa_used": false,
+    "source_numerical_records_used": false,
+    "browsing_used": false,
+    "earlier_candidate_images_used": true,
+    "final_refinement_original_pngs_opened": [
+      "ecdf",
+      "paired",
+      "paired-connectors"
+    ],
+    "final_refinement_pdf_proxies_opened": [
+      "ecdf",
+      "paired",
+      "paired-connectors"
+    ],
+    "baseline_proxy_comparisons_opened": true,
+    "current_truong_png_pdf_hashes_verified_against_prior": true,
+    "earlier_candidate_images_scope": "Only the preserved 96 dpi proxies from the initial independent image review, for the three requested final legend revisions."
+  },
+  "external_checks": [
+    {
+      "name": "source numerical coverage and calculated statistics",
+      "status": "not_checked",
+      "evidence": "Intentionally excluded from this independent visual review. No source data, plotting code, renderer QA, or statistical check records were used."
+    },
+    {
+      "name": "printed copy or journal acceptance",
+      "status": "not_checked",
+      "evidence": "96 dpi PDF renders are final-size screen proxies; they are not print proof or journal assessment."
+    },
+    {
+      "name": "baseline refinement preference",
+      "status": "passed",
+      "evidence": "Preserved baseline and new candidate 96 dpi PDF proxies were opened at equal final size for ECDF and both paired views. Preference is candidate for limited legend reading/style consistency; no overall aesthetic improvement is claimed."
+    }
+  ],
+  "ready_scope_note": "This status concerns the inspected supplied panels and export properties only. It does not establish print proof, journal acceptance, broad aesthetic improvement beyond the limited legend comparison, or performance on other datasets.",
+  "review_pass": 2,
+  "packaging_note": "Case-specific records extracted by the main agent from the independent final review. Reviewer findings and candidate hashes are unchanged. Development-only paths identify evidence retained outside this portable case.",
+  "independent_full_review": {
+    "path": "evals/reproduce-inputs/new-family-visual-review/final-review.json",
+    "sha256": "5afb4174f02e40c2b31d7a59830e39b5f2d2a8fa23323efcf1f63cb98f072112"
+  },
+  "cases": [
+    {
+      "case": "components",
+      "status": "ready_with_notes",
+      "mapping": "Seven conditions, HDR rose at the base, peach both-signal in the middle, green mutEJ on top. Dark raw total dots and one total-SD stroke sit around each stack top.",
+      "visual_evidence": "Rose/peach/green segments are distinguishable together; the thin SD strokes and dark dots stay visible above the fills. The one-row top component guide occupies about one third of the data-region width and a small shallow band. All seven rotated labels remain readable in the 567\u00d7378 proxy. The two near-zero controls are visible as three dark dots close to zero, but their tiny component contributions cannot be visually compared on the common scale.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "control totals and separate caption",
+          "evidence": "The common 0\u201360% reading scale makes the two control stacks extremely short. Their raw total dots remain visible, and the caption explicitly identifies near-zero controls.",
+          "requirement": "Keep all conditions and preserve the scientific scale without inventing a reference appearance.",
+          "action": "Retain the common scale and the supplied control explanation in the caption."
+        },
+        {
+          "severity": "note",
+          "location": "reference adaptation",
+          "evidence": "The paper crop combines colored stacks and gray ratio bars on dual axes. This candidate splits the axes and adds total points and total SD, rather than copying the uncertain component-boundary intervals or unverified stars.",
+          "requirement": "Respect the disclosed create adaptation and distinguish total uncertainty from component uncertainty.",
+          "action": "Keep the explicit total-SD caption with this panel."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "output-components/panel.png",
+        "candidate_pdf": "output-components/panel.pdf",
+        "sha256": {
+          "png": "e0dd7e35052639b10e932bf95a965879e0d82ad908e480ebc13a3d1261b03e78",
+          "pdf": "2d759902195aa56b8e6398a82155774d628f7807355c3fbab8ec2402100951c7"
+        },
+        "page_mm": [
+          149.99999999999972,
+          99.99999999998805
+        ],
+        "font_command_counts_pt": {
+          "8.0": 18
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nBAVPWO+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            1772,
+            1181
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          567,
+          378
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "No donor/Cas9\nNTC DMSO\nNU-7441 (1 \u00b5M)\nKU-0060548 (0.25 \u00b5M)\nL755507 (5 \u00b5M)\nSCR7 pyrazine (1 \u00b5M)\n0\n10\n20\n30\n40\n50\n60Cells (%)\nHDR HDR and mutEJ mutEJ",
+        "current_hash_equal_to_prior_review": true,
+        "inspection": "Current PNG and PDF are independently byte-identical to the original candidates opened in review.json. The original visual/export findings remain applicable."
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[149.99999999999972, 99.99999999998805] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1772, 1181], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [567, 378]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        },
+        {
+          "name": "current PNG/PDF identity",
+          "status": "passed",
+          "evidence": "Both current SHA-256 values equal those in the original independent review; visual/export evidence carries forward without relying on a renderer claim."
+        }
+      ],
+      "resolved_findings": [],
+      "refinement_preference": {
+        "choice": "no_clear_preference",
+        "evidence": "Current PNG/PDF bytes are identical to the earlier reviewed pair; no image refinement exists to compare."
+      }
+    },
+    {
+      "case": "ratios",
+      "status": "ready_with_notes",
+      "mapping": "Seven conditions on a single HDR/mutEJ ratio axis, gray means with dark raw dots and SD strokes; the first two control bars are diagonally hatched and mapped to Low-event control in the top guide.",
+      "visual_evidence": "The current axis reads HDR/mutEJ ratio. Hatching identifies the controls clearly at the 567\u00d7378 proxy, with raw points visible above/on their bars. Informative treatment bars use calm gray fills, dark points and readable strokes. The complete two-entry guide is about one third of the data-region width; it remains a shallow band above the data. Long rotated source-spelled compound labels fit.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "low-event controls and ratio caption",
+          "evidence": "Both control values remain visible even though the supplied source caveat labels their ratios uninformative due to low fluorescence event counts. The separate caption explains this explicitly.",
+          "requirement": "Retain source values and communicate the state without adding prose inside the panel.",
+          "action": "Keep the supplied caption and the hatched state guide."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "output-ratios/panel.png",
+        "candidate_pdf": "output-ratios/panel.pdf",
+        "sha256": {
+          "png": "c5f06b1b51fa4f582b66426460ef70cc8c29ab8ed6b9a665c5b5b206350ab70e",
+          "pdf": "2a29ba4da92395a47ccbdd5f48e019879db136aa9cafb055ec3e2cd56075c689"
+        },
+        "page_mm": [
+          149.99999999999972,
+          99.99999999998805
+        ],
+        "font_command_counts_pt": {
+          "8.0": 15
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGICFLR+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            1772,
+            1181
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          567,
+          378
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "No donor/Cas9\nNTC DMSO\nNU-7441 (1 \u00b5M)\nKU-0060548 (0.25 \u00b5M)\nL755507 (5 \u00b5M)\nSCR7 pyrazine (1 \u00b5M)\n0\n0.5\n1\n1.5\n2\nHDR/mutEJ ratio\nInformative Low-event control",
+        "current_hash_equal_to_prior_review": true,
+        "inspection": "Current PNG and PDF are independently byte-identical to the original candidates opened in review.json. The original visual/export findings remain applicable."
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[149.99999999999972, 99.99999999998805] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [1772, 1181], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [567, 378]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        },
+        {
+          "name": "current PNG/PDF identity",
+          "status": "passed",
+          "evidence": "Both current SHA-256 values equal those in the original independent review; visual/export evidence carries forward without relying on a renderer claim."
+        }
+      ],
+      "resolved_findings": [],
+      "refinement_preference": {
+        "choice": "no_clear_preference",
+        "evidence": "Current PNG/PDF bytes are identical to the earlier reviewed pair; no image refinement exists to compare."
+      }
+    },
+    {
+      "case": "grouped",
+      "status": "ready_with_notes",
+      "mapping": "Seven conditions with three side-by-side component colors and their raw component dots/SD strokes; this is an alternative create view rather than a published extra panel.",
+      "visual_evidence": "At 662\u00d7378 the three colors are distinct and the 4 pt\u00b2 dots are small but distinguishable, including the near-zero control rows. Component-specific intervals remain adjacent to their component means. The wider 175 mm canvas keeps all rotated labels readable. The full three-entry guide is about 28% of the data-region width and remains subordinate to the data.",
+      "findings": [
+        {
+          "severity": "note",
+          "location": "point-size brief, resolved during this review",
+          "evidence": "The initially supplied adopted wording declared 7 pt\u00b2 for all raw points, while grouped-spec.json declared 4 pt\u00b2 and the grouped marks were visibly smaller. The current adopted wording explicitly states 7 pt\u00b2 for stack/ratio and 4 pt\u00b2 for the denser grouped alternative. Output PNG/PDF hashes were checked again and remain unchanged.",
+          "requirement": "The adopted specification and candidate must agree about physical mark sizes.",
+          "action": "Resolved by the explicit grouped exception in the current adopted brief; retain that exception with the portable example."
+        }
+      ],
+      "candidate": {
+        "candidate_png": "output-grouped/panel.png",
+        "candidate_pdf": "output-grouped/panel.pdf",
+        "sha256": {
+          "png": "fbe198903517f2ec046993f4c0e8bdf6e71272d8841a61ef5ba0b38c61b40aaa",
+          "pdf": "adb1cd04b87d607b9e9ad7a9b074e97a6907f21a1ea9bf02ddb919f214e03e6f"
+        },
+        "page_mm": [
+          175.00000000000554,
+          99.99999999998805
+        ],
+        "font_command_counts_pt": {
+          "8.0": 17
+        },
+        "embedded_font_evidence": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nBAVPWO+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0\n",
+        "png": {
+          "pixels": [
+            2067,
+            1181
+          ],
+          "dpi_metadata": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "proxy_pdf_pixels_at_96dpi": [
+          662,
+          378
+        ],
+        "marker_form_bounds": [],
+        "pdf_text": "No donor/Cas9\nNTC DMSO\nNU-7441 (1 \u00b5M)\nKU-0060548 (0.25 \u00b5M)\nL755507 (5 \u00b5M)\nSCR7 pyrazine (1 \u00b5M)\n0\n10\n20\n30\n40\n50Cells (%)\nHDR HDR and mutEJ mutEJ",
+        "current_hash_equal_to_prior_review": true,
+        "inspection": "Current PNG and PDF are independently byte-identical to the original candidates opened in review.json. The original visual/export findings remain applicable."
+      },
+      "export_checks": [
+        {
+          "name": "physical PDF dimensions",
+          "status": "passed",
+          "evidence": "[175.00000000000554, 99.99999999998805] mm, independently read from PDF MediaBox; matches the adopted dimensions."
+        },
+        {
+          "name": "embedded typeface and font sizes",
+          "status": "passed",
+          "evidence": "pdffonts reports embedded ArialMT. PDF text commands use 8 pt; logarithmic power-of-ten exponents additionally use 5.6 pt where applicable."
+        },
+        {
+          "name": "PNG export dimensions and density",
+          "status": "passed",
+          "evidence": "{'pixels': [2067, 1181], 'dpi_metadata': [299.9994, 299.9994]}; pixel dimensions reflect rounded 300 dpi output."
+        },
+        {
+          "name": "actual PNG and 96 dpi PDF proxy inspection",
+          "status": "passed",
+          "evidence": "Both candidates were opened. Proxy dimensions [662, 378]. No clipped text, missing glyphs, extraneous titles, panel letters, standalone counts or explanatory footnotes were observed."
+        },
+        {
+          "name": "current PNG/PDF identity",
+          "status": "passed",
+          "evidence": "Both current SHA-256 values equal those in the original independent review; visual/export evidence carries forward without relying on a renderer claim."
+        }
+      ],
+      "resolved_findings": [],
+      "refinement_preference": {
+        "choice": "no_clear_preference",
+        "evidence": "Current PNG/PDF bytes are identical to the earlier reviewed pair; no image refinement exists to compare."
+      }
+    }
+  ],
+  "adopted_inputs_sha256": [
+    {
+      "path": "adopted-spec.md",
+      "sha256": "ac9f1e831b97d3fcfd9e575f1c9d85d988657b20b11553db6a1303cae698b699"
+    },
+    {
+      "path": "components-spec.json",
+      "sha256": "8ba6917b523e8c5aa8739d7ead9f609704c7b2df64291ad49f51fb0802543d36"
+    },
+    {
+      "path": "ratios-spec.json",
+      "sha256": "405ecac9703b03ae1c677ec8d809845cc92363be2005dfa8b2564f9c40d39d68"
+    },
+    {
+      "path": "grouped-spec.json",
+      "sha256": "bbf7b44e864df3b5866596f17373a2be56f4ee3578e1afd2b821f0093f7509d4"
+    },
+    {
+      "path": "caption-components.md",
+      "sha256": "f2e441e8e48e6108865a790943c7148b2dd8184b3989b0637fcdd3155a6ea942"
+    },
+    {
+      "path": "caption-ratios.md",
+      "sha256": "40ae619ac9f8f8bc21c29527db5600c2dbb5c1b84d31cec7e62c479e41299b55"
+    },
+    {
+      "path": "caption-grouped.md",
+      "sha256": "8286fbbc2b61cee6ffc40df926d69aae4efbba485bb4f1136b46f78b7ba0d5ad"
+    },
+    {
+      "path": "reference.png",
+      "sha256": "de799d0c5762e7edb6f5f7852388922d3c32348666d7ab87fcc2f42f430b50b4"
+    },
+    {
+      "path": "reference-reading.md",
+      "sha256": "308427289d6ec8b845602aab1578377e09015235d672fae343844ceb0bae3955"
+    }
+  ],
+  "unresolved_items": []
+}

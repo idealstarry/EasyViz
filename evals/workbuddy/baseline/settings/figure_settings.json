@@ -1,0 +1,152 @@
+{
+  "input": "prepared.csv",
+  "outputs": [
+    "output/panel.pdf",
+    "output/panel.svg",
+    "output/panel.png"
+  ],
+  "canvas": {
+    "width_mm": 120.0,
+    "height_mm": 90.0,
+    "width_in": 4.724409448818897,
+    "height_in": 3.543307086614173,
+    "dpi": 300,
+    "png_px": [
+      1417,
+      1063
+    ],
+    "bbox_inches": null,
+    "clear_canvas_mm_measured": {
+      "left": 1.9999999999999987,
+      "right": 2.2380772569444645,
+      "top": 2.200000000000003,
+      "bottom": 2.0972656250000004
+    }
+  },
+  "fonts": {
+    "family": "Arial",
+    "resolved_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "size_pt": 8.0,
+    "pdf_fonttype": 42,
+    "svg_fonttype": "none"
+  },
+  "scale_mapping": {
+    "variable": "Detected fraction",
+    "channel": "marker area",
+    "range": [
+      0.0,
+      1.0
+    ],
+    "shared_scale_across_all_panels_and_rows": true,
+    "linear_in_area": true,
+    "radius_used_as_mapping_variable": false,
+    "scatter_size_argument_at_fraction_1_pt2": 251.98437596875195,
+    "diameter_of_fraction_1_mm": 5.6,
+    "formula": "matplotlib scatter(s) takes the square of the marker diameter in points: s_pt2 = fraction * (D_MAX_mm * 72/25.4)^2 ; drawn diameter d_mm = sqrt(fraction) * D_MAX_mm ; drawn geometric area = pi/4 * d_mm^2, i.e. linear in fraction",
+    "reference_diameters_mm": {
+      "0.25": 2.8,
+      "0.50": 3.9598,
+      "0.75": 4.8497,
+      "0.85": 5.1629,
+      "1.00": 5.6
+    },
+    "reference_radii_mm": {
+      "0.25": 1.4,
+      "0.50": 1.9799,
+      "0.75": 2.4249,
+      "0.85": 2.5815,
+      "1.00": 2.8
+    }
+  },
+  "colour_mapping": {
+    "variable": "Prepared score",
+    "channel": "marker fill",
+    "colormap": "viridis",
+    "vmin": -0.22,
+    "vmax": 1.66,
+    "normalisation": "linear, data minimum to data maximum",
+    "colourbar_ticks": [
+      0.0,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "dot_edge_color": "#3a3a3a",
+    "dot_edge_width_pt": 0.22
+  },
+  "zero_marking": {
+    "rule": "Detected fraction == 0 -> marker area exactly 0",
+    "symbol": "x",
+    "size_pt2": 25.0,
+    "linewidth_pt": 0.5,
+    "colour": "#8c8c8c",
+    "n_zero_points": 2,
+    "rows": [
+      {
+        "Cell type": "Resident macrophages",
+        "Treatment arm": "Control"
+      },
+      {
+        "Cell type": "Cycling myeloid cells",
+        "Treatment arm": "Low dose"
+      }
+    ]
+  },
+  "axes": {
+    "x_title": "Treatment arm",
+    "y_title": "Cell type",
+    "x_order": [
+      "Control",
+      "Low dose",
+      "High dose"
+    ],
+    "y_order": [
+      "Resident macrophages",
+      "Activated monocytes",
+      "Interferon macrophages",
+      "Lipid-associated cells",
+      "Antigen-presenting cells",
+      "Cycling myeloid cells",
+      "Inflammatory macrophages",
+      "Tissue monocytes"
+    ],
+    "spine_colour": "#4d4d4d",
+    "spine_width_pt": 0.5,
+    "tick_length_pt": 1.8,
+    "tick_pad_pt": 1.5,
+    "axis_label_pad_pt": 2.0,
+    "grid": false,
+    "main_axes_rect_mm_lbwh": [
+      39.962,
+      9.264,
+      64.472,
+      66.536
+    ],
+    "row_pitch_mm": 8.317,
+    "column_pitch_mm": 21.491,
+    "colourbar_gap_mm": 1.5,
+    "colourbar_width_mm": 3.5,
+    "size_legend_height_mm": 10.0
+  },
+  "rendered_marker_extremes": {
+    "smallest_nonzero": {
+      "fraction": 0.05,
+      "diameter_mm": 1.2522
+    },
+    "largest": {
+      "fraction": 0.85,
+      "diameter_mm": 5.1629
+    }
+  },
+  "text_in_image": [
+    "axis titles: Treatment arm / Cell type",
+    "tick labels: the input categories",
+    "size legend title: Detected fraction",
+    "colour bar title: Prepared score"
+  ],
+  "excluded_by_request": [
+    "figure title",
+    "subtitle",
+    "explanatory footnote"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "chart": "dotplot",
+  "fields": {
+    "x": "Treatment arm",
+    "y": "Cell type",
+    "size": "Detected fraction",
+    "color": "Prepared score"
+  },
+  "layout": {
+    "auto_fit": true,
+    "width_mm": 120.0,
+    "height_mm": 90.0,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300
+  },
+  "order": {
+    "x": [
+      "Control",
+      "Low dose",
+      "High dose"
+    ],
+    "y": [
+      "Resident macrophages",
+      "Activated monocytes",
+      "Interferon macrophages",
+      "Lipid-associated cells",
+      "Antigen-presenting cells",
+      "Cycling myeloid cells",
+      "Inflammatory macrophages",
+      "Tissue monocytes"
+    ]
+  },
+  "labels": {
+    "x": "",
+    "y": "",
+    "size": "Detected fraction",
+    "color": "Prepared score"
+  },
+  "colormap": "notch2-blue",
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "options": {
+    "size_max": 1,
+    "max_area_pt2": 90,
+    "size_legend": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "color_limits": [
+      -0.22,
+      1.66
+    ],
+    "x_rotation": 0,
+    "state_markers": true,
+    "missing_cells": "error",
+    "grid": true
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "status": "pass",
+  "runs": [
+    {
+      "command": "PYTHONPATH=tests .venv/bin/python -m unittest tests.test_auto_layout tests.test_legend_layout -v",
+      "tests": 23,
+      "seconds": 22.629,
+      "result": "pass",
+      "scope": "Includes 13 auto-layout regressions and 10 existing physical/export legend tests."
+    },
+    {
+      "command": "PYTHONPATH=tests .venv/bin/python -m unittest tests.test_interval_plot -v",
+      "tests": 12,
+      "seconds": 7.067,
+      "result": "pass"
+    },
+    {
+      "command": "PYTHONPATH=tests .venv/bin/python -m unittest tests.test_auto_layout.AutoLayoutTests.test_multiple_colorbars_stack_complete_envelopes_and_leave_no_trial_axes -v",
+      "tests": 1,
+      "seconds": 0.764,
+      "result": "pass",
+      "scope": "Added subsequently: top/bottom complete-envelope colorbar stacks, physical PNG/SVG export, fixed ranges/ticks/lengths, no surviving trial axes."
+    }
+  ],
+  "total_checks": 36,
+  "whitespace_check": "git diff --check passed",
+  "portable_replay": "portable-replay-validation.json",
+  "legacy_pixels": "legacy-custom-case-pixels.json",
+  "scope": "Focused validation only. Root performs full suite, package rebuild and extracted package checks."
+}

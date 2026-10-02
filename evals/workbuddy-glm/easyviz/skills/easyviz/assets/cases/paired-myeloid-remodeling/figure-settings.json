@@ -1,0 +1,43 @@
+{
+  "width_mm": 180,
+  "height_mm": 125,
+  "font": "Arial",
+  "font_size_pt": 8,
+  "dpi": 300,
+  "cohort_order": [
+    "Petrus",
+    "Kerr"
+  ],
+  "cohort_colors": {
+    "Petrus": "#2581B9",
+    "Kerr": "#DF9A3C"
+  },
+  "change_xlim": [
+    -12,
+    8
+  ],
+  "change_ticks": [
+    -12,
+    -8,
+    -4,
+    0,
+    4,
+    8
+  ],
+  "matrix_limits": [
+    -12,
+    12
+  ],
+  "matrix_colors": [
+    "#2581B9",
+    "#F7F8F9",
+    "#CC86B9"
+  ],
+  "order": "Display groups from published subtype annotations; within-group source subtype order. Participants sorted by median change across the selected myeloid subtypes within each cohort; ties broken by participant ID.",
+  "statistics": "Paired year-2 minus baseline score; linear sample quartiles and median; proportion of complete paired differences strictly below zero. No confidence intervals or significance tests.",
+  "marks": {
+    "filled_edges": "none",
+    "line_width_pt": 0.6
+  },
+  "selection": "All 16 Myeloid_* source columns, all matched subjects at the requested time points."
+}

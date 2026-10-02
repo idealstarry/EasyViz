@@ -1,0 +1,127 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "score"
+  },
+  "options": {
+    "orientation": "horizontal"
+  },
+  "labels": {
+    "x": "Prepared score (a.u.)"
+  },
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 70.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.38560732323232333,
+      "right": 0.9772727272727275,
+      "bottom": 0.15968191964285713,
+      "top": 0.9714285714285714
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Resident macrophages": "#29ACF3",
+    "Activated monocytes": "#E47751",
+    "Interferon macrophages": "#007F7F",
+    "Antigen-presenting cells": "#A37FFF"
+  },
+  "seed": 0,
+  "input_file": "source.csv",
+  "input_sha256": "889d3bf0c0163ae800e0019e65d514562b443919ceea21af1ccb9c4519729eec",
+  "renderer": {
+    "version": "0.2.0",
+    "sha256": "049621a8532f4bbab179feeafdad1ede0b8df089281ce7647ac9142938883997",
+    "legend_helper_sha256": "83c76034262b77450e95e363df4bb50ebab41971f3281d26cec7cfe7901695c1",
+    "profile_helper_sha256": "8d5015e699a2b25a9e200707c2670cf5c9fb1535614eba33558e2066f3875a14",
+    "auto_layout_helper_sha256": "3d9905cc9f4fc64b762f8803a53d7fb60833403d0cc1a2624821455a21a6de61",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.38560732323232333,
+      "right": 0.9772727272727275,
+      "bottom": 0.15968191964285713,
+      "top": 0.9714285714285714
+    },
+    "data_region_mm": [
+      33.93344444444445,
+      11.177734375,
+      52.06655555555557,
+      56.82226562500001
+    ],
+    "data_area_fraction": 0.48028241070724004,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.48028241070724004
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

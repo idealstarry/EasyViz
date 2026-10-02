@@ -1,0 +1,20 @@
+# WorkBuddy matched-task pilot
+
+Run date: 2026-10-02, Asia/Shanghai. Local WorkBuddy displayed version 5.6.2 and model label **Deepseek-V4.1-Flash**. The backend model identity was not independently verified. Two new tasks used the same local Python environment, identical 24-row synthetic CSV, identical scientific and export requirements, and at most two model-directed visual revisions. One task wrote its own code; the other received a frozen EasyViz skill snapshot. Outputs were frozen after both UI task states showed completion; no evaluator repairs were applied to either arm.
+
+## Shared request
+
+> Draw a manuscript dot plot with Treatment arm on x and Cell type on y, retaining first-occurrence category order. Circle area represents Detected fraction on a common 0–1 scale; color represents Prepared score. Preserve all 24 rows, including two measured zeros with zero quantitative area; a separate decoded nonquantitative zero glyph is allowed. These are synthetic prepared descriptive quantities with no independent replicate information: do not test, impute, aggregate or filter. Use a 120 × 90 mm canvas, Arial 8 pt, 300 dpi, without titles, subtitles or explanatory in-image footnotes. Save an English caption explaining synthetic data and unknown denominator/score construction. Export PDF, SVG with editable text, and PNG, retaining the whole canvas. Save runnable code, plotting data, actual settings and real checks. Execute and inspect PNG or PDF, allow up to two evidence-based visual revisions, and record unchecked issues. Write only the assigned folder; do not use network, paid APIs or other agents.
+
+Both Chinese requests additionally supplied `/Users/starry/Desktop/EasyViz/.venv/bin/python` as the available scientific runtime. The baseline was instructed to read only its input folder and that runtime, and to avoid EasyViz scripts/skills and other test outputs. The EasyViz task was instructed to read its local `skills/easyviz/SKILL.md` and necessary resources, and to avoid other test outputs or historical conclusions. The submitted requests and task summaries were observed through WorkBuddy's native accessibility UI; this paraphrase omits only folder-specific wording. `ui-observations.json` retains displayed titles, completion times and consumption values.
+
+## Evidence and limits
+
+- Input SHA-256: `6735e7fba407c55d9f28045d0d59efedfbf8dabfad378b683ac413cd7fb4b322`. Both arms received identical bytes. The EasyViz snapshot preceded this run's later physical-area and scatter extensions; it is preserved unchanged under `easyviz/skills/`.
+- Access restrictions were instructions, not an enforced operating-system sandbox. Global app memory, hidden prompts, sampling settings and backend routing were not controlled. Both tasks were in the same logged-in app session. This is one paired pilot, not a randomized model benchmark.
+- An older English `request-source.md` was briefly accessible in both input folders and removed before the EasyViz submission. The baseline task had already started. Observed initial baseline reads were of `prepared.csv`; complete hidden-access exclusion cannot be asserted.
+- Completion UI displayed baseline 9m3s / 14.46 and EasyViz 3m30s / 6.09. Consumption units were unspecified; these are not verified currency, token counts or API costs. Visual-revision counts are model-reported.
+- `freeze-manifest.json` records original artifact hashes. The independent numeric audit examines actual exports and reruns in temporary folders. The blind visual reviewer receives only anonymous A/B exports and captions, without code, arm identities or prior conclusions. A = EasyViz; B = direct code. Identity was withheld until its review was saved.
+- A preference for one panel in this task does not prove general novice benefit, other domestic-model capability, or acceptance by any journal. Numerical checks, visual judgments, runtime convenience and scientific validity are separate findings.
+
+The frozen outputs contain task-specific absolute runtime paths. They are evidence, not portable plugin assets or recommended user scripts. New generic helper behavior is validated separately.
