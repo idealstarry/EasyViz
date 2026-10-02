@@ -159,9 +159,28 @@ and write new plotting code for any layers the recipes do not cover.
 Export PDF, SVG and PNG, with a separate caption.
 ```
 
-In either track, ask the Agent to open the [local figure workbench](skills/easyviz/references/figure-workbench.md). Select a layer or canvas region and save a request such as “Move this legend 2 mm right; keep 8 pt text.” The page saves the figure version with the request. The Agent then edits the specification or plotting code and rerenders every requested format into a new attempt for review.
+In either track, ask the Agent to open the [local figure workbench](skills/easyviz/references/figure-workbench.md). Select a layer, a whole mapped category, or a canvas region and save a request such as “Make every Control mark and its legend purple” or “Move this legend 2 mm right; keep 8 pt text.” Requests retain the figure and source versions. The Agent edits the specification or plotting code, rerenders every requested format into a fresh attempt, and can show the previous attempt beside it. [Verified edit history](skills/easyviz/references/apply-figure-requests.md) supports accepted source/export snapshots and restoration.
 
 Deliverables include the individual panel, caption, runnable script, settings, plotting data and relevant checks. Literature Source Data cases provide auditable learning examples; they are not prerequisites for your own reproduction.
+
+In create, [actual preview choices](skills/easyviz/references/preview-choices.md)
+render box + all observations and ECDF views of the same data at matching
+dimensions, typography, colors and value scales. Optional violin density is
+explicit. The Agent selects by the reading task after inspecting the images;
+unknown design remains descriptive. Repeated measurements use their own
+paired contract and can use explicitly planned Friedman analysis.
+
+For richer matrices, [annotated matrix layers](skills/easyviz/references/annotated-matrix.md)
+combine keyed row/column strips, declared mean/sum marginals and supplied
+dendrograms. Missing, unmeasured and measured-zero cells retain different
+meanings. The shared alignment helper also supports custom stacked matrices
+and supplied summary tracks; it computes no clustering.
+
+The [Yayon Nature case](examples/no-author-code/yayon-cma/README.md) exercises
+two spatial matrices and aligned cosine/P-value layers using all 1,430 supplied
+numeric source cells. It explicitly omits the unpublished dendrogram. Its
+changed-schema fixture checks reuse; a separately adopted wider layout supports
+DejaVu Sans without shrinking the text.
 
 For crowded raw observations, the Agent can use [physical beeswarm placement](skills/easyviz/references/collision-placement.md): spread circles along the category axis while retaining measurements, marker sizes and the agreed canvas. Unresolved packing is reported for a layout decision. [The same-data example](evals/crowding-layout/v0.4.1/README.md) records 12 overlapping pairs reduced to zero.
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.2 — 2026-10-03
+
+- Reusable annotated matrices with keyed row/column metadata, explicit missing states, declared mean/sum marginals and supplied trees. Actual source/artist and transformed-alignment checks cover custom compound layers.
+- Yayon et al. Nature 2024 source-backed Fig. 3f adaptation: two aligned matrices and supplied cosine/interaction-P layers retain all 1,430 numeric source cells. Unpublished tree omission is explicit; changed-schema and separately adopted font-layout transfers retain bounded scope.
+- Actual same-source create previews: box + all observations, ECDF, and explicit optional violin. Shared canvas, typography, scales and colors; unknown design stays descriptive. A forward trial prompted clearer median visibility using bounded raw-point opacity.
+- Explicit Friedman repeated-condition analysis with Kendall’s W, literal subject joins, whole-subject exclusions and declared chi-square or bounded within-subject permutation. No automatic model search or pairwise claims.
+- Workbench bulk semantic selection, previous-attempt comparison, current source/color bindings, verified cosmetic spec preparation, applied history and accepted source/export restoration. Agent code edits remain the route for unsupported geometry.
+- Independent forward trials, original/transfer image reviews, actual in-app-browser editing checks and extracted-package runs; no new WorkBuddy effectiveness comparison is claimed.
+
+See [release QA](evals/release-qa/v0.4.2/README.md) and [workflow evidence](evals/workflow-usability/v0.4.2/README.md).
+
 ## 0.4.1 — 2026-10-02
 
 - Opt-in physical beeswarm placement for distribution circles, after final axes layout and scale transforms. All observations, quantitative positions, marker sizes and physical dimensions are retained; unresolved spacing is reported. Legacy jitter remains available.

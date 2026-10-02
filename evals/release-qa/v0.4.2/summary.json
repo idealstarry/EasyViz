@@ -1,0 +1,57 @@
+{
+  "version": "0.4.2",
+  "validated_at": "2026-10-03",
+  "status": "local_checks_passed",
+  "archive": {
+    "version": "0.4.2",
+    "sha256": "5a376740da310fb349e658acf3da3ea1479968f126f5ba42dc53bd2eb0566597",
+    "content_sha256": "59214b1ca8279ef04b10a501685a6e93db87b1582dd368ca9188a953519f994c",
+    "files": 504,
+    "bytes": 9283035,
+    "path": "dist/easyviz-0.4.2.zip"
+  },
+  "checks": {
+    "unit_tests": {
+      "status": "pass",
+      "count": 350,
+      "seconds": 148.99,
+      "log": "unit-tests.log"
+    },
+    "extracted_package": {
+      "status": "pass",
+      "version": "0.4.2",
+      "archive": "easyviz-0.4.2.zip",
+      "sha256": "5a376740da310fb349e658acf3da3ea1479968f126f5ba42dc53bd2eb0566597",
+      "files": 504,
+      "checks": "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews and seven Source Data case wrappers"
+    },
+    "isolated_pixel_source_replay": {
+      "status": "pass",
+      "report": "clean-pixel-replay.json"
+    },
+    "skill_entry_points": {
+      "status": "pass",
+      "count": 3
+    },
+    "dependencies": {
+      "status": "pass",
+      "installed_packages": 18
+    },
+    "read_only_release_review": {
+      "status": "no_blocker",
+      "reviewer": "separate Agent",
+      "scope": "Version, archive/source identity, installed resources, discovery and release links"
+    },
+    "public_contract_trials": "../../workflow-usability/v0.4.2/README.md"
+  },
+  "environment_limits": [
+    "Existing macOS Python environments and available fonts",
+    "No new desktop installation/discovery verified",
+    "No new WorkBuddy effectiveness comparison"
+  ],
+  "publication": {
+    "source_identity": "v0.4.2 tag",
+    "release_url": "https://github.com/idealstarry/EasyViz/releases/tag/v0.4.2",
+    "github_ci": "Verify the exact tag/source commit in GitHub Actions; not included in the local check status"
+  }
+}

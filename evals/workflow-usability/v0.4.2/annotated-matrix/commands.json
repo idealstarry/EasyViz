@@ -1,0 +1,70 @@
+{
+  "working_directory": "/Users/starry/Desktop/EasyViz",
+  "public_discovery": {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotated_matrix.py",
+      "--describe-spec"
+    ],
+    "exit_code": 0,
+    "stdout": "public-contract.json"
+  },
+  "reference_read": "skills/easyviz/references/annotated-matrix.md; snapshot public-reference.md",
+  "render": {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotated_matrix.py",
+      "--data",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/assay.csv",
+      "--spec",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/panel.json",
+      "--row-metadata",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/vessel-annotations.csv",
+      "--column-metadata",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/challenge-annotations.csv",
+      "--column-linkage",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/constructed-column-tree.json",
+      "--track",
+      "create",
+      "--out",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/attempt-01"
+    ],
+    "exit_code": 0,
+    "stdout": "attempt-01-stdout.json",
+    "stderr": "attempt-01-stderr.txt"
+  },
+  "pdf_render": {
+    "argv": [
+      "pdftoppm",
+      "-r",
+      "96",
+      "-singlefile",
+      "-png",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/attempt-01/panel.pdf",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/attempt-01/pdf-96dpi"
+    ],
+    "exit_code": 0
+  },
+  "svg_render": {
+    "argv": [
+      "rsvg-convert",
+      "--dpi-x",
+      "96",
+      "--dpi-y",
+      "96",
+      "--output",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/attempt-01/svg-96dpi.png",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/attempt-01/panel.svg"
+    ],
+    "exit_code": 0
+  },
+  "png_inspection": "Pillow LANCZOS resize of original 300-dpi panel.png to whole pixels corresponding to 100 x 85 mm at 96 dpi; original export untouched",
+  "independent_numeric_verification": {
+    "argv": [
+      "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/verify.py"
+    ],
+    "exit_code": 0,
+    "output": "qa-independent.json"
+  }
+}

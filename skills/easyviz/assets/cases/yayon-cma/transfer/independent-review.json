@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-02T16:21:26.735456+00:00",
+  "reviewer": "Independent Codex subagent /root/v041_evidence_package",
+  "review_pass": 1,
+  "readiness": "ready_with_notes",
+  "scope": "Synthetic unrelated changed-schema transfer: 5 features \u00d7 4 zones \u00d7 2 phases; no biological or inferential claim",
+  "review_method": "Opened the reference and candidate PNGs, then opened actual PDF and SVG renderings at 96 dpi (794\u00d7420 px). Inspected final physical proportions and separately checked actual exported PDF/PNG metadata. No implementation code/tests or prior review were read.",
+  "candidate": {
+    "exports": {
+      "output/panel.png": "fe3505a6af884ed48b799d77a7f9df3f3f24ab5d38ea3227b6b20f62a48bb800",
+      "output/panel.pdf": "a199fb930f40c2394eb74ffca5d5672d86954759acaaf937a74c86057c26d45f",
+      "output/panel.svg": "c3729019583a7afe9452a72b458d1796047cae2ab8906fdf954b70448762c926"
+    },
+    "spec_sha256": "649c8c92a854fa304cc1019541d651d7c3b0c7ff38ac16f45de913cbf9e2ca6e",
+    "caption_sha256": "6adfaf56d16df04dbe653b71c489c63959d64f5415054bebf770a01eebca75a6"
+  },
+  "observations": [
+    "Two 5-column by 4-row matrices use After then Before order; each summary bar/circle remains centered on the same feature column in both matrices.",
+    "Visible feature order is Feature#5, null, Feature 01, feature /3, ITEM-B. Visible region order is Zone / B, 001, Outer zone, NA. The specified whitespace-containing source IDs have only the declared display aliases; no category was visibly merged or dropped.",
+    "Feature#5 and feature /3 are orange; the outline spans null through feature /3 across the aligned layers.",
+    "The five middle bars include negative, zero and positive values; the supplied P classes show the three sizes of hollow circles on the zero line.",
+    "The readout and Agreement guides, P legend and axis labels are readable at the adopted dimensions; no clipped or crowded text was visible. The sparse feature set leaves unused white space, which is consistent with the fixed teaching geometry."
+  ],
+  "findings": [
+    {
+      "severity": "note",
+      "location": "SVG heatmap cell boundaries at 96 dpi",
+      "evidence": "The librsvg 96 dpi rendering shows faint cell-boundary seams; the matching PDF and PNG renderings do not show this grid. The seams do not alter cell colors, order or layer alignment.",
+      "requirement": "The two matrices should use the adopted filled-cell appearance consistently across exports.",
+      "action": "Prefer the inspected PDF/PNG for assembly. If SVG is the delivery format, check the intended application and suppress rasterization seams if they persist."
+    }
+  ],
+  "resolved_findings": [],
+  "external_checks": [
+    {
+      "check": "Actual PDF page dimensions",
+      "status": "passed",
+      "evidence": {
+        "pages": 1,
+        "width_mm": 210.00000000000668,
+        "height_mm": 110.99999999998639
+      }
+    },
+    {
+      "check": "Actual PDF typography and font embedding",
+      "status": "passed",
+      "evidence": {
+        "fonts": [
+          "Arial-ItalicMT",
+          "ArialMT"
+        ],
+        "font_sizes_pt": [
+          7.5
+        ],
+        "text_span_count": 31,
+        "embedding": "pdffonts reports every ArialMT/Arial-ItalicMT subset embedded (Type 3).",
+        "page_exceeding_text_bbox_count": 0
+      }
+    },
+    {
+      "check": "Actual PNG dimensions and DPI",
+      "status": "passed",
+      "evidence": {
+        "pixels": [
+          2480,
+          1311
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ],
+        "interpretation": "2480\u00d71311 pixels at approximately 300 dpi; integer-pixel dimensions agree with the declared 210\u00d7111 mm canvas within raster rounding."
+      }
+    },
+    {
+      "check": "Actual PDF/SVG rendering at 96 dpi",
+      "status": "passed",
+      "evidence": {
+        "pdf": {
+          "path": "/private/tmp/easyviz-yayon-review-51hzx9nx/transfer-pdf-96dpi.png",
+          "pixels": [
+            794,
+            420
+          ],
+          "sha256": "2cf2f45f34106bff42ed93e8f4c4f5e0c1351d9325683e9c83f0ec63e03ef7b3"
+        },
+        "svg": {
+          "path": "/private/tmp/easyviz-yayon-review-51hzx9nx/transfer-svg-96dpi.png",
+          "pixels": [
+            794,
+            420
+          ],
+          "sha256": "11aeddf552e96d98de066d7daccef5b4d8d5bf0eb3d81cfff98b676608d66846"
+        },
+        "png": {
+          "path": "/private/tmp/easyviz-yayon-review-51hzx9nx/transfer-png-96dpi.png",
+          "pixels": [
+            794,
+            420
+          ],
+          "sha256": "041266d0c48f49a34a4882dbaf46e3c59919714759b8486f58773eccd1d292ec"
+        }
+      }
+    },
+    {
+      "check": "Source values, exact per-cell/per-bar numbers and upstream statistics",
+      "status": "not_checked",
+      "required_for_this_visual_review": false,
+      "evidence": "This independent visual review did not read source tables, plotting code, tests, numeric QA or previous reviews. It validates visible mappings and actual exports; it does not recalculate normalization, cosine, ANOVA, P correction or dendrogram."
+    }
+  ],
+  "baseline_preference": {
+    "status": "not_applicable",
+    "reason": "The main panel is an adopted reference-layer reproduction and the transfer is an unrelated fixed-layout example. No claimed refinement or aesthetic superiority over an accepted baseline was evaluated."
+  },
+  "unresolved_items": [
+    "SVG antialiasing seams depend on the receiving application.",
+    "Numerical/source correctness remains outside this independent image-only review."
+  ]
+}

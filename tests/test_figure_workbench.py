@@ -216,8 +216,122 @@ class FigureWorkbenchTests(unittest.TestCase):
         self.assertNotIn(b"<script",body)
         self.assertNotIn(b"onload",body)
 
+    def test_bulk_selection_expands_real_category_source_and_spec_identities(self):
+        self.manifest["elements"][0].update(source_keys=[{"group":"A","records":[1,3]}],spec_paths=["/colors/A"])
+        self.manifest["elements"][1].update(role="legend-key",source_keys=[{"category":"A"}],spec_paths=["/colors/A"],editable={"color":"/colors/A"})
+        (self.root/"elements.json").write_text(json.dumps(self.manifest))
+        for selector in ({"category":"A"},{"spec_path":"/colors/A"}):
+            code,result=self.data("POST","/api/requests",self.change(element_id=None,selector=selector))
+            self.assertEqual(code,200,result)
+            self.assertEqual(result["request"]["element_ids"],["data-group-a","legend"])
+            self.assertIsNone(result["request"]["element_id"])
+            self.assertEqual(result["request"]["elements"][0]["source_keys"],[{"group":"A","records":[1,3]}])
+            self.assertEqual(result["request"]["selector"],selector)
+        code,result=self.data("POST","/api/requests",self.change(element_id=None,selector={"source_key":{"records":[1,3]}}))
+        self.assertEqual(code,200)
+        self.assertEqual(result["request"]["element_ids"],["data-group-a"])
+        for extra in ({"element_ids":["legend","missing"]},{"element_ids":["legend","legend"]},{"element_ids":"legend"},{"selector":{"category":"unknown"}},{"selector":{"position":[1,2]}},{"selector":{"source_key":{}}},{"selector":{"source_key":{"unknown":None}}},{"selector":{"source_key":{"records":[True,3]}}},{"element_ids":["legend"],"selector":{"category":"A"}}):
+            code,result=self.data("POST","/api/requests",self.change(element_id=None,**extra))
+            self.assertEqual(code,400,result)
+        self.assertEqual(self.data("POST","/api/requests",self.change(element_id=None,element_ids=["data-group-a","legend"],property="linewidth"))[0],400)
+        self.assertEqual(self.data("POST","/api/requests",self.change(element_id=None,element_ids=["data-group-a","legend"],spec_path="/options/alpha"))[0],400)
+
+    def test_existing_source_changes_block_requests_even_when_svg_is_unchanged(self):
+        paths={"data_file":self.root/"source.csv","source_script":self.root/"plot.py","spec_file":self.root/"spec.json"}
+        for path in paths.values(): path.write_text("original")
+        digest=hashlib.sha256(b"original").hexdigest()
+        self.version.update(input_sha256=digest,source_script_sha256=digest)
+        self.manifest["version"]=self.version
+        self.manifest["input"]={**{key:str(path) for key,path in paths.items()},"supplied_spec_sha256":digest}
+        (self.root/"elements.json").write_text(json.dumps(self.manifest))
+        self.assertTrue(self.data("GET","/api/state")[1]["source_current"])
+        self.assertEqual(self.data("POST","/api/requests",self.change())[0],200)
+        for field,path in paths.items():
+            with self.subTest(source=field):
+                path.write_text("new source")
+                state=self.data("GET","/api/state")[1]
+                self.assertTrue(state["manifest_valid"])
+                self.assertFalse(state["source_current"])
+                self.assertFalse(state["source_versions"][field]["current"])
+                code,error=self.data("POST","/api/requests",self.change())
+                self.assertEqual(code,409,error)
+                path.write_text("original")
+
+    def test_previous_attempt_preview_is_fixed_sanitized_and_version_bound(self):
+        previous=self.root/"previous"
+        previous.mkdir()
+        unsafe=SVG.replace(b"</svg>",b"<script>untrusted()</script></svg>")
+        (previous/"panel.svg").write_bytes(unsafe)
+        self.server.app.comparison=workbench.FigureWorkbench(previous)
+        state=self.data("GET","/api/state")[1]
+        self.assertEqual(state["comparison"]["figure_name"],"previous")
+        digest=state["comparison"]["version"]["figure_sha256"]
+        code,_,preview=self.request("GET","/api/compare.svg?v="+digest)
+        self.assertEqual(code,200)
+        self.assertNotIn(b"<script",preview)
+        self.assertEqual(self.request("GET","/api/compare.svg?v=stale")[0],409)
+        self.assertEqual(self.request("GET","/files/previous/panel.svg")[0],404)
+        self.server.app.comparison=None
+        self.assertEqual(self.request("GET","/api/compare.svg")[0],404)
+
+    def test_history_statuses_are_preserved_and_undo_cannot_cancel_applied_records(self):
+        _,result=self.data("POST","/api/requests",self.change())
+        request_id=result["request"]["id"]
+        ledger=self.server.app.ledger()
+        ledger["requests"][0]["status"]="applied"
+        ledger["history"]=[{"action":"applied","target_attempt":"attempt-02"}]
+        self.server.app.write_ledger(ledger)
+        state=self.data("GET","/api/state")[1]
+        self.assertEqual(state["history"],ledger["history"])
+        self.assertEqual(self.data("POST","/api/undo",{"version":self.version,"request_id":request_id})[0],400)
+
 
 class WorkbenchClientTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("node"), "Node is needed for the mocked client runtime check")
+    def test_client_bulk_selection_intersects_properties_and_keeps_all_real_ids(self):
+        harness=r'''
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+class Element {
+  constructor(name=''){this.name=name;this.value='';this.disabled=false;this.children=[];this.listeners={};this.classList={toggle(){}};}
+  addEventListener(name,callback){this.listeners[name]=callback;}setAttribute(){}
+  replaceChildren(...children){this.children=children;}append(...children){this.children.push(...children);}add(child){this.children.push(child);}
+  querySelectorAll(){return [];}getElementById(){return null;}
+  get options(){return this.children;}get selectedOptions(){return this.children.filter(option=>option.selected);}
+}
+const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
+const data={schema_version:1,figure_name:'attempt-02',track:'create',version:{figure_sha256:'B'},panel:{width_mm:120,height_mm:90},view_box:[0,0,240,180],manifest_valid:true,source_current:true,elements:[
+{id:'group-A',role:'point-group',label:'A',source_keys:[{group:'A',records:[1,3]}],spec_paths:['/colors/A','/options/alpha'],editable:{color:'/colors/A',alpha:'/options/alpha'}},
+{id:'key-A',role:'legend-key',label:'A',source_keys:[{category:'A'}],spec_paths:['/colors/A'],editable:['color']},
+{id:'group-B',role:'point-group',label:'B',source_keys:[{group:'B',records:[2,4]}],spec_paths:['/colors/B'],editable:['color']}
+],requests:[],history:[{action:'accepted',target_attempt:'/trial/attempt-01'},{action:'applied',target_attempt:'/trial/attempt-02'},{action:'accepted',version:{figure_sha256:'legacy-hash'}}],files:['panel.svg'],token:'session',selection_message:'Mapped elements.'};
+let posted=[];
+const context=vm.createContext({document:{getElementById:node,createElement:()=>new Element(),createElementNS:()=>new Element(),importNode:element=>element},Option:class extends Element{constructor(text,value){super(text);this.value=value;}},DOMParser:class{parseFromString(text){return{querySelector:()=>null,documentElement:new Element(text)};}},fetch:async(path,options)=>{
+  if(path==='/api/state')return{ok:true,json:async()=>data};
+  if(path.startsWith('/api/preview.svg'))return{ok:true,text:async()=>'<svg/>'};
+  if(path==='/api/requests'){const payload=JSON.parse(options.body);posted.push(payload);return{ok:true,json:async()=>({state:{...data,requests:[]}})};}
+  throw new Error(path);
+},console});
+const inspect=source=>vm.runInContext(source,context),tick=()=>new Promise(resolve=>setImmediate(resolve));
+(async()=>{
+ vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);await tick();await tick();
+ assert.deepEqual(node('history-list').children.map(row=>row.textContent),['accepted · attempt-01','applied · attempt-02','accepted · version legacy-h'],'merged baseline history must retain the actual attempt; legacy unbound events must not claim the current one');
+ node('semantic-list').value=JSON.stringify({category:'A'});node('semantic-list').listeners.change();
+ assert.deepEqual(Array.from(inspect('selectedIds')),['group-A','key-A']);
+ assert.deepEqual(node('property').children.map(option=>option.value),['','color'],'bulk properties must be editable for every mapped member');
+ node('property').value='color';node('property-value').value='#112233';node('instruction').value='Use this color for category A.';
+ await node('request-form').listeners.submit({preventDefault(){}});
+ assert.deepEqual(posted[0].selector,{category:'A'});assert.equal(posted[0].property,'color');
+ inspect("selectElements(['group-A','group-B'])");node('instruction').value='Apply this color to both selected groups.';
+ await node('request-form').listeners.submit({preventDefault(){}});
+ assert.deepEqual(posted[1].element_ids,['group-A','group-B']);assert.equal(posted[1].element_id,undefined);
+ inspect('state.source_current=false');node('instruction').value='Must refuse stale source.';
+ await node('request-form').listeners.submit({preventDefault(){}});assert.equal(posted.length,2);
+})().catch(error=>{console.error(error);process.exitCode=1;});
+'''
+        script=SCRIPT.with_name("workbench")/"workbench.js"
+        result=subprocess.run([shutil.which("node"),"-e",harness,str(script)],capture_output=True,text=True,timeout=15)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
     @unittest.skipUnless(shutil.which("node"), "Node is needed for the mocked client runtime check")
     def test_reload_and_queue_responses_never_rebind_an_old_svg_selection(self):
         # Execute the actual client in a minimal DOM with controlled HTTP promises.

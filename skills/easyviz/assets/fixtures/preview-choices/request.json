@@ -1,0 +1,16 @@
+{
+  "row_kind": "observations",
+  "fields": {"value": "reading", "group": "condition", "unit": "observation_id"},
+  "design": {
+    "structure": "unknown",
+    "confirmed": false,
+    "unit_definition": "Synthetic regression observations; no experimental sampling unit is established"
+  },
+  "measurement_units": null,
+  "colors": {"Control": "#0072B2", "Treatment": "#D55E00"},
+  "order": {"group": ["Control", "Treatment"]},
+  "layout": {"width_mm": 88, "height_mm": 70, "font": "DejaVu Sans", "font_size_pt": 8, "dpi": 300},
+  "labels": {"value": "Reading", "group": "Condition"},
+  "formats": ["png", "pdf", "svg", "tiff"],
+  "options": {"include_violin": true, "point_layout": "jitter", "point_alpha": 0.65}
+}

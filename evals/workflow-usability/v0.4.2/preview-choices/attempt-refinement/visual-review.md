@@ -1,0 +1,13 @@
+# Independent opacity-refinement review
+
+Reviewed the actual original and refined PNGs side by side at nominal 96 dpi (110 × 80 mm), with independently rasterized refined PDF and SVG beside them. All original figure, spec, source, request and plotted-data artifacts were retained. The initial generated manifests/pending review files were preserved before the first trial's review-only manifest updates; that first trial is now frozen. This is an actual local before/after comparison of one opacity change, not an unrun tool baseline.
+
+The refined request adds only `options.point_alpha=0.65`. The 57-row source snapshot is byte-identical; all plotted row fields are identical to the original, and actual SVG point centers are exactly identical in box/violin views. All panels retain Arial 8 pt, 110 × 80 mm, colors, measurement scales/limits, margins, 3 pt point diameter and beeswarm placement. The ECDF PNG is byte-identical to the original.
+
+In the box view, the compact A/C median strokes at 8.4 mPa·s have a modest visible improvement in continuity and contrast through the clustered raw-point row. The orange B median was already clear and remains clear. The black median is still a thin mark intersecting the points, so this is a useful refinement rather than complete removal of all visual competition.
+
+The raw blue/orange/green points remain visible at this size, including C's isolated measurements at 10.5, 12, 14.5 and 16 mPa·s. Their contrast is lower than in the opaque original, especially on the pale violin fills; I observed no disappeared point or loss of the qualitative tail pattern. Point count and spacing are additionally verified from actual exported SVG centers and the audited placement. The violin's smoothing caveat and independently normalized widths are unchanged.
+
+Recommendation for this tested input: adopt the 0.65-opacity box/points refinement for the median/spread reading task, because it improves the summary stroke while retaining every observation and its geometry. Retain ECDF for exact observed tails/fractions. The optional violin continues to address smoothed shape; opacity does not establish density reliability or a universal chart winner. No claim is made about all datasets, printed calibration, an external baseline or usability time savings.
+
+Evidence: `independent-verification.json` records the exact request delta, unchanged row fields/geometry and actual export hashes. `independent-review/before-after-final-size-contact.png` shows original PNG and refined PNG/PDF/SVG at the same nominal final size. The visual review did not consult the preview implementation or tests.

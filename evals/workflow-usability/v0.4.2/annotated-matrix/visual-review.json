@@ -1,0 +1,60 @@
+{
+  "status": "reviewed",
+  "independent_of_recipe_author": true,
+  "evidence_restriction": "Public --describe-spec and annotated-matrix reference only; implementation/tests/other evaluation outputs not inspected",
+  "inspection_scope": [
+    "Actual 300-dpi PNG at 1181 x 1004 px",
+    "Actual PNG reduction at final physical size and 96 dpi",
+    "Actual PDF rendered by Poppler at 96 dpi",
+    "Actual SVG rendered by librsvg at 96 dpi"
+  ],
+  "canvas_mm": [
+    100,
+    85
+  ],
+  "font": "Arial",
+  "font_size_pt": 8,
+  "images": [
+    {
+      "path": "attempt-01/png-96dpi.png",
+      "pixels": [
+        378,
+        321
+      ],
+      "sha256": "c9b00d7a24cf80d4506c38007a6a99c504a994a4d29cdbff4db51419a9baec56"
+    },
+    {
+      "path": "attempt-01/pdf-96dpi.png",
+      "pixels": [
+        378,
+        322
+      ],
+      "sha256": "83edb36759e47ed12a86440331f890ad62e0721f0c2e28819c88ba5ec7e2b5d4"
+    },
+    {
+      "path": "attempt-01/svg-96dpi.png",
+      "pixels": [
+        378,
+        322
+      ],
+      "sha256": "ab58499d0b6f1f402849200db3d8a07514940f4cee28780b185a807f888338cb"
+    }
+  ],
+  "findings": [
+    "All seven literal vessel IDs and six literal challenge IDs remain readable and uncut.",
+    "Metadata strips align by exact IDs despite deliberately shuffled metadata input records.",
+    "The observed zero remains quantitative, explicit unmeasured has cross hatch, and the absent unsupplied coordinate has plus hatch; keys remain distinguishable.",
+    "Row mean bars include negative values and align to all seven matrix rows. Independently recomputed means and omission denominators match.",
+    "The explicit constructed column tree retains the declared leaf order and heights.",
+    "Colorbar, category keys and missing-state guides are decoded without overlap.",
+    "No in-image narrative title or significance layer was added."
+  ],
+  "residual_issues": [
+    "The combined guide envelope is 0.548 of the matrix plot envelope. Six necessary keys make a relatively large right guide column; it fits and remains readable, but no aesthetic improvement is claimed.",
+    "SVG rasterization at 96 dpi shows faint per-cell edge seams; numeric/source audit and vector cell geometry remain correct."
+  ],
+  "public_contract_failures": [],
+  "configuration_repairs": 0,
+  "automatic_winner": false,
+  "technical_qa_status": "pass"
+}

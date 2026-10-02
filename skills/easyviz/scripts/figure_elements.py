@@ -27,6 +27,19 @@ def pointer(*parts):
 def register(fig, artist, role, label, *, key=None, source_keys=None,
              spec_paths=None, editable=None):
     """Tag one selectable artist. A collection is a group, not individual points."""
+    paths = [] if spec_paths is None else spec_paths
+    edits = [] if editable is None else editable
+    if not isinstance(paths, list) or any(not isinstance(path, str) for path in paths):
+        raise ValueError("spec_paths must be a list of specification paths")
+    if isinstance(edits, dict):
+        for property_name, path in edits.items():
+            if (not isinstance(property_name, str) or not property_name.strip()
+                    or not isinstance(path, str) or not path.startswith("/")
+                    or any(not part or re.search(r"~(?![01])", part) for part in path[1:].split("/"))
+                    or path not in paths):
+                raise ValueError("Each editable binding must name a property and a valid JSON pointer in spec_paths")
+    elif not isinstance(edits, list) or any(not isinstance(name, str) or not name.strip() for name in edits):
+        raise ValueError("editable must be a property list or property-to-pointer mapping")
     if not hasattr(fig, "_easyviz_elements"):
         fig._easyviz_elements = []
     gid = artist.get_gid() or identity(role, key if key is not None else label)
@@ -38,7 +51,7 @@ def register(fig, artist, role, label, *, key=None, source_keys=None,
         return gid
     fig._easyviz_elements.append({
         "id": gid, "role": role, "label": str(label), "source_keys": source_keys or [],
-        "spec_paths": spec_paths or [], "editable": editable or [], "_artist": artist,
+        "spec_paths": paths.copy(), "editable": edits.copy(), "_artist": artist,
     })
     return gid
 
@@ -125,5 +138,9 @@ def write(fig, out, spec, layout):
         "elements": elements,
         "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable.",
     }
+    colors = getattr(fig, "_easyviz_resolved_colors", None)
+    if isinstance(colors, dict) and colors:
+        palette = json.dumps(colors, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode()
+        manifest["version"]["resolved_colors_sha256"] = hashlib.sha256(palette).hexdigest()
     (out / "elements.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False) + "\n")
     return manifest

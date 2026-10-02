@@ -1,6 +1,6 @@
 # Release QA — EasyViz 0.1.0
 
-Latest validation: [0.4.1 point placement, directory intake and complex reference layers](v0.4.1/README.md). The evidence below remains attached to the original 0.1.0 archive.
+Latest validation: [0.4.2 compound matrices, actual previews and figure editing](v0.4.2/README.md). The evidence below remains attached to the original 0.1.0 archive.
 
 **Decision: ready for an initial private GitHub release within the tested scope.** Completed 2026-09-29. Three demonstrated scientific input defects were fixed before rebuilding. No unresolved critical or major failure remains in this evaluation. This is a bounded acceptance record, not a claim that every future scientific figure will work or improve.
 

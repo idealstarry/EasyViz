@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "value": "viscosity_mpas",
+    "group": "formulation",
+    "unit": "observation_id"
+  },
+  "colors": {
+    "Formulation A": "#0072B2",
+    "Formulation B": "#D55E00",
+    "Formulation C": "#009E73"
+  },
+  "order": {
+    "group": [
+      "Formulation A",
+      "Formulation B",
+      "Formulation C"
+    ]
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 80,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "typography": {},
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "chart": "distribution",
+  "labels": {
+    "x": "Viscosity (mPa·s)",
+    "y": "Formulation"
+  },
+  "options": {
+    "kind": "violin",
+    "orientation": "horizontal",
+    "x_scale": "linear",
+    "x_limits": [
+      4,
+      17
+    ],
+    "point_layout": "beeswarm",
+    "point_area_pt2": 9,
+    "alpha": 1
+  },
+  "seed": 0
+}

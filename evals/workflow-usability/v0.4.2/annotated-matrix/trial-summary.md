@@ -1,0 +1,7 @@
+The independent annotated-matrix forward trial passed on the first public-contract attempt, without configuration repairs.
+
+The unrelated synthetic assay has a 7 × 6 displayed grid and 41 supplied observation rows: 40 finite observed measurements, one explicitly unmeasured blank, and one absent unsupplied coordinate. Literal leading-zero IDs, `NA` and `null` survive unchanged. Source and metadata orders deliberately differ from displayed order. Two keyed annotation strips, row means with explicit missing-value omission and an explicitly hand-constructed column tree render at 100 × 85 mm with actual Arial 8 pt in PNG/PDF/SVG.
+
+`qa-independent.json` verifies exact source-row/field retention, all three cell states, the measured zero, seven independently recomputed row means and omission denominators, source bindings, font sizes and actual vector/raster dimensions. Renderer QA additionally passes source-to-artist colors, keyed strips, marginal values, tree vertices and alignment. `visual-review.json`, `visual-review.md` and `final-size-inspection.png` record inspection of actual PNG/PDF/SVG at final size. The public contract and reference snapshots, complete inputs, request and exact command records are retained here.
+
+No hypothesis test, confidence interval, clustering or upstream inference was performed. The guide envelope is relatively large but fits; SVG rasterization has faint cell-edge seams. Neither is a public-contract failure. This trial establishes behavior for this assay and these layers only.

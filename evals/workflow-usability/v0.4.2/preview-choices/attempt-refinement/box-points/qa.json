@@ -1,0 +1,188 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 57,
+  "input_sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b",
+  "width_mm": 110.0,
+  "height_mm": 80.0,
+  "exports": {
+    "png": {
+      "pixels": [
+        1299,
+        945
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    "pdf": {
+      "width_mm": 109.99999999998333,
+      "height_mm": 79.9999999999975
+    },
+    "svg": {
+      "width_mm": 110.00000013333332,
+      "height_mm": 80.00000016111112,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system."
+    }
+  },
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "source_to_artist_audit": {
+    "status": "pass",
+    "source_rows": 57,
+    "audited_observations": 57,
+    "group_counts": {
+      "Formulation A": 17,
+      "Formulation B": 19,
+      "Formulation C": 21
+    },
+    "intended_point_alpha": 0.65,
+    "actual_point_facecolors": {
+      "Formulation A": [
+        [
+          0.0,
+          0.4470588235294118,
+          0.6980392156862745,
+          0.65
+        ]
+      ],
+      "Formulation B": [
+        [
+          0.8352941176470589,
+          0.3686274509803922,
+          0.0,
+          0.65
+        ]
+      ],
+      "Formulation C": [
+        [
+          0.0,
+          0.6196078431372549,
+          0.45098039215686275,
+          0.65
+        ]
+      ]
+    },
+    "numeric_values_unchanged": true,
+    "tests_performed": false,
+    "experimental_independence_inferred": false,
+    "issues": []
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.23455586332070708,
+      "right": 0.9818181818181818,
+      "bottom": 0.1397216796875,
+      "top": 0.9750000000000001
+    },
+    "data_region_mm": [
+      25.801144965277782,
+      11.177734375,
+      82.19885503472223,
+      66.82226562500001
+    ],
+    "data_area_fraction": 0.6241720142273951,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.6241720142273951
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "point_layout": {
+    "status": "pass",
+    "overlapping_circle_pairs": 0,
+    "spacing_violation_pairs": 0,
+    "minimum_center_distance_pt": 3.29999999999998,
+    "sample_overlapping_pairs": [],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "horizontal",
+    "seed": 0,
+    "categorical_axis": "y",
+    "quantitative_axis": "x",
+    "numeric_values_changed": false,
+    "input_rows": 57,
+    "placed_rows": 57,
+    "diameter_pt": 3.0,
+    "gap_pt": 0.3,
+    "requested_max_offset_mm": 4.0,
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "Formulation A",
+        "rows": 17,
+        "category_spacing_pt": 59.1929518331693,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.954975343020111,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 757459676
+      },
+      {
+        "group": "Formulation B",
+        "rows": 19,
+        "category_spacing_pt": 59.1929518331693,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 0.9774876715100554,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 707235027
+      },
+      {
+        "group": "Formulation C",
+        "rows": 21,
+        "category_spacing_pt": 59.1929518331693,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 2.1416543381767217,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 22175749
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  },
+  "visual_review_required": true
+}

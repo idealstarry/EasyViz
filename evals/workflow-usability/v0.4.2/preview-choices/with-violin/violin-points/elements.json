@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "chart": "distribution",
+  "track": "create",
+  "panel": {
+    "width_mm": 110.0,
+    "height_mm": 80.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "b7833b7ef1fd36fde4dc0be7d4c4755414c5b74a19e30bd69d76756234d8edd3",
+    "spec_sha256": "c319600bdcd828dad4dad98f8dad1c5ba7f8b7153b3a96cf1d5e12a39d668280",
+    "input_sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b",
+    "source_script_sha256": "037b953facd93190aec34a31c214b509894249dcd8b023e572e97d79af8536ce"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/source.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/violin-points/spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/preview_choices.py",
+    "supplied_spec_sha256": "658650bb7acca2839f4542ed2daba2c9b1eebef9f0027c5c9c0bb7fe84a5c234"
+  },
+  "elements": [
+    {
+      "id": "easyviz-distribution-16efb0b294b08fc3",
+      "role": "distribution",
+      "label": "Formulation A",
+      "source_keys": [
+        {
+          "group": "Formulation A"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation A",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/colors/Formulation A",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        47.29930705128206,
+        58.162139892578125,
+        13.910575467414532,
+        14.617370605468754
+      ]
+    },
+    {
+      "id": "easyviz-distribution-07e7abffe3b69ad8",
+      "role": "distribution",
+      "label": "Formulation B",
+      "source_keys": [
+        {
+          "group": "Formulation B"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation B",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/colors/Formulation B",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        29.594938274572655,
+        37.28018188476562,
+        55.64230186965813,
+        14.617370605468757
+      ]
+    },
+    {
+      "id": "easyviz-distribution-6293b803f8bc34fc",
+      "role": "distribution",
+      "label": "Formulation C",
+      "source_keys": [
+        {
+          "group": "Formulation C"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation C",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/colors/Formulation C",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        49.1962037059295,
+        16.398223876953114,
+        52.48080744524572,
+        14.617370605468757
+      ]
+    },
+    {
+      "id": "easyviz-point-group-22d47069002a647f",
+      "role": "point-group",
+      "label": "Formulation A",
+      "source_keys": [
+        {
+          "group": "Formulation A"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation A",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Formulation A",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-185a5644110391f6",
+      "role": "point-group",
+      "label": "Formulation B",
+      "source_keys": [
+        {
+          "group": "Formulation B"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation B",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Formulation B",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-1bbab326c972426c",
+      "role": "point-group",
+      "label": "Formulation C",
+      "source_keys": [
+        {
+          "group": "Formulation C"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation C",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Formulation C",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        25.801144965277782,
+        11.177734375,
+        82.19885503472223,
+        66.82226562500001
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Viscosity (mPa·s)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        56.046702690972225,
+        1.9999999999999996,
+        21.707739583333332,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Formulation",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0000000000000018,
+        37.3498671875,
+        2.6485894097222236,
+        14.478
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

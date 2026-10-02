@@ -12,7 +12,7 @@ ASSETS = ROOT / 'skills/easyviz/assets'
 GENERATED_CASES = (
     'massier-bmi-violin', 'massier-integration-radar', 'cell-atlas-dotplot',
     'paired-effects', 'paired-myeloid-remodeling', 'xiang-bubble-volcano',
-    'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse',
+    'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma',
 )
 
 
@@ -130,7 +130,8 @@ def sync():
             ('no-author-code', 'urschel-paired'),
             ('no-author-code', 'truong-components'),
             ('create', 'urschel-ecdf'),
-            ('no-author-code', 'shi-timecourse')):
+            ('no-author-code', 'shi-timecourse'),
+            ('no-author-code', 'yayon-cma')):
         source = ROOT / 'examples' / track / case
         target = ASSETS / 'cases' / case
         # Retain reviewed evidence and compact inputs; omit development history.
@@ -141,7 +142,7 @@ def sync():
                     or file.suffix == '.pyc'):
                 continue
             copy_file(file, target / relative)
-    print('Synced ten CC BY cases, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
+    print('Synced eleven CC BY cases, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
 
 
 if __name__ == '__main__':

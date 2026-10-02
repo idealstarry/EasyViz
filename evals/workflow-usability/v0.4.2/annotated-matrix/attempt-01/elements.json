@@ -1,0 +1,2222 @@
+{
+  "schema_version": 1,
+  "chart": "annotated_matrix",
+  "track": "create",
+  "panel": {
+    "width_mm": 100.0,
+    "height_mm": 85.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "057643746d4cbadc712d921ec3bdd68ef5fb2105fd6311d09514c376a87ba998",
+    "spec_sha256": "b5973ee1165bf2015627e79f0fd88e422cf9bb015a928dd5fe430e4e2c2cadb2",
+    "input_sha256": "fd52c2e31d633ac332dac692718bdc55872ac64517a804a8bac31f6d57a503c2",
+    "source_script_sha256": "11ec638467fd71befb78c69f5383613f501ad566d1f716cd9f7aa65df57fa4bb"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/assay.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/panel.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotated_matrix.py",
+    "supplied_spec_sha256": "6f3af61e47dd319ae85dabfa3ac1cce69bb9c6b591fa814e6a57262e718c8f9a",
+    "aligned_layer_inputs": {
+      "matrix": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/assay.csv",
+        "sha256": "fd52c2e31d633ac332dac692718bdc55872ac64517a804a8bac31f6d57a503c2"
+      },
+      "row_metadata": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/vessel-annotations.csv",
+        "sha256": "8584ccf13ab42d561961d5f67fbced78aa2e0150c9ebb3bd9ea72926c67afd40"
+      },
+      "column_metadata": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/challenge-annotations.csv",
+        "sha256": "0034e82ed2212cfcb70049530089529cc23f93a4551f829cbf7cbf82db593cab"
+      },
+      "column_linkage": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/constructed-column-tree.json",
+        "sha256": "14bc66b69eb30797805e75cb1c1f2d28f75af833da00026a3ae72337fd0e299f"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "easyviz-matrix-cell-38b8fa9981639f4a",
+      "role": "matrix-cell",
+      "label": "007 × 010: observed",
+      "source_keys": [
+        {
+          "row": "007",
+          "column": "010",
+          "source_row": 9
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        51.540179439484135,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-d9e8775a2a80edda",
+      "role": "matrix-cell",
+      "label": "007 × 001: observed",
+      "source_keys": [
+        {
+          "row": "007",
+          "column": "001",
+          "source_row": 24
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        51.540179439484135,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-97e717b1ea72d998",
+      "role": "matrix-cell",
+      "label": "007 × 003: observed",
+      "source_keys": [
+        {
+          "row": "007",
+          "column": "003",
+          "source_row": 33
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        51.540179439484135,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-ac108d678f1ee63b",
+      "role": "matrix-cell",
+      "label": "007 × 006: observed",
+      "source_keys": [
+        {
+          "row": "007",
+          "column": "006",
+          "source_row": 21
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        51.540179439484135,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-b522b5d0f73a1f98",
+      "role": "matrix-cell",
+      "label": "007 × 040: observed",
+      "source_keys": [
+        {
+          "row": "007",
+          "column": "040",
+          "source_row": 11
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        51.540179439484135,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-b6ee81786e9ac8f7",
+      "role": "matrix-cell",
+      "label": "007 × 025: observed",
+      "source_keys": [
+        {
+          "row": "007",
+          "column": "025",
+          "source_row": 30
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        51.540179439484135,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-539aa9553c6eb002",
+      "role": "matrix-cell",
+      "label": "019 × 010: observed",
+      "source_keys": [
+        {
+          "row": "019",
+          "column": "010",
+          "source_row": 32
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        44.83969221230159,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-8c3cdf73d2fba441",
+      "role": "matrix-cell",
+      "label": "019 × 001: observed",
+      "source_keys": [
+        {
+          "row": "019",
+          "column": "001",
+          "source_row": 22
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        44.83969221230159,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-2d3091100ebbe6bd",
+      "role": "matrix-cell",
+      "label": "019 × 003: unmeasured",
+      "source_keys": [
+        {
+          "row": "019",
+          "column": "003",
+          "source_row": 3
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        44.83969221230159,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-216027c57168a41b",
+      "role": "matrix-cell",
+      "label": "019 × 006: observed",
+      "source_keys": [
+        {
+          "row": "019",
+          "column": "006",
+          "source_row": 31
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        44.83969221230159,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-8b79c75f9c58b7f0",
+      "role": "matrix-cell",
+      "label": "019 × 040: observed",
+      "source_keys": [
+        {
+          "row": "019",
+          "column": "040",
+          "source_row": 39
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        44.83969221230159,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-a5a7e71139059399",
+      "role": "matrix-cell",
+      "label": "019 × 025: observed",
+      "source_keys": [
+        {
+          "row": "019",
+          "column": "025",
+          "source_row": 6
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        44.83969221230159,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-ce596562a0ac05e0",
+      "role": "matrix-cell",
+      "label": "001 × 010: observed",
+      "source_keys": [
+        {
+          "row": "001",
+          "column": "010",
+          "source_row": 14
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        38.13920498511905,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-d6db2780ed5dad54",
+      "role": "matrix-cell",
+      "label": "001 × 001: observed",
+      "source_keys": [
+        {
+          "row": "001",
+          "column": "001",
+          "source_row": 1
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        38.13920498511905,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-5fba3141ba0d659a",
+      "role": "matrix-cell",
+      "label": "001 × 003: observed",
+      "source_keys": [
+        {
+          "row": "001",
+          "column": "003",
+          "source_row": 8
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        38.13920498511905,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-5f2f06cdd9ad3a63",
+      "role": "matrix-cell",
+      "label": "001 × 006: observed",
+      "source_keys": [
+        {
+          "row": "001",
+          "column": "006",
+          "source_row": 23
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        38.13920498511905,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-fda838b9b40e9766",
+      "role": "matrix-cell",
+      "label": "001 × 040: observed",
+      "source_keys": [
+        {
+          "row": "001",
+          "column": "040",
+          "source_row": 34
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        38.13920498511905,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-6616e975ee464806",
+      "role": "matrix-cell",
+      "label": "001 × 025: observed",
+      "source_keys": [
+        {
+          "row": "001",
+          "column": "025",
+          "source_row": 28
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        38.13920498511905,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-badccd404cea3563",
+      "role": "matrix-cell",
+      "label": "035 × 010: observed",
+      "source_keys": [
+        {
+          "row": "035",
+          "column": "010",
+          "source_row": 37
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        31.43871775793651,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-660b276ea19e2906",
+      "role": "matrix-cell",
+      "label": "035 × 001: observed",
+      "source_keys": [
+        {
+          "row": "035",
+          "column": "001",
+          "source_row": 26
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        31.43871775793651,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-7e08ecaa0dc00e00",
+      "role": "matrix-cell",
+      "label": "035 × 003: observed",
+      "source_keys": [
+        {
+          "row": "035",
+          "column": "003",
+          "source_row": 7
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        31.43871775793651,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-be548ba438bc3ad4",
+      "role": "matrix-cell",
+      "label": "035 × 006: observed",
+      "source_keys": [
+        {
+          "row": "035",
+          "column": "006",
+          "source_row": 15
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        31.43871775793651,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-9a2e970896024842",
+      "role": "matrix-cell",
+      "label": "035 × 040: observed",
+      "source_keys": [
+        {
+          "row": "035",
+          "column": "040",
+          "source_row": 36
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        31.43871775793651,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-22fc8b92a36c8595",
+      "role": "matrix-cell",
+      "label": "035 × 025: observed",
+      "source_keys": [
+        {
+          "row": "035",
+          "column": "025",
+          "source_row": 12
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        31.43871775793651,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-d3c573237d861a2e",
+      "role": "matrix-cell",
+      "label": "082 × 010: observed",
+      "source_keys": [
+        {
+          "row": "082",
+          "column": "010",
+          "source_row": 13
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        24.73823053075397,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-968f878d8be93ffc",
+      "role": "matrix-cell",
+      "label": "082 × 001: observed",
+      "source_keys": [
+        {
+          "row": "082",
+          "column": "001",
+          "source_row": 18
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        24.73823053075397,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-d3a1b434ba57754a",
+      "role": "matrix-cell",
+      "label": "082 × 003: observed",
+      "source_keys": [
+        {
+          "row": "082",
+          "column": "003",
+          "source_row": 4
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        24.73823053075397,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-93c7a6fc0841b106",
+      "role": "matrix-cell",
+      "label": "082 × 006: observed",
+      "source_keys": [
+        {
+          "row": "082",
+          "column": "006",
+          "source_row": 25
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        24.73823053075397,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-34a5cdc67f2ee00d",
+      "role": "matrix-cell",
+      "label": "082 × 040: observed",
+      "source_keys": [
+        {
+          "row": "082",
+          "column": "040",
+          "source_row": 16
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        24.73823053075397,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-944fd7e96bb3e267",
+      "role": "matrix-cell",
+      "label": "082 × 025: observed",
+      "source_keys": [
+        {
+          "row": "082",
+          "column": "025",
+          "source_row": 2
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        24.73823053075397,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-a914a800eca8bbcf",
+      "role": "matrix-cell",
+      "label": "NA × 010: observed",
+      "source_keys": [
+        {
+          "row": "NA",
+          "column": "010",
+          "source_row": 5
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        18.03774330357143,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-e919c4781bd35875",
+      "role": "matrix-cell",
+      "label": "NA × 001: observed",
+      "source_keys": [
+        {
+          "row": "NA",
+          "column": "001",
+          "source_row": 40
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        18.03774330357143,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-4d0827deac2a178a",
+      "role": "matrix-cell",
+      "label": "NA × 003: observed",
+      "source_keys": [
+        {
+          "row": "NA",
+          "column": "003",
+          "source_row": 17
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        18.03774330357143,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-486e0d6e29e45ba0",
+      "role": "matrix-cell",
+      "label": "NA × 006: observed",
+      "source_keys": [
+        {
+          "row": "NA",
+          "column": "006",
+          "source_row": 19
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        18.03774330357143,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-28bead15ac7308af",
+      "role": "matrix-cell",
+      "label": "NA × 040: observed",
+      "source_keys": [
+        {
+          "row": "NA",
+          "column": "040",
+          "source_row": 10
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        18.03774330357143,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-6b1b8211d81302e4",
+      "role": "matrix-cell",
+      "label": "NA × 025: observed",
+      "source_keys": [
+        {
+          "row": "NA",
+          "column": "025",
+          "source_row": 35
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        18.03774330357143,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-66fb95a5bddd7a5f",
+      "role": "matrix-cell",
+      "label": "null × 010: observed",
+      "source_keys": [
+        {
+          "row": "null",
+          "column": "010",
+          "source_row": 29
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        11.337256076388885,
+        5.7034202835648165,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-061de8cb6aee3c9b",
+      "role": "matrix-cell",
+      "label": "null × 001: observed",
+      "source_keys": [
+        {
+          "row": "null",
+          "column": "001",
+          "source_row": 41
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        11.337256076388885,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-b85626327da74d7d",
+      "role": "matrix-cell",
+      "label": "null × 003: observed",
+      "source_keys": [
+        {
+          "row": "null",
+          "column": "003",
+          "source_row": 20
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        11.337256076388885,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-b1ccc3d715b6365b",
+      "role": "matrix-cell",
+      "label": "null × 006: observed",
+      "source_keys": [
+        {
+          "row": "null",
+          "column": "006",
+          "source_row": 38
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        11.337256076388885,
+        5.703420283564819,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-38490b77d0118a92",
+      "role": "matrix-cell",
+      "label": "null × 040: observed",
+      "source_keys": [
+        {
+          "row": "null",
+          "column": "040",
+          "source_row": 27
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        11.337256076388885,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-matrix-cell-dc6d5e7cfedebe81",
+      "role": "matrix-cell",
+      "label": "null × 025: unsupplied",
+      "source_keys": [
+        {
+          "row": "null",
+          "column": "025",
+          "source_row": null
+        }
+      ],
+      "spec_paths": [
+        "/fields/value",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        11.337256076388885,
+        5.703420283564815,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-142ee6153ac32fab",
+      "role": "metadata-cell",
+      "label": "Batch: Lot A",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "007",
+          "field": "material_batch",
+          "category": "Lot A"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot A"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        51.540179439484135,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-03e184eb34f40a08",
+      "role": "metadata-cell",
+      "label": "Batch: Lot B",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "019",
+          "field": "material_batch",
+          "category": "Lot B"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot B"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        44.83969221230159,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-94c150ec4dee2839",
+      "role": "metadata-cell",
+      "label": "Batch: Lot A",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "001",
+          "field": "material_batch",
+          "category": "Lot A"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot A"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        38.13920498511905,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-7db0d620dfd5e688",
+      "role": "metadata-cell",
+      "label": "Batch: Lot B",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "035",
+          "field": "material_batch",
+          "category": "Lot B"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot B"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        31.43871775793651,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-61e7d8ac909a60fb",
+      "role": "metadata-cell",
+      "label": "Batch: Lot A",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "082",
+          "field": "material_batch",
+          "category": "Lot A"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot A"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        24.73823053075397,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-aed9487d47c17ec2",
+      "role": "metadata-cell",
+      "label": "Batch: Lot B",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "NA",
+          "field": "material_batch",
+          "category": "Lot B"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot B"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        18.03774330357143,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-880086c3b1b5d257",
+      "role": "metadata-cell",
+      "label": "Batch: Lot A",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "null",
+          "field": "material_batch",
+          "category": "Lot A"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot A"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        11.337256076388885,
+        1.9999999999999978,
+        6.700487227182543
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-a4ff827e1866fe0c",
+      "role": "metadata-cell",
+      "label": "Dose class: Low",
+      "source_keys": [
+        {
+          "axis": "column",
+          "id": "010",
+          "field": "exposure_class",
+          "category": "Low"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/Low"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        12.339144965277782,
+        60.24066666666668,
+        5.7034202835648165,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-d4fc52733ec354d4",
+      "role": "metadata-cell",
+      "label": "Dose class: Low",
+      "source_keys": [
+        {
+          "axis": "column",
+          "id": "001",
+          "field": "exposure_class",
+          "category": "Low"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/Low"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        18.042565248842596,
+        60.24066666666668,
+        5.703420283564815,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-fe5356835cf66e89",
+      "role": "metadata-cell",
+      "label": "Dose class: Low",
+      "source_keys": [
+        {
+          "axis": "column",
+          "id": "003",
+          "field": "exposure_class",
+          "category": "Low"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/Low"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        23.745985532407417,
+        60.24066666666668,
+        5.703420283564819,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-bd7369a5149736b4",
+      "role": "metadata-cell",
+      "label": "Dose class: High",
+      "source_keys": [
+        {
+          "axis": "column",
+          "id": "006",
+          "field": "exposure_class",
+          "category": "High"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/High"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.44940581597223,
+        60.24066666666668,
+        5.703420283564819,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-b55bc8878aefdd95",
+      "role": "metadata-cell",
+      "label": "Dose class: High",
+      "source_keys": [
+        {
+          "axis": "column",
+          "id": "040",
+          "field": "exposure_class",
+          "category": "High"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/High"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        35.15282609953705,
+        60.24066666666668,
+        5.703420283564815,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-metadata-cell-fd1405195a528682",
+      "role": "metadata-cell",
+      "label": "Dose class: High",
+      "source_keys": [
+        {
+          "axis": "column",
+          "id": "025",
+          "field": "exposure_class",
+          "category": "High"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/High"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        40.85624638310186,
+        60.24066666666668,
+        5.703420283564815,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-6bca59f9b79520f4",
+      "role": "marginal-bar",
+      "label": "row mean: 007",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "007"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        53.105121212121226,
+        52.21022816220239,
+        1.677968049649461,
+        5.360389781746034
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-44298c6bfe4f1685",
+      "role": "marginal-bar",
+      "label": "row mean: 019",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "019"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.36014936980425,
+        45.50974093501985,
+        0.4229398919664376,
+        5.360389781746034
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-7ce6ed55ce0a294c",
+      "role": "marginal-bar",
+      "label": "row mean: 001",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "001"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.783089261770684,
+        38.80925370783731,
+        1.4481094127111844,
+        5.360389781746034
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-c4eea0ae5b5d1b5f",
+      "role": "marginal-bar",
+      "label": "row mean: 035",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "035"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.783089261770684,
+        32.108766480654765,
+        3.6087805999310434,
+        5.360389781746034
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-800cd28d1a65245a",
+      "role": "marginal-bar",
+      "label": "row mean: 082",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "082"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.783089261770684,
+        25.408279253472227,
+        5.769451787150902,
+        5.360389781746034
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-34231c21a16b95e6",
+      "role": "marginal-bar",
+      "label": "row mean: NA",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "NA"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.783089261770684,
+        18.707792026289688,
+        7.930122974370761,
+        5.360389781746032
+      ]
+    },
+    {
+      "id": "easyviz-marginal-bar-79ef9853d1f2ef82",
+      "role": "marginal-bar",
+      "label": "row mean: null",
+      "source_keys": [
+        {
+          "axis": "row",
+          "id": "null"
+        }
+      ],
+      "spec_paths": [
+        "/marginals/row/color"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        54.783089261770684,
+        12.007304799107146,
+        9.231122859441436,
+        5.360389781746032
+      ]
+    },
+    {
+      "id": "easyviz-dendrogram-branch-f6199ef9d59f29a7",
+      "role": "dendrogram-branch",
+      "label": "Supplied column branch",
+      "source_keys": [
+        {
+          "axis": "column",
+          "leaf_ids": [
+            "010",
+            "001"
+          ],
+          "node": 6
+        }
+      ],
+      "spec_paths": [
+        "/dendrograms/column"
+      ],
+      "editable": [],
+      "bbox_mm": [
+        15.19085510706019,
+        64.24066666666668,
+        5.7034202835648165,
+        2.8571428571428523
+      ]
+    },
+    {
+      "id": "easyviz-dendrogram-branch-4a394595b146de39",
+      "role": "dendrogram-branch",
+      "label": "Supplied column branch",
+      "source_keys": [
+        {
+          "axis": "column",
+          "leaf_ids": [
+            "003",
+            "006"
+          ],
+          "node": 7
+        }
+      ],
+      "spec_paths": [
+        "/dendrograms/column"
+      ],
+      "editable": [],
+      "bbox_mm": [
+        26.597695674189822,
+        64.24066666666668,
+        5.703420283564815,
+        4.571428571428572
+      ]
+    },
+    {
+      "id": "easyviz-dendrogram-branch-b399dade9bca9eb3",
+      "role": "dendrogram-branch",
+      "label": "Supplied column branch",
+      "source_keys": [
+        {
+          "axis": "column",
+          "leaf_ids": [
+            "040",
+            "025"
+          ],
+          "node": 8
+        }
+      ],
+      "spec_paths": [
+        "/dendrograms/column"
+      ],
+      "editable": [],
+      "bbox_mm": [
+        38.00453624131946,
+        64.24066666666668,
+        5.703420283564819,
+        2.285714285714286
+      ]
+    },
+    {
+      "id": "easyviz-dendrogram-branch-78de6be9b262e487",
+      "role": "dendrogram-branch",
+      "label": "Supplied column branch",
+      "source_keys": [
+        {
+          "axis": "column",
+          "leaf_ids": [
+            "010",
+            "001",
+            "003",
+            "006"
+          ],
+          "node": 9
+        }
+      ],
+      "spec_paths": [
+        "/dendrograms/column"
+      ],
+      "editable": [],
+      "bbox_mm": [
+        18.042565248842596,
+        67.09780952380953,
+        11.406840567129633,
+        5.142857142857148
+      ]
+    },
+    {
+      "id": "easyviz-dendrogram-branch-39096953b6bb072c",
+      "role": "dendrogram-branch",
+      "label": "Supplied column branch",
+      "source_keys": [
+        {
+          "axis": "column",
+          "leaf_ids": [
+            "010",
+            "001",
+            "003",
+            "006",
+            "040",
+            "025"
+          ],
+          "node": 10
+        }
+      ],
+      "spec_paths": [
+        "/dendrograms/column"
+      ],
+      "editable": [],
+      "bbox_mm": [
+        23.745985532407417,
+        66.52638095238096,
+        17.11026085069445,
+        9.142857142857133
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-9bd4cf9bfa2dab5c",
+      "role": "legend-key",
+      "label": "Batch: Lot A",
+      "source_keys": [
+        {
+          "axis": "row",
+          "field": "material_batch",
+          "category": "Lot A"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot A"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        68.16800000000002,
+        32.92308009481838,
+        1.4999999999999958,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-b59b1e52ca7e5c97",
+      "role": "legend-key",
+      "label": "Batch: Lot B",
+      "source_keys": [
+        {
+          "axis": "row",
+          "field": "material_batch",
+          "category": "Lot B"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/row/tracks/0/colors/Lot B"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        68.16800000000002,
+        29.67449068509616,
+        1.4999999999999958,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-1a51e39031d0af7b",
+      "role": "legend-key",
+      "label": "Dose class: Low",
+      "source_keys": [
+        {
+          "axis": "column",
+          "field": "exposure_class",
+          "category": "Low"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/Low"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        68.16800000000002,
+        26.425901275373935,
+        1.4999999999999958,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-4663d748634ce5c0",
+      "role": "legend-key",
+      "label": "Dose class: High",
+      "source_keys": [
+        {
+          "axis": "column",
+          "field": "exposure_class",
+          "category": "High"
+        }
+      ],
+      "spec_paths": [
+        "/metadata/column/tracks/0/colors/High"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        68.16800000000002,
+        23.177311865651717,
+        1.4999999999999958,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-ae9be09c83713b9c",
+      "role": "legend-key",
+      "label": "Unmeasured",
+      "source_keys": [
+        {
+          "state": "unmeasured"
+        }
+      ],
+      "spec_paths": [
+        "/fields/state"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        68.16800000000002,
+        19.928722455929496,
+        1.4999999999999958,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-358ce70e3e5a1048",
+      "role": "legend-key",
+      "label": "Unsupplied coordinate",
+      "source_keys": [
+        {
+          "state": "unsupplied"
+        }
+      ],
+      "spec_paths": [
+        "/options/missing_cells"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        68.16800000000002,
+        16.68013304620727,
+        1.4999999999999958,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-aligned-axes-4be3ebb28b9b98b2",
+      "role": "aligned-axes",
+      "label": "matrix",
+      "source_keys": [
+        {
+          "ordered_rows": [
+            "007",
+            "019",
+            "001",
+            "035",
+            "082",
+            "NA",
+            "null"
+          ],
+          "ordered_columns": [
+            "010",
+            "001",
+            "003",
+            "006",
+            "040",
+            "025"
+          ]
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        12.33914496527778,
+        11.337256076388892,
+        34.220521701388904,
+        46.90341059027779
+      ]
+    },
+    {
+      "id": "easyviz-aligned-axes-2668ccb99fd93e71",
+      "role": "aligned-axes",
+      "label": "row-metadata-material_batch",
+      "source_keys": [
+        {
+          "ordered_rows": [
+            "007",
+            "019",
+            "001",
+            "035",
+            "082",
+            "NA",
+            "null"
+          ],
+          "ordered_columns": [
+            "010",
+            "001",
+            "003",
+            "006",
+            "040",
+            "025"
+          ]
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        48.559666666666686,
+        11.337256076388892,
+        1.9999999999999978,
+        46.90341059027779
+      ]
+    },
+    {
+      "id": "easyviz-aligned-axes-7a6d7086514c0ebf",
+      "role": "aligned-axes",
+      "label": "column-metadata-exposure_class",
+      "source_keys": [
+        {
+          "ordered_rows": [
+            "007",
+            "019",
+            "001",
+            "035",
+            "082",
+            "NA",
+            "null"
+          ],
+          "ordered_columns": [
+            "010",
+            "001",
+            "003",
+            "006",
+            "040",
+            "025"
+          ]
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        12.33914496527778,
+        60.24066666666668,
+        34.220521701388904,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-aligned-axes-300722dc3be6ad2b",
+      "role": "aligned-axes",
+      "label": "row-marginal",
+      "source_keys": [
+        {
+          "ordered_rows": [
+            "007",
+            "019",
+            "001",
+            "035",
+            "082",
+            "NA",
+            "null"
+          ],
+          "ordered_columns": [
+            "010",
+            "001",
+            "003",
+            "006",
+            "040",
+            "025"
+          ]
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        52.55966666666668,
+        11.337256076388892,
+        11.999999999999996,
+        46.90341059027779
+      ]
+    },
+    {
+      "id": "easyviz-aligned-axes-2c2840b22bb602bc",
+      "role": "aligned-axes",
+      "label": "column-dendrogram",
+      "source_keys": [
+        {
+          "ordered_rows": [
+            "007",
+            "019",
+            "001",
+            "035",
+            "082",
+            "NA",
+            "null"
+          ],
+          "ordered_columns": [
+            "010",
+            "001",
+            "003",
+            "006",
+            "040",
+            "025"
+          ]
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        12.33914496527778,
+        64.24066666666668,
+        34.220521701388904,
+        11.999999999999996
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        12.33914496527778,
+        11.337256076388892,
+        34.220521701388904,
+        46.90341059027779
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Challenge",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        23.268739149305567,
+        2.000000000000003,
+        12.361333333333334,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Vessel",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        3.0018888888888884,
+        30.676013454861124,
+        2.648589409722223,
+        8.225895833333334
+      ]
+    },
+    {
+      "id": "easyviz-axes-80f59f16ea6a58b2",
+      "role": "axes",
+      "label": "Data region 2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        48.559666666666686,
+        11.337256076388892,
+        1.9999999999999978,
+        46.90341059027779
+      ]
+    },
+    {
+      "id": "easyviz-axes-e233060aa374d78c",
+      "role": "axes",
+      "label": "Data region 3",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        12.33914496527778,
+        60.24066666666668,
+        34.220521701388904,
+        1.9999999999999978
+      ]
+    },
+    {
+      "id": "easyviz-axes-6bfc7cad38d5df0a",
+      "role": "axes",
+      "label": "Data region 4",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        52.55966666666668,
+        11.337256076388892,
+        11.999999999999996,
+        46.90341059027779
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-f09ddd10b827384d",
+      "role": "axis-label",
+      "label": "Mean signal",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        51.15133333333335,
+        2.1595217013888917,
+        14.816666666666666,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axes-5425d8a304aeeae7",
+      "role": "axes",
+      "label": "Data region 5",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        12.33914496527778,
+        64.24066666666668,
+        34.220521701388904,
+        11.999999999999996
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-a5ea80f331f22820",
+      "role": "axis-label",
+      "label": "Supplied height",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0,
+        60.80033333333334,
+        2.6485894097222236,
+        18.880666666666666
+      ]
+    },
+    {
+      "id": "easyviz-legend-f5c772d78843a502",
+      "role": "legend",
+      "label": "Colorbar guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/colorbar"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        67.96800000000002,
+        40.240666666666684,
+        2.000000000000007,
+        18.0
+      ]
+    },
+    {
+      "id": "easyviz-guide-label-1fb9c6d0abe4c07b",
+      "role": "guide-label",
+      "label": "Signal change (a.u.)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/color"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        77.4866666666667,
+        36.921666666666674,
+        2.6485894097222253,
+        24.638
+      ]
+    },
+    {
+      "id": "easyviz-legend-a07e066858a56be9",
+      "role": "legend",
+      "label": "Categorical guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/categorical"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        67.96800000000002,
+        15.630130208333338,
+        30.031999999999996,
+        19.291536458333336
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

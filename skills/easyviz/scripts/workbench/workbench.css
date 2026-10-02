@@ -38,5 +38,15 @@ select { margin-bottom:13px; }input { margin-bottom:13px; }.selection-details { 
 .request-item { border-left:2px solid #add0e4; padding:1px 0 1px 10px; margin:0 0 14px; font-size:12px; }.request-item p { margin:4px 0; white-space:pre-wrap; overflow-wrap:anywhere; }.request-item .request-label { font-weight:600; font-size:11px; }.request-item .request-status { color:var(--muted); font-size:10px; }.request-item.undone { opacity:.55; border-left-color:#dce4e9; }.request-item.older { border-left-color:#dfb269; }
 .small-link { font-size:11px; }#message { margin:17px 0 0; min-height:20px; font-size:13px; color:#176794; }#message.error { color:#a63333; }
 [hidden] { display:none !important; }
+.selection-help { margin:-5px 0 14px; }.source-status { font-size:11px; color:var(--muted); margin:0 0 15px; }.source-status.error { color:#a63333; }
+#element-list[multiple] { padding:4px; }#element-list[multiple] option { padding:5px 7px; }
+.comparison-label { margin:0; padding:10px 16px; font-size:11px; color:var(--muted); background:#f6f8fa; border-bottom:1px solid var(--line); }
+.has-comparison { display:grid; grid-template-columns:1fr 1fr; }.has-comparison .preview-toolbar,.has-comparison .preview-footer { grid-column:1 / -1; }
+.has-comparison #comparison { grid-column:1; grid-row:2 / span 2; border-right:1px solid var(--line); }.has-comparison #current-label { grid-column:2; grid-row:2; }
+.has-comparison #figure-host { grid-column:2; grid-row:3; }.has-comparison #figure-host,#comparison-host { min-height:0; height:auto; padding:16px; align-self:start; }
+#comparison-host { display:flex; align-items:center; justify-content:center; background:#edf2f5; }#comparison-host > svg { max-width:100%; background:#fff; }
+.has-comparison #figure-host > svg,#comparison-host > svg { width:100%; height:auto; max-height:none; }
+#history-list p { font-size:11px; color:var(--muted); overflow-wrap:anywhere; }
 @media(max-width:1000px) { main { padding:24px; }.layout { grid-template-columns:minmax(0,1fr) 310px; gap:16px; }.review-card { padding:18px; }#figure-host { padding:16px; }.preview-footer { flex-wrap:wrap; } }
 @media(max-width:760px) { .topbar { padding:0 18px; height:68px; }main { padding:22px 16px; }.layout { grid-template-columns:1fr; }.heading { align-items:start; }.dimensions { font-size:11px; }h1 { font-size:23px; }.preview-toolbar { flex-wrap:wrap; }#figure-host { min-height:300px; height:55vh; }.top-actions { gap:8px; }.top-actions button { font-size:12px; } }
+@media(max-width:520px) { .has-comparison { display:block; }.has-comparison #comparison { border-right:0; border-bottom:1px solid var(--line); } }

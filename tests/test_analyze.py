@@ -48,6 +48,23 @@ class AnalyzeTests(unittest.TestCase):
         plan["comparisons"][0] = {"name": "association", "method": method, "fields": {"x": "x", "y": "y"}}
         return plan
 
+    def friedman_plan(self, groups=None, pvalue_method="chi_square"):
+        plan = self.paired_plan("friedman")
+        plan["question"] = "Do the planned repeated conditions have the same distribution?"
+        plan["design"]["unit_definition"] = "one independent subject measured once in every selected condition"
+        plan["comparisons"][0]["groups"] = groups or ["A", "B", "C"]
+        plan["comparisons"][0]["pvalue_method"] = pvalue_method
+        if pvalue_method == "permutation":
+            plan["comparisons"][0]["permutation"] = {"n_resamples": 1000, "seed": 23}
+        return plan
+
+    def repeated_text(self, values, groups=None):
+        groups = groups or ["A", "B", "C"]
+        records = ["id,group,value"]
+        for index, row in enumerate(values, start=1):
+            records.extend(f"{index:03},{group},{value}" for group, value in zip(groups, row))
+        return "\n".join(records) + "\n"
+
     def test_welch_known_statistic_effect_and_interval(self):
         report = self.run_analysis("id,group,value\na1,A,1\na2,A,2\na3,A,3\nb1,B,4\nb2,B,5\nb3,B,6\n")
         result = report["comparisons"][0]
@@ -194,6 +211,197 @@ class AnalyzeTests(unittest.TestCase):
             with self.assertRaises(analysis.AnalysisError):
                 analysis.analyze(self.source, self.paired_plan(), self.root / "error")
             self.assertFalse((self.root / "error").exists())
+
+    def test_friedman_known_result_and_reordered_literal_subject_pairing(self):
+        # SciPy's repeated-pulse teaching example. The hand rank sums are
+        # before=10, immediately-after=21, five-min-after=11: Q=74/7.
+        values = list(zip([72, 96, 88, 92, 74, 76, 82],
+                          [120, 120, 132, 120, 101, 96, 112],
+                          [76, 95, 104, 96, 84, 72, 76]))
+        groups = ["before", "immediately-after", "five-min-after"]
+        lines = self.repeated_text(values, groups).splitlines()
+        text = lines[0] + "\n" + "\n".join(reversed(lines[1:])) + "\n"
+        plan = self.friedman_plan([groups[1], groups[2], groups[0]])
+        result = self.run_analysis(text, plan)["comparisons"][0]
+        self.assertEqual(result["subject_unit_ids"], [f"{i:03}" for i in range(1, 8)])
+        self.assertEqual(result["groups"], plan["comparisons"][0]["groups"])
+        self.assertEqual([r["group"] for r in result["summaries"]], result["groups"])
+        self.assertAlmostEqual(result["statistic"], 74/7)
+        self.assertAlmostEqual(result["pvalue"], math.exp(-37/7))  # chi-square df=2 survival
+        self.assertEqual(result["degrees_of_freedom"], 2)
+        self.assertAlmostEqual(result["effect"]["estimate"], 37/49)
+        self.assertEqual(result["effect"]["name"], "kendalls_w")
+        self.assertEqual(result["counts"]["complete_subjects"], 7)
+        self.assertEqual(result["counts"]["included_rows"], 21)
+        self.assertEqual(result["counts"]["independent_unit_count"], 7)
+        self.assertEqual(result["ties"]["correction_factor"], 1)
+        self.assertEqual(result["inference_suitability"]["status"], "chi_square_guidance_not_met")
+        self.assertIn("may be unreliable", " ".join(result["notes"]))
+        self.assertIsNone(result["interval"])
+        self.assertIsNone(result["adjusted_pvalue"])
+        self.assertIn("no automatic post hoc", result["hypothesis"]["scope"])
+        with (self.root / "out/analyzed-data.csv").open() as stream:
+            trace = list(csv.DictReader(stream))
+        self.assertEqual([row["id"] for row in trace], [row.split(",")[0] for row in text.splitlines()[1:]])
+        self.assertIn("nondirectional omnibus", (self.root / "out/methodology.md").read_text())
+
+    def test_friedman_tie_correction_and_zero_rank_concordance(self):
+        # Average within-subject ranks sum to [5.5,6,6.5]. Uncorrected Q=1/6,
+        # correction=5/6, giving Q=1/5 and W=1/30.
+        result = self.run_analysis(self.repeated_text([[1, 1, 3], [2, 4, 4], [3, 2, 1]]),
+                                   self.friedman_plan())["comparisons"][0]
+        self.assertAlmostEqual(result["statistic"], 1/5)
+        self.assertAlmostEqual(result["pvalue"], math.exp(-.1))
+        self.assertAlmostEqual(result["effect"]["estimate"], 1/30)
+        self.assertAlmostEqual(result["ties"]["correction_factor"], 5/6)
+        self.assertEqual(result["ties"]["subjects_with_ties"], 2)
+        self.assertEqual([r["rank_sum"] for r in result["rank_summary"]], [5.5, 6, 6.5])
+        result = self.run_analysis(self.repeated_text([[1, 2, 3], [2, 3, 1], [3, 1, 2]]),
+                                   self.friedman_plan(), name="balanced-ranks")["comparisons"][0]
+        self.assertEqual(result["statistic"], 0)
+        self.assertEqual(result["pvalue"], 1)
+        self.assertEqual(result["effect"]["estimate"], 0)
+
+    def test_friedman_constant_conditions_valid_but_all_within_subject_ties_undefined(self):
+        result = self.run_analysis(self.repeated_text([[1, 2, 3], [1, 2, 3]]),
+                                   self.friedman_plan())["comparisons"][0]
+        self.assertEqual(result["statistic"], 4)
+        self.assertEqual(result["effect"]["estimate"], 1)
+        self.assertAlmostEqual(result["pvalue"], math.exp(-2))
+        for values in [[[1, 1, 1], [2, 2, 2]], [[1, 2, 3]]]:
+            self.source.write_text(self.repeated_text(values))
+            with self.assertRaisesRegex(analysis.AnalysisError, "undefined|two complete"):
+                analysis.analyze(self.source, self.friedman_plan(), self.root / "bad")
+            self.assertFalse((self.root / "bad").exists())
+
+    def test_friedman_whole_subject_exclusions_and_full_selected_row_accounting(self):
+        text = ("id,group,value\n001,A,1\n001,B,2\n001,C,3\n002,A,2\n002,B,3\n002,C,1\n"
+                "003,A,3\n003,B,\n003,C,2\n004,A,4\n004,B,5\n099,D,500\n")
+        plan = self.friedman_plan()
+        plan["missing_policy"] = "complete_case"
+        result = self.run_analysis(text, plan)["comparisons"][0]
+        self.assertEqual(result["counts"], {"source_rows": 12, "selected_rows": 11, "included_rows": 6,
+            "excluded_rows": 5, "unselected_rows": 1, "included_units": 2, "independent_unit_count": 2,
+            "selected_subjects": 4, "complete_subjects": 2, "excluded_subjects": 2,
+            "condition_count": 3, "absent_condition_rows": 1})
+        self.assertEqual(result["excluded_subject_unit_ids"], ["003", "004"])
+        self.assertEqual(result["subject_exclusions"][0]["missing_measurement_conditions"], ["B"])
+        self.assertEqual(result["subject_exclusions"][1]["absent_conditions"], ["C"])
+        self.assertEqual(len(result["exclusions"]), 5)
+        with (self.root / "out/analyzed-data.csv").open() as stream:
+            trace = list(csv.DictReader(stream))
+        self.assertEqual(len(trace), 11)
+        self.assertEqual(sum(r["_easyviz_status"] == "excluded" for r in trace), 5)
+        self.assertEqual(trace[7]["value"], "")
+        self.assertEqual(trace[7]["_easyviz_exclusion"], "missing_measurement:value;incomplete_repeated_subject")
+        self.assertEqual(self.source.read_text(), text)
+
+    def test_friedman_error_policy_duplicate_cells_and_unmatched_literal_ids(self):
+        valid = self.repeated_text([[1, 2, 3], [2, 3, 1]])
+        cases = [(valid + "003,A,1\n003,B,2\n", "Incomplete repeated subject"),
+                 (valid + "003,A,1\n003,B,\n003,C,3\n", "Missing measurement"),
+                 (valid + "001,A,\n", "Repeated unit"),
+                 (valid + "01,A,1\n01,B,2\n1,C,3\n", "Incomplete repeated subject"),
+                 (valid.replace(",C,", ",D,"), "absent conditions")]
+        for index, (text, message) in enumerate(cases):
+            with self.subTest(index=index):
+                self.source.write_text(text)
+                with self.assertRaisesRegex(analysis.AnalysisError, message):
+                    analysis.analyze(self.source, self.friedman_plan(), self.root / "bad")
+                self.assertFalse((self.root / "bad").exists())
+        plan = self.friedman_plan()
+        plan["missing_policy"] = "complete_case"
+        result = self.run_analysis(cases[3][0], plan)["comparisons"][0]
+        self.assertEqual(result["excluded_subject_unit_ids"], ["01", "1"])
+        self.assertEqual(result["subject_unit_ids"], ["001", "002"])
+        self.source.write_text(valid + "001,A,\n")
+        with self.assertRaisesRegex(analysis.AnalysisError, "Repeated unit"):
+            analysis.analyze(self.source, plan, self.root / "duplicate")
+
+    def test_friedman_exact_label_permutation_preserves_tied_multiplicities(self):
+        # Two identical [low,low,high] subjects: matching high-condition labels
+        # are extreme in 3*(2!*2!)=12 of the (3!)^2=36 labelled permutations.
+        plan = self.friedman_plan(pvalue_method="permutation")
+        result = self.run_analysis(self.repeated_text([[1, 1, 2], [1, 1, 2]]), plan)["comparisons"][0]
+        self.assertEqual(result["statistic"], 4)
+        self.assertEqual(result["effect"]["estimate"], 1)
+        self.assertEqual(result["pvalue"], 1/3)
+        self.assertTrue(result["permutation"]["exact"])
+        self.assertEqual(result["permutation"]["permutations_evaluated"], 36)
+        self.assertEqual(result["permutation"]["extreme_permutations"], 12)
+        self.assertIsNone(result["permutation"]["seed_used"])
+        self.assertNotIn("may be unreliable", " ".join(result["notes"]))
+        result = self.run_analysis(self.repeated_text([[1, 2, 3], [1, 2, 3]]), plan,
+                                   name="no-ties-exact")["comparisons"][0]
+        self.assertEqual(result["pvalue"], 1/6)
+        self.assertEqual(result["permutation"]["extreme_permutations"], 6)
+
+    def test_friedman_monte_carlo_plus_one_and_seed_replay_ignore_source_row_order(self):
+        plan = self.friedman_plan(pvalue_method="permutation")
+        plan["comparisons"][0]["permutation"]["n_resamples"] = 100
+        # Twenty concordant subjects have an extremely rare maximum-Q event;
+        # this fixed seed produces zero extreme draws, but p must remain 1/101.
+        result = self.run_analysis(self.repeated_text([[1, 2, 3]] * 20), plan)["comparisons"][0]
+        self.assertFalse(result["permutation"]["exact"])
+        self.assertEqual(result["permutation"]["extreme_permutations"], 0)
+        self.assertEqual(result["pvalue"], 1/101)
+        self.assertEqual(result["permutation"]["pvalue_formula"], "(extreme+1)/(n_resamples+1)")
+        self.assertEqual(result["permutation"]["seed_used"], 23)
+        plan["comparisons"][0]["permutation"]["n_resamples"] = 1000
+        text = self.repeated_text([[1, 2, 3]] * 3 + [[1, 3, 2]] * 3)
+        first = self.run_analysis(text, plan, name="seed-first")["comparisons"][0]
+        rows = text.splitlines()
+        reversed_text = rows[0] + "\n" + "\n".join(reversed(rows[1:])) + "\n"
+        second = self.run_analysis(reversed_text, plan, name="seed-reordered")["comparisons"][0]
+        self.assertEqual(first["statistic"], 9)
+        self.assertEqual(first["effect"]["estimate"], .75)
+        self.assertEqual(first["permutation"], second["permutation"])
+        self.assertEqual(first["pvalue"], second["pvalue"])
+        self.assertEqual(first["pvalue"], (first["permutation"]["extreme_permutations"] + 1) / 1001)
+
+    def test_friedman_schema_rejects_unsupported_design_and_permutation_controls(self):
+        mutations = [lambda p: p["design"].update(structure="independent"),
+                     lambda p: p["design"].update(confirmed=False),
+                     lambda p: p["comparisons"][0].update(groups=["A", "B"]),
+                     lambda p: p["comparisons"][0].update(groups=["A", "A", "B"]),
+                     lambda p: p["comparisons"][0].update(groups=["A", "B", 3]),
+                     lambda p: p["comparisons"][0].update(pvalue_method="auto"),
+                     lambda p: p["comparisons"][0].update(permutation={"seed": 23, "n_resamples": 100})]
+        for mutate in mutations:
+            plan = self.friedman_plan()
+            mutate(plan)
+            with self.assertRaises(analysis.AnalysisError):
+                analysis.validate_plan(plan)
+        for controls in [{"seed": 23}, {"seed": True, "n_resamples": 100},
+                         {"seed": -1, "n_resamples": 100}, {"seed": 2**32, "n_resamples": 100},
+                         {"seed": 23, "n_resamples": True}, {"seed": 23, "n_resamples": 99},
+                         {"seed": 23, "n_resamples": 20001}]:
+            plan = self.friedman_plan(pvalue_method="permutation")
+            plan["comparisons"][0]["permutation"] = controls
+            with self.assertRaises(analysis.AnalysisError):
+                analysis.validate_plan(plan)
+        for location in ["plan", "design", "comparison", "fields"]:
+            plan = self.friedman_plan()
+            target = plan if location == "plan" else plan["design"] if location == "design" else plan["comparisons"][0] if location == "comparison" else plan["comparisons"][0]["fields"]
+            target["covariates"] = ["age"]
+            with self.assertRaisesRegex(analysis.AnalysisError, "custom regression or mixed-effects"):
+                analysis.validate_plan(plan)
+        plan = self.friedman_plan()
+        plan["design"]["structure"] = "longitudinal"
+        with self.assertRaisesRegex(analysis.AnalysisError, "unbalanced longitudinal"):
+            analysis.validate_plan(plan)
+
+    def test_friedman_planned_omnibus_and_contrast_require_one_declared_family(self):
+        plan = self.friedman_plan()
+        plan["comparisons"].append({"name": "A_vs_B", "method": "wilcoxon", "fields": {"group": "group", "value": "value"}, "groups": ["A", "B"]})
+        with self.assertRaisesRegex(analysis.AnalysisError, "multiplicity"):
+            analysis.validate_plan(plan)
+        plan["multiplicity"] = {"family": "planned omnibus and one contrast", "adjustment": "holm", "comparisons": ["primary", "A_vs_B"]}
+        results = self.run_analysis(self.repeated_text([[1, 2, 3], [2, 3, 4], [3, 5, 4]]), plan)["comparisons"]
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0]["adjustment"]["family_size"], 2)
+        self.assertEqual(results[1]["adjustment"]["family_size"], 2)
+        self.assertEqual([r["adjusted_pvalue"] for r in results], analysis.adjust_pvalues([r["pvalue"] for r in results], "holm"))
 
     def test_row_descriptions_never_claim_independent_samples(self):
         plan = deepcopy(self.base)

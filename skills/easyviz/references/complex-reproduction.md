@@ -6,6 +6,15 @@ The reference and user data are sufficient inputs; paper Source Data and author
 code are optional evidence, not prerequisites. A simple one-axis panel can keep
 its existing settings and checks without adopting the JSON audit below.
 
+For a keyed matrix with annotation strips, descriptive marginals or a supplied
+tree, inspect [Annotated matrices](annotated-matrix.md) before writing a new
+implementation. Its companion `aligned_layers.py` exposes a reusable categorical
+frame for custom aligned axes and checks their actual transformed centers.
+No tree is computed automatically. If the reference shows a dendrogram but the
+user has no linkage or adopted clustering method, mark that layer unresolved
+or explicitly omit it in an adopted partial reproduction; do not infer merge
+heights or scientific classes from pixels.
+
 ## Resolve relationships before selecting a recipe
 
 Turn the image reading into a small dependency graph. A heatmap with an aligned

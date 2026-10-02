@@ -1,0 +1,82 @@
+{
+  "status": "pass",
+  "source_sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b",
+  "source_rows": 57,
+  "original_artifact_count": 67,
+  "all_original_panel_spec_caption_data_input_hashes_unchanged": true,
+  "concurrent_original_review_record_updates": [
+    {
+      "path": "default-two/manifest.json",
+      "before_sha256": "bb131db64c0aa295fdd8f254a617165fca19f44ce5fca84c289e2411065ac5ec",
+      "after_sha256": "620362ebbceedf1bd87af1c27998a121cf0d64a12802ea6b91b82c5580b0f6a4"
+    },
+    {
+      "path": "default-two/visual-review.md",
+      "before_sha256": "d0224217ad1db6faed7caad49609a5255a3c7268197bb760b39370a7816efacb",
+      "after_sha256": "8344dbf71b8423274d1a260cd1fa7bae4a9cfc5d73ad7743f47f6a8449bd7e8a"
+    },
+    {
+      "path": "with-violin/manifest.json",
+      "before_sha256": "b79eaf0df039ea7c4a5c2299c25f60c319921b76bcde717a2cd422878fcb7afb",
+      "after_sha256": "c95b1c4c17fe2366967dba4a96e7754f511438bb5c66f8a4c9436f3ea8101611"
+    },
+    {
+      "path": "with-violin/visual-review.md",
+      "before_sha256": "d0224217ad1db6faed7caad49609a5255a3c7268197bb760b39370a7816efacb",
+      "after_sha256": "73d2d4e78455b20a0912ecb3db5cb0e408f63f060279cc432c9b94b31d5960f2"
+    }
+  ],
+  "actual_same_size_comparison": true,
+  "comparisons": [
+    {
+      "choice": "box-points",
+      "spec_changes": [
+        "options.alpha: 1 -> 0.65"
+      ],
+      "plotting_data_byte_identical": true,
+      "category_colors_and_font_sizes_unchanged": true,
+      "canvas_mm": [
+        110.0,
+        80.0
+      ],
+      "actual_font": "Arial",
+      "ecdf_raster_byte_identical": null
+    },
+    {
+      "choice": "ecdf",
+      "spec_changes": [],
+      "plotting_data_byte_identical": true,
+      "category_colors_and_font_sizes_unchanged": true,
+      "canvas_mm": [
+        110.0,
+        80.0
+      ],
+      "actual_font": "Arial",
+      "ecdf_raster_byte_identical": true
+    },
+    {
+      "choice": "violin-points",
+      "spec_changes": [
+        "options.alpha: 1 -> 0.65"
+      ],
+      "plotting_data_byte_identical": true,
+      "category_colors_and_font_sizes_unchanged": true,
+      "canvas_mm": [
+        110.0,
+        80.0
+      ],
+      "actual_font": "Arial",
+      "ecdf_raster_byte_identical": null
+    }
+  ],
+  "raw_points_only_alpha_change": true,
+  "statistical_tests_performed": false,
+  "automatic_winner": false,
+  "independent_visual_review_pending": false,
+  "independent_visual_gain_confirmed": true,
+  "original_review_record_update_explanation": "The workbench trial author completed original visual-review.md and rebound the review hash/provenance in each manifest, preserving manifest.generated.json and visual-review.pending.md first. All original panels/specs/captions/data/inputs remain unchanged. The original trial is now frozen separately.",
+  "residual_visual_limitations": [
+    "Median stroke remains thin and intersects points; improvement is modest and input-specific.",
+    "Point contrast is lower, especially on pale violin fills; all points and isolated tails remain visible."
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "commands": [
+    {
+      "label": "describe-contract",
+      "argv": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/preview_choices.py",
+        "--describe-contract"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "MPLCONFIGDIR": "/private/tmp/easyviz-preview-trial-mpl",
+      "started_at": "2026-10-02T16:04:19.391054+00:00",
+      "ended_at": "2026-10-02T16:04:19.725075+00:00",
+      "exit_code": 0,
+      "stdout_file": "describe-contract.stdout.log",
+      "stderr_file": "describe-contract.stderr.log"
+    },
+    {
+      "label": "help",
+      "argv": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/preview_choices.py",
+        "--help"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "MPLCONFIGDIR": "/private/tmp/easyviz-preview-trial-mpl",
+      "started_at": "2026-10-02T16:04:19.725275+00:00",
+      "ended_at": "2026-10-02T16:04:20.053748+00:00",
+      "exit_code": 0,
+      "stdout_file": "help.stdout.log",
+      "stderr_file": "help.stderr.log"
+    },
+    {
+      "label": "default-two",
+      "argv": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/preview_choices.py",
+        "--data",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/inputs/viscosity-observations.csv",
+        "--request",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/inputs/default-two-request.json",
+        "--out",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/default-two"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "MPLCONFIGDIR": "/private/tmp/easyviz-preview-trial-mpl",
+      "started_at": "2026-10-02T16:04:20.053874+00:00",
+      "ended_at": "2026-10-02T16:04:21.483459+00:00",
+      "exit_code": 0,
+      "stdout_file": "default-two.stdout.log",
+      "stderr_file": "default-two.stderr.log"
+    },
+    {
+      "label": "with-violin",
+      "argv": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/preview_choices.py",
+        "--data",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/inputs/viscosity-observations.csv",
+        "--request",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/inputs/with-violin-request.json",
+        "--out",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "MPLCONFIGDIR": "/private/tmp/easyviz-preview-trial-mpl",
+      "started_at": "2026-10-02T16:04:21.483585+00:00",
+      "ended_at": "2026-10-02T16:04:23.124492+00:00",
+      "exit_code": 0,
+      "stdout_file": "with-violin.stdout.log",
+      "stderr_file": "with-violin.stderr.log"
+    },
+    {
+      "label": "default-two-box-points-pdf-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "96",
+        "-singlefile",
+        "-png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/default-two/box-points/panel.pdf",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/default-two-box-points-pdf-96dpi"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.597237+00:00",
+      "ended_at": "2026-10-02T16:09:31.633810+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "default-two-box-points-svg-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/rsvg-convert",
+        "--dpi-x",
+        "96",
+        "--dpi-y",
+        "96",
+        "--output",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/default-two-box-points-svg-96dpi.png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/default-two/box-points/panel.svg"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.633820+00:00",
+      "ended_at": "2026-10-02T16:09:31.690551+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "default-two-ecdf-pdf-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "96",
+        "-singlefile",
+        "-png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/default-two/ecdf/panel.pdf",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/default-two-ecdf-pdf-96dpi"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.702886+00:00",
+      "ended_at": "2026-10-02T16:09:31.723435+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "default-two-ecdf-svg-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/rsvg-convert",
+        "--dpi-x",
+        "96",
+        "--dpi-y",
+        "96",
+        "--output",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/default-two-ecdf-svg-96dpi.png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/default-two/ecdf/panel.svg"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.723445+00:00",
+      "ended_at": "2026-10-02T16:09:31.757147+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "with-violin-box-points-pdf-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "96",
+        "-singlefile",
+        "-png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/box-points/panel.pdf",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/with-violin-box-points-pdf-96dpi"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.784622+00:00",
+      "ended_at": "2026-10-02T16:09:31.807006+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "with-violin-box-points-svg-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/rsvg-convert",
+        "--dpi-x",
+        "96",
+        "--dpi-y",
+        "96",
+        "--output",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/with-violin-box-points-svg-96dpi.png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/box-points/panel.svg"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.807015+00:00",
+      "ended_at": "2026-10-02T16:09:31.840341+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "with-violin-ecdf-pdf-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "96",
+        "-singlefile",
+        "-png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/ecdf/panel.pdf",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/with-violin-ecdf-pdf-96dpi"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.852842+00:00",
+      "ended_at": "2026-10-02T16:09:31.874005+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "with-violin-ecdf-svg-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/rsvg-convert",
+        "--dpi-x",
+        "96",
+        "--dpi-y",
+        "96",
+        "--output",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/with-violin-ecdf-svg-96dpi.png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/ecdf/panel.svg"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.874015+00:00",
+      "ended_at": "2026-10-02T16:09:31.907186+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "with-violin-violin-points-pdf-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "96",
+        "-singlefile",
+        "-png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/violin-points/panel.pdf",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/with-violin-violin-points-pdf-96dpi"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.920617+00:00",
+      "ended_at": "2026-10-02T16:09:31.944319+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "with-violin-violin-points-svg-visual-raster",
+      "argv": [
+        "/opt/homebrew/bin/rsvg-convert",
+        "--dpi-x",
+        "96",
+        "--dpi-y",
+        "96",
+        "--output",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/review/with-violin-violin-points-svg-96dpi.png",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/violin-points/panel.svg"
+      ],
+      "cwd": "/Users/starry/Desktop/EasyViz",
+      "started_at": "2026-10-02T16:09:31.944328+00:00",
+      "ended_at": "2026-10-02T16:09:31.977922+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

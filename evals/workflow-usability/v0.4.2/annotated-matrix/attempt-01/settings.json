@@ -1,0 +1,224 @@
+{
+  "chart": "annotated_matrix",
+  "fields": {
+    "row": "vessel_code",
+    "column": "challenge_code",
+    "value": "assay_delta",
+    "state": "assay_status"
+  },
+  "order": {
+    "row": [
+      "007",
+      "019",
+      "001",
+      "035",
+      "082",
+      "NA",
+      "null"
+    ],
+    "column": [
+      "010",
+      "001",
+      "003",
+      "006",
+      "040",
+      "025"
+    ]
+  },
+  "options": {
+    "missing_cells": "unsupplied",
+    "color_limits": [
+      -1.6,
+      2.8
+    ],
+    "x_rotation": 90,
+    "annotate_values": false
+  },
+  "metadata": {
+    "row": {
+      "id": "vessel_key",
+      "tracks": [
+        {
+          "field": "material_batch",
+          "label": "Batch",
+          "colors": {
+            "Lot A": "#0072B2",
+            "Lot B": "#D55E00"
+          }
+        }
+      ]
+    },
+    "column": {
+      "id": "challenge_key",
+      "tracks": [
+        {
+          "field": "exposure_class",
+          "label": "Dose class",
+          "colors": {
+            "Low": "#009E73",
+            "High": "#CC79A7"
+          }
+        }
+      ]
+    }
+  },
+  "marginals": {
+    "row": {
+      "statistic": "mean",
+      "missing": "omit",
+      "label": "Mean signal",
+      "color": "#526A7B"
+    }
+  },
+  "dendrograms": {
+    "column": {
+      "label": "Supplied height"
+    }
+  },
+  "tracks": {
+    "strip_mm": 2,
+    "marginal_mm": 12,
+    "dendrogram_mm": 12,
+    "gap_mm": 2
+  },
+  "labels": {
+    "x": "Challenge",
+    "y": "Vessel",
+    "color": "Signal change (a.u.)"
+  },
+  "colormap": "viridis",
+  "layout": {
+    "width_mm": 100.0,
+    "height_mm": 85.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "compound_layout": {
+    "status": "pass",
+    "issues": [],
+    "attempts": [
+      {
+        "guide_side": "bottom",
+        "reserved_mm": {
+          "bottom": 32.68871527777778,
+          "right": 0.0,
+          "top": 0.0
+        },
+        "issues": [
+          "tick_label_overlap"
+        ],
+        "matrix_mm": [
+          12.339144965277779,
+          44.02597135416667,
+          66.25252170138889,
+          17.5336953125
+        ]
+      },
+      {
+        "guide_side": "right",
+        "reserved_mm": {
+          "bottom": 0.0,
+          "right": 32.03199999999998,
+          "top": 3.3189999999999964
+        },
+        "issues": [],
+        "matrix_mm": [
+          12.339144965277779,
+          11.33725607638889,
+          34.220521701388904,
+          46.90341059027778
+        ]
+      },
+      {
+        "guide_side": "top",
+        "reserved_mm": {
+          "bottom": 0.0,
+          "right": 0.0,
+          "top": 32.0947808159722
+        },
+        "issues": [
+          "tick_label_overlap"
+        ],
+        "matrix_mm": [
+          12.339144965277779,
+          11.33725607638889,
+          66.25252170138889,
+          18.127629774305582
+        ]
+      }
+    ],
+    "matrix_mm": [
+      12.339144965277779,
+      11.33725607638889,
+      34.220521701388904,
+      46.90341059027778
+    ],
+    "padding_mm": 2.0,
+    "policy": "Measured compound envelope and guide reservation; preserve all IDs, point sizes, fonts and full canvas"
+  },
+  "inputs": {
+    "matrix": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/assay.csv",
+      "sha256": "fd52c2e31d633ac332dac692718bdc55872ac64517a804a8bac31f6d57a503c2"
+    },
+    "row_metadata": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/vessel-annotations.csv",
+      "sha256": "8584ccf13ab42d561961d5f67fbced78aa2e0150c9ebb3bd9ea72926c67afd40"
+    },
+    "column_metadata": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/challenge-annotations.csv",
+      "sha256": "0034e82ed2212cfcb70049530089529cc23f93a4551f829cbf7cbf82db593cab"
+    },
+    "column_linkage": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/constructed-column-tree.json",
+      "sha256": "14bc66b69eb30797805e75cb1c1f2d28f75af833da00026a3ae72337fd0e299f"
+    }
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "11ec638467fd71befb78c69f5383613f501ad566d1f716cd9f7aa65df57fa4bb",
+    "helper_sha256": {
+      "aligned_layers.py": "87b3364b40fc07b5814bc0e4e1c75a3ffee779899b683ecc5b1d6c699dc979a1",
+      "render.py": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+      "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+      "figure_elements.py": "d1c1cb03543b67d193ccfa171415cec06c65be060a749619a29696256c933561"
+    }
+  },
+  "track": "create",
+  "outline_policy": "Observed cells, strips and marginal bars borderless; missing-state hatch strokes are decoding exceptions",
+  "statistical_scope": "Displayed grid descriptive mean/sum only; no tests, clustering or upstream analysis",
+  "resolved_color_scale": {
+    "minimum": -1.6,
+    "maximum": 2.8,
+    "center": null,
+    "colormap": "viridis"
+  },
+  "spec_file": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/annotated-matrix/inputs/panel.json",
+    "sha256": "6f3af61e47dd319ae85dabfa3ac1cce69bb9c6b591fa814e6a57262e718c8f9a"
+  }
+}

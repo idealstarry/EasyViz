@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "chart": "ecdf",
+  "track": null,
+  "panel": {
+    "width_mm": 110.0,
+    "height_mm": 80.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "14ca44bc7461370a66a764415ab08b988402f9a694c7545d69b13df8ab98e1c6",
+    "spec_sha256": "e3739f77d7e1cf053cb802981420d2333fc9f18fc48bbd3c7b45dd855a35fd52",
+    "input_sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b",
+    "source_script_sha256": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/source.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/with-violin/ecdf/spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/ecdf_plot.py",
+    "supplied_spec_sha256": "b979fee64bcde73ecd22eedc025aec26890ff6cd75bb476c42f526fc12b7544d"
+  },
+  "elements": [
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        13.863144965277781,
+        22.72350260416667,
+        94.13685503472223,
+        55.27649739583333
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Viscosity (mPa·s)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        50.07770269097223,
+        13.545768229166669,
+        21.707739583333332,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Cumulative fraction",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0000000000000036,
+        38.55075130208334,
+        2.6485894097222245,
+        23.622
+      ]
+    },
+    {
+      "id": "easyviz-legend-76ae75855c1e1b13",
+      "role": "legend",
+      "label": "Categorical guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/categorical"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        48.745572482638906,
+        2.0,
+        24.372000000000003,
+        9.545768229166669
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-3a3d5e544f489cd4",
+      "role": "legend-key",
+      "label": "Formulation A",
+      "source_keys": [
+        {
+          "category": "Formulation A"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation A"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.94557248263891,
+        10.234275674412395,
+        6.000000000000003,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-f5120bd0db1da547",
+      "role": "legend-key",
+      "label": "Formulation B",
+      "source_keys": [
+        {
+          "category": "Formulation B"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation B"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.94557248263891,
+        6.985686264690173,
+        6.000000000000003,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-62b157d1dd1bff14",
+      "role": "legend-key",
+      "label": "Formulation C",
+      "source_keys": [
+        {
+          "category": "Formulation C"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Formulation C"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        48.94557248263891,
+        3.73709685496795,
+        6.000000000000003,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-ecdf-curve-0",
+      "role": "custom-layer",
+      "label": "easyviz-ecdf-curve-0",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        13.863144965277781,
+        23.786512169471155,
+        94.13685503472223,
+        53.150478265224336
+      ]
+    },
+    {
+      "id": "easyviz-ecdf-curve-1",
+      "role": "custom-layer",
+      "label": "easyviz-ecdf-curve-1",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        13.863144965277781,
+        23.786512169471155,
+        94.13685503472223,
+        53.150478265224336
+      ]
+    },
+    {
+      "id": "easyviz-ecdf-curve-2",
+      "role": "custom-layer",
+      "label": "easyviz-ecdf-curve-2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        13.863144965277781,
+        23.786512169471155,
+        94.13685503472223,
+        53.150478265224336
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

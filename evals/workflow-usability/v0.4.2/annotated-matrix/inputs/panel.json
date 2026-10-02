@@ -1,0 +1,103 @@
+{
+  "chart": "annotated_matrix",
+  "fields": {
+    "row": "vessel_code",
+    "column": "challenge_code",
+    "value": "assay_delta",
+    "state": "assay_status"
+  },
+  "order": {
+    "row": [
+      "007",
+      "019",
+      "001",
+      "035",
+      "082",
+      "NA",
+      "null"
+    ],
+    "column": [
+      "010",
+      "001",
+      "003",
+      "006",
+      "040",
+      "025"
+    ]
+  },
+  "options": {
+    "missing_cells": "unsupplied",
+    "color_limits": [
+      -1.6,
+      2.8
+    ],
+    "x_rotation": 90,
+    "annotate_values": false
+  },
+  "metadata": {
+    "row": {
+      "id": "vessel_key",
+      "tracks": [
+        {
+          "field": "material_batch",
+          "label": "Batch",
+          "colors": {
+            "Lot A": "#0072B2",
+            "Lot B": "#D55E00"
+          }
+        }
+      ]
+    },
+    "column": {
+      "id": "challenge_key",
+      "tracks": [
+        {
+          "field": "exposure_class",
+          "label": "Dose class",
+          "colors": {
+            "Low": "#009E73",
+            "High": "#CC79A7"
+          }
+        }
+      ]
+    }
+  },
+  "marginals": {
+    "row": {
+      "statistic": "mean",
+      "missing": "omit",
+      "label": "Mean signal",
+      "color": "#526A7B"
+    }
+  },
+  "dendrograms": {
+    "column": {
+      "label": "Supplied height"
+    }
+  },
+  "tracks": {
+    "strip_mm": 2,
+    "marginal_mm": 12,
+    "dendrogram_mm": 12,
+    "gap_mm": 2
+  },
+  "labels": {
+    "x": "Challenge",
+    "y": "Vessel",
+    "color": "Signal change (a.u.)"
+  },
+  "colormap": "viridis",
+  "layout": {
+    "width_mm": 100,
+    "height_mm": 85,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ]
+}

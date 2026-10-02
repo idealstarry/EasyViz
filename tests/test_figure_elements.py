@@ -51,6 +51,9 @@ class FigureElementsTests(unittest.TestCase):
         self.assertTrue({"axes", "axis-label", "point-group", "legend", "legend-key"} <= roles)
         self.assertEqual(manifest["version"]["input_sha256"], hashlib.sha256(original).hexdigest())
         self.assertEqual(manifest["version"]["figure_sha256"], hashlib.sha256((out / "panel.svg").read_bytes()).hexdigest())
+        colors = json.loads((out / "settings.json").read_text())["resolved_colors"]
+        palette = json.dumps(colors, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode()
+        self.assertEqual(manifest["version"]["resolved_colors_sha256"], hashlib.sha256(palette).hexdigest())
         self.assertEqual(Path(manifest["input"]["spec_file"]), (self.root / "attempt.json").resolve())
         resolved, _ = core.resolve_spec(self.spec, spec_path=self.root / "attempt.json")
         canonical = json.dumps(resolved, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode()
@@ -85,6 +88,35 @@ class FigureElementsTests(unittest.TestCase):
         duplicate.set_gid(gid)
         with self.assertRaisesRegex(ValueError, "Duplicate semantic"):
             core.figure_elements.register(fig, duplicate, "curve", "Other")
+
+    def test_cosmetic_bindings_preserve_literal_categories_and_match_real_artists(self):
+        self.data.write_text("unit,condition,x,y\n001,A/~,1,2\n002,A/~,2,3\n003,B,3,4\n004,B,4,3\n")
+        spec = deepcopy(self.spec)
+        spec["options"] = {"alpha": .35, "regression": True}
+        spec["layout"]["line_width_pt"] = 1.2
+        artists = {}
+        original_write = core.figure_elements.write
+        def capture(fig, *args):
+            artists.update({item["id"]: item["_artist"] for item in fig._easyviz_elements})
+            return original_write(fig, *args)
+        with patch.object(core.figure_elements, "write", side_effect=capture):
+            _, manifest = self.render("bindings", spec)
+        group = next(item for item in manifest["elements"] if item["role"] == "point-group" and item["label"] == "A/~")
+        self.assertEqual(group["editable"], {"color": "/colors/A~1~0", "alpha": "/options/alpha"})
+        self.assertTrue(set(group["editable"].values()) <= set(group["spec_paths"]))
+        line = next(item for item in manifest["elements"] if item["role"] == "fit-line")
+        self.assertEqual(line["editable"]["linewidth"], "/layout/line_width_pt")
+        self.assertEqual(artists[group["id"]].get_alpha(), .35)
+        self.assertEqual(artists[line["id"]].get_linewidth(), 1.2)
+
+    def test_invalid_bindings_fail_before_assigning_artist_identity(self):
+        fig, ax = core.plt.subplots()
+        line, = ax.plot([0, 1], [1, 2])
+        for binding in ({"color": "/colors/absent"}, {"color": "/colors/A~2"}, {"color": "colors.A"}):
+            with self.assertRaisesRegex(ValueError, "editable binding"):
+                core.figure_elements.register(fig, line, "curve", "A", spec_paths=["/colors/A"], editable=binding)
+        self.assertIsNone(line.get_gid())
+        self.assertFalse(hasattr(fig, "_easyviz_elements"))
 
     def test_secondary_axis_label_has_no_invented_main_axis_path(self):
         fig, ax = core.plt.subplots()

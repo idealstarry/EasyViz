@@ -1,0 +1,74 @@
+{
+  "version": "0.1.0",
+  "command": "preview_choices.py --data prepared.csv --request request.json --out NEW_DIRECTORY",
+  "scope": "Descriptive raw-observation distributions; two real previews, or three with an explicitly requested meaningful violin.",
+  "request": {
+    "row_kind": "observations (required; summaries and technical replicates rejected)",
+    "fields": {
+      "value": "required numeric column",
+      "group": "required literal category column",
+      "unit": "optional literal one-observation-per-unit ID"
+    },
+    "design": {
+      "structure": "unknown|independent",
+      "confirmed": false,
+      "unit_definition": "required scientific definition or explicit unknown row-level definition"
+    },
+    "measurement_units": "required string or null for explicitly unknown units",
+    "colors": {
+      "every observed group exactly once": "distinct opaque color"
+    },
+    "order": {
+      "group": "optional complete category order; otherwise first appearance"
+    },
+    "layout": {
+      "width_mm": 88,
+      "height_mm": 70,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "line_width_pt": 0.6,
+      "dpi": 300
+    },
+    "typography": {
+      "axis": "optional pt",
+      "tick": "optional pt",
+      "legend": "optional pt"
+    },
+    "labels": {
+      "value": "optional measurement name without invented units",
+      "group": "optional group label"
+    },
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ],
+    "options": {
+      "value_scale": "linear|log",
+      "value_limits": "optional complete ascending bounds",
+      "point_layout": "jitter|beeswarm",
+      "include_violin": false
+    }
+  },
+  "choices": [
+    "box-points: median/IQR/1.5-IQR whiskers and every raw observation",
+    "ecdf: count(value <= x)/group row count, unsmoothed full tie jumps",
+    "violin-points: optional Gaussian KDE, Scott bandwidth, all points; at least 5 distinct values in every group"
+  ],
+  "invariants": [
+    "Same byte-identical source snapshot, rows, literal IDs, dimensions, actual font, font sizes, category colors and value axis limits.",
+    "No silent exclusion, transformation, aggregation, pairing, confidence interval or hypothesis test.",
+    "Unknown units or independence permit clearly labeled descriptive previews only.",
+    "Repeated unit IDs across groups and explicit paired/repeated designs require prepared complete paired data and paired_plot.py; these marginal choices do not encode pairing.",
+    "Fresh output directory; failed QA remains marked invalid. PNG is required for inspection. Inspect all actual exports before choosing; no winner is selected."
+  ],
+  "outputs": [
+    "manifest.json",
+    "qa.json",
+    "request.json",
+    "source.csv",
+    "observation-trace.csv",
+    "visual-review.md",
+    "per-choice spec.json, caption.md, panel exports, plotting-data.csv, stats.json, settings.json, qa.json; ECDF cumulative-data.csv"
+  ]
+}

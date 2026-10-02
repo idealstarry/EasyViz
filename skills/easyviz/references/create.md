@@ -10,6 +10,14 @@ design. Ask only for scientific facts that change a proposed analysis; keep
 descriptive exploration moving while those facts remain unknown. The user need
 not choose a renderer or write a specification.
 
+For an eligible observation table, use [Actual preview choices](preview-choices.md)
+to show box + all points and an unsmoothed ECDF at the same final dimensions,
+fonts, colors and numeric scale. State which helps the proposed reading task,
+inspect the actual exports, and retain the user's choice. The manifest contains
+no automatic winner. Unknown units/design remain explicit and descriptive;
+pairing, technical repeats and summary tables require a different prepared
+contract. A directory recommendation without a rendered image is only a proposal.
+
 ## 1. Choose the visual mapping
 
 Honor the user's requested chart when the data supports it. Otherwise use the [Chart library](chart-library.md) to choose a visual encoding for the question. Explain consequential changes such as switching from cell-level observations to sample-level summaries before using them.
@@ -51,6 +59,14 @@ analysis plan, supported effect intervals and declared comparison families.
 Keep its saved results separate from styling. A different view of the same
 analysis must retain its units, comparisons, exclusions and calculated results.
 Multiple groups do not authorize trying all tests until one is significant.
+
+For three or more complete repeated conditions, the analysis helper supports
+an explicitly planned Friedman omnibus test with Kendall's W and either a
+declared chi-square approximation or bounded within-subject permutation. It
+retains literal subject joins and whole-subject exclusions. W is nondirectional
+concordance; no pairwise conclusions or confidence intervals are invented.
+Covariates, unbalanced longitudinal sampling and requested model-specific
+effects require an adopted model and a custom analysis script.
 
 Use [Panel layout](panel-layout.md) for physical dimensions and typography, and [Palettes](palettes.md) for colors. Reuse existing category-color assignments. Determine canvas proportions from chart shape, label length, category count, and expected density before the first render. Include space for adopted annotation tracks, marginal axes, and legends inside the same fixed canvas; their text uses the shared typography roles.
 

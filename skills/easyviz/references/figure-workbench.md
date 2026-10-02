@@ -14,6 +14,11 @@ python /absolute/path/to/easyviz/scripts/figure_workbench.py \
   --figure-dir /absolute/path/to/project/attempt-01 --port 0
 ```
 
+Add `--compare-dir /absolute/path/to/project/accepted-attempt` to display an
+earlier attempt beside the current panel. The previous preview is read-only,
+sanitized in the same way, and bound to that attempt's SVG hash. Both previews
+must load successfully before a reload replaces the visible figure/version.
+
 Open the printed `http://127.0.0.1:PORT/` address in a browser. Keep the process
 running during review and close it with Ctrl+C afterwards. `--port 0` chooses an
 available port; a requested fixed port is also accepted. The service listens on
@@ -30,12 +35,19 @@ definitions and their local references.
 
 - Select an SVG element on the figure or in the keyboard-accessible element
   list. Mapped elements can include marks, axes, labels, legends and colorbars.
+- Use Ctrl/Command in the element list or Shift-click mapped artists to select
+  several elements. **Select a mapped group** expands a category, role, source
+  key or specification path to actual mapped IDs. Category selection uses
+  `source_keys.category` or `source_keys.group`, so it remains stable when labels
+  or order change and can include both marks and guide keys. Source filters use
+  recorded keys, never image coordinates.
 - Choose a supported property, such as color or line width, and enter the value;
   or leave a free-form instruction such as “Move this legend 2 mm to the right.”
+  Bulk requests offer only properties shared by every selected element.
 - Use **Select region** to drag a rectangle over a crowded area. Region
   coordinates are measured in millimetres from the **top-left of the entire
   canvas**, including margins and guides. They are not data-axis values.
-- Save the request. **Undo last** marks the last pending request as undone;
+- Save the request. **Undo pending** marks the last current pending request as undone;
   the record remains in the queue. Downloading requests is optional because the
   Agent can read `requests.json` directly in the attempt directory.
 
@@ -51,6 +63,10 @@ Each element names an actual SVG ID and may record `role`, `label`, `source_keys
 `panel.svg` bytes; physical dimensions must also match. Optional spec, input and
 source-script hashes are preserved with the figure version. The manifest can
 also express these hashes at the top level for compatibility.
+When original source/data/spec paths are available, their bytes are checked
+against the recorded hashes. A changed source blocks new requests even when the
+SVG is unchanged. Missing historical paths are shown as unavailable; they do not
+invent current provenance or authorize automatic application.
 
 Without a matching map, the page supports general and region notes and explains
 that element identity is unavailable. An external SVG can be reviewed this way.
@@ -100,6 +116,12 @@ only cosmetic properties that the plotting script can actually change. Preserve
 stable category identity across reordering and never make quantitative marker
 position or area freely draggable.
 
+An optional property-to-pointer binding makes cosmetic preparation unambiguous.
+For example, use `editable={"color": "/colors/Treatment", "alpha":
+"/options/alpha"}` together with those same `spec_paths`. Existing
+`editable=["color"]` maps remain valid when exactly one compatible path exists.
+Only register bindings consumed by the actual plotting script.
+
 ## Agent handoff
 
 1. Read `requests.json`, the original manifest, adopted specification and plotting
@@ -119,7 +141,9 @@ position or area freely draggable.
    new outputs. Never patch the SVG alone and then deliver a PDF from old code.
 4. Inspect the resulting SVG/PNG at the recorded panel proportions and check the
    PDF dimensions and content. Record the request ID, files changed and validation
-   in the attempt's review notes. Update the separate caption if meaning changed.
+   in the attempt's review notes. Use `apply_figure_requests.py record` to mark
+   requests as `applied` or `superseded`, retaining the target version, changed
+   files and validation. Update the separate caption if meaning changed.
 5. Open the new attempt for review. If files change in an already open page,
    **Reload figure** refreshes the version. Requests saved against a stale
    browser version are rejected, and older queue records are labelled clearly.
@@ -128,10 +152,12 @@ position or area freely draggable.
    the original SVG, coordinates and version. Successful reload clears the old
    selection.
 
-The first workbench is an instruction handoff, not an automatic editing engine.
-There is no shell execution, model call, drag-to-mutate-data operation or promise
-that arbitrary author SVGs expose their original plotting parameters. The Agent
-must make the code edits and inspect the rerendered panel.
+The browser records instructions and does not execute code. The companion
+`apply_figure_requests.py` can prepare a fresh cosmetic specification from
+verified mapped paths; `--render` separately opts into the hash-verified
+installed core renderer. Author scripts and complex changes remain Agent work.
+See [request application and accepted restore](apply-figure-requests.md) for
+exact limits, history recording and source/spec/export restoration.
 
 ## Request format and local API
 
@@ -164,13 +190,26 @@ Region/general notes have a null `element_id`; regions add `region_mm` with
 `x`, `y`, `width`, `height` and an explicit coordinate origin. Supported property
 requests add `property` and `value`. Undo changes `status` to `undone` and adds
 `undone_at`, preserving the original ID and content.
+Bulk requests add `element_ids` and `elements` with every real identity, source
+key, spec path and supported property. Singleton requests retain the legacy
+`element_id` and `element`. Server-expanded requests also record their
+`selector`. Optional `spec_path` must belong to every selected element and
+disambiguates the intended mapped parameter. No observation IDs are fabricated
+for a collection or raster panel. Agent helper outcomes add `applied` or
+`superseded` statuses and root `history` events. Undo cancels instructions;
+restoring an applied version requires its matching source/spec/input/exports.
 
 `GET /api/state` returns the current version, manifest validity, available
-exports, queue and ephemeral session token. `GET /api/preview.svg?v=HASH` returns
+exports, queue, history, source-version checks, optional comparison metadata and
+ephemeral session token. `GET /api/preview.svg?v=HASH` returns
 the safe preview only when the supplied figure hash is current. `POST
 /api/requests` accepts a version, instruction, optional element/region and
-optional supported property/value. `POST /api/undo` accepts a version and
+optional supported property/value. It accepts one selection form: `element_id`,
+`element_ids`, or `selector` with any intersection of `role`, `category`,
+`spec_path` and `source_key`. Selectors expand against the current manifest on
+the server. `GET /api/compare.svg?v=HASH` exposes only the previously supplied
+comparison attempt. `POST /api/undo` accepts a version and
 request ID. Writes require JSON, the exact local `Origin` and the
 `X-EasyViz-Token` from the current state. These constraints reject cross-site
-requests and DNS-rebinding hosts. No paths or executable commands are accepted;
+requests and DNS-rebinding hosts. No filesystem paths or executable commands are accepted;
 only a fixed list of figure files is downloadable.

@@ -31,6 +31,10 @@ def validate_plugin(plugin: Path) -> dict:
                 "skills/easyviz/scripts/replicate_plot.py",
                 "skills/easyviz/scripts/ecdf_plot.py",
                 "skills/easyviz/scripts/timecourse_plot.py",
+                "skills/easyviz/scripts/annotated_matrix.py",
+                "skills/easyviz/scripts/aligned_layers.py",
+                "skills/easyviz/scripts/preview_choices.py",
+                "skills/easyviz/scripts/apply_figure_requests.py",
                 "skills/easyviz/scripts/inspect_data.py",
                 "skills/easyviz/scripts/analyze.py",
                 "skills/easyviz/scripts/reference_packet.py",
@@ -43,6 +47,10 @@ def validate_plugin(plugin: Path) -> dict:
                 "skills/easyviz/assets/cases/shi-timecourse/plot.py",
                 "skills/easyviz/assets/cases/shi-timecourse/source-data.csv",
                 "skills/easyviz/assets/cases/shi-timecourse/spec.json",
+                "skills/easyviz/assets/cases/yayon-cma/plot.py",
+                "skills/easyviz/assets/cases/yayon-cma/inputs/source-data.csv",
+                "skills/easyviz/assets/cases/yayon-cma/inputs/summary.csv",
+                "skills/easyviz/assets/cases/yayon-cma/spec.json",
                 "skills/easyviz/assets/cases/xiang-bubble-volcano/plot.py",
                 "skills/easyviz/assets/cases/xiang-bubble-volcano/source-data.csv",
                 "skills/easyviz/assets/cases/xiang-bubble-volcano/spec.json",
@@ -133,7 +141,7 @@ def main() -> int:
             if discovery.returncode:
                 raise RuntimeError(discovery.stdout + discovery.stderr)
             routes = json.loads(discovery.stdout).get("focused_recipes", {})
-            if set(routes) != {"interval", "paired", "replicate", "ecdf", "timecourse"}:
+            if set(routes) != {"interval", "paired", "replicate", "ecdf", "timecourse", "annotated_matrix"}:
                 raise ValueError("Extracted chart discovery does not identify every focused recipe")
             for route in routes.values():
                 script, documentation = Path(route["script"]), Path(route["doc"])
@@ -147,7 +155,7 @@ def main() -> int:
                 if not isinstance(json.loads(described.stdout), dict):
                     raise ValueError("Focused recipe specification must be a JSON object")
             workflows = json.loads(discovery.stdout).get("workflow_tools", {})
-            if set(workflows) != {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench"}:
+            if set(workflows) != {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench", "preview_choices", "apply_figure_requests"}:
                 raise ValueError("Extracted workflow discovery is incomplete")
             for route in workflows.values():
                 if not all(Path(route[key]).is_relative_to(skill) and Path(route[key]).is_file()
@@ -184,6 +192,22 @@ def main() -> int:
             packet_plan = json.loads((isolated / "reference-packet/implementation-plan.json").read_text())
             if packet_plan.get("execution_ready") is not False:
                 raise ValueError("A packet without image reading must remain unresolved")
+            matrix = skill / "assets/fixtures/annotated-matrix"
+            run = subprocess.run([sys.executable, routes["annotated_matrix"]["script"],
+                                  "--data", str(matrix / "input.csv"), "--spec", str(matrix / "spec.json"),
+                                  "--row-metadata", str(matrix / "row.csv"), "--column-metadata", str(matrix / "column.csv"),
+                                  "--row-linkage", str(matrix / "row.json"), "--column-linkage", str(matrix / "column.json"),
+                                  "--out", str(isolated / "matrix-output"), "--track", "reproduce"],
+                                 cwd=isolated, env=env, capture_output=True, text=True)
+            if run.returncode or json.loads((isolated / "matrix-output/qa.json").read_text()).get("status") != "pass":
+                raise RuntimeError("Extracted compound matrix failed: " + run.stdout + run.stderr)
+            previews = skill / "assets/fixtures/preview-choices"
+            run = subprocess.run([sys.executable, workflows["preview_choices"]["script"],
+                                  "--data", str(previews / "source.csv"), "--request", str(previews / "request.json"),
+                                  "--out", str(isolated / "preview-output")],
+                                 cwd=isolated, env=env, capture_output=True, text=True)
+            if run.returncode or not (isolated / "preview-output/manifest.json").is_file():
+                raise RuntimeError("Extracted actual previews failed: " + run.stdout + run.stderr)
             audit_output = isolated / "reference-audit.json"
             recorded_audit = subprocess.run(
                 [sys.executable, workflows["audit_reproduction"]["script"],
@@ -239,9 +263,17 @@ def main() -> int:
                 case_qa = json.loads((case_out / "qa.json").read_text())
                 if case_qa.get("status") != "pass" or case_qa.get("input_rows") != expected_rows:
                     raise ValueError(f"Extracted {name} case failed source/canvas QA")
+            case = skill / "assets/cases/yayon-cma"
+            run = subprocess.run([sys.executable, str(case / "plot.py"), "--runtime", str(skill / "scripts"),
+                                  "--out", str(isolated / "yayon-output"),
+                                  "--spec", str(case / "font-transfer/spec.json")], cwd=isolated, env=env, capture_output=True, text=True)
+            if run.returncode:
+                raise RuntimeError("Extracted Yayon aligned case failed: " + run.stdout + run.stderr)
+            if json.loads((isolated / "yayon-output/qa.json").read_text()).get("status") != "pass":
+                raise ValueError("Extracted Yayon case has incomplete source/export QA")
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout and six Source Data case wrappers"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews and seven Source Data case wrappers"}, indent=2))
     return 0
 
 

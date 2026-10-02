@@ -1,0 +1,5 @@
+Independent review completed using only the public recipe contract and reference documentation. The recipe implementation, tests and other evaluation outputs were not inspected.
+
+Inspected the actual 300-dpi PNG plus PNG/PDF/SVG at 96 dpi, representing the fixed 100 × 85 mm canvas. The actual font is Arial at 8 pt. All literal row/column IDs are readable and uncut. The row and column strips, row means and supplied tree align with the matrix. Observed zero is quantitative; the unmeasured cross hatch and unsupplied plus hatch remain distinguishable and decoded. Both negative mean bars extend left of zero without losing their values. No annotation, significance test or clustering was performed.
+
+The first public CLI attempt passed without a configuration repair. The guide column occupies a relatively large envelope compared with the matrix (combined guide/plot area ratio 0.548), but its six required keys remain readable and fit without overlap. SVG rasterization at 96 dpi has faint per-cell seams; source values and vector cell geometry remain correct. No aesthetic ranking or improvement claim is made. These findings cover this unrelated synthetic assay only.

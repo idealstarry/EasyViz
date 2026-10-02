@@ -1,0 +1,24 @@
+{
+  "status": "reviewed",
+  "path": "/private/tmp/easyviz-v042-preview-alpha-fixture",
+  "source": "skills/easyviz/assets/fixtures/preview-choices/source.csv",
+  "source_sha256": "0767fd135cade6c24fef2068e14b450022549d1525ff524f9ab4a57956839140",
+  "point_alpha": 0.65,
+  "canvas_mm": [
+    88,
+    70
+  ],
+  "font": "DejaVu Sans",
+  "font_size_pt": 8,
+  "inspection": [
+    "All three actual 300-dpi PNGs",
+    "All three actual PDF renders at 96 dpi"
+  ],
+  "findings": [
+    "Labels and legends remain readable and unclipped.",
+    "Points retain visible category identity and all source values.",
+    "Box summary strokes remain visible beneath translucent raw points.",
+    "ECDF preserves unsmoothed tied jumps with opaque curves."
+  ],
+  "scope": "Synthetic regression fixture only; independent forward trial is recorded separately."
+}

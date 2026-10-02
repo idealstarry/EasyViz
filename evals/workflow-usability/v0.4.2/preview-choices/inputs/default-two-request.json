@@ -1,0 +1,52 @@
+{
+  "row_kind": "observations",
+  "fields": {
+    "value": "viscosity_mpas",
+    "group": "formulation",
+    "unit": "observation_id"
+  },
+  "design": {
+    "structure": "independent",
+    "confirmed": true,
+    "unit_definition": "Synthetic forward-trial scenario: each literal observation ID represents one independently prepared formulation sample measured once at 25 C. Samples do not recur across formulations; there are no technical repeats or paired samples."
+  },
+  "measurement_units": "mPa·s",
+  "colors": {
+    "Formulation A": "#0072B2",
+    "Formulation B": "#D55E00",
+    "Formulation C": "#009E73"
+  },
+  "order": {
+    "group": [
+      "Formulation A",
+      "Formulation B",
+      "Formulation C"
+    ]
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 80,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300
+  },
+  "labels": {
+    "value": "Viscosity",
+    "group": "Formulation"
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "options": {
+    "value_scale": "linear",
+    "value_limits": [
+      4,
+      17
+    ],
+    "point_layout": "beeswarm",
+    "include_violin": false
+  }
+}

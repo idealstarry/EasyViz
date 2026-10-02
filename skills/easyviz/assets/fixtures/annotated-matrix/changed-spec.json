@@ -1,0 +1,100 @@
+{
+  "chart": "annotated_matrix",
+  "fields": {
+    "row": "Gene key",
+    "column": "Batch label",
+    "value": "Activity",
+    "state": "Availability"
+  },
+  "order": {
+    "row": [
+      " null ",
+      "NA",
+      "TP53",
+      "Gene A",
+      "001"
+    ],
+    "column": [
+      "Dose/B",
+      "Baseline",
+      "Late",
+      "Day 3"
+    ]
+  },
+  "options": {
+    "missing_cells": "unsupplied",
+    "color_limits": [
+      -3,
+      6
+    ],
+    "color_center": 0,
+    "annotate_values": true,
+    "value_format": ".1f"
+  },
+  "colormap": [
+    "#306B99",
+    "#FFFFFF",
+    "#BC4A48"
+  ],
+  "metadata": {
+    "row": {
+      "id": "Feature",
+      "tracks": [
+        {
+          "field": "Family",
+          "label": "Family",
+          "colors": {
+            "A": "#0072B2",
+            "B": "#D55E00"
+          }
+        }
+      ]
+    },
+    "column": {
+      "id": "Batch",
+      "tracks": [
+        {
+          "field": "Window",
+          "label": "Window",
+          "colors": {
+            "Early": "#009E73",
+            "Late": "#CC79A7"
+          }
+        }
+      ]
+    }
+  },
+  "marginals": {
+    "row": {
+      "statistic": "mean",
+      "missing": "omit",
+      "label": "Mean activity"
+    },
+    "column": {
+      "statistic": "mean",
+      "missing": "omit",
+      "label": "Mean activity"
+    }
+  },
+  "labels": {
+    "x": "Batch",
+    "y": "Feature",
+    "color": "Activity (a.u.)"
+  },
+  "tracks": {
+    "marginal_mm": 19,
+    "gap_mm": 3
+  },
+  "layout": {
+    "width_mm": 145,
+    "height_mm": 115,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 150
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

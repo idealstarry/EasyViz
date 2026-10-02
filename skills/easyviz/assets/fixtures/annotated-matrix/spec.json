@@ -1,0 +1,97 @@
+{
+  "chart": "annotated_matrix",
+  "fields": {
+    "row": "sender",
+    "column": "partner",
+    "value": "signal",
+    "state": "availability"
+  },
+  "order": {
+    "row": [
+      "001",
+      "NA",
+      "null"
+    ],
+    "column": [
+      "B",
+      "A"
+    ]
+  },
+  "options": {
+    "missing_cells": "unsupplied",
+    "color_limits": [
+      -2,
+      5
+    ]
+  },
+  "labels": {
+    "x": "Partner",
+    "y": "Sender",
+    "color": "Signal (a.u.)"
+  },
+  "layout": {
+    "width_mm": 120,
+    "height_mm": 105,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 100
+  },
+  "formats": [
+    "png",
+    "svg",
+    "pdf",
+    "tiff"
+  ],
+  "metadata": {
+    "row": {
+      "id": "key",
+      "tracks": [
+        {
+          "field": "genome",
+          "label": "Genome",
+          "colors": {
+            "yes": "#0072B2",
+            "no": "#D55E00"
+          }
+        }
+      ]
+    },
+    "column": {
+      "id": "key",
+      "tracks": [
+        {
+          "field": "condition",
+          "label": "Condition",
+          "colors": {
+            "early": "#009E73",
+            "late": "#CC79A7"
+          }
+        }
+      ]
+    }
+  },
+  "marginals": {
+    "row": {
+      "statistic": "mean",
+      "missing": "omit",
+      "label": "Mean"
+    },
+    "column": {
+      "statistic": "sum",
+      "missing": "omit",
+      "label": "Sum"
+    }
+  },
+  "dendrograms": {
+    "row": {
+      "label": "Height"
+    },
+    "column": {
+      "label": "Height"
+    }
+  },
+  "tracks": {
+    "marginal_mm": 16,
+    "dendrogram_mm": 16
+  }
+}

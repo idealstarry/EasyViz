@@ -1,0 +1,109 @@
+{
+  "chart": "annotated_matrix",
+  "fields": {
+    "row": "literal row ID",
+    "column": "literal column ID",
+    "value": "finite measurement",
+    "state": "optional observed|unmeasured"
+  },
+  "order": {
+    "row": [
+      "every supplied row ID exactly once"
+    ],
+    "column": [
+      "every supplied column ID exactly once"
+    ]
+  },
+  "options": {
+    "missing_cells": "error (default)|unsupplied",
+    "color_limits": [
+      "minimum",
+      "maximum"
+    ],
+    "color_center": "optional",
+    "x_rotation": "0 or 90",
+    "annotate_values": false,
+    "value_format": ".2g"
+  },
+  "metadata": {
+    "row": {
+      "id": "row ID field",
+      "tracks": [
+        {
+          "field": "categorical field",
+          "label": "guide label",
+          "colors": {
+            "literal category": "color"
+          }
+        }
+      ]
+    },
+    "column": "same contract; optional"
+  },
+  "marginals": {
+    "row": {
+      "statistic": "mean|sum",
+      "missing": "error|omit (required)",
+      "label": "axis label",
+      "color": "optional color",
+      "limits": "optional numeric [low,high] including zero and all bars"
+    },
+    "column": "same contract; optional"
+  },
+  "dendrograms": {
+    "row": {
+      "label": "supplied height units/meaning"
+    },
+    "column": "same contract; optional; a supplied linkage file is required"
+  },
+  "tracks": {
+    "gap_mm": 2,
+    "strip_mm": 2,
+    "marginal_mm": 12,
+    "dendrogram_mm": 14,
+    "padding_mm": 2,
+    "matrix_mm": "optional explicit [left,bottom,width,height]; incompatible with auto_fit=true"
+  },
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "labels": {
+    "x": "column meaning",
+    "y": "row meaning",
+    "color": "value meaning and units"
+  },
+  "colormap": "registered continuous palette, Matplotlib map, or color list",
+  "formats": [
+    "pdf",
+    "svg",
+    "png",
+    "tiff"
+  ],
+  "linkage_file": {
+    "leaf_ids": [
+      "IDs indexed by linkage leaves"
+    ],
+    "linkage": [
+      [
+        "left node",
+        "right node",
+        "height",
+        "recursive leaf count"
+      ]
+    ]
+  },
+  "semantics": [
+    "IDs are literal strings, including 001, NA and null. Duplicate pairs are errors, never aggregated.",
+    "Observed zero is a numeric cell; unmeasured requires an explicit state and exactly blank value; absent coordinates remain unsupplied.",
+    "All metadata files join one-to-one on exact IDs with complete coverage; each track supplies stable category colors.",
+    "Marginals use the displayed grid only; omit excludes both missing states, records denominators and rejects all-missing groups. Sum does not assume missing values are zero.",
+    "Linkage must be one complete ordered binary tree; parent heights cannot be below children. No inversion repair, child swaps or clustering. Singleton/zero-height trees are supported.",
+    "Measured layout moves aligned axes together and preserves final fonts and canvas; an infeasible panel fails QA.",
+    "No titles, narrative, clustering or upstream analyses are accepted by this focused recipe."
+  ]
+}

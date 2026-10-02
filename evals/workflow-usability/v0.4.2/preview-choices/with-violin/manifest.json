@@ -1,0 +1,284 @@
+{
+  "version": "0.1.0",
+  "status": "pass",
+  "valid_outputs": true,
+  "track": "create",
+  "source_binding": {
+    "original_path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/inputs/viscosity-observations.csv",
+    "snapshot": "source.csv",
+    "sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b",
+    "rows": 57
+  },
+  "request_binding": {
+    "original_path": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/inputs/with-violin-request.json",
+    "snapshot": "request.json",
+    "sha256": "68f1db0460fd7d456cae0814698a636c81396eca88c0de78cabd0fb0ef7600a2"
+  },
+  "fields": {
+    "value": "viscosity_mpas",
+    "group": "formulation",
+    "unit": "observation_id"
+  },
+  "design": {
+    "structure": "independent",
+    "confirmed": true,
+    "unit_definition": "Synthetic forward-trial scenario: each literal observation ID represents one independently prepared formulation sample measured once at 25 C. Samples do not recur across formulations; there are no technical repeats or paired samples."
+  },
+  "measurement_units": "mPa·s",
+  "shared_settings": {
+    "layout": {
+      "width_mm": 110,
+      "height_mm": 80,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "line_width_pt": 0.6,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "typography": {},
+    "colors": {
+      "Formulation A": "#0072B2",
+      "Formulation B": "#D55E00",
+      "Formulation C": "#009E73"
+    },
+    "order": {
+      "group": [
+        "Formulation A",
+        "Formulation B",
+        "Formulation C"
+      ]
+    },
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ]
+  },
+  "value_axis": {
+    "scale": "linear",
+    "limits": [
+      4,
+      17
+    ]
+  },
+  "choices": [
+    {
+      "id": "box-points",
+      "reading_task": "Compare group medians, spread and all individual measurements",
+      "definition": "Box: median and 25th/75th percentiles; whiskers reach observed values within 1.5 IQR. Every observation is also a point.",
+      "limitations": [
+        "Quartiles and whiskers describe source observations, not confidence intervals.",
+        "Box summaries can obscure multimodality; inspect every point and the ECDF."
+      ],
+      "spec": "box-points/spec.json",
+      "caption": "box-points/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "box-points/caption.md",
+          "sha256": "26cb7f381b759d5ba8c963adcab7c7c29cc78f188ad14cd0577646d182ce5c5d"
+        },
+        {
+          "path": "box-points/elements.json",
+          "sha256": "f3e827d84f095e672eefe2a5b1b1751dd4bd6e171a40b985ea243bebf501b890"
+        },
+        {
+          "path": "box-points/panel.pdf",
+          "sha256": "2a84a8710cc2f0fee441b5e44a4442dadbaaac43d7c1d41d841c41a1cfc65dd2"
+        },
+        {
+          "path": "box-points/panel.png",
+          "sha256": "4363faf9b80ee60ec3a5b2e71416918ee497aead2f0d523d29f2462a3a608fd7"
+        },
+        {
+          "path": "box-points/panel.svg",
+          "sha256": "97396e38cdfb08b167c85b49d333f7f65a88d785b00d3f2e1e6f83729c41fc80"
+        },
+        {
+          "path": "box-points/plotting-data.csv",
+          "sha256": "61aad093be78fb9c10a585f623a70293aa08dc0a30b23270e361e95e52ea72f2"
+        },
+        {
+          "path": "box-points/qa.json",
+          "sha256": "786c58a3ff3d2cea9ec0250adff0bca5fe24e24745932ffe974c61eadb21ea47"
+        },
+        {
+          "path": "box-points/settings.json",
+          "sha256": "5ed7b691051595fd81af17b8cd797680f09c04dd55c5cd9442f5b3bbf17d224c"
+        },
+        {
+          "path": "box-points/spec.json",
+          "sha256": "7ba7e4634b4319ad18ee0e9384d894f083a106e3bfdf653ca63d018e3d578a39"
+        },
+        {
+          "path": "box-points/stats.json",
+          "sha256": "4987b0240959d89dbddd8b921fc1f3982672a5419a789fa40bfe5fdd98773a0e"
+        }
+      ]
+    },
+    {
+      "id": "ecdf",
+      "reading_task": "Compare the full observed distribution, tails and fraction at or below a value",
+      "definition": "Right-continuous F(x)=count(value <= x)/group observation count; all ties contribute their full jump. Horizontal tails extend only for display.",
+      "limitations": [
+        "Curve fractions use each group's own row-count denominator.",
+        "Marginal distributions do not encode within-unit changes or establish independence.",
+        "No density smoothing, fitted distribution or confidence band."
+      ],
+      "spec": "ecdf/spec.json",
+      "caption": "ecdf/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "ecdf/caption.md",
+          "sha256": "54179cbdaa2f340522fe86088e9a17ee9506d49259c6413d9af71d72357ad284"
+        },
+        {
+          "path": "ecdf/cumulative-data.csv",
+          "sha256": "4c6d0ba015161aa060bd9ab70670487232bb5f7a9e3b1e04635f74a1fbf8a35b"
+        },
+        {
+          "path": "ecdf/elements.json",
+          "sha256": "ce25424e19d441e3eacd84d3980d6da3fc33a93917f3f568a19060a1ba20f8ba"
+        },
+        {
+          "path": "ecdf/panel.pdf",
+          "sha256": "c1b02fe6558dcb2df2b431b4b1df84ce93494316b03ccabfab697ce2791446de"
+        },
+        {
+          "path": "ecdf/panel.png",
+          "sha256": "3b2af1735ea2f4ef76c0d32df7a2f96e9aaa00a3b7837a6976c552778cebfac5"
+        },
+        {
+          "path": "ecdf/panel.svg",
+          "sha256": "14ca44bc7461370a66a764415ab08b988402f9a694c7545d69b13df8ab98e1c6"
+        },
+        {
+          "path": "ecdf/plotting-data.csv",
+          "sha256": "5ec3252730ce007f27688ca45010b0dde553ef8a6d90eff84014f38f23fa7397"
+        },
+        {
+          "path": "ecdf/qa.json",
+          "sha256": "26ba24c34c358fb5fac7aff7c3328b8e6be2ec01fadb04ebd9b60272ac6f52c8"
+        },
+        {
+          "path": "ecdf/settings.json",
+          "sha256": "018a683cc51669f0b2f152c2971357655b1f9139459d90a1440d2f6f0cdb89f9"
+        },
+        {
+          "path": "ecdf/spec.json",
+          "sha256": "b979fee64bcde73ecd22eedc025aec26890ff6cd75bb476c42f526fc12b7544d"
+        },
+        {
+          "path": "ecdf/stats.json",
+          "sha256": "5bdfad6d094bef419572d26eec17ecc63fe02de844342018c37777d04bc9300e"
+        }
+      ]
+    },
+    {
+      "id": "violin-points",
+      "reading_task": "Explore broad distribution shape while retaining all measurements",
+      "definition": "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin's width is independently normalized. Every observation is also a point.",
+      "limitations": [
+        "Density shape depends on smoothing bandwidth and can imply unsupported modes.",
+        "Violin widths are not sample counts or confidence intervals.",
+        "Five distinct values is a conservative eligibility guard, not scientific validation of a density estimate."
+      ],
+      "spec": "violin-points/spec.json",
+      "caption": "violin-points/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "violin-points/caption.md",
+          "sha256": "16d70b4fac9220096e8a979755283f77c8f28be83eceb744482d6c11c254a56e"
+        },
+        {
+          "path": "violin-points/elements.json",
+          "sha256": "4481ea8636b4690108bc99815a3a5f51ca0d1ad491889cd6e03f860e11b97cc8"
+        },
+        {
+          "path": "violin-points/panel.pdf",
+          "sha256": "0227ebaea2614fede39302432cf124dfc1f7f7bacbddb72b54bbc538f5517f5b"
+        },
+        {
+          "path": "violin-points/panel.png",
+          "sha256": "9bb60b5125cea41e614dcf1d567b39e0e87b3f0e84da6ccf9bbe3b696aed5a63"
+        },
+        {
+          "path": "violin-points/panel.svg",
+          "sha256": "b7833b7ef1fd36fde4dc0be7d4c4755414c5b74a19e30bd69d76756234d8edd3"
+        },
+        {
+          "path": "violin-points/plotting-data.csv",
+          "sha256": "61aad093be78fb9c10a585f623a70293aa08dc0a30b23270e361e95e52ea72f2"
+        },
+        {
+          "path": "violin-points/qa.json",
+          "sha256": "786c58a3ff3d2cea9ec0250adff0bca5fe24e24745932ffe974c61eadb21ea47"
+        },
+        {
+          "path": "violin-points/settings.json",
+          "sha256": "15fa5edf8b4d4cfd6175cf6809c60b4c3216254aa16f69b3717a1c7615785de2"
+        },
+        {
+          "path": "violin-points/spec.json",
+          "sha256": "658650bb7acca2839f4542ed2daba2c9b1eebef9f0027c5c9c0bb7fe84a5c234"
+        },
+        {
+          "path": "violin-points/stats.json",
+          "sha256": "94187ea4b0c34bcb915a95bf09f321a6f49985963ef1038438994cb06fc0cb8b"
+        }
+      ]
+    }
+  ],
+  "selection": {
+    "chosen_choice": null,
+    "automatic_winner": false
+  },
+  "visual_review_required": true,
+  "helper_sha256": {
+    "preview_choices.py": "037b953facd93190aec34a31c214b509894249dcd8b023e572e97d79af8536ce",
+    "ecdf_plot.py": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b",
+    "render.py": "74891c791637adeb2b8aa522ef8dc69d5944a12e4fe835cc5c007c5e37cba82f",
+    "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "figure_elements.py": "79adebe266a24e33b38b3ea918dd7d23d4aeba28c733861be278e98af55a811b"
+  },
+  "common_files": [
+    {
+      "path": "source.csv",
+      "sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b"
+    },
+    {
+      "path": "request.json",
+      "sha256": "68f1db0460fd7d456cae0814698a636c81396eca88c0de78cabd0fb0ef7600a2"
+    },
+    {
+      "path": "observation-trace.csv",
+      "sha256": "824215557396006b713583ca31896230d3640c3ffdb884bd02f641ac93b49b74"
+    },
+    {
+      "path": "qa.json",
+      "sha256": "5b3e88d9a719bcd1fa70d45edfa9611db06e02f0a20eaa3cb7985ae4e8202ea3"
+    },
+    {
+      "path": "visual-review.md",
+      "sha256": "73d2d4e78455b20a0912ecb3db5cb0e408f63f060279cc432c9b94b31d5960f2"
+    }
+  ],
+  "visual_review": {
+    "status": "completed_with_residual_readability_observations",
+    "reviewed_at": "2026-10-02T16:15:24.351761+00:00",
+    "review_file": "visual-review.md",
+    "contact_sheet": "../review/with-violin-final-size-contact.png",
+    "method": "Actual PNG plus independent PDF/SVG rasters at nominal96dpi; not a calibrated physical print.",
+    "reviewer_scope": "Forward-trial Agent; preview implementation/tests/previous outputs not read.",
+    "initial_generated_manifest": "manifest.generated.json",
+    "initial_pending_review": "visual-review.pending.md"
+  }
+}

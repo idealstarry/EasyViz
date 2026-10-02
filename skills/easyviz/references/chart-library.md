@@ -22,7 +22,7 @@ For several panels in one manuscript figure, use a [shared figure profile](figur
 | `scatter` | `x`, `y`; optional `group`, `unit`, `size` | One numeric pair per observation | Association or supplied coordinates, optionally with quantitative circle area |
 | `distribution` | `group`, `value`; optional `unit` | One measurement per defined independent observation | Group distributions with raw observations |
 
-The following five focused scripts extend those five core families. The Agent maps
+The following six focused scripts extend those five core families. The Agent maps
 the user's columns according to each contract; the user need not prepare JSON.
 They use the same final canvas, typography and export helpers, with their own
 source and layer checks. They are outside `draft_spec.py`.
@@ -34,6 +34,7 @@ source and layer checks. They are outside `draft_spec.py`.
 | Replicate component bars | Explicit replicate ID, condition, component and numeric value | Comparing contributions and totals while retaining replicate variation | [Replicate bars](replicate-plot.md) |
 | Empirical cumulative distribution (ECDF) | One raw numeric measurement per observation; optional group/unit | Comparing distributions, tails or the fraction at/below a value without density smoothing | [ECDF](ecdf-plot.md) |
 | Supplied summary lines and bands | Numeric x, central estimate and supplied SD or lower/upper bounds; optional series | Following time or dose summaries with explicitly defined uncertainty, optionally on adopted dual y axes | [Time-course summaries](timecourse-plot.md) |
+| Annotated matrix | Literal row/column IDs and numeric values, optional keyed metadata and supplied linkage | Aligning strips, missing states, declared marginals and already supplied trees | [Annotated matrices](annotated-matrix.md) |
 
 Choose the view for its reading task. A stacked component bar emphasizes a
 total and its composition; a grouped component view gives each component a
@@ -152,3 +153,9 @@ The two historical development cases are code-assisted evidence, not proof of im
 Both tracks can use the [figure workbench](figure-workbench.md) to save requests
 against the reviewed SVG version. Apply those requests to the source/specification,
 then rerender all requested formats and review the new attempt.
+
+Create can use [actual preview choices](preview-choices.md) to compare the
+supported observation encodings. For richer reproduction, `aligned_layers.py`
+provides literal categorical frames and transformed alignment checks for
+custom stacked heatmaps, supplied-summary strips and other aligned artists.
+It places geometry only; it computes no clustering, preprocessing or statistics.

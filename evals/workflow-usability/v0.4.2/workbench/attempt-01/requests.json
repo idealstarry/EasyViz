@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "requests": [
+    {
+      "id": "badb09ed-a760-418c-8680-043dc886b1e4",
+      "created_at": "2026-10-02T16:07:12+00:00",
+      "status": "pending",
+      "version": {
+        "figure_sha256": "7cea32ad00fbece22c280c8f856c25f0e120f555256fbbfd3559005fb560af1d",
+        "spec_sha256": "4bc7930268e75ca80404019900695a700eda1c68659d3d51dc40d19fbf78121e",
+        "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+        "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2"
+      },
+      "input": {
+        "data_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/workbench/source.csv",
+        "spec_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/workbench/spec.json",
+        "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "supplied_spec_sha256": "e0b1682983283820d87f91b9a0033ca2deeda47ff929a394f2f8e62fece48344"
+      },
+      "element_id": null,
+      "element_ids": [
+        "easyviz-point-group-1c420bbc7ab49043",
+        "easyviz-legend-key-4dbed3c12a2655f2"
+      ],
+      "instruction": "Set every Control mark and its legend key to #6A51A3. Preserve measurements, all other category colors, marker areas and the 110 × 80 mm canvas.",
+      "elements": [
+        {
+          "id": "easyviz-point-group-1c420bbc7ab49043",
+          "role": "point-group",
+          "label": "Control",
+          "source_keys": [
+            {
+              "group": "Control",
+              "records": [
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "spec_paths": [
+            "/colors/Control",
+            "/options/alpha"
+          ],
+          "editable": {
+            "color": "/colors/Control",
+            "alpha": "/options/alpha"
+          }
+        },
+        {
+          "id": "easyviz-legend-key-4dbed3c12a2655f2",
+          "role": "legend-key",
+          "label": "Control",
+          "source_keys": [
+            {
+              "category": "Control"
+            }
+          ],
+          "spec_paths": [
+            "/colors/Control"
+          ],
+          "editable": [
+            "color"
+          ]
+        }
+      ],
+      "selector": {
+        "category": "Control"
+      },
+      "property": "color",
+      "value": "#6A51A3"
+    },
+    {
+      "id": "728a84df-3f67-4ffa-b42f-82f2129d0692",
+      "created_at": "2026-10-02T16:08:46+00:00",
+      "status": "applied",
+      "version": {
+        "figure_sha256": "7cea32ad00fbece22c280c8f856c25f0e120f555256fbbfd3559005fb560af1d",
+        "spec_sha256": "4bc7930268e75ca80404019900695a700eda1c68659d3d51dc40d19fbf78121e",
+        "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+        "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+        "resolved_colors_sha256": "bd98570a56d1adc59ee449f071df8a28c68657a246488ab2a5f3a0f2f027be3c"
+      },
+      "input": {
+        "data_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/workbench/source.csv",
+        "spec_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/workbench/spec.json",
+        "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "supplied_spec_sha256": "e0b1682983283820d87f91b9a0033ca2deeda47ff929a394f2f8e62fece48344"
+      },
+      "element_id": null,
+      "element_ids": [
+        "easyviz-point-group-1c420bbc7ab49043",
+        "easyviz-legend-key-4dbed3c12a2655f2"
+      ],
+      "instruction": "Set Control marks and their legend key to #6A51A3. Retain Treatment color, measurements, marker areas and the fixed canvas.",
+      "elements": [
+        {
+          "id": "easyviz-point-group-1c420bbc7ab49043",
+          "role": "point-group",
+          "label": "Control",
+          "source_keys": [
+            {
+              "group": "Control",
+              "records": [
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "spec_paths": [
+            "/colors/Control",
+            "/options/alpha"
+          ],
+          "editable": {
+            "color": "/colors/Control",
+            "alpha": "/options/alpha"
+          }
+        },
+        {
+          "id": "easyviz-legend-key-4dbed3c12a2655f2",
+          "role": "legend-key",
+          "label": "Control",
+          "source_keys": [
+            {
+              "category": "Control"
+            }
+          ],
+          "spec_paths": [
+            "/colors/Control"
+          ],
+          "editable": [
+            "color"
+          ]
+        }
+      ],
+      "selector": {
+        "category": "Control"
+      },
+      "property": "color",
+      "value": "#6A51A3",
+      "applied_at": "2026-10-02T16:09:47+00:00",
+      "result": {
+        "target_attempt": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/workbench/attempt-02",
+        "target_version": {
+          "figure_sha256": "2d1c763124b2b53b0fc1e247003f36dc2562ba4423ddb973921a6dd16a2f1989",
+          "spec_sha256": "486c002a1b904e39ce8b1f7dfabeb2dd3ea079d5b2a839b1d20dd44ba777145b",
+          "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+          "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+          "resolved_colors_sha256": "2021c4743582530911522467b7180afbcf18b931586f87a1debf9fe841c9097a"
+        },
+        "changed_files": [
+          "plot-spec.json"
+        ],
+        "validation": "Core render QA passed; final visual review remains required."
+      }
+    }
+  ],
+  "version": {
+    "figure_sha256": "7cea32ad00fbece22c280c8f856c25f0e120f555256fbbfd3559005fb560af1d",
+    "spec_sha256": "4bc7930268e75ca80404019900695a700eda1c68659d3d51dc40d19fbf78121e",
+    "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+    "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+    "resolved_colors_sha256": "bd98570a56d1adc59ee449f071df8a28c68657a246488ab2a5f3a0f2f027be3c"
+  },
+  "updated_at": "2026-10-02T16:09:47+00:00",
+  "history": [
+    {
+      "id": "f5fa9707-2453-43b1-9474-a44b25411125",
+      "action": "accepted",
+      "at": "2026-10-02T16:09:46+00:00",
+      "version": {
+        "figure_sha256": "7cea32ad00fbece22c280c8f856c25f0e120f555256fbbfd3559005fb560af1d",
+        "spec_sha256": "4bc7930268e75ca80404019900695a700eda1c68659d3d51dc40d19fbf78121e",
+        "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+        "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+        "resolved_colors_sha256": "bd98570a56d1adc59ee449f071df8a28c68657a246488ab2a5f3a0f2f027be3c"
+      },
+      "validation": "Inspected actual SVG in in-app browser and PDF at 96 dpi; labels readable, 6 points retained; fixed-canvas/export QA pass."
+    },
+    {
+      "id": "989ab216-0e54-40d5-a61b-acf5d66ada09",
+      "action": "applied",
+      "at": "2026-10-02T16:09:47+00:00",
+      "from_version": {
+        "figure_sha256": "7cea32ad00fbece22c280c8f856c25f0e120f555256fbbfd3559005fb560af1d",
+        "spec_sha256": "4bc7930268e75ca80404019900695a700eda1c68659d3d51dc40d19fbf78121e",
+        "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+        "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+        "resolved_colors_sha256": "bd98570a56d1adc59ee449f071df8a28c68657a246488ab2a5f3a0f2f027be3c"
+      },
+      "target_attempt": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/workbench/attempt-02",
+      "target_version": {
+        "figure_sha256": "2d1c763124b2b53b0fc1e247003f36dc2562ba4423ddb973921a6dd16a2f1989",
+        "spec_sha256": "486c002a1b904e39ce8b1f7dfabeb2dd3ea079d5b2a839b1d20dd44ba777145b",
+        "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+        "source_script_sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+        "resolved_colors_sha256": "2021c4743582530911522467b7180afbcf18b931586f87a1debf9fe841c9097a"
+      },
+      "request_ids": [
+        "728a84df-3f67-4ffa-b42f-82f2129d0692"
+      ],
+      "changed_files": [
+        "plot-spec.json"
+      ],
+      "validation": "Core render QA passed; final visual review remains required."
+    }
+  ]
+}

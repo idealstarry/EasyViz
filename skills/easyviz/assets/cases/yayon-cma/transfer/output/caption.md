@@ -1,0 +1,1 @@
+Synthetic transfer panel. Two supplied matrices and supplied summary values share literal ordered feature IDs. Significance circles decode supplied adjusted P values; no normalization, cosine, test or clustering was recomputed.

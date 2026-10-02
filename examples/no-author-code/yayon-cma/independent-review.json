@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-02T16:21:26.729253+00:00",
+  "reviewer": "Independent Codex subagent /root/v041_evidence_package",
+  "review_pass": 1,
+  "readiness": "ready_with_notes",
+  "scope": "Source-backed layer adaptation of Yayon et al. Fig. 3f; unpublished dendrogram topology/heights omitted, so not full-panel equivalence",
+  "review_method": "Opened the reference and candidate PNGs, then opened actual PDF and SVG renderings at 96 dpi (794×420 px). Inspected final physical proportions and separately checked actual exported PDF/PNG metadata. No implementation code/tests or prior review were read.",
+  "candidate": {
+    "exports": {
+      "output/panel.png": "bb9ddb50000ae8fae36430d6bc191e368ba19ee950a418ec390915ddbf7898c0",
+      "output/panel.pdf": "1e5e990da24678e890a578186580cb92766fdca9909aac08115f58b202b6ae1a",
+      "output/panel.svg": "d5cd1b1c5280758728d70c9a739906813f3bd82cc8ef5a39cecf29bb00359f9b"
+    },
+    "spec_sha256": "6e5d2462f0a264049973889388e7c2e5cc81b5f87cb68a52534de1b8474f3c98",
+    "caption_sha256": "94ed72bed664d9db981f2cafff34933f7904f61656542c53701a29b9e2601949"
+  },
+  "observations": [
+    "Two aligned 65-column by 10-row matrices appear in Fetal then Paediatric order; shared columns continue through the cosine bars and zero-line P circles.",
+    "Both heatmaps use the visible 0–1 viridis guide; the middle bars and continuous guide cover −1 to +1 with a zero baseline.",
+    "CCL21, CCL19, CXCL12 and CCL25 labels are orange; outlined spans are CCL13–CX3CL1 and IL34–TGFB3. The boxes stop above the upper matrix and do not imply a reconstructed tree.",
+    "The three hollow-circle classes are visibly distinct and agree with the increasing-area legend; bars are filled without incidental dark outlines.",
+    "Row labels, left group dividers, compact P legend and expression guide remain readable and subordinate to the matrix regions. No clipping or collisions were visible in the PDF/PNG views."
+  ],
+  "findings": [
+    {
+      "severity": "minor",
+      "location": "SVG heatmap cell boundaries at 96 dpi",
+      "evidence": "The librsvg 96 dpi rendering shows faint cell-boundary seams; the matching PDF and PNG renderings do not show this grid. The seams do not alter cell colors, order or layer alignment.",
+      "requirement": "The two matrices should use the adopted filled-cell appearance consistently across exports.",
+      "action": "Prefer the inspected PDF/PNG for assembly. If SVG is the delivery format, check the intended application and suppress rasterization seams if they persist."
+    },
+    {
+      "severity": "note",
+      "location": "Bottom gene labels",
+      "evidence": "All 65 italic gene labels are visible, including the four orange labels. At 210 mm width, each column is approximately 2.6 mm wide; the labels are dense but separately traceable in the final-size PDF/PNG views.",
+      "requirement": "Keep all adopted genes and Arial 7.5 pt at the frozen panel dimensions.",
+      "action": "Retain the adopted dimensions/font. Use the vector PDF or 300 dpi PNG for final assembly; do not shrink this panel or its text."
+    },
+    {
+      "severity": "note",
+      "location": "Reference adaptations",
+      "evidence": "Sub-Capsular is displayed as Subcapsular; Medullar is displayed as Medullary. The dendrogram and source panel letter are intentionally absent. The corrected final caption states that the unpublished tree was not reproduced and full-panel equivalence is not claimed.",
+      "requirement": "Honor the adopted aliases, manuscript text convention and bounded reproduction scope.",
+      "action": "Retain these declared adaptations and the separate source-attributed caption."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "severity_before_repair": "major",
+      "location": "output/caption.md",
+      "initial_evidence": "The initial candidate carried the synthetic transfer caption.",
+      "resolution": "The final output caption now describes the source-backed Yayon Fig. 3f adaptation, supplied summaries, display aliases and omitted dendrogram/full-panel limitation. Pixel exports are unchanged by this caption repair."
+    }
+  ],
+  "external_checks": [
+    {
+      "check": "Actual PDF page dimensions",
+      "status": "passed",
+      "evidence": {
+        "pages": 1,
+        "width_mm": 210.00000000000668,
+        "height_mm": 110.99999999998639
+      }
+    },
+    {
+      "check": "Actual PDF typography and font embedding",
+      "status": "passed",
+      "evidence": {
+        "fonts": [
+          "Arial-ItalicMT",
+          "ArialMT"
+        ],
+        "font_sizes_pt": [
+          7.5
+        ],
+        "text_span_count": 103,
+        "embedding": "pdffonts reports every ArialMT/Arial-ItalicMT subset embedded (Type 3).",
+        "page_exceeding_text_bbox_count": 0
+      }
+    },
+    {
+      "check": "Actual PNG dimensions and DPI",
+      "status": "passed",
+      "evidence": {
+        "pixels": [
+          2480,
+          1311
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ],
+        "interpretation": "2480×1311 pixels at approximately 300 dpi; integer-pixel dimensions agree with the declared 210×111 mm canvas within raster rounding."
+      }
+    },
+    {
+      "check": "Actual PDF/SVG rendering at 96 dpi",
+      "status": "passed",
+      "evidence": {
+        "pdf": {
+          "path": "/private/tmp/easyviz-yayon-review-51hzx9nx/case-pdf-96dpi.png",
+          "pixels": [
+            794,
+            420
+          ],
+          "sha256": "bc1e5a8f75cbd59ef4cc42575edf964caad7f915c01b46a0ac97ba2021b1dd1c"
+        },
+        "svg": {
+          "path": "/private/tmp/easyviz-yayon-review-51hzx9nx/case-svg-96dpi.png",
+          "pixels": [
+            794,
+            420
+          ],
+          "sha256": "357473dbf8c6519c87e5d8b2422a20bebeeeb0e35b5090ee45901ddc819a0873"
+        },
+        "png": {
+          "path": "/private/tmp/easyviz-yayon-review-51hzx9nx/case-png-96dpi.png",
+          "pixels": [
+            794,
+            420
+          ],
+          "sha256": "7602a3be412726193f09196249de91daaa44a195ae876ff96c661cdc762c6d2a"
+        }
+      }
+    },
+    {
+      "check": "Source values, exact per-cell/per-bar numbers and upstream statistics",
+      "status": "not_checked",
+      "required_for_this_visual_review": false,
+      "evidence": "This independent visual review did not read source tables, plotting code, tests, numeric QA or previous reviews. It validates visible mappings and actual exports; it does not recalculate normalization, cosine, ANOVA, P correction or dendrogram."
+    }
+  ],
+  "baseline_preference": {
+    "status": "not_applicable",
+    "reason": "The main panel is an adopted reference-layer reproduction and the transfer is an unrelated fixed-layout example. No claimed refinement or aesthetic superiority over an accepted baseline was evaluated."
+  },
+  "unresolved_items": [
+    "SVG antialiasing seams depend on the receiving application.",
+    "Numerical/source correctness remains outside this independent image-only review."
+  ],
+  "reference": {
+    "path": "inputs/reference.png",
+    "sha256": "5c7dbf43475f2b4c8bf1e504431402dbfd1636253aede2a70b7c39b233bf8f99",
+    "adopted_spec_sha256": "12ac98670532360658ea7578d041eb2b49f2a10c5769a7fbe7976b20873c26f6"
+  }
+}

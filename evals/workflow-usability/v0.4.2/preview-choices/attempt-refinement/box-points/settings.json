@@ -1,0 +1,160 @@
+{
+  "fields": {
+    "value": "viscosity_mpas",
+    "group": "formulation",
+    "unit": "observation_id"
+  },
+  "colors": {
+    "Formulation A": "#0072B2",
+    "Formulation B": "#D55E00",
+    "Formulation C": "#009E73"
+  },
+  "order": {
+    "group": [
+      "Formulation A",
+      "Formulation B",
+      "Formulation C"
+    ]
+  },
+  "layout": {
+    "width_mm": 110.0,
+    "height_mm": 80.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.23455586332070708,
+      "right": 0.9818181818181818,
+      "bottom": 0.1397216796875,
+      "top": 0.9750000000000001
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "chart": "distribution",
+  "labels": {
+    "x": "Viscosity (mPa·s)",
+    "y": "Formulation"
+  },
+  "options": {
+    "kind": "box",
+    "orientation": "horizontal",
+    "x_scale": "linear",
+    "x_limits": [
+      4,
+      17
+    ],
+    "point_layout": "beeswarm",
+    "point_area_pt2": 9,
+    "alpha": 0.65
+  },
+  "seed": 0,
+  "resolved_colors": {
+    "Formulation A": "#0072B2",
+    "Formulation B": "#D55E00",
+    "Formulation C": "#009E73"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/attempt-refinement/source.csv",
+  "input_sha256": "1a9dc57e7481a9604af8a75bcd3d295f7b455d30d7d14a2ca8cfc3e433582d6b",
+  "spec_file": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.2/preview-choices/attempt-refinement/box-points/spec.json",
+  "spec_file_sha256": "f309de977c20f5d275d494ebde362aeca62ad78f41b8e423e1d0093f048488ed",
+  "track": "create",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "62383d7761c0d382f9542e6c43b9083ca671715e277e8736db79ca153aa6aa15",
+    "helper_sha256": {
+      "ecdf_plot.py": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b",
+      "render.py": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+      "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "d1c1cb03543b67d193ccfa171415cec06c65be060a749619a29696256c933561"
+    }
+  },
+  "point_layout": {
+    "status": "pass",
+    "overlapping_circle_pairs": 0,
+    "spacing_violation_pairs": 0,
+    "minimum_center_distance_pt": 3.29999999999998,
+    "sample_overlapping_pairs": [],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "horizontal",
+    "seed": 0,
+    "categorical_axis": "y",
+    "quantitative_axis": "x",
+    "numeric_values_changed": false,
+    "input_rows": 57,
+    "placed_rows": 57,
+    "diameter_pt": 3.0,
+    "gap_pt": 0.3,
+    "requested_max_offset_mm": 4.0,
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "Formulation A",
+        "rows": 17,
+        "category_spacing_pt": 59.1929518331693,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.954975343020111,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 757459676
+      },
+      {
+        "group": "Formulation B",
+        "rows": 19,
+        "category_spacing_pt": 59.1929518331693,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 0.9774876715100554,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 707235027
+      },
+      {
+        "group": "Formulation C",
+        "rows": 21,
+        "category_spacing_pt": 59.1929518331693,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 2.1416543381767217,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 22175749
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  },
+  "axis": {
+    "x_scale": "linear",
+    "x_limits": [
+      4.0,
+      17.0
+    ]
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

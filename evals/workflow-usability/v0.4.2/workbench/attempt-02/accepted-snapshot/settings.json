@@ -1,0 +1,260 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "x",
+    "y": "y",
+    "group": "condition",
+    "unit": "specimen"
+  },
+  "labels": {
+    "x": "Dose (a.u.)",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 110.0,
+    "height_mm": 80.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.11217404513888889,
+      "right": 0.9818181818181818,
+      "bottom": 0.1397216796875,
+      "top": 0.8712852647569445
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "png",
+    "svg",
+    "pdf"
+  ],
+  "colors": {
+    "Control": "#6A51A3",
+    "Treatment": "#E47751"
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Control": "#6A51A3",
+    "Treatment": "#E47751"
+  },
+  "seed": 0,
+  "input_file": "source.csv",
+  "input_sha256": "b5914b9b3ba3c7441f505548a68ff98970ff72538ea34b17b994b39c22a13608",
+  "renderer": {
+    "version": "0.4.2",
+    "sha256": "f79d95fb7e1b231d4a597de797b5b427efc01cec9bdeea6071d3ff4cbb23b3e2",
+    "legend_helper_sha256": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "profile_helper_sha256": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+  },
+  "track": "create",
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.11217404513888889,
+      "right": 0.9818181818181818,
+      "bottom": 0.1397216796875,
+      "top": 0.8712852647569445
+    },
+    "data_region_mm": [
+      12.33914496527778,
+      11.177734375,
+      95.66085503472223,
+      58.52508680555557
+    ],
+    "data_area_fraction": 0.6361999823637255,
+    "attempts": [
+      {
+        "automatic_guide_side": "right",
+        "reserved_mm": {
+          "right": 17.026156249999985,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.5971078101743834
+      },
+      {
+        "automatic_guide_side": "bottom",
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 8.297178819444445,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.6361999823637253
+      },
+      {
+        "automatic_guide_side": "top",
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 8.297178819444442
+        },
+        "issues": [],
+        "data_area_fraction": 0.6361999823637255
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "top",
+          "ncol": 1,
+          "loc": "lower center",
+          "anchor_mm": [
+            60.169572482638884,
+            71.70282118055556
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.5,
+          "effective_key_height_mm": 1.5
+        },
+        "bbox_mm": [
+          52.65649435763889,
+          71.70282118055556,
+          15.026156250000005,
+          6.297178819444445
+        ],
+        "plot_bbox_mm": [
+          12.33914496527778,
+          11.177734375,
+          95.66085503472223,
+          58.52508680555557
+        ],
+        "canvas_mm": [
+          110.0,
+          80.0
+        ],
+        "area_fraction_of_plot": 0.01690120236243179,
+        "width_fraction_of_plot": 0.15707737762270604,
+        "height_fraction_of_plot": 0.10759794069791415,
+        "area_fraction_of_canvas": 0.010752544644904861,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.12006465636117188,
+        "available_region_mm": [
+          1.0,
+          71.70282118055556,
+          108.00000000000001,
+          7.297178819444439
+        ],
+        "key_bboxes_mm": [
+          [
+            52.856494357638894,
+            75.87337924011753,
+            1.5000000000000056,
+            1.5000000000000056
+          ],
+          [
+            52.856494357638894,
+            72.6247898303953,
+            1.5000000000000056,
+            1.5000000000000056
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "top",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              52.65649435763889,
+              71.70282118055556,
+              15.026156250000005,
+              6.297178819444445
+            ],
+            "issues": []
+          },
+          {
+            "position": "top",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              46.1114943576389,
+              71.70282118055556,
+              28.116156249999996,
+              3.0485894097222213
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 94.6223928751628,
+      "sum_envelope_area_mm2": 94.6223928751628,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.01690120236243179,
+      "area_fraction_of_canvas": 0.010752544644904861,
+      "enclosing_bbox_mm": [
+        52.65649435763889,
+        71.70282118055556,
+        15.026156250000005,
+        6.297178819444445
+      ],
+      "max_individual_width_mm": 15.026156250000003,
+      "max_individual_height_mm": 6.2971788194444445,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "fixed_matplotlib_size_parameter",
+    "marker_size_parameter_pt2": 12.0,
+    "circle_fill_area_pt2": 9.42477796076938,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "diameter_pt": 3.4641016151377544,
+    "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+    "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -53,6 +53,39 @@ def timestamp():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def source_versions(input_info, version):
+    """Check declared provenance without exposing or executing source contents."""
+    checks = {}
+    for field, hash_field in (("data_file", "input_sha256"), ("source_script", "source_script_sha256"), ("spec_file", "supplied_spec_sha256")):
+        expected = input_info.get(hash_field) if field == "spec_file" else version.get(hash_field)
+        location = input_info.get(field)
+        check = {"available": False, "current": None}
+        if isinstance(location, str) and isinstance(expected, str):
+            path = Path(location).expanduser()
+            try:
+                if path.is_file() and not path.is_symlink() and path.stat().st_size <= MAX_FILE_BYTES:
+                    actual = sha256(path.read_bytes())
+                    check.update(available=True, current=actual == expected, expected_sha256=expected, actual_sha256=actual)
+            except OSError:
+                pass
+        checks[field] = check
+    return checks
+
+
+def element_matches(element, selector):
+    """Intersect semantic filters; never infer observations from image positions."""
+    keys = element.get("source_keys", [])
+    if "role" in selector and element.get("role") != selector["role"]:
+        return False
+    if "spec_path" in selector and selector["spec_path"] not in element.get("spec_paths", []):
+        return False
+    if "category" in selector and not any(isinstance(key, dict) and any(key.get(name) == selector["category"] for name in ("category", "group")) for key in keys):
+        return False
+    if "source_key" in selector and not any(isinstance(key, dict) and all(name in key and json.dumps(key[name], sort_keys=True, allow_nan=False) == json.dumps(value, sort_keys=True, allow_nan=False) for name, value in selector["source_key"].items()) for key in keys):
+        return False
+    return True
+
+
 def svg_length_mm(value):
     match = re.fullmatch(r"\s*([\d.+eE-]+)\s*(mm|cm|in|pt|px)?\s*", value or "")
     if not match:
@@ -115,12 +148,13 @@ def sanitized_svg(root):
 
 
 class FigureWorkbench:
-    def __init__(self, figure_dir):
+    def __init__(self, figure_dir, compare_dir=None):
         self.root = Path(figure_dir).expanduser().resolve()
         if not self.root.is_dir():
             raise WorkbenchError("Figure directory does not exist")
         self.token = secrets.token_urlsafe(32)
         self.lock = threading.Lock()
+        self.comparison = FigureWorkbench(compare_dir) if compare_dir is not None else None
         self.state()  # Fail before listening when the essential figure is invalid.
 
     def read_file(self, name, *, required=False):
@@ -148,6 +182,8 @@ class FigureWorkbench:
         ledger = safe_json(path.read_bytes())
         if not isinstance(ledger, dict) or ledger.get("schema_version") != 1 or not isinstance(ledger.get("requests"), list):
             raise WorkbenchError("requests.json uses an unsupported format")
+        if "history" in ledger and (not isinstance(ledger["history"], list) or not all(isinstance(item, dict) for item in ledger["history"])):
+            raise WorkbenchError("Request history must be a list of records")
         return ledger
 
     def state(self):
@@ -163,7 +199,7 @@ class FigureWorkbench:
         panel = svg_panel
         input_info = {}
         if isinstance(manifest, dict) and manifest.get("schema_version") == 1:
-            declared_version = manifest.get("version") or {key: manifest.get(key) for key in ("figure_sha256", "spec_sha256", "input_sha256", "source_script_sha256") if manifest.get(key)}
+            declared_version = manifest.get("version") or {key: manifest.get(key) for key in ("figure_sha256", "spec_sha256", "input_sha256", "source_script_sha256", "resolved_colors_sha256") if manifest.get(key)}
             if not isinstance(declared_version, dict):
                 declared_version = {}
             candidate = manifest.get("panel", {})
@@ -187,13 +223,17 @@ class FigureWorkbench:
                         editable = element.get("editable", [])
                         if not isinstance(editable, (list, dict)) or not all(isinstance(name, str) for name in editable):
                             raise WorkbenchError("Element editable properties must be named strings")
+                        if not isinstance(element.get("source_keys", []), list) or not all(isinstance(key, dict) for key in element.get("source_keys", [])):
+                            raise WorkbenchError("Element source keys must be objects")
+                        if not isinstance(element.get("spec_paths", []), list) or not all(isinstance(path, str) for path in element.get("spec_paths", [])):
+                            raise WorkbenchError("Element specification paths must be strings")
                         seen.add(element["id"])
                         elements.append({**element, "label": str(element.get("label", element["id"])), "role": str(element.get("role", "element"))})
                     reason = "Select a mark, axis, label or guide to describe a change."
                     # Adopt dimensions and provenance only after the full map is
                     # validated. A stale map cannot define a new SVG's regions.
                     panel = candidate_panel
-                    version.update({key: value for key, value in declared_version.items() if key in {"spec_sha256", "input_sha256", "source_script_sha256"} and isinstance(value, str)})
+                    version.update({key: value for key, value in declared_version.items() if key in {"spec_sha256", "input_sha256", "source_script_sha256", "resolved_colors_sha256"} and isinstance(value, str)})
                     input_info = manifest.get("input", {}) if isinstance(manifest.get("input", {}), dict) else {}
                 else:
                     valid = False
@@ -216,7 +256,20 @@ class FigureWorkbench:
         for item in ledger["requests"]:
             if isinstance(item, dict):
                 requests.append({**item, "current_version": item.get("version") == version})
-        return {"schema_version": 1, "figure_name": self.root.name, "track": track, "version": version, "input": input_info, "panel": panel, "view_box": box, "manifest_valid": valid, "selection_message": reason, "elements": elements, "requests": requests, "files": sorted(name for name in FILES if (self.root / name).is_file() and not (self.root / name).is_symlink()), "token": self.token}
+        checks = source_versions(input_info, version)
+        if "resolved_colors_sha256" in version:
+            colors = settings.get("resolved_colors") if isinstance(settings, dict) else None
+            check = {"available": isinstance(colors, dict), "current": None}
+            if isinstance(colors, dict):
+                actual = sha256(json.dumps(colors, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode())
+                check.update(current=actual == version["resolved_colors_sha256"], expected_sha256=version["resolved_colors_sha256"], actual_sha256=actual)
+            checks["resolved_colors"] = check
+        source_current = False if any(check["current"] is False for check in checks.values()) else True if all(check["current"] is True for check in checks.values()) else None
+        comparison = None
+        if self.comparison:
+            previous = self.comparison.state()
+            comparison = {key: previous[key] for key in ("figure_name", "version", "panel", "view_box")}
+        return {"schema_version": 1, "figure_name": self.root.name, "track": track, "version": version, "input": input_info, "source_versions": checks, "source_current": source_current, "panel": panel, "view_box": box, "manifest_valid": valid, "selection_message": reason, "elements": elements, "requests": requests, "history": ledger.get("history", []), "comparison": comparison, "files": sorted(name for name in FILES if (self.root / name).is_file() and not (self.root / name).is_symlink()), "token": self.token}
 
     def validate_region(self, region, panel):
         if not isinstance(region, dict) or set(region) != {"x", "y", "width", "height"}:
@@ -242,39 +295,61 @@ class FigureWorkbench:
     def change(self, payload, *, undo=False):
         if not isinstance(payload, dict):
             raise WorkbenchError("Request must be an object")
-        allowed = {"version", "request_id"} if undo else {"version", "element_id", "region_mm", "property", "value", "instruction"}
+        allowed = {"version", "request_id"} if undo else {"version", "element_id", "element_ids", "selector", "spec_path", "region_mm", "property", "value", "instruction"}
         if set(payload) - allowed:
             raise WorkbenchError("Request contains unsupported fields")
         with self.lock:
             state = self.state()
             if payload.get("version") != state["version"]:
                 raise WorkbenchError("This figure has changed. Reload it before saving a request.")
+            if state["source_current"] is False:
+                raise WorkbenchError("The figure source has changed. Render a fresh attempt before saving requests.")
             ledger = self.ledger()
             if undo:
                 request_id = payload.get("request_id")
                 item = next((item for item in ledger["requests"] if isinstance(item, dict) and item.get("id") == request_id), None)
                 if item is None or item.get("status") != "pending":
                     raise WorkbenchError("Only a pending request can be undone")
+                if item.get("version") != state["version"]:
+                    raise WorkbenchError("This request belongs to an older figure version")
                 item.update(status="undone", undone_at=timestamp())
             else:
                 instruction = payload.get("instruction", "")
                 if not isinstance(instruction, str) or not instruction.strip() or len(instruction) > 8000:
                     raise WorkbenchError("Describe the requested change in 1 to 8000 characters")
                 element_id = payload.get("element_id")
+                ids = payload.get("element_ids")
+                selector = payload.get("selector")
                 region = payload.get("region_mm")
-                if element_id and region:
+                if sum(value is not None for value in (element_id, ids, selector)) > 1:
+                    raise WorkbenchError("Choose element_id, element_ids or a semantic selector")
+                if selector is not None:
+                    if not isinstance(selector, dict) or not selector or set(selector) - {"role", "category", "spec_path", "source_key"}:
+                        raise WorkbenchError("Unsupported semantic selector")
+                    if any(not isinstance(value, str) or not value for key, value in selector.items() if key != "source_key") or ("source_key" in selector and (not isinstance(selector["source_key"], dict) or not selector["source_key"])):
+                        raise WorkbenchError("Semantic selector values must name real mapped identities")
+                    ids = [element["id"] for element in state["elements"] if element_matches(element, selector)]
+                    if not ids:
+                        raise WorkbenchError("Semantic selector matches no mapped elements")
+                elif element_id is not None:
+                    ids = [element_id]
+                else:
+                    ids = [] if ids is None else ids
+                if not isinstance(ids, list) or len(ids) > 2000 or any(not isinstance(value, str) or not value for value in ids) or len(set(ids)) != len(ids):
+                    raise WorkbenchError("Element IDs must be a unique list of mapped IDs")
+                if ids and region:
                     raise WorkbenchError("Choose an element or a region, not both")
-                element = None
-                if element_id is not None:
-                    if not isinstance(element_id, str):
-                        raise WorkbenchError("Element ID must be text")
-                    element = next((item for item in state["elements"] if item["id"] == element_id), None)
-                    if not state["manifest_valid"] or element is None:
-                        raise WorkbenchError("Selected element is unavailable in this figure version")
+                selected = [element for element in state["elements"] if element["id"] in ids]
+                if ids and (not state["manifest_valid"] or len(selected) != len(ids)):
+                    raise WorkbenchError("Selected element is unavailable in this figure version")
+                element = selected[0] if len(selected) == 1 else None
+                spec_path = payload.get("spec_path")
+                if spec_path is not None and (not isinstance(spec_path, str) or not selected or not all(spec_path in entry.get("spec_paths", []) for entry in selected)):
+                    raise WorkbenchError("Specification path must belong to every selected element")
                 prop = payload.get("property")
                 value = payload.get("value")
                 if prop is not None:
-                    if element is None or not isinstance(prop, str) or prop not in element.get("editable", []):
+                    if not selected or not isinstance(prop, str) or not all(prop in entry.get("editable", []) for entry in selected):
                         raise WorkbenchError("This property is not available for the selected element")
                     if not isinstance(value, (str, int, float, bool, list, dict)) or value is None:
                         raise WorkbenchError("A property change needs a value")
@@ -283,9 +358,15 @@ class FigureWorkbench:
                         raise WorkbenchError("Property value is too long")
                 elif value is not None:
                     raise WorkbenchError("A value needs a supported property")
-                item = {"id": str(uuid.uuid4()), "created_at": timestamp(), "status": "pending", "version": state["version"], "input": state["input"], "element_id": element_id, "instruction": instruction.strip()}
+                item = {"id": str(uuid.uuid4()), "created_at": timestamp(), "status": "pending", "version": state["version"], "input": state["input"], "element_id": element["id"] if element else None, "element_ids": [entry["id"] for entry in selected], "instruction": instruction.strip()}
+                if selected:
+                    item["elements"] = [{key: entry.get(key) for key in ("id", "role", "label", "source_keys", "spec_paths", "editable")} for entry in selected]
                 if element:
                     item["element"] = {key: element.get(key) for key in ("id", "role", "label", "source_keys", "spec_paths", "editable")}
+                if selector is not None:
+                    item["selector"] = selector
+                if spec_path is not None:
+                    item["spec_path"] = spec_path
                 if region is not None:
                     item["region_mm"] = self.validate_region(region, state["panel"])
                     item["coordinate_origin"] = "top-left of full canvas"
@@ -294,13 +375,15 @@ class FigureWorkbench:
                 ledger["requests"].append(item)
             if self.state()["version"] != state["version"]:
                 raise WorkbenchError("This figure has changed. Reload it before saving a request.")
+            if self.state()["source_current"] is False:
+                raise WorkbenchError("The figure source has changed. Render a fresh attempt before saving requests.")
             ledger.update(schema_version=1, version=state["version"], updated_at=timestamp())
             self.write_ledger(ledger)
             return {"request": item, "state": self.state()}
 
 
-def create_server(figure_dir, port=0):
-    app = FigureWorkbench(figure_dir)
+def create_server(figure_dir, port=0, compare_dir=None):
+    app = FigureWorkbench(figure_dir, compare_dir=compare_dir)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -344,8 +427,12 @@ def create_server(figure_dir, port=0):
             try:
                 if path == "/api/state":
                     self.reply(200, app.state())
-                elif path == "/api/preview.svg":
-                    svg_bytes = app.read_file("panel.svg", required=True)
+                elif path in {"/api/preview.svg", "/api/compare.svg"}:
+                    preview_app = app if path == "/api/preview.svg" else app.comparison
+                    if preview_app is None:
+                        self.reply(404, {"error": "No previous attempt was supplied"})
+                        return
+                    svg_bytes = preview_app.read_file("panel.svg", required=True)
                     requested_hash = parse_qs(urlsplit(self.path).query).get("v", [None])[0]
                     if requested_hash is not None and requested_hash != sha256(svg_bytes):
                         self.reply(409, {"error": "This figure has changed. Reload the preview."})
@@ -402,11 +489,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--figure-dir", type=Path, required=True, help="Existing attempt directory containing panel.svg")
     parser.add_argument("--port", type=int, default=0, help="Local port; 0 selects an available port")
+    parser.add_argument("--compare-dir", type=Path, help="Previous attempt for a read-only side-by-side preview")
     args = parser.parse_args()
     if not 0 <= args.port <= 65535:
         parser.error("Port must be between 0 and 65535")
     try:
-        server = create_server(args.figure_dir, args.port)
+        server = create_server(args.figure_dir, args.port, args.compare_dir)
     except (WorkbenchError, OSError) as exc:
         parser.exit(2, f"Cannot open figure review: {exc}\n")
     print(f"EasyViz figure review: http://127.0.0.1:{server.server_port}/", flush=True)

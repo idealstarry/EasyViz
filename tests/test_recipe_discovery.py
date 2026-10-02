@@ -10,7 +10,7 @@ import unittest
 
 SKILL = Path(__file__).resolve().parents[1] / "skills/easyviz"
 CORE = {"heatmap", "composition", "dotplot", "scatter", "distribution"}
-RECIPES = {"paired", "replicate", "ecdf", "interval", "timecourse"}
+RECIPES = {"paired", "replicate", "ecdf", "interval", "timecourse", "annotated_matrix"}
 
 
 class RecipeDiscoveryTests(unittest.TestCase):
@@ -67,11 +67,11 @@ class RecipeDiscoveryTests(unittest.TestCase):
         help_result = self.cli(SKILL / "scripts/draft_spec.py", "--help")
         self.assertEqual(help_result.returncode, 0)
         for chart in RECIPES:
-            self.assertIn(f"{chart}_plot.py", help_result.stdout)
+            self.assertIn("annotated_matrix.py" if chart == "annotated_matrix" else f"{chart}_plot.py", help_result.stdout)
 
     def test_workflows_route_to_real_commands_with_only_two_tracks(self):
         routes = self.discovery()["workflow_tools"]
-        self.assertEqual(set(routes), {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench"})
+        self.assertEqual(set(routes), {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench", "preview_choices", "apply_figure_requests"})
         for name, route in routes.items():
             with self.subTest(workflow=name):
                 self.assertTrue(Path(route["doc"]).is_file())
@@ -117,8 +117,9 @@ class RecipeDiscoveryTests(unittest.TestCase):
             shutil.copy2(script, copied / "scripts" / script.name)
         (copied / "references").mkdir()
         for chart in RECIPES:
-            shutil.copy2(SKILL / "references" / f"{chart}-plot.md", copied / "references" / f"{chart}-plot.md")
-        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "complex-reproduction.md", "figure-workbench.md"):
+            name = "annotated-matrix.md" if chart == "annotated_matrix" else f"{chart}-plot.md"
+            shutil.copy2(SKILL / "references" / name, copied / "references" / name)
+        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "complex-reproduction.md", "figure-workbench.md", "preview-choices.md", "apply-figure-requests.md"):
             shutil.copy2(SKILL / "references" / name, copied / "references" / name)
         described = self.discovery(copied)
         for chart, route in described["focused_recipes"].items():

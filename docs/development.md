@@ -43,11 +43,15 @@ The shared [figure workbench](../skills/easyviz/references/figure-workbench.md) 
 
 A custom multi-layer panel can be a useful reusable case without becoming a generic renderer option. Keep a focused implementation when generalization would hide assumptions.
 
-The five focused interval, paired, replicate-bar, ECDF and time-course scripts extend the five core
+The six focused interval, paired, replicate-bar, ECDF, time-course and annotated-matrix scripts extend the five core
 families without enlarging the core schema. They share physical layout,
 font/export and legend helpers, and retain their own source/layer audits.
 Exercise complete repeated conditions, literal IDs, component completeness,
 sample-SD definitions, ties, exact cumulative jumps and supplied band endpoints when changing them.
+For annotated matrices, check keyed strip colors, observed/unmeasured/unsupplied
+states, omission denominators, supplied tree vertices and actual transformed
+alignment. Custom compound panels can reuse `aligned_layers.py` without
+introducing automatic clustering.
 For step functions, check exported SVG/PDF paths: correct in-memory vertices
 do not prevent a backend from simplifying small steps. ECDF export explicitly
 disables path simplification and tests the actual vector vertices.
@@ -129,4 +133,4 @@ For each release, set the manifest version before building and record the archiv
 
 The historical initial release evidence is under `evals/release-qa/`; it identifies its original 0.1.0 archive. Later releases must identify their own archive and applicable checks. GitHub release publication and public plugin-directory submission are separate from building or local installation.
 
-The [0.4.1 QA record](../evals/release-qa/v0.4.1/README.md) records this version's checks and package/publication status. Do not carry an earlier archive's checksum or successful CI status forward to a new build.
+The [0.4.2 QA record](../evals/release-qa/v0.4.2/README.md) records this version's checks and archive identity. Do not carry an earlier archive's checksum or successful CI status forward to a new build.

@@ -1,0 +1,245 @@
+{
+  "reading_role": "independent image-only reference reader",
+  "inspected_inputs": [
+    {
+      "path": "/private/tmp/easyviz-v042-yayon-fig3f.png",
+      "type": "raster reference image",
+      "width_pixels": 1200,
+      "height_pixels": 574,
+      "selected_region": "entire supplied cropped panel f",
+      "inspection": "opened with view_image; enlarged image-only crops inspected for gene labels and middle band"
+    }
+  ],
+  "independence": "No implementation, workbook, source data, runtime files, Git files, author code, plotting template, previous reproduction, caption, or methods were inspected. The local reference-reader SKILL.md was the only non-image task input read.",
+  "access_and_legibility_limits": [
+    "The supplied raster is readable for all 65 bottom gene labels and all 10 row labels.",
+    "Branch geometry is visible, but no dendrogram distance axis, scale labels, numerical merge heights, metric, linkage, or cut rule is supplied.",
+    "Small cut-off black fragments at the upper image boundary cannot be identified confidently; they are outside the main plotted layers.",
+    "Pixel geometry below is approximate; the crop does not establish physical dimensions, point sizes, DPI, or the original uncropped canvas."
+  ],
+  "coordinate_convention": "Approximate normalized bounds [left, top, right, bottom], with top-left (0, 0) and bottom-right (1, 1).",
+  "properties": [
+    {
+      "property": "chart family and arrangement",
+      "description": "One aligned gene matrix composite: a dendrogram above a Fetal heatmap, then a cosine-similarity bar strip, then a Paediatric heatmap. Bottom gene labels belong to the aligned columns. The bold panel letter f is at upper left.",
+      "evidence_state": "observed",
+      "source": "whole panel f",
+      "uncertainty": "No caption is supplied to establish the scientific study context."
+    },
+    {
+      "property": "shared column order",
+      "description": "65 equal-width gene columns appear aligned through both heatmaps, the bar strip, and dendrogram leaves. The visible gene order is recorded separately in gene_order_left_to_right.",
+      "evidence_state": "observed",
+      "source": "both heatmaps, middle strip, and bottom labels",
+      "uncertainty": "The basis for selecting or ordering the genes is unknown."
+    },
+    {
+      "property": "heatmap rows",
+      "description": "Both age groups use the same ten rows, top to bottom: Capsular, Subcapsular, Cortical level 1, Cortical level 2, Cortical level 3, Cortical CMJ, Medullary CMJ, Medullary level 1, Medullary level 2, Medullary level 3.",
+      "evidence_state": "observed",
+      "source": "left-hand labels beside both heatmaps",
+      "uncertainty": "CMJ is not expanded in the supplied image. The grouping procedure is not specified."
+    },
+    {
+      "property": "age-group labels",
+      "description": "Fetal labels the upper matrix and Paediatric labels the lower matrix. Each is rotated vertically at far left, beside a thin, nearly vertical divider.",
+      "evidence_state": "observed",
+      "source": "far-left labels next to top and bottom heatmaps",
+      "uncertainty": "No age ranges or sample counts are shown."
+    },
+    {
+      "property": "upper heatmap bounds",
+      "description": "Approximate bounds [0.147, 0.136, 0.999, 0.395], corresponding roughly to x 176-1198 and y 78-227 pixels. Ten nearly equal-height rows form a matrix about 149 pixels tall.",
+      "evidence_state": "observed",
+      "source": "upper Fetal heatmap",
+      "uncertainty": "The one-pixel boundaries are difficult to distinguish from outlines."
+    },
+    {
+      "property": "lower heatmap bounds",
+      "description": "Approximate bounds [0.147, 0.599, 0.999, 0.861], corresponding roughly to x 176-1198 and y 344-494 pixels. Its height matches the upper matrix to visual precision.",
+      "evidence_state": "observed",
+      "source": "lower Paediatric heatmap",
+      "uncertainty": "Exact subpixel geometry is not recoverable from this raster."
+    },
+    {
+      "property": "heatmap cell marks and grid",
+      "description": "The cells are narrow, solid-color rectangles with subtle thin internal boundaries. Short black column ticks appear under the matrices. No values are printed inside the cells.",
+      "evidence_state": "observed",
+      "source": "both heatmap bodies and their lower edges",
+      "uncertainty": "Some internal edges may reflect raster antialiasing rather than explicit grid lines."
+    },
+    {
+      "property": "heatmap color scale",
+      "description": "The bottom-left key says Mean expression in group and runs from dark purple at 0 through blue/teal and green to yellow at 1.0, with a visible 0.5 tick.",
+      "evidence_state": "observed",
+      "source": "bottom-left continuous legend and matrix colors",
+      "uncertainty": "The palette name and whether the values are scaled per gene, per group, or globally are unknown."
+    },
+    {
+      "property": "heatmap legend sharing",
+      "description": "A single bottom-left continuous color key appears to serve both heatmaps, which use the same visible hues.",
+      "evidence_state": "inferred",
+      "source": "single key below the left row labels and both matrix bodies",
+      "uncertainty": "High visual confidence, but no caption explicitly confirms shared normalization."
+    },
+    {
+      "property": "heatmap colorbar footprint",
+      "description": "The complete legend footprint, including its two-line heading and numeric tick labels, is approximately [0.023, 0.878, 0.128, 0.990]. The color rectangle alone is approximately [0.043, 0.932, 0.113, 0.950]. The key is horizontal and about 11 pixels high.",
+      "evidence_state": "observed",
+      "source": "bottom-left legend",
+      "uncertainty": "Approximate bounds; the text extends beyond the rectangle. Key height is roughly 0.07 of one heatmap height."
+    },
+    {
+      "property": "relative layer heights and gaps",
+      "description": "The two heatmaps each occupy about 149-150 pixels vertically. The cosine strip spans about 101 pixels, about 0.67 of a heatmap height. The visible dendrogram spans about 57 pixels, about 0.38 of a heatmap height. Small gaps of roughly 8 pixels separate each heatmap from the middle strip.",
+      "evidence_state": "observed",
+      "source": "whole composite between y 21 and y 494",
+      "uncertainty": "These are approximate visual geometry estimates, not prescribed physical dimensions."
+    },
+    {
+      "property": "cosine-similarity strip coordinate system",
+      "description": "The middle band uses a vertical scale labeled Cosine similarity, with visible ticks at 1.0, 0.5, 0, -0.5, and -1.0. The zero baseline is approximately y 286 pixels. Bar x positions align with the gene columns.",
+      "evidence_state": "observed",
+      "source": "middle band left scale and aligned bars",
+      "uncertainty": "Which two expression vectors are compared is not stated in the image."
+    },
+    {
+      "property": "cosine-similarity strip bounds",
+      "description": "The plot body is approximately [0.147, 0.409, 0.999, 0.587], or x 176-1198 and y 235-337 pixels. A thin black border runs along the left and bottom of the strip.",
+      "evidence_state": "observed",
+      "source": "middle band",
+      "uncertainty": "The border overlaps the highlighting boxes at several positions."
+    },
+    {
+      "property": "bar encoding",
+      "description": "Narrow bars extend upward or downward from zero. Most extend upward and many nearly reach 1.0; several on the right extend below zero. Positive bars are light salmon through dark red and negative bars are light through deeper blue. Bar widths are slightly narrower than gene cells, leaving white gaps.",
+      "evidence_state": "observed",
+      "source": "middle bar strip",
+      "uncertainty": "Exact per-gene values are not recoverable, and a very small bar may be indistinguishable from zero at this resolution."
+    },
+    {
+      "property": "cosine continuous key",
+      "description": "A thin vertical color rectangle at approximately x 161-171 and y 235-337 runs from red at +1 through pale/white at zero to blue at -1. The adjacent numeric ticks and rotated two-line label share its full height.",
+      "evidence_state": "observed",
+      "source": "left edge of middle band",
+      "uncertainty": "The precise palette and interpolation are unknown. The rectangle height is about 0.68 of one heatmap height; its complete footprint includes the label and ticks farther left."
+    },
+    {
+      "property": "interaction-effect significance legend",
+      "description": "At far left of the middle strip, Interaction effect (P value) accompanies three hollow black-edged circles. Their visible size increases for the listed thresholds <0.05, <0.01, and <0.001.",
+      "evidence_state": "observed",
+      "source": "middle-strip legend at far left",
+      "uncertainty": "Exact circle diameters, statistical test, model, multiple-testing correction, sample units, and calculation of the interaction effect are not supplied."
+    },
+    {
+      "property": "interaction-effect circle placement",
+      "description": "The circles in the data strip have white interiors and black outlines and sit on the common y=0 line at selected gene positions, regardless of whether the nearby bar is positive or negative. Circle size varies among those positions.",
+      "evidence_state": "observed",
+      "source": "zero line across the middle band",
+      "uncertainty": "The dots are linked to P-value thresholds by the legend, but their scientific relationship to cosine similarity is not explained. Absence of a circle does not reveal an exact P value."
+    },
+    {
+      "property": "significance legend footprint",
+      "description": "The full legend, including heading, three circle keys, and threshold text, is approximately [0.002, 0.420, 0.091, 0.584]. Each key glyph is roughly 7-12 pixels high, far shorter than a heatmap; these are size keys rather than color keys.",
+      "evidence_state": "observed",
+      "source": "far-left middle legend",
+      "uncertainty": "Glyph sizes are approximate and antialiased. No evidence suggests that this legend is shared with another panel outside the supplied crop."
+    },
+    {
+      "property": "dendrogram layout",
+      "description": "A thin-line hierarchical tree sits immediately above the Fetal matrix and shares the gene x positions. Major connecting branches are light blue; smaller branches include orange, green, red, purple/magenta, teal, and muted yellow/olive hues. Visible bounds are approximately [0.147, 0.036, 0.999, 0.136].",
+      "evidence_state": "observed",
+      "source": "top dendrogram",
+      "uncertainty": "Branch colors cannot be assigned a scientific meaning from this image alone."
+    },
+    {
+      "property": "dendrogram heights and ordering method",
+      "description": "Higher horizontal branches visibly connect larger sets of leaves, but there are no visible height ticks or axis labels.",
+      "evidence_state": "observed",
+      "source": "top dendrogram",
+      "uncertainty": "Precise merge heights, distance metric, linkage method, input matrix, clustering axis, branch-color threshold, and leaf-order algorithm are unknown. The raster supports an approximate visible topology only."
+    },
+    {
+      "property": "first black outlined group",
+      "description": "A thin black rectangle encloses the four columns CCL13, CCL3, CCL28, and CX3CL1. It begins within the dendrogram and continues through both heatmaps, the bar strip, and bottom gene labels. Approximate bounds [0.527, 0.101, 0.580, 0.981].",
+      "evidence_state": "observed",
+      "source": "black outline near the center",
+      "uncertainty": "The scientific meaning and selection rule for this box are not supplied."
+    },
+    {
+      "property": "second black outlined group",
+      "description": "A thin black rectangle encloses the rightmost ten columns IL34, IL33, CCL2, IL1R1, BMP7, SPP1, CCL14, GDF11, IL1R2, and TGFB3. It also spans from the dendrogram through the gene labels. Approximate bounds [0.867, 0.082, 0.999, 0.981].",
+      "evidence_state": "observed",
+      "source": "rightmost black outline",
+      "uncertainty": "The scientific meaning and selection rule for this box are not supplied."
+    },
+    {
+      "property": "colored gene labels",
+      "description": "CCL21, CCL19, CXCL12, and CCL25 are orange. Other visible bottom gene labels are black or dark gray.",
+      "evidence_state": "observed",
+      "source": "bottom gene labels",
+      "uncertainty": "The reason for the orange emphasis is unknown."
+    },
+    {
+      "property": "typography and orientation",
+      "description": "Row labels and legend text are dark sans-serif, regular weight. Gene labels are italic-looking and rotated approximately 90 degrees, read bottom to top. The panel f is larger and bold. Numeric tick labels are regular. No in-panel descriptive title is visible.",
+      "evidence_state": "observed",
+      "source": "all labels",
+      "uncertainty": "Exact typeface, point size, and physical font height cannot be established from this raster. The apparent tilt of gene letters may partly be italic styling."
+    },
+    {
+      "property": "margins and reserved legend regions",
+      "description": "The matrix body starts about 15 percent of canvas width from the left and reaches almost to the right edge. The left margin houses age labels, row labels, and middle legends. The bottom margin houses vertical gene labels; the mean-expression legend occupies the otherwise open bottom-left area.",
+      "evidence_state": "observed",
+      "source": "whole panel",
+      "uncertainty": "The crop cannot establish margins outside the supplied image."
+    },
+    {
+      "property": "visible layer order",
+      "description": "Colored heatmap cells and bars form the base data marks; labels and axes surround them. The significance circles visibly overlay the bar zero line. The two black highlight rectangles overlay the dendrogram, matrices, strip, and label area and have continuous outlines.",
+      "evidence_state": "observed",
+      "source": "matrix cells, middle zero line, and black outlines",
+      "uncertainty": "Exact rendering z-order is not known, but these overlap relationships are visible."
+    },
+    {
+      "property": "scientific definitions supported by text",
+      "description": "Only Mean expression in group, Cosine similarity, and Interaction effect (P value), with three P thresholds, are explicitly named in the supplied image.",
+      "evidence_state": "observed",
+      "source": "visible legend and axis text",
+      "uncertainty": "No statistical definition, formula, preprocessing method, normalization, independent replicate unit, or statistical test is provided."
+    }
+  ],
+  "gene_order_left_to_right": [
+    "CXCL1", "IL1RAP", "CXCL6", "IL1B", "TNFSF12", "IL1RN", "TNFSF9", "TNFSF11", "CXCL10", "IL7R", "CD70", "FLT3LG", "IL23A", "CCL20", "CCL1", "IL6ST", "EBI3", "CXCL11", "CCL21", "IL15", "TNF", "CXCL16", "LTA", "TNFSF13B", "CCL19", "IL4R", "CD40LG", "CXCL9", "CCL22", "CCL13", "CCL3", "CCL28", "CX3CL1", "CSF1", "CCL4", "CXCL13", "IL12B", "CXCL14", "TNFSF13", "IL6R", "XCL1", "IL18", "XCL2", "TNFSF14", "CCL17", "CCL5", "CCL18", "TNFSF10", "IL15RA", "IL17RE", "CXCL8", "CXCL3", "BMP8A", "CXCL12", "CCL25", "IL34", "IL33", "CCL2", "IL1R1", "BMP7", "SPP1", "CCL14", "GDF11", "IL1R2", "TGFB3"
+  ],
+  "gene_order_evidence_state": "observed",
+  "gene_order_uncertainty": "Labels were inspected with enlargement of the same raster. No source table was consulted. IL7R and IL17RE are distinct visible labels.",
+  "region_order_top_to_bottom": [
+    "Capsular", "Subcapsular", "Cortical level 1", "Cortical level 2", "Cortical level 3", "Cortical CMJ", "Medullary CMJ", "Medullary level 1", "Medullary level 2", "Medullary level 3"
+  ],
+  "visible_circle_positions_by_gene": {
+    "evidence_state": "observed",
+    "description": "Visible hollow-circle presence only; no P-value size class has been assigned to individual genes.",
+    "genes": ["CXCL1", "CXCL6", "TNFSF12", "IL1RN", "CCL20", "CCL1", "EBI3", "IL4R", "CCL22", "CCL13", "CCL3", "CXCL13", "TNFSF13", "CCL17", "TNFSF10", "IL1R1", "SPP1", "CCL14", "IL1R2", "TGFB3"],
+    "uncertainty": "Raster-based identification of visible circles. Exact P values and per-gene threshold classes require the original data or caption."
+  },
+  "required_data_meanings": [
+    "Gene identity for every column and a scientifically supported column order.",
+    "Ten named tissue-region groups for each of the Fetal and Paediatric groups.",
+    "Mean-expression values for every gene by region and age group, together with the normalization that makes the visible 0-1 color key meaningful.",
+    "One cosine-similarity value per aligned gene, including a definition of the two vectors compared.",
+    "Interaction-effect P values or threshold classes per gene, including their model, test, correction, and independent units.",
+    "A supplied dendrogram or enough clustering information to support its topology and heights.",
+    "A supplied explanation for orange gene labels and the two black outlined column groups."
+  ],
+  "important_unknowns": [
+    "Gene inclusion and ordering rules.",
+    "Expression measurement units and normalization scope; raw, transformed, or scaled values are not identified.",
+    "Definition of the compared cosine-similarity vectors.",
+    "Interaction-effect model, statistical test, correction, and exact P values.",
+    "Dendrogram metric, linkage, input representation, precise merge heights, leaf-order algorithm, and colored-branch cut rule.",
+    "Scientific meaning of black outlines and orange labels.",
+    "Definition of CMJ, age ranges, sample counts, and replicate structure.",
+    "Original physical panel dimensions, exact fonts, and uncropped figure context."
+  ]
+}
