@@ -1,0 +1,77 @@
+{
+  "version": "0.4.1",
+  "date": "2026-10-02",
+  "source_base": "9a8976ac6dc8db7ffafafa724a21d365cf333ad9",
+  "source_identity": "Final published source is identified by the v0.4.1 tag; archive identity and historical trial snapshots are recorded separately.",
+  "archive": {
+    "version": "0.4.1",
+    "archive": "easyviz-0.4.1.zip",
+    "sha256": "8252b3559852270d2bcb74084d5061e6a459292d5ddd0d50f695ee2fdc7af760",
+    "content_sha256": "a19bbe4592b4b1c1aacc10e0ffc6c999a6c0f161a8b1932491a22981055fadad",
+    "files": 424,
+    "bytes": 7775813
+  },
+  "checks": {
+    "development_unit_suite": {
+      "status": "pass",
+      "tests": 294,
+      "duration_seconds": 123.145,
+      "log": "unit-tests.log",
+      "scope": "Same macOS development runtime; authorized loopback networking for local workbench tests."
+    },
+    "restricted_sandbox_attempt": {
+      "status": "environment_blocked",
+      "tests": 294,
+      "errors": 11,
+      "log": "sandbox-test-attempt.log",
+      "cause": "Local HTTP binding denied by execution sandbox; rerun with authorized local networking passed."
+    },
+    "extracted_package_runtime": {
+      "status": "pass",
+      "report": "package-smoke.json",
+      "files": 424,
+      "workflow_routes": 5
+    },
+    "isolated_reviewed_preview_replay": {
+      "status": "pass",
+      "report": "clean-pixel-replay.json",
+      "scope": "Reused previously isolated no-system-site-packages Python environment on the same macOS host, not a fresh installation this turn."
+    },
+    "skill_validators": {
+      "status": "pass",
+      "skills": [
+        "easyviz",
+        "easyviz-reference-reader",
+        "easyviz-figure-reviewer"
+      ]
+    },
+    "point_spacing_comparison": {
+      "status": "pass",
+      "evidence": "../../crowding-layout/v0.4.1/README.md",
+      "source_rows": 24,
+      "intersecting_pairs_jitter": 12,
+      "intersecting_pairs_beeswarm": 0,
+      "scope": "Same-data geometric engineering comparison, not independent aesthetic preference or model effectiveness."
+    },
+    "local_agent_workflows": {
+      "status": "pass_with_documented_limits",
+      "evidence": "../../workflow-usability/v0.4.1/README.md",
+      "scope": "Separate fresh Codex create/reproduce trials and independent final image/export review; no matched baseline or external-model result."
+    },
+    "workbuddy_attempt": {
+      "status": "UI_blocked_not_run",
+      "evidence": "../../workbuddy/v0.4.1/run-status.json",
+      "verified_submissions": 0,
+      "completed_runs": 0
+    },
+    "independent_code_review": {
+      "status": "no_remaining_actionable_P1_P2_in_reviewed_scope",
+      "report": "code-review.json"
+    },
+    "deterministic_rebuild": {
+      "status": "pass",
+      "note": "Second build reproduced the same ZIP and content SHA-256."
+    }
+  },
+  "scope": "The release preserves create and reproduce tracks. Numeric/schema/export checks do not establish journal aesthetics, arbitrary unknown chart support or a model-quality gain. WorkBuddy UI interaction did not establish a submitted or completed new task."
+}

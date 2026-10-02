@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.1 — 2026-10-02
+
+- Opt-in physical beeswarm placement for distribution circles, after final axes layout and scale transforms. All observations, quantitative positions, marker sizes and physical dimensions are retained; unresolved spacing is reported. Legacy jitter remains available.
+- Directory intake distinguishes suspected mean/SD/SEM/interval tables from raw observations, records repeated-ID and ambiguous-field evidence, and offers a few prioritized questions. Explicit experimental-unit columns are excluded from automatic measurement mappings.
+- Complex reproduce guidance and a standard-library audit companion cover recorded layer completeness, literal-key joins, declared encodings, source/artist tables, SVG bindings and supported shared-axis geometry. A passed audit does not certify scientific semantics or aesthetics.
+- A same-data point-spacing comparison, fresh local Agent workflows and matched WorkBuddy fixtures retain their inputs, actual outputs and limits. The WorkBuddy UI attempt was blocked before a verified submission; no new external-model effectiveness result is claimed.
+
+See the [0.4.1 QA record](evals/release-qa/v0.4.1/README.md) and [point-spacing evidence](evals/crowding-layout/v0.4.1/README.md).
+
 ## 0.4.0 — 2026-10-02
 
 - Create-track directory exploration for CSV, TSV and XLSX, with source inventories, descriptive profiles and concrete figure recommendations. Inventory-only mode also serves an already selected reproduce task.

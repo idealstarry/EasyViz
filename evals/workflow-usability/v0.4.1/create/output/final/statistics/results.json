@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "track": "create",
+  "plan": {
+    "schema_version": 1,
+    "question": "Do the mouse-level signal distributions differ for each dose relative to Vehicle?",
+    "design": {
+      "unit": "specimen_id",
+      "unit_definition": "One independently sampled mouse; mean of available measured technical reads",
+      "structure": "independent",
+      "confirmed": true
+    },
+    "missing_policy": "error",
+    "missing_tokens": [
+      ""
+    ],
+    "comparisons": [
+      {
+        "name": "distribution_overview",
+        "method": "descriptive",
+        "fields": {
+          "group": "group",
+          "value": "mean_signal"
+        }
+      },
+      {
+        "name": "low_vs_vehicle",
+        "method": "mannwhitney",
+        "fields": {
+          "group": "group",
+          "value": "mean_signal"
+        },
+        "groups": [
+          "Low dose",
+          "Vehicle"
+        ]
+      },
+      {
+        "name": "high_vs_vehicle",
+        "method": "mannwhitney",
+        "fields": {
+          "group": "group",
+          "value": "mean_signal"
+        },
+        "groups": [
+          "High dose",
+          "Vehicle"
+        ]
+      }
+    ],
+    "multiplicity": {
+      "family": "Two prespecified dose comparisons versus Vehicle",
+      "adjustment": "holm",
+      "comparisons": [
+        "low_vs_vehicle",
+        "high_vs_vehicle"
+      ]
+    }
+  },
+  "comparisons": [
+    {
+      "name": "distribution_overview",
+      "method": "descriptive",
+      "fields": {
+        "group": "group",
+        "value": "mean_signal"
+      },
+      "counts": {
+        "source_rows": 36,
+        "selected_rows": 36,
+        "included_rows": 36,
+        "excluded_rows": 0,
+        "unselected_rows": 0,
+        "included_units": 36,
+        "independent_unit_count": 36
+      },
+      "exclusions": [],
+      "statistic": null,
+      "pvalue": null,
+      "adjusted_pvalue": null,
+      "adjustment": null,
+      "effect": null,
+      "interval": null,
+      "interval_note": "No effect confidence interval computed for this method.",
+      "summaries": [
+        {
+          "variable": "mean_signal",
+          "group": "Vehicle",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 86.20346666666667,
+          "median": 83.302425,
+          "sd": 11.054095597340902,
+          "q1": 79.942025,
+          "q3": 93.350775,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 71.1421,
+          "maximum": 105.2146,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        },
+        {
+          "variable": "mean_signal",
+          "group": "Low dose",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 104.67456250000002,
+          "median": 100.96225000000001,
+          "sd": 13.149482945488511,
+          "q1": 96.6163,
+          "q3": 111.16328750000001,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 86.5459,
+          "maximum": 134.9572,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        },
+        {
+          "variable": "mean_signal",
+          "group": "High dose",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 121.84148749999999,
+          "median": 120.569825,
+          "sd": 12.08961039492034,
+          "q1": 116.98876249999999,
+          "q3": 131.546175,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 100.8419,
+          "maximum": 141.8932,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        }
+      ],
+      "notes": [
+        "Rows are descriptive observations. Independent sample counts are only reported for a confirmed sampling-unit design."
+      ]
+    },
+    {
+      "name": "low_vs_vehicle",
+      "method": "mannwhitney",
+      "fields": {
+        "group": "group",
+        "value": "mean_signal"
+      },
+      "counts": {
+        "source_rows": 36,
+        "selected_rows": 24,
+        "included_rows": 24,
+        "excluded_rows": 0,
+        "unselected_rows": 12,
+        "included_units": 24,
+        "independent_unit_count": 24
+      },
+      "exclusions": [],
+      "statistic": 123.0,
+      "pvalue": 0.003549838634913564,
+      "adjusted_pvalue": 0.003549838634913564,
+      "adjustment": {
+        "family": "Two prespecified dose comparisons versus Vehicle",
+        "method": "holm",
+        "family_size": 2
+      },
+      "effect": {
+        "name": "cliffs_delta",
+        "estimate": 0.7083333333333333,
+        "direction": "P(Low dose > Vehicle) minus P(Low dose < Vehicle)"
+      },
+      "interval": null,
+      "interval_note": "No effect confidence interval computed for this method.",
+      "summaries": [
+        {
+          "variable": "mean_signal",
+          "group": "Low dose",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 104.67456250000002,
+          "median": 100.96225000000001,
+          "sd": 13.149482945488511,
+          "q1": 96.6163,
+          "q3": 111.16328750000001,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 86.5459,
+          "maximum": 134.9572,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        },
+        {
+          "variable": "mean_signal",
+          "group": "Vehicle",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 86.20346666666667,
+          "median": 83.302425,
+          "sd": 11.054095597340902,
+          "q1": 79.942025,
+          "q3": 93.350775,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 71.1421,
+          "maximum": 105.2146,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        }
+      ],
+      "notes": [
+        "Tests equality of distributions; it is not generally a test of median differences. Cliff's delta has no computed confidence interval."
+      ],
+      "groups": [
+        "Low dose",
+        "Vehicle"
+      ],
+      "pvalue_method": "Tie-corrected normal approximation with continuity correction"
+    },
+    {
+      "name": "high_vs_vehicle",
+      "method": "mannwhitney",
+      "fields": {
+        "group": "group",
+        "value": "mean_signal"
+      },
+      "counts": {
+        "source_rows": 36,
+        "selected_rows": 24,
+        "included_rows": 24,
+        "excluded_rows": 0,
+        "unselected_rows": 12,
+        "included_units": 24,
+        "independent_unit_count": 24
+      },
+      "exclusions": [],
+      "statistic": 142.0,
+      "pvalue": 6.0057602968048996e-05,
+      "adjusted_pvalue": 0.00012011520593609799,
+      "adjustment": {
+        "family": "Two prespecified dose comparisons versus Vehicle",
+        "method": "holm",
+        "family_size": 2
+      },
+      "effect": {
+        "name": "cliffs_delta",
+        "estimate": 0.9722222222222223,
+        "direction": "P(High dose > Vehicle) minus P(High dose < Vehicle)"
+      },
+      "interval": null,
+      "interval_note": "No effect confidence interval computed for this method.",
+      "summaries": [
+        {
+          "variable": "mean_signal",
+          "group": "High dose",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 121.84148749999999,
+          "median": 120.569825,
+          "sd": 12.08961039492034,
+          "q1": 116.98876249999999,
+          "q3": 131.546175,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 100.8419,
+          "maximum": 141.8932,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        },
+        {
+          "variable": "mean_signal",
+          "group": "Vehicle",
+          "n_rows": 12,
+          "independent_unit_count": 12,
+          "mean": 86.20346666666667,
+          "median": 83.302425,
+          "sd": 11.054095597340902,
+          "q1": 79.942025,
+          "q3": 93.350775,
+          "quantile_method": "linear",
+          "sd_ddof": 1,
+          "minimum": 71.1421,
+          "maximum": 105.2146,
+          "interval": null,
+          "interval_note": "Descriptive summary only; no confidence interval computed."
+        }
+      ],
+      "notes": [
+        "Tests equality of distributions; it is not generally a test of median differences. Cliff's delta has no computed confidence interval."
+      ],
+      "groups": [
+        "High dose",
+        "Vehicle"
+      ],
+      "pvalue_method": "Tie-corrected normal approximation with continuity correction"
+    }
+  ],
+  "provenance": {
+    "created_utc": "2026-10-02T15:02:52.384459+00:00",
+    "data": {
+      "path": "/private/tmp/easyviz-v041-forward-create/output/attempts/attempt-02/plotting_data.csv",
+      "sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+      "csv_records": 36
+    },
+    "plan": {
+      "path": "/private/tmp/easyviz-v041-forward-create/output/attempts/attempt-02/analysis-plan.json",
+      "sha256": "c391127ac00065084e3d01bfe349e06432e63efbadf138a2365adad4bb04aedf",
+      "hash_encoding": "saved normalized plan.json bytes",
+      "source_sha256": "c391127ac00065084e3d01bfe349e06432e63efbadf138a2365adad4bb04aedf"
+    },
+    "helper": {
+      "path": "/private/tmp/easyviz-v041-forward-create/helper_snapshot/scripts/analyze.py",
+      "sha256": "180e076ac5c3e28f3c6cafbde721c7ad98958add12b9534ffb3b68ea71e7ab60"
+    },
+    "runtime": {
+      "python": "3.12.2",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "artifacts": {
+    "plan.json": {
+      "sha256": "c391127ac00065084e3d01bfe349e06432e63efbadf138a2365adad4bb04aedf",
+      "bytes": 1221
+    },
+    "analyzed-data.csv": {
+      "sha256": "86383cfc77f049f636d39db5e3ef6088a1279f336eab3f9b6c267ddd76ade909",
+      "bytes": 4618
+    },
+    "summary.csv": {
+      "sha256": "b3f5b706c03eeb80191c808953356b00f90b94babdf05a5785f1d1aa7ecdbb28",
+      "bytes": 2412
+    },
+    "methodology.md": {
+      "sha256": "98473406b1208c2a9f0ca8d21c524c450178d79eeb26df4a732fbb5174fd290d",
+      "bytes": 3647
+    }
+  }
+}

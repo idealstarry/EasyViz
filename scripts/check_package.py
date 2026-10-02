@@ -34,6 +34,7 @@ def validate_plugin(plugin: Path) -> dict:
                 "skills/easyviz/scripts/inspect_data.py",
                 "skills/easyviz/scripts/analyze.py",
                 "skills/easyviz/scripts/reference_packet.py",
+                "skills/easyviz/scripts/audit_reproduction.py",
                 "skills/easyviz/scripts/figure_elements.py",
                 "skills/easyviz/scripts/figure_workbench.py",
                 "skills/easyviz/scripts/workbench/index.html",
@@ -146,7 +147,7 @@ def main() -> int:
                 if not isinstance(json.loads(described.stdout), dict):
                     raise ValueError("Focused recipe specification must be a JSON object")
             workflows = json.loads(discovery.stdout).get("workflow_tools", {})
-            if set(workflows) != {"inspect_data", "analyze", "reference_packet", "figure_workbench"}:
+            if set(workflows) != {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench"}:
                 raise ValueError("Extracted workflow discovery is incomplete")
             for route in workflows.values():
                 if not all(Path(route[key]).is_relative_to(skill) and Path(route[key]).is_file()
@@ -183,6 +184,18 @@ def main() -> int:
             packet_plan = json.loads((isolated / "reference-packet/implementation-plan.json").read_text())
             if packet_plan.get("execution_ready") is not False:
                 raise ValueError("A packet without image reading must remain unresolved")
+            audit_output = isolated / "reference-audit.json"
+            recorded_audit = subprocess.run(
+                [sys.executable, workflows["audit_reproduction"]["script"],
+                 "--packet", str(isolated / "reference-packet"), "--out", str(audit_output)],
+                cwd=isolated, env=env, capture_output=True, text=True)
+            if recorded_audit.returncode != 1 or not audit_output.is_file():
+                raise ValueError("An unresolved packet must produce an incomplete extracted audit")
+            audit_report = json.loads(audit_output.read_text())
+            if (audit_report.get("status") != "incomplete" or not audit_report.get("missing_evidence")
+                    or audit_report.get("semantic_correctness_verified") is not False
+                    or audit_report.get("visual_review_passed") is not False):
+                raise ValueError("Extracted audit must not certify an unresolved reference packet")
             draft_path = isolated / "draft-spec.json"
             draft_command = [sys.executable, str(skill / "scripts/draft_spec.py"),
                              "--data", str(fixture / "data.csv"), "--chart", spec["chart"],

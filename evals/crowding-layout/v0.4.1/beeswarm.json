@@ -1,0 +1,37 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "condition",
+    "value": "value",
+    "unit": "sample"
+  },
+  "layout": {
+    "width_mm": 120,
+    "height_mm": 90,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "labels": {
+    "x": "",
+    "y": "Signal (a.u.)"
+  },
+  "colors": {
+    "Control": "#2581B9",
+    "Treatment": "#DF9A3C"
+  },
+  "options": {
+    "point_area_pt2": 9,
+    "alpha": 0.85,
+    "point_layout": "beeswarm",
+    "point_max_offset_mm": 4,
+    "point_gap_pt": 0.3
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "seed": 23
+}

@@ -1,0 +1,25 @@
+{
+  "runner_requested": "WorkBuddy via native Computer Use",
+  "status": "UI_blocked_not_run",
+  "verified_submissions": 0,
+  "completed_runs": 0,
+  "verified_model_label": null,
+  "evidence_source": "Parent agent's actual CUA attempt report during this task; this fixture author did not operate the UI.",
+  "observed_issue": "During the unattended native UI attempt, accessibility navigation reacted but the screenshot remained on an old task; setting/pasting the new contenteditable did not visibly populate it, and Send stayed disabled. No baseline submission or newly produced files were verified. The underlying cause was not established.",
+  "claims_supported": [
+    "Matched fixture inputs and requests were staged.",
+    "No external-model quality or effectiveness result is available from this attempt."
+  ],
+  "claims_not_supported": [
+    "WorkBuddy completed a create or reproduce task.",
+    "Any displayed old-task model label identifies the intended new run's backend.",
+    "EasyViz improved WorkBuddy output quality in these tasks."
+  ],
+  "update_rule": "Append actual verified submissions/results separately if a later retry succeeds; preserve this blocked attempt in the record.",
+  "later_retry": {
+    "observation": "A later AX state exposed the staged baseline/create request in the new-task input, while the screenshot still showed the old task and Send remained disabled. Return did not establish submission; no new result files were verified.",
+    "verified_submissions": 0,
+    "completed_runs": 0,
+    "cause": "not established"
+  }
+}

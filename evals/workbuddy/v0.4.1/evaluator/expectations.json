@@ -1,0 +1,62 @@
+{
+  "synthetic": true,
+  "create": {
+    "unit_count": 36,
+    "group_counts": {
+      "Vehicle": 12,
+      "Low dose": 12,
+      "High dose": 12
+    },
+    "technical_rows": 72,
+    "measured_reads": 71,
+    "failed_read_unit": "0008",
+    "mean_rule": "mean of available measured technical reads"
+  },
+  "reproduce": {
+    "coordinates": 72,
+    "measured_count": 69,
+    "unmeasured_count": 3,
+    "measured_zero": {
+      "analyte": "Signal_E",
+      "specimen": "S07"
+    },
+    "row_order": [
+      "Signal_A",
+      "Signal_B",
+      "Signal_C",
+      "Signal_D",
+      "Signal_E",
+      "Signal_F",
+      "Signal_G",
+      "Signal_H"
+    ],
+    "column_order": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09"
+    ],
+    "color_limits": [
+      -2,
+      2
+    ],
+    "mean_rule": "feature mean of measured target samples"
+  },
+  "export": {
+    "width_mm": 120,
+    "height_mm": 90,
+    "font_family": "Arial",
+    "font_pt": 8,
+    "dpi": 300,
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ]
+  }
+}

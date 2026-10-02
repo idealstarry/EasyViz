@@ -129,4 +129,4 @@ For each release, set the manifest version before building and record the archiv
 
 The historical initial release evidence is under `evals/release-qa/`; it identifies its original 0.1.0 archive. Later releases must identify their own archive and applicable checks. GitHub release publication and public plugin-directory submission are separate from building or local installation.
 
-The [0.4.0 QA record](../evals/release-qa/v0.4.0/README.md) records this version's checks and package/publication status. Do not carry an earlier archive's checksum or successful CI status forward to a new build.
+The [0.4.1 QA record](../evals/release-qa/v0.4.1/README.md) records this version's checks and package/publication status. Do not carry an earlier archive's checksum or successful CI status forward to a new build.

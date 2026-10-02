@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "track": "create",
+  "status": "candidate_reading_tasks",
+  "inference_run": false,
+  "selection_rule": "Data-type hints propose readings; scientific roles and study design require explicit evidence.",
+  "tables": [
+    {
+      "table_id": "A_export__final2.csv",
+      "profile_scope": "complete source rows",
+      "candidate_columns": {
+        "numeric": [
+          "signal_au",
+          "scan_order"
+        ],
+        "group": [
+          "read_state"
+        ],
+        "identifier": [
+          "tube_key"
+        ],
+        "date_time": []
+      },
+      "declared_design": null,
+      "intake": {
+        "status": "needs_context",
+        "row_kind": "unknown",
+        "priority_questions": [
+          {
+            "id": "repeated_unit",
+            "question": "Which identifier is the scientific unit, and do its repeated rows represent the same unit over conditions/time, technical repeats, or reused labels? Explain any repeated unit-condition cells before pairing or inference.",
+            "evidence_columns": [
+              "tube_key"
+            ]
+          },
+          {
+            "id": "field_meaning",
+            "question": "Which table and measurement answer the intended question, what do their fields mean, and what are the measurement units? Read project notes or a data dictionary before choosing fields; do not join tables merely because IDs or headers look alike.",
+            "evidence_columns": []
+          }
+        ],
+        "cautions": [
+          {
+            "id": "unknown_design",
+            "message": "No inferential design has been established. Descriptive previews must identify counts as source rows until scientific units and their dependence are confirmed."
+          },
+          {
+            "id": "numeric_identifiers",
+            "message": "Numeric-looking identifiers stay strings and are excluded from automatic measurement candidates. Preserve leading zeros and explicitly declare a measurement role only when source context supports it.",
+            "columns": [
+              "tube_key"
+            ]
+          },
+          {
+            "id": "missing_values",
+            "message": "Missing-token counts use the recorded exact strings. Verify whether labels such as NA/null are real categories and adopt a missing-value policy explicitly.",
+            "columns": [
+              "signal_au"
+            ]
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "distribution",
+          "reading_task": "Read the spread, skew and raw observations of a measurement",
+          "recommended_charts": [
+            "distribution",
+            "ecdf"
+          ],
+          "field_candidates": {
+            "value": [
+              "signal_au",
+              "scan_order"
+            ],
+            "group": [
+              "read_state"
+            ]
+          },
+          "proposed_fields": {
+            "value": "signal_au",
+            "group": "read_state"
+          },
+          "mapping_status": "candidate; confirm field meanings before plotting",
+          "descriptive_analysis_plan": {
+            "schema_version": 1,
+            "question": "Describe the supplied measurement distribution",
+            "design": {
+              "unit": null,
+              "unit_definition": "unknown; row-level descriptive summaries only",
+              "structure": "unknown",
+              "confirmed": false
+            },
+            "missing_policy": "error",
+            "missing_tokens": [
+              "",
+              "NA",
+              "N/A",
+              "NaN",
+              "nan",
+              "NULL",
+              "null",
+              "None"
+            ],
+            "comparisons": [
+              {
+                "name": "descriptive_preview",
+                "method": "descriptive",
+                "fields": {
+                  "value": "signal_au",
+                  "group": "read_state"
+                }
+              }
+            ]
+          },
+          "inference": {
+            "status": "not_selected",
+            "methods_to_consider_after_design": [
+              "welch or mannwhitney for independent two-group questions",
+              "paired_t or wilcoxon for explicitly paired two-condition questions"
+            ],
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?"
+            ]
+          },
+          "notes": [
+            "Display raw observations and summary definitions explicitly; an observed row is not automatically a biological replicate."
+          ]
+        },
+        {
+          "id": "association",
+          "reading_task": "Read whether two supplied numeric measurements vary together",
+          "recommended_charts": [
+            "scatter"
+          ],
+          "field_candidates": {
+            "x": [
+              "signal_au",
+              "scan_order"
+            ],
+            "y": [
+              "signal_au",
+              "scan_order"
+            ],
+            "group": [
+              "read_state"
+            ]
+          },
+          "proposed_fields": {
+            "x": "signal_au",
+            "y": "scan_order"
+          },
+          "mapping_status": "candidate; confirm field meanings before plotting",
+          "inference": {
+            "status": "not_selected",
+            "methods_to_consider_after_design": [
+              "pearson for an adopted linear association question",
+              "spearman for an adopted monotonic association question"
+            ],
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?",
+              "Are scales or transformations required, and does each unit contribute one independent pair?"
+            ]
+          },
+          "notes": [
+            "A scatter preview does not establish causation or justify a fitted curve."
+          ]
+        },
+        {
+          "id": "paired_candidate",
+          "reading_task": "Check whether an explicit unit has measurements in multiple conditions",
+          "recommended_charts": [
+            "paired"
+          ],
+          "field_candidates": {
+            "unit": [
+              "tube_key"
+            ],
+            "group": [
+              "read_state"
+            ],
+            "value": [
+              "signal_au",
+              "scan_order"
+            ]
+          },
+          "mapping_status": "requires explicit pairing verification",
+          "inference": {
+            "status": "blocked",
+            "questions": [
+              "Does this identifier refer to the same unit across conditions?",
+              "Is there one value per unit and condition, or are technical repeats present?",
+              "How should unmatched units be handled without silently dropping them?"
+            ]
+          },
+          "notes": [
+            "Matching-looking identifiers are a candidate relationship; the command has not established or created pairs."
+          ]
+        }
+      ]
+    },
+    {
+      "table_id": "instrument-log.csv",
+      "profile_scope": "complete source rows",
+      "candidate_columns": {
+        "numeric": [],
+        "group": [],
+        "identifier": [],
+        "date_time": [
+          "date"
+        ]
+      },
+      "declared_design": null,
+      "intake": {
+        "status": "needs_context",
+        "row_kind": "unknown",
+        "priority_questions": [
+          {
+            "id": "row_grain",
+            "question": "What does one row represent, which field identifies the independently sampled unit, and are measurements independent or paired/repeated?",
+            "evidence_columns": []
+          },
+          {
+            "id": "field_meaning",
+            "question": "Which table and measurement answer the intended question, what do their fields mean, and what are the measurement units? Read project notes or a data dictionary before choosing fields; do not join tables merely because IDs or headers look alike.",
+            "evidence_columns": []
+          }
+        ],
+        "cautions": [
+          {
+            "id": "unknown_design",
+            "message": "No inferential design has been established. Descriptive previews must identify counts as source rows until scientific units and their dependence are confirmed."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "table_structure",
+          "reading_task": "Establish table grain and which fields can answer a quantitative question",
+          "recommended_charts": [],
+          "field_candidates": {
+            "identifier": [],
+            "category": [],
+            "date_time": [
+              "date"
+            ]
+          },
+          "mapping_status": "needs measurement roles or a prepared quantitative table",
+          "inference": {
+            "status": "blocked",
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?"
+            ]
+          },
+          "notes": [
+            "No fully numeric measurement column was found; do not coerce identifiers or formula strings into values."
+          ]
+        }
+      ]
+    },
+    {
+      "table_id": "old-pilot_DO_NOT_POOL.csv",
+      "profile_scope": "complete source rows",
+      "candidate_columns": {
+        "numeric": [
+          "signal_au"
+        ],
+        "group": [],
+        "identifier": [
+          "tube_key"
+        ],
+        "date_time": []
+      },
+      "declared_design": null,
+      "intake": {
+        "status": "needs_context",
+        "row_kind": "unknown",
+        "priority_questions": [
+          {
+            "id": "row_grain",
+            "question": "What does one row represent, which field identifies the independently sampled unit, and are measurements independent or paired/repeated?",
+            "evidence_columns": [
+              "tube_key"
+            ]
+          },
+          {
+            "id": "field_meaning",
+            "question": "Which table and measurement answer the intended question, what do their fields mean, and what are the measurement units? Read project notes or a data dictionary before choosing fields; do not join tables merely because IDs or headers look alike.",
+            "evidence_columns": []
+          }
+        ],
+        "cautions": [
+          {
+            "id": "unknown_design",
+            "message": "No inferential design has been established. Descriptive previews must identify counts as source rows until scientific units and their dependence are confirmed."
+          },
+          {
+            "id": "numeric_identifiers",
+            "message": "Numeric-looking identifiers stay strings and are excluded from automatic measurement candidates. Preserve leading zeros and explicitly declare a measurement role only when source context supports it.",
+            "columns": [
+              "tube_key"
+            ]
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "distribution",
+          "reading_task": "Read the spread, skew and raw observations of a measurement",
+          "recommended_charts": [
+            "distribution",
+            "ecdf"
+          ],
+          "field_candidates": {
+            "value": [
+              "signal_au"
+            ],
+            "group": []
+          },
+          "proposed_fields": {
+            "value": "signal_au"
+          },
+          "mapping_status": "candidate; confirm field meanings before plotting",
+          "descriptive_analysis_plan": {
+            "schema_version": 1,
+            "question": "Describe the supplied measurement distribution",
+            "design": {
+              "unit": null,
+              "unit_definition": "unknown; row-level descriptive summaries only",
+              "structure": "unknown",
+              "confirmed": false
+            },
+            "missing_policy": "error",
+            "missing_tokens": [
+              "",
+              "NA",
+              "N/A",
+              "NaN",
+              "nan",
+              "NULL",
+              "null",
+              "None"
+            ],
+            "comparisons": [
+              {
+                "name": "descriptive_preview",
+                "method": "descriptive",
+                "fields": {
+                  "value": "signal_au"
+                }
+              }
+            ]
+          },
+          "inference": {
+            "status": "not_selected",
+            "methods_to_consider_after_design": [
+              "welch or mannwhitney for independent two-group questions",
+              "paired_t or wilcoxon for explicitly paired two-condition questions"
+            ],
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?"
+            ]
+          },
+          "notes": [
+            "Display raw observations and summary definitions explicitly; an observed row is not automatically a biological replicate."
+          ]
+        }
+      ]
+    },
+    {
+      "table_id": "plate-blank_readings.csv",
+      "profile_scope": "complete source rows",
+      "candidate_columns": {
+        "numeric": [
+          "signal_au"
+        ],
+        "group": [],
+        "identifier": [],
+        "date_time": []
+      },
+      "declared_design": null,
+      "intake": {
+        "status": "needs_context",
+        "row_kind": "unknown",
+        "priority_questions": [
+          {
+            "id": "row_grain",
+            "question": "What does one row represent, which field identifies the independently sampled unit, and are measurements independent or paired/repeated?",
+            "evidence_columns": []
+          },
+          {
+            "id": "field_meaning",
+            "question": "Which table and measurement answer the intended question, what do their fields mean, and what are the measurement units? Read project notes or a data dictionary before choosing fields; do not join tables merely because IDs or headers look alike.",
+            "evidence_columns": []
+          }
+        ],
+        "cautions": [
+          {
+            "id": "unknown_design",
+            "message": "No inferential design has been established. Descriptive previews must identify counts as source rows until scientific units and their dependence are confirmed."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "distribution",
+          "reading_task": "Read the spread, skew and raw observations of a measurement",
+          "recommended_charts": [
+            "distribution",
+            "ecdf"
+          ],
+          "field_candidates": {
+            "value": [
+              "signal_au"
+            ],
+            "group": []
+          },
+          "proposed_fields": {
+            "value": "signal_au"
+          },
+          "mapping_status": "candidate; confirm field meanings before plotting",
+          "descriptive_analysis_plan": {
+            "schema_version": 1,
+            "question": "Describe the supplied measurement distribution",
+            "design": {
+              "unit": null,
+              "unit_definition": "unknown; row-level descriptive summaries only",
+              "structure": "unknown",
+              "confirmed": false
+            },
+            "missing_policy": "error",
+            "missing_tokens": [
+              "",
+              "NA",
+              "N/A",
+              "NaN",
+              "nan",
+              "NULL",
+              "null",
+              "None"
+            ],
+            "comparisons": [
+              {
+                "name": "descriptive_preview",
+                "method": "descriptive",
+                "fields": {
+                  "value": "signal_au"
+                }
+              }
+            ]
+          },
+          "inference": {
+            "status": "not_selected",
+            "methods_to_consider_after_design": [
+              "welch or mannwhitney for independent two-group questions",
+              "paired_t or wilcoxon for explicitly paired two-condition questions"
+            ],
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?"
+            ]
+          },
+          "notes": [
+            "Display raw observations and summary definitions explicitly; an observed row is not automatically a biological replicate."
+          ]
+        }
+      ]
+    },
+    {
+      "table_id": "sample-index__2026.tsv.csv",
+      "profile_scope": "complete source rows",
+      "candidate_columns": {
+        "numeric": [],
+        "group": [
+          "arm_name",
+          "rack"
+        ],
+        "identifier": [
+          "tube_key"
+        ],
+        "date_time": []
+      },
+      "declared_design": null,
+      "intake": {
+        "status": "needs_context",
+        "row_kind": "unknown",
+        "priority_questions": [
+          {
+            "id": "row_grain",
+            "question": "What does one row represent, which field identifies the independently sampled unit, and are measurements independent or paired/repeated?",
+            "evidence_columns": [
+              "tube_key"
+            ]
+          },
+          {
+            "id": "field_meaning",
+            "question": "Which table and measurement answer the intended question, what do their fields mean, and what are the measurement units? Read project notes or a data dictionary before choosing fields; do not join tables merely because IDs or headers look alike.",
+            "evidence_columns": []
+          }
+        ],
+        "cautions": [
+          {
+            "id": "unknown_design",
+            "message": "No inferential design has been established. Descriptive previews must identify counts as source rows until scientific units and their dependence are confirmed."
+          },
+          {
+            "id": "numeric_identifiers",
+            "message": "Numeric-looking identifiers stay strings and are excluded from automatic measurement candidates. Preserve leading zeros and explicitly declare a measurement role only when source context supports it.",
+            "columns": [
+              "tube_key"
+            ]
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "table_structure",
+          "reading_task": "Establish table grain and which fields can answer a quantitative question",
+          "recommended_charts": [],
+          "field_candidates": {
+            "identifier": [
+              "tube_key"
+            ],
+            "category": [
+              "arm_name",
+              "rack"
+            ],
+            "date_time": []
+          },
+          "mapping_status": "needs measurement roles or a prepared quantitative table",
+          "inference": {
+            "status": "blocked",
+            "questions": [
+              "What does one row represent, and which column identifies the independently sampled unit?",
+              "What do the selected measurements mean, and what are their units?",
+              "Are observations independent, paired, or repeated within a unit?",
+              "Which comparisons were intended, and which missing-value tokens and exclusions are valid?"
+            ]
+          },
+          "notes": [
+            "No fully numeric measurement column was found; do not coerce identifiers or formula strings into values."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "chart": "distribution",
+  "track": "create",
+  "panel": {
+    "width_mm": 120.0,
+    "height_mm": 90.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "859b4520195817f2725ce0968d0ca786c16193afa9f9b0dd44d45d2e70e942df",
+    "spec_sha256": "ee4e3a3e0fdd4fb04778c13a3a3c82c1fda2d194183b0ef4053d5d147ac1d1c1",
+    "input_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+    "source_script_sha256": "1df415d4367f0eae0cc296b1b1435d46c405b43cf8686b136173e11a7fa84a33"
+  },
+  "input": {
+    "data_file": "/private/tmp/easyviz-v041-forward-create/output/attempts/attempt-02/plotting_data.csv",
+    "spec_file": "/private/tmp/easyviz-v041-forward-create/output/attempts/attempt-02/plot-spec.json",
+    "source_script": "/private/tmp/easyviz-v041-forward-create/helper_snapshot/scripts/render.py",
+    "supplied_spec_sha256": "0fa3d0afb8118e7487865d91f9b03cdb5ff23c783e9f85485bb2836320596c75"
+  },
+  "elements": [
+    {
+      "id": "easyviz-distribution-34dbaaeff8263c7e",
+      "role": "distribution",
+      "label": "Vehicle",
+      "source_keys": [
+        {
+          "group": "Vehicle"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Vehicle"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        24.574457234700517,
+        19.939930740638406,
+        16.39044609917535,
+        13.935229064320902
+      ]
+    },
+    {
+      "id": "easyviz-distribution-26437d05b394f556",
+      "role": "distribution",
+      "label": "Low dose",
+      "source_keys": [
+        {
+          "group": "Low dose"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Low dose"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        57.3553494330512,
+        37.26890186818418,
+        16.39044609917535,
+        15.118158143623633
+      ]
+    },
+    {
+      "id": "easyviz-distribution-52cebe3c2cbd17ae",
+      "role": "distribution",
+      "label": "High dose",
+      "source_keys": [
+        {
+          "group": "High dose"
+        }
+      ],
+      "spec_paths": [
+        "/colors/High dose"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        90.1362416314019,
+        58.44126555173321,
+        16.39044609917535,
+        15.12899246919427
+      ]
+    },
+    {
+      "id": "easyviz-point-group-e4f895c7b6a3898f",
+      "role": "point-group",
+      "label": "Vehicle",
+      "source_keys": [
+        {
+          "group": "Vehicle"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Vehicle"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-point-group-2a3e3559c6e4634c",
+      "role": "point-group",
+      "label": "Low dose",
+      "source_keys": [
+        {
+          "group": "Low dose"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Low dose"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-point-group-795a0cc7dd69a371",
+      "role": "point-group",
+      "label": "High dose",
+      "source_keys": [
+        {
+          "group": "High dose"
+        }
+      ],
+      "spec_paths": [
+        "/colors/High dose"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        13.10114496527778,
+        7.118033854166667,
+        104.89885503472222,
+        80.88196614583335
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Signal (a.u.)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0,
+        40.15068359375001,
+        2.648589409722223,
+        14.816666666666666
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

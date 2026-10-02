@@ -35,6 +35,7 @@ class InstallerTests(unittest.TestCase):
                  "skills/easyviz/scripts/inspect_data.py",
                  "skills/easyviz/scripts/analyze.py",
                  "skills/easyviz/scripts/reference_packet.py",
+                 "skills/easyviz/scripts/audit_reproduction.py",
                  "skills/easyviz/scripts/figure_elements.py",
                  "skills/easyviz/scripts/figure_workbench.py",
                  "skills/easyviz/scripts/workbench/index.html",

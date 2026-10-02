@@ -42,6 +42,7 @@ Read the resources needed for the current chart rather than loading the whole li
 | --- | --- |
 | [First panel](references/quick-start.md) | Generate a validated core-chart spec from explicit column roles; measure text and guide space within the fixed canvas. |
 | [Statistical analysis](references/statistical-analysis.md) | Execute an explicit design and comparison plan separately from drawing; retain effects, supported intervals, exclusions and multiplicity. |
+| [Point placement](references/collision-placement.md) | Resolve overlapping distribution points in physical units, preserving values and mark sizes; report unresolved packing. |
 | [Figure workbench](references/figure-workbench.md) | Select SVG layers or canvas regions, save version-bound change requests, then edit source/spec and redraw all formats in either track. |
 | [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
 | [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
@@ -58,6 +59,7 @@ Read the resources needed for the current chart rather than loading the whole li
 | [Replicate bars](references/replicate-plot.md) | Stacked or grouped component summaries with raw replicate layers, or supplied ratio observations; distinguish component SD from total SD. |
 | [Empirical cumulative distributions](references/ecdf-plot.md) | Compare complete raw distributions as unsmoothed cumulative steps, retaining tied values and explicit linear/log scales. |
 | [Reference specification](references/reference-spec.md) | Separate image observations from decisions and record adopted requirements. |
+| [Complex reproduction](references/complex-reproduction.md) | Implement aligned layers with explicit source keys and separate guides; optionally audit saved layer coverage, SVG alignment and numeric evidence. |
 | [Visual review](references/visual-review.md) | Inspect rendered images, prioritize corrections, and record unresolved differences. |
 
 ## Execute
@@ -66,7 +68,7 @@ Read the resources needed for the current chart rather than loading the whole li
 2. Follow the chosen track to produce an adopted plotting specification. In reproduce, obtain an independent image reading before selecting implementation templates.
 3. Establish physical width and height, text sizes, font availability, palette, mark-outline policy, and formats. Reuse the figure's shared profile when one exists; save stable category-color assignments and named panel sizes when starting a related panel set. A category disappearing or changing order must not change its color. Resolve configuration conflicts and unknown fields before rendering. Evaluate all palettes together on the actual panel. Defaults are adjustable EasyViz starting values, not journal standards.
 4. Select an implementation after checking its input contract and supported layers. For a basic create panel, use [First panel](references/quick-start.md) to generate a validated spec from explicit fields and render it with measured layout. Examples demonstrate specific reusable contracts, not arbitrary-data support. Copy bundled cases into the user's writable project before running or adapting them. Reuse, adapt, or write a script according to the real data; report unsupported requirements explicitly without silently substituting a chart or dropping data.
-5. Render the full canvas. Check exported dimensions and inspect crowding, clipping, missing glyphs, labels, and visual hierarchy. Assess the complete legend footprint and reserved space relative to the data region; no overlap alone is insufficient. Follow [Legend layout](references/legend-layout.md) and the bounded correction process in [Visual review](references/visual-review.md).
+5. Render the full canvas. Check exported dimensions and inspect crowding, clipping, missing glyphs, labels, and visual hierarchy. For overlapping raw distribution circles, consider [physical point placement](references/collision-placement.md) before changing the agreed marker size; unresolved crowding needs an explicit layout decision. Assess the complete legend footprint and reserved space relative to the data region; no overlap alone is insufficient. Follow [Legend layout](references/legend-layout.md) and the bounded correction process in [Visual review](references/visual-review.md).
 6. Deliver the individual panels, a separate `caption.md`, runnable plotting script, actual settings, traceable plotting data or input references, and review findings. Include computed statistics when used.
 
 ## Output rules

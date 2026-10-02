@@ -1,0 +1,596 @@
+{
+  "evidence": "input/data/DATA_DICTIONARY.md",
+  "unit": "one independently sampled mouse",
+  "operation": "literal-ID join current reads to lookup; arithmetic mean of available measured reads per mouse",
+  "source_rows": 72,
+  "measured_reads": 71,
+  "failed_technical_reads": [
+    {
+      "specimen_id": "0008",
+      "read_key": "R008_2",
+      "source_csv_row": 57,
+      "reason": "failed technical read"
+    }
+  ],
+  "final_rows": 36,
+  "group_counts": {
+    "Vehicle": 12,
+    "Low dose": 12,
+    "High dose": 12
+  },
+  "exclusions_from_scientific_analysis": [
+    "old-pilot_DO_NOT_POOL.csv: separate historical study",
+    "plate-blank_readings.csv: QC; signal already corrected",
+    "instrument-log.csv: contextual notes"
+  ],
+  "missing_policy": "failed technical read omitted from its within-mouse mean; mouse retained; no specimen excluded",
+  "source_files": [
+    {
+      "path": "/private/tmp/easyviz-v041-forward-create/input/data/A_export__final2.csv",
+      "sha256": "c496c9970f7d9e9303ff864c46a6ce82d6d28553c676aab6c0d6f6a22453ccf9"
+    },
+    {
+      "path": "/private/tmp/easyviz-v041-forward-create/input/data/DATA_DICTIONARY.md",
+      "sha256": "3bc86c3bd962bee0dba01dfb49e24bccb7d4b9a77e461079cc1a412fecaec31b"
+    },
+    {
+      "path": "/private/tmp/easyviz-v041-forward-create/input/data/instrument-log.csv",
+      "sha256": "106ed35743b774bdfe4d34e664b761bc06bfc3ea31030a4380fd2659c987dc6a"
+    },
+    {
+      "path": "/private/tmp/easyviz-v041-forward-create/input/data/old-pilot_DO_NOT_POOL.csv",
+      "sha256": "20c32527f50a5ff278460a669a73993d4eb598d43c890229ca243e61c321c2e2"
+    },
+    {
+      "path": "/private/tmp/easyviz-v041-forward-create/input/data/plate-blank_readings.csv",
+      "sha256": "b913a935c336efcc75f704188d2a4f51fb983f1cfe98c217bae9c9c30a469041"
+    },
+    {
+      "path": "/private/tmp/easyviz-v041-forward-create/input/data/sample-index__2026.tsv.csv",
+      "sha256": "cb130c2a4e4f53c3e0325533e3d98889add65b7dbc45ce7d1260501c9e473558"
+    }
+  ],
+  "plotting_data_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+  "unit_accounting": [
+    {
+      "specimen_id": "0001",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "100.0930",
+      "read_keys": [
+        "R001_1",
+        "R001_2"
+      ],
+      "raw_source_rows": [
+        53,
+        58
+      ]
+    },
+    {
+      "specimen_id": "0002",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "99.2235",
+      "read_keys": [
+        "R002_1",
+        "R002_2"
+      ],
+      "raw_source_rows": [
+        5,
+        11
+      ]
+    },
+    {
+      "specimen_id": "0003",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "91.3932",
+      "read_keys": [
+        "R003_1",
+        "R003_2"
+      ],
+      "raw_source_rows": [
+        69,
+        70
+      ]
+    },
+    {
+      "specimen_id": "0004",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "74.04365",
+      "read_keys": [
+        "R004_2",
+        "R004_1"
+      ],
+      "raw_source_rows": [
+        51,
+        56
+      ]
+    },
+    {
+      "specimen_id": "0005",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "81.90815",
+      "read_keys": [
+        "R005_1",
+        "R005_2"
+      ],
+      "raw_source_rows": [
+        15,
+        30
+      ]
+    },
+    {
+      "specimen_id": "0006",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "89.0801",
+      "read_keys": [
+        "R006_2",
+        "R006_1"
+      ],
+      "raw_source_rows": [
+        27,
+        38
+      ]
+    },
+    {
+      "specimen_id": "0007",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "73.6394",
+      "read_keys": [
+        "R007_2",
+        "R007_1"
+      ],
+      "raw_source_rows": [
+        3,
+        62
+      ]
+    },
+    {
+      "specimen_id": "0008",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 1,
+      "mean_signal": "105.2146",
+      "read_keys": [
+        "R008_1",
+        "R008_2"
+      ],
+      "raw_source_rows": [
+        36,
+        57
+      ]
+    },
+    {
+      "specimen_id": "0009",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "82.09905",
+      "read_keys": [
+        "R009_2",
+        "R009_1"
+      ],
+      "raw_source_rows": [
+        17,
+        18
+      ]
+    },
+    {
+      "specimen_id": "0010",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "83.72765",
+      "read_keys": [
+        "R010_2",
+        "R010_1"
+      ],
+      "raw_source_rows": [
+        34,
+        54
+      ]
+    },
+    {
+      "specimen_id": "0011",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "82.8772",
+      "read_keys": [
+        "R011_2",
+        "R011_1"
+      ],
+      "raw_source_rows": [
+        13,
+        61
+      ]
+    },
+    {
+      "specimen_id": "0012",
+      "group": "Vehicle",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "71.1421",
+      "read_keys": [
+        "R012_2",
+        "R012_1"
+      ],
+      "raw_source_rows": [
+        12,
+        29
+      ]
+    },
+    {
+      "specimen_id": "0013",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "110.3294",
+      "read_keys": [
+        "R013_2",
+        "R013_1"
+      ],
+      "raw_source_rows": [
+        35,
+        60
+      ]
+    },
+    {
+      "specimen_id": "0014",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "113.66495",
+      "read_keys": [
+        "R014_1",
+        "R014_2"
+      ],
+      "raw_source_rows": [
+        16,
+        49
+      ]
+    },
+    {
+      "specimen_id": "0015",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "97.6592",
+      "read_keys": [
+        "R015_2",
+        "R015_1"
+      ],
+      "raw_source_rows": [
+        23,
+        48
+      ]
+    },
+    {
+      "specimen_id": "0016",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "97.3295",
+      "read_keys": [
+        "R016_2",
+        "R016_1"
+      ],
+      "raw_source_rows": [
+        45,
+        47
+      ]
+    },
+    {
+      "specimen_id": "0017",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "106.70395",
+      "read_keys": [
+        "R017_1",
+        "R017_2"
+      ],
+      "raw_source_rows": [
+        2,
+        37
+      ]
+    },
+    {
+      "specimen_id": "0018",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "97.6786",
+      "read_keys": [
+        "R018_2",
+        "R018_1"
+      ],
+      "raw_source_rows": [
+        19,
+        67
+      ]
+    },
+    {
+      "specimen_id": "0019",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "86.5459",
+      "read_keys": [
+        "R019_2",
+        "R019_1"
+      ],
+      "raw_source_rows": [
+        32,
+        71
+      ]
+    },
+    {
+      "specimen_id": "0020",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "94.4767",
+      "read_keys": [
+        "R020_1",
+        "R020_2"
+      ],
+      "raw_source_rows": [
+        24,
+        50
+      ]
+    },
+    {
+      "specimen_id": "0021",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "134.9572",
+      "read_keys": [
+        "R021_1",
+        "R021_2"
+      ],
+      "raw_source_rows": [
+        66,
+        72
+      ]
+    },
+    {
+      "specimen_id": "0022",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "118.0442",
+      "read_keys": [
+        "R022_2",
+        "R022_1"
+      ],
+      "raw_source_rows": [
+        4,
+        21
+      ]
+    },
+    {
+      "specimen_id": "0023",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "104.2459",
+      "read_keys": [
+        "R023_1",
+        "R023_2"
+      ],
+      "raw_source_rows": [
+        33,
+        52
+      ]
+    },
+    {
+      "specimen_id": "0024",
+      "group": "Low dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "94.45925",
+      "read_keys": [
+        "R024_1",
+        "R024_2"
+      ],
+      "raw_source_rows": [
+        6,
+        46
+      ]
+    },
+    {
+      "specimen_id": "0025",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "117.4686",
+      "read_keys": [
+        "R025_2",
+        "R025_1"
+      ],
+      "raw_source_rows": [
+        9,
+        65
+      ]
+    },
+    {
+      "specimen_id": "0026",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "115.54925",
+      "read_keys": [
+        "R026_2",
+        "R026_1"
+      ],
+      "raw_source_rows": [
+        7,
+        28
+      ]
+    },
+    {
+      "specimen_id": "0027",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "134.1360",
+      "read_keys": [
+        "R027_1",
+        "R027_2"
+      ],
+      "raw_source_rows": [
+        26,
+        31
+      ]
+    },
+    {
+      "specimen_id": "0028",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "120.00195",
+      "read_keys": [
+        "R028_1",
+        "R028_2"
+      ],
+      "raw_source_rows": [
+        14,
+        25
+      ]
+    },
+    {
+      "specimen_id": "0029",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "103.36715",
+      "read_keys": [
+        "R029_2",
+        "R029_1"
+      ],
+      "raw_source_rows": [
+        40,
+        43
+      ]
+    },
+    {
+      "specimen_id": "0030",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "131.35805",
+      "read_keys": [
+        "R030_2",
+        "R030_1"
+      ],
+      "raw_source_rows": [
+        39,
+        42
+      ]
+    },
+    {
+      "specimen_id": "0031",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "100.8419",
+      "read_keys": [
+        "R031_2",
+        "R031_1"
+      ],
+      "raw_source_rows": [
+        20,
+        55
+      ]
+    },
+    {
+      "specimen_id": "0032",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "121.1377",
+      "read_keys": [
+        "R032_2",
+        "R032_1"
+      ],
+      "raw_source_rows": [
+        22,
+        59
+      ]
+    },
+    {
+      "specimen_id": "0033",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "141.8932",
+      "read_keys": [
+        "R033_2",
+        "R033_1"
+      ],
+      "raw_source_rows": [
+        63,
+        64
+      ]
+    },
+    {
+      "specimen_id": "0034",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "132.11055",
+      "read_keys": [
+        "R034_1",
+        "R034_2"
+      ],
+      "raw_source_rows": [
+        8,
+        41
+      ]
+    },
+    {
+      "specimen_id": "0035",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "119.5214",
+      "read_keys": [
+        "R035_1",
+        "R035_2"
+      ],
+      "raw_source_rows": [
+        44,
+        68
+      ]
+    },
+    {
+      "specimen_id": "0036",
+      "group": "High dose",
+      "technical_rows": 2,
+      "measured_reads": 2,
+      "mean_signal": "124.7121",
+      "read_keys": [
+        "R036_1",
+        "R036_2"
+      ],
+      "raw_source_rows": [
+        10,
+        73
+      ]
+    }
+  ]
+}

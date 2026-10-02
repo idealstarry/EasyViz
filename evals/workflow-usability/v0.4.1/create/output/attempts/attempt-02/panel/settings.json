@@ -1,0 +1,216 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "mean_signal",
+    "unit": "specimen_id"
+  },
+  "layout": {
+    "width_mm": 120.0,
+    "height_mm": 90.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.10917620804398148,
+      "right": 0.9833333333333332,
+      "bottom": 0.07908926504629629,
+      "top": 0.977777777777778
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 8.0,
+    "panel": 8.0
+  },
+  "colors": {
+    "Vehicle": "#29ACF3",
+    "Low dose": "#E47751",
+    "High dose": "#007F7F"
+  },
+  "palette": "somerville-bright",
+  "order": {
+    "group": [
+      "Vehicle",
+      "Low dose",
+      "High dose"
+    ]
+  },
+  "labels": {
+    "x": "",
+    "y": "Signal (a.u.)"
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "options": {
+    "kind": "box",
+    "orientation": "vertical",
+    "point_layout": "beeswarm",
+    "point_area_pt2": 16,
+    "point_max_offset_mm": 4,
+    "point_gap_pt": 0.3,
+    "alpha": 1,
+    "grid": true
+  },
+  "statistics": {
+    "method": "none",
+    "annotate": false
+  },
+  "resolved_colors": {
+    "Vehicle": "#29ACF3",
+    "Low dose": "#E47751",
+    "High dose": "#007F7F"
+  },
+  "input_file": "plotting_data.csv",
+  "input_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+  "renderer": {
+    "version": "0.4.1",
+    "sha256": "1df415d4367f0eae0cc296b1b1435d46c405b43cf8686b136173e11a7fa84a33",
+    "legend_helper_sha256": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+    "profile_helper_sha256": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+  },
+  "track": "create",
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.10917620804398148,
+      "right": 0.9833333333333332,
+      "bottom": 0.07908926504629629,
+      "top": 0.977777777777778
+    },
+    "data_region_mm": [
+      13.10114496527778,
+      7.118033854166667,
+      104.89885503472222,
+      80.88196614583335
+    ],
+    "data_area_fraction": 0.785594966819915,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.785594966819915
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "fixed_matplotlib_size_parameter",
+    "marker_size_parameter_pt2": 16.0,
+    "circle_fill_area_pt2": 12.566370614359172,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "diameter_pt": 4.0,
+    "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+    "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."
+  },
+  "point_layout": {
+    "status": "pass",
+    "overlapping_circle_pairs": 0,
+    "spacing_violation_pairs": 0,
+    "minimum_center_distance_pt": 4.299999999999968,
+    "sample_overlapping_pairs": [],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "vertical",
+    "seed": 23,
+    "categorical_axis": "x",
+    "quantitative_axis": "y",
+    "numeric_values_changed": false,
+    "input_rows": 36,
+    "placed_rows": 36,
+    "diameter_pt": 4.0,
+    "gap_pt": 0.3,
+    "requested_max_offset_mm": 4.0,
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "Vehicle",
+        "rows": 12,
+        "category_spacing_pt": 92.92221410556104,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.5039147867820235,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 2787349713
+      },
+      {
+        "group": "Low dose",
+        "rows": 12,
+        "category_spacing_pt": 92.92221410556101,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.516836037189789,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 1757713372
+      },
+      {
+        "group": "High dose",
+        "rows": 12,
+        "category_spacing_pt": 92.92221410556101,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.432376301462839,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 3180681204
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

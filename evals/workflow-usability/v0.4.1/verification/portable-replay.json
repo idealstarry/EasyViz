@@ -1,0 +1,2519 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-02T15:17:25.156613+00:00",
+  "purpose": "Portable replay of preserved local Codex-agent trials, not a baseline comparison or WorkBuddy evaluation",
+  "package_root_at_execution": "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.1",
+  "fresh_temporary_root": "/private/tmp/easyviz-v041-package-replay-nplqbq72",
+  "runtime": {
+    "python": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+    "host_python": "3.12.2"
+  },
+  "audit_utility": {
+    "path_at_execution": "/Users/starry/Desktop/EasyViz/evals/workbuddy/v0.4.1/scripts/audit_outputs.py",
+    "repo_relative_path": "evals/workbuddy/v0.4.1/scripts/audit_outputs.py",
+    "sha256": "980a732b65f40834ac4f27351b7a733048eeb11088c0b60d2fee7e5a0276fe2d"
+  },
+  "commands": [
+    {
+      "label": "create-render",
+      "argv_at_execution": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-create/run_analysis_plot.py",
+        "--run-dir",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/create-replay-output"
+      ],
+      "cwd_at_execution": "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-create",
+      "returncode": 0,
+      "log_relative_to_report_dir": "replay-logs/create-render.log"
+    },
+    {
+      "label": "create-independent-arithmetic-export",
+      "argv_at_execution": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-create/verify_outputs.py",
+        "--run-dir",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/create-replay-output"
+      ],
+      "cwd_at_execution": "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-create",
+      "returncode": 0,
+      "log_relative_to_report_dir": "replay-logs/create-independent-arithmetic-export.log"
+    },
+    {
+      "label": "reproduce-render",
+      "argv_at_execution": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-reproduce/plot_panel.py",
+        "--out",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/reproduce-replay-output"
+      ],
+      "cwd_at_execution": "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-reproduce",
+      "returncode": 0,
+      "log_relative_to_report_dir": "replay-logs/reproduce-render.log"
+    },
+    {
+      "label": "create-accepted-output-audit",
+      "argv_at_execution": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/Users/starry/Desktop/EasyViz/evals/workbuddy/v0.4.1/scripts/audit_outputs.py",
+        "--project",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create",
+        "--task",
+        "create",
+        "--report",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.1/verification/create-numeric-export-audit.json",
+        "--settings",
+        "output/figure-settings.json",
+        "--script",
+        "run_analysis_plot.py"
+      ],
+      "cwd_at_execution": "/private/tmp/easyviz-v041-package-replay-nplqbq72",
+      "returncode": 0,
+      "log_relative_to_report_dir": "replay-logs/create-accepted-output-audit.log"
+    },
+    {
+      "label": "reproduce-accepted-output-audit",
+      "argv_at_execution": [
+        "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+        "/Users/starry/Desktop/EasyViz/evals/workbuddy/v0.4.1/scripts/audit_outputs.py",
+        "--project",
+        "/private/tmp/easyviz-v041-package-replay-nplqbq72/relocated-reproduce",
+        "--task",
+        "reproduce",
+        "--report",
+        "/Users/starry/Desktop/EasyViz/evals/workflow-usability/v0.4.1/verification/reproduce-numeric-export-audit.json",
+        "--settings",
+        "output/figure-settings.json",
+        "--script",
+        "plot_panel.py",
+        "--reading",
+        "reference-reading.json"
+      ],
+      "cwd_at_execution": "/private/tmp/easyviz-v041-package-replay-nplqbq72",
+      "returncode": 0,
+      "log_relative_to_report_dir": "replay-logs/reproduce-accepted-output-audit.log"
+    }
+  ],
+  "archive_checks": [
+    {
+      "tree": "create",
+      "files": 87,
+      "pass": true,
+      "mismatches": []
+    },
+    {
+      "tree": "reproduce",
+      "files": 50,
+      "pass": true,
+      "mismatches": []
+    },
+    {
+      "tree": "independent-review",
+      "files": 7,
+      "pass": true,
+      "mismatches": []
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "create:plotting_data.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/plotting_data.csv",
+      "replay_relative_path": "create-replay-output/plotting_data.csv",
+      "accepted_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+      "replay_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b"
+    },
+    {
+      "name": "create:renderer-plotting-data.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/renderer-plotting-data.csv",
+      "replay_relative_path": "create-replay-output/panel/plotting-data.csv",
+      "accepted_sha256": "89fbb2b13d978f24ffefc82bb38c07e1a136f965ef2494e4004386989ccb11ae",
+      "replay_sha256": "89fbb2b13d978f24ffefc82bb38c07e1a136f965ef2494e4004386989ccb11ae"
+    },
+    {
+      "name": "create:statistics/analyzed-data.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/statistics/analyzed-data.csv",
+      "replay_relative_path": "create-replay-output/statistics/analyzed-data.csv",
+      "accepted_sha256": "86383cfc77f049f636d39db5e3ef6088a1279f336eab3f9b6c267ddd76ade909",
+      "replay_sha256": "86383cfc77f049f636d39db5e3ef6088a1279f336eab3f9b6c267ddd76ade909"
+    },
+    {
+      "name": "create:statistics/summary.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/statistics/summary.csv",
+      "replay_relative_path": "create-replay-output/statistics/summary.csv",
+      "accepted_sha256": "b3f5b706c03eeb80191c808953356b00f90b94babdf05a5785f1d1aa7ecdbb28",
+      "replay_sha256": "b3f5b706c03eeb80191c808953356b00f90b94babdf05a5785f1d1aa7ecdbb28"
+    },
+    {
+      "name": "create:panel.png",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/panel.png",
+      "replay_relative_path": "create-replay-output/panel/panel.png",
+      "accepted_sha256": "6d8d7ce01e0c6c341c2a6b2cf39f35c7d36c92ceaa7d5d1a215ffe948941e40d",
+      "replay_sha256": "6d8d7ce01e0c6c341c2a6b2cf39f35c7d36c92ceaa7d5d1a215ffe948941e40d"
+    },
+    {
+      "name": "create:statistical-results",
+      "kind": "json_values_exact",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/statistics/results.json",
+      "replay_relative_path": "create-replay-output/statistics/results.json",
+      "compared_keys": [
+        "schema_version",
+        "status",
+        "track",
+        "plan",
+        "comparisons"
+      ],
+      "accepted_values": {
+        "schema_version": 1,
+        "status": "complete",
+        "track": "create",
+        "plan": {
+          "schema_version": 1,
+          "question": "Do the mouse-level signal distributions differ for each dose relative to Vehicle?",
+          "design": {
+            "unit": "specimen_id",
+            "unit_definition": "One independently sampled mouse; mean of available measured technical reads",
+            "structure": "independent",
+            "confirmed": true
+          },
+          "missing_policy": "error",
+          "missing_tokens": [
+            ""
+          ],
+          "comparisons": [
+            {
+              "name": "distribution_overview",
+              "method": "descriptive",
+              "fields": {
+                "group": "group",
+                "value": "mean_signal"
+              }
+            },
+            {
+              "name": "low_vs_vehicle",
+              "method": "mannwhitney",
+              "fields": {
+                "group": "group",
+                "value": "mean_signal"
+              },
+              "groups": [
+                "Low dose",
+                "Vehicle"
+              ]
+            },
+            {
+              "name": "high_vs_vehicle",
+              "method": "mannwhitney",
+              "fields": {
+                "group": "group",
+                "value": "mean_signal"
+              },
+              "groups": [
+                "High dose",
+                "Vehicle"
+              ]
+            }
+          ],
+          "multiplicity": {
+            "family": "Two prespecified dose comparisons versus Vehicle",
+            "adjustment": "holm",
+            "comparisons": [
+              "low_vs_vehicle",
+              "high_vs_vehicle"
+            ]
+          }
+        },
+        "comparisons": [
+          {
+            "name": "distribution_overview",
+            "method": "descriptive",
+            "fields": {
+              "group": "group",
+              "value": "mean_signal"
+            },
+            "counts": {
+              "source_rows": 36,
+              "selected_rows": 36,
+              "included_rows": 36,
+              "excluded_rows": 0,
+              "unselected_rows": 0,
+              "included_units": 36,
+              "independent_unit_count": 36
+            },
+            "exclusions": [],
+            "statistic": null,
+            "pvalue": null,
+            "adjusted_pvalue": null,
+            "adjustment": null,
+            "effect": null,
+            "interval": null,
+            "interval_note": "No effect confidence interval computed for this method.",
+            "summaries": [
+              {
+                "variable": "mean_signal",
+                "group": "Vehicle",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 86.20346666666667,
+                "median": 83.302425,
+                "sd": 11.054095597340902,
+                "q1": 79.942025,
+                "q3": 93.350775,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 71.1421,
+                "maximum": 105.2146,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "Low dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 104.67456250000002,
+                "median": 100.96225000000001,
+                "sd": 13.149482945488511,
+                "q1": 96.6163,
+                "q3": 111.16328750000001,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 86.5459,
+                "maximum": 134.9572,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "High dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 121.84148749999999,
+                "median": 120.569825,
+                "sd": 12.08961039492034,
+                "q1": 116.98876249999999,
+                "q3": 131.546175,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 100.8419,
+                "maximum": 141.8932,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              }
+            ],
+            "notes": [
+              "Rows are descriptive observations. Independent sample counts are only reported for a confirmed sampling-unit design."
+            ]
+          },
+          {
+            "name": "low_vs_vehicle",
+            "method": "mannwhitney",
+            "fields": {
+              "group": "group",
+              "value": "mean_signal"
+            },
+            "counts": {
+              "source_rows": 36,
+              "selected_rows": 24,
+              "included_rows": 24,
+              "excluded_rows": 0,
+              "unselected_rows": 12,
+              "included_units": 24,
+              "independent_unit_count": 24
+            },
+            "exclusions": [],
+            "statistic": 123.0,
+            "pvalue": 0.003549838634913564,
+            "adjusted_pvalue": 0.003549838634913564,
+            "adjustment": {
+              "family": "Two prespecified dose comparisons versus Vehicle",
+              "method": "holm",
+              "family_size": 2
+            },
+            "effect": {
+              "name": "cliffs_delta",
+              "estimate": 0.7083333333333333,
+              "direction": "P(Low dose > Vehicle) minus P(Low dose < Vehicle)"
+            },
+            "interval": null,
+            "interval_note": "No effect confidence interval computed for this method.",
+            "summaries": [
+              {
+                "variable": "mean_signal",
+                "group": "Low dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 104.67456250000002,
+                "median": 100.96225000000001,
+                "sd": 13.149482945488511,
+                "q1": 96.6163,
+                "q3": 111.16328750000001,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 86.5459,
+                "maximum": 134.9572,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "Vehicle",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 86.20346666666667,
+                "median": 83.302425,
+                "sd": 11.054095597340902,
+                "q1": 79.942025,
+                "q3": 93.350775,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 71.1421,
+                "maximum": 105.2146,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              }
+            ],
+            "notes": [
+              "Tests equality of distributions; it is not generally a test of median differences. Cliff's delta has no computed confidence interval."
+            ],
+            "groups": [
+              "Low dose",
+              "Vehicle"
+            ],
+            "pvalue_method": "Tie-corrected normal approximation with continuity correction"
+          },
+          {
+            "name": "high_vs_vehicle",
+            "method": "mannwhitney",
+            "fields": {
+              "group": "group",
+              "value": "mean_signal"
+            },
+            "counts": {
+              "source_rows": 36,
+              "selected_rows": 24,
+              "included_rows": 24,
+              "excluded_rows": 0,
+              "unselected_rows": 12,
+              "included_units": 24,
+              "independent_unit_count": 24
+            },
+            "exclusions": [],
+            "statistic": 142.0,
+            "pvalue": 6.0057602968048996e-05,
+            "adjusted_pvalue": 0.00012011520593609799,
+            "adjustment": {
+              "family": "Two prespecified dose comparisons versus Vehicle",
+              "method": "holm",
+              "family_size": 2
+            },
+            "effect": {
+              "name": "cliffs_delta",
+              "estimate": 0.9722222222222223,
+              "direction": "P(High dose > Vehicle) minus P(High dose < Vehicle)"
+            },
+            "interval": null,
+            "interval_note": "No effect confidence interval computed for this method.",
+            "summaries": [
+              {
+                "variable": "mean_signal",
+                "group": "High dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 121.84148749999999,
+                "median": 120.569825,
+                "sd": 12.08961039492034,
+                "q1": 116.98876249999999,
+                "q3": 131.546175,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 100.8419,
+                "maximum": 141.8932,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "Vehicle",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 86.20346666666667,
+                "median": 83.302425,
+                "sd": 11.054095597340902,
+                "q1": 79.942025,
+                "q3": 93.350775,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 71.1421,
+                "maximum": 105.2146,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              }
+            ],
+            "notes": [
+              "Tests equality of distributions; it is not generally a test of median differences. Cliff's delta has no computed confidence interval."
+            ],
+            "groups": [
+              "High dose",
+              "Vehicle"
+            ],
+            "pvalue_method": "Tie-corrected normal approximation with continuity correction"
+          }
+        ]
+      },
+      "replay_values": {
+        "schema_version": 1,
+        "status": "complete",
+        "track": "create",
+        "plan": {
+          "schema_version": 1,
+          "question": "Do the mouse-level signal distributions differ for each dose relative to Vehicle?",
+          "design": {
+            "unit": "specimen_id",
+            "unit_definition": "One independently sampled mouse; mean of available measured technical reads",
+            "structure": "independent",
+            "confirmed": true
+          },
+          "missing_policy": "error",
+          "missing_tokens": [
+            ""
+          ],
+          "comparisons": [
+            {
+              "name": "distribution_overview",
+              "method": "descriptive",
+              "fields": {
+                "group": "group",
+                "value": "mean_signal"
+              }
+            },
+            {
+              "name": "low_vs_vehicle",
+              "method": "mannwhitney",
+              "fields": {
+                "group": "group",
+                "value": "mean_signal"
+              },
+              "groups": [
+                "Low dose",
+                "Vehicle"
+              ]
+            },
+            {
+              "name": "high_vs_vehicle",
+              "method": "mannwhitney",
+              "fields": {
+                "group": "group",
+                "value": "mean_signal"
+              },
+              "groups": [
+                "High dose",
+                "Vehicle"
+              ]
+            }
+          ],
+          "multiplicity": {
+            "family": "Two prespecified dose comparisons versus Vehicle",
+            "adjustment": "holm",
+            "comparisons": [
+              "low_vs_vehicle",
+              "high_vs_vehicle"
+            ]
+          }
+        },
+        "comparisons": [
+          {
+            "name": "distribution_overview",
+            "method": "descriptive",
+            "fields": {
+              "group": "group",
+              "value": "mean_signal"
+            },
+            "counts": {
+              "source_rows": 36,
+              "selected_rows": 36,
+              "included_rows": 36,
+              "excluded_rows": 0,
+              "unselected_rows": 0,
+              "included_units": 36,
+              "independent_unit_count": 36
+            },
+            "exclusions": [],
+            "statistic": null,
+            "pvalue": null,
+            "adjusted_pvalue": null,
+            "adjustment": null,
+            "effect": null,
+            "interval": null,
+            "interval_note": "No effect confidence interval computed for this method.",
+            "summaries": [
+              {
+                "variable": "mean_signal",
+                "group": "Vehicle",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 86.20346666666667,
+                "median": 83.302425,
+                "sd": 11.054095597340902,
+                "q1": 79.942025,
+                "q3": 93.350775,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 71.1421,
+                "maximum": 105.2146,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "Low dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 104.67456250000002,
+                "median": 100.96225000000001,
+                "sd": 13.149482945488511,
+                "q1": 96.6163,
+                "q3": 111.16328750000001,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 86.5459,
+                "maximum": 134.9572,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "High dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 121.84148749999999,
+                "median": 120.569825,
+                "sd": 12.08961039492034,
+                "q1": 116.98876249999999,
+                "q3": 131.546175,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 100.8419,
+                "maximum": 141.8932,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              }
+            ],
+            "notes": [
+              "Rows are descriptive observations. Independent sample counts are only reported for a confirmed sampling-unit design."
+            ]
+          },
+          {
+            "name": "low_vs_vehicle",
+            "method": "mannwhitney",
+            "fields": {
+              "group": "group",
+              "value": "mean_signal"
+            },
+            "counts": {
+              "source_rows": 36,
+              "selected_rows": 24,
+              "included_rows": 24,
+              "excluded_rows": 0,
+              "unselected_rows": 12,
+              "included_units": 24,
+              "independent_unit_count": 24
+            },
+            "exclusions": [],
+            "statistic": 123.0,
+            "pvalue": 0.003549838634913564,
+            "adjusted_pvalue": 0.003549838634913564,
+            "adjustment": {
+              "family": "Two prespecified dose comparisons versus Vehicle",
+              "method": "holm",
+              "family_size": 2
+            },
+            "effect": {
+              "name": "cliffs_delta",
+              "estimate": 0.7083333333333333,
+              "direction": "P(Low dose > Vehicle) minus P(Low dose < Vehicle)"
+            },
+            "interval": null,
+            "interval_note": "No effect confidence interval computed for this method.",
+            "summaries": [
+              {
+                "variable": "mean_signal",
+                "group": "Low dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 104.67456250000002,
+                "median": 100.96225000000001,
+                "sd": 13.149482945488511,
+                "q1": 96.6163,
+                "q3": 111.16328750000001,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 86.5459,
+                "maximum": 134.9572,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "Vehicle",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 86.20346666666667,
+                "median": 83.302425,
+                "sd": 11.054095597340902,
+                "q1": 79.942025,
+                "q3": 93.350775,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 71.1421,
+                "maximum": 105.2146,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              }
+            ],
+            "notes": [
+              "Tests equality of distributions; it is not generally a test of median differences. Cliff's delta has no computed confidence interval."
+            ],
+            "groups": [
+              "Low dose",
+              "Vehicle"
+            ],
+            "pvalue_method": "Tie-corrected normal approximation with continuity correction"
+          },
+          {
+            "name": "high_vs_vehicle",
+            "method": "mannwhitney",
+            "fields": {
+              "group": "group",
+              "value": "mean_signal"
+            },
+            "counts": {
+              "source_rows": 36,
+              "selected_rows": 24,
+              "included_rows": 24,
+              "excluded_rows": 0,
+              "unselected_rows": 12,
+              "included_units": 24,
+              "independent_unit_count": 24
+            },
+            "exclusions": [],
+            "statistic": 142.0,
+            "pvalue": 6.0057602968048996e-05,
+            "adjusted_pvalue": 0.00012011520593609799,
+            "adjustment": {
+              "family": "Two prespecified dose comparisons versus Vehicle",
+              "method": "holm",
+              "family_size": 2
+            },
+            "effect": {
+              "name": "cliffs_delta",
+              "estimate": 0.9722222222222223,
+              "direction": "P(High dose > Vehicle) minus P(High dose < Vehicle)"
+            },
+            "interval": null,
+            "interval_note": "No effect confidence interval computed for this method.",
+            "summaries": [
+              {
+                "variable": "mean_signal",
+                "group": "High dose",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 121.84148749999999,
+                "median": 120.569825,
+                "sd": 12.08961039492034,
+                "q1": 116.98876249999999,
+                "q3": 131.546175,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 100.8419,
+                "maximum": 141.8932,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              },
+              {
+                "variable": "mean_signal",
+                "group": "Vehicle",
+                "n_rows": 12,
+                "independent_unit_count": 12,
+                "mean": 86.20346666666667,
+                "median": 83.302425,
+                "sd": 11.054095597340902,
+                "q1": 79.942025,
+                "q3": 93.350775,
+                "quantile_method": "linear",
+                "sd_ddof": 1,
+                "minimum": 71.1421,
+                "maximum": 105.2146,
+                "interval": null,
+                "interval_note": "Descriptive summary only; no confidence interval computed."
+              }
+            ],
+            "notes": [
+              "Tests equality of distributions; it is not generally a test of median differences. Cliff's delta has no computed confidence interval."
+            ],
+            "groups": [
+              "High dose",
+              "Vehicle"
+            ],
+            "pvalue_method": "Tie-corrected normal approximation with continuity correction"
+          }
+        ]
+      }
+    },
+    {
+      "name": "create:raw-to-mouse-accounting",
+      "kind": "json_values_exact",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/preparation.json",
+      "replay_relative_path": "create-replay-output/preparation.json",
+      "compared_keys": [
+        "unit",
+        "operation",
+        "source_rows",
+        "measured_reads",
+        "failed_technical_reads",
+        "final_rows",
+        "group_counts",
+        "missing_policy",
+        "plotting_data_sha256",
+        "unit_accounting"
+      ],
+      "accepted_values": {
+        "unit": "one independently sampled mouse",
+        "operation": "literal-ID join current reads to lookup; arithmetic mean of available measured reads per mouse",
+        "source_rows": 72,
+        "measured_reads": 71,
+        "failed_technical_reads": [
+          {
+            "specimen_id": "0008",
+            "read_key": "R008_2",
+            "source_csv_row": 57,
+            "reason": "failed technical read"
+          }
+        ],
+        "final_rows": 36,
+        "group_counts": {
+          "Vehicle": 12,
+          "Low dose": 12,
+          "High dose": 12
+        },
+        "missing_policy": "failed technical read omitted from its within-mouse mean; mouse retained; no specimen excluded",
+        "plotting_data_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+        "unit_accounting": [
+          {
+            "specimen_id": "0001",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "100.0930",
+            "read_keys": [
+              "R001_1",
+              "R001_2"
+            ],
+            "raw_source_rows": [
+              53,
+              58
+            ]
+          },
+          {
+            "specimen_id": "0002",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "99.2235",
+            "read_keys": [
+              "R002_1",
+              "R002_2"
+            ],
+            "raw_source_rows": [
+              5,
+              11
+            ]
+          },
+          {
+            "specimen_id": "0003",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "91.3932",
+            "read_keys": [
+              "R003_1",
+              "R003_2"
+            ],
+            "raw_source_rows": [
+              69,
+              70
+            ]
+          },
+          {
+            "specimen_id": "0004",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "74.04365",
+            "read_keys": [
+              "R004_2",
+              "R004_1"
+            ],
+            "raw_source_rows": [
+              51,
+              56
+            ]
+          },
+          {
+            "specimen_id": "0005",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "81.90815",
+            "read_keys": [
+              "R005_1",
+              "R005_2"
+            ],
+            "raw_source_rows": [
+              15,
+              30
+            ]
+          },
+          {
+            "specimen_id": "0006",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "89.0801",
+            "read_keys": [
+              "R006_2",
+              "R006_1"
+            ],
+            "raw_source_rows": [
+              27,
+              38
+            ]
+          },
+          {
+            "specimen_id": "0007",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "73.6394",
+            "read_keys": [
+              "R007_2",
+              "R007_1"
+            ],
+            "raw_source_rows": [
+              3,
+              62
+            ]
+          },
+          {
+            "specimen_id": "0008",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 1,
+            "mean_signal": "105.2146",
+            "read_keys": [
+              "R008_1",
+              "R008_2"
+            ],
+            "raw_source_rows": [
+              36,
+              57
+            ]
+          },
+          {
+            "specimen_id": "0009",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "82.09905",
+            "read_keys": [
+              "R009_2",
+              "R009_1"
+            ],
+            "raw_source_rows": [
+              17,
+              18
+            ]
+          },
+          {
+            "specimen_id": "0010",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "83.72765",
+            "read_keys": [
+              "R010_2",
+              "R010_1"
+            ],
+            "raw_source_rows": [
+              34,
+              54
+            ]
+          },
+          {
+            "specimen_id": "0011",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "82.8772",
+            "read_keys": [
+              "R011_2",
+              "R011_1"
+            ],
+            "raw_source_rows": [
+              13,
+              61
+            ]
+          },
+          {
+            "specimen_id": "0012",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "71.1421",
+            "read_keys": [
+              "R012_2",
+              "R012_1"
+            ],
+            "raw_source_rows": [
+              12,
+              29
+            ]
+          },
+          {
+            "specimen_id": "0013",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "110.3294",
+            "read_keys": [
+              "R013_2",
+              "R013_1"
+            ],
+            "raw_source_rows": [
+              35,
+              60
+            ]
+          },
+          {
+            "specimen_id": "0014",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "113.66495",
+            "read_keys": [
+              "R014_1",
+              "R014_2"
+            ],
+            "raw_source_rows": [
+              16,
+              49
+            ]
+          },
+          {
+            "specimen_id": "0015",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "97.6592",
+            "read_keys": [
+              "R015_2",
+              "R015_1"
+            ],
+            "raw_source_rows": [
+              23,
+              48
+            ]
+          },
+          {
+            "specimen_id": "0016",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "97.3295",
+            "read_keys": [
+              "R016_2",
+              "R016_1"
+            ],
+            "raw_source_rows": [
+              45,
+              47
+            ]
+          },
+          {
+            "specimen_id": "0017",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "106.70395",
+            "read_keys": [
+              "R017_1",
+              "R017_2"
+            ],
+            "raw_source_rows": [
+              2,
+              37
+            ]
+          },
+          {
+            "specimen_id": "0018",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "97.6786",
+            "read_keys": [
+              "R018_2",
+              "R018_1"
+            ],
+            "raw_source_rows": [
+              19,
+              67
+            ]
+          },
+          {
+            "specimen_id": "0019",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "86.5459",
+            "read_keys": [
+              "R019_2",
+              "R019_1"
+            ],
+            "raw_source_rows": [
+              32,
+              71
+            ]
+          },
+          {
+            "specimen_id": "0020",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "94.4767",
+            "read_keys": [
+              "R020_1",
+              "R020_2"
+            ],
+            "raw_source_rows": [
+              24,
+              50
+            ]
+          },
+          {
+            "specimen_id": "0021",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "134.9572",
+            "read_keys": [
+              "R021_1",
+              "R021_2"
+            ],
+            "raw_source_rows": [
+              66,
+              72
+            ]
+          },
+          {
+            "specimen_id": "0022",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "118.0442",
+            "read_keys": [
+              "R022_2",
+              "R022_1"
+            ],
+            "raw_source_rows": [
+              4,
+              21
+            ]
+          },
+          {
+            "specimen_id": "0023",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "104.2459",
+            "read_keys": [
+              "R023_1",
+              "R023_2"
+            ],
+            "raw_source_rows": [
+              33,
+              52
+            ]
+          },
+          {
+            "specimen_id": "0024",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "94.45925",
+            "read_keys": [
+              "R024_1",
+              "R024_2"
+            ],
+            "raw_source_rows": [
+              6,
+              46
+            ]
+          },
+          {
+            "specimen_id": "0025",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "117.4686",
+            "read_keys": [
+              "R025_2",
+              "R025_1"
+            ],
+            "raw_source_rows": [
+              9,
+              65
+            ]
+          },
+          {
+            "specimen_id": "0026",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "115.54925",
+            "read_keys": [
+              "R026_2",
+              "R026_1"
+            ],
+            "raw_source_rows": [
+              7,
+              28
+            ]
+          },
+          {
+            "specimen_id": "0027",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "134.1360",
+            "read_keys": [
+              "R027_1",
+              "R027_2"
+            ],
+            "raw_source_rows": [
+              26,
+              31
+            ]
+          },
+          {
+            "specimen_id": "0028",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "120.00195",
+            "read_keys": [
+              "R028_1",
+              "R028_2"
+            ],
+            "raw_source_rows": [
+              14,
+              25
+            ]
+          },
+          {
+            "specimen_id": "0029",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "103.36715",
+            "read_keys": [
+              "R029_2",
+              "R029_1"
+            ],
+            "raw_source_rows": [
+              40,
+              43
+            ]
+          },
+          {
+            "specimen_id": "0030",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "131.35805",
+            "read_keys": [
+              "R030_2",
+              "R030_1"
+            ],
+            "raw_source_rows": [
+              39,
+              42
+            ]
+          },
+          {
+            "specimen_id": "0031",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "100.8419",
+            "read_keys": [
+              "R031_2",
+              "R031_1"
+            ],
+            "raw_source_rows": [
+              20,
+              55
+            ]
+          },
+          {
+            "specimen_id": "0032",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "121.1377",
+            "read_keys": [
+              "R032_2",
+              "R032_1"
+            ],
+            "raw_source_rows": [
+              22,
+              59
+            ]
+          },
+          {
+            "specimen_id": "0033",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "141.8932",
+            "read_keys": [
+              "R033_2",
+              "R033_1"
+            ],
+            "raw_source_rows": [
+              63,
+              64
+            ]
+          },
+          {
+            "specimen_id": "0034",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "132.11055",
+            "read_keys": [
+              "R034_1",
+              "R034_2"
+            ],
+            "raw_source_rows": [
+              8,
+              41
+            ]
+          },
+          {
+            "specimen_id": "0035",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "119.5214",
+            "read_keys": [
+              "R035_1",
+              "R035_2"
+            ],
+            "raw_source_rows": [
+              44,
+              68
+            ]
+          },
+          {
+            "specimen_id": "0036",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "124.7121",
+            "read_keys": [
+              "R036_1",
+              "R036_2"
+            ],
+            "raw_source_rows": [
+              10,
+              73
+            ]
+          }
+        ]
+      },
+      "replay_values": {
+        "unit": "one independently sampled mouse",
+        "operation": "literal-ID join current reads to lookup; arithmetic mean of available measured reads per mouse",
+        "source_rows": 72,
+        "measured_reads": 71,
+        "failed_technical_reads": [
+          {
+            "specimen_id": "0008",
+            "read_key": "R008_2",
+            "source_csv_row": 57,
+            "reason": "failed technical read"
+          }
+        ],
+        "final_rows": 36,
+        "group_counts": {
+          "Vehicle": 12,
+          "Low dose": 12,
+          "High dose": 12
+        },
+        "missing_policy": "failed technical read omitted from its within-mouse mean; mouse retained; no specimen excluded",
+        "plotting_data_sha256": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+        "unit_accounting": [
+          {
+            "specimen_id": "0001",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "100.0930",
+            "read_keys": [
+              "R001_1",
+              "R001_2"
+            ],
+            "raw_source_rows": [
+              53,
+              58
+            ]
+          },
+          {
+            "specimen_id": "0002",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "99.2235",
+            "read_keys": [
+              "R002_1",
+              "R002_2"
+            ],
+            "raw_source_rows": [
+              5,
+              11
+            ]
+          },
+          {
+            "specimen_id": "0003",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "91.3932",
+            "read_keys": [
+              "R003_1",
+              "R003_2"
+            ],
+            "raw_source_rows": [
+              69,
+              70
+            ]
+          },
+          {
+            "specimen_id": "0004",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "74.04365",
+            "read_keys": [
+              "R004_2",
+              "R004_1"
+            ],
+            "raw_source_rows": [
+              51,
+              56
+            ]
+          },
+          {
+            "specimen_id": "0005",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "81.90815",
+            "read_keys": [
+              "R005_1",
+              "R005_2"
+            ],
+            "raw_source_rows": [
+              15,
+              30
+            ]
+          },
+          {
+            "specimen_id": "0006",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "89.0801",
+            "read_keys": [
+              "R006_2",
+              "R006_1"
+            ],
+            "raw_source_rows": [
+              27,
+              38
+            ]
+          },
+          {
+            "specimen_id": "0007",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "73.6394",
+            "read_keys": [
+              "R007_2",
+              "R007_1"
+            ],
+            "raw_source_rows": [
+              3,
+              62
+            ]
+          },
+          {
+            "specimen_id": "0008",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 1,
+            "mean_signal": "105.2146",
+            "read_keys": [
+              "R008_1",
+              "R008_2"
+            ],
+            "raw_source_rows": [
+              36,
+              57
+            ]
+          },
+          {
+            "specimen_id": "0009",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "82.09905",
+            "read_keys": [
+              "R009_2",
+              "R009_1"
+            ],
+            "raw_source_rows": [
+              17,
+              18
+            ]
+          },
+          {
+            "specimen_id": "0010",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "83.72765",
+            "read_keys": [
+              "R010_2",
+              "R010_1"
+            ],
+            "raw_source_rows": [
+              34,
+              54
+            ]
+          },
+          {
+            "specimen_id": "0011",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "82.8772",
+            "read_keys": [
+              "R011_2",
+              "R011_1"
+            ],
+            "raw_source_rows": [
+              13,
+              61
+            ]
+          },
+          {
+            "specimen_id": "0012",
+            "group": "Vehicle",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "71.1421",
+            "read_keys": [
+              "R012_2",
+              "R012_1"
+            ],
+            "raw_source_rows": [
+              12,
+              29
+            ]
+          },
+          {
+            "specimen_id": "0013",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "110.3294",
+            "read_keys": [
+              "R013_2",
+              "R013_1"
+            ],
+            "raw_source_rows": [
+              35,
+              60
+            ]
+          },
+          {
+            "specimen_id": "0014",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "113.66495",
+            "read_keys": [
+              "R014_1",
+              "R014_2"
+            ],
+            "raw_source_rows": [
+              16,
+              49
+            ]
+          },
+          {
+            "specimen_id": "0015",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "97.6592",
+            "read_keys": [
+              "R015_2",
+              "R015_1"
+            ],
+            "raw_source_rows": [
+              23,
+              48
+            ]
+          },
+          {
+            "specimen_id": "0016",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "97.3295",
+            "read_keys": [
+              "R016_2",
+              "R016_1"
+            ],
+            "raw_source_rows": [
+              45,
+              47
+            ]
+          },
+          {
+            "specimen_id": "0017",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "106.70395",
+            "read_keys": [
+              "R017_1",
+              "R017_2"
+            ],
+            "raw_source_rows": [
+              2,
+              37
+            ]
+          },
+          {
+            "specimen_id": "0018",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "97.6786",
+            "read_keys": [
+              "R018_2",
+              "R018_1"
+            ],
+            "raw_source_rows": [
+              19,
+              67
+            ]
+          },
+          {
+            "specimen_id": "0019",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "86.5459",
+            "read_keys": [
+              "R019_2",
+              "R019_1"
+            ],
+            "raw_source_rows": [
+              32,
+              71
+            ]
+          },
+          {
+            "specimen_id": "0020",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "94.4767",
+            "read_keys": [
+              "R020_1",
+              "R020_2"
+            ],
+            "raw_source_rows": [
+              24,
+              50
+            ]
+          },
+          {
+            "specimen_id": "0021",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "134.9572",
+            "read_keys": [
+              "R021_1",
+              "R021_2"
+            ],
+            "raw_source_rows": [
+              66,
+              72
+            ]
+          },
+          {
+            "specimen_id": "0022",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "118.0442",
+            "read_keys": [
+              "R022_2",
+              "R022_1"
+            ],
+            "raw_source_rows": [
+              4,
+              21
+            ]
+          },
+          {
+            "specimen_id": "0023",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "104.2459",
+            "read_keys": [
+              "R023_1",
+              "R023_2"
+            ],
+            "raw_source_rows": [
+              33,
+              52
+            ]
+          },
+          {
+            "specimen_id": "0024",
+            "group": "Low dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "94.45925",
+            "read_keys": [
+              "R024_1",
+              "R024_2"
+            ],
+            "raw_source_rows": [
+              6,
+              46
+            ]
+          },
+          {
+            "specimen_id": "0025",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "117.4686",
+            "read_keys": [
+              "R025_2",
+              "R025_1"
+            ],
+            "raw_source_rows": [
+              9,
+              65
+            ]
+          },
+          {
+            "specimen_id": "0026",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "115.54925",
+            "read_keys": [
+              "R026_2",
+              "R026_1"
+            ],
+            "raw_source_rows": [
+              7,
+              28
+            ]
+          },
+          {
+            "specimen_id": "0027",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "134.1360",
+            "read_keys": [
+              "R027_1",
+              "R027_2"
+            ],
+            "raw_source_rows": [
+              26,
+              31
+            ]
+          },
+          {
+            "specimen_id": "0028",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "120.00195",
+            "read_keys": [
+              "R028_1",
+              "R028_2"
+            ],
+            "raw_source_rows": [
+              14,
+              25
+            ]
+          },
+          {
+            "specimen_id": "0029",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "103.36715",
+            "read_keys": [
+              "R029_2",
+              "R029_1"
+            ],
+            "raw_source_rows": [
+              40,
+              43
+            ]
+          },
+          {
+            "specimen_id": "0030",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "131.35805",
+            "read_keys": [
+              "R030_2",
+              "R030_1"
+            ],
+            "raw_source_rows": [
+              39,
+              42
+            ]
+          },
+          {
+            "specimen_id": "0031",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "100.8419",
+            "read_keys": [
+              "R031_2",
+              "R031_1"
+            ],
+            "raw_source_rows": [
+              20,
+              55
+            ]
+          },
+          {
+            "specimen_id": "0032",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "121.1377",
+            "read_keys": [
+              "R032_2",
+              "R032_1"
+            ],
+            "raw_source_rows": [
+              22,
+              59
+            ]
+          },
+          {
+            "specimen_id": "0033",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "141.8932",
+            "read_keys": [
+              "R033_2",
+              "R033_1"
+            ],
+            "raw_source_rows": [
+              63,
+              64
+            ]
+          },
+          {
+            "specimen_id": "0034",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "132.11055",
+            "read_keys": [
+              "R034_1",
+              "R034_2"
+            ],
+            "raw_source_rows": [
+              8,
+              41
+            ]
+          },
+          {
+            "specimen_id": "0035",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "119.5214",
+            "read_keys": [
+              "R035_1",
+              "R035_2"
+            ],
+            "raw_source_rows": [
+              44,
+              68
+            ]
+          },
+          {
+            "specimen_id": "0036",
+            "group": "High dose",
+            "technical_rows": 2,
+            "measured_reads": 2,
+            "mean_signal": "124.7121",
+            "read_keys": [
+              "R036_1",
+              "R036_2"
+            ],
+            "raw_source_rows": [
+              10,
+              73
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "create:independent-verification",
+      "kind": "json_values_exact",
+      "pass": true,
+      "accepted_package_relative_path": "create/output/final/verification.json",
+      "replay_relative_path": "create-replay-output/verification.json",
+      "compared_keys": [
+        "status",
+        "source_unit_checks",
+        "independent_descriptions",
+        "independent_rank_and_holm_calculations",
+        "exports"
+      ],
+      "accepted_values": {
+        "status": "passed",
+        "source_unit_checks": {
+          "current_mice": 36,
+          "per_group": 12,
+          "technical_rows": 72,
+          "measured_reads": 71,
+          "failed_read_mouse_retained": "0008",
+          "literal_ids_preserved": true,
+          "raw_to_mean_join_verified": true,
+          "analysis_render_input_hashes_match": true
+        },
+        "independent_descriptions": {
+          "Vehicle": {
+            "n_rows": 12,
+            "mean": 86.20346666666667,
+            "median": 83.302425,
+            "sd": 11.054095597340904,
+            "q1": 79.942025,
+            "q3": 93.350775,
+            "minimum": 71.1421,
+            "maximum": 105.2146
+          },
+          "Low dose": {
+            "n_rows": 12,
+            "mean": 104.67456250000001,
+            "median": 100.96225000000001,
+            "sd": 13.149482945488511,
+            "q1": 96.6163,
+            "q3": 111.1632875,
+            "minimum": 86.5459,
+            "maximum": 134.9572
+          },
+          "High dose": {
+            "n_rows": 12,
+            "mean": 121.8414875,
+            "median": 120.569825,
+            "sd": 12.08961039492034,
+            "q1": 116.9887625,
+            "q3": 131.546175,
+            "minimum": 100.8419,
+            "maximum": 141.8932
+          }
+        },
+        "independent_rank_and_holm_calculations": [
+          {
+            "comparison": "low_vs_vehicle",
+            "u_first_dose": 123.0,
+            "greater": 123,
+            "lower": 21,
+            "ties": 0,
+            "cliffs_delta": 0.7083333333333334,
+            "manual_asymptotic_p": 0.003549838634913572,
+            "helper_adjusted_p": 0.003549838634913564,
+            "manual_holm_p": 0.003549838634913572
+          },
+          {
+            "comparison": "high_vs_vehicle",
+            "u_first_dose": 142.0,
+            "greater": 142,
+            "lower": 2,
+            "ties": 0,
+            "cliffs_delta": 0.9722222222222222,
+            "manual_asymptotic_p": 6.0057602968049023e-05,
+            "helper_adjusted_p": 0.00012011520593609799,
+            "manual_holm_p": 0.00012011520593609805
+          }
+        ],
+        "exports": {
+          "pdf_mm": [
+            120.00000000001387,
+            89.99999999999278
+          ],
+          "pdf_fonts": [
+            {
+              "resource": "/F1",
+              "base_font": "/ETJORM+ArialMT",
+              "embedded": true
+            }
+          ],
+          "pdf_text_sizes_pt": [
+            8.0
+          ],
+          "svg_mm": [
+            119.99999988888891,
+            89.99999991666667
+          ],
+          "svg_editable_text_elements": 12,
+          "svg_text_font": "Arial 8 pt in SVG pt coordinates",
+          "png_pixels": [
+            1417,
+            1063
+          ],
+          "png_dpi": [
+            299.9994,
+            299.9994
+          ],
+          "white_canvas_corners": true
+        }
+      },
+      "replay_values": {
+        "status": "passed",
+        "source_unit_checks": {
+          "current_mice": 36,
+          "per_group": 12,
+          "technical_rows": 72,
+          "measured_reads": 71,
+          "failed_read_mouse_retained": "0008",
+          "literal_ids_preserved": true,
+          "raw_to_mean_join_verified": true,
+          "analysis_render_input_hashes_match": true
+        },
+        "independent_descriptions": {
+          "Vehicle": {
+            "n_rows": 12,
+            "mean": 86.20346666666667,
+            "median": 83.302425,
+            "sd": 11.054095597340904,
+            "q1": 79.942025,
+            "q3": 93.350775,
+            "minimum": 71.1421,
+            "maximum": 105.2146
+          },
+          "Low dose": {
+            "n_rows": 12,
+            "mean": 104.67456250000001,
+            "median": 100.96225000000001,
+            "sd": 13.149482945488511,
+            "q1": 96.6163,
+            "q3": 111.1632875,
+            "minimum": 86.5459,
+            "maximum": 134.9572
+          },
+          "High dose": {
+            "n_rows": 12,
+            "mean": 121.8414875,
+            "median": 120.569825,
+            "sd": 12.08961039492034,
+            "q1": 116.9887625,
+            "q3": 131.546175,
+            "minimum": 100.8419,
+            "maximum": 141.8932
+          }
+        },
+        "independent_rank_and_holm_calculations": [
+          {
+            "comparison": "low_vs_vehicle",
+            "u_first_dose": 123.0,
+            "greater": 123,
+            "lower": 21,
+            "ties": 0,
+            "cliffs_delta": 0.7083333333333334,
+            "manual_asymptotic_p": 0.003549838634913572,
+            "helper_adjusted_p": 0.003549838634913564,
+            "manual_holm_p": 0.003549838634913572
+          },
+          {
+            "comparison": "high_vs_vehicle",
+            "u_first_dose": 142.0,
+            "greater": 142,
+            "lower": 2,
+            "ties": 0,
+            "cliffs_delta": 0.9722222222222222,
+            "manual_asymptotic_p": 6.0057602968049023e-05,
+            "helper_adjusted_p": 0.00012011520593609799,
+            "manual_holm_p": 0.00012011520593609805
+          }
+        ],
+        "exports": {
+          "pdf_mm": [
+            120.00000000001387,
+            89.99999999999278
+          ],
+          "pdf_fonts": [
+            {
+              "resource": "/F1",
+              "base_font": "/ETJORM+ArialMT",
+              "embedded": true
+            }
+          ],
+          "pdf_text_sizes_pt": [
+            8.0
+          ],
+          "svg_mm": [
+            119.99999988888891,
+            89.99999991666667
+          ],
+          "svg_editable_text_elements": 12,
+          "svg_text_font": "Arial 8 pt in SVG pt coordinates",
+          "png_pixels": [
+            1417,
+            1063
+          ],
+          "png_dpi": [
+            299.9994,
+            299.9994
+          ],
+          "white_canvas_corners": true
+        }
+      }
+    },
+    {
+      "name": "reproduce:plotting_data.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "reproduce/output/plotting_data.csv",
+      "replay_relative_path": "reproduce-replay-output/plotting_data.csv",
+      "accepted_sha256": "fbd1df28318a7fef747ee77949e2c8550f621f70d61108ed1017fa180dfe2cd5",
+      "replay_sha256": "fbd1df28318a7fef747ee77949e2c8550f621f70d61108ed1017fa180dfe2cd5"
+    },
+    {
+      "name": "reproduce:feature-means.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "reproduce/output/feature-means.csv",
+      "replay_relative_path": "reproduce-replay-output/feature-means.csv",
+      "accepted_sha256": "f668028ca1548545cacba75da1e5198ae5ab3fb4951fa4483380abf9509d1eb0",
+      "replay_sha256": "f668028ca1548545cacba75da1e5198ae5ab3fb4951fa4483380abf9509d1eb0"
+    },
+    {
+      "name": "reproduce:specimen-metadata.csv",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "reproduce/output/specimen-metadata.csv",
+      "replay_relative_path": "reproduce-replay-output/specimen-metadata.csv",
+      "accepted_sha256": "18b765e9c2a7351e60d390c628f977fed50c9d9792d45ca00239c46b8a1e27d8",
+      "replay_sha256": "18b765e9c2a7351e60d390c628f977fed50c9d9792d45ca00239c46b8a1e27d8"
+    },
+    {
+      "name": "reproduce:panel.png",
+      "kind": "exact_bytes",
+      "pass": true,
+      "accepted_package_relative_path": "reproduce/output/panel.png",
+      "replay_relative_path": "reproduce-replay-output/panel.png",
+      "accepted_sha256": "3d31b4ebbea4219139e19ab6d1e1776bafd945348feea57cf19c97a204f1e2be",
+      "replay_sha256": "3d31b4ebbea4219139e19ab6d1e1776bafd945348feea57cf19c97a204f1e2be"
+    },
+    {
+      "name": "reproduce:source-to-cell-and-bar-audit",
+      "kind": "json_values_exact",
+      "pass": true,
+      "accepted_package_relative_path": "reproduce/output/checks.json",
+      "replay_relative_path": "reproduce-replay-output/checks.json",
+      "compared_keys": [
+        "numeric_and_export_status",
+        "source_artist_audit",
+        "column_strip_alignment",
+        "row_mean_alignment",
+        "text_canvas_clipping",
+        "all_visible_text_Arial_8pt",
+        "missing_glyphs",
+        "exports",
+        "layout_footprints_mm",
+        "warnings"
+      ],
+      "accepted_values": {
+        "numeric_and_export_status": "passed",
+        "source_artist_audit": {
+          "method": "independent csv.DictReader + math.fsum source reread compared to saved table and artists",
+          "input_coordinates": 72,
+          "plotted_cells": 72,
+          "missing_coordinates": [
+            [
+              "Signal_B",
+              "S05"
+            ],
+            [
+              "Signal_G",
+              "S01"
+            ],
+            [
+              "Signal_H",
+              "S09"
+            ]
+          ],
+          "measured_zero_coordinates": [
+            [
+              "Signal_E",
+              "S07"
+            ]
+          ],
+          "per_feature_means": {
+            "Signal_A": -0.153,
+            "Signal_B": -0.002000000000000014,
+            "Signal_C": 0.062333333333333324,
+            "Signal_D": -0.157,
+            "Signal_E": 0.34844444444444445,
+            "Signal_F": 0.43433333333333335,
+            "Signal_G": -0.22062500000000002,
+            "Signal_H": -0.333
+          },
+          "measured_counts": {
+            "Signal_A": 9,
+            "Signal_B": 8,
+            "Signal_C": 9,
+            "Signal_D": 9,
+            "Signal_E": 9,
+            "Signal_F": 9,
+            "Signal_G": 8,
+            "Signal_H": 8
+          },
+          "value_state_cell_and_bar_checks": "passed"
+        },
+        "column_strip_alignment": "passed",
+        "row_mean_alignment": "passed",
+        "text_canvas_clipping": [],
+        "all_visible_text_Arial_8pt": "passed",
+        "missing_glyphs": [],
+        "exports": {
+          "svg": {
+            "width_mm": 119.99999988888888,
+            "height_mm": 89.99999991666667,
+            "editable_text_nodes": 29,
+            "text_preserved": true
+          },
+          "pdf": {
+            "width_mm": 120.00000000001388,
+            "height_mm": 89.99999999999278,
+            "fonts": [
+              {
+                "name": "/DKISSI+ArialMT",
+                "embedded": true
+              },
+              {
+                "name": "/CECFXM+ArialMT",
+                "embedded": true
+              }
+            ]
+          },
+          "png": {
+            "pixels": [
+              1417,
+              1063
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          }
+        },
+        "layout_footprints_mm": {
+          "main_matrix": [
+            26.999999999999996,
+            21.0,
+            86.0,
+            71.50000000000001
+          ],
+          "means_field": [
+            90.99999999999999,
+            21.0,
+            111.5,
+            71.50000000000001
+          ],
+          "condition_strip": [
+            26.999999999999996,
+            73.3,
+            86.0,
+            76.5
+          ],
+          "condition_guide_complete": [
+            25.799999999999997,
+            83.9757052951389,
+            86.50507291666666,
+            86.62429470486111
+          ],
+          "missing_guide_complete": [
+            75.5,
+            8.975705295138889,
+            95.33266666666665,
+            11.624294704861112
+          ],
+          "continuous_scale_complete": [
+            25.433666666666664,
+            0.4805989583333331,
+            60.26199999999999,
+            10.9
+          ],
+          "condition_guide_reserved": [
+            25.8,
+            82.5,
+            105,
+            88.0
+          ],
+          "continuous_scale_reserved": [
+            24,
+            0.5,
+            63,
+            11.5
+          ],
+          "missing_guide_reserved": [
+            74.5,
+            8.0,
+            111,
+            12.5
+          ],
+          "condition_guide_complete_area_fraction_of_matrix": 0.05396301837338428,
+          "missing_guide_complete_area_fraction_of_matrix": 0.017630001980159172,
+          "continuous_scale_complete_area_fraction_of_matrix": 0.1217957283479937
+        },
+        "warnings": []
+      },
+      "replay_values": {
+        "numeric_and_export_status": "passed",
+        "source_artist_audit": {
+          "method": "independent csv.DictReader + math.fsum source reread compared to saved table and artists",
+          "input_coordinates": 72,
+          "plotted_cells": 72,
+          "missing_coordinates": [
+            [
+              "Signal_B",
+              "S05"
+            ],
+            [
+              "Signal_G",
+              "S01"
+            ],
+            [
+              "Signal_H",
+              "S09"
+            ]
+          ],
+          "measured_zero_coordinates": [
+            [
+              "Signal_E",
+              "S07"
+            ]
+          ],
+          "per_feature_means": {
+            "Signal_A": -0.153,
+            "Signal_B": -0.002000000000000014,
+            "Signal_C": 0.062333333333333324,
+            "Signal_D": -0.157,
+            "Signal_E": 0.34844444444444445,
+            "Signal_F": 0.43433333333333335,
+            "Signal_G": -0.22062500000000002,
+            "Signal_H": -0.333
+          },
+          "measured_counts": {
+            "Signal_A": 9,
+            "Signal_B": 8,
+            "Signal_C": 9,
+            "Signal_D": 9,
+            "Signal_E": 9,
+            "Signal_F": 9,
+            "Signal_G": 8,
+            "Signal_H": 8
+          },
+          "value_state_cell_and_bar_checks": "passed"
+        },
+        "column_strip_alignment": "passed",
+        "row_mean_alignment": "passed",
+        "text_canvas_clipping": [],
+        "all_visible_text_Arial_8pt": "passed",
+        "missing_glyphs": [],
+        "exports": {
+          "svg": {
+            "width_mm": 119.99999988888888,
+            "height_mm": 89.99999991666667,
+            "editable_text_nodes": 29,
+            "text_preserved": true
+          },
+          "pdf": {
+            "width_mm": 120.00000000001388,
+            "height_mm": 89.99999999999278,
+            "fonts": [
+              {
+                "name": "/DKISSI+ArialMT",
+                "embedded": true
+              },
+              {
+                "name": "/CECFXM+ArialMT",
+                "embedded": true
+              }
+            ]
+          },
+          "png": {
+            "pixels": [
+              1417,
+              1063
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          }
+        },
+        "layout_footprints_mm": {
+          "main_matrix": [
+            26.999999999999996,
+            21.0,
+            86.0,
+            71.50000000000001
+          ],
+          "means_field": [
+            90.99999999999999,
+            21.0,
+            111.5,
+            71.50000000000001
+          ],
+          "condition_strip": [
+            26.999999999999996,
+            73.3,
+            86.0,
+            76.5
+          ],
+          "condition_guide_complete": [
+            25.799999999999997,
+            83.9757052951389,
+            86.50507291666666,
+            86.62429470486111
+          ],
+          "missing_guide_complete": [
+            75.5,
+            8.975705295138889,
+            95.33266666666665,
+            11.624294704861112
+          ],
+          "continuous_scale_complete": [
+            25.433666666666664,
+            0.4805989583333331,
+            60.26199999999999,
+            10.9
+          ],
+          "condition_guide_reserved": [
+            25.8,
+            82.5,
+            105,
+            88.0
+          ],
+          "continuous_scale_reserved": [
+            24,
+            0.5,
+            63,
+            11.5
+          ],
+          "missing_guide_reserved": [
+            74.5,
+            8.0,
+            111,
+            12.5
+          ],
+          "condition_guide_complete_area_fraction_of_matrix": 0.05396301837338428,
+          "missing_guide_complete_area_fraction_of_matrix": 0.017630001980159172,
+          "continuous_scale_complete_area_fraction_of_matrix": 0.1217957283479937
+        },
+        "warnings": []
+      }
+    }
+  ],
+  "audits": {
+    "create": {
+      "report_relative_to_report_dir": "create-numeric-export-audit.json",
+      "pass": true,
+      "passed_checks": 15,
+      "total_checks": 15,
+      "failures": []
+    },
+    "reproduce": {
+      "report_relative_to_report_dir": "reproduce-numeric-export-audit.json",
+      "pass": true,
+      "passed_checks": 17,
+      "total_checks": 17,
+      "failures": []
+    }
+  },
+  "portable_commands": [
+    "{python} {package}/replay_and_verify.py --work-dir {new_tmp_dir} --report {new_report_json}",
+    "{python} {relocated_create}/run_analysis_plot.py --run-dir {fresh_create_output}",
+    "{python} {relocated_create}/verify_outputs.py --run-dir {fresh_create_output}",
+    "{python} {relocated_reproduce}/plot_panel.py --out {fresh_reproduce_output}"
+  ],
+  "limits": [
+    "The replay uses external Python dependencies and an installed Arial font; portability means relocated trial paths succeeded in this recorded environment.",
+    "Only PNG and tabular artifact byte equality is required here; JSON numeric/analysis blocks are compared separately from historical absolute paths and metadata.",
+    "The run scripts do not regenerate final captions, reviews, delivery manifests, or manually augmented final settings.",
+    "The audit utility inspects its own fixture/expected resources internally; this packaging script reads neither directly.",
+    "No baseline condition, no WorkBuddy effectiveness comparison, and no claim that all v0.4.1 features were exercised."
+  ],
+  "create_independent_verifier_status": "passed",
+  "create_audit_mapping": {
+    "report_relative_to_report_dir": "create-audit-mapping.json",
+    "all_accepted_output_bytes_unchanged": true
+  },
+  "comparison_count": 13,
+  "passed_comparison_count": 13,
+  "status": "passed",
+  "unresolved_failures": []
+}

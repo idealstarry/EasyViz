@@ -1,0 +1,14 @@
+{
+  "runner": "Verifier harness, not model evidence",
+  "unchanged_defaults_detected_missing_canonical_names": [
+    "has_settings.json",
+    "has_python_plot_script",
+    "has_reference_reading"
+  ],
+  "explicit_relative_aliases_pass_all_checks": true,
+  "rejected_paths": {
+    "traversal": "ValueError: Artifact path escapes the project, including through a symlink",
+    "absolute": "ValueError: Artifact overrides must be relative to the project",
+    "symlink": "ValueError: Artifact path escapes the project, including through a symlink"
+  }
+}

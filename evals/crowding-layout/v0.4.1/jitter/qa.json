@@ -1,0 +1,118 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 24,
+  "plotted_input_rows": 24,
+  "input_sha256": "e6dc90be8a3c1137da51ca099d0587711195af02fcdedee6b835152719f17dae",
+  "width_mm": 120.0,
+  "height_mm": 90.0,
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "exports": {
+    "svg": {
+      "width_mm": 119.99999988888888,
+      "height_mm": 89.99999991666667,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system."
+    },
+    "pdf": {
+      "width_mm": 120.00000000001388,
+      "height_mm": 89.99999999999278
+    },
+    "png": {
+      "pixels": [
+        1417,
+        1063
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    }
+  },
+  "visual_review_required": true,
+  "note": "Automated checks cover canvas boundaries, same-axis horizontal/vertical tick-label overlap and heatmap cell annotations. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review.",
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "cell_annotations": {
+    "status": "pass",
+    "registered_count": 0,
+    "checked_count": 0,
+    "padding_mm": 0.2,
+    "issues": [],
+    "overflow_count": 0,
+    "overlap_pair_count": 0,
+    "minimum_sufficient_cell_dimensions_mm": {
+      "width": 0.0,
+      "height": 0.0
+    },
+    "cells": [],
+    "note": "Rendered text envelopes must fit their cells with the configured padding. Cell dimensions are a measured fit requirement, not a publication standard. No figure settings or data are changed."
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.10282620804398149,
+      "right": 0.9833333333333332,
+      "bottom": 0.07908926504629629,
+      "top": 0.977777777777778
+    },
+    "data_region_mm": [
+      12.33914496527778,
+      7.118033854166667,
+      105.66085503472222,
+      80.88196614583335
+    ],
+    "data_area_fraction": 0.7913016388757598,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.7913016388757598
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "point_layout": {
+    "policy": "jitter",
+    "status": "unchecked",
+    "seed": 23,
+    "categorical_half_width": 0.13,
+    "numeric_values_changed": false,
+    "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."
+  }
+}

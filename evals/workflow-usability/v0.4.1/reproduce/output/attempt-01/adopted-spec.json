@@ -1,0 +1,251 @@
+{
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "author_code_access": false,
+  "reference": "input/reference.png",
+  "inputs": [
+    "input/data/DATA_DICTIONARY.md",
+    "input/data/target-values.csv",
+    "input/data/target-samples.csv"
+  ],
+  "layout": {
+    "width_mm": 120,
+    "height_mm": 90,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "data_mapping": {
+    "coordinate": [
+      "analyte",
+      "specimen"
+    ],
+    "value": "z_score",
+    "unit": "dimensionless upstream standardized score",
+    "experimental_unit": "specimen; synthetic supplied dataset",
+    "row_order": [
+      "Signal_A",
+      "Signal_B",
+      "Signal_C",
+      "Signal_D",
+      "Signal_E",
+      "Signal_F",
+      "Signal_G",
+      "Signal_H"
+    ],
+    "column_order": "numeric display_order from target-samples.csv",
+    "conditions": [
+      "Baseline",
+      "Compound X",
+      "Compound Y"
+    ],
+    "normalization": "none; retain already supplied z_score",
+    "missingness": "three explicit unmeasured cells remain NaN and gray; measured zero remains neutral color; all 72 coordinates retained",
+    "summary": "arithmetic per-analyte mean over measured target samples only"
+  },
+  "statistics": {
+    "descriptive_mean": true,
+    "uncertainty": null,
+    "inferential_tests": null
+  },
+  "colors": {
+    "continuous": "RdBu_r",
+    "vmin": -2,
+    "center": 0,
+    "vmax": 2,
+    "condition_colors": {
+      "Baseline": "#607a9e",
+      "Compound X": "#d4a04f",
+      "Compound Y": "#448f84"
+    },
+    "unmeasured": "#d5d9df",
+    "mean_bars": "#718192",
+    "zero_line": "#b9c1cb"
+  },
+  "axes_mm": {
+    "heatmap": [
+      27,
+      21,
+      59,
+      50.5
+    ],
+    "condition_strip": [
+      27,
+      73.3,
+      59,
+      3.2
+    ],
+    "means": [
+      91,
+      21,
+      20.5,
+      50.5
+    ],
+    "colorbar": [
+      27,
+      8.1,
+      32.5,
+      2.3
+    ]
+  },
+  "guide": {
+    "condition": "one compact horizontal row near top",
+    "missing": "gray patch and Unmeasured lower right",
+    "continuous": "horizontal diverging scale at lower left with -2,0,+2"
+  },
+  "outline_policy": {
+    "filled_marks": "borderless cells, bars and categorical keys",
+    "exceptions": "axis baseline/ticks and summary zero line are separate line encodings"
+  },
+  "intentional_differences": [
+    "Use target analyte/specimen/condition names and supplied target values, so cell colors and means differ from reference.",
+    "Keep requested Arial 8 pt for all text roles, rather than recovering font from raster.",
+    "Explicit missingness from target source controls gray cells; no inferred missingness from pixels."
+  ],
+  "requirements": [
+    "main heatmap",
+    "aligned top condition strip",
+    "aligned right per-feature means",
+    "diverging scale",
+    "compact condition guide",
+    "separate unmeasured decoding",
+    "all 72 coordinates",
+    "fixed 120x90 mm full canvas",
+    "Arial 8 pt",
+    "300 dpi",
+    "editable SVG text",
+    "no image title or narrative",
+    "separate caption"
+  ],
+  "implementation": {
+    "route": "custom-script",
+    "path": "plot_panel.py",
+    "reason": "Core heatmap validates finite scores and its single-axis grammar omits strip and marginal means. Annotated-heatmap recipe assumes square partner matrix, binary metadata and selection. Neither contract fits this complete 8x9, three-condition matrix with explicit unmeasured cells. Custom vector cells, shared coordinates and measured-only bar means use physical-font/export primitives adapted from inspected render.py."
+  },
+  "layer_plan": [
+    {
+      "layer": "heatmap",
+      "evidence": [
+        "E1",
+        "E2",
+        "E5"
+      ],
+      "data": "target-values.csv",
+      "fields": [
+        "analyte",
+        "specimen",
+        "z_score",
+        "measurement_state"
+      ],
+      "transform": "join specimen metadata; explicit row and column order; preserve unmeasured NaN",
+      "artist": "vector rectangular heatmap cells",
+      "backend": "Matplotlib: Rectangle, axes data coordinates",
+      "verification": "72 retained cells; compare every cell source value and state; compare zero and missing colors; view PNG",
+      "adoption": "required"
+    },
+    {
+      "layer": "condition-strip",
+      "evidence": [
+        "E3",
+        "E7"
+      ],
+      "data": "target-samples.csv",
+      "fields": [
+        "specimen",
+        "condition",
+        "display_order"
+      ],
+      "transform": "sort by display_order; shared column positions",
+      "artist": "categorical rectangular cells",
+      "backend": "Matplotlib: Rectangle, shared x coordinates",
+      "verification": "9 strip cells and each source condition; column-edge alignment to main heatmap",
+      "adoption": "required"
+    },
+    {
+      "layer": "feature-means",
+      "evidence": [
+        "E4"
+      ],
+      "data": "target-values.csv",
+      "fields": [
+        "analyte",
+        "z_score",
+        "measurement_state"
+      ],
+      "transform": "arithmetic measured-only mean for each analyte, denominator 8 or 9",
+      "artist": "gray horizontal bars and zero reference line",
+      "backend": "Matplotlib: barh and axvline, shared y coordinates",
+      "verification": "compare widths with separate source aggregation; shared row-center positions and axis bounds",
+      "adoption": "required"
+    },
+    {
+      "layer": "condition-guide",
+      "evidence": [
+        "E3"
+      ],
+      "data": "target-samples.csv",
+      "fields": [
+        "condition"
+      ],
+      "transform": "stable ordered colors from specification",
+      "artist": "borderless keys and text",
+      "backend": "Matplotlib: Rectangle and text, canvas mm coordinates",
+      "verification": "same colors as strip; measure complete key/text bounds; view PNG",
+      "adoption": "required"
+    },
+    {
+      "layer": "continuous-scale",
+      "evidence": [
+        "E2"
+      ],
+      "data": "main-heatmap normalization",
+      "fields": [
+        "z_score"
+      ],
+      "transform": "fixed [-2,+2] neutral zero",
+      "artist": "horizontal colorbar",
+      "backend": "Matplotlib: ColorbarBase, shared Normalize and cmap",
+      "verification": "shared norm/cmap; ticks -2,0,2; full bounds measurement",
+      "adoption": "required"
+    },
+    {
+      "layer": "missing-guide",
+      "evidence": [
+        "E5"
+      ],
+      "data": "measurement_state",
+      "fields": [
+        "unmeasured"
+      ],
+      "transform": "none",
+      "artist": "gray key and Unmeasured text",
+      "backend": "Matplotlib: Rectangle and text, canvas mm coordinates",
+      "verification": "same gray as missing cells; distinct from measured zero; full bounds measurement",
+      "adoption": "required"
+    },
+    {
+      "layer": "labels",
+      "evidence": [
+        "E1",
+        "E4",
+        "E8"
+      ],
+      "data": "dictionary and target tables",
+      "fields": [
+        "analyte",
+        "specimen"
+      ],
+      "transform": "retain exact target names and order",
+      "artist": "axis text and ticks",
+      "backend": "Matplotlib: Axes ticks and text",
+      "verification": "all row/column labels; Arial 8 pt actual font; no clipping",
+      "adoption": "required"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "question": "Do the mouse-level signal distributions differ for each dose relative to Vehicle?",
+  "design": {
+    "unit": "specimen_id",
+    "unit_definition": "One independently sampled mouse; mean of available measured technical reads",
+    "structure": "independent",
+    "confirmed": true
+  },
+  "missing_policy": "error",
+  "missing_tokens": [
+    ""
+  ],
+  "comparisons": [
+    {
+      "name": "distribution_overview",
+      "method": "descriptive",
+      "fields": {
+        "group": "group",
+        "value": "mean_signal"
+      }
+    },
+    {
+      "name": "low_vs_vehicle",
+      "method": "mannwhitney",
+      "fields": {
+        "group": "group",
+        "value": "mean_signal"
+      },
+      "groups": [
+        "Low dose",
+        "Vehicle"
+      ]
+    },
+    {
+      "name": "high_vs_vehicle",
+      "method": "mannwhitney",
+      "fields": {
+        "group": "group",
+        "value": "mean_signal"
+      },
+      "groups": [
+        "High dose",
+        "Vehicle"
+      ]
+    }
+  ],
+  "multiplicity": {
+    "family": "Two prespecified dose comparisons versus Vehicle",
+    "adjustment": "holm",
+    "comparisons": [
+      "low_vs_vehicle",
+      "high_vs_vehicle"
+    ]
+  }
+}

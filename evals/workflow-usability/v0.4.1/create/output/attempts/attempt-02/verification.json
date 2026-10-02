@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "scope": "This exact synthetic input, adopted single panel, captured helpers and exported files only",
+  "source_unit_checks": {
+    "current_mice": 36,
+    "per_group": 12,
+    "technical_rows": 72,
+    "measured_reads": 71,
+    "failed_read_mouse_retained": "0008",
+    "literal_ids_preserved": true,
+    "raw_to_mean_join_verified": true,
+    "analysis_render_input_hashes_match": true
+  },
+  "independent_descriptions": {
+    "Vehicle": {
+      "n_rows": 12,
+      "mean": 86.20346666666667,
+      "median": 83.302425,
+      "sd": 11.054095597340904,
+      "q1": 79.942025,
+      "q3": 93.350775,
+      "minimum": 71.1421,
+      "maximum": 105.2146
+    },
+    "Low dose": {
+      "n_rows": 12,
+      "mean": 104.67456250000001,
+      "median": 100.96225000000001,
+      "sd": 13.149482945488511,
+      "q1": 96.6163,
+      "q3": 111.1632875,
+      "minimum": 86.5459,
+      "maximum": 134.9572
+    },
+    "High dose": {
+      "n_rows": 12,
+      "mean": 121.8414875,
+      "median": 120.569825,
+      "sd": 12.08961039492034,
+      "q1": 116.9887625,
+      "q3": 131.546175,
+      "minimum": 100.8419,
+      "maximum": 141.8932
+    }
+  },
+  "independent_rank_and_holm_calculations": [
+    {
+      "comparison": "low_vs_vehicle",
+      "u_first_dose": 123.0,
+      "greater": 123,
+      "lower": 21,
+      "ties": 0,
+      "cliffs_delta": 0.7083333333333334,
+      "manual_asymptotic_p": 0.003549838634913572,
+      "helper_adjusted_p": 0.003549838634913564,
+      "manual_holm_p": 0.003549838634913572
+    },
+    {
+      "comparison": "high_vs_vehicle",
+      "u_first_dose": 142.0,
+      "greater": 142,
+      "lower": 2,
+      "ties": 0,
+      "cliffs_delta": 0.9722222222222222,
+      "manual_asymptotic_p": 6.0057602968049023e-05,
+      "helper_adjusted_p": 0.00012011520593609799,
+      "manual_holm_p": 0.00012011520593609805
+    }
+  ],
+  "exports": {
+    "pdf_mm": [
+      120.00000000001387,
+      89.99999999999278
+    ],
+    "pdf_fonts": [
+      {
+        "resource": "/F1",
+        "base_font": "/ETJORM+ArialMT",
+        "embedded": true
+      }
+    ],
+    "pdf_text_sizes_pt": [
+      8.0
+    ],
+    "svg_mm": [
+      119.99999988888891,
+      89.99999991666667
+    ],
+    "svg_editable_text_elements": 12,
+    "svg_text_font": "Arial 8 pt in SVG pt coordinates",
+    "png_pixels": [
+      1417,
+      1063
+    ],
+    "png_dpi": [
+      299.9994,
+      299.9994
+    ],
+    "white_canvas_corners": true
+  },
+  "limitations": [
+    "Visual review is self-review, not independent.",
+    "Mann\u2013Whitney p values use continuity- and tie-corrected normal approximation at n=12 per arm.",
+    "No effect confidence intervals are computed; boxes encode quartiles of observations.",
+    "No claim about arbitrary datasets, unsupported layers, or publication acceptance."
+  ],
+  "artifact_hashes": {
+    "plotting_data.csv": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+    "panel/panel.png": "6d8d7ce01e0c6c341c2a6b2cf39f35c7d36c92ceaa7d5d1a215ffe948941e40d",
+    "panel/panel.svg": "859b4520195817f2725ce0968d0ca786c16193afa9f9b0dd44d45d2e70e942df",
+    "panel/panel.pdf": "4f88b91681e5ddefea906aa61e759e20dcf5c14e84d33d414c9d82fd0466b509"
+  }
+}

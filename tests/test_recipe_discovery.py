@@ -71,7 +71,7 @@ class RecipeDiscoveryTests(unittest.TestCase):
 
     def test_workflows_route_to_real_commands_with_only_two_tracks(self):
         routes = self.discovery()["workflow_tools"]
-        self.assertEqual(set(routes), {"inspect_data", "analyze", "reference_packet", "figure_workbench"})
+        self.assertEqual(set(routes), {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench"})
         for name, route in routes.items():
             with self.subTest(workflow=name):
                 self.assertTrue(Path(route["doc"]).is_file())
@@ -80,6 +80,7 @@ class RecipeDiscoveryTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(routes["analyze"]["tracks"], ["create"])
         self.assertEqual(routes["reference_packet"]["tracks"], ["reproduce"])
+        self.assertEqual(routes["audit_reproduction"]["tracks"], ["reproduce"])
 
     def test_core_rejects_recipe_specs_with_truthful_failed_qa_and_route(self):
         before = self.source.read_bytes()
@@ -117,7 +118,7 @@ class RecipeDiscoveryTests(unittest.TestCase):
         (copied / "references").mkdir()
         for chart in RECIPES:
             shutil.copy2(SKILL / "references" / f"{chart}-plot.md", copied / "references" / f"{chart}-plot.md")
-        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "figure-workbench.md"):
+        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "complex-reproduction.md", "figure-workbench.md"):
             shutil.copy2(SKILL / "references" / name, copied / "references" / name)
         described = self.discovery(copied)
         for chart, route in described["focused_recipes"].items():

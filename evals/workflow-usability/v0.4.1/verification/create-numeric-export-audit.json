@@ -1,0 +1,227 @@
+{
+  "task": "create",
+  "project": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create",
+  "checks": [
+    {
+      "name": "source_inputs_unchanged",
+      "pass": true,
+      "detail": {
+        "expected_files": 6,
+        "actual_files": 6
+      }
+    },
+    {
+      "name": "all_independent_units_once",
+      "pass": true,
+      "detail": {
+        "rows": 36,
+        "unique_units": 36,
+        "expected_units": 36
+      }
+    },
+    {
+      "name": "literal_join_groups_and_technical_means",
+      "pass": true,
+      "detail": {
+        "mismatched_units": []
+      }
+    },
+    {
+      "name": "biological_n_is_twelve_per_arm",
+      "pass": true,
+      "detail": {
+        "Vehicle": 12,
+        "Low dose": 12,
+        "High dose": 12
+      }
+    },
+    {
+      "name": "svg_full_canvas_120x90mm",
+      "pass": true,
+      "detail": [
+        119.99999988888888,
+        89.99999991666665
+      ]
+    },
+    {
+      "name": "svg_retains_text_elements",
+      "pass": true,
+      "detail": {
+        "text_nodes": 12
+      }
+    },
+    {
+      "name": "pdf_one_full_canvas_120x90mm",
+      "pass": true,
+      "detail": [
+        [
+          120.00000000001387,
+          89.99999999999278
+        ]
+      ]
+    },
+    {
+      "name": "pdf_direct_page_Arial_embedded",
+      "pass": true,
+      "detail": [
+        {
+          "resource": "/F1",
+          "basefont": "/ETJORM+ArialMT",
+          "subtype": "/Type0",
+          "embedded": true,
+          "embedding": "font_file"
+        }
+      ]
+    },
+    {
+      "name": "pdf_direct_text_sizes_8pt",
+      "pass": true,
+      "detail": [
+        8.0
+      ]
+    },
+    {
+      "name": "png_dimensions_match_300dpi_full_canvas",
+      "pass": true,
+      "detail": [
+        1417,
+        1063
+      ]
+    },
+    {
+      "name": "png_records_300dpi",
+      "pass": true,
+      "detail": [
+        299.9994,
+        299.9994
+      ]
+    },
+    {
+      "name": "has_settings.json",
+      "pass": true,
+      "detail": {
+        "requested": "output/figure-settings.json",
+        "resolved": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create/output/figure-settings.json",
+        "inside_project": true,
+        "exists": true,
+        "nonempty": true,
+        "override": true
+      }
+    },
+    {
+      "name": "has_caption.md",
+      "pass": true,
+      "detail": {
+        "requested": "output/caption.md",
+        "resolved": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create/output/caption.md",
+        "inside_project": true,
+        "exists": true,
+        "nonempty": true
+      }
+    },
+    {
+      "name": "has_review.md",
+      "pass": true,
+      "detail": {
+        "requested": "output/review.md",
+        "resolved": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create/output/review.md",
+        "inside_project": true,
+        "exists": true,
+        "nonempty": true
+      }
+    },
+    {
+      "name": "has_python_plot_script",
+      "pass": true,
+      "detail": {
+        "override": true,
+        "candidates": [
+          {
+            "requested": "run_analysis_plot.py",
+            "resolved": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create/run_analysis_plot.py",
+            "inside_project": true,
+            "exists": true,
+            "nonempty": true
+          }
+        ],
+        "limitation": "Existence only; code semantics and rerun portability require separate checks."
+      }
+    }
+  ],
+  "pass": true,
+  "facts": {
+    "plotting_rows": 36,
+    "svg_viewbox": "0 0 340.15748 255.11811",
+    "pdf_text": {
+      "fonts": [
+        {
+          "resource": "/F1",
+          "basefont": "/ETJORM+ArialMT",
+          "subtype": "/Type0",
+          "embedded": true,
+          "embedding": "font_file"
+        }
+      ],
+      "direct_text_operator_sizes_pt": [
+        8.0
+      ],
+      "limitation": "Direct page operators only; transformed form text requires manual inspection."
+    },
+    "artifact_paths": {
+      "settings": {
+        "requested": "output/figure-settings.json",
+        "resolved": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create/output/figure-settings.json",
+        "inside_project": true,
+        "exists": true,
+        "nonempty": true,
+        "override": true
+      },
+      "script": {
+        "override": true,
+        "candidates": [
+          {
+            "requested": "run_analysis_plot.py",
+            "resolved": "/private/tmp/easyviz-v041-package-replay-nplqbq72/audit-only-create/run_analysis_plot.py",
+            "inside_project": true,
+            "exists": true,
+            "nonempty": true
+          }
+        ]
+      }
+    }
+  },
+  "output_sha256": {
+    "adopted-spec.md": "f662f08f592d4e68dff4afe707f3a5cd7870916d89031cce02a1fd227a2880d5",
+    "analysis-plan.json": "c391127ac00065084e3d01bfe349e06432e63efbadf138a2365adad4bb04aedf",
+    "analysis-rationale.md": "06107cca0e8d48a14a5c06ed3b527069572b8aaee082127f4160fd86b977c65e",
+    "caption.md": "744b4c991fe48e61aed7d12660b5e528d5b006cc5680723226de8a9649dd211a",
+    "delivery-manifest.json": "6f57e0282bee3bb4f0dfce56f882301c3b2fff561555755618ef7e10041d0633",
+    "figure-settings.json": "0103f0a08c2519c0789de6f12b1782d6e2df7d4e25eff6b399197c9ca55259c2",
+    "panel.pdf": "4f88b91681e5ddefea906aa61e759e20dcf5c14e84d33d414c9d82fd0466b509",
+    "panel.png": "6d8d7ce01e0c6c341c2a6b2cf39f35c7d36c92ceaa7d5d1a215ffe948941e40d",
+    "panel.svg": "859b4520195817f2725ce0968d0ca786c16193afa9f9b0dd44d45d2e70e942df",
+    "plot-spec.json": "0fa3d0afb8118e7487865d91f9b03cdb5ff23c783e9f85485bb2836320596c75",
+    "plotting_data.csv": "948fed12d6569385eb4d53fa78f12673f441be5a08ede8a5076343ca74156a5b",
+    "preparation.json": "621dcd7dd35a35e8e2fb1658993bd3aadba7b186477bb36209f43de634b90527",
+    "renderer-elements.json": "d182ce08ce42cf23e6b0197b05a2465f918f06c078cc8331b2572b50030c32a6",
+    "renderer-plotting-data.csv": "89fbb2b13d978f24ffefc82bb38c07e1a136f965ef2494e4004386989ccb11ae",
+    "renderer-qa.json": "6bb6a7a5c56ade5329140c2d8f8a4cd9447fec22cf666b9b4e92fdb631629f38",
+    "renderer-settings.json": "cccbe787392a7ad8006b4340e08f07d729b9390e1fd0f802ea65352deba91b2a",
+    "renderer-stats.json": "5dce5d4a6ff6d4d031de1138798eaa2d2ea35da079ba10117be1593ad800b0ec",
+    "review.json": "31a1a1f9bb83efdaddcbf548b3f90ec670ff6768ae813e252f1df280237a51bf",
+    "review.md": "b996bdb8e56b8cabf7e6354c4f3b89fbed9e74eea84f70a0223f23c53811d165",
+    "run-provenance.json": "1f304d531b3f95a8539d6a4c2238e0d35b7f5d7a5f2659a9ba69a6b7fb53ddd9",
+    "statistics/analyzed-data.csv": "86383cfc77f049f636d39db5e3ef6088a1279f336eab3f9b6c267ddd76ade909",
+    "statistics/methodology.md": "98473406b1208c2a9f0ca8d21c524c450178d79eeb26df4a732fbb5174fd290d",
+    "statistics/plan.json": "c391127ac00065084e3d01bfe349e06432e63efbadf138a2365adad4bb04aedf",
+    "statistics/results.json": "31cbe332d3e31a9b85cf589f0d25fabaff6b089d9fbedf345bbf4a896ccaffd2",
+    "statistics/summary.csv": "b3f5b706c03eeb80191c808953356b00f90b94babdf05a5785f1d1aa7ecdbb28",
+    "verification.json": "3928599af4117fe5bdc207d96f0e5df768cf9da29adfd9194cf8ef5fe7e52a1b"
+  },
+  "limits": [
+    "Tables do not prove marks use those values: inspect code/rendered layer mappings.",
+    "No automatic statistical-method correctness or aesthetics verdict.",
+    "Input restrictions are instructions, not OS-enforced access isolation.",
+    "No rerun claim until an isolated rerun has actually succeeded."
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "reader": {
+    "role": "main-agent",
+    "independence": "not-independent",
+    "image_viewed": true,
+    "limitations": [
+      "Task contract prohibits other agents; parent supplied required overall structure before image reading. No author code or paper Source Data accessed."
+    ]
+  },
+  "reference": {
+    "path": "/private/tmp/easyviz-v041-forward-reproduce/input/reference.png",
+    "sha256": "098cff261b3fc0d489bc13939d82b65f2fb81258644ea302cf39fcbe44f92949",
+    "selected_region": "entire supplied single panel",
+    "pixel_size": [
+      1417,
+      1062
+    ]
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "property": "chart.layers",
+      "state": "observed",
+      "source": "reference",
+      "description": "Eight heatmap rows labelled Marker A\u2013H and nine columns R01\u2013R09; an aligned condition strip above and aligned horizontal single-value bars at right."
+    },
+    {
+      "id": "E2",
+      "property": "heatmap.encoding",
+      "state": "observed",
+      "source": "reference",
+      "description": "Contiguous borderless rectangular cells; blue negative through near-white zero to red positive. Horizontal scale shows \u22122, 0, 2 and Standardized score."
+    },
+    {
+      "id": "E3",
+      "property": "condition.encoding",
+      "state": "observed",
+      "source": "reference",
+      "description": "Strip consists of blue, ochre and teal blocks, each spanning three columns; top guide pairs these colors with Control, Treatment A and Treatment B."
+    },
+    {
+      "id": "E4",
+      "property": "means.encoding",
+      "state": "observed",
+      "source": "reference",
+      "description": "Gray horizontal bars start at zero and share heatmap row centers; a pale vertical zero line and \u22121, 0, 1 ticks appear. Axis label Mean score."
+    },
+    {
+      "id": "E5",
+      "property": "missing.encoding",
+      "state": "observed",
+      "source": "reference",
+      "description": "Gray cells differ from the near-white scale midpoint; lower-right gray key reads Unmeasured. Exact gray-cell count is not relied upon."
+    },
+    {
+      "id": "E6",
+      "property": "stacking",
+      "state": "observed",
+      "source": "reference",
+      "description": "White canvas; flat heatmap cells and strip; labels outside heatmap. Gray reference line behind summary bars; summary baseline/ticks below. Guides occupy free top and bottom areas."
+    },
+    {
+      "id": "E7",
+      "property": "geometry",
+      "state": "observed",
+      "source": "reference",
+      "description": "Approximate normalized bounds: main matrix [0.225,0.204,0.715,0.765]; strip [0.225,0.149,0.715,0.185]; summary field [0.755,0.204,0.926,0.765]; condition guide [0.215,0.039,0.690,0.064]; scale body [0.225,0.884,0.495,0.910]; missing guide [0.630,0.873,0.820,0.897].",
+      "uncertainty": "Bounds estimated visually; full key/text envelopes extend beyond colorbar body."
+    },
+    {
+      "id": "E8",
+      "property": "labels",
+      "state": "observed",
+      "source": "reference",
+      "description": "Black regular sans-serif labels; vertical specimen labels below matrix; no visible title or narrative prose."
+    },
+    {
+      "id": "E9",
+      "property": "statistics",
+      "state": "unknown",
+      "source": null,
+      "description": "Image alone does not establish mean denominator, z-score derivation, independent unit or missing-data process.",
+      "uncertainty": "No caption or methods supplied with reference."
+    },
+    {
+      "id": "E10",
+      "property": "physical_typography",
+      "state": "unknown",
+      "source": null,
+      "description": "Exact physical dimensions, typeface, point sizes, original color values and line widths are unknown.",
+      "uncertainty": "Raster pixels cannot establish mm, pt, dpi or exact font identity."
+    }
+  ],
+  "layers": [
+    {
+      "id": "condition-strip",
+      "evidence_ids": [
+        "E3",
+        "E7"
+      ],
+      "required_data_meanings": [
+        "specimen identity",
+        "condition category",
+        "specimen order"
+      ]
+    },
+    {
+      "id": "heatmap",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E5"
+      ],
+      "required_data_meanings": [
+        "feature identity",
+        "specimen identity",
+        "standardized score",
+        "measurement state",
+        "feature and specimen order"
+      ]
+    },
+    {
+      "id": "feature-means",
+      "evidence_ids": [
+        "E4",
+        "E9"
+      ],
+      "required_data_meanings": [
+        "feature identity",
+        "measured standardized score",
+        "aggregation denominator"
+      ]
+    },
+    {
+      "id": "condition-guide",
+      "evidence_ids": [
+        "E3"
+      ],
+      "required_data_meanings": [
+        "category identity and matching colors"
+      ]
+    },
+    {
+      "id": "continuous-scale",
+      "evidence_ids": [
+        "E2"
+      ],
+      "required_data_meanings": [
+        "standardized score and shared color normalization"
+      ]
+    },
+    {
+      "id": "missing-guide",
+      "evidence_ids": [
+        "E5"
+      ],
+      "required_data_meanings": [
+        "explicit unmeasured state"
+      ]
+    },
+    {
+      "id": "axis-labels",
+      "evidence_ids": [
+        "E1",
+        "E4",
+        "E8"
+      ],
+      "required_data_meanings": [
+        "feature and specimen display labels",
+        "score units"
+      ]
+    }
+  ]
+}

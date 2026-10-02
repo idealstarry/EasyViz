@@ -163,6 +163,10 @@ In either track, ask the Agent to open the [local figure workbench](skills/easyv
 
 Deliverables include the individual panel, caption, runnable script, settings, plotting data and relevant checks. Literature Source Data cases provide auditable learning examples; they are not prerequisites for your own reproduction.
 
+For crowded raw observations, the Agent can use [physical beeswarm placement](skills/easyviz/references/collision-placement.md): spread circles along the category axis while retaining measurements, marker sizes and the agreed canvas. Unresolved packing is reported for a layout decision. [The same-data example](evals/crowding-layout/v0.4.1/README.md) records 12 overlapping pairs reduced to zero.
+
+[Directory exploration](skills/easyviz/references/data-exploration.md) now flags suspected summary tables, repeated identifiers and ambiguous fields before proposing analysis. [Complex reproduction guidance](skills/easyviz/references/complex-reproduction.md) covers shared coordinates, ID joins, marginal summaries and separate guides, with an optional audit of recorded layer and numeric evidence. Actual image review remains part of both tracks.
+
 The `$easyviz` shorthand requires a discoverable skill. For an uninstalled checkout, ask the Agent to read and use the absolute path to `skills/easyviz/SKILL.md`.
 
 ## Setup

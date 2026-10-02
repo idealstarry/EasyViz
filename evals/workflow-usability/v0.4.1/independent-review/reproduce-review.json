@@ -1,0 +1,151 @@
+{
+  "reviewer": "independent rendered-panel review",
+  "track": "reproduce",
+  "candidate": "/private/tmp/easyviz-v041-forward-reproduce/output/attempt-02/panel.png",
+  "reference": "/private/tmp/easyviz-v041-forward-reproduce/input/reference.png",
+  "adopted_specification": "/private/tmp/easyviz-v041-forward-reproduce/adopted-spec.json",
+  "caption": "/private/tmp/easyviz-v041-forward-reproduce/output/caption.md",
+  "images_actually_inspected": [
+    "reference PNG",
+    "candidate PNG",
+    "candidate PDF rendered at 96 dpi"
+  ],
+  "scope": "Rendered visual requirements, reference structure/style, caption presence and content, independently measured exports. No implementation, numeric audit, expected tables or model-condition records inspected.",
+  "status": "ready_with_notes",
+  "status_scope": "Visual and export readiness only; source-to-cell and arithmetic-mean correctness remain outside this review.",
+  "counts": {
+    "critical": 0,
+    "major": 0,
+    "minor": 0,
+    "note": 2
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Main heatmap and right means",
+      "evidence": "Target labels Signal_A through Signal_H and S01 through S09 replace reference labels. Heatmap colors and marginal bar shapes differ, while the 8 by 9 structure and aligned layers are preserved.",
+      "requirement": "Adopted target names and values; compare reference structure and style rather than pixel identity.",
+      "action": "Retain the target labels and visual shapes; do not change values to resemble the reference."
+    },
+    {
+      "severity": "note",
+      "location": "Scientific numeric correctness",
+      "evidence": "The rendered panel visibly has 72 cell positions and three gray cells. Pixel inspection cannot establish every source value, a measured zero, or measured-only mean arithmetic. Those checks were deliberately outside this review.",
+      "requirement": "Independent numerical audit belongs to the implementing workflow and must accompany release.",
+      "action": "Use the separate source-to-export audit for numeric readiness; do not interpret this visual status as a numeric sign-off."
+    }
+  ],
+  "visual_checks": [
+    {
+      "check": "Main heatmap and target labels",
+      "status": "passed",
+      "evidence": "Eight labeled rows and nine labeled columns; no missing or clipped label, visible 8 by 9 rectangular array."
+    },
+    {
+      "check": "Condition strip and guide",
+      "status": "passed",
+      "evidence": "Three colored strip blocks align with columns S01-S03, S04-S06, S07-S09. Guide colors match the strip and remain subordinate to the main data region."
+    },
+    {
+      "check": "Right marginal alignment",
+      "status": "passed",
+      "evidence": "All eight horizontal bars share the heatmap row centers. Mean score axis and zero line are legible; near-zero rows remain near the origin."
+    },
+    {
+      "check": "Diverging scale and missingness decoding",
+      "status": "passed",
+      "evidence": "Blue-to-red horizontal scale labels -2, 0 and 2, with neutral center. Three gray cells are visibly different from neutral score cells and have a matching Unmeasured key."
+    },
+    {
+      "check": "Reference structure and style",
+      "status": "passed",
+      "evidence": "Relative geometry, strip position, borderless cells and bars, rotated specimen labels, horizontal scale, compact top guide and lower-right unmeasured key follow the reference."
+    },
+    {
+      "check": "Final-size readability",
+      "status": "passed",
+      "evidence": "PDF rendered at 96 dpi provides approximately 454 by 341 screen pixels for the 120 by 90 mm page; all labels and keys remain legible with no overlap or clipping. This is a proportion check rather than a calibrated physical print."
+    },
+    {
+      "check": "Panel text and separate caption",
+      "status": "passed",
+      "evidence": "Only data-reading text appears in the panel. Separate caption supplies synthetic-data context, score semantics, missingness and measured-only descriptive-mean method without invented panel numbering."
+    }
+  ],
+  "external_numerical_checks": [
+    {
+      "check": "Source value and state for all 72 cells",
+      "status": "not_checked",
+      "evidence": "Outside independent visual review; no source numeric tables or implementation audit inspected."
+    },
+    {
+      "check": "Measured zero and measured-only means",
+      "status": "not_checked",
+      "evidence": "Outside independent visual review; image colors and widths alone do not prove arithmetic."
+    }
+  ],
+  "independent_export_checks": [
+    {
+      "check": "SVG fixed canvas",
+      "status": "passed",
+      "evidence": {
+        "width_pt": 340.15748,
+        "height_pt": 255.11811,
+        "width_mm": 119.99999988888888,
+        "height_mm": 89.99999991666667,
+        "method": "Parsed SVG root attributes; pt to mm at 25.4/72."
+      }
+    },
+    {
+      "check": "SVG editable Arial 8 pt text",
+      "status": "passed",
+      "evidence": "29 SVG text elements; every style declares Arial and 8 user units. Root width and viewBox use matching point geometry; text ancestors have rotation/translation only, without font scaling."
+    },
+    {
+      "check": "PDF physical page",
+      "status": "passed",
+      "evidence": "pdfinfo: one page, 340.157 by 255.118 points, approximately 120 by 90 mm, no page rotation."
+    },
+    {
+      "check": "PDF actual font embedding",
+      "status": "passed",
+      "evidence": "pdffonts: two subset ArialMT CID TrueType resources, both embedded, Unicode enabled."
+    },
+    {
+      "check": "PDF text size",
+      "status": "passed",
+      "evidence": "Independently decompressed PDF content streams; all 31 Tf font-setting commands are 8 pt."
+    },
+    {
+      "check": "PNG pixels and resolution",
+      "status": "passed",
+      "evidence": {
+        "pixels": [
+          1417,
+          1063
+        ],
+        "pixels_per_metre": [
+          11811,
+          11811
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ],
+        "method": "Parsed PNG IHDR and pHYs chunks with standard library; nearest-pixel rounding matches 120 by 90 mm at 300 dpi."
+      }
+    },
+    {
+      "check": "Font identity from PNG pixels alone",
+      "status": "not_checked",
+      "evidence": "Raster pixels cannot establish exact font identity; actual typography is independently supported by SVG and PDF checks."
+    }
+  ],
+  "refinement_preference": {
+    "status": "not_checked",
+    "evidence": "No accepted baseline or multi-condition comparison requested. Reference comparison establishes structural reproduction only; no preference or model gain claimed."
+  },
+  "unresolved_visual_or_export_items": [],
+  "required_repairs": [],
+  "most_useful_next_correction": "No visual repair required for this supplied candidate. Complete the separate numeric audit before release."
+}

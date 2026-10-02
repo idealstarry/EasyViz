@@ -1,0 +1,5 @@
+请完成这个 reproduce 任务。先实际查看 input/reference.png，独立记录能观察到的图层、编码、排列、相对位置和不确定之处到 reference-reading.md，再根据 input/data 的用户数据及字典编写绘图代码。参考只定义视觉结构，参考中的数值和名称不能作为目标数据；没有作者代码或论文 Source Data。
+
+复现对齐的顶部条件色条、主热图、右侧逐特征均值、发散色条和紧凑条件图例。使用目标名称及目标排序；三个明确未测量的格子须与测得零值区分。均值按字典计算，不添加未给定的误差条或统计检验。图层保持相互对齐，色条范围固定 −2 到 +2，保留所有目标坐标。画布固定 120 × 90 mm，Arial 8 pt，白底，输出完整画布 panel.pdf、panel.svg、panel.png（300 dpi），SVG 文字可编辑。图内只保留读数据所需文字，其他说明放 caption.md。查看实际 PNG，有必要时最多做两次视觉修正，保留此前输出。
+
+最终存到 output/。除图片外，保存可重跑的绘图脚本、settings.json（实际字体/尺寸/颜色/字段映射/排序/范围）、caption.md、review.md；保存 plotting_data.csv，字段固定为 analyte,specimen,z_score,measurement_state，保留全部 72 个坐标及未测量状态；保存 feature-means.csv，字段固定为 analyte,mean_z_score,measured_count。两张表须是绘图实际使用的数据，不能只为验收另造一份。最终回复说明完成的图层、检查结果和实际输出路径。不得联网寻找代码或查阅参考图的生成代码。

@@ -1,0 +1,151 @@
+{
+  "reviewer": "independent rendered-panel review",
+  "track": "create",
+  "candidate": "/private/tmp/easyviz-v041-forward-create/output/attempts/attempt-02/panel/panel.png",
+  "reference": null,
+  "adopted_specification": [
+    "/private/tmp/easyviz-v041-forward-create/adopted-spec.md",
+    "/private/tmp/easyviz-v041-forward-create/output/attempts/attempt-02/plot-spec.json"
+  ],
+  "caption": "/private/tmp/easyviz-v041-forward-create/caption.md",
+  "images_actually_inspected": [
+    "candidate PNG",
+    "candidate PDF rendered at 96 dpi"
+  ],
+  "scope": "Rendered visual requirements, caption structure and meaning, and independently measured exports/mark geometry. No implementation, numeric truth, evaluation records or self-review inspected.",
+  "status": "ready_with_notes",
+  "status_scope": "Visual and export readiness only; unit construction, summaries and inference correctness remain outside this review.",
+  "counts": {
+    "critical": 0,
+    "major": 0,
+    "minor": 0,
+    "note": 1
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Separate caption and scientific numeric correctness",
+      "evidence": "The caption clearly distinguishes mouse means, observed box ranges, measured-read handling and dose-versus-Vehicle inference. Its exact numeric estimates, P values, source identifiers, technical-read aggregation and summary calculations were not verified here.",
+      "requirement": "Numerical checks belong to the separate source-to-export audit.",
+      "action": "Retain the separate numerical audit before release; do not interpret this visual status as inference sign-off."
+    }
+  ],
+  "visual_checks": [
+    {
+      "check": "Question and reading task",
+      "status": "passed",
+      "evidence": "The three ordered boxplots and every observation expose dose-related distribution shifts, spread, overlap and the high Low-dose observation. Group names decode colors directly."
+    },
+    {
+      "check": "Individual observations",
+      "status": "passed",
+      "evidence": "Actual SVG has 36 colored circle instances, 12 per group. Exported circle paths have radius 2 pt (4 pt diameter); minimum within-group center distance is approximately 4.3 pt, leaving the adopted 0.3 pt edge gap."
+    },
+    {
+      "check": "Outline policy",
+      "status": "passed",
+      "evidence": "Observation instances use fill only without stroke. Boxes have light fills and group-colored quartile boundaries; dark medians and whiskers remain clear as intentional summary line encodings."
+    },
+    {
+      "check": "Order and labels",
+      "status": "passed",
+      "evidence": "Vehicle, Low dose, High dose left to right; Signal (a.u.) axis with regular 70-140 ticks. No missing glyphs, truncation or overlap visible."
+    },
+    {
+      "check": "Palette and hierarchy",
+      "status": "passed",
+      "evidence": "Blue, orange and teal circles are distinct against light box fills. Dark medians remain visible; faint gridlines stay behind boxes and circles, and data occupy the primary panel area."
+    },
+    {
+      "check": "Final-size readability",
+      "status": "passed",
+      "evidence": "Actual PDF rendered at 96 dpi, approximately 454 by 341 pixels for 120 by 90 mm. Group labels, value ticks and y-axis label remain readable; individual dots are visible. This is a proportion check rather than a calibrated physical print."
+    },
+    {
+      "check": "Panel text and separate caption",
+      "status": "passed",
+      "evidence": "No in-image title, panel identifier, narrative, count or extra legend. Separate caption provides units, technical-read aggregation, missing-read handling, box/whisker definitions, inference method and limitations."
+    }
+  ],
+  "external_numerical_checks": [
+    {
+      "check": "Literal-key join and construction of the 36 mouse means",
+      "status": "not_checked",
+      "evidence": "Outside independent visual review; exported circle count is a geometry check, not proof of source identity or aggregation."
+    },
+    {
+      "check": "Box quartiles, medians and whisker numeric values",
+      "status": "not_checked",
+      "evidence": "No source numeric data or expected summaries inspected."
+    },
+    {
+      "check": "Mann-Whitney, Holm and Cliff delta numeric claims",
+      "status": "not_checked",
+      "evidence": "Caption methodology was read, but estimates and P values were not audited."
+    }
+  ],
+  "independent_export_checks": [
+    {
+      "check": "SVG fixed canvas",
+      "status": "passed",
+      "evidence": {
+        "width_pt": 340.15748,
+        "height_pt": 255.11811,
+        "width_mm": 119.99999988888888,
+        "height_mm": 89.99999991666667,
+        "method": "Parsed SVG root attributes; pt to mm at 25.4/72."
+      }
+    },
+    {
+      "check": "SVG editable Arial 8 pt text",
+      "status": "passed",
+      "evidence": "12 SVG text elements, all with Arial and font size 8 user units. Point dimensions and matching viewBox establish 8 pt at final size; transforms are rotation only."
+    },
+    {
+      "check": "PDF physical page",
+      "status": "passed",
+      "evidence": "pdfinfo: one page, 340.157 by 255.118 points, approximately 120 by 90 mm, no page rotation."
+    },
+    {
+      "check": "PDF actual font embedding",
+      "status": "passed",
+      "evidence": "pdffonts: subset ArialMT CID TrueType resource embedded with Unicode mapping."
+    },
+    {
+      "check": "PDF text size",
+      "status": "passed",
+      "evidence": "Independent decompression of PDF content streams found 12 Tf font-setting commands, all 8 pt."
+    },
+    {
+      "check": "PNG pixels and resolution",
+      "status": "passed",
+      "evidence": {
+        "pixels": [
+          1417,
+          1063
+        ],
+        "pixels_per_metre": [
+          11811,
+          11811
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ],
+        "method": "Parsed PNG IHDR and pHYs chunks independently; nearest-pixel rounding matches 120 by 90 mm at 300 dpi."
+      }
+    },
+    {
+      "check": "Font identity from PNG pixels alone",
+      "status": "not_checked",
+      "evidence": "Exact font identity cannot be recovered from raster pixels alone; actual typography is supported by independent SVG/PDF checks."
+    }
+  ],
+  "refinement_preference": {
+    "status": "not_checked",
+    "evidence": "No baseline exists and no comparative aesthetic judgment requested. No preference or model gain claimed."
+  },
+  "unresolved_visual_or_export_items": [],
+  "required_repairs": [],
+  "most_useful_next_correction": "No visual repair required for this supplied candidate. Complete or retain the separate numeric audit before release."
+}

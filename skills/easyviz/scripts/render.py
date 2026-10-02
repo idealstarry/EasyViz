@@ -47,7 +47,7 @@ class SpecError(ValueError):
     """The requested panel cannot faithfully represent the supplied input."""
 
 
-VERSION = "0.4.0"
+VERSION = "0.4.1"
 
 
 REQUIRED = {
@@ -88,6 +88,8 @@ WORKFLOW_TOOLS = {
          "Execute a declared analysis plan and retain design, effects, exclusions and multiplicity."),
         ("reference_packet", "reference-to-code.md", ["reproduce"],
          "Stage reference and user data; turn explicit image readings into an unresolved implementation plan."),
+        ("audit_reproduction", "complex-reproduction.md", ["reproduce"],
+         "Check adopted layer coverage, source/output bindings and supplied numeric evidence; visual and scientific review remain separate."),
         ("figure_workbench", "figure-workbench.md", ["create", "reproduce"],
          "Collect SVG element/region instructions for an Agent to edit plotting code and rerender."),
     )
@@ -100,7 +102,7 @@ CHART_OPTIONS = {
     "composition": {"normalization", "missing_categories", "bar_width", "percent_axis"},
     "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend", "missing_cells", "state_markers", "small_positive_area_pt2"},
     "scatter": {"point_area_pt2", "alpha", "point_color", "regression", "regression_color", "size_max", "max_area_pt2", "size_legend", "reference_lines"},
-    "distribution": {"point_area_pt2", "alpha", "kind", "orientation"},
+    "distribution": {"point_area_pt2", "alpha", "kind", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt"},
 }
 SCHEMA = {
     "chart": list(REQUIRED), "fields_by_chart": REQUIRED,
@@ -121,6 +123,7 @@ SCHEMA = {
     "shared_options": sorted(SHARED_OPTIONS),
     "chart_options": {k: sorted(v) for k, v in CHART_OPTIONS.items()},
     "scatter_reference_lines": {"x": [-1, 1], "y": [1.3]},
+    "distribution_point_layout": {"point_layout": "jitter (default) or beeswarm", "point_max_offset_mm": 4, "point_gap_pt": .3, "meaning": "Beeswarm moves only the categorical coordinate after final layout; preserves values, rows, marker size and canvas. Unresolved mark overlaps fail QA and remain in exported data."},
     "statistics": {"method": "none; pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)", "groups": ["A", "B"], "unit": "pairing ID column (mandatory for wilcoxon)", "annotate": False},
     "semantics": ["Margins are subplot bounds in 0..1, not padding widths.", "layout.auto_fit=true measures labels and guides within the unchanged canvas; do not combine it with margins or manual guide coordinates. It is a technical fit, not aesthetic certification.", "orders must include every category exactly once.", "dotplot and mapped scatter max_area_pt2 denote true circle geometric fill area, excluding stroke; area=size/size_max*max_area_pt2 and Matplotlib s=4/pi*area. Zero means zero area.", "Legacy point_area_pt2 for fixed scatter/distribution marks is the Matplotlib s parameter (squared diameter), not geometric circle fill area; settings record both quantities.", "Scatter size options require fields.size and cannot be combined with point_area_pt2.", "Scatter options.reference_lines draws supplied numeric positions only; it does not compute classes or significance.", "composition normalization is mandatory; sample_sum uses only supplied categories.", "denominator values repeat for all categories within a sample; incomplete composition remains below 1.", "No test is run unless requested; default distributions are descriptive boxplots and all observations.", "SVG preserves editable text and references the font; PDF embeds the selected font."]
 }
@@ -162,6 +165,18 @@ def validate_spec(spec):
         figure_profile.validate_spec(spec, REQUIRED, OPTIONAL_FIELDS, CHART_OPTIONS, SHARED_OPTIONS)
     except figure_profile.ConfigurationError as exc:
         raise SpecError(str(exc)) from None
+    if spec.get("chart") == "distribution":
+        options = spec.get("options", {})
+        policy = options.get("point_layout", "jitter")
+        require(isinstance(policy, str) and policy in ("jitter", "beeswarm"), "options.point_layout must be jitter or beeswarm")
+        require(policy == "beeswarm" or not ({"point_max_offset_mm", "point_gap_pt"} & set(options)), "point_max_offset_mm and point_gap_pt require point_layout='beeswarm'")
+        if policy == "beeswarm":
+            number(options.get("point_area_pt2", 9), "options.point_area_pt2")
+            for key in ("point_max_offset_mm", "point_gap_pt"):
+                if key in options:
+                    require(isinstance(options[key], (int, float)) and not isinstance(options[key], bool), f"options.{key} must be a numeric JSON value")
+            number(options.get("point_max_offset_mm", 4), "options.point_max_offset_mm")
+            number(options.get("point_gap_pt", .3), "options.point_gap_pt", strict=False)
 
 
 def resolve_spec(spec, *, profile=None, panel=None, spec_path=None):
@@ -207,6 +222,191 @@ def fixed_circle_geometry(parameter):
             "diameter_pt": math.sqrt(float(parameter)),
             "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
             "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."}
+
+
+def pack_distribution_points(value_positions_pt, diameter_pt, max_offset_pt, *, gap_pt=.3, seed=0):
+    """Pack equal circles along their categorical direction in physical points.
+
+    Numeric coordinates are read-only. A greedy, value-sorted placement chooses
+    the nearest unoccupied categorical location; the seed breaks symmetric and
+    equal-value ties. If a bounded lane has no feasible center, a fixed 65-center
+    grid chooses the least crowded location and records that unresolved row.
+    This is a spacing heuristic, not a density estimator or a fit guarantee.
+    """
+    values = np.asarray(value_positions_pt, dtype=float)
+    require(values.ndim == 1 and np.isfinite(values).all(), "Point value positions must be a finite one-dimensional array")
+    diameter = number(diameter_pt, "circle diameter")
+    maximum = number(max_offset_pt, "maximum point offset", strict=False)
+    gap = number(gap_pt, "point gap", strict=False)
+    require(isinstance(seed, int) and not isinstance(seed, bool) and seed >= 0, "Point packing seed must be a nonnegative integer")
+    separation = diameter + gap
+    rng = np.random.default_rng(seed)
+    order = np.lexsort((rng.random(len(values)), values))
+    offsets = np.zeros(len(values))
+    # Identical display centers share a weighted entry. Dense tied groups can
+    # then retain tens of thousands of rows without quadratic duplicate work.
+    active, fallback = {}, []
+    epsilon = max(1., separation) * 1e-10
+    grid = np.linspace(-maximum, maximum, 65) if maximum else np.array([0.])
+    for row in order:
+        active = {center: count for center, count in active.items()
+                  if values[row] - center[0] < separation - epsilon}
+        if not active:
+            offsets[row] = 0.
+            active[(float(values[row]), 0.)] = 1
+            continue
+        previous = np.asarray(list(active))
+        weights = np.asarray(list(active.values()), dtype=int)
+        dy = values[row] - previous[:, 0]
+        radii = np.sqrt(np.maximum(0., separation ** 2 - dy ** 2))
+        intervals = sorted(zip(previous[:, 1] - radii, previous[:, 1] + radii))
+        # Join overlapping open intervals. Exact touching endpoints remain a
+        # feasible tangent center and must not be merged into a false blockage.
+        merged = []
+        for low, high in intervals:
+            if merged and low < merged[-1][1] - epsilon:
+                merged[-1][1] = max(merged[-1][1], float(high))
+            else:
+                merged.append([float(low), float(high)])
+        candidates = [0.]
+        candidates.extend(bound for interval in merged for bound in interval
+                          if -maximum - epsilon <= bound <= maximum + epsilon)
+        candidates.extend([-maximum, maximum])
+        feasible = []
+        for candidate in candidates:
+            candidate = float(np.clip(candidate, -maximum, maximum))
+            if all(not (low + epsilon < candidate < high - epsilon) for low, high in merged):
+                feasible.append(candidate)
+        prefer_positive = bool(rng.integers(2))
+        if feasible:
+            chosen = min(feasible, key=lambda offset: (round(abs(offset), 10), offset < 0 if prefer_positive else offset > 0))
+        else:
+            # Difference-array coverage avoids testing every old circle against
+            # every fallback candidate when a large tied group cannot fit.
+            left = np.searchsorted(grid, previous[:, 1] - radii + epsilon, side="right")
+            right = np.searchsorted(grid, previous[:, 1] + radii - epsilon, side="left")
+            counts = np.zeros(len(grid) + 1, dtype=int)
+            np.add.at(counts, left, weights)
+            np.add.at(counts, right, -weights)
+            coverage = np.cumsum(counts[:-1])
+            choices = np.flatnonzero(coverage == coverage.min())
+            selected = min(choices, key=lambda index: (round(abs(float(grid[index])), 10), grid[index] < 0 if prefer_positive else grid[index] > 0))
+            chosen = float(grid[selected])
+            fallback.append(int(row))
+        offsets[row] = chosen
+        center = (float(values[row]), chosen)
+        active[center] = active.get(center, 0) + 1
+    return offsets, {"fallback_rows": [row + 1 for row in fallback],
+                     "fallback_count": len(fallback), "seed": seed,
+                     "max_offset_pt": maximum, "minimum_requested_center_distance_pt": separation}
+
+
+def distribution_collision_report(coordinates_pt, diameter_pt, gap_pt):
+    """Audit every pair of equal circles, including compressed duplicate centers.
+
+    Exact duplicate centers are counted with multiplicity without allocating
+    their full pair list. Nearby distinct centers use a spatial tree. Pair
+    samples are one-based parsed observation positions, excluding the header.
+    """
+    from scipy.spatial import cKDTree
+    coordinates = np.asarray(coordinates_pt, dtype=float)
+    require(coordinates.ndim == 2 and coordinates.shape[1] == 2 and np.isfinite(coordinates).all(), "Circle coordinates must be a finite n-by-2 array")
+    diameter_pt = number(diameter_pt, "circle diameter")
+    gap_pt = number(gap_pt, "point gap", strict=False)
+    unique, first, multiplicity = np.unique(coordinates, axis=0, return_index=True, return_counts=True)
+    spacing = float(diameter_pt + gap_pt)
+    tolerance = max(1., spacing) * 1e-8
+    overlaps = int(sum(int(count) * (int(count) - 1) // 2 for count in multiplicity))
+    spacing_violations = overlaps
+    examples = []
+    for index, count in enumerate(multiplicity):
+        if count > 1 and len(examples) < 20:
+            rows = np.flatnonzero(np.all(coordinates == unique[index], axis=1))[:2] + 1
+            examples.append({"rows": [int(row) for row in rows], "center_distance_pt": 0.})
+    minimum = 0. if overlaps else None
+    if len(unique) > 1:
+        tree = cKDTree(unique)
+        nearest, _ = tree.query(unique, k=2)
+        nearest_distance = float(nearest[:, 1].min())
+        minimum = min(minimum, nearest_distance) if minimum is not None else nearest_distance
+        for a, b in tree.query_pairs(spacing, output_type="ndarray"):
+            distance = float(np.linalg.norm(unique[a] - unique[b]))
+            pairs = int(multiplicity[a]) * int(multiplicity[b])
+            if distance < spacing - tolerance:
+                spacing_violations += pairs
+            if distance < diameter_pt - tolerance:
+                overlaps += pairs
+                if len(examples) < 20:
+                    examples.append({"rows": [int(first[a]) + 1, int(first[b]) + 1],
+                                     "center_distance_pt": distance})
+    return {"status": "pass" if spacing_violations == 0 else "needs_revision",
+            "overlapping_circle_pairs": overlaps, "spacing_violation_pairs": spacing_violations,
+            "minimum_center_distance_pt": minimum, "sample_overlapping_pairs": examples,
+            "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped."}
+
+
+def place_distribution_points(fig, ax, data, spec, pending):
+    """Resolve beeswarm positions only after scales and final axes geometry."""
+    options, fields = spec.get("options", {}), spec["fields"]
+    orientation = options.get("orientation", "vertical")
+    category_axis = 0 if orientation == "vertical" else 1
+    numeric_axis = 1 - category_axis
+    diameter = math.sqrt(float(options.get("point_area_pt2", 9)))
+    gap = float(options.get("point_gap_pt", .3))
+    maximum = float(options.get("point_max_offset_mm", 4)) / 25.4 * 72
+    fig.canvas.draw()
+    px_to_pt = 72 / fig.dpi
+    plot = ax.get_window_extent()
+    edges = ([plot.x0, plot.x1] if category_axis == 0 else [plot.y0, plot.y1])
+    low, high = sorted(edge * px_to_pt for edge in edges)
+    coordinates = np.zeros((len(data), 2))
+    reports = []
+    boundary_rows = []
+    for center, group, sample, rows, artist in pending:
+        base = np.column_stack((np.full(len(sample), center), sample)) if category_axis == 0 else np.column_stack((sample, np.full(len(sample), center)))
+        physical = ax.transData.transform(base) * px_to_pt
+        category_center = float(physical[0, category_axis])
+        unit = base[0].copy()
+        unit[category_axis] += 1.
+        category_step = float(ax.transData.transform(unit)[category_axis] * px_to_pt - category_center)
+        # Keep circle edges inside both the axes and a separate 90%-wide lane
+        # for each category. Quantitative values and circle areas stay fixed.
+        room = min(.45 * abs(category_step) - diameter / 2,
+                   category_center - low - diameter / 2,
+                   high - category_center - diameter / 2)
+        allowed = max(0., min(maximum, room))
+        stable_group_seed = int.from_bytes(hashlib.sha256(str(group).encode()).digest()[:4], "big")
+        offsets, packed = pack_distribution_points(physical[:, numeric_axis], diameter, allowed,
+                                                   gap_pt=gap, seed=(spec.get("seed", 0) + stable_group_seed))
+        positions = center + offsets / category_step
+        updated = base.copy()
+        updated[:, category_axis] = positions
+        artist.set_offsets(updated)
+        data.loc[rows, "_easyviz_jitter_position"] = positions
+        data.loc[rows, "_easyviz_point_offset_pt"] = offsets
+        rendered = ax.transData.transform(updated) * px_to_pt
+        coordinates[rows] = rendered
+        clipped = np.flatnonzero((rendered[:, category_axis] - diameter / 2 < low - 1e-8) |
+                                 (rendered[:, category_axis] + diameter / 2 > high + 1e-8))
+        boundary_rows.extend(int(rows[index]) + 1 for index in clipped)
+        reports.append({"group": group, "rows": len(rows), "category_spacing_pt": abs(category_step),
+                        "available_max_offset_mm": allowed / 72 * 25.4,
+                        "actual_max_offset_mm": float(np.abs(offsets).max()) / 72 * 25.4,
+                        "fallback_source_rows": [int(rows[index - 1]) + 1 for index in packed["fallback_rows"]],
+                        "fallback_count": packed["fallback_count"], "packing_seed": packed["seed"]})
+    report = distribution_collision_report(coordinates, diameter, gap)
+    report.update(policy="beeswarm", orientation=orientation, seed=spec.get("seed", 0),
+                  categorical_axis="x" if category_axis == 0 else "y",
+                  quantitative_axis="y" if category_axis == 0 else "x",
+                  numeric_values_changed=False, input_rows=len(data), placed_rows=len(data),
+                  diameter_pt=diameter, gap_pt=gap,
+                  requested_max_offset_mm=float(options.get("point_max_offset_mm", 4)),
+                  categorical_boundary_rows=boundary_rows, groups=reports,
+                  algorithm="Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+                  note="Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit.")
+    if boundary_rows:
+        report["status"] = "needs_revision"
+    fig._easyviz_point_layout = report
 
 
 def prepare(data_path, spec):
@@ -466,6 +666,7 @@ def draw(data, spec, layout, typography, result):
     if options.get("grid", False):
         ax.grid(True, color="#e5e5e5", linewidth=.4, zorder=0)
     resolved_colors = {}
+    distribution_points = []
     rng = np.random.default_rng(spec.get("seed", 0))
     if chart == "heatmap":
         rows, cols = ordered(data, f["row"], spec, "y"), ordered(data, f["column"], spec, "x")
@@ -636,9 +837,12 @@ def draw(data, spec, layout, typography, result):
                                      source_keys=[{"group": group}],
                                      spec_paths=[figure_elements.pointer("colors", group)], editable=["color"])
         for i, (sample, group) in enumerate(zip(samples, groups)):
-            positions = i + rng.uniform(-.13, .13, len(sample))
-            data.loc[data[f["group"]].astype(str) == group, "_easyviz_jitter_position"] = positions
+            positions = (np.full(len(sample), i, dtype=float) if options.get("point_layout") == "beeswarm"
+                         else i + rng.uniform(-.13, .13, len(sample)))
+            rows = data.index[data[f["group"]].astype(str) == group].to_numpy()
+            data.loc[rows, "_easyviz_jitter_position"] = positions
             points = ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, color=resolved_colors[group], marker="o", s=options.get("point_area_pt2", 9), alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+            distribution_points.append((i, group, sample, rows, points))
             figure_elements.register(fig, points, "point-group", group, key=["distribution", group],
                                      source_keys=[{"group": group}],
                                      spec_paths=[figure_elements.pointer("colors", group)], editable=["color"])
@@ -700,6 +904,14 @@ def draw(data, spec, layout, typography, result):
         layout["margins"] = fig._easyviz_auto_layout["margins"]
     else:
         legend_manager.layout()
+    if chart == "distribution":
+        if options.get("point_layout") == "beeswarm":
+            place_distribution_points(fig, ax, data, spec, distribution_points)
+        else:
+            fig._easyviz_point_layout = {"policy": "jitter", "status": "unchecked",
+                                        "seed": spec.get("seed", 0), "categorical_half_width": .13,
+                                        "numeric_values_changed": False,
+                                        "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."}
     fig._easyviz_legend_layout = legend_manager
     return fig, resolved_colors
 
@@ -841,8 +1053,11 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
                 settings["mark_geometry"] = mark_geometry
             if chart_states := getattr(fig, "_easyviz_dot_states", None):
                 settings["dot_states"] = chart_states
+            point_layout = getattr(fig, "_easyviz_point_layout", None)
+            if point_layout:
+                settings["point_layout"] = point_layout
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}
-            passed = not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass" and cell_annotations["status"] == "pass" and (not fitted or fitted["status"] == "pass")
+            passed = not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass" and cell_annotations["status"] == "pass" and (not fitted or fitted["status"] == "pass") and (not point_layout or point_layout["status"] != "needs_revision")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover canvas boundaries, same-axis horizontal/vertical tick-label overlap and heatmap cell annotations. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
             qa["legend_layout"] = legends
             qa["cell_annotations"] = cell_annotations
@@ -850,11 +1065,15 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
                 qa["auto_layout"] = fitted
             if chart_states:
                 qa["dot_states"] = chart_states
+            if point_layout:
+                qa["point_layout"] = point_layout
             data.to_csv(out / "plotting-data.csv", index=False)
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", results)
             write_json(out / "qa.json", qa)
-            require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text sizes; explicitly enlarge or split a panel that cannot fit.")
+            point_issues = point_layout.get("spacing_violation_pairs", 0) if point_layout else 0
+            point_boundary_issues = len(point_layout.get("categorical_boundary_rows", [])) if point_layout else 0
+            require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {point_issues} observation spacing conflicts, {point_boundary_issues} observation marker boundary issues, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit.")
             return qa
         finally:
             plt.close(fig)

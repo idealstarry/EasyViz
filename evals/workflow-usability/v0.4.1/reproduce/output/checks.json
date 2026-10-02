@@ -1,0 +1,164 @@
+{
+  "numeric_and_export_status": "passed",
+  "source_artist_audit": {
+    "method": "independent csv.DictReader + math.fsum source reread compared to saved table and artists",
+    "input_coordinates": 72,
+    "plotted_cells": 72,
+    "missing_coordinates": [
+      [
+        "Signal_B",
+        "S05"
+      ],
+      [
+        "Signal_G",
+        "S01"
+      ],
+      [
+        "Signal_H",
+        "S09"
+      ]
+    ],
+    "measured_zero_coordinates": [
+      [
+        "Signal_E",
+        "S07"
+      ]
+    ],
+    "per_feature_means": {
+      "Signal_A": -0.153,
+      "Signal_B": -0.002000000000000014,
+      "Signal_C": 0.062333333333333324,
+      "Signal_D": -0.157,
+      "Signal_E": 0.34844444444444445,
+      "Signal_F": 0.43433333333333335,
+      "Signal_G": -0.22062500000000002,
+      "Signal_H": -0.333
+    },
+    "measured_counts": {
+      "Signal_A": 9,
+      "Signal_B": 8,
+      "Signal_C": 9,
+      "Signal_D": 9,
+      "Signal_E": 9,
+      "Signal_F": 9,
+      "Signal_G": 8,
+      "Signal_H": 8
+    },
+    "value_state_cell_and_bar_checks": "passed"
+  },
+  "column_strip_alignment": "passed",
+  "row_mean_alignment": "passed",
+  "text_canvas_clipping": [],
+  "all_visible_text_Arial_8pt": "passed",
+  "missing_glyphs": [],
+  "exports": {
+    "svg": {
+      "width_mm": 119.99999988888888,
+      "height_mm": 89.99999991666667,
+      "editable_text_nodes": 29,
+      "text_preserved": true
+    },
+    "pdf": {
+      "width_mm": 120.00000000001388,
+      "height_mm": 89.99999999999278,
+      "fonts": [
+        {
+          "name": "/DKISSI+ArialMT",
+          "embedded": true
+        },
+        {
+          "name": "/CECFXM+ArialMT",
+          "embedded": true
+        }
+      ]
+    },
+    "png": {
+      "pixels": [
+        1417,
+        1063
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    }
+  },
+  "layout_footprints_mm": {
+    "main_matrix": [
+      26.999999999999996,
+      21.0,
+      86.0,
+      71.50000000000001
+    ],
+    "means_field": [
+      90.99999999999999,
+      21.0,
+      111.5,
+      71.50000000000001
+    ],
+    "condition_strip": [
+      26.999999999999996,
+      73.3,
+      86.0,
+      76.5
+    ],
+    "condition_guide_complete": [
+      25.799999999999997,
+      83.9757052951389,
+      86.50507291666666,
+      86.62429470486111
+    ],
+    "missing_guide_complete": [
+      75.5,
+      8.975705295138889,
+      95.33266666666665,
+      11.624294704861112
+    ],
+    "continuous_scale_complete": [
+      25.433666666666664,
+      0.4805989583333331,
+      60.26199999999999,
+      10.9
+    ],
+    "condition_guide_reserved": [
+      25.8,
+      82.5,
+      105,
+      88.0
+    ],
+    "continuous_scale_reserved": [
+      24,
+      0.5,
+      63,
+      11.5
+    ],
+    "missing_guide_reserved": [
+      74.5,
+      8.0,
+      111,
+      12.5
+    ],
+    "condition_guide_complete_area_fraction_of_matrix": 0.05396301837338428,
+    "missing_guide_complete_area_fraction_of_matrix": 0.017630001980159172,
+    "continuous_scale_complete_area_fraction_of_matrix": 0.1217957283479937
+  },
+  "warnings": [],
+  "visual_review": {
+    "status": "ready_with_notes",
+    "image_viewed": "/private/tmp/easyviz-v041-forward-reproduce/output/panel.png",
+    "reference_viewed": "/private/tmp/easyviz-v041-forward-reproduce/input/reference.png",
+    "review_role": "self-review",
+    "pass_number": 1,
+    "independent": false,
+    "reason": "task contract prohibits other agents",
+    "findings": "Required structure, decoding, order and readability satisfied in actually viewed PNG. Different source values and exact target names are intentional. Tiny negative Signal_B mean is correctly nearly invisible at the zero line."
+  },
+  "scope": "this supplied 8x9 target dataset only",
+  "exported_svg_layer_counts": {
+    "heatmap_cells": 72,
+    "strip_cells": 9,
+    "mean_bars": 8,
+    "condition_color_checks": "passed",
+    "required_label_checks": "passed"
+  }
+}

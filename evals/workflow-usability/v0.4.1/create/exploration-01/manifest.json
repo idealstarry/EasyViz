@@ -1,0 +1,773 @@
+{
+  "schema_version": 1,
+  "tool": "easyviz.inspect_data",
+  "track": "create",
+  "mode": "create_recommendations",
+  "input": "/private/tmp/easyviz-v041-forward-create/input/data",
+  "input_root": "/private/tmp/easyviz-v041-forward-create/input/data",
+  "limits": {
+    "tables": 100,
+    "file_bytes": 20971520,
+    "total_bytes": 104857600,
+    "rows_per_table": 100000,
+    "columns": 200,
+    "directory_entries": 10000,
+    "depth": 8
+  },
+  "missing_tokens": [
+    "",
+    "NA",
+    "N/A",
+    "NaN",
+    "nan",
+    "NULL",
+    "null",
+    "None"
+  ],
+  "missing_note": "Tokens are treated as missing for profiles only; no source cell is replaced or omitted.",
+  "tables": [
+    {
+      "table_id": "A_export__final2.csv",
+      "path": "A_export__final2.csv",
+      "sheet": null,
+      "sha256": "c496c9970f7d9e9303ff864c46a6ce82d6d28553c676aab6c0d6f6a22453ccf9",
+      "file_bytes": 2458,
+      "rows_inspected": 72,
+      "rows_complete": true,
+      "row_count": 72,
+      "duplicate_rows_in_inspected_scope": 0,
+      "grain": {
+        "observed": "one source table row",
+        "scientific_unit": "unconfirmed",
+        "warning": "Row counts do not establish independent experimental units."
+      },
+      "intake_signals": {
+        "evidence_status": "observed names and values; scientific roles remain unconfirmed",
+        "ambiguous_headers": [],
+        "identifier_pattern_scope": {
+          "identifier_columns_profiled": 1,
+          "identifier_columns_total": 1,
+          "group_columns_per_identifier_limit": 6
+        },
+        "identifier_candidates": [
+          {
+            "column": "tube_key",
+            "unique_nonmissing": 36,
+            "repeated_identifiers": 36,
+            "rows_per_identifier_min": 2,
+            "rows_per_identifier_max": 2,
+            "group_patterns": [
+              {
+                "group_column": "read_state",
+                "identifiers_in_multiple_levels": 1,
+                "repeated_identifier_level_cells": 35
+              }
+            ]
+          }
+        ],
+        "summary_data": {
+          "status": "not_established",
+          "estimate_candidates": [],
+          "coordinate_name_candidates": [],
+          "named_role_candidates": {
+            "estimate": [],
+            "spread": [],
+            "standard_error": [],
+            "lower_bound": [],
+            "upper_bound": [],
+            "count": []
+          },
+          "evidence": "Column-name hints do not establish summaries, SD, SEM, CI or raw observations."
+        }
+      },
+      "columns": [
+        {
+          "name": "read_key",
+          "storage": "string",
+          "type_hint": "text",
+          "missing": 0,
+          "nonmissing": 72,
+          "unique_nonmissing": 72,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "R017_1",
+            "R007_2",
+            "R022_2",
+            "R002_1",
+            "R024_1"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null
+        },
+        {
+          "name": "tube_key",
+          "storage": "string",
+          "type_hint": "identifier_candidate",
+          "missing": 0,
+          "nonmissing": 72,
+          "unique_nonmissing": 36,
+          "duplicate_nonmissing": 36,
+          "leading_zero_values": true,
+          "formula_cells": 0,
+          "examples": [
+            "0017",
+            "0007",
+            "0022",
+            "0002",
+            "0024"
+          ],
+          "numeric_parseable": 72,
+          "role_name_hints": [],
+          "unit_label_hint": null
+        },
+        {
+          "name": "signal_au",
+          "storage": "string",
+          "type_hint": "numeric",
+          "missing": 1,
+          "nonmissing": 71,
+          "unique_nonmissing": 71,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "108.0488",
+            "75.3743",
+            "118.8997",
+            "98.8362",
+            "96.2624"
+          ],
+          "numeric_parseable": 71,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "descriptive": {
+            "n": 71,
+            "min": 70.3939,
+            "max": 142.6446,
+            "mean": 104.22610985915493,
+            "median": 102.7475,
+            "sample_sd": 18.92941425688116,
+            "q1": 90.3913,
+            "q3": 118.86415
+          }
+        },
+        {
+          "name": "read_state",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 72,
+          "unique_nonmissing": 2,
+          "duplicate_nonmissing": 70,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "measured",
+            "instrument_failure"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "measured",
+            "instrument_failure"
+          ]
+        },
+        {
+          "name": "scan_order",
+          "storage": "string",
+          "type_hint": "numeric",
+          "missing": 0,
+          "nonmissing": 72,
+          "unique_nonmissing": 72,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "40",
+            "59",
+            "29",
+            "70",
+            "26"
+          ],
+          "numeric_parseable": 72,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "descriptive": {
+            "n": 72,
+            "min": 1.0,
+            "max": 72.0,
+            "mean": 36.5,
+            "median": 36.5,
+            "sample_sd": 20.92844953645635,
+            "q1": 18.75,
+            "q3": 54.25
+          }
+        }
+      ],
+      "sample_rows": [
+        {
+          "read_key": "R017_1",
+          "tube_key": "0017",
+          "signal_au": "108.0488",
+          "read_state": "measured",
+          "scan_order": "40"
+        },
+        {
+          "read_key": "R007_2",
+          "tube_key": "0007",
+          "signal_au": "75.3743",
+          "read_state": "measured",
+          "scan_order": "59"
+        },
+        {
+          "read_key": "R022_2",
+          "tube_key": "0022",
+          "signal_au": "118.8997",
+          "read_state": "measured",
+          "scan_order": "29"
+        }
+      ],
+      "sample_values_max_chars": 160,
+      "notes": []
+    },
+    {
+      "table_id": "instrument-log.csv",
+      "path": "instrument-log.csv",
+      "sheet": null,
+      "sha256": "106ed35743b774bdfe4d34e664b761bc06bfc3ea31030a4380fd2659c987dc6a",
+      "file_bytes": 86,
+      "rows_inspected": 1,
+      "rows_complete": true,
+      "row_count": 1,
+      "duplicate_rows_in_inspected_scope": 0,
+      "grain": {
+        "observed": "one source table row",
+        "scientific_unit": "unconfirmed",
+        "warning": "Row counts do not establish independent experimental units."
+      },
+      "intake_signals": {
+        "evidence_status": "observed names and values; scientific roles remain unconfirmed",
+        "ambiguous_headers": [],
+        "identifier_pattern_scope": {
+          "identifier_columns_profiled": 0,
+          "identifier_columns_total": 0,
+          "group_columns_per_identifier_limit": 6
+        },
+        "identifier_candidates": [],
+        "summary_data": {
+          "status": "not_established",
+          "estimate_candidates": [],
+          "coordinate_name_candidates": [],
+          "named_role_candidates": {
+            "estimate": [],
+            "spread": [],
+            "standard_error": [],
+            "lower_bound": [],
+            "upper_bound": [],
+            "count": []
+          },
+          "evidence": "Column-name hints do not establish summaries, SD, SEM, CI or raw observations."
+        }
+      },
+      "columns": [
+        {
+          "name": "date",
+          "storage": "string",
+          "type_hint": "date_time_candidate",
+          "missing": 0,
+          "nonmissing": 1,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "2026-09-30"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "2026-09-30"
+          ]
+        },
+        {
+          "name": "message",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 1,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "one reading failed; raw values already background corrected"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "one reading failed; raw values already background corrected"
+          ]
+        }
+      ],
+      "sample_rows": [
+        {
+          "date": "2026-09-30",
+          "message": "one reading failed; raw values already background corrected"
+        }
+      ],
+      "sample_values_max_chars": 160,
+      "notes": []
+    },
+    {
+      "table_id": "old-pilot_DO_NOT_POOL.csv",
+      "path": "old-pilot_DO_NOT_POOL.csv",
+      "sheet": null,
+      "sha256": "20c32527f50a5ff278460a669a73993d4eb598d43c890229ca243e61c321c2e2",
+      "file_bytes": 137,
+      "rows_inspected": 6,
+      "rows_complete": true,
+      "row_count": 6,
+      "duplicate_rows_in_inspected_scope": 0,
+      "grain": {
+        "observed": "one source table row",
+        "scientific_unit": "unconfirmed",
+        "warning": "Row counts do not establish independent experimental units."
+      },
+      "intake_signals": {
+        "evidence_status": "observed names and values; scientific roles remain unconfirmed",
+        "ambiguous_headers": [],
+        "identifier_pattern_scope": {
+          "identifier_columns_profiled": 1,
+          "identifier_columns_total": 1,
+          "group_columns_per_identifier_limit": 6
+        },
+        "identifier_candidates": [
+          {
+            "column": "tube_key",
+            "unique_nonmissing": 6,
+            "repeated_identifiers": 0,
+            "rows_per_identifier_min": 1,
+            "rows_per_identifier_max": 1,
+            "group_patterns": []
+          }
+        ],
+        "summary_data": {
+          "status": "not_established",
+          "estimate_candidates": [],
+          "coordinate_name_candidates": [],
+          "named_role_candidates": {
+            "estimate": [],
+            "spread": [],
+            "standard_error": [],
+            "lower_bound": [],
+            "upper_bound": [],
+            "count": []
+          },
+          "evidence": "Column-name hints do not establish summaries, SD, SEM, CI or raw observations."
+        }
+      },
+      "columns": [
+        {
+          "name": "tube_key",
+          "storage": "string",
+          "type_hint": "identifier_candidate",
+          "missing": 0,
+          "nonmissing": 6,
+          "unique_nonmissing": 6,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": true,
+          "formula_cells": 0,
+          "examples": [
+            "0001",
+            "0002",
+            "0003",
+            "0004",
+            "0005"
+          ],
+          "numeric_parseable": 6,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "0001",
+            "0002",
+            "0003",
+            "0004",
+            "0005",
+            "0006"
+          ]
+        },
+        {
+          "name": "arm_name",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 6,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 5,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "Vehicle"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "Vehicle"
+          ]
+        },
+        {
+          "name": "signal_au",
+          "storage": "string",
+          "type_hint": "numeric",
+          "missing": 0,
+          "nonmissing": 6,
+          "unique_nonmissing": 6,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "401",
+            "402",
+            "403",
+            "404",
+            "405"
+          ],
+          "numeric_parseable": 6,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406"
+          ],
+          "descriptive": {
+            "n": 6,
+            "min": 401.0,
+            "max": 406.0,
+            "mean": 403.5,
+            "median": 403.5,
+            "sample_sd": 1.8708286933869707,
+            "q1": 402.25,
+            "q3": 404.75
+          }
+        }
+      ],
+      "sample_rows": [
+        {
+          "tube_key": "0001",
+          "arm_name": "Vehicle",
+          "signal_au": "401"
+        },
+        {
+          "tube_key": "0002",
+          "arm_name": "Vehicle",
+          "signal_au": "402"
+        },
+        {
+          "tube_key": "0003",
+          "arm_name": "Vehicle",
+          "signal_au": "403"
+        }
+      ],
+      "sample_values_max_chars": 160,
+      "notes": []
+    },
+    {
+      "table_id": "plate-blank_readings.csv",
+      "path": "plate-blank_readings.csv",
+      "sheet": null,
+      "sha256": "b913a935c336efcc75f704188d2a4f51fb983f1cfe98c217bae9c9c30a469041",
+      "file_bytes": 62,
+      "rows_inspected": 1,
+      "rows_complete": true,
+      "row_count": 1,
+      "duplicate_rows_in_inspected_scope": 0,
+      "grain": {
+        "observed": "one source table row",
+        "scientific_unit": "unconfirmed",
+        "warning": "Row counts do not establish independent experimental units."
+      },
+      "intake_signals": {
+        "evidence_status": "observed names and values; scientific roles remain unconfirmed",
+        "ambiguous_headers": [],
+        "identifier_pattern_scope": {
+          "identifier_columns_profiled": 0,
+          "identifier_columns_total": 0,
+          "group_columns_per_identifier_limit": 6
+        },
+        "identifier_candidates": [],
+        "summary_data": {
+          "status": "not_established",
+          "estimate_candidates": [],
+          "coordinate_name_candidates": [],
+          "named_role_candidates": {
+            "estimate": [],
+            "spread": [],
+            "standard_error": [],
+            "lower_bound": [],
+            "upper_bound": [],
+            "count": []
+          },
+          "evidence": "Column-name hints do not establish summaries, SD, SEM, CI or raw observations."
+        }
+      },
+      "columns": [
+        {
+          "name": "tube_key",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 1,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "blank"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "blank"
+          ]
+        },
+        {
+          "name": "signal_au",
+          "storage": "string",
+          "type_hint": "numeric",
+          "missing": 0,
+          "nonmissing": 1,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "2.6"
+          ],
+          "numeric_parseable": 1,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "2.6"
+          ],
+          "descriptive": {
+            "n": 1,
+            "min": 2.6,
+            "max": 2.6,
+            "mean": 2.6,
+            "median": 2.6,
+            "sample_sd": null,
+            "q1": 2.6,
+            "q3": 2.6
+          }
+        },
+        {
+          "name": "meaning",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 1,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "daily instrument blank"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "daily instrument blank"
+          ]
+        }
+      ],
+      "sample_rows": [
+        {
+          "tube_key": "blank",
+          "signal_au": "2.6",
+          "meaning": "daily instrument blank"
+        }
+      ],
+      "sample_values_max_chars": 160,
+      "notes": []
+    },
+    {
+      "table_id": "sample-index__2026.tsv.csv",
+      "path": "sample-index__2026.tsv.csv",
+      "sheet": null,
+      "sha256": "cb130c2a4e4f53c3e0325533e3d98889add65b7dbc45ce7d1260501c9e473558",
+      "file_bytes": 1294,
+      "rows_inspected": 36,
+      "rows_complete": true,
+      "row_count": 36,
+      "duplicate_rows_in_inspected_scope": 0,
+      "grain": {
+        "observed": "one source table row",
+        "scientific_unit": "unconfirmed",
+        "warning": "Row counts do not establish independent experimental units."
+      },
+      "intake_signals": {
+        "evidence_status": "observed names and values; scientific roles remain unconfirmed",
+        "ambiguous_headers": [],
+        "identifier_pattern_scope": {
+          "identifier_columns_profiled": 1,
+          "identifier_columns_total": 1,
+          "group_columns_per_identifier_limit": 6
+        },
+        "identifier_candidates": [
+          {
+            "column": "tube_key",
+            "unique_nonmissing": 36,
+            "repeated_identifiers": 0,
+            "rows_per_identifier_min": 1,
+            "rows_per_identifier_max": 1,
+            "group_patterns": []
+          }
+        ],
+        "summary_data": {
+          "status": "not_established",
+          "estimate_candidates": [],
+          "coordinate_name_candidates": [],
+          "named_role_candidates": {
+            "estimate": [],
+            "spread": [],
+            "standard_error": [],
+            "lower_bound": [],
+            "upper_bound": [],
+            "count": []
+          },
+          "evidence": "Column-name hints do not establish summaries, SD, SEM, CI or raw observations."
+        }
+      },
+      "columns": [
+        {
+          "name": "tube_key",
+          "storage": "string",
+          "type_hint": "identifier_candidate",
+          "missing": 0,
+          "nonmissing": 36,
+          "unique_nonmissing": 36,
+          "duplicate_nonmissing": 0,
+          "leading_zero_values": true,
+          "formula_cells": 0,
+          "examples": [
+            "0019",
+            "0006",
+            "0027",
+            "0002",
+            "0036"
+          ],
+          "numeric_parseable": 36,
+          "role_name_hints": [],
+          "unit_label_hint": null
+        },
+        {
+          "name": "arm_name",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 36,
+          "unique_nonmissing": 3,
+          "duplicate_nonmissing": 33,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "Low dose",
+            "Vehicle",
+            "High dose"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "Low dose",
+            "Vehicle",
+            "High dose"
+          ]
+        },
+        {
+          "name": "rack",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 36,
+          "unique_nonmissing": 3,
+          "duplicate_nonmissing": 33,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "B1",
+            "B3",
+            "B2"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "B1",
+            "B3",
+            "B2"
+          ]
+        },
+        {
+          "name": "unit_type",
+          "storage": "string",
+          "type_hint": "categorical_candidate",
+          "missing": 0,
+          "nonmissing": 36,
+          "unique_nonmissing": 1,
+          "duplicate_nonmissing": 35,
+          "leading_zero_values": false,
+          "formula_cells": 0,
+          "examples": [
+            "individual_mouse"
+          ],
+          "numeric_parseable": 0,
+          "role_name_hints": [],
+          "unit_label_hint": null,
+          "levels": [
+            "individual_mouse"
+          ]
+        }
+      ],
+      "sample_rows": [
+        {
+          "tube_key": "0019",
+          "arm_name": "Low dose",
+          "rack": "B1",
+          "unit_type": "individual_mouse"
+        },
+        {
+          "tube_key": "0006",
+          "arm_name": "Vehicle",
+          "rack": "B3",
+          "unit_type": "individual_mouse"
+        },
+        {
+          "tube_key": "0027",
+          "arm_name": "High dose",
+          "rack": "B3",
+          "unit_type": "individual_mouse"
+        }
+      ],
+      "sample_values_max_chars": 160,
+      "notes": []
+    }
+  ],
+  "skipped": [],
+  "errors": [],
+  "inference_run": false,
+  "sources_modified": false
+}

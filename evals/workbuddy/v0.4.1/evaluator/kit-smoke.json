@@ -1,0 +1,20 @@
+{
+  "runner": "parent-side synthetic audit harness, not WorkBuddy",
+  "results": {
+    "create": {
+      "uncorrupted_pass": true,
+      "checks": 15,
+      "corruption_detected": [
+        "all_independent_units_once",
+        "literal_join_groups_and_technical_means"
+      ]
+    },
+    "reproduce": {
+      "uncorrupted_pass": true,
+      "checks": 17,
+      "corruption_detected": [
+        "target_scores_unchanged_not_reference_pixels"
+      ]
+    }
+  }
+}

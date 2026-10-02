@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "chart": "distribution",
+  "track": null,
+  "panel": {
+    "width_mm": 120.0,
+    "height_mm": 90.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "dec798bd9acc0cfa862693596d923de93713b2f132071d40165d0b6a428b291a",
+    "spec_sha256": "010ae10db04c08227543ac142cf817f18ca9620c458c950bf8c023f2f1f83f21",
+    "input_sha256": "e6dc90be8a3c1137da51ca099d0587711195af02fcdedee6b835152719f17dae",
+    "source_script_sha256": "1df415d4367f0eae0cc296b1b1435d46c405b43cf8686b136173e11a7fa84a33"
+  },
+  "input": {
+    "data_file": "/private/tmp/easyviz-v041-crowding-demo/data.csv",
+    "spec_file": "/private/tmp/easyviz-v041-crowding-demo/jitter.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+    "supplied_spec_sha256": "5bff7e20d6928f6cb0584628ce0e79b7c647112285d4b284a2453de46452fd20"
+  },
+  "elements": [
+    {
+      "id": "easyviz-distribution-0de71de35dd240af",
+      "role": "distribution",
+      "label": "Control",
+      "source_keys": [
+        {
+          "group": "Control"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Control"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        29.148826448074495,
+        21.298638308306316,
+        24.01383068970959,
+        2.626037861877691
+      ]
+    },
+    {
+      "id": "easyviz-distribution-617c212a20110466",
+      "role": "distribution",
+      "label": "Treatment",
+      "source_keys": [
+        {
+          "group": "Treatment"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Treatment"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        77.17648782749369,
+        64.62826302928848,
+        24.0138306897096,
+        3.9390567928165563
+      ]
+    },
+    {
+      "id": "easyviz-point-group-0911b03899371df6",
+      "role": "point-group",
+      "label": "Control",
+      "source_keys": [
+        {
+          "group": "Control"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Control"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-point-group-c0128ea88b584ba8",
+      "role": "point-group",
+      "label": "Treatment",
+      "source_keys": [
+        {
+          "group": "Treatment"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Treatment"
+      ],
+      "editable": [
+        "color"
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        12.33914496527778,
+        7.118033854166667,
+        105.66085503472222,
+        80.88196614583335
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Signal (a.u.)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0,
+        40.15068359375001,
+        2.648589409722223,
+        14.816666666666666
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}
