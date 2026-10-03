@@ -1,8 +1,16 @@
 {
   "status": "pass",
-  "scope": "Independent synthetic input, created only to test recipe portability; no biological claim.",
-  "synthetic_matrix_shape": [4, 4],
-  "synthetic_ids": ["001", "002", "003", "004"],
+  "scope": "Separate synthetic input, created only to test recipe portability; no biological claim.",
+  "synthetic_matrix_shape": [
+    4,
+    4
+  ],
+  "synthetic_ids": [
+    "001",
+    "002",
+    "003",
+    "004"
+  ],
   "selection_count": 4,
   "source_measurements_shown": 16,
   "mean_denominator": 4,
@@ -11,7 +19,11 @@
   "negative_values_preserved": true,
   "automatic_mean_axis_limits_exercised": true,
   "cli_contract": "--data MATRIX.csv --genome STATUS.csv --settings SETTINGS.json --out DIRECTORY",
-  "showcase_pdf_text_sizes_pt": [8.0],
-  "showcase_font_size_check": "Independently extracted all PDF text spans with PyMuPDF; every span is 8 pt.",
-  "temporary_synthetic_outputs_removed": true
+  "showcase_pdf_text_sizes_pt": [
+    8.0
+  ],
+  "showcase_font_size_check": "Programmatically extracted all current PDF text spans with PyMuPDF; every span is 8 pt. This is a file check, not an independent visual review.",
+  "temporary_synthetic_outputs_removed": true,
+  "style_revision_exercised": "Muted support colors, borderless colorbar and lighter axes/grids from current settings.",
+  "showcase_source_and_derived_csvs_byte_unchanged": true
 }

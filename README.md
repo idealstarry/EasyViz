@@ -19,6 +19,8 @@ Palettes, proportions, dimensions and fonts are configurable. Each panel is expo
 
 Related panels can share a [figure profile](skills/easyviz/references/figure-profile.md) so category colors, typography and quantitative scales stay consistent. Dot plots distinguish [measured zero, unmeasured and absent data](skills/easyviz/references/dot-states.md) without changing proportional dot areas. Unknown configuration fields fail with a correction hint.
 
+Create panels use [explicit color and stroke roles](skills/easyviz/references/create-style.md) to distinguish the main observations or estimates from summaries, references, axes and grids. New core-chart drafts include an editable stroke hierarchy; existing specifications and adopted reproduction styles keep their recorded settings. Palettes are selected on the actual data rather than accepted from swatches alone.
+
 For a first panel, the Agent can [generate a validated specification](skills/easyviz/references/quick-start.md) from explicit column meanings and use measured layout to fit labels and legends inside the requested canvas. Dense heatmap value labels are checked against their cells. These helpers reduce repeated configuration work; actual image review still determines readability and balance.
 
 A directory is enough to begin [create exploration](skills/easyviz/references/data-exploration.md): the Agent inventories CSV, TSV or XLSX tables and proposes a few concrete figures. [Planned analysis](skills/easyviz/references/statistical-analysis.md) records experimental units, comparisons, effects, supported intervals and any multiplicity adjustment separately from styling. Reproduce starts from the reference and your data; the paper need not publish Source Data or author code. [Reference to code](skills/easyviz/references/reference-to-code.md) supports an explicit implementation when a recipe does not fit.
@@ -42,15 +44,17 @@ definitions rather than treating every table as interchangeable.
 
 **Create · paired myeloid changes**
 
-Three designs for the same 832 paired changes: individual values, cohort distributions, and participant correspondence.
+All 832 paired changes are plotted behind stronger median/IQR summaries. Coordinated cohort colors, a quiet zero guide and aligned percentages support comparison of magnitude and consistency.
 
-<p align="center"><a href="examples/create/paired-myeloid-remodeling/"><img src="examples/create/paired-myeloid-remodeling/comparison.png" alt="Three designs compared on the same paired myeloid data" width="960"></a></p>
+<p align="center"><a href="examples/create/paired-myeloid-remodeling/"><img src="examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png" alt="All paired myeloid changes with cohort median, IQR and fractions below zero" width="720"></a></p>
+
+[Compare the three designs](examples/create/paired-myeloid-remodeling/): box/points, participant correspondence, and cohort distributions use the same source, scale and final panel size.
 
 **Create · annotated inhibition matrix**
 
 Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view.
 
-<p align="center"><a href="examples/create/annotated-inhibition/"><img src="examples/create/annotated-inhibition/panel.png" alt="Microbial inhibition heatmap with annotations and marginal means" width="640"></a></p>
+<p align="center"><a href="examples/create/annotated-inhibition/"><img src="examples/create/annotated-inhibition/panel.png" alt="Microbial inhibition heatmap with annotations and marginal means" width="720"></a></p>
 
 **Create · cell atlas composition**
 

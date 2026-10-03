@@ -1,19 +1,15 @@
 # Rendered-panel review
 
-The actual 300 dpi `panel.png` was inspected after rendering, then inspected again after spacing refinements. The final panel keeps the heatmap as the dominant element and aligns both mean tracks and both binary strips to the same ordered cells.
+The implementing agent inspected the regenerated 300 dpi `panel.png`, then a 680 × 605 px preview of the same complete canvas to assess the overall reading hierarchy near its print-sized screen footprint. This is a self-review, not an independent review. A pixel display is not a calibrated physical print proof.
 
 | Check | Observation |
 | --- | --- |
-| Readability | All 40 strain labels remain distinct at the declared 8 pt setting, including the longest numeric IDs and `JIP 05/93 (3)`. Independent PDF text extraction confirmed 8 pt for every text span. |
-| Track alignment | Each top bar is centered on its receiver column; each side bar is centered on its sender row. Genome strips share the same boundaries. |
-| Color | Light coral cells show the GII range; sky-blue mean bars and teal/gray genome strips remain visually separate from the continuous scale. |
-| Hierarchy | Heatmap occupies the main square; mean tracks are subordinate. The full-data denominator is documented in the separate caption. |
-| Spacing | The mean-track names remain as axis labels. Standalone panel title, selection overview, denominator prose and color-scale note are now in the separate caption. |
-| Boundaries | No label or legend extends outside the canvas. Automatic text-boundary and missing-glyph checks pass. |
-| Assembly | One 180 × 160 mm integrated panel, without panel letters or a multi-panel montage. |
+| Main encoding | The bright coral/orange ramp keeps the pale field while giving middle values more definition than the previous pale-coral version. The high end remains coral rather than a brown or dark endpoint. Sender profiles and concentrated high-GII regions remain visible. Linear `Normalize` remains −400 to 1,000 min, including all negative measurements. |
+| Supporting color | Mean bars now use muted blue `#6C9FB2`, replacing bright sky blue. Genome strips use subdued blue-gray `#708C94` and light gray `#E8ECEF`. Both layers remain distinguishable while the central matrix carries the main contrast. |
+| Strokes | Marginal axes use 0.45 pt gray strokes and 0.35 pt light grid lines behind bars. Mean bars, metadata tiles and corresponding legend keys remain borderless. The continuous colorbar has no surrounding box. |
+| Readability | All 40 strain labels remain separately readable at 8 pt, including long numeric identifiers. Programmatic PDF extraction found only 8.0 pt text spans. The display-size preview showed no new collisions. |
+| Alignment | Top bars remain centered on receiver columns; side bars remain centered on sender rows. Both metadata strips retain the same cell boundaries. |
+| Scope and layout | The same 20 × 20 selection and full 76-partner mean denominators are retained. One 180 × 160 mm integrated panel; no title, explanatory footnote or added panel letter. |
+| Export boundaries | Automatic text-boundary and missing-glyph checks pass. PDF/SVG physical dimensions are unchanged; PNG remains 2,126 × 1,890 px at 300 dpi metadata. |
 
-This inspection evaluates the rendered design, not statistical or biological validity. Numeric consistency and physical export checks are recorded separately in `qa.json`.
-
-## Palette and caption revision
-
-The actual refreshed PNG was inspected. The panel now uses light coral cells with sky-blue marginal bars and teal metadata strips. All axes, scale ranges, selected data and 8 pt labels remain intact. The title and explanatory prose have been removed; narrative definitions are in caption.md. No clipped labels or new collisions were observed.
+The supplied source CSVs, displayed-measurement table, full summary table, and selected-ID table were compared byte-for-byte with the preceding committed example and are unchanged. `qa.json` records the regenerated numeric and export checks. The visual assessment does not validate a biological mechanism or establish publication acceptance; it evaluates this panel's reading hierarchy and legibility.

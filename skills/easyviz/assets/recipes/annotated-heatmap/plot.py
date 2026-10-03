@@ -82,7 +82,7 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
     fontpath = font_manager.findfont(font_manager.FontProperties(family=cfg["font"]), fallback_to_default=True)
     font = font_manager.FontProperties(fname=fontpath).get_name()
     width, height, dpi = cfg["width_mm"], cfg["height_mm"], cfg["dpi"]
-    rc = {"font.family": font, "font.size": cfg["font_size_pt"], "axes.labelsize": cfg["font_size_pt"], "xtick.labelsize": cfg["font_size_pt"], "ytick.labelsize": cfg["font_size_pt"], "axes.linewidth": cfg["line_width_pt"], "xtick.major.width": cfg["line_width_pt"], "ytick.major.width": cfg["line_width_pt"], "pdf.fonttype": 42, "svg.fonttype": "none", "svg.hashsalt": "easyviz-annotated-inhibition"}
+    rc = {"font.family": font, "font.size": cfg["font_size_pt"], "axes.labelsize": cfg["font_size_pt"], "xtick.labelsize": cfg["font_size_pt"], "ytick.labelsize": cfg["font_size_pt"], "axes.linewidth": cfg["line_width_pt"], "axes.edgecolor": cfg.get("axis_color", "#252E31"), "text.color": cfg.get("text_color", "#252E31"), "axes.labelcolor": cfg.get("text_color", "#252E31"), "xtick.color": cfg.get("text_color", "#252E31"), "ytick.color": cfg.get("text_color", "#252E31"), "xtick.major.width": cfg["line_width_pt"], "ytick.major.width": cfg["line_width_pt"], "pdf.fonttype": 42, "svg.fonttype": "none", "svg.hashsalt": "easyviz-annotated-inhibition"}
     with plt.rc_context(rc), warnings.catch_warnings(record=True) as captured:
         warnings.simplefilter("always")
         fig = plt.figure(figsize=(width / 25.4, height / 25.4), dpi=dpi, facecolor="white")
@@ -133,9 +133,9 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         top.set_ylim(*limits)
         top.set_yticks(ticks)
         top.set_xticks([])
-        top.tick_params(length=2, pad=2)
+        top.tick_params(length=1.5, pad=2, color=cfg.get("axis_color", "#252E31"))
         top.set_axisbelow(True)
-        top.grid(axis="y", color=cfg["grid_color"], linewidth=.4)
+        top.grid(axis="y", color=cfg["grid_color"], linewidth=cfg.get("grid_width_pt", .35))
         top.spines[["top", "right", "bottom"]].set_visible(False)
         text("receiver_mean", "Receiver mean GII (min)", ha="left", va="bottom")
 
@@ -146,9 +146,9 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         right.set_xlim(*limits)
         right.set_xticks(ticks)
         right.set_yticks([])
-        right.tick_params(length=2, pad=2)
+        right.tick_params(length=1.5, pad=2, color=cfg.get("axis_color", "#252E31"))
         right.set_axisbelow(True)
-        right.grid(axis="x", color=cfg["grid_color"], linewidth=.4)
+        right.grid(axis="x", color=cfg["grid_color"], linewidth=cfg.get("grid_width_pt", .35))
         right.spines[["top", "right", "left"]].set_visible(False)
         text("sender_mean", "Sender mean (min)", ha="left", va="bottom")
 
@@ -160,11 +160,11 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
 
         barax = axis("colorbar_mm")
         cb = fig.colorbar(image, cax=barax, orientation="horizontal", ticks=np.linspace(lo, hi, 3))
-        cb.outline.set_linewidth(.4)
-        cb.ax.tick_params(length=2, pad=2)
+        cb.outline.set_visible(False)
+        cb.ax.tick_params(length=1.5, pad=2, color=cfg.get("axis_color", "#252E31"))
         text("colorbar_title", "Pairwise GII (min)", ha="center", va="bottom")
         legend_x, legend_y = cfg["text_positions_mm"]["genome_legend"]
-        fig.legend(handles=[Patch(facecolor=cfg["genome_colors"]["1"], edgecolor="none", label="Genome analyzed"), Patch(facecolor=cfg["genome_colors"]["0"], edgecolor="#BDC5CA", linewidth=.4, label="Not analyzed")], loc="lower left", bbox_to_anchor=(legend_x / width, legend_y / height), borderaxespad=0, frameon=False, ncol=2, handlelength=1.0, handleheight=.8, columnspacing=1.3)
+        fig.legend(handles=[Patch(facecolor=cfg["genome_colors"]["1"], edgecolor="none", label="Genome analyzed"), Patch(facecolor=cfg["genome_colors"]["0"], edgecolor="none", linewidth=0, label="Not analyzed")], loc="lower left", bbox_to_anchor=(legend_x / width, legend_y / height), borderaxespad=0, frameon=False, ncol=2, handlelength=1.0, handleheight=.8, columnspacing=1.3)
         fig.canvas.draw()
         renderer = fig.canvas.get_renderer()
         clipped = []

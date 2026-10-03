@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 
 SCRIPTS = Path(__file__).resolve().parents[1] / "skills/easyviz/scripts"
 loader = importlib.util.spec_from_file_location("easyviz_apply_requests", SCRIPTS / "apply_figure_requests.py")
@@ -65,6 +66,32 @@ class ApplyRequestsTests(unittest.TestCase):
         self.assertEqual(self.app.ledger()["requests"][0]["status"],"pending")
         self.assertEqual(self.app.ledger()["history"][-1]["action"],"prepared")
         for name,content in originals.items(): self.assertEqual((self.attempt/name).read_bytes(),content)
+
+    def test_prepare_mapped_stroke_role_changes_actual_target_without_touching_global_width(self):
+        spec = {**self.spec, "line_roles": {"data": {"line_width_pt": .85, "color": "#2581B9"},
+                                          "axis": {"line_width_pt": .55}}}
+        attempt = self.root / "stroke-attempt"
+        self.make_attempt(attempt, spec)
+        manifest_path = attempt / "elements.json"
+        manifest = json.loads(manifest_path.read_text())
+        manifest["elements"][0].update(role="fit-line", spec_paths=["/line_roles/data/line_width_pt"],
+                                        editable={"linewidth": "/line_roles/data/line_width_pt"})
+        manifest_path.write_text(json.dumps(manifest))
+        app = helper.FigureWorkbench(attempt)
+        item = app.change({"version": app.state()["version"], "element_id": "group-A",
+                           "property": "linewidth", "value": 1.1,
+                           "instruction": "Increase this fitted line while retaining observations and axes."})["request"]
+        output = self.root / "stroke-edited"
+        helper.prepare_requests(attempt, output, [item["id"]])
+        edited = json.loads((output / "plot-spec.json").read_text())
+        expected = copy.deepcopy(spec)
+        expected["line_roles"]["data"]["line_width_pt"] = 1.1
+        self.assertEqual(edited, expected)
+        self.assertFalse((output / "panel.svg").exists(), "Preparing a source edit does not claim an Agent rerender")
+        for prop, path in (("color", "/line_roles/unknown/color"),
+                           ("linewidth", "/line_roles/data/max_area_pt2"),
+                           ("linestyle", "/line_roles/axis/linestyle")):
+            self.assertFalse(helper.compatible(prop, path))
 
     def test_unbound_or_tampered_palette_cannot_change_unselected_category(self):
         item=self.request()
@@ -235,6 +262,47 @@ class ApplyRequestsTests(unittest.TestCase):
 
 
 class CoreRenderRequestTests(unittest.TestCase):
+    def test_reference_style_alias_prepares_valid_core_spec_and_rerenders_same_position(self):
+        import render
+        with tempfile.TemporaryDirectory(prefix="easyviz-reference-style-") as folder:
+            root = Path(folder).resolve()
+            data = root / "data.csv"
+            data.write_text("x,y\n1,2\n2,3\n3,5\n")
+            spec = {"chart": "scatter", "fields": {"x": "x", "y": "y"},
+                    "layout": {"width_mm": 120, "height_mm": 90, "font": "DejaVu Sans"},
+                    "formats": ["svg", "pdf", "png"],
+                    "options": {"reference_lines": {"y": [3.5]}},
+                    "line_roles": {"reference": {"line_width_pt": .45, "linestyle": ":"}}}
+            spec_path = root / "spec.json"
+            spec_path.write_text(json.dumps(spec))
+            initial = root / "attempt-01"
+            render.render(data, spec, initial, spec_path=spec_path, track="create")
+            app = helper.FigureWorkbench(initial)
+            state = app.state()
+            reference = next(element for element in state["elements"] if element["role"] == "reference-line")
+            item = app.change({"version": state["version"], "element_id": reference["id"],
+                               "property": "linestyle", "value": "dashed",
+                               "instruction": "Draw this supplied reference as a dashed line at the same value."})["request"]
+            output = root / "attempt-02"
+            plan = helper.prepare_requests(initial, output, [item["id"]], render=True)
+            self.assertTrue(plan["rendered"])
+            self.assertEqual(plan["patches"][0]["value"], "--")
+            edited = json.loads((output / "plot-spec.json").read_text())
+            expected = copy.deepcopy(spec)
+            expected["line_roles"]["reference"]["linestyle"] = "--"
+            self.assertEqual(edited, expected)
+            self.assertEqual(json.loads((output / "qa.json").read_text())["status"], "pass")
+            self.assertEqual((output / "plotting-data.csv").read_bytes(), (initial / "plotting-data.csv").read_bytes())
+            self.assertEqual(json.loads(spec_path.read_text()), spec)
+            paths = []
+            for directory in (initial, output):
+                svg = ET.parse(directory / "panel.svg")
+                group = next(element for element in svg.iter() if element.get("id") == reference["id"])
+                paths.append(group.find("{http://www.w3.org/2000/svg}path"))
+            self.assertEqual(paths[0].get("d"), paths[1].get("d"), "Reference geometry retains its supplied position")
+            self.assertNotEqual(paths[0].get("style"), paths[1].get("style"))
+            self.assertEqual(app.ledger()["requests"][0]["status"], "applied")
+
     def test_bulk_request_core_rerender_updates_new_exports_and_manifest_only(self):
         try:
             import render

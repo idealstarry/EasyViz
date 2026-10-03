@@ -99,6 +99,98 @@ class RendererTests(unittest.TestCase):
         with self.assertRaises(renderer.SpecError):
             renderer.ordered(pd.DataFrame({"g": ["a", "b"]}), "g", {"order": {"group": ["a"]}}, "group")
 
+    def test_line_roles_are_strict_and_invalid_styles_do_not_reach_rendering(self):
+        invalid = [None, [], {"unknown": {}}, {"data": {"width": 1}},
+                   {"data": {"line_width_pt": True}}, {"summary": {"line_width_pt": 0}},
+                   {"grid": {"line_width_pt": -1}}, {"axis": {"line_width_pt": float("nan")}},
+                   {"reference": {"line_width_pt": float("inf")}},
+                   {"data": {"color": "not a color"}}, {"data": {"color": [1, 0, 0]}},
+                   {"reference": {"linestyle": []}}, {"grid": {"linestyle": "dashed"}},
+                   {"axis": {"linestyle": "--"}}]
+        for roles in invalid:
+            with self.subTest(roles=roles), self.assertRaises(renderer.SpecError):
+                renderer.prepare(self.csv("x,y\n1,2\n2,4\n3,5\n"), {**self.base, "line_roles": roles})
+
+    def test_scatter_stroke_roles_change_real_artists_without_changing_observations(self):
+        source = self.csv("x,y,g\n1,2,A\n2,3,A\n3,5,B\n4,6,B\n")
+        original = source.read_bytes()
+        spec = deepcopy(self.base)
+        spec["fields"]["group"] = "g"
+        spec["colors"] = {"A": "#2581B9", "B": "#DF9A3C"}
+        spec["options"] = {"regression": True, "grid": True, "reference_lines": {"y": [3, 3]}}
+        spec["line_roles"] = {"data": {"line_width_pt": 1.1, "color": "#1B4965"},
+                              "reference": {"line_width_pt": .35, "color": "#AAAAAA", "linestyle": ":"},
+                              "axis": {"line_width_pt": .5, "color": "#555555"},
+                              "grid": {"line_width_pt": .25, "color": "#E8E8E8"}}
+        data = renderer.prepare(source, spec)
+        result = renderer.statistics(data, spec)
+        layout, typography, rc = renderer.setup(spec)
+        with renderer.plt.rc_context(rc):
+            fig, colors = renderer.draw(data, spec, layout, typography, result)
+            fig.canvas.draw()
+            ax = fig.axes[0]
+            fit = next(entry for entry in fig._easyviz_elements if entry["role"] == "fit-line")
+            self.assertEqual(fit["_artist"].get_linewidth(), 1.1)
+            self.assertEqual(renderer.mcolors.to_hex(fit["_artist"].get_color()), "#1b4965")
+            self.assertEqual(fit["editable"]["linewidth"], "/line_roles/data/line_width_pt")
+            refs = [entry["_artist"] for entry in fig._easyviz_elements if entry["role"] == "reference-line"]
+            self.assertEqual(len(refs), 2, "Repeated supplied reference positions still render faithfully")
+            for line in refs:
+                self.assertEqual(line.get_linewidth(), .35)
+                self.assertEqual(line.get_linestyle(), ":")
+                self.assertEqual(list(line.get_ydata()), [3, 3])
+            self.assertEqual(ax.spines["left"].get_linewidth(), .5)
+            self.assertEqual(renderer.mcolors.to_hex(ax.spines["left"].get_edgecolor()), "#555555")
+            self.assertEqual(ax.xaxis.get_major_ticks()[0].tick1line.get_markeredgewidth(), .5)
+            self.assertTrue(all(line.get_linewidth() == .25 for line in ax.get_xgridlines() + ax.get_ygridlines()))
+            self.assertTrue(all(line.get_zorder() < 3 for line in ax.get_xgridlines() + ax.get_ygridlines()))
+            self.assertEqual(colors, spec["colors"])
+            for points, group in zip(ax.collections, ("A", "B")):
+                self.assertTrue((points.get_linewidths() == 0).all())
+                self.assertEqual(renderer.mcolors.to_hex(points.get_facecolors()[0]), spec["colors"][group].lower())
+            renderer.plt.close(fig)
+        output = self.root / "stroke-output"
+        renderer.render(source, spec, output, track="create")
+        pd.testing.assert_frame_equal(pd.read_csv(output / "plotting-data.csv"), pd.read_csv(source))
+        self.assertEqual(source.read_bytes(), original)
+        self.assertEqual(json.loads((output / "stats.json").read_text())["regression"]["slope"], result["regression"]["slope"])
+
+    def test_explicit_regression_color_remains_preferred_over_data_role_color(self):
+        spec = {**self.base, "options": {"regression": True, "regression_color": "#AA1144"},
+                "line_roles": {"data": {"color": "#112233", "line_width_pt": .9}}}
+        data = renderer.prepare(self.csv("x,y\n1,2\n2,4\n3,5\n"), spec)
+        layout, typography, rc = renderer.setup(spec)
+        with renderer.plt.rc_context(rc):
+            fig, _ = renderer.draw(data, spec, layout, typography, {})
+            fit = next(entry for entry in fig._easyviz_elements if entry["role"] == "fit-line")
+            self.assertEqual(renderer.mcolors.to_hex(fit["_artist"].get_color()), "#aa1144")
+            self.assertEqual(fit["editable"]["color"], "/options/regression_color")
+            renderer.plt.close(fig)
+
+    def test_box_summary_roles_and_legacy_fallback_preserve_fills_and_values(self):
+        source = self.csv("g,v\nA,1\nA,2\nA,3\nA,6\nB,2\nB,3\nB,5\nB,7\n")
+        base = {"chart": "distribution", "fields": {"group": "g", "value": "v"},
+                "layout": {"font": "DejaVu Sans", "line_width_pt": .62},
+                "colors": {"A": "#2581B9", "B": "#DF9A3C"}, "options": {"grid": True}}
+        variants = [(base, .62), ({**base, "line_roles": {"summary": {"line_width_pt": .85}}}, .85)]
+        for spec, expected in variants:
+            data = renderer.prepare(source, spec)
+            layout, typography, rc = renderer.setup(spec)
+            with renderer.plt.rc_context(rc):
+                fig, colors = renderer.draw(data, spec, layout, typography, {})
+                ax = fig.axes[0]
+                self.assertEqual([patch.get_linewidth() for patch in ax.patches], [expected, expected])
+                self.assertTrue(all(line.get_linewidth() == expected for line in ax.lines))
+                self.assertEqual(renderer.mcolors.to_hex(ax.lines[4].get_color()), "#222222")
+                for patch, group in zip(ax.patches, ("A", "B")):
+                    self.assertEqual(patch.get_facecolor(), renderer.mcolors.to_rgba(colors[group], .22))
+                    self.assertEqual(renderer.mcolors.to_hex(patch.get_edgecolor()), colors[group].lower())
+                self.assertTrue(all((points.get_linewidths() == 0).all() for points in ax.collections))
+                self.assertEqual(ax.spines["left"].get_linewidth(), .62)
+                self.assertTrue(all(line.get_linewidth() == .4 for line in ax.get_xgridlines() + ax.get_ygridlines()))
+                self.assertEqual(data["v"].tolist(), pd.read_csv(source)["v"].tolist())
+                renderer.plt.close(fig)
+
     def test_statistics_known_result_and_constant_rejection(self):
         spec = deepcopy(self.base)
         spec["statistics"] = {"method": "pearson"}

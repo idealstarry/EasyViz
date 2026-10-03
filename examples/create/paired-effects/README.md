@@ -1,6 +1,6 @@
 # Cohort effect forest panel
 
-This custom EasyViz create implementation uses synthetic evaluation data, not biological findings. It displays all supplied estimates and asymmetric confidence intervals, preserving the requested 180 × 120 mm canvas, Arial 8 pt type, term order, four domains, and approved cohort colors. The core renderer has no forest/interval recipe; `plot.py` implements that geometry explicitly.
+This custom EasyViz create implementation uses synthetic evaluation data, not biological findings. It displays all supplied estimates and asymmetric confidence intervals, preserving the requested 180 × 120 mm canvas, Arial 8 pt type, term order and four domains. `plot.py` implements the grouped geometry explicitly; the separate supplied-interval recipe covers other interval contracts.
 
 Run with a Python environment containing the EasyViz dependencies:
 
@@ -11,7 +11,9 @@ python /path/to/paired-effects/plot.py \
   --out /path/to/paired-effects
 ```
 
-`source.csv` preserves the supplied bytes. `plotting-data.csv` records every plotted value, its source line, y position, and color. `figure-settings.json` is the editable input; `actual-settings.json` resolves font availability, ordering, offsets, source identity, and software. The script writes PDF, SVG, PNG, and numerical/export checks. `caption.md` contains the separate scientific explanation. `review-independent.md` and its hashes describe the original candidate. The later compact-legend revision has separate current-candidate evidence in `legend-update-review.json`; the old independent review was not relabeled as a review of the new image.
+`source.csv` preserves the supplied bytes. `plotting-data.csv` records every plotted value, its source line, y position, and color. `figure-settings.json` is the editable input; `actual-settings.json` resolves font availability, ordering, offsets, source identity, and software. The script writes PDF, SVG, PNG, and numerical/export checks. `caption.md` contains the separate scientific explanation. `review-independent.md` and `legend-update-review.json` describe earlier candidates and their hashes. Current before/after evidence is recorded in [the create styling review](https://github.com/idealstarry/EasyViz/tree/main/evals/create-style-refinement); earlier reviews are not relabeled as reviews of the current image.
+
+The current styling uses an explicit blue/coral pair chosen by EasyViz, not sampled author colors. Borderless estimates are visually stronger than their uncapped 0.8 pt interval segments. A 0.45 pt light dashed zero guide, a 0.5 pt gray axis and optional 0.3 pt grid have separate roles; the default has no full-height grid. Supplied endpoints, intervals and the common value axis are unchanged. The four domain headings retain the same 8 pt text size with a quieter normal-weight gray treatment. All values are still shown, and no uncertainty is recomputed for this styling change.
 
 Running `python /path/to/paired-effects/plot.py` without arguments uses the bundled source/settings and writes beside the script. `reuse-validation.json` and `evaluation/` document one additional synthetic five-term, three-cohort run with all field names changed; this is a bounded transfer check, not a universal support claim.
 

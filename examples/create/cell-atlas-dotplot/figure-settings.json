@@ -16,10 +16,10 @@
     40
   ],
   "color_stops": [
-    "#D3E6F1",
-    "#A8CDE3",
-    "#7CB3D5",
-    "#519AC7",
+    "#BED9EA",
+    "#97C3DE",
+    "#71ACD2",
+    "#4B96C5",
     "#2581B9"
   ],
   "group_colors": {
@@ -40,16 +40,33 @@
   },
   "pooled_count_axis_max": 4000,
   "palette_family": "notch2-balanced",
-  "palette_preset": "notch2-blue",
+  "palette_preset": "Custom 30%-to-100% tint adaptation of notch2-blue; use the explicit color_stops",
   "size_legend_color": "#2581B9",
   "palette_source": "https://www.nature.com/articles/s41467-024-53700-9",
-  "palette_status": "Categorical swatches sampled from one paper figure; blue sequential ramp explicitly derived with a 20% endpoint tint to keep borderless low-value marks visible.",
+  "palette_status": "Categorical swatches sampled from one paper figure; blue sequential ramp explicitly derived with a 30% endpoint tint to improve small borderless marks on white without changing quantitative areas or the 0-40% scale.",
   "panel_title": null,
   "caption_file": "caption.md",
   "mark_style": {
     "outline": "none",
     "edge_color": "none",
     "edge_width_pt": 0
+  },
+  "visual_style": {
+    "text_color": "#2F3B43",
+    "secondary_text_color": "#687780",
+    "header_color": "#3B4952",
+    "count_text_color": "#46555E",
+    "header_rule_color": "#BDC7CD",
+    "header_rule_width_pt": 0.45,
+    "group_rule_color": "#E5EAED",
+    "group_rule_width_pt": 0.3,
+    "baseline_color": "#D3DCE1",
+    "baseline_width_pt": 0.35,
+    "annotation_strip_width": 0.75,
+    "colorbar_outline": "none",
+    "colorbar_tick_color": "#8B9AA4",
+    "colorbar_tick_width_pt": 0.4,
+    "header_font_weight": "normal"
   },
   "categorical_palette": "notch2-balanced",
   "row_pitch": 4.8,

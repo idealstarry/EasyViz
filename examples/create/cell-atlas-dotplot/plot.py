@@ -81,7 +81,18 @@ def main() -> None:
     ax = fig.add_axes([0, 0, 1, 1], xlim=(0, layout_width), ylim=(0, layout_height))
     ax.set_axis_off()
     ax.set_axisbelow(True)
-    ink, muted = "#242833", "#656C76"
+    visual = {
+        "text_color": "#2F3B43", "secondary_text_color": "#687780",
+        "header_color": "#3B4952", "count_text_color": "#46555E",
+        "header_rule_color": "#BDC7CD", "header_rule_width_pt": .45,
+        "group_rule_color": "#E5EAED", "group_rule_width_pt": .3,
+        "baseline_color": "#D3DCE1", "baseline_width_pt": .35,
+        "annotation_strip_width": .75, "colorbar_outline": "none",
+        "colorbar_tick_color": "#8B9AA4", "colorbar_tick_width_pt": .4,
+        "header_font_weight": "normal",
+        **config.get("visual_style", {}),
+    }
+    ink, muted = visual["text_color"], visual["secondary_text_color"]
     text_artists = []
 
     def label(x, y, text, **kwargs):
@@ -92,16 +103,17 @@ def main() -> None:
         return artist
 
     # Manuscript title and narrative context belong in caption.md, outside the panel.
-    label(6, 110, "Subtype", weight="bold")
-    label(57, 110, "Reported marker examples", weight="bold")
-    label(118, 114, "Within-depot composition", ha="center", weight="bold")
-    label(160, 110, "Pooled n", ha="center", weight="bold")
+    label(6, 110, "Subtype", color=visual["header_color"], weight=visual["header_font_weight"])
+    label(57, 110, "Reported marker examples", color=visual["header_color"], weight=visual["header_font_weight"])
+    label(118, 114, "Within-depot composition", ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
+    label(160, 110, "Pooled n", ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
     depots = config["depot_order"]
     x_locations = dict(zip(depots, [102, 119, 136]))
     for depot, x in x_locations.items():
-        label(x, 109, config["depot_display"][depot], ha="center", weight="bold")
+        label(x, 109, config["depot_display"][depot], ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
         label(x, 104.5, f"n={int(totals[depot]):,}", ha="center", color=muted)
-    ax.plot([6, 175], [101, 101], lw=0.6, color="#8F97A0", zorder=1)
+    ax.plot([6, 175], [101, 101], lw=visual["header_rule_width_pt"],
+            color=visual["header_rule_color"], zorder=1)
 
     # Rows are grouped by the authors' descriptive labels; no statistical clustering.
     row_positions = []
@@ -131,17 +143,19 @@ def main() -> None:
     for index, group in enumerate(groups):
         positions = [pos for annotation, pos in zip(annotations, row_positions) if annotation["display_group"] == group]
         top, bottom = max(positions) + half_row, min(positions) - half_row
-        if index % 2 == 0:
-            ax.add_patch(Rectangle((6, bottom), 169, top - bottom, facecolor="#F7F8FA", edgecolor="none", zorder=0))
-        ax.add_patch(Rectangle((6, bottom), 1.05, top - bottom,
+        if index:
+            # Group boundaries carry grouping, not a table of boxed cells.
+            boundary = top + .65
+            ax.plot([9, 175], [boundary, boundary],
+                    color=visual["group_rule_color"], lw=visual["group_rule_width_pt"], zorder=1)
+        ax.add_patch(Rectangle((6, bottom), visual["annotation_strip_width"], top - bottom,
                                facecolor=config["group_colors"][group], edgecolor=edge_color, linewidth=edge_width, zorder=1))
-    for x in x_locations.values():
-        ax.plot([x, x], [min(row_positions) - half_row, 100], color="#ECEEF1", lw=0.45, zorder=1)
-    ax.plot([bar_start, bar_start], [min(row_positions) - half_row, 100], color="#D5DAE0", lw=0.5, zorder=1)
+    ax.plot([bar_start, bar_start], [min(row_positions) - half_row, 100],
+            color=visual["baseline_color"], lw=visual["baseline_width_pt"], zorder=1)
 
     for annotation, y in zip(annotations, row_positions):
         cluster = annotation["cluster"]
-        label(9, y, "myC" + (str(cluster) if cluster == 0 else f"{cluster:02d}"))
+        label(9, y, "myC" + (str(cluster) if cluster == 0 else f"{cluster:02d}"), color=muted)
         label(24, y, annotation["label"])
         label(57, y, annotation["marker_examples"], fontstyle="italic", color=muted)
         subset = source[source.seurat_clusters == cluster].set_index("tissue")
@@ -154,7 +168,7 @@ def main() -> None:
         ax.barh(y, n / config["pooled_count_axis_max"] * bar_width,
                 height=1.8, left=bar_start, color=config["group_colors"][annotation["display_group"]],
                 alpha=1.0, edgecolor=edge_color, linewidth=edge_width, zorder=2)
-        label(175, y, f"{n:,}", ha="right")
+        label(175, y, f"{n:,}", ha="right", color=visual["count_text_color"])
 
     # A shared physical-layout helper also serves the generic renderer and other
     # recipes. Quantitative keys retain exactly the areas of the data marks.
@@ -172,6 +186,17 @@ def main() -> None:
                     edgecolor=edge_color, linewidth_pt=edge_width)
     guides.add_colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), "Within-depot share (%)")
     legend_report = guides.layout()
+    for entry in guides.entries:
+        for text in entry["artist"].findobj(matplotlib.text.Text):
+            text.set_color(ink)
+        if entry["kind"] == "colorbar":
+            entry["colorbar"].outline.set_visible(visual["colorbar_outline"] != "none")
+            entry["artist"].tick_params(color=visual["colorbar_tick_color"],
+                                       labelcolor=ink, width=visual["colorbar_tick_width_pt"])
+            entry["artist"].xaxis.label.set_color(ink)
+            entry["artist"].yaxis.label.set_color(ink)
+    # Validate the final guide geometry after applying cosmetic guide styles.
+    legend_report = guides.validate()
     assert legend_report["status"] == "pass", f"Legend layout needs revision: {legend_report['issues']}"
 
     fig.canvas.draw()
@@ -190,10 +215,14 @@ def main() -> None:
         "percent_max_abs_error": float(np.max(np.abs(source.within_depot_percent - source.percent))),
         "dot_area": f"{max_area} pt^2 * n / {size_max}",
         "color_scale_percent": config["color_range_percent"],
+        "color_stops": config["color_stops"],
+        "group_colors": config["group_colors"],
+        "size_legend_color": size_legend_color,
         "canvas_mm": [width, height], "text_pt": text_pt,
         "layout_reference_coordinates": [layout_width, layout_height],
         "font_family": family, "font_file": font_path,
         "mark_style": mark_style,
+        "visual_style": visual,
         "legend_layout": legend_report,
         "main_plot_bbox_mm": plot_bbox_mm,
         "reserved_legend_band_mm": [0, 0, width, body_bottom * height / layout_height],

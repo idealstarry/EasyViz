@@ -122,6 +122,7 @@ SCHEMA = {
     "figure_profile": {"profile": "path/to/figure-profile.json", "panel": "named panel", "continuous_scale": "optional named shared continuous scale", "size_scale": "optional named shared area scale for dotplot or scatter with fields.size"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300, "auto_fit": False, "margins": {"left": .19, "right": .77, "bottom": .23, "top": .88}},
     "typography": {"axis": 8, "tick": 8, "legend": 8, "annotation": 8, "title": 9, "panel": 9},
+    "line_roles": {"data": {"line_width_pt": .85}, "summary": {"line_width_pt": .75}, "reference": {"line_width_pt": .45, "color": "#A1A1A1", "linestyle": "--"}, "axis": {"line_width_pt": .55, "color": "#555555"}, "grid": {"line_width_pt": .3, "color": "#E8E8E8", "linestyle": "-"}},
     "formats": ["pdf", "svg", "png", "tiff"], "seed": 0,
     "colors": {"category label": "#0072B2"}, "palette": "somerville-bright",
     "colormap": "somerville-sky, another registered preset/Matplotlib colormap, or hex colors",
@@ -641,6 +642,7 @@ def setup(spec):
     try:
         figure_profile.validate_layout(spec.get("layout", {}))
         figure_profile.validate_typography(spec.get("typography", {}))
+        figure_profile.validate_line_roles(spec.get("line_roles", {}))
     except figure_profile.ConfigurationError as exc:
         raise SpecError(str(exc)) from None
     layout = {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300}
@@ -666,14 +668,44 @@ def setup(spec):
     return layout, typography, rc
 
 
+def line_style(spec, role, *, linewidth, color=None, linestyle=None):
+    """Resolve only declared stroke properties, retaining each legacy fallback."""
+    overrides = spec.get("line_roles", {}).get(role, {})
+    properties = {"linewidth": overrides.get("line_width_pt", linewidth)}
+    if "linestyle" in overrides or linestyle is not None:
+        properties["linestyle"] = overrides.get("linestyle", linestyle)
+    if "color" in overrides or color is not None:
+        properties["color"] = overrides.get("color", color)
+    return properties
+
+
+def line_width_path(spec, role):
+    return (figure_elements.pointer("line_roles", role, "line_width_pt")
+            if "line_width_pt" in spec.get("line_roles", {}).get(role, {})
+            else "/layout/line_width_pt")
+
+
 def draw(data, spec, layout, typography, result):
     chart, f, options, labels = spec["chart"], spec["fields"], spec.get("options", {}), spec.get("labels", {})
     fig, ax = plt.subplots(figsize=(layout["width_mm"] / 25.4, layout["height_mm"] / 25.4), dpi=layout["dpi"])
     fig.subplots_adjust(**layout["margins"])
     legend_manager = legend_layout.LegendLayout(fig, ax, typography, spec.get("legends"))
     ax.set_axisbelow(True)
+    axis_style = spec.get("line_roles", {}).get("axis", {})
+    if axis_style:
+        for spine in ax.spines.values():
+            if "line_width_pt" in axis_style:
+                spine.set_linewidth(axis_style["line_width_pt"])
+            if "color" in axis_style:
+                spine.set_edgecolor(axis_style["color"])
+        tick_style = {}
+        if "line_width_pt" in axis_style:
+            tick_style["width"] = axis_style["line_width_pt"]
+        if "color" in axis_style:
+            tick_style["color"] = axis_style["color"]
+        ax.tick_params(axis="both", which="both", **tick_style)
     if options.get("grid", False):
-        ax.grid(True, color="#e5e5e5", linewidth=.4, zorder=0)
+        ax.grid(True, **line_style(spec, "grid", linewidth=.4, color="#e5e5e5"), zorder=0)
     resolved_colors = {}
     distribution_points = []
     rng = np.random.default_rng(spec.get("seed", 0))
@@ -818,10 +850,16 @@ def draw(data, spec, layout, typography, result):
             fit = linregress(data[f["x"]].to_numpy(float), data[f["y"]].to_numpy(float))
             require(all(math.isfinite(v) for v in [fit.slope, fit.intercept]), "Undefined regression")
             ends = np.array([data[f["x"]].min(), data[f["x"]].max()])
-            line, = ax.plot(ends, fit.intercept + fit.slope * ends, color=options.get("regression_color", "#333333"), zorder=4)
+            stroke = line_style(spec, "data", linewidth=layout["line_width_pt"], color="#333333")
+            if "regression_color" in options:
+                stroke["color"] = options["regression_color"]
+            line, = ax.plot(ends, fit.intercept + fit.slope * ends, **stroke, zorder=4)
+            width_path = line_width_path(spec, "data")
+            color_path = ("/options/regression_color" if "regression_color" in options or "color" not in spec.get("line_roles", {}).get("data", {})
+                          else "/line_roles/data/color")
             figure_elements.register(fig, line, "fit-line", "OLS regression", key="scatter:ols",
-                                     spec_paths=["/options/regression_color", "/layout/line_width_pt"],
-                                     editable={"color": "/options/regression_color", "linewidth": "/layout/line_width_pt"})
+                                     spec_paths=[color_path, width_path],
+                                     editable={"color": color_path, "linewidth": width_path})
             result["regression"] = {"method": "ordinary least squares, pooled observations", "slope": float(fit.slope), "intercept": float(fit.intercept), "n": len(data), "interval": "none"}
     elif chart == "distribution":
         fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 9))
@@ -833,7 +871,10 @@ def draw(data, spec, layout, typography, result):
         kind = options.get("kind", "box")
         require(kind in ("box", "violin"), "Distribution kind must be box or violin")
         if kind == "box":
-            boxes = ax.boxplot(samples, positions=np.arange(len(groups)), widths=.5, patch_artist=True, showfliers=False, manage_ticks=False, orientation=orientation, medianprops={"color": "#222222", "linewidth": layout["line_width_pt"]}, whiskerprops={"linewidth": layout["line_width_pt"]}, capprops={"linewidth": layout["line_width_pt"]})
+            boxes = ax.boxplot(samples, positions=np.arange(len(groups)), widths=.5, patch_artist=True, showfliers=False, manage_ticks=False, orientation=orientation,
+                               medianprops=line_style(spec, "summary", linewidth=layout["line_width_pt"], color="#222222"),
+                               whiskerprops=line_style(spec, "summary", linewidth=layout["line_width_pt"]),
+                               capprops=line_style(spec, "summary", linewidth=layout["line_width_pt"]))
             bodies = boxes["boxes"]
             result["box_definition"] = "Median; 25th and 75th percentiles; whiskers to observations within 1.5 IQR. Every observation is drawn as a point."
         else:
@@ -843,12 +884,22 @@ def draw(data, spec, layout, typography, result):
             result["violin_definition"] = "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin width independently normalized. Every observation is drawn as a point."
         for body, group in zip(bodies, groups):
             body.set_facecolor(mcolors.to_rgba(resolved_colors[group], .22))
-            body.set_edgecolor(resolved_colors[group])
-            body.set_linewidth(layout["line_width_pt"])
+            stroke_role = "summary" if kind == "box" else "data"
+            stroke = line_style(spec, stroke_role, linewidth=layout["line_width_pt"], color=resolved_colors[group])
+            body.set_edgecolor(stroke["color"])
+            body.set_linewidth(stroke["linewidth"])
+            if "linestyle" in stroke:
+                body.set_linestyle(stroke["linestyle"])
+            width_path = line_width_path(spec, stroke_role)
+            paths = [figure_elements.pointer("colors", group), width_path]
+            edits = {"color": figure_elements.pointer("colors", group), "linewidth": width_path}
+            if "color" in spec.get("line_roles", {}).get(stroke_role, {}):
+                edge_path = figure_elements.pointer("line_roles", stroke_role, "color")
+                paths.append(edge_path)
+                edits["edgecolor"] = edge_path
             figure_elements.register(fig, body, "distribution", group, key=[kind, group],
                                      source_keys=[{"group": group}],
-                                     spec_paths=[figure_elements.pointer("colors", group), "/layout/line_width_pt"],
-                                     editable={"color": figure_elements.pointer("colors", group), "linewidth": "/layout/line_width_pt"})
+                                     spec_paths=paths, editable=edits)
         for i, (sample, group) in enumerate(zip(samples, groups)):
             positions = (np.full(len(sample), i, dtype=float) if options.get("point_layout") == "beeswarm"
                          else i + rng.uniform(-.13, .13, len(sample)))
@@ -891,8 +942,19 @@ def draw(data, spec, layout, typography, result):
     if chart == "scatter":
         for dimension, positions in options.get("reference_lines", {}).items():
             draw_line = ax.axvline if dimension == "x" else ax.axhline
-            for position in positions:
-                draw_line(position, color="#999999", linewidth=layout["line_width_pt"], linestyle="--", zorder=1)
+            for reference_index, position in enumerate(positions):
+                line = draw_line(position, **line_style(spec, "reference", linewidth=layout["line_width_pt"], color="#999999", linestyle="--"), zorder=1)
+                width_path = line_width_path(spec, "reference")
+                paths = [width_path, figure_elements.pointer("options", "reference_lines", dimension)]
+                edits = {"linewidth": width_path}
+                for property_name in ("color", "linestyle"):
+                    if property_name in spec.get("line_roles", {}).get("reference", {}):
+                        path = figure_elements.pointer("line_roles", "reference", property_name)
+                        paths.append(path)
+                        edits[property_name] = path
+                figure_elements.register(fig, line, "reference-line", f"{dimension.upper()} reference at {position:g}",
+                                         key=[dimension, reference_index, position], source_keys=[{"axis": dimension, "position": position}],
+                                         spec_paths=paths, editable=edits)
     if labels.get("title"):
         ax.set_title(labels["title"], fontsize=typography["title"], pad=6)
     if labels.get("panel"):

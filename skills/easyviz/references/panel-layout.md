@@ -24,6 +24,11 @@ When no specification exists, use the following internal starting values and ide
 
 These values are project defaults, not journal standards. Choose an aspect ratio based on chart type and data density before exporting the panel set, and record each panel's specification.
 
+The base width is a fallback, not a requirement to draw every line equally.
+For new create panels, [role-specific strokes](create-style.md) give data,
+summaries, references, axes and grids separate editable weights. Existing
+specifications and adopted reproduction settings retain their declared styles.
+
 ### Grid calculations
 
 For a regular grid, let W be the available figure width, n the number of columns, g the gap, k the number of columns a panel spans, and r its width-to-height ratio.

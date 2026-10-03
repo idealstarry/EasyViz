@@ -12,12 +12,14 @@ os.environ.setdefault('MPLCONFIGDIR',str(Path(tempfile.gettempdir())/'easyviz-re
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap, Normalize
 from matplotlib.patches import Rectangle
 from matplotlib.text import Text
 import numpy as np
 import pandas as pd
 from pypdf import PdfReader
+from PIL import Image, ImageDraw, ImageFont
 
 HERE=Path(__file__).resolve().parent
 INK='#242B33'; MUTED='#59616B'; GRID='#DFE4E8'
@@ -70,6 +72,7 @@ def main():
     p.add_argument('--design',choices=['all','baseline','participant-matrix','distribution-ledger'],default='all')
     args=p.parse_args(); cfg=json.loads(args.settings.read_text()); ann=json.loads(args.annotations.read_text())
     cohorts=args.cohorts or cfg['cohort_order']; font=cfg['font_size_pt']
+    marks=cfg.get('marks',{})
     require(font==8,'The evaluation fixes every text role at 8 pt')
     require([cfg['width_mm'], cfg['height_mm']]==[180,125],'This recipe fixes the canvas at 180 × 125 mm; revise the physical geometry for another size')
     require(args.year>0,'Follow-up year must be later than baseline')
@@ -110,13 +113,15 @@ def main():
                 s=f'myC{a["cluster"]:02}'; label=a['label'].replace('Non-classical Mo','Non-class. Mo').replace('Classical Mo','Class. Mo')
                 tx(6,ys[s],f'{s}  {label}')
             if grouped:
-                for _,top,bottom in groups[1:]: line([5,176],[top+3.3,top+3.3],lw=.45)
+                for _,top,bottom in groups[1:]:
+                    line([5,176],[top+3.3,top+3.3],color=marks.get('separator_color',GRID),
+                         lw=marks.get('separator_line_width_pt',.45))
         def scale(x0,x1): return lambda v:x0+(np.asarray(v)-cfg['change_xlim'][0])/(cfg['change_xlim'][1]-cfg['change_xlim'][0])*(x1-x0)
         def horizontal_axis(x0,x1,y,label):
             xx=scale(x0,x1)
-            line([x0,x1],[y,y],color='#8A929B',lw=.5)
+            line([x0,x1],[y,y],color=marks.get('axis_color','#8A929B'),lw=marks.get('axis_line_width_pt',.5))
             for tick in cfg['change_ticks']:
-                line([xx(tick),xx(tick)],[y,y-1],color='#8A929B',lw=.5)
+                line([xx(tick),xx(tick)],[y,y-1],color=marks.get('axis_color','#8A929B'),lw=marks.get('axis_line_width_pt',.5))
                 tx(xx(tick),y-3.5,str(tick),ha='center')
             tx((x0+x1)/2,y-8.2,label,ha='center')
             return xx
@@ -136,8 +141,8 @@ def main():
                     jitter=(np.arange(len(values))*.61803398875%1-.5)*1.15
                     bx.scatter(values,y+jitter,s=4,c=cfg['cohort_colors'][c],edgecolors='none',alpha=.65,zorder=3)
             bx.set(ylim=(23,107),xlim=cfg['change_xlim'],xticks=cfg['change_ticks'],yticks=[],xlabel=f'Change in deconvolution score ({args.year} years − baseline)')
-            bx.axvline(0,color='#9EA6AE',lw=.7,zorder=0)
-            bx.grid(axis='x',color='#EDF0F2',lw=.45)
+            bx.axvline(0,color=marks.get('reference_color','#9EA6AE'),lw=marks.get('reference_line_width_pt',.7),ls='--',zorder=0)
+            bx.grid(axis='x',color=marks.get('grid_color','#EDF0F2'),lw=marks.get('grid_line_width_pt',.45))
             bx.spines[['top','right','left']].set_visible(False);bx.spines['bottom'].set_color('#8A929B');bx.spines['bottom'].set_linewidth(.5)
             bx.tick_params(axis='x',length=2,width=.5)
             label_rows(False)
@@ -167,12 +172,13 @@ def main():
             tx(85,16,'Participant order',ha='center')
             pd.DataFrame([{'cohort':c,'rank':i+1,'participant':p} for c,order in participant_order.items() for i,p in enumerate(order)]).to_csv(args.out/'participant-order.csv',index=False)
             xx=scale(134,175)
-            line([xx(0),xx(0)],[28,107],color='#9EA6AE',lw=.55)
+            line([xx(0),xx(0)],[28,107],color=marks.get('reference_color','#9EA6AE'),lw=marks.get('reference_line_width_pt',.55),ls='--')
             for a in ann:
                 s=f'myC{a["cluster"]:02}'
                 for ci,c in enumerate(cohorts):
                     st=stats[c,s];yy=ys[s]+offsets[ci]
-                    line([xx(st['q1']),xx(st['q3'])],[yy,yy],color=cfg['cohort_colors'][c],lw=1.8,solid_capstyle='butt')
+                    line([xx(st['q1']),xx(st['q3'])],[yy,yy],color=cfg['cohort_colors'][c],
+                         lw=marks.get('marginal_summary_line_width_pt',1.8),solid_capstyle='butt')
                     dot(xx(st['median']),yy,cfg['cohort_colors'][c],14)
             tx(154.5,109,'Median / IQR',ha='center')
             for ci,c in enumerate(cohorts): tx(134+ci*23,116,c,color=cfg['cohort_colors'][c])
@@ -187,7 +193,10 @@ def main():
         else:
             label_rows(); xx=scale(45,148)
             for tick in cfg['change_ticks']:
-                line([xx(tick),xx(tick)],[28,107],color='#AEB6BF' if tick==0 else '#EEF1F3',lw=.7 if tick==0 else .4,zorder=0)
+                line([xx(tick),xx(tick)],[28,107],
+                     color=marks.get('reference_color','#AEB6BF') if tick==0 else marks.get('grid_color','#EEF1F3'),
+                     lw=marks.get('reference_line_width_pt',.7) if tick==0 else marks.get('grid_line_width_pt',.4),
+                     ls='--' if tick==0 else '-',zorder=0)
             for i,c in enumerate(cohorts):
                 tx(49+i*43,116,f'{c} (n={ns[c]})',color=cfg['cohort_colors'][c])
             tx(162,115,'Below 0 (%)',ha='center')
@@ -200,13 +209,14 @@ def main():
                     # Deterministic two-sided offsets leave every participant visible
                     # while avoiding the arbitrary density implied by a KDE.
                     jitter=(np.arange(len(values))*.61803398875%1-.5)*.95
-                    dot(xx(values),yy+jitter,color,5,alpha=.55,zorder=2)
-                    rr(xx(st['q1']),yy-.26,xx(st['q3'])-xx(st['q1']),.52,color,zorder=3)
+                    dot(xx(values),yy+jitter,color,5,alpha=marks.get('participant_alpha',.55),zorder=2)
+                    line([xx(st['q1']),xx(st['q3'])],[yy,yy],color=color,
+                         lw=marks.get('summary_line_width_pt',1.05),solid_capstyle='butt',zorder=3)
                     dot(xx(st['median']),yy,color,20,zorder=4)
                     tx(155+ci*18,ys[s],f'{st["negative_percent"]:.0f}',ha='center',color=color)
             horizontal_axis(45,148,23,f'Change in deconvolution score ({args.year} years − baseline)')
             # Semantic legend describes the summary, not the biological conclusion.
-            line([55,60],[6.3,6.3],color=INK,lw=1.6);dot(57.5,6.3,INK,15);tx(63,6.3,'Median / IQR')
+            line([55,60],[6.3,6.3],color=INK,lw=marks.get('summary_line_width_pt',1.6));dot(57.5,6.3,INK,20);tx(63,6.3,'Median / IQR')
             dot(101,6.3,MUTED,5);tx(104,6.3,'Participant')
         fig.canvas.draw();renderer=fig.canvas.get_renderer()
         problems=[];fonts=[]
@@ -227,7 +237,24 @@ def main():
                          'width_height_mm':dims,'text_sizes_pt':sorted(set(fonts)),'text_outside_canvas':problems,
                          'all_paired_changes_preserved':len(paired),'points_or_matrix_cells':len(paired),
                          'comparability':'Same source pairs, canvas, font, selected subtypes, and shared axis/color settings.'}
-    audit={'status':'passed','source_sha256':digest(args.data),'followup_year':args.year,'cohorts':ns,
+    if len(plots)==3:
+        # A review board outside the manuscript exports; retain the complete
+        # individual canvases and use identical display scaling for all three.
+        preview_width=1000
+        preview_height=round(preview_width*H/W)
+        board=Image.new('RGB',(3*preview_width+40,preview_height+58),'white')
+        draw=ImageDraw.Draw(board)
+        preview_font=ImageFont.truetype(font_manager.findfont(cfg['font']),24)
+        names=['Box and observations','Participant correspondence','Magnitude and consistency']
+        for index,(design,name) in enumerate(zip(plots,names)):
+            x=10+index*(preview_width+10)
+            with Image.open(args.out/design/'panel.png') as preview:
+                board.paste(preview.convert('RGB').resize((preview_width,preview_height),Image.Resampling.LANCZOS),(x,48))
+            draw.text((x+preview_width/2,18),name,font=preview_font,fill=INK,anchor='mm')
+        board.save(args.out/'comparison.png')
+    audit={'status':'passed','source_sha256':digest(args.data),'settings_sha256':digest(args.settings),
+           'actual_cohort_colors':{c:cfg['cohort_colors'][c] for c in cohorts},'mark_roles':marks,
+           'followup_year':args.year,'cohorts':ns,
            'paired_participants':sum(ns.values()),'subtypes':len(ann),'paired_changes':len(paired),
            'missing_pairs':0,'imputed_values':0,'change_range':[paired.change.min(),paired.change.max()],
            'score_unit':'Published deconvolution score; differences are score units, not proportions or percentage points.',

@@ -1,0 +1,408 @@
+{
+  "status": "ready_with_notes",
+  "date": "2026-10-03",
+  "reviewer_role": "independent subagent",
+  "reviewer_id": "/root/create_aesthetic_review",
+  "independence": "The reviewer did not implement these edits. The reviewer supplied an earlier visual audit, so this was not a blinded comparison or an observer study.",
+  "skill": "/Users/starry/.codex/plugins/cache/personal/easyviz/0.4.2/skills/easyviz-figure-reviewer/SKILL.md",
+  "baseline_revision": "3e0a42d84974acb7daf792efd6d23a41133320ad",
+  "scope": "Four README Create panels only, using matched before/after images at identical canvas and 720 px display width.",
+  "review_method": {
+    "actual_images_opened": "All four full-panel before PNGs, all four current candidate PNGs, and all four repository 720 px side-by-side comparison boards were opened with view_image. Temporary reviewer-generated 720 px boards were also opened before the repository boards became available.",
+    "config_and_caption": "Read all four case configurations and separate captions. Re-read the corrected paired-effects caption and current README wording.",
+    "measurements": "Independently read candidate PDF and SVG canvas dimensions, PNG dimensions/dpi, candidate PDF font sizes and embedded-font descriptors. Read baseline PDF dimensions/font sizes directly from baseline-revision Git blobs.",
+    "preservation": "Compared all four source files with baseline-revision Git blobs. Compared plotted and summary/selection/participant-order tables as specified below. This checks preservation, not biological validity or statistical correctness.",
+    "comparison_identity": "Baseline/candidate hashes match manifest.json; full hashes recorded per case."
+  },
+  "cases": {
+    "annotated-inhibition": {
+      "baseline": "evals/create-style-refinement/baseline/annotated-inhibition.png",
+      "candidate": "examples/create/annotated-inhibition/panel.png",
+      "baseline_sha256": "676672e7231b92b600bb5437f6c41dde8acfb364f2a3bbe3f10fcb27e43e10b5",
+      "candidate_sha256": "2e53497ff15bd026af661c0e48727c8df796f2b952c7b94b96a61af774e61921",
+      "baseline_png_pixels": [
+        2126,
+        1890
+      ],
+      "candidate_png_pixels": [
+        2126,
+        1890
+      ],
+      "same_raster_canvas": true,
+      "expected_canvas_mm": [
+        180,
+        160
+      ],
+      "pdf_mm": [
+        179.99999999998556,
+        159.999999999995
+      ],
+      "svg_mm": [
+        179.99999983333333,
+        159.99999996944445
+      ],
+      "pdf_text_sizes_pt": [
+        8
+      ],
+      "pdf_fonts": [
+        {
+          "name": "/CFVUKA+ArialMT",
+          "embedded": true
+        },
+        {
+          "name": "/CECFXM+ArialMT",
+          "embedded": true
+        }
+      ],
+      "source": "examples/create/annotated-inhibition/source-data.csv",
+      "source_sha256": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
+      "source_bytes_unchanged_from_baseline_revision": true,
+      "caption_sha256": "38001b87beb95a1bc3b1a24a865478641b5229c65e4940f10431d5cc026c39dd",
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "baseline_pdf_mm": [
+        179.99999999998556,
+        159.999999999995
+      ],
+      "baseline_pdf_text_sizes_pt": [
+        8
+      ],
+      "comparison": "evals/create-style-refinement/comparisons/annotated-inhibition.png",
+      "comparison_sha256": "9fc7952cabd846d3c6afdf69219a41dc03945d6afe2cff0f1e8fe7fea95020ac",
+      "display_width_px_each": 720,
+      "preference": "candidate",
+      "reading_task": "Read selected pairwise growth-delay values first, with genome status and correctly aligned full-matrix marginal means as context.",
+      "visible_gain": [
+        "The less saturated blue marginal bars and gray-teal metadata strips stop competing with the coral matrix.",
+        "The matrix shows clearer warm-value variation without adding a frame or changing its value range.",
+        "Required strain labels, full-data mean axes and the continuous guide remain visible at 720 px."
+      ],
+      "tradeoffs": [
+        "Moderate matrix values still occupy a relatively narrow band of pale colors.",
+        "The sequential scale supports ordered magnitude reading; it does not give zero or the 11 negative selected measurements a distinct signed hue.",
+        "The unoutlined light metadata key is less prominent than the old outlined key but remains associated with its label at the reviewed display size."
+      ],
+      "readiness": "ready_with_notes"
+    },
+    "cell-atlas-dotplot": {
+      "baseline": "evals/create-style-refinement/baseline/cell-atlas-dotplot.png",
+      "candidate": "examples/create/cell-atlas-dotplot/output/figure.png",
+      "baseline_sha256": "d2d0658649b4fe7f749cc0210c190e126bca38ea270354c7c93f7807dff9a1d0",
+      "candidate_sha256": "52576f6978cb87688b1f046a6a42a78e672ac3040452ea45ee83c7f6aa65b4de",
+      "baseline_png_pixels": [
+        2125,
+        1417
+      ],
+      "candidate_png_pixels": [
+        2125,
+        1417
+      ],
+      "same_raster_canvas": true,
+      "expected_canvas_mm": [
+        180,
+        120
+      ],
+      "pdf_mm": [
+        179.99999999998556,
+        120.00000000001387
+      ],
+      "svg_mm": [
+        179.99999983333333,
+        119.99999988888891
+      ],
+      "pdf_text_sizes_pt": [
+        8
+      ],
+      "pdf_fonts": [
+        {
+          "name": "/BJVKJF+Arial-ItalicMT",
+          "embedded": true
+        },
+        {
+          "name": "/ITXEZA+ArialMT",
+          "embedded": true
+        }
+      ],
+      "source": "examples/create/cell-atlas-dotplot/source-data.csv",
+      "source_sha256": "6fd2268a8c9db407912dd33769391e26704898badbe67f7164cc02feb02d0538",
+      "source_bytes_unchanged_from_baseline_revision": true,
+      "caption_sha256": "aab13079fc9a0b1d0eeccc961b84fa639858095f202c1418944c289ade1eda91",
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "baseline_pdf_mm": [
+        179.99999999998556,
+        120.00000000001387
+      ],
+      "baseline_pdf_text_sizes_pt": [
+        8
+      ],
+      "comparison": "evals/create-style-refinement/comparisons/cell-atlas-dotplot.png",
+      "comparison_sha256": "1c959ae26fffa819c8f400d8857da2aa6ccd27eb0a421a2710a844dc5dc5c2ae",
+      "display_width_px_each": 720,
+      "preference": "candidate",
+      "reading_task": "Compare counts and within-depot shares for each subtype while reading the aligned pooled totals and source-derived group labels.",
+      "visible_gain": [
+        "Removing broad alternate backgrounds and continuous depot rules lets the quantitative dots stand out on white.",
+        "Normal-weight headers, a narrower group strip and an unframed color guide reduce the weight of decoding aids.",
+        "The darker low endpoint slightly improves small positive dot contrast without changing their quantitative area."
+      ],
+      "tradeoffs": [
+        "Group and row lookup depend more on preserved gaps, narrow strips and pale separators than on shaded bands.",
+        "Several extremely rare positive dots are still difficult to distinguish at 720 px; stronger color has not made every point separately legible.",
+        "The three guide types remain necessary but still occupy a substantial bottom band; no guide was removed or size key shrunk."
+      ],
+      "readiness": "ready_with_notes"
+    },
+    "paired-effects": {
+      "baseline": "evals/create-style-refinement/baseline/paired-effects.png",
+      "candidate": "examples/create/paired-effects/panel.png",
+      "baseline_sha256": "136ddb65108d46995b35c7dd06978361a5d7d2ba6e0867adbed4f547a1e4bc2b",
+      "candidate_sha256": "88b6bee88a7a7dea4f701877e378c9f5ecf7c1daede176cfe8f952cac47d3ad6",
+      "baseline_png_pixels": [
+        2125,
+        1417
+      ],
+      "candidate_png_pixels": [
+        2125,
+        1417
+      ],
+      "same_raster_canvas": true,
+      "expected_canvas_mm": [
+        180,
+        120
+      ],
+      "pdf_mm": [
+        179.99999999998556,
+        120.00000000001387
+      ],
+      "svg_mm": [
+        179.99999983333333,
+        119.99999988888891
+      ],
+      "pdf_text_sizes_pt": [
+        8
+      ],
+      "pdf_fonts": [
+        {
+          "name": "/FYKHLD+ArialMT",
+          "embedded": true
+        }
+      ],
+      "source": "examples/create/paired-effects/source.csv",
+      "source_sha256": "d18da70f4c6c87a17cf2e715cc15924972297e9783e9c75ce32c6ac0b36887d3",
+      "source_bytes_unchanged_from_baseline_revision": true,
+      "caption_sha256": "cf7a228b6caf6281e5f6eb97943f5785d6bd67fce591d0f95e679e0371fbdf9d",
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "baseline_pdf_mm": [
+        179.99999999998556,
+        120.00000000001387
+      ],
+      "baseline_pdf_text_sizes_pt": [
+        8
+      ],
+      "comparison": "evals/create-style-refinement/comparisons/paired-effects.png",
+      "comparison_sha256": "b1e948f6001bbd2ec61c0e54e78a5598cf79b5bc7be02f83247c36019219066f",
+      "display_width_px_each": 720,
+      "preference": "candidate",
+      "reading_task": "Compare supplied cohort estimates and asymmetric 95% interval endpoints against zero within each source term and domain.",
+      "visible_gain": [
+        "The coordinated blue/coral pair and larger constant estimate circles distinguish the primary data from the pale zero guide.",
+        "Removing full-height nonzero grids and endpoint caps reduces repetitive lines while retaining the supplied interval endpoints.",
+        "The dashed zero guide remains locatable and interval crossings are readable at 720 px."
+      ],
+      "tradeoffs": [
+        "The lighter zero guide is less immediate than the former solid line and needs contrast checking in a print proof.",
+        "Removing nonzero grid lines reduces exact interpolation support; ticks and interval endpoints remain, and the source table is required for exact numeric lookup.",
+        "Normal-weight gray domain headings are less emphatic, with grouping carried by their separate positions and gaps."
+      ],
+      "readiness": "ready_with_notes"
+    },
+    "paired-myeloid-remodeling": {
+      "baseline": "evals/create-style-refinement/baseline/paired-myeloid-remodeling.png",
+      "candidate": "examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png",
+      "baseline_sha256": "5ddd3007ca6ca888581dfd30bf511dc503c6d9af248a3dcdd8dcb7ac9e27e3a5",
+      "candidate_sha256": "11a18c4404e79add37b7e114346458c4316d0f82240d05ff9586bff6b3a33bf8",
+      "baseline_png_pixels": [
+        2125,
+        1476
+      ],
+      "candidate_png_pixels": [
+        2125,
+        1476
+      ],
+      "same_raster_canvas": true,
+      "expected_canvas_mm": [
+        180,
+        125
+      ],
+      "pdf_mm": [
+        179.99999999998556,
+        124.99999999999389
+      ],
+      "svg_mm": [
+        179.99999983333333,
+        125.00000011944445
+      ],
+      "pdf_text_sizes_pt": [
+        8
+      ],
+      "pdf_fonts": [
+        {
+          "name": "/DZEJTR+ArialMT",
+          "embedded": true
+        },
+        {
+          "name": "/CECFXM+ArialMT",
+          "embedded": true
+        }
+      ],
+      "source": "examples/create/paired-myeloid-remodeling/source-data.csv",
+      "source_sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
+      "source_bytes_unchanged_from_baseline_revision": true,
+      "caption_sha256": "fe12e4615c2d9a5c6f185d615764f9cb2c25bb53a51f56bdc09d3264417d567a",
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "baseline_pdf_mm": [
+        179.99999999998556,
+        124.99999999999389
+      ],
+      "baseline_pdf_text_sizes_pt": [
+        8
+      ],
+      "comparison": "evals/create-style-refinement/comparisons/paired-myeloid-remodeling.png",
+      "comparison_sha256": "8ead129f0a2e0eecd5e8b6089c17477eec2a2419fa97c9bd089f93d31ecb1f46",
+      "display_width_px_each": 720,
+      "preference": "candidate",
+      "reading_task": "Compare cohort median changes, participant variation and the descriptive percentage strictly below zero across 16 subtypes.",
+      "visible_gain": [
+        "The coordinated blue/coral summary layers are more balanced than the former blue/amber combination.",
+        "The dashed zero guide and thinner separators reduce the strength of secondary structure.",
+        "The median/IQR summaries, subtype order, cohort labels and aligned percentages remain readable at 720 px."
+      ],
+      "tradeoffs": [
+        "Lower participant alpha makes raw observations lighter than the baseline; this favors summary comparison over individual-value inspection.",
+        "Overlapping marks are still possible; retaining and plotting all 832 observations does not establish that every point is separately visible.",
+        "This matched comparison uses distribution-ledger panels at equal width. The README improvement from replacing the old three-up board with one full panel is a separate presentation change."
+      ],
+      "readiness": "ready_with_notes"
+    }
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "annotated-inhibition matrix and colorbar",
+      "evidence": "Common moderate values remain close in the pale range, and a sequential ramp does not isolate negative values or zero by hue.",
+      "requirement": "Preserve the adopted linear range and source values; do not claim that cosmetic recoloring solved signed-value decoding.",
+      "action": "Retain the current disclosed linear scale. For a future sign-focused reading task, compare a separately adopted zero-centered candidate rather than silently changing normalization."
+    },
+    {
+      "severity": "note",
+      "location": "cell-atlas-dotplot rare positive marks",
+      "evidence": "At 720 px, several tiny positive depot/subtype dots remain difficult to separate from white even with the stronger low endpoint.",
+      "requirement": "Quantitative point area must remain exact; observation presence must not be equated with easy visual lookup.",
+      "action": "Keep this limitation explicit. If individual rare-coordinate lookup becomes required, adopt a separate presence cue or larger panel instead of imposing a hidden minimum quantitative area."
+    },
+    {
+      "severity": "note",
+      "location": "paired-effects zero guide and domain labels",
+      "evidence": "The pale dashed zero guide and normal-weight domain labels are visible on the inspected images but less prominent than the baseline.",
+      "requirement": "The zero reference and source groups must remain readable at final use size.",
+      "action": "Check their contrast in the final print proof; adjust those specific guide/text roles if that proof loses them, without restoring a full heavy grid."
+    },
+    {
+      "severity": "note",
+      "location": "paired-myeloid-remodeling raw observations",
+      "evidence": "Raw participant points are lighter than the baseline and some overlap is possible at the reviewed display size.",
+      "requirement": "All observations must remain plotted; do not claim every mark is separately discernible from a downsampled preview.",
+      "action": "Use plotted/retained wording and preserve the source tables. Favor the earlier alpha or a different adopted layout when precise individual-value lookup is the primary task."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "severity": "minor",
+      "location": "examples/create/paired-effects/caption.md",
+      "initial_evidence": "The initially read caption still described amber Replication marks and endpoint caps while the current panel uses coral and uncapped segments.",
+      "resolution": "The implementing Agent corrected the caption; the reviewer re-read coral, uncapped horizontal segments and dashed zero guide wording."
+    },
+    {
+      "severity": "minor",
+      "location": "README.md paired-myeloid description",
+      "initial_evidence": "The initially read wording said all 832 paired changes remain visible, which overclaimed individual visibility at 720 px.",
+      "resolution": "The implementing Agent changed the wording to all 832 paired changes are plotted; the reviewer re-read it."
+    }
+  ],
+  "independent_preservation_checks": {
+    "status": "passed",
+    "table_checks": {
+      "examples/create/annotated-inhibition/plotting-data.csv": {
+        "same_bytes": true,
+        "sha256": "644a4c6fc12bcf8c7cbc0bc478aff12434995ebfea20d15a27c6686d60cfe668"
+      },
+      "examples/create/annotated-inhibition/summary-data.csv": {
+        "same_bytes": true,
+        "sha256": "f7a2bb0d2373e5a28afc712f7d83f86444cce1b3354a9ea1d0d9dc1d56a266cf"
+      },
+      "examples/create/annotated-inhibition/selection.csv": {
+        "same_bytes": true,
+        "sha256": "3c8008f2e2cf213ede9a82d1e45676c3d12ff5c4c55f398e2fb9496521dfd0dc"
+      },
+      "examples/create/cell-atlas-dotplot/output/plotted-data.csv": {
+        "same_bytes": true,
+        "sha256": "b3e999625576abbab8bd1e992e369e6b1afc8b07deffb85823f4d6450e749647"
+      },
+      "examples/create/paired-myeloid-remodeling/output/paired-changes.csv": {
+        "same_bytes": true,
+        "sha256": "58f7803a0d1c265cdd75f9f51c21e2e65223deeed932b96595656ad3cabb99c3"
+      },
+      "examples/create/paired-myeloid-remodeling/output/summary.csv": {
+        "same_bytes": true,
+        "sha256": "9be2c9a196e00fd775f30f209262d7978a16933c8de506bb8254a6b6eae25b1b"
+      },
+      "examples/create/paired-myeloid-remodeling/output/participant-order.csv": {
+        "same_bytes": true,
+        "sha256": "4a194494d4e6aeb83cf8f42403e13d74b1df2db1c534cb5983cb276e23208691"
+      },
+      "examples/create/paired-effects/plotting-data.csv": {
+        "same_rows_and_fields_except_color": true,
+        "rows": 28,
+        "excluded_cosmetic_field": "color",
+        "sha256": "4ebba2cd98c9fcf801d0aab0de6a410914cd13e48cc4fefc45e9144259e32d27"
+      }
+    },
+    "interpretation": "These comparisons demonstrate unchanged saved data/derived rows for the reviewed refinement. They are not independent recalculation of statistics or certification of the source study."
+  },
+  "independent_export_checks": {
+    "status": "passed",
+    "evidence": "All four baseline and candidate PDF canvases match. All PDF text inspected is 8 pt. Candidate SVG canvases match expected dimensions; PNG raster canvases equal baseline; candidate Arial font descriptors are embedded.",
+    "canvas_tolerance_mm": 0.001,
+    "expected_dpi": 300,
+    "numeric_rounding_note": "PNG metadata reports approximately 299.9994 dpi. Some 180 mm rasters are 2125 px; this retained one-pixel rendering rounding is not a changed physical PDF/SVG canvas."
+  },
+  "external_checks_inspected": {
+    "status": "records_inspected_not_rerun",
+    "files": [
+      "examples/create/annotated-inhibition/qa.json",
+      "examples/create/cell-atlas-dotplot/output/export-checks.json",
+      "examples/create/paired-effects/numeric-qa.json",
+      "examples/create/paired-myeloid-remodeling/output/qa.json"
+    ],
+    "scope": "Read implementation-produced source/artist, denominator, geometry and export records. Their reported numeric checks were not independently rerun or treated as aesthetic proof."
+  },
+  "limitations": [
+    "A qualitative review of these four fixed examples does not establish arbitrary-data generalization, publication acceptance or a universal preferred palette.",
+    "This is not a WorkBuddy or domestic-model benchmark, a novice-user trial, or a use-versus-no-use EasyViz experiment.",
+    "Source/table preservation and export inspection do not certify statistics, biological interpretation or original source quality.",
+    "Full-panel PNG inspection and downsampled 720 px review do not replace an actual physical print proof, a color-vision-deficiency test, or a browser screenshot of GitHub.",
+    "Candidate PDFs were measured for dimensions, fonts and embedding; this reviewer did not visually rasterize all four PDFs. SVG appearance across external editors was not tested.",
+    "Candidate preferences concern the declared reading tasks; lighter guides and raw marks have explicit costs and should not become unconditional rules."
+  ]
+}

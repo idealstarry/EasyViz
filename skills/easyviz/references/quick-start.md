@@ -25,8 +25,11 @@ accepted outputs intact. Quote a field assignment containing spaces, such as
 column names are supported; visible text still requires an appropriate font.
 Use the [chart library](chart-library.md) for the roles of other families.
 
-The draft contains only the chart, explicit fields, measured layout and supplied
-preferences. Without requested dimensions it uses the renderer's adjustable
+The draft contains the chart, explicit fields, measured layout, supplied
+preferences and editable [stroke roles](create-style.md). Data curves and
+summaries start stronger than axes, supplied reference lines and optional grids.
+It changes no existing specification; a draft using a shared profile retains
+that profile's stroke settings. Without requested dimensions it uses the renderer's adjustable
 88 × 88 mm, 8 pt defaults. For a related panel set, use
 `--profile /absolute/path/to/project/profile.json --panel panel-name`;
 the named panel supplies the dimensions and shared settings.
@@ -44,6 +47,13 @@ Edit the saved JSON for axis names and units, meaningful ordering, known color
 limits, area scales, requested formats, and supported options. Add statistics
 only after establishing the experimental unit and design. Unsupported layers
 still need an appropriate case or custom implementation.
+
+Adopt category colors explicitly with `palette` or a complete `colors` mapping;
+use a sequential scale for continuous magnitude and a diverging scale only for
+a meaningful center. The helper's color defaults are starting choices. Compare
+them on the actual data, and keep related categories stable across panels. See
+[Create styling](create-style.md) for coordinated colors, stroke roles and
+checks at final size.
 
 For paired observations, component/replicate bars, empirical cumulative
 distributions or supplied intervals, go directly to the focused recipe in the

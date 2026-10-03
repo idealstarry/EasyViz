@@ -9,8 +9,8 @@
     "n": "n", "row_order": "row_order"
   },
   "cohort_order": ["Discovery", "Replication"],
-  "colors": {"Discovery": "#2581B9", "Replication": "#DF9A3C"},
-  "palette": "User-approved blue and amber; corresponding notch2-bright colors",
+  "colors": {"Discovery": "#287A9E", "Replication": "#CC7358"},
+  "palette": "EasyViz coordinated blue and coral; an explicit design adaptation, not recovered author colors",
   "layout": {
     "width_mm": 180, "height_mm": 120, "font": "Arial", "fallback_font": "DejaVu Sans",
     "font_size_pt": 8, "dpi": 300,
@@ -22,12 +22,14 @@
   },
   "typography": {"axis": 8, "tick": 8, "legend": 8, "domain": 8},
   "marks": {
-    "point_area_pt2": 15.21, "point_edgecolor": "none", "point_linewidth_pt": 0,
-    "interval_linewidth_pt": 0.75, "interval_cap_height": 0.085,
-    "grid_linewidth_pt": 0.4, "axis_linewidth_pt": 0.6,
-    "zero_linewidth_pt": 0.75
+    "point_area_pt2": 19.36, "point_edgecolor": "none", "point_linewidth_pt": 0,
+    "interval_linewidth_pt": 0.8, "interval_cap_height": 0,
+    "grid_linewidth_pt": 0.3, "grid_color": "#EDF0F2", "grid": false,
+    "axis_linewidth_pt": 0.5, "axis_color": "#7D8790",
+    "zero_linewidth_pt": 0.45, "zero_color": "#A8B2BA", "zero_linestyle": "--",
+    "text_color": "#28343D", "domain_color": "#56636D", "domain_fontweight": "normal"
   },
-  "mark_outline_policy": "All estimate dots and legend symbols are borderless fills. Confidence-interval whiskers and their endpoint caps are line encodings, not outlines.",
+  "mark_outline_policy": "All estimate dots and legend symbols are borderless fills. Confidence intervals use uncapped segments; exact supplied endpoints are retained. A lighter dashed zero guide and a quiet axis support the primary estimates.",
   "labels": {"x": "Standardized effect (95% CI)"},
   "x_limits": [-1.0, 1.2],
   "x_ticks": [-1.0, -0.5, 0.0, 0.5, 1.0],

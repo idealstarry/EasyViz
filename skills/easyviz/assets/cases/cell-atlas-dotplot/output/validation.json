@@ -14,6 +14,20 @@
     0,
     40
   ],
+  "color_stops": [
+    "#BED9EA",
+    "#97C3DE",
+    "#71ACD2",
+    "#4B96C5",
+    "#2581B9"
+  ],
+  "group_colors": {
+    "M2 macrophages": "#2581B9",
+    "Other macrophages": "#DF9A3C",
+    "Monocytes": "#1AA781",
+    "DC": "#CC86B9"
+  },
+  "size_legend_color": "#2581B9",
   "canvas_mm": [
     180,
     120
@@ -29,6 +43,23 @@
     "outline": "none",
     "edge_color": "none",
     "edge_width_pt": 0.0
+  },
+  "visual_style": {
+    "text_color": "#2F3B43",
+    "secondary_text_color": "#687780",
+    "header_color": "#3B4952",
+    "count_text_color": "#46555E",
+    "header_rule_color": "#BDC7CD",
+    "header_rule_width_pt": 0.45,
+    "group_rule_color": "#E5EAED",
+    "group_rule_width_pt": 0.3,
+    "baseline_color": "#D3DCE1",
+    "baseline_width_pt": 0.35,
+    "annotation_strip_width": 0.75,
+    "colorbar_outline": "none",
+    "colorbar_tick_color": "#8B9AA4",
+    "colorbar_tick_width_pt": 0.4,
+    "header_font_weight": "normal"
   },
   "legend_layout": {
     "status": "pass",
@@ -284,10 +315,17 @@
         "warnings": [],
         "text_overlaps": [],
         "marker_areas_pt2": [
+          2.55981623625835,
+          25.5981623625835,
+          63.99540590645875
+        ],
+        "marker_size_parameters_pt2": [
           3.259259259259259,
           32.592592592592595,
           81.48148148148148
         ],
+        "area_semantics": "matplotlib_size_parameter",
+        "fill_area_definition": "Ideal circle geometric fill area in pt\u00b2, excluding edge stroke; Matplotlib s is squared diameter in pt\u00b2.",
         "attempts": [
           {
             "position": "manual",

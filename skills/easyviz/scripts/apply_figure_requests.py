@@ -92,6 +92,14 @@ def pointer_parts(path):
 
 def compatible(property_name, path):
     parts = pointer_parts(path)
+    if len(parts) == 3 and parts[0] == "line_roles" and parts[1] in {"data", "summary", "reference", "axis", "grid"}:
+        if property_name in {"color", "facecolor", "edgecolor"}:
+            return parts[2] == "color"
+        if property_name in {"linewidth", "line_width_pt"}:
+            return parts[2] == "line_width_pt"
+        if property_name == "linestyle":
+            return parts[1] != "axis" and parts[2] == "linestyle"
+        return False
     if property_name in {"color", "facecolor", "edgecolor"}:
         return ((len(parts) == 2 and parts[0] == "colors") or parts in (["options", "point_color"], ["options", "regression_color"]) or (len(parts) >= 2 and parts[0] == "style" and parts[-1] in {"color", "facecolor", "edgecolor"}))
     if property_name == "alpha":
@@ -188,7 +196,10 @@ def prepare_requests(figure_dir, out, request_ids=None, *, render=False):
         value = cosmetic_value(prop, item.get("value"))
         for element in request_elements(item, state):
             path = resolve_path(item, element)
-            patches[path] = value
+            # Core stroke roles use canonical short styles. Custom plotting
+            # scripts retain the originally accepted Matplotlib alias.
+            patches[path] = ({"solid": "-", "dashed": "--", "dashdot": "-.", "dotted": ":"}.get(value, value)
+                             if prop == "linestyle" and pointer_parts(path)[0] == "line_roles" else value)
             owners[path] = item["id"]
     # Preserve all accepted category assignments before adding one explicit color.
     if any(pointer_parts(path)[0] == "colors" for path in patches) and "colors" not in spec:

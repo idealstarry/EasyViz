@@ -1,0 +1,31 @@
+{
+  "status": "ready_with_notes",
+  "reviewer_role": "self-review",
+  "date": "2026-10-03",
+  "track": "create",
+  "reviewed_files": ["figure.png", "pdf-preview.png"],
+  "baseline_image_inspected": "/private/tmp/easyviz-create-before/cell-atlas-dotplot.png",
+  "baseline_repository_revision": "3e0a42d84974acb7daf792efd6d23a41133320ad",
+  "review_passes": 3,
+  "reading_task": "Compare within-depot shares and counts while preserving subtype groups, reported marker annotations and pooled marginal totals.",
+  "comparison": {
+    "preference": "candidate",
+    "basis": [
+      "The white field removes broad alternating bands and continuous vertical rules that competed with the sparse quantitative dots.",
+      "Group gaps, narrow categorical strips and three pale separators retain row grouping without boxing each data column.",
+      "Normal-weight headers, quieter identifiers and marker text, and an unframed continuous guide reduce the visual weight of decoding aids.",
+      "The stronger light endpoint improves contrast of small positive dots on white while preserving exact count-to-size and share-to-color mappings."
+    ],
+    "scope": "A self-reviewed improvement for this fixed 16-subtype by 3-depot panel; not a generalization or publication-acceptance result."
+  },
+  "checks": {
+    "numeric": "passed: 48 source rows and 22539 pooled objects retained; plotted-data.csv unchanged; source-table hash and original TSV contents verified.",
+    "mappings": "passed: all 16 subtype rows, category assignments, 88*n/2700 scatter size parameters, and 0-40% linear share scale retained.",
+    "exports": "passed: PDF/SVG 180 by 120 mm, PNG 300 dpi, all PDF text 8 pt, fonts embedded, editable SVG text and no text outside PDF canvas.",
+    "legend_geometry": "passed: final guide validation has no overlap, clipping or geometry issues.",
+    "visual": "PNG and independently rasterized PDF inspected for row alignment, required labels, legends, clipping, grouping and color/line hierarchy."
+  },
+  "residual_notes": [
+    "Extremely rare positive counts remain very small at the final physical size; no minimum size, row deletion or replacement values were used."
+  ]
+}

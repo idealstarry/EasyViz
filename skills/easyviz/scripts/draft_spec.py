@@ -7,6 +7,7 @@ with render.py, then inspect the actual exports before delivering a panel.
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 import importlib.util
 import json
 import os
@@ -68,6 +69,10 @@ def draft(data_path, chart, assignments, out, *, normalization=None,
     renderer.require(chart == "composition" or normalization is None, "--normalization is only supported for composition")
 
     spec = {"chart": chart, "fields": parse_fields(assignments), "layout": {"auto_fit": True}}
+    if profile is None:
+        # New create drafts adopt an editable starting hierarchy. Existing specs
+        # and shared profiles retain their accepted stroke settings.
+        spec["line_roles"] = deepcopy(renderer.SCHEMA["line_roles"])
     if chart == "composition":
         renderer.require(normalization in ("none", "sample_sum", "denominator"), "Composition requires --normalization none, sample_sum, or denominator")
         spec["options"] = {"normalization": normalization}

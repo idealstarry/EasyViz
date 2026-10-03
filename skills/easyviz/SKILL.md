@@ -50,6 +50,7 @@ Read the resources needed for the current chart rather than loading the whole li
 | [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
 | [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
 | [Palettes](references/palettes.md) | Palette selection and consistent category-to-color mappings. |
+| [Create colors and strokes](references/create-style.md) | Assign contrast to the main evidence, separate data/summary/reference/axis/grid line roles, and inspect the actual result. |
 | [Figure profile](references/figure-profile.md) | Share typography, category colors, continuous scales and named panel sizes across a manuscript figure. |
 | [Dot data states](references/dot-states.md) | Distinguish measured zero, unmeasured and unsupplied cells while preserving exact dot area. |
 | [Design decisions](references/design-decisions.md) | Reference-informed choices about grouping, alignment, visual priority, and competing layouts. |

@@ -9,8 +9,8 @@
     "Kerr"
   ],
   "cohort_colors": {
-    "Petrus": "#2581B9",
-    "Kerr": "#DF9A3C"
+    "Petrus": "#287A9E",
+    "Kerr": "#CC7358"
   },
   "change_xlim": [
     -12,
@@ -29,15 +29,27 @@
     12
   ],
   "matrix_colors": [
-    "#2581B9",
-    "#F7F8F9",
-    "#CC86B9"
+    "#287A9E",
+    "#FFFFFF",
+    "#CC7358"
   ],
   "order": "Display groups from published subtype annotations; within-group source subtype order. Participants sorted by median change across the selected myeloid subtypes within each cohort; ties broken by participant ID.",
   "statistics": "Paired year-2 minus baseline score; linear sample quartiles and median; proportion of complete paired differences strictly below zero. No confidence intervals or significance tests.",
   "marks": {
     "filled_edges": "none",
-    "line_width_pt": 0.6
+    "line_width_pt": 0.6,
+    "axis_line_width_pt": 0.5,
+    "axis_color": "#8A949D",
+    "reference_line_width_pt": 0.4,
+    "reference_color": "#ACB7BF",
+    "grid_line_width_pt": 0.3,
+    "grid_color": "#F0F3F5",
+    "separator_line_width_pt": 0.3,
+    "separator_color": "#E6EBEE",
+    "marginal_summary_line_width_pt": 1.1,
+    "summary_line_width_pt": 1.05,
+    "participant_alpha": 0.48
   },
+  "palette_status": "Explicit EasyViz blue/coral design adaptation; source-derived biological labels and values do not supply these colors.",
   "selection": "All 16 Myeloid_* source columns, all matched subjects at the requested time points."
 }

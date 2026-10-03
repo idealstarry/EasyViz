@@ -117,6 +117,10 @@ def render(data: Path, settings: Path, out: Path) -> None:
         "ytick.labelsize": cfg["typography"]["tick"], "legend.fontsize": cfg["typography"]["legend"],
         "pdf.fonttype": 42, "ps.fonttype": 42, "svg.fonttype": "none",
         "axes.unicode_minus": True, "figure.facecolor": "white", "savefig.facecolor": "white",
+        "text.color": marks.get("text_color", "black"),
+        "axes.labelcolor": marks.get("text_color", "black"),
+        "xtick.color": marks.get("text_color", "black"),
+        "ytick.color": marks.get("text_color", "black"),
     })
     cursor, last_domain, headers, term_y = 0.0, None, [], {}
     for term in terms:
@@ -154,17 +158,20 @@ def render(data: Path, settings: Path, out: Path) -> None:
     ax.tick_params(axis="x", width=marks["axis_linewidth_pt"], length=3, pad=4)
     ax.set_xlabel(cfg["labels"]["x"], labelpad=6)
     ax.set_axisbelow(True)
-    ax.grid(axis="x", color="#E5E5E5", linewidth=marks["grid_linewidth_pt"], zorder=0)
-    ax.axvline(0, color="#666666", linewidth=marks["zero_linewidth_pt"], zorder=1)
+    if marks.get("grid", True):
+        ax.grid(axis="x", color=marks.get("grid_color", "#E5E5E5"), linewidth=marks["grid_linewidth_pt"], zorder=0)
+    ax.axvline(0, color=marks.get("zero_color", "#666666"),
+               linewidth=marks["zero_linewidth_pt"], linestyle=marks.get("zero_linestyle", "-"), zorder=1)
     for side in ("top", "left", "right"):
         ax.spines[side].set_visible(False)
     ax.spines["bottom"].set_linewidth(marks["axis_linewidth_pt"])
-    ax.spines["bottom"].set_color("#444444")
+    ax.spines["bottom"].set_color(marks.get("axis_color", "#444444"))
     domain_texts = []
     for domain, y in headers:
         figure_y = fig.transFigure.inverted().transform(ax.transData.transform((0, y)))[1]
         domain_texts.append(fig.text(layout["domain_label_x_fraction"], figure_y, domain,
-                                     ha="left", va="center", fontweight="bold", fontsize=cfg["typography"]["domain"]))
+                                     ha="left", va="center", fontweight=marks.get("domain_fontweight", "bold"),
+                                     color=marks.get("domain_color", "black"), fontsize=cfg["typography"]["domain"]))
     plotted, point_artists, interval_artists = [], {}, {}
     rows_by_key = {(row["term_id"], row["cohort"]): row for row in rows}
     for cohort in cohorts:
@@ -175,9 +182,10 @@ def render(data: Path, settings: Path, out: Path) -> None:
         x = np.array([row["estimate"] for row in selected])
         # Draw endpoints directly; no inferred SE, symmetric xerr, weighting, or fit.
         interval_artists[cohort] = ax.hlines(y, lo, hi, colors=cfg["colors"][cohort], linewidth=marks["interval_linewidth_pt"], zorder=2)
-        for endpoint in (lo, hi):
-            ax.vlines(endpoint, y - marks["interval_cap_height"] / 2, y + marks["interval_cap_height"] / 2,
-                      colors=cfg["colors"][cohort], linewidth=marks["interval_linewidth_pt"], zorder=2)
+        if marks["interval_cap_height"] > 0:
+            for endpoint in (lo, hi):
+                ax.vlines(endpoint, y - marks["interval_cap_height"] / 2, y + marks["interval_cap_height"] / 2,
+                          colors=cfg["colors"][cohort], linewidth=marks["interval_linewidth_pt"], zorder=2)
         point_artists[cohort] = ax.scatter(x, y, s=marks["point_area_pt2"], marker="o", c=cfg["colors"][cohort],
                                          edgecolors="none", linewidths=0, zorder=3)
         for row, value in zip(selected, y):

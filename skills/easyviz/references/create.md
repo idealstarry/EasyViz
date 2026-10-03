@@ -72,6 +72,17 @@ Use [Panel layout](panel-layout.md) for physical dimensions and typography, and 
 
 Default comparable filled dots, bars, and matching legend swatches to one borderless policy. Set edge styling explicitly, and record any scientific or readability exception by mark role. Inspect palette combinations together on the actual panel, including small marks and adjacent annotation tracks; a palette's appearance in a paper is not evidence that it suits this data or works with the other colors.
 
+Before the first render, assign a color and stroke role to each layer: primary
+observations or estimates, supporting summaries, and guides. Use
+[Create colors and strokes](create-style.md) for an executable core-chart
+`line_roles` starting point, and equivalent explicit settings in custom recipes.
+Give the main comparison the strongest useful contrast. Supporting marginal
+bars, metadata strips, zero guides, grids and separators should earn their
+visual weight; do not let a saturated margin become the first thing the reader
+sees unless it is the scientific focus. Use a coordinated cold/warm pair for a
+two-group comparison when appropriate, rather than adding unrelated colors to
+every layer. Keep the source quantity's normalization and endpoints explicit.
+
 Use [Legend layout](legend-layout.md) to distinguish categorical keys, quantitative size keys, and continuous scales. Choose placement from measured key/text bounds and chart geometry; protect agreed fonts and quantitative area mappings. Inspect the legend's footprint and reserved space relative to the main plot, rather than accepting a large legend because it fits without overlap.
 
 Keep axis names and units, ticks, legends, colorbars, and essential data annotations in the panel. Place explanatory prose, abbreviation definitions, methods, source notes, caveats, and standalone dataset overview counts in `caption.md`. Extra titles, subtitles, and explanatory footnotes are omitted by default; add an in-image title only on explicit user request. Do not apply a fixed top-left header layout. Metadata strips, marginal-axis labels, and plotted count values remain valid scientific layers.
@@ -98,6 +109,15 @@ the affected formats. It is a shared editing tool, not another plotting track.
 ## 4. Render and refine
 
 Inspect an actual rendering at final-size proportions. Adjust label wrapping, tick density, legend placement, and margins to suit the data without automatically shrinking text. If the canvas cannot fit the content, use the shared procedure for selecting a larger panel or splitting the content.
+
+For a styling refinement, compare the accepted and candidate exports at the
+same dimensions. Check the main data, palest positive marks, interval endpoints,
+reference lines and guide keys before calling the result an improvement. Also
+inspect the actual delivery thumbnail: a three-panel comparison compressed
+into one README row may hide good individual figures. Present a complete
+representative panel with readable labels, and keep alternatives accessible on
+the case page; do not alter manuscript font sizes to compensate for a small
+web preview.
 
 Follow [Visual review](visual-review.md) with the same typography, readability, and correction standard used in reproduce. A reviewer assesses create outputs against the adopted specification without needing a reference image. For integrated panels, also verify that tracks and marginals align with the correct rows or columns, size and color legends explain their distinct quantities, and annotations remain readable without obscuring data. Check that narrative material is in the separate caption and no unrequested title/header has been added. Independently recompute displayed summaries and denominators from the recorded input scope. Numerical checks and visual review are separate evidence: a clean image does not prove calculations correct, and a successful export does not prove labels readable.
 

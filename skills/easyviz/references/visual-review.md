@@ -24,6 +24,14 @@ Do not use pixel similarity as a pass condition when data, fonts, or final physi
 
 Review palette combinations together in the actual panel, including contrasts between continuous maps, category colors, annotation tracks, and the background. Do not approve a combination solely because it comes from literature, or request the same combination for every dataset. Flag incidental outline mismatches across related marks or legends; create defaults to borderless marks, while reproduce follows the adopted policy.
 
+For create, identify which layer attracts attention first and compare it with
+the adopted reading task. Flag supporting marginal bars or metadata strips
+that dominate the primary evidence, grids as strong as intervals, zero guides
+as heavy as fitted curves, and pale marks that disappear on white. Assess the
+benefit of a styling revision using before/after images at the same size; a
+quieter image is not automatically easier to read. If the figure is shown in a
+README, inspect that display size separately from the manuscript export.
+
 For both tracks, flag an added in-image title unless it was explicitly requested. A title visible in the reference is not authorization to copy it. Do not ask the implementer to restore omitted reference prose or a fixed top-left header; moving that material to the caption is the default manuscript adaptation. Keep plotted counts and necessary annotations when they convey data, rather than treating every number or label as an unwanted overview. Check the caption as a separate artifact, not as figure text to be inserted.
 
 ## Compare a claimed improvement

@@ -12,6 +12,18 @@ This is a design comparison, not a claim that a custom layout always improves a 
 
 The matrix is useful when participant structure is the question. The distribution ledger is useful when comparing the size and consistency of subtype changes. The baseline remains an admissible choice for readers who need standard boxplot summaries. A design review should select for the stated task, not select whichever candidate has more layers.
 
+<p align="center"><img src="output/comparison.png" alt="Three designs on the same paired myeloid source data" width="960"></p>
+
+The main README shows the complete distribution-ledger panel at a readable
+width rather than compressing these three complex candidates into one row.
+Current exports use a coordinated blue/coral cohort mapping, faint participant
+points, stronger median/IQR segments, a lighter dashed zero guide, and quiet
+group separators. The participant matrix uses the same cohort endpoints around
+white, retaining the symmetric −12…12 score scale. These are explicit EasyViz
+design adaptations; they do not claim to recover the paper's colors. Data,
+quartiles, percentages, participant ordering and 8 pt manuscript text remain
+unchanged.
+
 ## Source and scientific meaning
 
 Data are from Massier et al., *Nature Communications* 14, 1438 (2023), [DOI: 10.1038/s41467-023-36983-2](https://www.nature.com/articles/s41467-023-36983-2), source workbook `Figure_8d_8e.xlsx`. The paper and its source dataset are attributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see [provenance.json](provenance.json).
@@ -40,6 +52,7 @@ To supply another source, use `--data` with `cohort`, `participant`, `year`, `su
 - `plot.py` and `figure-settings.json`: common rendering and statistical instructions for all candidates.
 - `output/paired-changes.csv`, `summary.csv`, and `participant-order.csv`: exact plotted data and ordering.
 - `output/<candidate>/panel.pdf`, `.svg`, and `.png`: separate fixed-size scientific panels.
+- `output/comparison.png`: a review board generated alongside all three candidates; it does not replace their individual manuscript exports.
 - `caption.md`: the caption text, supplied outside the panel.
 - `design-rationale.md`: reusable selection conditions and failure modes.
 - `numeric-verification.json`: independent comparison with the original workbook.

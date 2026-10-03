@@ -15,3 +15,7 @@ Use one integrated heatmap panel, an inferno scale, 8 pt Arial labels, and a fix
 | Scientific scope | Descriptive selection and averaging only. No significance or biological mechanism is inferred. |
 | Layout | One integrated panel; readable final-size labels; no overlapping labels or clipping; no tight crop. |
 | Reproducibility | Script uses only its local data and settings. No reference figure or author plotting code is an input. |
+
+## Adopted cosmetic refinements
+
+The original request used an inferno scale; the earlier accepted example adopted a literature-inspired coral scale. The current Create refinement retains a linear −400 to 1,000 min coral/orange scale, lowers the saturation of marginal bars and genome-status strips, and uses lighter supporting strokes. These are cosmetic design choices. The source values, rank selection, complete-denominator summaries, 180 × 160 mm layout and 8 pt text remain unchanged.

@@ -24,7 +24,8 @@ SHARED_LAYOUT_KEYS = {"font", "font_size_pt", "line_width_pt", "dpi"}
 TYPOGRAPHY_KEYS = {"axis", "tick", "legend", "annotation", "title", "panel"}
 ORDER_KEYS = {"x", "y", "group", "sample", "category"}
 LABEL_KEYS = {"x", "y", "color", "size", "title", "panel"}
-SPEC_KEYS = {"chart", "fields", "layout", "typography", "options", "order", "labels", "colors", "palette", "colormap", "formats", "seed", "statistics", "legends", "profile", "panel", "continuous_scale", "size_scale"}
+SPEC_KEYS = {"chart", "fields", "layout", "typography", "options", "order", "labels", "colors", "palette", "colormap", "formats", "seed", "statistics", "legends", "profile", "panel", "continuous_scale", "size_scale", "line_roles"}
+LINE_ROLES = {"data", "summary", "reference", "axis", "grid"}
 MARGIN_KEYS = {"left", "right", "bottom", "top"}
 
 
@@ -97,6 +98,26 @@ def validate_typography(typography, path="typography"):
         _number(size, f"{path}.{role}", positive=True)
 
 
+def validate_line_roles(roles, path="line_roles"):
+    """Validate optional explicit stroke overrides without adding a theme."""
+    _keys(roles, LINE_ROLES, path)
+    for role, properties in roles.items():
+        allowed = {"line_width_pt", "color"}
+        if role != "axis":
+            allowed.add("linestyle")
+        _keys(properties, allowed, f"{path}.{role}")
+        if "line_width_pt" in properties:
+            _number(properties["line_width_pt"], f"{path}.{role}.line_width_pt", positive=True)
+        if "color" in properties:
+            color = properties["color"]
+            _require(isinstance(color, str) and mcolors.is_color_like(color),
+                     f"Invalid {path}.{role}.color")
+        if "linestyle" in properties:
+            _require(isinstance(properties["linestyle"], str)
+                     and properties["linestyle"] in ("-", "--", ":", "-."),
+                     f"{path}.{role}.linestyle must be -, --, : or -.")
+
+
 def _colors(mapping, path):
     _object(mapping, path)
     _require(bool(mapping), f"{path} must contain category-to-color mappings")
@@ -129,6 +150,7 @@ def validate_spec(spec, required_fields, optional_fields, chart_options, shared_
             _object(spec[key], key)
     validate_layout(spec.get("layout", {}))
     validate_typography(spec.get("typography", {}))
+    validate_line_roles(spec.get("line_roles", {}))
     fields = spec.get("fields", {})
     _keys(fields, set(required_fields[chart]) | set(optional_fields.get(chart, ())), "fields")
     _require(all(role in fields for role in required_fields[chart]), f"{chart} requires fields {required_fields[chart]}")
