@@ -21,6 +21,11 @@ import uuid
 import xml.etree.ElementTree as ET
 
 STATIC = Path(__file__).with_name("workbench")
+PACKAGE_ROOT = Path(__file__).resolve().parents[3]
+# Standalone plugins and development checkouts share the same canonical mark.
+LOGO = PACKAGE_ROOT / "assets/logo.svg"
+if not LOGO.is_file():
+    LOGO = PACKAGE_ROOT / "plugins/easyviz/assets/logo.svg"
 FILES = {"panel.svg", "panel.pdf", "panel.png", "settings.json", "qa.json", "elements.json"}
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_REQUEST_BYTES = 64 * 1024
@@ -439,6 +444,8 @@ def create_server(figure_dir, port=0, compare_dir=None):
                         return
                     root, _, _ = read_svg(svg_bytes)
                     self.reply(200, sanitized_svg(root), "image/svg+xml")
+                elif path == "/logo.svg":
+                    self.reply(200, LOGO.read_bytes(), "image/svg+xml")
                 elif path in {"/", "/workbench.js", "/workbench.css"}:
                     name = {"/": "index.html", "/workbench.js": "workbench.js", "/workbench.css": "workbench.css"}[path]
                     content_type = {"index.html": "text/html; charset=utf-8", "workbench.js": "text/javascript; charset=utf-8", "workbench.css": "text/css; charset=utf-8"}[name]

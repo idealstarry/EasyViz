@@ -82,9 +82,12 @@ class FigureWorkbenchTests(unittest.TestCase):
         self.assertEqual(status,200)
         self.assertEqual(body,self.initial["panel.pdf"])
         self.assertIn('attachment; filename="panel.pdf"',headers["Content-Disposition"])
-        for path in ("/","/workbench.css","/workbench.js","/api/preview.svg"):
+        for path in ("/","/workbench.css","/workbench.js","/logo.svg","/api/preview.svg"):
             with self.subTest(path=path):
                 self.assertEqual(self.request("GET",path)[0],200)
+        status,headers,body=self.request("GET","/logo.svg")
+        self.assertEqual(headers["Content-Type"],"image/svg+xml")
+        self.assertEqual(body,(SCRIPT.parents[3]/"plugins/easyviz/assets/logo.svg").read_bytes())
 
     def test_semantic_request_saves_binding_and_undo_without_changing_exports(self):
         code,result=self.data("POST","/api/requests",self.change())

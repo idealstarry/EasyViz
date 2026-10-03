@@ -3,7 +3,121 @@ const $ = (id) => document.getElementById(id);
 let state, svg, selectedId = null, selectedIds = [], selectedSelector = null, region = null, mode = 'element', drag = null;
 let loading = false, saving = false;
 const NS = 'http://www.w3.org/2000/svg';
+const dropdowns = new Map();
+function closeDropdown(entry) {
+  entry.menu.hidden = true;
+  entry.trigger.setAttribute('aria-expanded', 'false');
+  entry.trigger.removeAttribute('aria-activedescendant');
+  entry.wrapper.classList.remove('open');
+}
+function activateOption(entry, index) {
+  if (!entry.items.length) return;
+  entry.active = Math.max(0, Math.min(index, entry.items.length-1));
+  for (const [i, item] of entry.items.entries()) item.classList.toggle('active', i===entry.active);
+  const item = entry.items[entry.active];
+  entry.trigger.setAttribute('aria-activedescendant', item.id);
+  const top = item.offsetTop, bottom = top + item.offsetHeight;
+  if (top < entry.menu.scrollTop) entry.menu.scrollTop = top;
+  else if (bottom > entry.menu.scrollTop + entry.menu.clientHeight) entry.menu.scrollTop = bottom - entry.menu.clientHeight;
+}
+function openDropdown(entry) {
+  for (const other of dropdowns.values()) if (other !== entry) closeDropdown(other);
+  entry.menu.hidden = false;
+  entry.trigger.setAttribute('aria-expanded', 'true');
+  entry.wrapper.classList.add('open');
+  const panel = entry.wrapper.closest('.inspector-panel');
+  if (panel && getComputedStyle(panel).overflowY === 'auto') {
+    entry.menu.style.maxHeight = Math.max(44, Math.min(210, panel.clientHeight-44))+'px';
+    const overflow = entry.menu.getBoundingClientRect().bottom - panel.getBoundingClientRect().bottom + 2;
+    if (overflow > 0) panel.scrollTop += overflow;
+  }
+  activateOption(entry, Math.max(0, entry.values.indexOf(entry.select.value)));
+}
+function chooseOption(entry, index) {
+  entry.select.value = entry.values[index];
+  entry.select.dispatchEvent(new Event('change', {bubbles:true}));
+  closeDropdown(entry);
+  entry.trigger.focus({preventScroll:true});
+}
+function syncDropdown(id) {
+  const select = $(id);
+  // The plain select remains the state source and the no-JavaScript fallback.
+  if (!select.ownerDocument) return;
+  let entry = dropdowns.get(id);
+  if (!entry) {
+    const wrapper = document.createElement('div'); wrapper.className = 'select-control';
+    const trigger = document.createElement('button'); trigger.type = 'button'; trigger.id = id+'-control';
+    trigger.className = 'select-trigger'; trigger.setAttribute('role', 'combobox');
+    trigger.setAttribute('aria-haspopup', 'listbox'); trigger.setAttribute('aria-expanded', 'false');
+    const label = document.querySelector('label[for="'+id+'"]');
+    if (label) { label.id = id+'-label'; label.htmlFor = trigger.id; trigger.setAttribute('aria-labelledby', label.id); }
+    const text = document.createElement('span'); text.className = 'select-text';
+    const arrow = document.createElementNS(NS,'svg'); arrow.setAttribute('viewBox','0 0 16 16'); arrow.setAttribute('aria-hidden','true');
+    const path = document.createElementNS(NS,'path'); path.setAttribute('d','M4 6 8 10 12 6'); arrow.append(path);
+    trigger.append(text, arrow);
+    const menu = document.createElement('ul'); menu.className = 'select-menu'; menu.id = id+'-options'; menu.hidden = true;
+    menu.setAttribute('role', 'listbox'); menu.setAttribute('aria-labelledby', label?.id || trigger.id);
+    trigger.setAttribute('aria-controls', menu.id);
+    select.before(wrapper); wrapper.append(select,trigger,menu); select.hidden = true;
+    entry = {select,wrapper,trigger,text,menu,items:[],values:[],active:0,typed:'',typedAt:0}; dropdowns.set(id,entry);
+    trigger.addEventListener('click', () => entry.menu.hidden ? openDropdown(entry) : closeDropdown(entry));
+    trigger.addEventListener('keydown', event => {
+      const open = !entry.menu.hidden;
+      if (event.key==='Escape') { event.preventDefault(); closeDropdown(entry); return; }
+      if (event.key==='Tab') { closeDropdown(entry); return; }
+      if (['Enter',' '].includes(event.key)) { event.preventDefault(); open ? chooseOption(entry,entry.active) : openDropdown(entry); return; }
+      if (['ArrowDown','ArrowUp','Home','End'].includes(event.key)) {
+        event.preventDefault(); if (!open) openDropdown(entry);
+        const index = event.key==='Home' ? 0 : event.key==='End' ? entry.items.length-1 : open ? entry.active+(event.key==='ArrowDown'?1:-1) : entry.active;
+        activateOption(entry,index); return;
+      }
+      if (event.key.length===1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        event.preventDefault(); if (!open) openDropdown(entry);
+        const now = Date.now(); entry.typed = (now-entry.typedAt>800?'':entry.typed)+event.key.toLowerCase(); entry.typedAt = now;
+        const index = entry.items.findIndex(item=>item.textContent.toLowerCase().startsWith(entry.typed));
+        if (index>=0) activateOption(entry,index);
+      }
+    });
+    select.addEventListener('change', () => syncDropdown(id));
+    document.addEventListener('pointerdown', event => { if (!wrapper.contains(event.target)) closeDropdown(entry); });
+  }
+  closeDropdown(entry);
+  entry.trigger.disabled = select.disabled;
+  entry.text.textContent = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
+  entry.menu.replaceChildren(); entry.items=[]; entry.values=[];
+  for (const option of select.options) {
+    if (option.disabled) continue;
+    const index = entry.items.length, item = document.createElement('li');
+    item.id = id+'-option-'+index; item.setAttribute('role','option'); item.setAttribute('aria-selected',String(option.selected));
+    item.textContent = option.textContent; item.addEventListener('click',()=>chooseOption(entry,index));
+    item.addEventListener('pointermove',()=>activateOption(entry,index));
+    entry.items.push(item); entry.values.push(option.value); entry.menu.append(item);
+  }
+}
 const propertyNames = { color:'Color', facecolor:'Fill color', edgecolor:'Outline color', linewidth:'Line width (pt)', line_width_pt:'Line width (pt)', text:'Text', position:'Position', position_mm:'Position (mm)', layout:'Layout', fontsize:'Font size', font_size_pt:'Font size (pt)', palette:'Palette', alpha:'Opacity (0–1)', linestyle:'Line style', legend_position:'Legend position' };
+const reviewPanels = ['edit', 'requests', 'history'];
+function showPanel(name, focus = false) {
+  for (const entry of dropdowns.values()) closeDropdown(entry);
+  for (const panel of reviewPanels) {
+    const active = panel === name;
+    $(panel+'-panel').hidden = !active;
+    $(panel+'-tab').setAttribute('aria-selected', String(active));
+    $(panel+'-tab').setAttribute('tabindex', active ? '0' : '-1');
+  }
+  $('edit-footer').hidden = name !== 'edit';
+  if (focus) $(name+'-tab').focus();
+}
+for (const [index, name] of reviewPanels.entries()) {
+  $(name+'-tab').addEventListener('click', () => showPanel(name));
+  $(name+'-tab').addEventListener('keydown', event => {
+    let next;
+    if (event.key === 'ArrowRight') next = (index+1) % reviewPanels.length;
+    if (event.key === 'ArrowLeft') next = (index+reviewPanels.length-1) % reviewPanels.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = reviewPanels.length-1;
+    if (next !== undefined) { event.preventDefault(); showPanel(reviewPanels[next], true); }
+  });
+}
 function message(text, error = false) { $('message').textContent = text; $('message').classList.toggle('error', error); }
 async function api(path, payload) {
   const options = payload ? {method:'POST', headers:{'Content-Type':'application/json','X-EasyViz-Token':state.token}, body:JSON.stringify(payload)} : {};
@@ -81,6 +195,7 @@ function semanticOptions() {
     }
   }
   for(const [value,label] of choices) list.add(new Option(label,value));
+  syncDropdown('semantic-list');
 }
 function selectionChanged() {
   const list=$('element-list');
@@ -100,8 +215,11 @@ function selectionChanged() {
     highlight(fromMm(region));
   } else { $('selection-details').textContent='Whole figure / general note';highlight(null); }
   $('value-field').hidden=true;$('property-value').value='';
+  syncDropdown('property');syncDropdown('semantic-list');
 }
 function queue() {
+  const pending = state.requests.filter(item=>item.status==='pending'&&item.current_version).length;
+  $('request-count').textContent = String(pending); $('request-count').hidden = !pending;
   const list=$('request-list');list.replaceChildren();
   if(!state.requests.length) { const p=document.createElement('p');p.className='empty';p.textContent='No changes requested yet.';list.append(p); }
   for(const [index,item] of state.requests.entries()) {
@@ -114,6 +232,7 @@ function queue() {
   }
   const history=$('history-list');history.replaceChildren();
   $('history-section').hidden=!(state.history||[]).length;
+  $('history-empty').hidden=!!(state.history||[]).length;
   for(const item of state.history||[]) {
     const row=document.createElement('p');row.className='request-status';
     const target=item.target_attempt?.split('/').pop()||(item.version?.figure_sha256?'version '+item.version.figure_sha256.slice(0,8):'version');
@@ -128,6 +247,7 @@ function controls() {
   $('undo').disabled=busy||!state||!state.requests.some(item=>item.status==='pending'&&item.current_version);
   for(const id of ['element-list','semantic-list','region-mode','clear']) $(id).disabled=loading||!svg;
   $('element-mode').disabled=loading||!state?.manifest_valid;
+  syncDropdown('semantic-list');
 }
 function updateQueue(nextState) {
   // An HTTP response can observe a subsequent render. Queue updates never
@@ -182,7 +302,7 @@ $('element-mode').addEventListener('click',()=>setMode('element'));
 $('region-mode').addEventListener('click',()=>setMode('region'));
 $('clear').addEventListener('click',()=>{selectedId=null;selectedIds=[];selectedSelector=null;region=null;$('semantic-list').value='';selectionChanged();});
 $('element-list').addEventListener('change',()=>{const list=$('element-list');const ids=list.selectedOptions?[...list.selectedOptions].map(option=>option.value).filter(Boolean):[list.value].filter(Boolean);setMode('element');$('semantic-list').value='';selectElements(ids);});
-$('semantic-list').addEventListener('change',()=>{const value=$('semantic-list').value;if(!value)return;const selector=JSON.parse(value);setMode('element');selectElements(state.elements.filter(element=>matches(element,selector)).map(element=>element.id),selector);});
+$('semantic-list').addEventListener('change',()=>{const value=$('semantic-list').value;if(!value){selectElements([]);return;}const selector=JSON.parse(value);setMode('element');selectElements(state.elements.filter(element=>matches(element,selector)).map(element=>element.id),selector);});
 $('property').addEventListener('change',()=>{$('value-field').hidden=!$('property').value;});
 $('reload').addEventListener('click',load);
 $('figure-host').addEventListener('click',event=>{

@@ -51,6 +51,15 @@ definitions and their local references.
   the record remains in the queue. Downloading requests is optional because the
   Agent can read `requests.json` directly in the attempt directory.
 
+The **Edit**, **Requests** and **History** tabs keep the inspector within the
+desktop viewport; long content scrolls inside the active tab. On small screens
+it follows the figure in normal page flow. Expand **Individual elements** to
+use the keyboard-accessible multiple-selection list. Arrow keys, Home and End
+move between inspector tabs. The page uses the bundled plugin SVG mark and
+plain surfaces; document previews keep their opaque white canvas.
+Group and property menus open directly below their controls. Use arrow keys,
+Home/End and Enter to choose an option, Escape to cancel, or Tab to continue.
+
 The browser correctly maps a nonzero SVG viewBox origin, zoomed display and
 letterboxed preview through the SVG screen transformation. Each region retains
 its physical dimensions. A region is a visual location, not an identification
