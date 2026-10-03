@@ -132,6 +132,201 @@ class FigureWorkbenchTests(unittest.TestCase):
         for name,body in self.initial.items():
             self.assertEqual((self.root/name).read_bytes(),body)
 
+    def test_batch_saves_independent_numbered_requests_with_one_ledger_write(self):
+        _,previous = self.data("POST","/api/requests",self.change())
+        saved_before = self.server.app.ledger()["requests"][0]
+        payload = {"version": self.version, "requests": [
+            self.change(annotation_number=1, anchor_mm={"x": 30, "y": 45}),
+            {"version": self.version, "element_id": "legend", "property": "position",
+             "value": [85, 10], "instruction": "Move the guide to the right.",
+             "annotation_number": 2, "anchor_mm": {"x": 120, "y": 0}},
+        ]}
+        with patch.object(self.server.app, "write_ledger", wraps=self.server.app.write_ledger) as writer:
+            code,result = self.data("POST","/api/requests/batch",payload)
+        self.assertEqual(code,200,result)
+        self.assertEqual(writer.call_count,1)
+        self.assertEqual(set(result),{"requests","state"})
+        self.assertEqual([item["annotation_number"] for item in result["requests"]],[1,2])
+        self.assertEqual(result["requests"][0]["anchor_mm"],{"x":30,"y":45})
+        self.assertEqual(result["requests"][0]["coordinate_origin"],"top-left of full canvas")
+        self.assertEqual(result["requests"][0]["element"]["source_keys"],[{"group":"A"}])
+        self.assertEqual(result["requests"][1]["element"]["spec_paths"],["legend"])
+        self.assertEqual(len({item["id"] for item in result["requests"]}),2)
+        ledger = self.server.app.ledger()
+        self.assertEqual(len(ledger["requests"]),3)
+        self.assertEqual(ledger["requests"][0],saved_before)
+        self.assertEqual(ledger["requests"][0]["id"],previous["request"]["id"])
+        self.assertEqual(len(result["state"]["requests"]),3)
+        for name,body in self.initial.items():
+            self.assertEqual((self.root/name).read_bytes(),body)
+
+    def test_invalid_batch_is_atomic_for_new_and_existing_ledgers(self):
+        bad_batches = [
+            {"version": self.version, "requests": []},
+            {"version": self.version, "requests": [self.change()] * 101},
+            {"version": self.version, "requests": self.change()},
+            {"version": self.version, "requests": [self.change(), self.change(element_id="missing")]},
+            {"version": self.version, "requests": [self.change(annotation_number=1), self.change(annotation_number=1)]},
+            {"version": self.version, "requests": [self.change(), "another request"]},
+            {"version": self.version, "requests": [self.change(), self.change(instruction="")]},
+            {"version": self.version, "requests": [self.change()], "command": "unsupported"},
+        ]
+        for payload in bad_batches:
+            with self.subTest(payload=payload), patch.object(self.server.app,"write_ledger",wraps=self.server.app.write_ledger) as writer:
+                code,result = self.data("POST","/api/requests/batch",payload)
+                self.assertEqual(code,400,result)
+                self.assertEqual(writer.call_count,0)
+                self.assertFalse((self.root/"requests.json").exists())
+        self.assertEqual(self.data("POST","/api/requests",self.change(annotation_number=8))[0],200)
+        original = (self.root/"requests.json").read_bytes()
+        for payload in bad_batches + [{"version":self.version,"requests":[self.change(annotation_number=9),self.change(annotation_number=8)]}]:
+            with self.subTest(payload=payload), patch.object(self.server.app,"write_ledger",wraps=self.server.app.write_ledger) as writer:
+                self.assertEqual(self.data("POST","/api/requests/batch",payload)[0],400)
+                self.assertEqual(writer.call_count,0)
+                self.assertEqual((self.root/"requests.json").read_bytes(),original)
+
+    def test_number_anchor_validation_undo_reservation_and_version_scope(self):
+        for number in (0,-1,1000001,1.0,True,"1",None):
+            with self.subTest(number=number):
+                self.assertEqual(self.data("POST","/api/requests",self.change(annotation_number=number))[0],400)
+                self.assertFalse((self.root/"requests.json").exists())
+        for anchor in (None,{"x":0},{"x":0,"y":0,"width":1},{"x":-0.001,"y":0},{"x":120.001,"y":0},{"x":0,"y":90.001},{"x":0,"y":-1},{"x":True,"y":0},{"x":"1","y":0},{"x":float("inf"),"y":0}):
+            with self.subTest(anchor=anchor):
+                self.assertEqual(self.data("POST","/api/requests",self.change(anchor_mm=anchor))[0],400)
+                self.assertFalse((self.root/"requests.json").exists())
+        code,result = self.data("POST","/api/requests",self.change(annotation_number=1,anchor_mm={"x":0,"y":90}))
+        self.assertEqual(code,200,result)
+        self.assertEqual(self.data("POST","/api/undo",{"version":self.version,"request_id":result["request"]["id"]})[0],200)
+        original = (self.root/"requests.json").read_bytes()
+        self.assertEqual(self.data("POST","/api/requests",self.change(annotation_number=1))[0],400)
+        self.assertEqual(self.data("POST","/api/requests/batch",{"version":self.version,"requests":[self.change(annotation_number=2),self.change(annotation_number=1)]})[0],400)
+        self.assertEqual((self.root/"requests.json").read_bytes(),original)
+        self.assertEqual(self.data("POST","/api/requests",self.change(annotation_number=1000000,anchor_mm={"x":120,"y":90}))[0],200)
+        old_requests = self.server.app.ledger()["requests"]
+        (self.root/"panel.svg").write_bytes(SVG.replace(b"#2581B9",b"#00DCDC"))
+        _,state = self.data("GET","/api/state")
+        code,result = self.data("POST","/api/requests",{"version":state["version"],"instruction":"This new export uses annotation one.","annotation_number":1,"anchor_mm":{"x":0,"y":0}})
+        self.assertEqual(code,200,result)
+        self.assertEqual(self.server.app.ledger()["requests"][:2],old_requests)
+        self.assertEqual(result["request"]["annotation_number"],1)
+
+    def test_batch_requires_full_version_for_top_and_every_child(self):
+        partial = {"figure_sha256":self.version["figure_sha256"]}
+        for payload in ({"version":partial,"requests":[self.change()]},
+                        {"version":self.version,"requests":[self.change(),self.change(version=partial)]},
+                        {"version":self.version,"requests":[self.change(),{"instruction":"Version is required."}]}):
+            with self.subTest(payload=payload), patch.object(self.server.app,"write_ledger",wraps=self.server.app.write_ledger) as writer:
+                self.assertEqual(self.data("POST","/api/requests/batch",payload)[0],409)
+                self.assertEqual(writer.call_count,0)
+                self.assertFalse((self.root/"requests.json").exists())
+
+    def test_batch_detects_export_or_source_change_during_validation_before_writing(self):
+        source = self.root/"source.csv"
+        source.write_text("original source")
+        self.version["input_sha256"] = hashlib.sha256(source.read_bytes()).hexdigest()
+        self.manifest["input"]["data_file"] = str(source)
+        (self.root/"elements.json").write_text(json.dumps(self.manifest))
+        self.assertEqual(self.data("POST","/api/requests",self.change())[0],200)
+        original = (self.root/"requests.json").read_bytes()
+        prepare = self.server.app.prepare_request
+        for changed in ("figure","source"):
+            count = 0
+            def mutate_after_validation(payload,state,used_numbers):
+                nonlocal count
+                item = prepare(payload,state,used_numbers)
+                count += 1
+                if count == 2:
+                    if changed == "figure":
+                        (self.root/"panel.svg").write_bytes(SVG.replace(b"#2581B9",b"#00DCDC"))
+                    else:
+                        source.write_text("new source")
+                return item
+            with self.subTest(changed=changed), patch.object(self.server.app,"prepare_request",side_effect=mutate_after_validation), patch.object(self.server.app,"write_ledger",wraps=self.server.app.write_ledger) as writer:
+                code,result = self.data("POST","/api/requests/batch",{"version":self.version,"requests":[self.change(annotation_number=1),self.change(annotation_number=2)]})
+                self.assertEqual(code,409,result)
+                self.assertEqual(writer.call_count,0)
+                self.assertEqual((self.root/"requests.json").read_bytes(),original)
+            (self.root/"panel.svg").write_bytes(SVG)
+            source.write_text("original source")
+
+    def test_batch_atomic_replace_failure_keeps_previous_ledger_and_cleans_temporary(self):
+        self.assertEqual(self.data("POST","/api/requests",self.change())[0],200)
+        original = (self.root/"requests.json").read_bytes()
+        with patch.object(Path,"replace",side_effect=OSError("Save interrupted")):
+            code,result = self.data("POST","/api/requests/batch",{"version":self.version,"requests":[self.change(annotation_number=1),self.change(annotation_number=2)]})
+        self.assertEqual(code,400,result)
+        self.assertEqual((self.root/"requests.json").read_bytes(),original)
+        self.assertEqual(list(self.root.glob(".requests-*.tmp")),[])
+
+    def test_batch_accepts_one_hundred_requests_without_single_body_limit(self):
+        requests = [self.change(annotation_number=index,instruction="An independent change. " + "x"*800) for index in range(1,101)]
+        payload = {"version":self.version,"requests":requests}
+        self.assertGreater(len(json.dumps(payload)),workbench.MAX_REQUEST_BYTES)
+        code,result = self.data("POST","/api/requests/batch",payload)
+        self.assertEqual(code,200,result)
+        self.assertEqual(len(result["requests"]),100)
+        self.assertEqual([item["annotation_number"] for item in result["requests"]],list(range(1,101)))
+
+    def test_batch_ledger_size_failure_does_not_publish_unreadable_results(self):
+        self.assertEqual(self.data("POST","/api/requests",self.change())[0],200)
+        original = (self.root/"requests.json").read_bytes()
+        with patch.object(workbench,"MAX_FILE_BYTES",len(original)+10):
+            code,result = self.data("POST","/api/requests/batch",{"version":self.version,"requests":[self.change(annotation_number=1),self.change(annotation_number=2)]})
+        self.assertEqual(code,400,result)
+        self.assertIn("size limit",result["error"])
+        self.assertEqual((self.root/"requests.json").read_bytes(),original)
+        self.assertEqual(list(self.root.glob(".requests-*.tmp")),[])
+
+    def test_agent_queue_update_during_batch_validation_is_never_overwritten(self):
+        self.assertEqual(self.data("POST","/api/requests",self.change(annotation_number=7))[0],200)
+        agent_ledger = self.server.app.ledger()
+        agent_ledger["requests"][0]["status"] = "applied"
+        agent_ledger["history"] = [{"action":"applied","target_attempt":"attempt-02"}]
+        agent_bytes = (json.dumps(agent_ledger,sort_keys=True,separators=(",",":"))+"\n").encode()
+        prepare = self.server.app.prepare_request
+        calls = 0
+        def agent_update(payload,state,used_numbers):
+            nonlocal calls
+            item = prepare(payload,state,used_numbers)
+            calls += 1
+            if calls == 1:
+                (self.root/"requests.json").write_bytes(agent_bytes)
+            return item
+        with patch.object(self.server.app,"prepare_request",side_effect=agent_update), patch.object(self.server.app,"write_ledger",wraps=self.server.app.write_ledger) as writer:
+            code,result = self.data("POST","/api/requests/batch",{"version":self.version,"requests":[self.change(annotation_number=1),self.change(annotation_number=2)]})
+        self.assertEqual(code,409,result)
+        self.assertIn("Saved requests changed",result["error"])
+        self.assertEqual(writer.call_count,0)
+        self.assertEqual((self.root/"requests.json").read_bytes(),agent_bytes)
+        self.assertEqual(self.server.app.ledger()["requests"][0]["status"],"applied")
+        self.assertEqual(self.server.app.ledger()["history"],agent_ledger["history"])
+
+    def test_agent_queue_update_also_blocks_stale_single_save_and_undo(self):
+        code,saved = self.data("POST","/api/requests",self.change(annotation_number=7))
+        self.assertEqual(code,200)
+        original = (self.root/"requests.json").read_bytes()
+        agent_ledger = json.loads(original)
+        agent_ledger["requests"][0]["status"] = "applied"
+        agent_ledger["history"] = [{"action":"applied","target_attempt":"attempt-02"}]
+        agent_bytes = (json.dumps(agent_ledger,sort_keys=True,separators=(",",":"))+"\n").encode()
+        current_state = self.server.app.current_state
+        for path,payload in (("/api/requests",self.change(annotation_number=1)),
+                             ("/api/undo",{"version":self.version,"request_id":saved["request"]["id"]})):
+            (self.root/"requests.json").write_bytes(original)
+            calls = 0
+            def agent_update_before_publish(version):
+                nonlocal calls
+                calls += 1
+                if calls == 2:
+                    (self.root/"requests.json").write_bytes(agent_bytes)
+                return current_state(version)
+            with self.subTest(path=path), patch.object(self.server.app,"current_state",side_effect=agent_update_before_publish), patch.object(self.server.app,"write_ledger",wraps=self.server.app.write_ledger) as writer:
+                code,result = self.data("POST",path,payload)
+                self.assertEqual(code,409,result)
+                self.assertIn("Saved requests changed",result["error"])
+                self.assertEqual(writer.call_count,0)
+                self.assertEqual((self.root/"requests.json").read_bytes(),agent_bytes)
+
     def test_regions_work_without_map_and_mm_bounds_are_enforced(self):
         (self.root/"elements.json").unlink()
         code,state=self.data("GET","/api/state")
@@ -314,175 +509,251 @@ class FigureWorkbenchTests(unittest.TestCase):
         self.assertEqual(self.data("POST","/api/undo",{"version":self.version,"request_id":request_id})[0],400)
 
 
-class WorkbenchClientTests(unittest.TestCase):
-    @unittest.skipUnless(shutil.which("node"), "Node is needed for the client click regression")
-    def test_clicks_resolve_painted_targets_nearby_without_guessing_group_boxes(self):
-        harness=r'''
+CLIENT_HARNESS = r"""
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const source=fs.readFileSync(process.argv[1],'utf8');
+const tick=()=>new Promise(resolve=>setImmediate(resolve));
+const jsonResponse=(body,ok=true)=>({ok,json:async()=>body});
 class Element {
-  constructor(id=''){this.id=id;this.value='';this.children=[];this.listeners={};this.classList={toggle(){}};}
-  addEventListener(name,callback){this.listeners[name]=callback;}setAttribute(){}
-  replaceChildren(...children){this.children=children;}append(...children){this.children.push(...children);}add(child){this.children.push(child);}
-  querySelectorAll(){return [];}getElementById(){return null;}
-  contains(node){return node===this||!!node?.parentNode&&this.contains(node.parentNode);}
-  get options(){return this.children;}get selectedOptions(){return this.children.filter(option=>option.selected);}
-}
-const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
-const root=new Element('svg'),axes=new Element('axes'),group=new Element('points'),point=new Element('use'),guide=new Element('legend'),text=new Element('text'),axisLine=new Element('axis-line'),stroke=new Element('path');
-axes.parentNode=root;group.parentNode=axes;point.parentNode=group;guide.parentNode=root;text.parentNode=guide;axisLine.parentNode=axes;stroke.parentNode=axisLine;
-const previous=new Element('previous-svg'),duplicate=new Element('points');duplicate.parentNode=previous;
-const data={manifest_valid:true,elements:[{id:'axes',role:'axes',label:'Data region'},
-{id:'points',role:'point-group',label:'Control',editable:['color']},
-{id:'legend',role:'legend',label:'Categorical guide',editable:['layout']},
-{id:'axis-line',role:'axis-line',label:'X axis line',editable:['linewidth']}],requests:[],version:{figure_sha256:'A'}};
-let paint=(x,y)=>Math.hypot(x-125,y-80)<=2?point:axes;
-const context=vm.createContext({document:{getElementById:node,createElement:()=>new Element(),createElementNS:()=>new Element(),elementFromPoint:(x,y)=>paint(x,y)},
-Option:class extends Element{constructor(text,value){super();this.value=value;}},fetch:()=>new Promise(()=>{}),testRoot:root,testState:data,console});
-const inspect=source=>vm.runInContext(source,context);
-vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);
-inspect('svg=testRoot;state=testState;loading=false;mode="element"');
-const click=event=>node('figure-host').listeners.click(event);
-click({target:point,clientX:125,clientY:80});assert.deepEqual(Array.from(inspect('selectedIds')),['points']);
-click({target:axes,clientX:130,clientY:80});assert.deepEqual(Array.from(inspect('selectedIds')),['points'],'a near miss must select painted marks, not the enclosing data region');
-click({target:text,clientX:300,clientY:20,shiftKey:true});assert.deepEqual(Array.from(inspect('selectedIds')),['points','legend'],'nested glyphs resolve to their real mapped owner; Shift preserves previous selection');
-click({target:axes,clientX:200,clientY:80});assert.deepEqual(Array.from(inspect('selectedIds')),['axes'],'empty space within a point collection must not select that group');
-paint=(x,y)=>Math.abs(y-150)<.5?stroke:axes;
-click({target:axes,clientX:200,clientY:155});assert.deepEqual(Array.from(inspect('selectedIds')),['axis-line'],'thin axis strokes must be selectable from nearby screen pixels');
-paint=()=>duplicate;
-context.testPrevious=duplicate;
-assert.equal(inspect('pickElement({target:testPrevious,clientX:1,clientY:1})'),null,'the read-only previous SVG must not supply current IDs');
-inspect('state.manifest_valid=false');
-context.testPoint=point;
-assert.equal(inspect('pickElement({target:testPoint,clientX:125,clientY:80})'),null,'a missing or stale map must not guess identities from SVG IDs');
-'''
-        script=SCRIPT.with_name("workbench")/"workbench.js"
-        result=subprocess.run([shutil.which("node"),"-e",harness,str(script)],capture_output=True,text=True,timeout=15)
-        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
-
-    @unittest.skipUnless(shutil.which("node"), "Node is needed for the mocked client runtime check")
-    def test_client_bulk_selection_intersects_properties_and_keeps_all_real_ids(self):
-        harness=r'''
-const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-class Element {
-  constructor(name=''){this.name=name;this.value='';this.disabled=false;this.children=[];this.listeners={};this.classList={toggle(){}};}
-  addEventListener(name,callback){this.listeners[name]=callback;}setAttribute(){}
-  replaceChildren(...children){this.children=children;}append(...children){this.children.push(...children);}add(child){this.children.push(child);}
-  querySelectorAll(){return [];}getElementById(){return null;}
-  get options(){return this.children;}get selectedOptions(){return this.children.filter(option=>option.selected);}
-}
-const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
-const data={schema_version:1,figure_name:'attempt-02',track:'create',version:{figure_sha256:'B'},panel:{width_mm:120,height_mm:90},view_box:[0,0,240,180],manifest_valid:true,source_current:true,elements:[
-{id:'group-A',role:'point-group',label:'A',source_keys:[{group:'A',records:[1,3]}],spec_paths:['/colors/A','/options/alpha'],editable:{color:'/colors/A',alpha:'/options/alpha'}},
-{id:'key-A',role:'legend-key',label:'A',source_keys:[{category:'A'}],spec_paths:['/colors/A'],editable:['color']},
-{id:'group-B',role:'point-group',label:'B',source_keys:[{group:'B',records:[2,4]}],spec_paths:['/colors/B'],editable:['color']}
-],requests:[],history:[{action:'accepted',target_attempt:'/trial/attempt-01'},{action:'applied',target_attempt:'/trial/attempt-02'},{action:'accepted',version:{figure_sha256:'legacy-hash'}}],files:['panel.svg'],token:'session',selection_message:'Mapped elements.'};
-let posted=[];
-const context=vm.createContext({document:{getElementById:node,createElement:()=>new Element(),createElementNS:()=>new Element(),importNode:element=>element},Option:class extends Element{constructor(text,value){super(text);this.value=value;}},DOMParser:class{parseFromString(text){return{querySelector:()=>null,documentElement:new Element(text)};}},fetch:async(path,options)=>{
-  if(path==='/api/state')return{ok:true,json:async()=>data};
-  if(path.startsWith('/api/preview.svg'))return{ok:true,text:async()=>'<svg/>'};
-  if(path==='/api/requests'){const payload=JSON.parse(options.body);posted.push(payload);return{ok:true,json:async()=>({state:{...data,requests:[]}})};}
-  throw new Error(path);
-},console});
-const inspect=source=>vm.runInContext(source,context),tick=()=>new Promise(resolve=>setImmediate(resolve));
-(async()=>{
- vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);await tick();await tick();
- assert.deepEqual(node('history-list').children.map(row=>row.textContent),['accepted · attempt-01','applied · attempt-02','accepted · version legacy-h'],'merged baseline history must retain the actual attempt; legacy unbound events must not claim the current one');
- node('semantic-list').value=JSON.stringify({category:'A'});node('semantic-list').listeners.change();
- assert.deepEqual(Array.from(inspect('selectedIds')),['group-A','key-A']);
- assert.deepEqual(node('property').children.map(option=>option.value),['','color'],'bulk properties must be editable for every mapped member');
- node('property').value='color';node('property-value').value='#112233';node('instruction').value='Use this color for category A.';
- await node('request-form').listeners.submit({preventDefault(){}});
- assert.deepEqual(posted[0].selector,{category:'A'});assert.equal(posted[0].property,'color');
- inspect("selectElements(['group-A','group-B'])");node('instruction').value='Apply this color to both selected groups.';
- await node('request-form').listeners.submit({preventDefault(){}});
- assert.deepEqual(posted[1].element_ids,['group-A','group-B']);assert.equal(posted[1].element_id,undefined);
- inspect('state.source_current=false');node('instruction').value='Must refuse stale source.';
- await node('request-form').listeners.submit({preventDefault(){}});assert.equal(posted.length,2);
-})().catch(error=>{console.error(error);process.exitCode=1;});
-'''
-        script=SCRIPT.with_name("workbench")/"workbench.js"
-        result=subprocess.run([shutil.which("node"),"-e",harness,str(script)],capture_output=True,text=True,timeout=15)
-        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
-
-    @unittest.skipUnless(shutil.which("node"), "Node is needed for the mocked client runtime check")
-    def test_reload_and_queue_responses_never_rebind_an_old_svg_selection(self):
-        # Execute the actual client in a minimal DOM with controlled HTTP promises.
-        # No browser or real network is needed to reproduce the asynchronous race.
-        harness=r'''
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const vm=require('node:vm');
-class Element {
-  constructor(name='') {this.name=name;this.value='';this.disabled=false;this.children=[];this.listeners={};this.classList={toggle(){}};}
+  constructor(name='',tagName='DIV') {
+    this.name=name;this.id=name;this.tagName=tagName;this.value='';this.disabled=false;
+    this.children=[];this.listeners={};this.attributes={};this.style={};
+    this.classList={toggle(){},add(){},remove(){}};
+    this.box={x:30,y:40,width:20,height:10};
+  }
   addEventListener(name,callback){this.listeners[name]=callback;}
-  setAttribute(){}
-  replaceChildren(...children){this.children=children;}
-  append(...children){this.children.push(...children);}
-  add(child){this.children.push(child);}
-  querySelectorAll(){return [];}
-  getElementById(){return null;}
+  setAttribute(name,value){this.attributes[name]=value;if(name==='class')this.className=value;}
+  getAttribute(name){return this.attributes[name];}removeAttribute(name){delete this.attributes[name];}
+  append(...children){for(const child of children){child.parentNode=this;this.children.push(child);}}
+  replaceChildren(...children){for(const child of this.children)child.parentNode=null;this.children=[];this.append(...children);}
+  add(child){this.append(child);}remove(){if(this.parentNode)this.parentNode.children=this.parentNode.children.filter(child=>child!==this);this.parentNode=null;}
+  contains(node){return node===this||!!node?.parentNode&&this.contains(node.parentNode);}
+  getElementById(id){if(this.id===id)return this;for(const child of this.children){const found=child.getElementById(id);if(found)return found;}return null;}
+  querySelectorAll(selector){const attr=selector.match(/^\[([^\]]+)\]$/)?.[1],result=[];for(const child of this.children){if(attr&&Object.hasOwn(child.attributes,attr))result.push(child);result.push(...child.querySelectorAll(selector));}return result;}
+  closest(selector){if(selector==='.'+this.className)return this;return this.parentNode?.closest(selector)||null;}
+  getBBox(){return this.box;}
+  getScreenCTM(){return{a:1,b:0,c:0,d:1,inverse(){return this;},multiply(){return this;}};}
+  createSVGPoint(){return{x:0,y:0,matrixTransform(){return{x:this.x,y:this.y};}};}
+  setPointerCapture(){}focus(){}
+  get options(){return this.children;}
+  get selectedOptions(){return this.children.filter(option=>option.value===this.value);}
 }
-const nodes=new Map();
-const node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
-const stateFor=name=>({schema_version:1,figure_name:name,track:'create',version:{figure_sha256:name},panel:{width_mm:name==='A'?120:240,height_mm:name==='A'?90:180},view_box:[10,20,240,180],manifest_valid:false,elements:[],requests:[],files:['panel.svg'],token:'session',selection_message:'Select a region.'});
-const a=stateFor('A'),b=stateFor('B');
-let phase='initial',resolvePreview,posted=[];
-const response=state=>({ok:true,json:async()=>state});
-const context=vm.createContext({
-  document:{getElementById:node,createElement:()=>new Element(),createElementNS:()=>new Element(),importNode:element=>element},
-  Option:class extends Element {constructor(text,value){super(text);this.value=value;}},
-  DOMParser:class {parseFromString(text){return {querySelector:()=>null,documentElement:new Element(text)};}},
-  fetch:async(path,options)=>{
-    if(path==='/api/state')return response(phase==='initial'?a:b);
-    if(path.startsWith('/api/preview.svg')){
-      if(phase==='pending')return new Promise(resolve=>{resolvePreview=resolve;});
-      return {ok:true,text:async()=>phase==='initial'?'SVG-A':'SVG-B'};
+function makeSvg(name) {
+  const root=new Element(name,'SVG'),axes=new Element('axes','G'),a=new Element('group-A','G'),b=new Element('group-B','G'),key=new Element('key-A','G'),line=new Element('axis-line','G');
+  a.box={x:60,y:70,width:10,height:20};b.box={x:110,y:90,width:20,height:20};key.box={x:170,y:40,width:35,height:10};line.box={x:20,y:150,width:100,height:1};
+  a.append(new Element('use-A','USE'));b.append(new Element('use-B','USE'));key.append(new Element('text-A','TEXT'));line.append(new Element('stroke','PATH'));
+  axes.append(a,b,line);root.append(axes,key);return root;
+}
+function figure(name='A',extra={}) {
+  return{schema_version:1,figure_name:'same-attempt',track:'create',version:{figure_sha256:name,spec_sha256:'spec-'+name},panel:{width_mm:120,height_mm:90},view_box:[10,20,240,180],manifest_valid:true,source_current:true,elements:[
+    {id:'axes',role:'axes',label:'Data region',source_keys:[],spec_paths:[],editable:[]},
+    {id:'group-A',role:'point-group',label:'A',source_keys:[{group:'A',records:[1,3]}],spec_paths:['/colors/A','/options/alpha'],editable:{color:'/colors/A',alpha:'/options/alpha'}},
+    {id:'key-A',role:'legend-key',label:'A guide',source_keys:[{category:'A'}],spec_paths:['/colors/A'],editable:['color']},
+    {id:'group-B',role:'point-group',label:'B',source_keys:[{group:'B',records:[2,4]}],spec_paths:['/colors/B'],editable:['color']},
+    {id:'axis-line',role:'axis-line',label:'X axis line',source_keys:[],spec_paths:[],editable:['linewidth']}
+  ],requests:[],history:[],files:['panel.svg'],token:'session',selection_message:'Mapped elements.',...extra};
+}
+function harness(initial,storage=new Map(),brokenStorage=false) {
+  const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
+  const h={data:initial,posted:[],nodes,node,storage,paint:()=>null,override:null,batchFailure:false};
+  const current=(item)=>({...item,current_version:JSON.stringify(item.version)===JSON.stringify(h.data.version)});
+  async function fetch(path,options) {
+    if(h.override){const intercepted=h.override(path,options);if(intercepted!==undefined)return intercepted;}
+    if(path==='/api/state')return jsonResponse({...h.data,requests:h.data.requests.map(current)});
+    if(path.startsWith('/api/preview.svg'))return{ok:true,text:async()=>'SVG-'+h.data.version.figure_sha256};
+    if(path==='/api/requests/batch') {
+      const payload=JSON.parse(options.body);h.posted.push(payload);
+      if(h.batchFailure)return jsonResponse({error:'The second requested change is invalid.'},false);
+      const saved=payload.requests.map((request,index)=>{
+        let ids=request.element_ids||[request.element_id].filter(Boolean);
+        if(request.selector)ids=h.data.elements.filter(element=>!request.selector.category||(element.source_keys||[]).some(key=>key.group===request.selector.category||key.category===request.selector.category)).map(element=>element.id);
+        return{...request,id:'saved-'+h.posted.length+'-'+index,status:'pending',element_ids:ids};
+      });
+      h.data={...h.data,requests:[...h.data.requests,...saved]};
+      return jsonResponse({requests:saved,state:{...h.data,requests:h.data.requests.map(current)}});
     }
-    if(path==='/api/requests'){
-      const payload=JSON.parse(options.body);posted.push(payload);
-      return response({state:{...b,requests:[{id:'saved',status:'pending',instruction:payload.instruction,version:payload.version,current_version:false}]}});
+    if(path==='/api/undo') {
+      const payload=JSON.parse(options.body);
+      h.data={...h.data,requests:h.data.requests.map(item=>item.id===payload.request_id?{...item,status:'undone'}:item)};
+      return jsonResponse({request:h.data.requests.find(item=>item.id===payload.request_id),state:{...h.data,requests:h.data.requests.map(current)}});
     }
     throw new Error('Unexpected request '+path);
-  },console,
-});
-const inspect=source=>vm.runInContext(source,context);
-const tick=()=>new Promise(resolve=>setImmediate(resolve));
-(async()=>{
-  vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);
-  await tick();await tick();
-  assert.equal(inspect('state.version.figure_sha256'),'A');
-  assert.equal(inspect('svg.name'),'SVG-A');
-  inspect('region={x:5,y:10,width:20,height:15}');
-  phase='pending';
-  const reload=inspect('load()');await tick();
-  assert.equal(inspect('state.version.figure_sha256'),'A','pending state must not replace visible figure version');
-  assert.equal(inspect('svg.name'),'SVG-A');
-  assert.equal(node('save').disabled,true);
-  await node('request-form').listeners.submit({preventDefault(){}});
-  assert.equal(posted.length,0,'submission must be blocked during reload');
-  resolvePreview({ok:false,json:async()=>({error:'Preview failed'})});await reload;
-  assert.equal(inspect('state.version.figure_sha256'),'A','failed reload must retain original version');
-  assert.equal(inspect('region.x'),5);
-  assert.equal(node('save').disabled,false);
-  phase='queue-response';node('instruction').value='Move this region label.';
-  await node('request-form').listeners.submit({preventDefault(){}});
-  assert.equal(posted.length,1);
-  assert.equal(posted[0].version.figure_sha256,'A');
-  assert.deepEqual(posted[0].region_mm,{x:5,y:10,width:20,height:15});
-  assert.equal(inspect('state.version.figure_sha256'),'A','newer queue response must not rebind old SVG');
-  assert.equal(inspect('state.panel.width_mm'),120);
-  assert.equal(inspect('svg.name'),'SVG-A');
-  assert.equal(inspect('state.requests[0].current_version'),true);
-  phase='success';await inspect('load()');
-  assert.equal(inspect('state.version.figure_sha256'),'B');
-  assert.equal(inspect('svg.name'),'SVG-B');
-  assert.equal(inspect('region'),null,'successful reload clears old coordinates');
-  assert.equal(node('save').disabled,false);
-})().catch(error=>{console.error(error);process.exitCode=1;});
-'''
+  }
+  h.context=vm.createContext({document:{getElementById:node,createElement:tag=>new Element('',tag.toUpperCase()),createElementNS:(_,tag)=>new Element('',tag.toUpperCase()),importNode:element=>element,elementFromPoint:(x,y)=>h.paint(x,y)},
+    Option:class extends Element{constructor(text,value){super('','OPTION');this.textContent=text;this.value=value;}},
+    DOMParser:class{parseFromString(text){return{querySelector:()=>null,documentElement:makeSvg(text)};}},
+    sessionStorage:{getItem:key=>{if(brokenStorage)throw new Error('Storage blocked');return storage.get(key)||null;},setItem:(key,value)=>{if(brokenStorage)throw new Error('Storage blocked');storage.set(key,value);}},
+    window:{addEventListener(){}},fetch,console});
+  h.inspect=expr=>vm.runInContext(expr,h.context);
+  h.svg=()=>node('figure-host').children[0];
+  h.click=(id,event={})=>{const target=node(id);if(target.disabled)return;return target.listeners.click?.({target,preventDefault(){},stopPropagation(){},...event});};
+  h.point=(id,x=120,y=80)=>h.click('figure-host',{target:h.svg().getElementById(id),clientX:x,clientY:y});
+  h.input=(id,value)=>{node(id).value=value;node(id).listeners.input?.({target:node(id)});};
+  h.choose=(id,value)=>{node(id).value=value;node(id).listeners.change?.({target:node(id)});};
+  h.chip=number=>{const chip=node('annotation-list').children.find(item=>item.tagName==='BUTTON'&&item.textContent===String(number));assert.ok(chip,'Annotation '+number+' must be present');return chip.listeners.click();};
+  h.numbers=()=>node('annotation-list').children.filter(item=>item.tagName==='BUTTON').map(item=>Number(item.textContent));
+  h.submit=()=>node('request-form').listeners.submit({preventDefault(){}});
+  h.region=()=>{h.click('region-mode');const root=h.svg();node('figure-host').listeners.pointerdown({target:root,button:0,pointerId:1,clientX:20,clientY:40,preventDefault(){}});node('figure-host').listeners.pointerup({target:root,pointerId:1,clientX:60,clientY:70});};
+  vm.runInContext(source,h.context);
+  h.start=async()=>{await tick();await tick();};
+  return h;
+}
+"""
+
+
+class WorkbenchClientTests(unittest.TestCase):
+    def run_client(self,scenario):
+        if not shutil.which("node"):
+            self.skipTest("Node is needed for the client event regressions")
         script=SCRIPT.with_name("workbench")/"workbench.js"
-        result=subprocess.run([shutil.which("node"),"-e",harness,str(script)],capture_output=True,text=True,timeout=15)
+        wrapped=CLIENT_HARNESS+"\n(async()=>{\n"+scenario+"\n})().catch(error=>{console.error(error);process.exitCode=1;});"
+        result=subprocess.run([shutil.which("node"),"-e",wrapped,str(script)],capture_output=True,text=True,timeout=20)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
+    def test_clicks_resolve_painted_targets_nearby_without_guessing_group_boxes(self):
+        self.run_client(r"""
+const h=harness(figure());await h.start();
+assert.equal(h.node('save').disabled,true,'an empty form must not enable Save requests');
+h.paint=(x,y)=>Math.hypot(x-125,y-80)<=2?h.svg().getElementById('use-A'):h.svg().getElementById('axes');
+h.point('use-A',125,80);assert.deepEqual(h.numbers(),[1]);
+assert.match(h.node('selection-details').textContent,/^A · point-group/);
+h.input('instruction','Keep these point values; change only their color.');
+h.point('axes',130,80);assert.deepEqual(h.numbers(),[1],'a near miss reactivates the same painted target');
+assert.equal(h.node('instruction').value,'Keep these point values; change only their color.');
+h.point('text-A',300,20);assert.deepEqual(h.numbers(),[1,2],'an ordinary second click creates an independent annotation');
+assert.equal(h.node('instruction').value,'','a new annotation has its own empty instruction');
+h.point('axes',200,80);assert.deepEqual(h.numbers(),[1,2,3]);
+assert.match(h.node('selection-details').textContent,/Data region/,'empty collection space must select axes, not the surrounding point group');
+h.paint=(x,y)=>Math.abs(y-150)<.5?h.svg().getElementById('stroke'):h.svg().getElementById('axes');
+h.point('axes',200,155);assert.deepEqual(h.numbers(),[1,2,3,4]);
+assert.match(h.node('selection-details').textContent,/X axis line/,'nearby painted thin strokes remain selectable');
+const previous=makeSvg('read-only-previous'),duplicate=previous.getElementById('use-A');h.paint=()=>duplicate;
+h.click('figure-host',{target:duplicate,clientX:1,clientY:1});assert.deepEqual(h.numbers(),[1,2,3,4],'read-only previous SVG IDs cannot create a current target');
+h.inspect('state.manifest_valid=false');h.paint=()=>h.svg().getElementById('use-A');
+h.point('use-A',125,80);assert.deepEqual(h.numbers(),[1,2,3,4],'a stale map cannot guess identities');
+""")
+
+    def test_client_bulk_selection_intersects_properties_and_blocks_changed_sources(self):
+        self.run_client(r"""
+const initial=figure('B',{history:[{action:'accepted',target_attempt:'/trial/attempt-01'},{action:'applied',target_attempt:'/trial/attempt-02'},{action:'accepted',version:{figure_sha256:'legacy-hash'}}]});
+const h=harness(initial);await h.start();
+assert.deepEqual(h.node('history-list').children.map(row=>row.textContent),['accepted · attempt-01','applied · attempt-02','accepted · version legacy-h']);
+h.choose('semantic-list',JSON.stringify({category:'A'}));
+assert.deepEqual(h.node('property').children.map(option=>option.value),['','color'],'bulk editable properties must intersect every real mapped member');
+h.choose('property','color');h.input('property-value','#112233');h.input('instruction','Use this color for category A.');
+await h.submit();assert.equal(h.posted.length,1);
+assert.deepEqual(h.posted[0].version,initial.version);
+assert.deepEqual(h.posted[0].requests[0].selector,{category:'A'});
+assert.equal(h.posted[0].requests[0].property,'color');assert.equal(h.posted[0].requests[0].value,'#112233');
+assert.equal(h.posted[0].requests[0].annotation_number,1);assert.deepEqual(h.posted[0].requests[0].version,initial.version);
+const anchor=h.posted[0].requests[0].anchor_mm;
+assert.ok(Number.isFinite(anchor.x)&&Number.isFinite(anchor.y)&&anchor.x>=0&&anchor.x<=120&&anchor.y>=0&&anchor.y<=90);
+assert.equal(h.node('instruction').disabled,true,'saved instructions must be read-only');
+h.choose('semantic-list',JSON.stringify({category:'B'}));h.input('instruction','Keep group B separate.');
+await h.submit();assert.equal(h.posted.length,2);assert.equal(h.posted[1].requests[0].annotation_number,2);
+h.data={...h.data,source_current:false};await h.click('reload');
+assert.equal(h.node('save').disabled,true);
+h.point('use-A');h.input('instruction','Must refuse stale source.');await h.submit();
+assert.equal(h.posted.length,2,'a changed source prevents sending any batch');
+""")
+
+    def test_reload_and_queue_responses_never_rebind_an_old_svg_annotation(self):
+        self.run_client(r"""
+const a=figure('A',{manifest_valid:false,elements:[]}),b=figure('B',{manifest_valid:false,elements:[],panel:{width_mm:240,height_mm:180}});
+const h=harness(a);await h.start();h.region();h.input('instruction','Move this region label.');
+assert.deepEqual(h.numbers(),[1]);assert.equal(h.node('save').disabled,false);
+let resolvePreview;
+h.data=b;h.override=path=>path.startsWith('/api/preview.svg')?new Promise(resolve=>{resolvePreview=resolve;}):undefined;
+const reload=h.click('reload');await tick();
+assert.equal(h.svg().name,'SVG-A');assert.equal(h.node('save').disabled,true);
+await h.submit();assert.equal(h.posted.length,0,'saving is frozen while a replacement preview is loading');
+resolvePreview(jsonResponse({error:'Preview failed'},false));await reload;
+assert.equal(h.svg().name,'SVG-A');assert.equal(h.node('instruction').value,'Move this region label.');assert.equal(h.node('save').disabled,false);
+h.override=(path,options)=>{
+ if(path!=='/api/requests/batch')return undefined;
+ const payload=JSON.parse(options.body);h.posted.push(payload);
+ const item={...payload.requests[0],id:'saved',status:'pending',element_ids:[],current_version:false};
+ h.data={...b,requests:[item]};return jsonResponse({requests:[item],state:h.data});
+};
+await h.submit();assert.equal(h.posted.length,1);
+assert.deepEqual(h.posted[0].version,a.version);assert.deepEqual(h.posted[0].requests[0].version,a.version);
+assert.deepEqual(h.posted[0].requests[0].region_mm,{x:5,y:10,width:20,height:15});
+assert.equal(h.posted[0].requests[0].annotation_number,1);
+assert.equal(h.svg().name,'SVG-A');assert.equal(h.node('dimensions').textContent,'120.0 × 90.0 mm');
+assert.equal(h.node('request-count').textContent,'1','a queue response for a newer export must be rebound to the visible version');
+h.override=null;await h.click('reload');
+assert.equal(h.svg().name,'SVG-B');assert.equal(h.node('dimensions').textContent,'240.0 × 180.0 mm');
+assert.deepEqual(h.numbers(),[],'a new figure version must not inherit old geometry or notes');
+assert.equal(h.node('save').disabled,true);
+""")
+
+    def test_independent_instructions_switch_remove_and_batch_failure_keeps_drafts(self):
+        self.run_client(r"""
+const h=harness(figure());await h.start();
+h.point('use-A');h.choose('property','color');h.input('property-value','#112233');h.input('instruction','First independent instruction.');
+h.point('use-B');h.input('instruction','Second independent instruction.');
+h.point('text-A');h.input('instruction','Third independent instruction.');
+assert.deepEqual(h.numbers(),[1,2,3]);
+h.chip(1);assert.equal(h.node('instruction').value,'First independent instruction.');assert.equal(h.node('property-value').value,'#112233');
+h.chip(2);assert.equal(h.node('instruction').value,'Second independent instruction.');assert.equal(h.node('property').value,'','property edits do not bleed across notes');
+h.click('remove-annotation');assert.deepEqual(h.numbers(),[1,3],'removing one annotation must not renumber its neighbours');
+h.point('stroke');assert.deepEqual(h.numbers(),[1,3,4]);assert.equal(h.node('instruction').value,'');
+let resolveBatch;
+h.override=(path,options)=>{if(path!=='/api/requests/batch')return undefined;h.posted.push(JSON.parse(options.body));return new Promise(resolve=>{resolveBatch=resolve;});};
+const saving=h.submit();await tick();
+assert.equal(h.node('save').disabled,true);assert.equal(h.node('reload').disabled,true);assert.equal(h.node('instruction').disabled,true);
+h.point('use-B');h.click('clear');h.click('remove-annotation');
+assert.deepEqual(h.numbers(),[1,3,4],'saving freezes new selections, clearing and removal');
+resolveBatch(jsonResponse({error:'The second requested change is invalid.'},false));await saving;h.override=null;
+assert.equal(h.posted.length,1);assert.deepEqual(h.posted[0].requests.map(item=>item.annotation_number),[1,3],'only filled drafts are submitted, leaving the blank annotation untouched');
+assert.equal(h.posted[0].requests[0].element_id,'group-A');assert.equal(h.posted[0].requests[1].element_id,'key-A');
+assert.equal(h.posted[0].requests[0].property,'color');assert.equal(h.posted[0].requests[1].property,undefined);
+assert.match(h.node('message').textContent,/draft instructions have been kept/);
+h.chip(1);assert.equal(h.node('instruction').value,'First independent instruction.');assert.equal(h.node('instruction').disabled,false);
+h.chip(3);assert.equal(h.node('instruction').value,'Third independent instruction.');assert.equal(h.node('instruction').disabled,false);
+await h.submit();assert.equal(h.posted.length,2);
+assert.deepEqual(h.posted[1].requests,h.posted[0].requests,'retry preserves complete independent requests');
+h.chip(4);assert.equal(h.node('instruction').disabled,false);assert.equal(h.node('instruction').value,'');
+h.chip(1);assert.equal(h.node('instruction').disabled,true,'successful saving marks only committed notes read-only');
+""")
+
+    def test_refresh_restores_same_version_and_isolates_a_new_version(self):
+        self.run_client(r"""
+const storage=new Map(),h=harness(figure('A'),storage);await h.start();
+h.point('use-A');h.input('instruction','A persisted point instruction.');h.point('use-B');h.input('instruction','A second persisted instruction.');
+const restored=harness(figure('A'),storage);await restored.start();
+assert.deepEqual(restored.numbers(),[1,2]);assert.equal(restored.node('instruction').value,'A second persisted instruction.');
+restored.chip(1);assert.equal(restored.node('instruction').value,'A persisted point instruction.');
+await restored.submit();assert.deepEqual(restored.posted[0].requests.map(item=>item.annotation_number),[1,2]);
+const newer=harness(figure('B'),storage);await newer.start();assert.deepEqual(newer.numbers(),[]);assert.equal(newer.node('save').disabled,true);
+newer.point('use-A');assert.deepEqual(newer.numbers(),[1]);assert.equal(newer.node('instruction').value,'');
+""")
+
+    def test_clear_restarts_unsaved_numbers_without_reusing_saved_or_undone_numbers(self):
+        self.run_client(r"""
+const h=harness(figure());await h.start();h.point('use-A');h.point('use-B');assert.deepEqual(h.numbers(),[1,2]);
+h.click('clear');assert.deepEqual(h.numbers(),[]);h.point('text-A');assert.deepEqual(h.numbers(),[1]);
+h.click('clear');await h.click('reload');h.point('use-A');assert.deepEqual(h.numbers(),[1],'repeated clearing and same-version Reload figure keep numbering at one');
+h.input('instruction','Save annotation one permanently.');await h.submit();
+h.click('new-instruction');assert.deepEqual(h.numbers(),[1,2],'a saved target supports a separate new instruction');
+h.input('instruction','This second draft will be cleared.');h.click('clear');assert.deepEqual(h.numbers(),[1]);
+h.point('use-B');assert.deepEqual(h.numbers(),[1,2],'clear restarts after saved numbers, never reuses saved one');
+h.click('clear');await h.click('undo');assert.deepEqual(h.numbers(),[]);
+h.point('use-A');assert.deepEqual(h.numbers(),[2],'undone saved numbers remain occupied');
+h.input('instruction','Use a fresh annotation after undo.');await h.submit();assert.equal(h.posted[1].requests[0].annotation_number,2);
+""")
+
+    def test_same_version_reload_keeps_memory_drafts_when_storage_is_unavailable(self):
+        self.run_client(r"""
+const h=harness(figure(),new Map(),true);await h.start();
+h.point('use-A');h.input('instruction','Keep this instruction even when browser storage is blocked.');
+h.choose('property','color');h.input('property-value','#334455');
+await h.click('reload');assert.deepEqual(h.numbers(),[1]);
+assert.equal(h.node('instruction').value,'Keep this instruction even when browser storage is blocked.');
+assert.equal(h.node('property').value,'color');assert.equal(h.node('property-value').value,'#334455');
+await h.submit();assert.equal(h.posted.length,1);assert.equal(h.posted[0].requests[0].instruction,'Keep this instruction even when browser storage is blocked.');
+assert.equal(h.posted[0].requests[0].value,'#334455');
+""")
 
 
 if __name__ == "__main__":

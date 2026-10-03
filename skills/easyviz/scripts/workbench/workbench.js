@@ -1,7 +1,8 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
-let state, svg, selectedId = null, selectedIds = [], selectedSelector = null, region = null, mode = 'element', drag = null;
+let state, svg, annotations = [], activeNumber = null, nextNumber = 1, mode = 'element', drag = null;
 let loading = false, saving = false;
+let storageUnavailable = false;
 const NS = 'http://www.w3.org/2000/svg';
 const dropdowns = new Map();
 function closeDropdown(entry) {
@@ -133,7 +134,7 @@ function setMode(next) {
   selectionHint();
 }
 function selectionHint(element=null) {
-  $('preview-size').textContent=mode==='region'?'Drag to mark a region':element?element.label+' · '+element.role.replaceAll('-',' '):'Click a mapped element';
+  $('preview-size').textContent=mode==='region'?'Drag to add a numbered region':element?element.label+' · '+element.role.replaceAll('-',' '):'Click to add an annotation';
   $('figure-host').classList.toggle('element-hit',!!element&&mode==='element');
 }
 function mappedElement(node) {
@@ -190,26 +191,110 @@ function highlight(rect) {
   mark.setAttribute('data-review-highlight','true');
   svg.append(mark);
 }
-function highlightElements(elements) {
-  highlight(null);
-  for(const element of elements) {
+function activeAnnotation() { return annotations.find(note=>note.number===activeNumber); }
+function annotationElements(note) { return state.elements.filter(element=>(note?.element_ids||[]).includes(element.id)); }
+function annotationLabel(note) {
+  const elements=annotationElements(note);
+  return elements.length===1?elements[0].label:elements.length?elements.length+' mapped elements':note.region_mm?'Selected region':'Whole figure';
+}
+function draftKey() { return 'easyviz-annotations:'+state.figure_name+':'+JSON.stringify(state.version); }
+function annotationStatus() {
+  const note=activeAnnotation();
+  $('annotation-state').hidden=!note||(!note.saved&&!storageUnavailable);
+  $('annotation-state').textContent=note?.saved?'Saved · use Requests to undo this instruction':storageUnavailable?'Draft · save before closing or refreshing this page':'Draft · this instruction has not been saved';
+}
+function persistDrafts() {
+  if(!state) return;
+  try { sessionStorage.setItem(draftKey(),JSON.stringify({nextNumber,activeNumber,notes:annotations.filter(note=>!note.saved)}));storageUnavailable=false; } catch (_) { storageUnavailable=true; }
+  annotationStatus();
+}
+function captureAnnotation() {
+  const note=activeAnnotation();
+  if(!note||note.saved) return;
+  note.instruction=$('instruction').value;note.property=$('property').value;note.value=$('property-value').value;
+}
+function annotationBox(note) {
+  if(note.region_mm) return fromMm(note.region_mm);
+  const boxes=[];
+  for(const element of annotationElements(note)) {
     const node=svg.getElementById(element.id);
-    if(!node) continue;
-    try {
-      const mark=document.createElementNS(NS,'rect'),rect=elementBox(node),matrix=svg.getScreenCTM();
-      const padX=2/Math.hypot(matrix.a,matrix.b),padY=2/Math.hypot(matrix.c,matrix.d);
-      rect.x-=padX;rect.y-=padY;rect.width+=2*padX;rect.height+=2*padY;
-      for(const key of ['x','y','width','height']) mark.setAttribute(key,String(rect[key]));
-      mark.setAttribute('data-review-highlight','true');svg.append(mark);
-    } catch (_) { /* An artist without a measurable box remains selectable by ID. */ }
+    if(node) try { boxes.push(elementBox(node)); } catch (_) { /* IDs remain editable when geometry is unavailable. */ }
+  }
+  if(!boxes.length) return null;
+  const x=Math.min(...boxes.map(box=>box.x)),y=Math.min(...boxes.map(box=>box.y));
+  return {x,y,width:Math.max(...boxes.map(box=>box.x+box.width))-x,height:Math.max(...boxes.map(box=>box.y+box.height))-y};
+}
+function annotationAnchor(note) {
+  if(note.anchor_mm) return note.anchor_mm;
+  const box=annotationBox(note),[x,y,width,height]=state.view_box;
+  return {x:Math.max(0,Math.min(state.panel.width_mm,box?(box.x+box.width-x)/width*state.panel.width_mm:state.panel.width_mm)),y:Math.max(0,Math.min(state.panel.height_mm,box?(box.y-y)/height*state.panel.height_mm:0))};
+}
+function drawAnnotations() {
+  if(!svg||typeof svg.getScreenCTM!=='function') return;
+  svg.querySelectorAll('[data-review-annotation]').forEach(node=>node.remove());
+  const matrix=svg.getScreenCTM();if(!matrix) return;
+  const scaleX=Math.hypot(matrix.a,matrix.b),scaleY=Math.hypot(matrix.c,matrix.d);
+  if(!scaleX||!scaleY) return;
+  const [vx,vy,vw,vh]=state.view_box,placed=[];
+  const layer=document.createElementNS(NS,'g');layer.setAttribute('data-review-annotation','true');
+  for(const note of annotations) {
+    const rect=annotationBox(note),active=note.number===activeNumber;
+    if(rect) {
+      const frame=document.createElementNS(NS,'rect');
+      for(const [key,value] of Object.entries(rect)) frame.setAttribute(key,String(value));
+      frame.setAttribute('class','annotation-frame'+(active?' active':''));layer.append(frame);
+    }
+    const anchor=annotationAnchor(note),badgeWidth=Math.max(22,12+String(note.number).length*7)/scaleX,badgeHeight=22/scaleY;
+    let bx=Math.max(vx,Math.min(vx+vw-badgeWidth,vx+anchor.x/state.panel.width_mm*vw-badgeWidth/2));
+    let by=Math.max(vy,Math.min(vy+vh-badgeHeight,vy+anchor.y/state.panel.height_mm*vh-badgeHeight/2));
+    // Stack badges at a shared corner so every number remains clickable.
+    for(let attempt=0;attempt<annotations.length;attempt++) {
+      if(!placed.some(box=>bx<box.x+box.width&&bx+badgeWidth>box.x&&by<box.y+box.height&&by+badgeHeight>box.y)) break;
+      if(by+2*badgeHeight+3/scaleY<=vy+vh) by+=badgeHeight+3/scaleY;
+      else {by=vy;bx=Math.max(vx,bx-badgeWidth-3/scaleX);}
+    }
+    placed.push({x:bx,y:by,width:badgeWidth,height:badgeHeight});
+    const badge=document.createElementNS(NS,'g');badge.setAttribute('class','annotation-badge'+(active?' active':''));
+    badge.setAttribute('role','button');badge.setAttribute('tabindex','0');badge.setAttribute('aria-label',`Annotation ${note.number}: ${annotationLabel(note)}`);badge.setAttribute('aria-pressed',String(active));
+    badge.setAttribute('data-annotation-number',String(note.number));
+    const tile=document.createElementNS(NS,'rect');
+    for(const [key,value] of Object.entries({x:bx,y:by,width:badgeWidth,height:badgeHeight,rx:6/scaleX,ry:6/scaleY})) tile.setAttribute(key,String(value));
+    const label=document.createElementNS(NS,'text');label.setAttribute('x',String(bx+badgeWidth/2));label.setAttribute('y',String(by+badgeHeight/2));label.setAttribute('font-size',String(11/scaleY));label.textContent=String(note.number);
+    badge.append(tile,label);
+    badge.addEventListener('click',event=>{event.stopPropagation();if(!loading&&!saving) focusAnnotation(note.number);});
+    badge.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();if(!loading&&!saving)focusAnnotation(note.number);}});
+    layer.append(badge);
+  }
+  svg.append(layer);
+}
+function annotationChips() {
+  const list=$('annotation-list');list.replaceChildren();
+  if(!annotations.length) {const empty=document.createElement('p');empty.className='empty';empty.textContent='Click elements or draw regions to add numbered annotations.';list.append(empty);}
+  for(const note of annotations) {
+    const chip=document.createElement('button');chip.type='button';chip.className='annotation-chip'+(note.saved?' saved':note.instruction.trim()?' complete':'');chip.textContent=String(note.number);
+    chip.setAttribute('aria-label',`Annotation ${note.number}: ${annotationLabel(note)}, ${note.saved?'saved':note.instruction.trim()?'ready to save':'draft'}`);
+    chip.setAttribute('aria-pressed',String(note.number===activeNumber));chip.disabled=loading||saving;
+    chip.addEventListener('click',()=>focusAnnotation(note.number));list.append(chip);
   }
 }
-function selectedElements() { return state.elements.filter(element=>selectedIds.includes(element.id)); }
-function selectedElement() { return state.elements.find(element=>element.id===selectedId); }
-function selectElements(ids, selector=null) {
-  selectedIds=[...new Set(ids)].filter(id=>state.elements.some(element=>element.id===id));
-  selectedId=selectedIds.length===1?selectedIds[0]:null;selectedSelector=selector;region=null;
-  selectionChanged();
+function focusAnnotation(number) {
+  if(loading||saving) return;
+  captureAnnotation();activeNumber=number;showPanel('edit');selectionChanged();persistDrafts();
+}
+function addAnnotation(target,forceNew=false) {
+  if(loading||saving||!state||!svg) return;
+  captureAnnotation();
+  const signature=note=>JSON.stringify({ids:[...(note.element_ids||[])].sort(),region:note.region_mm||null,selector:note.selector||null});
+  const existing=!forceNew&&(annotations.find(note=>!note.saved&&signature(note)===signature(target))||annotations.find(note=>signature(note)===signature(target)));
+  if(existing) {focusAnnotation(existing.number);return;}
+  if(annotations.filter(note=>!note.saved).length>=100) {message('Save or remove some drafts before adding more annotations.',true);return;}
+  if(nextNumber>1000000) {message('The annotation number limit has been reached for this figure version.',true);return;}
+  const note={...target,element_ids:target.element_ids||[],number:nextNumber++,instruction:'',property:'',value:'',saved:false};
+  note.anchor_mm=annotationAnchor(note);annotations.push(note);activeNumber=note.number;
+  showPanel('edit');selectionChanged();persistDrafts();message(`Annotation ${note.number} added. Select another location or write its instruction.`);
+}
+function selectElements(ids,selector=null) {
+  addAnnotation({element_ids:[...new Set(ids)].filter(id=>state.elements.some(element=>element.id===id)),...(selector?{selector}:{})});
 }
 function matches(element, selector) {
   const keys=element.source_keys||[];
@@ -231,24 +316,53 @@ function semanticOptions() {
   syncDropdown('semantic-list');
 }
 function selectionChanged() {
-  const list=$('element-list');
-  if(list.options) for(const option of list.options) option.selected=selectedIds.includes(option.value)||(!selectedIds.length&&!region&&option.value==='');
-  else list.value=selectedId||'';
-  const elements=selectedElements();
+  const note=activeAnnotation(),elements=annotationElements(note),region=note?.region_mm;
+  $('element-list').value=elements.length===1?elements[0].id:'';
+  $('semantic-list').value=note?.selector?JSON.stringify(note.selector):'';
+  $('active-annotation').hidden=!note;annotationStatus();
+  $('annotation-title').textContent=note?`${note.number} · ${annotationLabel(note)}`:'';
+  $('remove-annotation').hidden=!note||note.saved;
+  $('new-instruction').hidden=!note||!note.saved;
+  $('remove-annotation').setAttribute('aria-label',note?`Remove annotation ${note.number}`:'Remove annotation');
   const property=$('property'); property.replaceChildren(new Option('Free-form instruction',''));
   if(elements.length) {
     const properties=element=>Array.isArray(element.editable)?element.editable:Object.keys(element.editable||{});
     const editable=properties(elements[0]).filter(name=>elements.every(element=>properties(element).includes(name)));
     for(const name of editable) property.add(new Option(propertyNames[name]||name.replaceAll('_',' '),name));
-    const paths=[...new Set(elements.flatMap(element=>element.spec_paths||[]))];
-    $('selection-details').textContent=(elements.length===1?elements[0].label+' · '+elements[0].role:`${elements.length} mapped elements · `+elements.slice(0,4).map(element=>element.label).join(', '))+(paths.length?' · '+paths.join(', '):'');
-    highlightElements(elements);
+    $('selection-details').textContent=elements.length===1?elements[0].label+' · '+elements[0].role:`${elements.length} mapped elements · `+elements.slice(0,4).map(element=>element.label).join(', ');
   } else if(region) {
     $('selection-details').textContent=`Region: ${region.x.toFixed(2)}, ${region.y.toFixed(2)} mm · ${region.width.toFixed(2)} × ${region.height.toFixed(2)} mm (top-left origin)`;
-    highlight(fromMm(region));
-  } else { $('selection-details').textContent='Whole figure / general note';highlight(null); }
-  $('value-field').hidden=true;$('property-value').value='';
+  } else { $('selection-details').textContent=note?'Whole figure / general note':'Select a location or add a general note.'; }
+  $('selection-details').hidden=!region;
+  $('property').value=note?.property||'';$('instruction').value=note?.instruction||'';
+  $('value-field').hidden=!note?.property;$('property-value').value=note?.value??'';
   syncDropdown('property');syncDropdown('semantic-list');
+  annotationChips();highlight(null);drawAnnotations();controls();
+}
+
+function restoreAnnotations(memoryDrafts=null) {
+  const numbered=state.requests.filter(item=>item.current_version&&Number.isInteger(item.annotation_number));
+  nextNumber=Math.max(1,...numbered.map(item=>item.annotation_number+1));
+  annotations=numbered.filter(item=>item.status==='pending').map(item=>({number:item.annotation_number,element_ids:item.element_ids||[],...(item.selector?{selector:item.selector}:{}),...(item.region_mm?{region_mm:item.region_mm}:{}),...(item.anchor_mm?{anchor_mm:item.anchor_mm}:{}),instruction:item.instruction,property:item.property||'',value:item.value??'',saved:true,request_id:item.id}));
+  let stored=memoryDrafts;
+  if(!stored) try {stored=JSON.parse(sessionStorage.getItem(draftKey())||'null');} catch (_) { storageUnavailable=true; }
+  if(stored&&Array.isArray(stored.notes)) {
+    if(Number.isInteger(stored.nextNumber)&&stored.nextNumber>0&&stored.nextNumber<=1000001) nextNumber=Math.max(nextNumber,stored.nextNumber);
+    for(const entry of stored.notes.slice(0,100)) {
+      if(!Number.isInteger(entry.number)||entry.number<=0||entry.number>1000000||typeof entry.instruction!=='string'||!Array.isArray(entry.element_ids)||entry.element_ids.some(id=>!state.elements.some(element=>element.id===id))) continue;
+      if(entry.region_mm) {
+        const r=entry.region_mm;
+        if(![r.x,r.y,r.width,r.height].every(Number.isFinite)||r.x<0||r.y<0||r.width<=0||r.height<=0||r.x+r.width>state.panel.width_mm||r.y+r.height>state.panel.height_mm) continue;
+      }
+      const committed=numbered.find(item=>item.annotation_number===entry.number);
+      if(committed&&committed.instruction===entry.instruction.trim()&&JSON.stringify(committed.element_ids||[])===JSON.stringify(entry.element_ids)&&JSON.stringify(committed.region_mm||null)===JSON.stringify(entry.region_mm||null)&&(committed.property||'')===(entry.property||'')&&String(committed.value??'')===String(entry.value??'')) continue;
+      const note={...entry,saved:false};
+      if(committed||annotations.some(item=>item.number===note.number)) note.number=nextNumber++;
+      nextNumber=Math.max(nextNumber,note.number+1);annotations.push(note);
+    }
+  }
+  activeNumber=annotations.some(note=>note.number===stored?.activeNumber)?stored.activeNumber:annotations.find(note=>!note.saved)?.number??annotations[0]?.number??null;
+  persistDrafts();
 }
 function queue() {
   const pending = state.requests.filter(item=>item.status==='pending'&&item.current_version).length;
@@ -258,7 +372,7 @@ function queue() {
   for(const [index,item] of state.requests.entries()) {
     const row=document.createElement('div');row.className='request-item';
     row.classList.toggle('undone',['undone','superseded'].includes(item.status));row.classList.toggle('older',!item.current_version);
-    const label=document.createElement('p');label.className='request-label';label.textContent=`${index+1}. ${item.elements?.length>1?item.elements.length+' mapped elements':item.element?.label|| (item.region_mm?'Selected region':'Whole figure')}`;
+    const label=document.createElement('p');label.className='request-label';label.textContent=`${item.annotation_number?'#'+item.annotation_number:'Request '+(index+1)} · ${item.elements?.length>1?item.elements.length+' mapped elements':item.element?.label|| (item.region_mm?'Selected region':'Whole figure')}`;
     const instruction=document.createElement('p');instruction.textContent=item.instruction;
     const status=document.createElement('p');status.className='request-status';status.textContent=`${item.status}${item.current_version?'':' · older figure version'}${item.result?.target_attempt?' · '+item.result.target_attempt.split('/').pop():''}`;
     row.append(label,instruction,status);list.append(row);
@@ -275,11 +389,19 @@ function queue() {
 }
 function controls() {
   const busy=loading||saving;
+  const note=activeAnnotation(),ready=annotations.filter(note=>!note.saved&&note.instruction.trim()).length;
   $('reload').disabled=busy;
-  $('save').disabled=busy||!state||!svg||state.source_current===false;
+  $('save').disabled=busy||!ready||!state||!svg||state.source_current===false;
+  $('save').textContent=saving?'Saving…':ready?`Save requests (${ready})`:'Save requests';
   $('undo').disabled=busy||!state||!state.requests.some(item=>item.status==='pending'&&item.current_version);
-  for(const id of ['element-list','semantic-list','region-mode','clear']) $(id).disabled=loading||!svg;
-  $('element-mode').disabled=loading||!state?.manifest_valid;
+  for(const id of ['element-list','semantic-list','region-mode','add-general']) $(id).disabled=busy||!svg;
+  $('clear').disabled=busy||!annotations.some(note=>!note.saved);
+  $('remove-annotation').disabled=busy||!note||note.saved;
+  $('new-instruction').disabled=busy||!note||!note.saved;
+  for(const id of ['instruction','property','property-value']) $(id).disabled=busy||!note||note.saved;
+  $('element-mode').disabled=busy||!state?.manifest_valid;
+  for(const chip of $('annotation-list').children) if(chip.tagName==='BUTTON') chip.disabled=busy;
+  syncDropdown('property');
   syncDropdown('semantic-list');
 }
 function updateQueue(nextState) {
@@ -291,6 +413,9 @@ function updateQueue(nextState) {
 }
 async function load() {
   if(loading||saving) return;
+  captureAnnotation();persistDrafts();
+  const previousIdentity=state?draftKey():null;
+  const memoryDrafts={nextNumber,activeNumber,notes:annotations.filter(note=>!note.saved)};
   loading=true;drag=null;controls();
   try {
     const nextState=await api('/api/state');
@@ -309,12 +434,12 @@ async function load() {
       if(parsed.querySelector('parsererror')) throw new Error('The previous SVG could not be opened.');
       previousSvg=document.importNode(parsed.documentElement,true);previousSvg.setAttribute('preserveAspectRatio','xMidYMid meet');previousSvg.setAttribute('role','img');previousSvg.setAttribute('aria-label','Previous attempt; read-only');
     }
-    state=nextState;svg=nextSvg;selectedId=null;selectedIds=[];selectedSelector=null;region=null;
+    state=nextState;svg=nextSvg;
     $('figure-host').replaceChildren(svg);
     $('figure-name').textContent=state.figure_name;
     $('track').textContent=state.track;$('track').hidden=!state.track;
     $('dimensions').textContent=`${state.panel.width_mm.toFixed(1)} × ${state.panel.height_mm.toFixed(1)} mm`;
-    $('selection-message').textContent=state.selection_message;
+    $('selection-message').textContent='Click elements or draw regions to add numbered annotations, then write an instruction for each.';
     $('source-status').textContent=state.source_current===false?'Source files have changed. Render a fresh attempt before saving.':state.source_current===true?'Figure and source versions verified.':'Source verification unavailable. Your Agent must verify the source before applying requests.';
     $('source-status').classList.toggle('error',state.source_current===false);
     $('comparison').hidden=!previousSvg;$('current-label').hidden=!previousSvg;
@@ -325,30 +450,35 @@ async function load() {
     $('element-list').replaceChildren(new Option('Whole figure / general note',''));
     for(const element of state.elements) $('element-list').add(new Option(`${element.label} · ${element.role}`,element.id));
     semanticOptions();
+    restoreAnnotations(draftKey()===previousIdentity?memoryDrafts:null);
     $('downloads').replaceChildren();
     for(const extension of ['svg','pdf','png']) if(state.files.includes('panel.'+extension)) {const link=document.createElement('a');link.href='/files/panel.'+extension;link.download='panel.'+extension;link.textContent=extension.toUpperCase();$('downloads').append(link);}
     selectionChanged();queue();setMode(state.manifest_valid?'element':'region');
-    message('Select an element or region, then save your instruction.');
+    message('Select numbered annotations to edit their instructions. Save requests saves every completed draft.');
   } catch(error) {message(error.message,true);} finally {loading=false;controls();}
 }
 $('element-mode').addEventListener('click',()=>setMode('element'));
 $('region-mode').addEventListener('click',()=>setMode('region'));
-$('clear').addEventListener('click',()=>{selectedId=null;selectedIds=[];selectedSelector=null;region=null;$('semantic-list').value='';selectionChanged();});
-$('element-list').addEventListener('change',()=>{const list=$('element-list');const ids=list.selectedOptions?[...list.selectedOptions].map(option=>option.value).filter(Boolean):[list.value].filter(Boolean);setMode('element');$('semantic-list').value='';selectElements(ids);});
-$('semantic-list').addEventListener('change',()=>{const value=$('semantic-list').value;if(!value){selectElements([]);return;}const selector=JSON.parse(value);setMode('element');selectElements(state.elements.filter(element=>matches(element,selector)).map(element=>element.id),selector);});
-$('property').addEventListener('change',()=>{$('value-field').hidden=!$('property').value;});
+$('clear').addEventListener('click',()=>{if(loading||saving)return;annotations=annotations.filter(note=>note.saved);activeNumber=annotations[0]?.number??null;nextNumber=Math.max(1,...state.requests.filter(item=>item.current_version&&Number.isInteger(item.annotation_number)).map(item=>item.annotation_number+1));selectionChanged();persistDrafts();message('Unsaved annotations cleared. Numbering restarts after any saved requests.');});
+$('remove-annotation').addEventListener('click',()=>{const note=activeAnnotation();if(loading||saving||!note||note.saved)return;annotations=annotations.filter(item=>item!==note);activeNumber=annotations.find(item=>!item.saved)?.number??annotations[0]?.number??null;selectionChanged();persistDrafts();message(`Annotation ${note.number} removed. Other numbers stay unchanged.`);});
+$('add-general').addEventListener('click',()=>selectElements([]));
+$('new-instruction').addEventListener('click',()=>{const note=activeAnnotation();if(!note||!note.saved)return;addAnnotation({element_ids:note.element_ids,...(note.selector?{selector:note.selector}:{}),...(note.region_mm?{region_mm:note.region_mm}:{}),anchor_mm:note.anchor_mm},true);});
+$('element-list').addEventListener('change',()=>{setMode('element');selectElements([$('element-list').value].filter(Boolean));});
+$('semantic-list').addEventListener('change',()=>{const value=$('semantic-list').value;if(!value)return;const selector=JSON.parse(value);setMode('element');selectElements(state.elements.filter(element=>matches(element,selector)).map(element=>element.id),selector);});
+function draftChanged() {captureAnnotation();persistDrafts();annotationChips();controls();}
+$('instruction').addEventListener('input',draftChanged);
+$('property-value').addEventListener('input',draftChanged);
+$('property').addEventListener('change',()=>{$('value-field').hidden=!$('property').value;draftChanged();});
 $('reload').addEventListener('click',load);
 $('figure-host').addEventListener('click',event=>{
-  if(loading||mode!=='element'||!svg) return;
+  if(loading||saving||mode!=='element'||!svg) return;
   const element=pickElement(event);
   if(!element) {message('No mapped element here. Choose an item in the list or use Select region.');return;}
-  const ids=event.shiftKey?(selectedIds.includes(element.id)?selectedIds.filter(id=>id!==element.id):[...selectedIds,element.id]):[element.id];
-  $('semantic-list').value='';selectElements(ids);
-  message(selectedIds.length?`Selected ${selectedIds.length===1?element.label+' · '+element.role.replaceAll('-',' '):selectedIds.length+' mapped elements'}. Describe a change and save your request.`:'Selection cleared.');
+  selectElements([element.id]);
 });
 $('figure-host').addEventListener('pointerdown',event=>{
-  if(loading||mode!=='region'||!svg||!svg.contains(event.target)||event.button!==0) return;
-  event.preventDefault();$('figure-host').setPointerCapture(event.pointerId);drag=svgPoint(event);selectedId=null;selectedIds=[];selectedSelector=null;region=null;
+  if(loading||saving||mode!=='region'||!svg||!svg.contains(event.target)||event.target.closest?.('.annotation-badge')||event.button!==0) return;
+  event.preventDefault();$('figure-host').setPointerCapture(event.pointerId);drag=svgPoint(event);
 });
 $('figure-host').addEventListener('pointermove',event=>{
   if(!drag) {if(!loading&&mode==='element') selectionHint(pickElement(event));return;}const point=svgPoint(event);highlight({x:Math.min(point.x,drag.x),y:Math.min(point.y,drag.y),width:Math.abs(point.x-drag.x),height:Math.abs(point.y-drag.y)});
@@ -356,26 +486,37 @@ $('figure-host').addEventListener('pointermove',event=>{
 $('figure-host').addEventListener('pointerleave',()=>selectionHint());
 $('figure-host').addEventListener('pointerup',event=>{
   if(!drag) return;const point=svgPoint(event),rect={x:Math.min(point.x,drag.x),y:Math.min(point.y,drag.y),width:Math.abs(point.x-drag.x),height:Math.abs(point.y-drag.y)};
-  drag=null;region=rect.width>0&&rect.height>0?toMm(rect):null;selectionChanged();
+  drag=null;highlight(null);if(rect.width>0&&rect.height>0)addAnnotation({region_mm:toMm(rect)});
 });
-$('figure-host').addEventListener('pointercancel',()=>{drag=null;selectionChanged();});
+$('figure-host').addEventListener('pointercancel',()=>{drag=null;highlight(null);});
 $('request-form').addEventListener('submit',async event=>{
-  event.preventDefault();if(loading||saving||!state||!svg||state.source_current===false) return;saving=true;controls();
+  event.preventDefault();if(loading||saving||!state||!svg||state.source_current===false) return;
+  captureAnnotation();persistDrafts();
+  const ready=annotations.filter(note=>!note.saved&&note.instruction.trim());if(!ready.length)return;
+  const missing=ready.find(note=>note.property&&!String(note.value).trim());
+  if(missing) {focusAnnotation(missing.number);message(`Enter a new value for annotation ${missing.number}, or choose Free-form instruction.`,true);return;}
+  saving=true;controls();
   try {
-    const payload={version:state.version,instruction:$('instruction').value};
-    if(selectedSelector) payload.selector=selectedSelector;
-    else if(selectedIds.length>1) payload.element_ids=selectedIds;
-    else payload.element_id=selectedId;
-    if(region) payload.region_mm=region;
-    if($('property').value) {payload.property=$('property').value;payload.value=$('property-value').value;}
-    const result=await api('/api/requests',payload);updateQueue(result.state);$('instruction').value='';
-    message('Request saved. Ask your Agent to read requests.json and render a new attempt.');
-  } catch(error) {message(error.message,true);} finally {saving=false;controls();}
+    const requests=ready.map(note=>{
+      const item={version:state.version,instruction:note.instruction,annotation_number:note.number,anchor_mm:note.anchor_mm};
+      if(note.selector)item.selector=note.selector;
+      else if(note.element_ids.length>1)item.element_ids=note.element_ids;
+      else if(note.element_ids.length)item.element_id=note.element_ids[0];
+      if(note.region_mm)item.region_mm=note.region_mm;
+      if(note.property){item.property=note.property;item.value=note.value;}
+      return item;
+    });
+    const result=await api('/api/requests/batch',{version:state.version,requests});
+    for(const item of result.requests) {const note=annotations.find(note=>note.number===item.annotation_number);if(note){note.saved=true;note.request_id=item.id;}}
+    updateQueue(result.state);persistDrafts();
+    message(`${result.requests.length} ${result.requests.length===1?'request':'requests'} saved. Ask your Agent to apply the saved workbench requests.`);
+  } catch(error) {message(error.message+' Your draft instructions have been kept.',true);} finally {saving=false;selectionChanged();}
 });
 $('undo').addEventListener('click',async()=>{
   if(loading||saving||!state) return;
   const item=[...state.requests].reverse().find(item=>item.status==='pending'&&item.current_version);if(!item) return;
   saving=true;controls();
-  try {const result=await api('/api/undo',{version:state.version,request_id:item.id});updateQueue(result.state);message('Last request undone. The figure exports are unchanged.');} catch(error) {message(error.message,true);} finally {saving=false;controls();}
+  try {const result=await api('/api/undo',{version:state.version,request_id:item.id});updateQueue(result.state);annotations=annotations.filter(note=>note.request_id!==item.id);if(!activeAnnotation())activeNumber=annotations.find(note=>!note.saved)?.number??annotations[0]?.number??null;persistDrafts();message('Last request undone. The figure exports are unchanged.');} catch(error) {message(error.message,true);} finally {saving=false;selectionChanged();}
 });
+window.addEventListener('resize',()=>{if(!drag)drawAnnotations();});
 load();

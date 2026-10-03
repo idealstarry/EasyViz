@@ -29,6 +29,7 @@ if not LOGO.is_file():
 FILES = {"panel.svg", "panel.pdf", "panel.png", "settings.json", "qa.json", "elements.json"}
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_REQUEST_BYTES = 64 * 1024
+MAX_BATCH_BYTES = 100 * MAX_REQUEST_BYTES
 SVG_NS = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG_NS)
 
@@ -176,15 +177,23 @@ class FigureWorkbench:
             raise WorkbenchError(f"{name} is not a supported local figure file")
         return path.read_bytes()
 
-    def ledger(self):
+    def ledger_bytes(self):
         path = self.root / "requests.json"
         if path.is_symlink():
             raise WorkbenchError("requests.json must be a regular local file")
         if not path.exists():
-            return {"schema_version": 1, "requests": []}
+            return None
+        if not path.is_file():
+            raise WorkbenchError("requests.json must be a regular local file")
         if path.stat().st_size > MAX_FILE_BYTES:
             raise WorkbenchError("requests.json exceeds the workbench size limit")
-        ledger = safe_json(path.read_bytes())
+        return path.read_bytes()
+
+    def ledger(self):
+        raw = self.ledger_bytes()
+        if raw is None:
+            return {"schema_version": 1, "requests": []}
+        ledger = safe_json(raw)
         if not isinstance(ledger, dict) or ledger.get("schema_version") != 1 or not isinstance(ledger.get("requests"), list):
             raise WorkbenchError("requests.json uses an unsupported format")
         if "history" in ledger and (not isinstance(ledger["history"], list) or not all(isinstance(item, dict) for item in ledger["history"])):
@@ -289,26 +298,160 @@ class FigureWorkbench:
         path = self.root / "requests.json"
         if path.is_symlink():
             raise WorkbenchError("requests.json must be a regular local file")
+        serialized = json.dumps(ledger, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
+        if len(serialized.encode("utf-8")) > MAX_FILE_BYTES:
+            raise WorkbenchError("Request ledger exceeds the workbench size limit")
         temporary = self.root / f".requests-{uuid.uuid4().hex}.tmp"
         try:
-            temporary.write_text(json.dumps(ledger, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+            temporary.write_text(serialized, encoding="utf-8")
             temporary.replace(path)
         finally:
             if temporary.exists():
                 temporary.unlink()
 
+    def validate_anchor(self, anchor, panel):
+        if not isinstance(anchor, dict) or set(anchor) != {"x", "y"}:
+            raise WorkbenchError("Annotation anchor requires x and y in millimetres")
+        values = {key: finite_number(value, f"Annotation anchor {key}") for key, value in anchor.items()}
+        if not 0 <= values["x"] <= panel["width_mm"] or not 0 <= values["y"] <= panel["height_mm"]:
+            raise WorkbenchError("Annotation anchor must be inside the full figure canvas")
+        return values
+
+    def current_state(self, version):
+        state = self.state()
+        if version != state["version"]:
+            raise WorkbenchError("This figure has changed. Reload it before saving a request.")
+        if state["source_current"] is False:
+            raise WorkbenchError("The figure source has changed. Render a fresh attempt before saving requests.")
+        return state
+
+    def annotation_numbers(self, ledger, version):
+        # Undone/applied requests retain their number: labels identify a saved
+        # opinion permanently within the figure version, not its queue status.
+        return {item["annotation_number"] for item in ledger["requests"]
+                if isinstance(item, dict) and item.get("version") == version
+                and type(item.get("annotation_number")) is int}
+
+    def prepare_request(self, payload, state, used_numbers):
+        """Validate and construct one item without changing any saved records."""
+        if not isinstance(payload, dict):
+            raise WorkbenchError("Request must be an object")
+        allowed = {"version", "element_id", "element_ids", "selector", "spec_path", "region_mm", "property", "value", "instruction", "annotation_number", "anchor_mm"}
+        if set(payload) - allowed:
+            raise WorkbenchError("Request contains unsupported fields")
+        if payload.get("version") != state["version"]:
+            raise WorkbenchError("This figure has changed. Reload it before saving a request.")
+        number = payload.get("annotation_number")
+        if "annotation_number" in payload:
+            if type(number) is not int or not 1 <= number <= 1000000:
+                raise WorkbenchError("Annotation number must be an integer from 1 to 1000000")
+            if number in used_numbers:
+                raise WorkbenchError("Annotation number is already used in this figure version")
+        anchor = self.validate_anchor(payload["anchor_mm"], state["panel"]) if "anchor_mm" in payload else None
+        instruction = payload.get("instruction", "")
+        if not isinstance(instruction, str) or not instruction.strip() or len(instruction) > 8000:
+            raise WorkbenchError("Describe the requested change in 1 to 8000 characters")
+        element_id = payload.get("element_id")
+        ids = payload.get("element_ids")
+        selector = payload.get("selector")
+        region = payload.get("region_mm")
+        if sum(value is not None for value in (element_id, ids, selector)) > 1:
+            raise WorkbenchError("Choose element_id, element_ids or a semantic selector")
+        if selector is not None:
+            if not isinstance(selector, dict) or not selector or set(selector) - {"role", "category", "spec_path", "source_key"}:
+                raise WorkbenchError("Unsupported semantic selector")
+            if any(not isinstance(value, str) or not value for key, value in selector.items() if key != "source_key") or ("source_key" in selector and (not isinstance(selector["source_key"], dict) or not selector["source_key"])):
+                raise WorkbenchError("Semantic selector values must name real mapped identities")
+            ids = [element["id"] for element in state["elements"] if element_matches(element, selector)]
+            if not ids:
+                raise WorkbenchError("Semantic selector matches no mapped elements")
+        elif element_id is not None:
+            ids = [element_id]
+        else:
+            ids = [] if ids is None else ids
+        if not isinstance(ids, list) or len(ids) > 2000 or any(not isinstance(value, str) or not value for value in ids) or len(set(ids)) != len(ids):
+            raise WorkbenchError("Element IDs must be a unique list of mapped IDs")
+        if ids and region:
+            raise WorkbenchError("Choose an element or a region, not both")
+        selected = [element for element in state["elements"] if element["id"] in ids]
+        if ids and (not state["manifest_valid"] or len(selected) != len(ids)):
+            raise WorkbenchError("Selected element is unavailable in this figure version")
+        element = selected[0] if len(selected) == 1 else None
+        spec_path = payload.get("spec_path")
+        if spec_path is not None and (not isinstance(spec_path, str) or not selected or not all(spec_path in entry.get("spec_paths", []) for entry in selected)):
+            raise WorkbenchError("Specification path must belong to every selected element")
+        prop = payload.get("property")
+        value = payload.get("value")
+        if prop is not None:
+            if not selected or not isinstance(prop, str) or not all(prop in entry.get("editable", []) for entry in selected):
+                raise WorkbenchError("This property is not available for the selected element")
+            if not isinstance(value, (str, int, float, bool, list, dict)) or value is None:
+                raise WorkbenchError("A property change needs a value")
+            # Bound values are instructions, never evaluated or executed.
+            if len(json.dumps(value, allow_nan=False)) > 4000:
+                raise WorkbenchError("Property value is too long")
+        elif value is not None:
+            raise WorkbenchError("A value needs a supported property")
+        item = {"id": str(uuid.uuid4()), "created_at": timestamp(), "status": "pending", "version": state["version"], "input": state["input"], "element_id": element["id"] if element else None, "element_ids": [entry["id"] for entry in selected], "instruction": instruction.strip()}
+        if selected:
+            item["elements"] = [{key: entry.get(key) for key in ("id", "role", "label", "source_keys", "spec_paths", "editable")} for entry in selected]
+        if element:
+            item["element"] = {key: element.get(key) for key in ("id", "role", "label", "source_keys", "spec_paths", "editable")}
+        if selector is not None:
+            item["selector"] = selector
+        if spec_path is not None:
+            item["spec_path"] = spec_path
+        if region is not None:
+            item["region_mm"] = self.validate_region(region, state["panel"])
+            item["coordinate_origin"] = "top-left of full canvas"
+        if prop is not None:
+            item.update(property=prop, value=value)
+        if "annotation_number" in payload:
+            item["annotation_number"] = number
+            used_numbers.add(number)
+        if anchor is not None:
+            item["anchor_mm"] = anchor
+            item["coordinate_origin"] = "top-left of full canvas"
+        return item
+
+    def publish_requests(self, ledger, items, state, previous_bytes):
+        # Check the complete figure/source snapshot again after every item has
+        # been validated. Nothing reaches requests.json before this point.
+        self.current_state(state["version"])
+        if self.ledger_bytes() != previous_bytes:
+            raise WorkbenchError("Saved requests changed while saving. Reload the workbench before retrying.")
+        ledger["requests"].extend(items)
+        ledger.update(schema_version=1, version=state["version"], updated_at=timestamp())
+        self.write_ledger(ledger)
+
+    def change_batch(self, payload):
+        if not isinstance(payload, dict) or set(payload) != {"version", "requests"}:
+            raise WorkbenchError("Batch requires only version and requests")
+        requests = payload["requests"]
+        if not isinstance(requests, list) or not 1 <= len(requests) <= 100:
+            raise WorkbenchError("Batch requires 1 to 100 independent requests")
+        with self.lock:
+            state = self.current_state(payload["version"])
+            previous_bytes = self.ledger_bytes()
+            ledger = self.ledger()
+            used_numbers = self.annotation_numbers(ledger, state["version"])
+            items = []
+            for index, request in enumerate(requests, start=1):
+                try:
+                    items.append(self.prepare_request(request, state, used_numbers))
+                except WorkbenchError as exc:
+                    raise WorkbenchError(f"Request {index}: {exc}") from exc
+            self.publish_requests(ledger, items, state, previous_bytes)
+            return {"requests": items, "state": self.state()}
+
     def change(self, payload, *, undo=False):
         if not isinstance(payload, dict):
             raise WorkbenchError("Request must be an object")
-        allowed = {"version", "request_id"} if undo else {"version", "element_id", "element_ids", "selector", "spec_path", "region_mm", "property", "value", "instruction"}
-        if set(payload) - allowed:
+        if undo and set(payload) - {"version", "request_id"}:
             raise WorkbenchError("Request contains unsupported fields")
         with self.lock:
-            state = self.state()
-            if payload.get("version") != state["version"]:
-                raise WorkbenchError("This figure has changed. Reload it before saving a request.")
-            if state["source_current"] is False:
-                raise WorkbenchError("The figure source has changed. Render a fresh attempt before saving requests.")
+            state = self.current_state(payload.get("version"))
+            previous_bytes = self.ledger_bytes()
             ledger = self.ledger()
             if undo:
                 request_id = payload.get("request_id")
@@ -318,72 +461,11 @@ class FigureWorkbench:
                 if item.get("version") != state["version"]:
                     raise WorkbenchError("This request belongs to an older figure version")
                 item.update(status="undone", undone_at=timestamp())
+                items = []
             else:
-                instruction = payload.get("instruction", "")
-                if not isinstance(instruction, str) or not instruction.strip() or len(instruction) > 8000:
-                    raise WorkbenchError("Describe the requested change in 1 to 8000 characters")
-                element_id = payload.get("element_id")
-                ids = payload.get("element_ids")
-                selector = payload.get("selector")
-                region = payload.get("region_mm")
-                if sum(value is not None for value in (element_id, ids, selector)) > 1:
-                    raise WorkbenchError("Choose element_id, element_ids or a semantic selector")
-                if selector is not None:
-                    if not isinstance(selector, dict) or not selector or set(selector) - {"role", "category", "spec_path", "source_key"}:
-                        raise WorkbenchError("Unsupported semantic selector")
-                    if any(not isinstance(value, str) or not value for key, value in selector.items() if key != "source_key") or ("source_key" in selector and (not isinstance(selector["source_key"], dict) or not selector["source_key"])):
-                        raise WorkbenchError("Semantic selector values must name real mapped identities")
-                    ids = [element["id"] for element in state["elements"] if element_matches(element, selector)]
-                    if not ids:
-                        raise WorkbenchError("Semantic selector matches no mapped elements")
-                elif element_id is not None:
-                    ids = [element_id]
-                else:
-                    ids = [] if ids is None else ids
-                if not isinstance(ids, list) or len(ids) > 2000 or any(not isinstance(value, str) or not value for value in ids) or len(set(ids)) != len(ids):
-                    raise WorkbenchError("Element IDs must be a unique list of mapped IDs")
-                if ids and region:
-                    raise WorkbenchError("Choose an element or a region, not both")
-                selected = [element for element in state["elements"] if element["id"] in ids]
-                if ids and (not state["manifest_valid"] or len(selected) != len(ids)):
-                    raise WorkbenchError("Selected element is unavailable in this figure version")
-                element = selected[0] if len(selected) == 1 else None
-                spec_path = payload.get("spec_path")
-                if spec_path is not None and (not isinstance(spec_path, str) or not selected or not all(spec_path in entry.get("spec_paths", []) for entry in selected)):
-                    raise WorkbenchError("Specification path must belong to every selected element")
-                prop = payload.get("property")
-                value = payload.get("value")
-                if prop is not None:
-                    if not selected or not isinstance(prop, str) or not all(prop in entry.get("editable", []) for entry in selected):
-                        raise WorkbenchError("This property is not available for the selected element")
-                    if not isinstance(value, (str, int, float, bool, list, dict)) or value is None:
-                        raise WorkbenchError("A property change needs a value")
-                    # Bound values are instructions, never evaluated or executed.
-                    if len(json.dumps(value, allow_nan=False)) > 4000:
-                        raise WorkbenchError("Property value is too long")
-                elif value is not None:
-                    raise WorkbenchError("A value needs a supported property")
-                item = {"id": str(uuid.uuid4()), "created_at": timestamp(), "status": "pending", "version": state["version"], "input": state["input"], "element_id": element["id"] if element else None, "element_ids": [entry["id"] for entry in selected], "instruction": instruction.strip()}
-                if selected:
-                    item["elements"] = [{key: entry.get(key) for key in ("id", "role", "label", "source_keys", "spec_paths", "editable")} for entry in selected]
-                if element:
-                    item["element"] = {key: element.get(key) for key in ("id", "role", "label", "source_keys", "spec_paths", "editable")}
-                if selector is not None:
-                    item["selector"] = selector
-                if spec_path is not None:
-                    item["spec_path"] = spec_path
-                if region is not None:
-                    item["region_mm"] = self.validate_region(region, state["panel"])
-                    item["coordinate_origin"] = "top-left of full canvas"
-                if prop is not None:
-                    item.update(property=prop, value=value)
-                ledger["requests"].append(item)
-            if self.state()["version"] != state["version"]:
-                raise WorkbenchError("This figure has changed. Reload it before saving a request.")
-            if self.state()["source_current"] is False:
-                raise WorkbenchError("The figure source has changed. Render a fresh attempt before saving requests.")
-            ledger.update(schema_version=1, version=state["version"], updated_at=timestamp())
-            self.write_ledger(ledger)
+                item = self.prepare_request(payload, state, self.annotation_numbers(ledger, state["version"]))
+                items = [item]
+            self.publish_requests(ledger, items, state, previous_bytes)
             return {"request": item, "state": self.state()}
 
 
@@ -473,7 +555,7 @@ def create_server(figure_dir, port=0, compare_dir=None):
             if not self.permitted(mutation=True):
                 return
             path = urlsplit(self.path).path
-            if path not in {"/api/requests", "/api/undo"}:
+            if path not in {"/api/requests", "/api/requests/batch", "/api/undo"}:
                 self.reply(404, {"error": "Not found"})
                 return
             if self.headers.get("Content-Type", "").split(";", 1)[0].strip() != "application/json":
@@ -481,11 +563,11 @@ def create_server(figure_dir, port=0, compare_dir=None):
                 return
             try:
                 length = int(self.headers.get("Content-Length", "0"))
-                if length <= 0 or length > MAX_REQUEST_BYTES:
+                if length <= 0 or length > (MAX_BATCH_BYTES if path == "/api/requests/batch" else MAX_REQUEST_BYTES):
                     self.reply(413, {"error": "Request body is missing or too large"})
                     return
                 payload = safe_json(self.rfile.read(length))
-                result = app.change(payload, undo=path == "/api/undo")
+                result = app.change_batch(payload) if path == "/api/requests/batch" else app.change(payload, undo=path == "/api/undo")
                 self.reply(200, result)
             except (WorkbenchError, OSError, ValueError) as exc:
                 self.reply(409 if "changed" in str(exc) else 400, {"error": str(exc)})

@@ -31,7 +31,7 @@ exports. The SVG displayed on the page excludes scripts, active HTML and
 external-resource references while retaining safe symbol and arrow-marker
 definitions and their local references.
 
-## Select and request a change
+## Create numbered change drafts
 
 - Select an SVG element on the figure or in the keyboard-accessible element
   list. Mapped elements can include marks, axes, labels, legends and colorbars.
@@ -43,26 +43,41 @@ definitions and their local references.
   Fresh shared exports register visible axis spines, tick marks and tick labels;
   older exports need rerendering to receive these mappings. Tick-label changes
   are cosmetic, not permission to alter the displayed measurement values.
-- Use Ctrl/Command in the element list or Shift-click mapped artists to select
-  several elements. **Select a mapped group** expands a category, role, source
+- Click mapped targets one after another or draw separate regions to create
+  independent numbered drafts. Each selection box displays its number at the
+  upper-right. No modifier keys are needed; consecutive selections do not merge
+  their instructions. Use the numbered draft control on the right to return to
+  a selection and edit its own text and property values. Switching drafts
+  retains the changes already entered in each draft.
+- **Select a mapped group** expands a category, role, source
   key or specification path to actual mapped IDs. Category selection uses
   `source_keys.category` or `source_keys.group`, so it remains stable when labels
   or order change and can include both marks and guide keys. Source filters use
   recorded keys, never image coordinates.
 - Choose a supported property, such as color or line width, and enter the value;
   or leave a free-form instruction such as “Move this legend 2 mm to the right.”
-  Bulk requests offer only properties shared by every selected element.
+  A group draft offers only properties shared by every mapped member. For
+  example, one draft can recolor all Control marks and their matching legend,
+  while another moves a separate legend.
 - Use **Select region** to drag a rectangle over a crowded area. Region
   coordinates are measured in millimetres from the **top-left of the entire
   canvas**, including margins and guides. They are not data-axis values.
-- Save the request. **Undo pending** marks the last current pending request as undone;
-  the record remains in the queue. Downloading requests is optional because the
-  Agent can read `requests.json` directly in the attempt directory.
+- Use **Save requests** once to save all completed drafts together. Blank
+  entries remain unsaved drafts. Remove a single draft or use **Clear drafts**
+  to discard unsaved drafts before saving. These controls do not cancel saved
+  instructions.
+- In **Requests**, **Undo pending** marks the last current pending request as
+  undone; the record remains in the queue. Downloading requests is optional
+  because the Agent can read `requests.json` directly in the attempt directory.
+
+Draft numbers and selection boxes are browser review overlays. They do not
+alter source values, become scientific labels, or appear in downloaded SVG,
+PDF or PNG exports. Saved requests remain separate instructions for the Agent.
 
 The **Edit**, **Requests** and **History** tabs keep the inspector within the
 desktop viewport; long content scrolls inside the active tab. On small screens
 it follows the figure in normal page flow. Expand **Mapped elements** to
-use the keyboard-accessible multiple-selection list. Arrow keys, Home and End
+use the keyboard-accessible element list. Arrow keys, Home and End
 move between inspector tabs. The page uses the bundled plugin SVG mark and
 plain surfaces; document previews keep their opaque white canvas.
 Group and property menus open directly below their controls. Use arrow keys,
@@ -142,8 +157,9 @@ Only register bindings consumed by the actual plotting script.
 ## Agent handoff
 
 1. Read `requests.json`, the original manifest, adopted specification and plotting
-   script. Process only `status: "pending"` records bound to the intended
-   version. Each request retains its own SHA256 binding, element identity,
+   script. Process the saved annotations as separate requests, retaining each
+   target and instruction. Process only `status: "pending"` records bound to the
+   intended version. Each request retains its own SHA256 binding, element identity,
    original source keys, relevant specification paths and optional input paths.
    Do not apply an older request to a new figure merely because an element ID
    happens to match.
@@ -166,8 +182,7 @@ Only register bindings consumed by the actual plotting script.
    browser version are rejected, and older queue records are labelled clearly.
    Saving is disabled during reload. The displayed SVG and its version change
    together only after the replacement preview succeeds; a failed reload keeps
-   the original SVG, coordinates and version. Successful reload clears the old
-   selection.
+   the original SVG, coordinates and version.
 
 The browser records instructions and does not execute code. The companion
 `apply_figure_requests.py` can prepare a fresh cosmetic specification from
@@ -205,8 +220,9 @@ Each saved request resembles:
 
 Region/general notes have a null `element_id`; regions add `region_mm` with
 `x`, `y`, `width`, `height` and an explicit coordinate origin. Supported property
-requests add `property` and `value`. Undo changes `status` to `undone` and adds
-`undone_at`, preserving the original ID and content.
+requests add `property` and `value`. Numbered annotations may also retain
+`annotation_number` and `anchor_mm` as described below. Undo changes `status` to
+`undone` and adds `undone_at`, preserving the original ID and content.
 Bulk requests add `element_ids` and `elements` with every real identity, source
 key, spec path and supported property. Singleton requests retain the legacy
 `element_id` and `element`. Server-expanded requests also record their
@@ -219,14 +235,34 @@ restoring an applied version requires its matching source/spec/input/exports.
 `GET /api/state` returns the current version, manifest validity, available
 exports, queue, history, source-version checks, optional comparison metadata and
 ephemeral session token. `GET /api/preview.svg?v=HASH` returns
-the safe preview only when the supplied figure hash is current. `POST
-/api/requests` accepts a version, instruction, optional element/region and
+the safe preview only when the supplied figure hash is current.
+`POST /api/requests` accepts a version, instruction, optional element/region and
 optional supported property/value. It accepts one selection form: `element_id`,
 `element_ids`, or `selector` with any intersection of `role`, `category`,
 `spec_path` and `source_key`. Selectors expand against the current manifest on
-the server. `GET /api/compare.svg?v=HASH` exposes only the previously supplied
-comparison attempt. `POST /api/undo` accepts a version and
-request ID. Writes require JSON, the exact local `Origin` and the
-`X-EasyViz-Token` from the current state. These constraints reject cross-site
+the server.
+
+`POST /api/requests/batch` accepts a body containing exactly `version` and
+`requests`, with **1 to 100** request objects. Copy the complete `version` object
+from `GET /api/state` into the batch's `version` and into **every** request's
+`version`; the outer version does not replace each item's binding. Each item
+uses the same target, instruction and optional property/value fields as a
+single request. Two additional optional fields are supported:
+
+| Field | Contract |
+| --- | --- |
+| `annotation_number` | An integer from 1 to 1,000,000, unique within the same complete figure version across existing saved requests and this batch. A number remains reserved after undo or application; an `undone` record does not release it. |
+| `anchor_mm` | An object containing exactly finite `x` and `y` coordinates in millimetres from the top-left of the full canvas: `0 <= x <= width_mm` and `0 <= y <= height_mm`. It locates a review annotation, not a data observation. |
+
+The service validates every item and rechecks the figure/source version before
+writing the complete batch once. A failed batch leaves the existing ledger
+unchanged and saves no partial requests; the page retains its drafts for
+correction. Blank drafts are not submitted. The original single-request and
+undo endpoints remain compatible.
+
+`GET /api/compare.svg?v=HASH` exposes only the previously supplied comparison
+attempt. `POST /api/undo` accepts a version and request ID. Writes require JSON,
+the exact local `Origin` and the `X-EasyViz-Token` from the current state.
+These constraints reject cross-site
 requests and DNS-rebinding hosts. No filesystem paths or executable commands are accepted;
 only a fixed list of figure files is downloadable.

@@ -196,7 +196,8 @@ After creating a panel in either **create** or **reproduce**, ask your Agent:
 
 ```text
 Open the EasyViz local figure workbench for this panel and give me its browser URL.
-Let me select elements or regions and save edit requests.
+Let me click elements or draw regions, write a separate numbered annotation
+for each change, and save the completed requests together.
 When I tell you the requests are ready, read requests.json, update the plotting
 code or specification, and export a new attempt in all requested formats.
 Show the previous and new attempts side by side.
@@ -208,14 +209,21 @@ while reviewing. It requires no model API, API key or extra Python package.
 
 | On the page | What you can do |
 | --- | --- |
-| **Edit** | Select mapped marks, axes, labels, legends or a whole category; alternatively, mark a canvas region. Choose a property or write an instruction such as “Make all Control marks and their legend purple” or “Move this legend 2 mm right; keep 8 pt text.” |
+| **Edit** | Click mapped marks, axes, labels, legends or categories, or draw canvas regions, to create separate numbered drafts. Each selection box shows its number at the upper-right. Switch between numbers to edit each instruction and supported property change, then use **Save requests** once for all completed drafts. |
 | **Requests** | Review saved changes and undo a pending request. Requests retain the figure and source versions in `requests.json`, which the Agent can read directly. |
 | **History** | Inspect recorded attempt history, including prepared, applied, accepted and restored changes. The Agent can display an earlier attempt beside the current figure and verify acceptance or restore a source/export snapshot through the [edit-history workflow](skills/easyviz/references/apply-figure-requests.md). |
 
-Saving a request records your instruction. Tell the Agent when you are ready
+Use ordinary clicks and region drags; no modifier keys are needed. Switching
+between drafts retains each draft's text and property values. Blank entries
+remain unsaved drafts. Remove an individual draft or use **Clear drafts**
+before saving; cancel an already saved instruction with **Undo pending** in
+Requests. Numbered boxes are review overlays and are not written into the
+exported SVG, PDF or PNG.
+
+Saving requests records your instructions. Tell the Agent when you are ready
 to apply the saved requests; saving alone does not notify or start the Agent.
-It changes the plotting source or specification, rerenders the figure and opens
-the new attempt. The page does not execute plotting code or directly edit the
+The Agent changes the plotting source or specification, rerenders the figure
+and opens the new attempt. The page does not execute plotting code or directly edit the
 PDF. Each new attempt keeps the earlier exports available for comparison.
 
 The figure directory needs an exported `panel.svg`. A matching `elements.json`
