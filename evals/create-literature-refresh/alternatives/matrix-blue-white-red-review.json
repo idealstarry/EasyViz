@@ -1,0 +1,46 @@
+{
+  "status": "ready_with_notes",
+  "review_pass": 2,
+  "reviewer_role": "Independent child agent, using easyviz-figure-reviewer; implementation self-review also performed.",
+  "candidate": "examples/create/annotated-inhibition/panel.png",
+  "baseline": "evals/create-literature-refresh/baseline/matrix.png",
+  "synthetic": "skills/easyviz/assets/recipes/annotated-heatmap/synthetic/output/panel.png",
+  "comparative_preference": "candidate",
+  "reading_task": "Read the sign and magnitude of pairwise growth delays while retaining the independently ranked full-matrix mean context.",
+  "inspected_full_exports_and_680x605_previews": true,
+  "reasons": [
+    "Cool negative branch makes direction distinguishable; strong positive blocks separate more clearly from values near zero.",
+    "Baseline spreads all values through peach/coral and makes negative values difficult to identify.",
+    "Widened raw-minute colorbar ticks are distinct without collisions; binary strips and sky-blue mean axes remain clear."
+  ],
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Candidate matrix",
+      "evidence": "Small negative cells are faint blue and low positive cells faint pink, close to white.",
+      "action": "Retain the meaningful zero neutrality and full scale; no threshold or source-value change."
+    },
+    {
+      "severity": "note",
+      "location": "Colorbar",
+      "evidence": "The -400, 0, 250, 500, 1000 ticks are distinct at display size and do not overlap labels/legend.",
+      "action": "Retain placement and explicit asymmetric-slope caption."
+    },
+    {
+      "severity": "note",
+      "location": "Synthetic export",
+      "evidence": "Four IDs, means, both binary states, zero and endpoints all visible; heading complete on standalone reinspection.",
+      "action": "No correction needed."
+    }
+  ],
+  "critical_major_minor_findings": [],
+  "independent_checks": {
+    "png_dimensions": "Independently read 2126 x 1890 px for all three exports.",
+    "pdf_svg_dimensions_typography": "Passed in supplied QA records; not independently remeasured by visual reviewer.",
+    "source_values_selection_means_metadata": "Passed in supplied QA records; raw-source recomputation outside visual review.",
+    "normalization": "QA forward/inverse checks and visual zero/endpoints agree.",
+    "caption": "Selection, full partners, sign reference, asymmetric slopes and color provenance stated."
+  },
+  "residual_issues": "Very small positive and negative values remain close to white by the adopted continuous mapping; no required revision.",
+  "numeric_export_and_source_checks": "Independent visual review is separate from implementation checks."
+}

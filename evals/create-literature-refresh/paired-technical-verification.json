@@ -1,0 +1,78 @@
+{
+  "data_checks": {
+    "output/paired-changes.csv": "exactly unchanged against HEAD",
+    "output/summary.csv": "exactly unchanged against HEAD",
+    "output/participant-order.csv": "exactly unchanged against HEAD",
+    "transfer-five-year/paired-changes.csv": "exactly unchanged against HEAD",
+    "transfer-five-year/summary.csv": "exactly unchanged against HEAD",
+    "transfer-five-year/participant-order.csv": "exactly unchanged against HEAD"
+  },
+  "ledger_points": 832,
+  "exact_value_coordinate_match": true,
+  "pdf_checks": {
+    "output/baseline/panel.pdf": {
+      "font_sizes_pt": [
+        8.0
+      ],
+      "fonts": [
+        "ArialMT"
+      ],
+      "page_mm": [
+        179.99999491373697,
+        125.00000364515515
+      ]
+    },
+    "output/participant-matrix/panel.pdf": {
+      "font_sizes_pt": [
+        8.0
+      ],
+      "fonts": [
+        "ArialMT"
+      ],
+      "page_mm": [
+        179.99999491373697,
+        125.00000364515515
+      ]
+    },
+    "output/distribution-ledger/panel.pdf": {
+      "font_sizes_pt": [
+        8.0
+      ],
+      "fonts": [
+        "ArialMT"
+      ],
+      "page_mm": [
+        179.99999491373697,
+        125.00000364515515
+      ]
+    },
+    "transfer-five-year/participant-matrix/panel.pdf": {
+      "font_sizes_pt": [
+        8.0
+      ],
+      "fonts": [
+        "ArialMT"
+      ],
+      "page_mm": [
+        179.99999491373697,
+        125.00000364515515
+      ]
+    }
+  },
+  "visual_proofs": {
+    "distribution-ledger": "/tmp/easyviz-paper-design/paired-final-96dpi.png",
+    "baseline": "/tmp/easyviz-paper-design/paired-box-96dpi.png",
+    "participant-matrix": "/tmp/easyviz-paper-design/paired-matrix-96dpi.png",
+    "five-year": "/tmp/easyviz-paper-design/paired-five-year-96dpi.png"
+  },
+  "visual_review": "Implementer opened all four final-size 96 dpi PDF renderings and all three main 300 dpi raster panels. Independent aesthetic review pending. Tiny participant circles remain a physical compromise.",
+  "hollow_preview": "paired-hollow-feasibility.png uses 1.6 pt hollow circles with 0.4 pt opaque outline on the final point centers; overlapping outlines are visible. Separate saved feasibility records test 24 deterministic orderings with the outer diameter including stroke. This trial is rejected and is not a claim that every possible packing was ruled out.",
+  "portable_copy": "Script, settings, own documentation, all three main exports, exact tables, audits and five-year transfer synced to skills/easyviz/assets/cases/paired-myeloid-remodeling.",
+  "portable_replay": {
+    "status": "pass",
+    "selected_design": "distribution-ledger",
+    "paired_changes": 832,
+    "png_byte_identical_to_example": true
+  },
+  "source_color_provenance": "Exact vector RGB values and source stroke rectangles were supplied by the parent agent from scWAT.pdf page 4. Reassignment to these cohorts is the case design decision."
+}

@@ -1,0 +1,143 @@
+{
+  "status": "pass",
+  "full_matrix_shape": [
+    4,
+    4
+  ],
+  "full_input_measurements": 16,
+  "selected_shape": [
+    4,
+    4
+  ],
+  "selected_measurements": 16,
+  "selected_values_equal_source": true,
+  "negative_input_measurements_retained": 2,
+  "negative_selected_measurements_retained": 2,
+  "summary_denominator": 4,
+  "summary_means_recomputed_from_all_partners": true,
+  "genome_strips_match_strain_ids": true,
+  "pdf_mm": [
+    179.99999999998556,
+    159.999999999995
+  ],
+  "png_pixels": [
+    2126,
+    1890
+  ],
+  "png_dpi": [
+    299.9994,
+    299.9994
+  ],
+  "font": "Arial",
+  "body_font_pt": 8,
+  "panel_title_rendered": false,
+  "caption_file": "caption.md",
+  "clipped_text": [],
+  "missing_glyphs": [],
+  "inferential_statistics": "none",
+  "visual_review_required": false,
+  "pdf_fonts": [
+    {
+      "font": "/GZYDEV+ArialMT",
+      "embedded": true
+    },
+    {
+      "font": "/CECFXM+ArialMT",
+      "embedded": true
+    }
+  ],
+  "svg_mm": [
+    179.99999983333333,
+    159.99999996944445
+  ],
+  "svg_editable_text_elements": 28,
+  "valid_outputs": true,
+  "color_normalization": {
+    "class": "TwoSlopeNorm",
+    "method": "two_slope",
+    "vmin": -400,
+    "vcenter": 0,
+    "vmax": 1000,
+    "clip": false,
+    "forward_piecewise": [
+      "x <= 0: 0.5 * (x - (-400)) / (0 - (-400))",
+      "x >= 0: 0.5 + 0.5 * (x - (0)) / (1000 - (0))"
+    ],
+    "inverse_piecewise": [
+      "u <= 0.5: -400 + 2 * u * (0 - (-400))",
+      "u >= 0.5: 0 + 2 * (u - 0.5) * (1000 - (0))"
+    ],
+    "neutral_normalized_position": 0.5,
+    "source_values_normalized_range": [
+      0.0,
+      1.0
+    ],
+    "order_and_inverse_checked_points": 29,
+    "strict_order_and_inverse_pass": true,
+    "color_stops": [
+      {
+        "normalized_position": 0,
+        "raw_minutes": -400.0,
+        "color": "#4B9BDD"
+      },
+      {
+        "normalized_position": 0.25,
+        "raw_minutes": -200.0,
+        "color": "#B8DCFA"
+      },
+      {
+        "normalized_position": 0.5,
+        "raw_minutes": 0.0,
+        "color": "#FFFFFF"
+      },
+      {
+        "normalized_position": 0.55,
+        "raw_minutes": 100.00000000000009,
+        "color": "#FFF0B5"
+      },
+      {
+        "normalized_position": 0.625,
+        "raw_minutes": 250.0,
+        "color": "#FFD168"
+      },
+      {
+        "normalized_position": 0.75,
+        "raw_minutes": 500.0,
+        "color": "#FF995D"
+      },
+      {
+        "normalized_position": 1,
+        "raw_minutes": 1000.0,
+        "color": "#F24E55"
+      }
+    ],
+    "branch_luminance_check": {
+      "space": "sRGB relative luminance",
+      "sampled_color_coordinates": 1025,
+      "negative_arm_nondecreasing": true,
+      "positive_arm_nonincreasing": true,
+      "negative_arm_minimum_increment": 0.0010730953586888248,
+      "positive_arm_maximum_increment": -0.0005120888205470964,
+      "zero_relative_luminance": 1.0
+    },
+    "readout_mapping": "Colorbar tick positions use norm(raw minutes); inverse(norm(x)) returns original minutes."
+  },
+  "colorbar_ticks": [
+    -400,
+    0,
+    250,
+    500,
+    1000
+  ],
+  "summary_count": 8,
+  "all_summary_means_recomputed_from_all_partners": true,
+  "figure_text_sizes_pt": [
+    8.0
+  ],
+  "figure_text_sizes_evidence": "Every regenerated PDF text span extracted with PyMuPDF; all 8 pt.",
+  "visual_review_status": "ready_with_notes",
+  "visual_review_role": "Implementation self-review plus independent third-pass child using EasyViz Figure Reviewer.",
+  "visual_review_pass": 3,
+  "visual_review_residual_note": "Values very close to zero remain intentionally faint under continuous color interpolation.",
+  "independent_actual_colorbar_luminance_order_checked": true
+}

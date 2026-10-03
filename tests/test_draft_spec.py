@@ -185,6 +185,7 @@ class DraftSpecTests(unittest.TestCase):
         self.assertEqual(spec["profile"], str(profile.resolve()))
         self.assertEqual(spec["layout"], {"auto_fit": True})
         self.assertNotIn("line_roles", spec, "A draft using an accepted profile does not replace its stroke policy")
+        self.assertNotIn("options", spec, "A shared-profile draft retains accepted fallback observation styling")
         qa = renderer.render(self.source, spec, self.root / "profile-output", spec_path=path)
         self.assertEqual((qa["width_mm"], qa["height_mm"]), (120, 80))
         settings = json.loads((self.root / "profile-output/settings.json").read_text())
@@ -193,6 +194,21 @@ class DraftSpecTests(unittest.TestCase):
         self.assertEqual(settings["figure_profile"]["sha256"], hashlib.sha256(original).hexdigest())
         self.assertEqual(settings["figure_profile"]["source_specification"], spec)
         self.assertEqual(profile.read_bytes(), original)
+
+    def test_new_unprofiled_drafts_use_crisp_observations_without_replacing_mapped_fill_area(self):
+        for chart, content, fields, expected in (
+            ("scatter", "x,y\n1,2\n2,3\n", ["x=x", "y=y"], {"alpha": 1, "point_style": "filled"}),
+            ("scatter", "x,y,s\n1,2,0\n2,3,100\n", ["x=x", "y=y", "size=s"], {"alpha": 1, "point_style": "filled"}),
+            ("distribution", "g,v\nA,1\nA,2\nB,3\nB,4\n", ["group=g", "value=v"],
+             {"alpha": 1, "point_style": "filled", "box_style": "outline", "box_width": .18}),
+        ):
+            with self.subTest(chart=chart, fields=fields):
+                number = len(list(self.root.glob("crisp-*.json")))
+                source = self.csv(f"crisp-{number}.csv", content)
+                spec = draft_spec.draft(source, chart, fields, self.root / f"crisp-{number}.json")
+                self.assertEqual(spec["options"], expected)
+                self.assertEqual(spec["line_roles"]["axis"]["color"], "#222222")
+                self.assertEqual(spec["line_roles"]["reference"]["color"], "#747474")
 
     def test_profile_conflicts_are_rejected_before_writing(self):
         profile = self.profile()

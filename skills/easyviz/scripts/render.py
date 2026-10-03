@@ -110,8 +110,8 @@ CHART_OPTIONS = {
     "heatmap": {"color_limits", "color_center", "cell_aspect", "annotate_values", "value_format"},
     "composition": {"normalization", "missing_categories", "bar_width", "percent_axis"},
     "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend", "missing_cells", "state_markers", "small_positive_area_pt2"},
-    "scatter": {"point_area_pt2", "alpha", "point_color", "regression", "regression_color", "size_max", "max_area_pt2", "size_legend", "reference_lines"},
-    "distribution": {"point_area_pt2", "alpha", "kind", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt"},
+    "scatter": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "point_color", "regression", "regression_color", "size_max", "max_area_pt2", "size_legend", "reference_lines"},
+    "distribution": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "kind", "box_style", "box_width", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt"},
 }
 SCHEMA = {
     "chart": list(REQUIRED), "fields_by_chart": REQUIRED,
@@ -122,7 +122,7 @@ SCHEMA = {
     "figure_profile": {"profile": "path/to/figure-profile.json", "panel": "named panel", "continuous_scale": "optional named shared continuous scale", "size_scale": "optional named shared area scale for dotplot or scatter with fields.size"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300, "auto_fit": False, "margins": {"left": .19, "right": .77, "bottom": .23, "top": .88}},
     "typography": {"axis": 8, "tick": 8, "legend": 8, "annotation": 8, "title": 9, "panel": 9},
-    "line_roles": {"data": {"line_width_pt": .85}, "summary": {"line_width_pt": .75}, "reference": {"line_width_pt": .45, "color": "#A1A1A1", "linestyle": "--"}, "axis": {"line_width_pt": .55, "color": "#555555"}, "grid": {"line_width_pt": .3, "color": "#E8E8E8", "linestyle": "-"}},
+    "line_roles": {"data": {"line_width_pt": .85}, "summary": {"line_width_pt": .75}, "reference": {"line_width_pt": .45, "color": "#747474", "linestyle": "--"}, "axis": {"line_width_pt": .55, "color": "#222222"}, "grid": {"line_width_pt": .3, "color": "#E8E8E8", "linestyle": "-"}},
     "formats": ["pdf", "svg", "png", "tiff"], "seed": 0,
     "colors": {"category label": "#0072B2"}, "palette": "somerville-bright",
     "colormap": "somerville-sky, another registered preset/Matplotlib colormap, or hex colors",
@@ -133,6 +133,9 @@ SCHEMA = {
     "shared_options": sorted(SHARED_OPTIONS),
     "chart_options": {k: sorted(v) for k, v in CHART_OPTIONS.items()},
     "scatter_reference_lines": {"x": [-1, 1], "y": [1.3]},
+    "observation_style": {"point_style": "filled (legacy default) or hollow; hollow is limited to fixed scatter/distribution marks", "point_edge_width_pt": "Positive finite JSON number; requires hollow; default 0.45 pt", "alpha": "Explicit opacity is preserved; new unprofiled create drafts use 1", "meaning": "Hollow observations retain the same Matplotlib s and coordinates, have no face fill and use their group/point color for edges. Group legend keys match. Hollow and edge options are rejected with scatter fields.size because quantitative circle fill area must remain filled."},
+    "distribution_box_style": {"box_style": "filled (legacy default) or outline; requires kind=box", "meaning": "Outline boxes have no face fill, keeping observations visible beneath the summary boundary."},
+    "distribution_box_width": "Optional finite 0 < box_width <= 1, in category-center spacing units; legacy default 0.5. New drafts use 0.18; inspect the actual physical thickness after layout.",
     "distribution_point_layout": {"point_layout": "jitter (default) or beeswarm", "point_max_offset_mm": 4, "point_gap_pt": .3, "meaning": "Beeswarm moves only the categorical coordinate after final layout; preserves values, rows, marker size and canvas. Unresolved mark overlaps fail QA and remain in exported data."},
     "statistics": {"method": "none; pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)", "groups": ["A", "B"], "unit": "pairing ID column (mandatory for wilcoxon)", "annotate": False},
     "semantics": ["Margins are subplot bounds in 0..1, not padding widths.", "layout.auto_fit=true measures labels and guides within the unchanged canvas; do not combine it with margins or manual guide coordinates. It is a technical fit, not aesthetic certification.", "orders must include every category exactly once.", "dotplot and mapped scatter max_area_pt2 denote true circle geometric fill area, excluding stroke; area=size/size_max*max_area_pt2 and Matplotlib s=4/pi*area. Zero means zero area.", "Legacy point_area_pt2 for fixed scatter/distribution marks is the Matplotlib s parameter (squared diameter), not geometric circle fill area; settings record both quantities.", "Scatter size options require fields.size and cannot be combined with point_area_pt2.", "Scatter options.reference_lines draws supplied numeric positions only; it does not compute classes or significance.", "composition normalization is mandatory; sample_sum uses only supplied categories.", "denominator values repeat for all categories within a sample; incomplete composition remains below 1.", "No test is run unless requested; default distributions are descriptive boxplots and all observations.", "SVG preserves editable text and references the font; PDF embeds the selected font."]
@@ -175,8 +178,31 @@ def validate_spec(spec):
         figure_profile.validate_spec(spec, REQUIRED, OPTIONAL_FIELDS, CHART_OPTIONS, SHARED_OPTIONS)
     except figure_profile.ConfigurationError as exc:
         raise SpecError(str(exc)) from None
+    if spec.get("chart") in ("scatter", "distribution"):
+        options = spec.get("options", {})
+        style = options.get("point_style", "filled")
+        require(isinstance(style, str) and style in ("filled", "hollow"), "options.point_style must be filled or hollow")
+        if spec["chart"] == "scatter" and "size" in spec["fields"]:
+            require(style != "hollow" and "point_edge_width_pt" not in options,
+                    "Scatter fields.size encodes circle fill area; hollow points and point_edge_width_pt are unsupported")
+        if "point_edge_width_pt" in options:
+            require(style == "hollow", "options.point_edge_width_pt requires point_style='hollow'")
+            width = options["point_edge_width_pt"]
+            require(isinstance(width, (int, float)) and not isinstance(width, bool),
+                    "options.point_edge_width_pt must be a positive finite JSON number")
+            number(width, "options.point_edge_width_pt")
     if spec.get("chart") == "distribution":
         options = spec.get("options", {})
+        if "box_width" in options:
+            require(options.get("kind", "box") == "box", "options.box_width requires kind='box'")
+            width = options["box_width"]
+            require(isinstance(width, (int, float)) and not isinstance(width, bool), "options.box_width must be a finite JSON number in (0, 1]")
+            number(width, "options.box_width")
+            require(width <= 1, "options.box_width must be in (0, 1]")
+        if "box_style" in options:
+            require(isinstance(options["box_style"], str) and options["box_style"] in ("filled", "outline"),
+                    "options.box_style must be filled or outline")
+            require(options.get("kind", "box") == "box", "options.box_style requires kind='box'")
         policy = options.get("point_layout", "jitter")
         require(isinstance(policy, str) and policy in ("jitter", "beeswarm"), "options.point_layout must be jitter or beeswarm")
         require(policy == "beeswarm" or not ({"point_max_offset_mm", "point_gap_pt"} & set(options)), "point_max_offset_mm and point_gap_pt require point_layout='beeswarm'")
@@ -225,13 +251,29 @@ def mapped_circle_geometry(field, maximum, max_area):
             "stroke_policy": "Fill area excludes edge stroke; core quantitative circles are borderless."}
 
 
-def fixed_circle_geometry(parameter):
-    return {"mode": "fixed_matplotlib_size_parameter", "marker_size_parameter_pt2": float(parameter),
+def fixed_circle_geometry(parameter, options=None):
+    geometry = {"mode": "fixed_matplotlib_size_parameter", "marker_size_parameter_pt2": float(parameter),
             "circle_fill_area_pt2": float(parameter) * legend_layout.CIRCLE_AREA_PER_SIZE_PARAMETER,
             "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
             "diameter_pt": math.sqrt(float(parameter)),
             "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
             "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."}
+    if (options or {}).get("point_style") == "hollow":
+        width = float(options.get("point_edge_width_pt", .45))
+        geometry.update(point_style="hollow", point_edge_width_pt=width,
+                        circle_enclosed_area_pt2=geometry["circle_fill_area_pt2"], circle_fill_area_pt2=0.,
+                        outer_diameter_pt=geometry["diameter_pt"] + width,
+                        fill_area_definition="Hollow observations have no filled face; circle_enclosed_area_pt2 is the nominal centerline-enclosed area.",
+                        stroke_policy="Group/point-colored edge stroke centered on the circle path; physical envelope includes its linewidth.")
+    return geometry
+
+
+def observation_style(options, color):
+    """Explicit hollow styling; an omitted style keeps legacy artist options."""
+    if options.get("point_style") == "hollow":
+        return {"facecolors": "none", "edgecolors": color,
+                "alpha": options.get("alpha", .85), "linewidths": options.get("point_edge_width_pt", .45)}
+    return {"color": color, "alpha": options.get("alpha", .85), "linewidths": 0}
 
 
 def pack_distribution_points(value_positions_pt, diameter_pt, max_offset_pt, *, gap_pt=.3, seed=0):
@@ -361,7 +403,9 @@ def place_distribution_points(fig, ax, data, spec, pending):
     orientation = options.get("orientation", "vertical")
     category_axis = 0 if orientation == "vertical" else 1
     numeric_axis = 1 - category_axis
-    diameter = math.sqrt(float(options.get("point_area_pt2", 9)))
+    marker_diameter = math.sqrt(float(options.get("point_area_pt2", 9)))
+    edge_width = float(options.get("point_edge_width_pt", .45)) if options.get("point_style") == "hollow" else 0.
+    diameter = marker_diameter + edge_width
     gap = float(options.get("point_gap_pt", .3))
     maximum = float(options.get("point_max_offset_mm", 4)) / 25.4 * 72
     fig.canvas.draw()
@@ -414,6 +458,9 @@ def place_distribution_points(fig, ax, data, spec, pending):
                   categorical_boundary_rows=boundary_rows, groups=reports,
                   algorithm="Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
                   note="Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit.")
+    if edge_width:
+        report.update(marker_diameter_pt=marker_diameter, point_edge_width_pt=edge_width,
+                      diameter_definition="Outer circle envelope: sqrt(Matplotlib s) + edge linewidth in physical points.")
     if boundary_rows:
         report["status"] = "needs_revision"
     fig._easyviz_point_layout = report
@@ -821,22 +868,26 @@ def draw(data, spec, layout, typography, result):
             data["_easyviz_marker_size_parameter_pt2"] = circle_size_parameter(data["_easyviz_area_pt2"])
             fig._easyviz_mark_geometry = mapped_circle_geometry(f["size"], maximum, max_area)
         else:
-            fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 12))
+            fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 12), options)
         if "group" in f:
             groups = ordered(data, f["group"], spec, "group")
             resolved_colors = palette_colors(spec, groups)
             for group in groups:
                 part = data[data[f["group"]].astype(str) == group]
                 areas = part["_easyviz_marker_size_parameter_pt2"] if "size" in f else options.get("point_area_pt2", 12)
-                points = ax.scatter(part[f["x"]], part[f["y"]], label=group, color=resolved_colors[group], marker="o", s=areas, alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+                points = ax.scatter(part[f["x"]], part[f["y"]], label=group, marker="o", s=areas, **observation_style(options, resolved_colors[group]), zorder=3)
                 figure_elements.register(fig, points, "point-group", group, key=["scatter", group],
                                          source_keys=[{"group": group, "records": [int(index) + 1 for index in part.index]}],
                                          spec_paths=[figure_elements.pointer("colors", group), "/options/alpha"],
                                          editable={"color": figure_elements.pointer("colors", group), "alpha": "/options/alpha"})
-            legend_manager.add_categorical(groups, [resolved_colors[g] for g in groups], shape="marker")
+            if options.get("point_style") == "hollow":
+                legend_manager.add_categorical(groups, [resolved_colors[g] for g in groups], shape="marker",
+                                               marker_style="hollow", linewidth_pt=options.get("point_edge_width_pt", .45), alpha=options.get("alpha", .85))
+            else:
+                legend_manager.add_categorical(groups, [resolved_colors[g] for g in groups], shape="marker")
         else:
             areas = data["_easyviz_marker_size_parameter_pt2"] if "size" in f else options.get("point_area_pt2", 12)
-            points = ax.scatter(data[f["x"]], data[f["y"]], color=options.get("point_color", DEFAULT_COLORS[0]), marker="o", s=areas, alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+            points = ax.scatter(data[f["x"]], data[f["y"]], marker="o", s=areas, **observation_style(options, options.get("point_color", DEFAULT_COLORS[0])), zorder=3)
             figure_elements.register(fig, points, "point-group", "Observations", key="scatter:observations",
                                      source_keys=[{"records": [int(index) + 1 for index in data.index]}],
                                      spec_paths=["/options/point_color", "/options/alpha"],
@@ -862,7 +913,7 @@ def draw(data, spec, layout, typography, result):
                                      editable={"color": color_path, "linewidth": width_path})
             result["regression"] = {"method": "ordinary least squares, pooled observations", "slope": float(fit.slope), "intercept": float(fit.intercept), "n": len(data), "interval": "none"}
     elif chart == "distribution":
-        fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 9))
+        fig._easyviz_mark_geometry = fixed_circle_geometry(options.get("point_area_pt2", 9), options)
         groups = ordered(data, f["group"], spec, "group")
         resolved_colors = palette_colors(spec, groups)
         samples = [data.loc[data[f["group"]].astype(str) == g, f["value"]].to_numpy(float) for g in groups]
@@ -871,7 +922,7 @@ def draw(data, spec, layout, typography, result):
         kind = options.get("kind", "box")
         require(kind in ("box", "violin"), "Distribution kind must be box or violin")
         if kind == "box":
-            boxes = ax.boxplot(samples, positions=np.arange(len(groups)), widths=.5, patch_artist=True, showfliers=False, manage_ticks=False, orientation=orientation,
+            boxes = ax.boxplot(samples, positions=np.arange(len(groups)), widths=options.get("box_width", .5), patch_artist=True, showfliers=False, manage_ticks=False, orientation=orientation,
                                medianprops=line_style(spec, "summary", linewidth=layout["line_width_pt"], color="#222222"),
                                whiskerprops=line_style(spec, "summary", linewidth=layout["line_width_pt"]),
                                capprops=line_style(spec, "summary", linewidth=layout["line_width_pt"]))
@@ -883,7 +934,7 @@ def draw(data, spec, layout, typography, result):
             bodies = violins["bodies"]
             result["violin_definition"] = "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin width independently normalized. Every observation is drawn as a point."
         for body, group in zip(bodies, groups):
-            body.set_facecolor(mcolors.to_rgba(resolved_colors[group], .22))
+            body.set_facecolor("none" if options.get("box_style") == "outline" else mcolors.to_rgba(resolved_colors[group], .22))
             stroke_role = "summary" if kind == "box" else "data"
             stroke = line_style(spec, stroke_role, linewidth=layout["line_width_pt"], color=resolved_colors[group])
             body.set_edgecolor(stroke["color"])
@@ -905,7 +956,7 @@ def draw(data, spec, layout, typography, result):
                          else i + rng.uniform(-.13, .13, len(sample)))
             rows = data.index[data[f["group"]].astype(str) == group].to_numpy()
             data.loc[rows, "_easyviz_jitter_position"] = positions
-            points = ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, color=resolved_colors[group], marker="o", s=options.get("point_area_pt2", 9), alpha=options.get("alpha", .85), linewidths=0, zorder=3)
+            points = ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, marker="o", s=options.get("point_area_pt2", 9), **observation_style(options, resolved_colors[group]), zorder=3)
             distribution_points.append((i, group, sample, rows, points))
             figure_elements.register(fig, points, "point-group", group, key=["distribution", group],
                                      source_keys=[{"group": group}],

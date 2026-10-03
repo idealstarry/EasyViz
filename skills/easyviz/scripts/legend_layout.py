@@ -117,10 +117,16 @@ class LegendLayout:
         self.requests, self.entries = [], []
         self.report = {"status": "pending", "legends": [], "issues": [], "warnings": []}
 
-    def add_categorical(self, labels, colors, shape="patch", title=None, edgecolor="none", linewidth_pt=0):
+    def add_categorical(self, labels, colors, shape="patch", title=None, edgecolor="none", linewidth_pt=0, *, marker_style="filled", alpha=None):
         if len(labels) != len(colors) or not labels or shape not in ("patch", "marker"):
             raise ValueError("Categorical legend needs matching labels/colors and patch or marker shape")
-        self.requests.append({"kind": "categorical", "labels": list(map(str, labels)), "colors": list(colors), "shape": shape, "title": title, "edgecolor": edgecolor, "linewidth_pt": linewidth_pt})
+        if marker_style not in ("filled", "hollow") or (marker_style == "hollow" and shape != "marker"):
+            raise ValueError("marker_style must be filled or hollow; hollow requires marker shape")
+        request = {"kind": "categorical", "labels": list(map(str, labels)), "colors": list(colors), "shape": shape, "title": title, "edgecolor": edgecolor, "linewidth_pt": linewidth_pt}
+        if marker_style == "hollow":
+            _positive(linewidth_pt, "linewidth_pt")
+            request.update(marker_style=marker_style, alpha=alpha)
+        self.requests.append(request)
 
     def add_size(self, values, areas_pt2, title=None, color="#777777", edgecolor="none", linewidth_pt=0, *, area_semantics="matplotlib_size_parameter"):
         """Register circular keys with an explicit physical-size interpretation.
@@ -224,6 +230,9 @@ class LegendLayout:
                 handles = [Patch(facecolor=c, edgecolor=edge, linewidth=stroke) for c in request["colors"]]
             elif request["shape"] == "symbols":
                 handles = [Line2D([], [], linestyle="none", marker=m, color=c, markeredgecolor=c, markeredgewidth=request["linewidth_pt"], markersize=cfg["key_height_mm"] * PT_PER_MM) for m, c in zip(request["markers"], request["colors"])]
+            elif request.get("marker_style") == "hollow":
+                stroke = request["linewidth_pt"]
+                handles = [Line2D([], [], linestyle="none", marker="o", markerfacecolor="none", markeredgecolor=c, markeredgewidth=stroke, alpha=request["alpha"], markersize=cfg["key_height_mm"] * PT_PER_MM) for c in request["colors"]]
             else:
                 handles = [Line2D([], [], linestyle="none", marker="o", markerfacecolor=c, markeredgecolor=edge, markeredgewidth=stroke, markersize=cfg["key_height_mm"] * PT_PER_MM) for c in request["colors"]]
             key_w, key_h = cfg["key_width_mm"], cfg["key_height_mm"]

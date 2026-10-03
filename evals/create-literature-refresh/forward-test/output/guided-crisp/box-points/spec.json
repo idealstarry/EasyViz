@@ -1,0 +1,57 @@
+{
+  "fields": {
+    "value": "measurement",
+    "group": "group",
+    "unit": "subject"
+  },
+  "colors": {
+    "Control": "#55A0FB",
+    "Condition": "#FF8080"
+  },
+  "order": {
+    "group": [
+      "Control",
+      "Condition"
+    ]
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 85,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "distribution",
+  "labels": {
+    "x": "Measurement (a.u.)",
+    "y": ""
+  },
+  "options": {
+    "kind": "box",
+    "orientation": "horizontal",
+    "x_scale": "linear",
+    "x_limits": [
+      1.5,
+      10.2
+    ],
+    "point_layout": "beeswarm",
+    "point_area_pt2": 9,
+    "alpha": 1.0,
+    "point_style": "hollow",
+    "point_edge_width_pt": 0.45,
+    "box_style": "outline"
+  },
+  "seed": 0
+}

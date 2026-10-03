@@ -1,0 +1,153 @@
+{
+  "track": "create",
+  "width_mm": 180,
+  "height_mm": 160,
+  "font": "Arial",
+  "font_size_pt": 8,
+  "title_size_pt": 8,
+  "line_width_pt": 0.45,
+  "dpi": 300,
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "selection_count": 4,
+  "selection": "All four synthetic strain IDs, ordered separately by full-matrix means.",
+  "heatmap_mm": [
+    40,
+    34,
+    96,
+    96
+  ],
+  "receiver_mean_mm": [
+    40,
+    136,
+    96,
+    12
+  ],
+  "sender_mean_mm": [
+    143,
+    34,
+    28,
+    96
+  ],
+  "receiver_genome_mm": [
+    40,
+    131.5,
+    96,
+    2
+  ],
+  "sender_genome_mm": [
+    137.5,
+    34,
+    2,
+    96
+  ],
+  "colorbar_mm": [
+    119,
+    6,
+    52,
+    3
+  ],
+  "text_positions_mm": {
+    "sender_axis": [
+      4,
+      82
+    ],
+    "receiver_axis": [
+      88,
+      10
+    ],
+    "receiver_mean": [
+      40,
+      151
+    ],
+    "sender_mean": [
+      143,
+      132.5
+    ],
+    "colorbar_title": [
+      145,
+      11
+    ],
+    "genome_legend": [
+      40,
+      0.2
+    ]
+  },
+  "color_limits": [
+    -400,
+    1000
+  ],
+  "colormap": [
+    "#4B9BDD",
+    "#B8DCFA",
+    "#FFFFFF",
+    "#FFF0B5",
+    "#FFD168",
+    "#FF995D",
+    "#F24E55"
+  ],
+  "mean_color": "#49ACDE",
+  "genome_colors": {
+    "0": "#FFFFFF",
+    "1": "#444444"
+  },
+  "grid_color": "#EBEDEC",
+  "palette_family": "easyviz-create-blue-white-gold-coral",
+  "palette_preset": "zero-centered-blue-gold-orange-coral",
+  "palette_source": [
+    "https://doi.org/10.1038/s41467-017-02391-6",
+    "https://doi.org/10.1038/s41467-023-43021-8",
+    "https://doi.org/10.1038/s41590-023-01468-3"
+  ],
+  "palette_status": "EasyViz ordered multi-hue design adaptation after inspecting PROGENy Fig. 2b/c, scWAT Fig. 2b and Vanneste Fig. 4d. Colors are chosen, not sampled. Blue-white negative/neutral and white-gold-orange-coral positive arms use explicit color-coordinate stops, each monotonic in relative luminance toward/away from zero. TwoSlopeNorm remains -400 -> 0, 0 -> 0.5 and 1000 -> 1 with piecewise linear slopes.",
+  "panel_title": null,
+  "caption_file": "caption.md",
+  "axis_color": "#444444",
+  "text_color": "#252525",
+  "grid_width_pt": 0.35,
+  "color_normalization": "two_slope",
+  "color_center": 0,
+  "mean_grid": false,
+  "colorbar_ticks": [
+    -400,
+    0,
+    250,
+    500,
+    1000
+  ],
+  "genome_tile_outline_policy": "Genome 0: white fill with 0.45 pt charcoal outline; genome 1: solid charcoal fill. The outline makes unfilled binary cells visible; mean bars remain borderless.",
+  "color_stops": [
+    [
+      0,
+      "#4B9BDD"
+    ],
+    [
+      0.25,
+      "#B8DCFA"
+    ],
+    [
+      0.5,
+      "#FFFFFF"
+    ],
+    [
+      0.55,
+      "#FFF0B5"
+    ],
+    [
+      0.625,
+      "#FFD168"
+    ],
+    [
+      0.75,
+      "#FF995D"
+    ],
+    [
+      1,
+      "#F24E55"
+    ]
+  ],
+  "check_branch_luminance": true
+}

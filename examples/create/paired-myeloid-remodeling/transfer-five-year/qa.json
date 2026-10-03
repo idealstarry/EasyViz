@@ -1,24 +1,35 @@
 {
   "status": "passed",
   "source_sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
-  "settings_sha256": "cab263ccf436e1603c28943635c381a59b92c1cd1c320b3d1884d1df79e4be75",
+  "settings_sha256": "391c6ebcd3fd579a09a7c74eda48f87ba18eb32bbb649e702988692edfc49bf6",
+  "actual_font_path": "/System/Library/Fonts/Supplemental/Arial.ttf",
   "actual_cohort_colors": {
-    "Kerr": "#CC7358"
+    "Kerr": "#FF8080"
   },
   "mark_roles": {
     "filled_edges": "none",
-    "line_width_pt": 0.6,
+    "line_width_pt": 0.55,
     "axis_line_width_pt": 0.5,
-    "axis_color": "#8A949D",
-    "reference_line_width_pt": 0.4,
-    "reference_color": "#ACB7BF",
-    "grid_line_width_pt": 0.3,
-    "grid_color": "#F0F3F5",
-    "separator_line_width_pt": 0.3,
-    "separator_color": "#E6EBEE",
-    "marginal_summary_line_width_pt": 1.1,
-    "summary_line_width_pt": 1.05,
-    "participant_alpha": 0.48
+    "axis_color": "#111111",
+    "reference_line_width_pt": 0.45,
+    "reference_color": "#111111",
+    "reference_dash_pattern_pt": [
+      2,
+      2
+    ],
+    "grid_line_width_pt": 0,
+    "grid_color": "#FFFFFF",
+    "separator_line_width_pt": 0.25,
+    "separator_color": "#D7D7D7",
+    "marginal_summary_line_width_pt": 0.65,
+    "summary_line_width_pt": 0.65,
+    "participant_alpha": 1,
+    "participant_diameter_pt": 1.2,
+    "participant_outline_width_pt": 0,
+    "participant_max_offset_mm": 1.5,
+    "participant_gap_pt": 0.1,
+    "participant_outline_policy": "Opaque borderless filled circles. A 1.6 pt hollow circle with 0.4 pt outline was physically tested first; dense near-ties cannot all fit within the compact facet lanes.",
+    "summary_policy": "Compact unfilled Q1\u2013Q3 box with a dark median tick; IQR is participant spread, not a confidence interval. Ledger summaries occupy a separate strip below the participant dots in each row."
   },
   "followup_year": 5,
   "cohorts": {
@@ -38,9 +49,9 @@
   "designs": {
     "participant-matrix": {
       "formats": {
-        "png": "3ddf98c9dfde0927e83ec6e06cf0525702ab79aa4e7ae127a14f23670a4493bf",
-        "pdf": "7984b26632687640def2b6cb5fa7da5c31001bed1acdc50f357783777fc8407c",
-        "svg": "6dbc86d8fd160fcd56808c90d1ec0845b4ed9251b37335a2b981608a8c5c00e2"
+        "png": "cd02784396c7b0522e78c21884efb26620464e10cbf4187771f22abde128ce7a",
+        "pdf": "1e2924b645c89b200ef58d6479f4ab1acac06f9f61a447380467bdf9bd7a084c",
+        "svg": "a937b50f3cfcb8e8f27f63b6a4f2b19791b77ccaecba7a67aa4269fb200d536b"
       },
       "width_height_mm": [
         179.99999999998556,
@@ -52,6 +63,8 @@
       "text_outside_canvas": [],
       "all_paired_changes_preserved": 592,
       "points_or_matrix_cells": 592,
+      "participant_point_layout": [],
+      "hollow_circle_feasibility_trial": [],
       "comparability": "Same source pairs, canvas, font, selected subtypes, and shared axis/color settings."
     }
   }

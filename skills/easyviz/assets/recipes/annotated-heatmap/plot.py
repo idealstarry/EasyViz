@@ -15,8 +15,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
-from matplotlib.patches import Patch
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap, Normalize, TwoSlopeNorm
+from matplotlib.patches import Patch, Rectangle
 from matplotlib.text import Text
 from matplotlib.ticker import MaxNLocator
 import numpy as np
@@ -29,6 +29,69 @@ HERE = Path(__file__).resolve().parent
 
 def write_json(path, value):
     path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
+
+
+def color_scale(cfg, values):
+    """Return an explicit invertible scale; reject any clipped source value."""
+    lo, hi = cfg["color_limits"]
+    values = np.asarray(values, dtype=float)
+    if not np.isfinite([lo, hi]).all() or lo >= hi:
+        raise ValueError("Color limits must be finite and increasing")
+    if not np.isfinite(values).all() or values.min() < lo or values.max() > hi:
+        raise ValueError("Color limits would clip measurements")
+    method = cfg.get("color_normalization", "linear")
+    if method == "two_slope":
+        center = cfg["color_center"]
+        if not np.isfinite(center) or not lo < center < hi:
+            raise ValueError("Two-slope center must be strictly inside the color limits")
+        norm = TwoSlopeNorm(vmin=lo, vcenter=center, vmax=hi)
+        forward = [f"x <= {center}: 0.5 * (x - ({lo})) / ({center} - ({lo}))",
+                   f"x >= {center}: 0.5 + 0.5 * (x - ({center})) / ({hi} - ({center}))"]
+        inverse = [f"u <= 0.5: {lo} + 2 * u * ({center} - ({lo}))",
+                   f"u >= 0.5: {center} + 2 * (u - 0.5) * ({hi} - ({center}))"]
+    elif method == "linear":
+        center = None
+        norm = Normalize(vmin=lo, vmax=hi, clip=False)
+        forward = [f"u = (x - ({lo})) / ({hi} - ({lo}))"]
+        inverse = [f"x = {lo} + u * ({hi} - ({lo}))"]
+    else:
+        raise ValueError(f"Unsupported color normalization: {method}")
+    palette = cfg.get("color_stops", cfg["colormap"])
+    if "color_stops" in cfg:
+        positions = np.asarray([stop[0] for stop in palette], dtype=float)
+        if positions[0] != 0 or positions[-1] != 1 or not np.all(np.diff(positions) > 0):
+            raise ValueError("Color-stop positions must increase from 0 to 1")
+    cmap = LinearSegmentedColormap.from_list("easyviz_case", palette, N=1025) if isinstance(palette, list) else plt.get_cmap(palette)
+    luminance_check = None
+    if cfg.get("check_branch_luminance", False):
+        if method != "two_slope":
+            raise ValueError("Branch luminance check requires two-slope normalization")
+        coordinates = np.linspace(0, 1, 1025)
+        rgb = np.asarray(cmap(coordinates))[:, :3]
+        linear_rgb = np.where(rgb <= .04045, rgb / 12.92, ((rgb + .055) / 1.055) ** 2.4)
+        luminance = linear_rgb @ np.array([.2126, .7152, .0722])
+        lower, upper = np.diff(luminance[:513]), np.diff(luminance[512:])
+        if not np.all(lower >= -1e-12) or not np.all(upper <= 1e-12):
+            raise ValueError("Diverging branch luminance must increase toward zero and decrease away from zero")
+        luminance_check = {"space": "sRGB relative luminance", "sampled_color_coordinates": len(coordinates),
+                           "negative_arm_nondecreasing": True, "positive_arm_nonincreasing": True,
+                           "negative_arm_minimum_increment": float(lower.min()),
+                           "positive_arm_maximum_increment": float(upper.max()),
+                           "zero_relative_luminance": float(luminance[512])}
+    probes = np.unique(np.r_[np.linspace(lo, hi, 29), values.ravel(), center if center is not None else []])
+    normalized = np.asarray(norm(probes))
+    if not np.all(np.diff(normalized) > 0) or not np.allclose(norm.inverse(normalized), probes, atol=1e-10):
+        raise ValueError("Color scale must be strictly ordered and invertible")
+    contract = {"class": type(norm).__name__, "method": method, "vmin": lo,
+                "vcenter": center, "vmax": hi, "clip": False,
+                "forward_piecewise": forward, "inverse_piecewise": inverse,
+                "neutral_normalized_position": float(norm(center)) if center is not None else None,
+                "source_values_normalized_range": [float(norm(values.min())), float(norm(values.max()))],
+                "order_and_inverse_checked_points": len(probes), "strict_order_and_inverse_pass": True,
+                "color_stops": [{"normalized_position": stop[0], "raw_minutes": float(norm.inverse(stop[0])), "color": stop[1]} for stop in cfg.get("color_stops", [])],
+                "branch_luminance_check": luminance_check,
+                "readout_mapping": "Colorbar tick positions use norm(raw minutes); inverse(norm(x)) returns original minutes."}
+    return norm, cmap, contract
 
 
 def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-status.csv", settings_path=HERE / "settings.json"):
@@ -54,8 +117,8 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
     assert n >= 2 and full.shape == (n, n) and full.index.is_unique and full.columns.is_unique, "Need a square matrix with unique strain IDs"
     assert np.isfinite(full.values).all() and set(full.index) == set(full.columns)
     assert status.index.is_unique and set(status.index) == set(full.index) and set(status).issubset({0, 1})
+    norm, cmap, normalization = color_scale(cfg, full.values)
     lo, hi = cfg["color_limits"]
-    assert lo <= full.values.min() and hi >= full.values.max(), "Color limits would clip measurements"
     count = cfg["selection_count"]
     assert isinstance(count, int) and 2 <= count <= n, "selection_count must be an integer in 2..number of strains"
     ranks = np.rint(np.linspace(0, len(full) - 1, count)).astype(int)
@@ -96,16 +159,10 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
             return fig.text(x / width, y / height, label, **kwargs)
 
         ax = axis("heatmap_mm")
-        palette = cfg["colormap"]
-        cmap = LinearSegmentedColormap.from_list("easyviz_case", palette) if isinstance(palette, list) else palette
-        image = ax.imshow(shown, cmap=cmap, vmin=lo, vmax=hi, aspect="equal", interpolation="nearest")
+        image = ax.imshow(shown, cmap=cmap, norm=norm, aspect="equal", interpolation="nearest")
         ax.set_xticks(range(count), cols, rotation=90, ha="center", va="top")
         ax.set_yticks(range(count), rows)
         ax.tick_params(length=0, pad=3)
-        ax.set_xticks(np.arange(-.5, count, 1), minor=True)
-        ax.set_yticks(np.arange(-.5, count, 1), minor=True)
-        ax.grid(which="minor", color="white", linewidth=.2, alpha=.22)
-        ax.tick_params(which="minor", length=0)
         for spine in ax.spines.values():
             spine.set_visible(False)
         text("sender_axis", "Sender strain", rotation=90, ha="center", va="center")
@@ -135,7 +192,8 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         top.set_xticks([])
         top.tick_params(length=1.5, pad=2, color=cfg.get("axis_color", "#252E31"))
         top.set_axisbelow(True)
-        top.grid(axis="y", color=cfg["grid_color"], linewidth=cfg.get("grid_width_pt", .35))
+        if cfg.get("mean_grid", False):
+            top.grid(axis="y", color=cfg["grid_color"], linewidth=cfg.get("grid_width_pt", .35))
         top.spines[["top", "right", "bottom"]].set_visible(False)
         text("receiver_mean", "Receiver mean GII (min)", ha="left", va="bottom")
 
@@ -148,7 +206,8 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         right.set_yticks([])
         right.tick_params(length=1.5, pad=2, color=cfg.get("axis_color", "#252E31"))
         right.set_axisbelow(True)
-        right.grid(axis="x", color=cfg["grid_color"], linewidth=cfg.get("grid_width_pt", .35))
+        if cfg.get("mean_grid", False):
+            right.grid(axis="x", color=cfg["grid_color"], linewidth=cfg.get("grid_width_pt", .35))
         right.spines[["top", "right", "left"]].set_visible(False)
         text("sender_mean", "Sender mean (min)", ha="left", va="bottom")
 
@@ -156,15 +215,23 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         for key, array in (("receiver_genome_mm", status.loc[cols].to_numpy()[None, :]), ("sender_genome_mm", status.loc[rows].to_numpy()[:, None])):
             strip = axis(key)
             strip.imshow(array, cmap=binary, vmin=0, vmax=1, aspect="auto", interpolation="nearest")
+            # White, unfilled binary cells need an explicit boundary at 2 mm.
+            for row, column in zip(*np.where(array == 0)):
+                strip.add_patch(Rectangle((column - .5, row - .5), 1, 1, facecolor="none",
+                                          edgecolor=cfg["axis_color"], linewidth=cfg["line_width_pt"]))
             strip.set_axis_off()
 
         barax = axis("colorbar_mm")
-        cb = fig.colorbar(image, cax=barax, orientation="horizontal", ticks=np.linspace(lo, hi, 3))
+        ticks = cfg.get("colorbar_ticks", np.linspace(lo, hi, 5).tolist())
+        # A changed transfer range retains informative in-range ticks plus its endpoints/center.
+        ticks = sorted(set([lo, hi] + [v for v in ticks if lo <= v <= hi] +
+                           ([cfg["color_center"]] if cfg.get("color_normalization") == "two_slope" else [])))
+        cb = fig.colorbar(image, cax=barax, orientation="horizontal", ticks=ticks)
         cb.outline.set_visible(False)
         cb.ax.tick_params(length=1.5, pad=2, color=cfg.get("axis_color", "#252E31"))
         text("colorbar_title", "Pairwise GII (min)", ha="center", va="bottom")
         legend_x, legend_y = cfg["text_positions_mm"]["genome_legend"]
-        fig.legend(handles=[Patch(facecolor=cfg["genome_colors"]["1"], edgecolor="none", label="Genome analyzed"), Patch(facecolor=cfg["genome_colors"]["0"], edgecolor="none", linewidth=0, label="Not analyzed")], loc="lower left", bbox_to_anchor=(legend_x / width, legend_y / height), borderaxespad=0, frameon=False, ncol=2, handlelength=1.0, handleheight=.8, columnspacing=1.3)
+        fig.legend(handles=[Patch(facecolor=cfg["genome_colors"]["1"], edgecolor="none", label="Genome analyzed"), Patch(facecolor=cfg["genome_colors"]["0"], edgecolor=cfg["axis_color"], linewidth=cfg["line_width_pt"], label="Not analyzed")], loc="lower left", bbox_to_anchor=(legend_x / width, legend_y / height), borderaxespad=0, frameon=False, ncol=2, handlelength=1.0, handleheight=.8, columnspacing=1.3)
         fig.canvas.draw()
         renderer = fig.canvas.get_renderer()
         clipped = []
@@ -205,10 +272,10 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
     summary.to_csv(out / "summary-data.csv", index=False)
     selection = pd.concat([chosen[role] for role in ("sender", "receiver")], ignore_index=True)
     selection.to_csv(out / "selection.csv", index=False)
-    cfg.update(actual_font=font, source_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest(), genome_sha256=hashlib.sha256(genome_path.read_bytes()).hexdigest(), script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), selected_sender_ids=rows, selected_receiver_ids=cols, selected_ranks_one_based=(ranks + 1).tolist(), source_file=data_path.name, genome_file=genome_path.name, selection=f"Rounded {count} equally spaced ranks from 0 to {n - 1}, after sorting means descending then strain ID.")
+    cfg.update(actual_font=font, source_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest(), genome_sha256=hashlib.sha256(genome_path.read_bytes()).hexdigest(), script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), selected_sender_ids=rows, selected_receiver_ids=cols, selected_ranks_one_based=(ranks + 1).tolist(), source_file=data_path.name, genome_file=genome_path.name, normalization_contract=normalization, actual_colorbar_ticks=ticks, selection=f"Rounded {count} equally spaced ranks from 0 to {n - 1}, after sorting means descending then strain ID.")
     write_json(out / "render-settings.json", cfg)
     qa = {"status": "pass" if not clipped and not missing else "needs_revision", "full_matrix_shape": list(full.shape), "full_input_measurements": int(full.size), "selected_shape": list(shown.shape), "selected_measurements": len(selected), "selected_values_equal_source": bool(np.array_equal(selected.gii_min.to_numpy(), full.loc[rows, cols].to_numpy().ravel())), "negative_input_measurements_retained": int((full.values < 0).sum()), "negative_selected_measurements_retained": int((shown.values < 0).sum()), "summary_denominator": n, "summary_means_recomputed_from_all_partners": bool(np.allclose(chosen["sender"].full_matrix_mean_gii_min, full.loc[rows].mean(axis=1)) and np.allclose(chosen["receiver"].full_matrix_mean_gii_min, full.loc[:, cols].mean(axis=0))), "genome_strips_match_strain_ids": True, "pdf_mm": page_mm, "png_pixels": pixels, "png_dpi": png_dpi, "font": font, "body_font_pt": cfg["font_size_pt"], "panel_title_rendered": False, "caption_file": "caption.md", "clipped_text": clipped, "missing_glyphs": missing, "inferential_statistics": "none", "visual_review_required": True}
-    qa.update(pdf_fonts=fonts, svg_mm=svg_mm, svg_editable_text_elements=svg_text_count, valid_outputs=not clipped and not missing)
+    qa.update(pdf_fonts=fonts, svg_mm=svg_mm, svg_editable_text_elements=svg_text_count, valid_outputs=not clipped and not missing, color_normalization=normalization, colorbar_ticks=ticks, summary_count=len(summary), all_summary_means_recomputed_from_all_partners=bool(np.allclose(summary[summary.role == "sender"].set_index("strain").full_matrix_mean_gii_min.reindex(full.index), full.mean(axis=1)) and np.allclose(summary[summary.role == "receiver"].set_index("strain").full_matrix_mean_gii_min.reindex(full.columns), full.mean(axis=0))))
     write_json(out / "qa.json", qa)
     assert qa["status"] == "pass", qa
     print(json.dumps({"status": qa["status"], "output": str(out), "measurements_shown": len(selected)}))

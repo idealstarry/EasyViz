@@ -36,28 +36,63 @@
     "structural_reference": false,
     "author_code_used": false,
     "data_and_statistics_changed": false,
-    "caption_policy": "Narrative text removed from panel and provided separately in caption.md."
+    "caption_policy": "Narrative text removed from panel and provided separately in caption.md.",
+    "historical_record": true
   },
   "structural_reference_image_used": false,
   "palette_reference_used": true,
   "style_refinement": {
-    "basis": "EasyViz design choices following inspection of two actual Create candidates; an overly earthy candidate was replaced with a bright coral/orange ramp and muted blue supports. The earlier palette_refresh record describes historical literature sampling, not the current color values.",
+    "basis": "Actual PDF inspection of PROGENy Fig. 2b/c, scWAT Fig. 2b and Vanneste Fig. 4d; adopted strong signed contrast around a light neutral center, thin purposeful axes and compact metadata. Colors chosen by EasyViz, not sampled.",
     "current_colors_sampled_from_publication": false,
     "colormap": [
-      "#FFFAF7",
-      "#FBE0D4",
-      "#F6B39C",
-      "#ED8A6A",
-      "#E36F50"
+      "#4B9BDD",
+      "#B8DCFA",
+      "#FFFFFF",
+      "#FFF0B5",
+      "#FFD168",
+      "#FF995D",
+      "#F24E55"
     ],
-    "mean_color": "#6C9FB2",
+    "mean_color": "#49ACDE",
     "genome_colors": {
-      "0": "#E8ECEF",
-      "1": "#708C94"
+      "0": "#FFFFFF",
+      "1": "#444444"
     },
-    "normalization": "Linear Normalize with vmin=-400, vmax=1000; unchanged numeric limits and proportions.",
-    "strokes": "Axis 0.45 pt, grid 0.35 pt below bars; borderless mean bars, metadata tiles and legend keys; colorbar outline omitted.",
-    "data_selection_statistics_and_layout_changed": false,
-    "visual_review": "Actual PNG inspected by implementing agent, including a 680 x 605 px display-size preview; not an independent visual review."
+    "normalization": "TwoSlopeNorm(vmin=-400, vcenter=0, vmax=1000), explicitly piecewise linear. x <= 0: u=(x+400)/800; x >= 0: u=0.5+x/2000. Inverse: u<=0.5 -> x=-400+800u; u>=0.5 -> x=2000*(u-0.5). This replaces earlier globally linear Normalize; limits and values remain unchanged.",
+    "strokes": "0.45 pt charcoal axes; no mean grids or matrix seams; borderless sky-blue means; charcoal analyzed tiles; outlined white not-analyzed tiles and matching guide key.",
+    "data_selection_and_statistics_changed": false,
+    "geometry_change": "Only colorbar changed from [143,17,28,3] to [119,6,52,3] mm and its title moved to [145,11] mm for readable 0/250/500/1000 ticks. Matrix and aligned tracks unchanged.",
+    "visual_review": "Final third pass: implementer and independent EasyViz Figure Reviewer child inspected baseline, both candidates and synthetic. Final multi-hue preferred over first signed candidate and baseline, ready_with_notes. Independent recomputation and actual PNG colorbar scanlines confirm branch luminance order and color stops within one RGB level.",
+    "color_stops": [
+      [
+        0,
+        "#4B9BDD"
+      ],
+      [
+        0.25,
+        "#B8DCFA"
+      ],
+      [
+        0.5,
+        "#FFFFFF"
+      ],
+      [
+        0.55,
+        "#FFF0B5"
+      ],
+      [
+        0.625,
+        "#FFD168"
+      ],
+      [
+        0.75,
+        "#FF995D"
+      ],
+      [
+        1,
+        "#F24E55"
+      ]
+    ],
+    "luminance": "Actual 1025-color sRGB relative-luminance sampling passes negative nondecreasing and positive nonincreasing arms. No asinh, power, quantile mapping, clipping, or binning."
   }
 }

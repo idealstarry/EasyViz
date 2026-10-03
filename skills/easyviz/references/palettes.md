@@ -8,6 +8,8 @@ The colors live in [palettes.json](../assets/palettes/palettes.json), and compat
 
 | Preset | Meaning and preferred use | Provenance |
 | --- | --- | --- |
+| `scwat-blue-coral` | Clear blue/coral for two groups; inspect opaque filled or hollow observations and matching outlines. | Selected PDF vector colors from Huang et al. (2023), Fig. 2. Reassigning colors to new groups is an explicit choice. |
+| `scwat-blue-white-coral` | Blue–white–coral for signed deviations with a meaningful center. | New EasyViz interpolation from Fig. 2 categorical endpoints; not the author's Fig. 2b heatmap palette. |
 | `notch2-balanced` | Blue, amber, teal, pink. Selected by the user for the cell-atlas example; evaluate again for other contexts. | Four exact embedded legend colors selected from the same Figure 2b, including I2/I1/I4/M1. |
 | `notch2-blue` | Blue sequential scale with a visible light endpoint for borderless marks. | EasyViz 20–100% white-to-I2-blue interpolation; not an author gradient. |
 | `somerville-bright` | Sky, coral, teal, lavender; optional gold and turquoise. Start with the first four for compact categorical panels. | Selected/reordered PDF colors from Somerville et al. (2024), Figs. 1B and 2B. |
@@ -23,6 +25,7 @@ The core renderer's technical fallbacks are `somerville-bright` and `somerville-
 
 ## Source precision
 
+- [Huang et al., Nature Communications 2023](https://www.nature.com/articles/s41467-023-43021-8): the actual Figure 2 page was inspected. Blue/coral vector strokes and fills are `#55A0FB` / `#FF8080` after rounding PDF RGB to 8-bit HEX. The categorical pair is observed; the white-centered continuous ramp is an adaptation. Original author-code constants remain unknown. [Literature design mechanisms](literature-style.md) connects this pair to mark treatment and layout rather than treating hue alone as a design solution.
 - [Somerville et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-52687-7): rendered figures were inspected and flat PDF vector-fill RGB values were converted to 8-bit HEX. The six-color selection spans two panels; it is an EasyViz selection, not an author-provided palette product.
 - [Cruz Tleugabulova et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-53700-9): RGB values were extracted from uniform embedded legend swatches and checked against the actual rendered figure. These values are exact for those PDF pixels; pre-publication author constants remain unknown.
 
@@ -35,6 +38,13 @@ Categorical colors must not cycle when capacity is exceeded. Supply an explicitl
 For a panel set, save the complete category-to-color mapping in a [shared figure profile](figure-profile.md). A palette name assigns colors from the current panel's categories; if a group is absent or the order changes, its position in that palette can change. A profile's explicit mapping retains category identity. Omit local `palette` when using shared `colors`; conflicting explicit colors fail instead of overriding the map. New categories must be added to the shared mapping.
 
 For continuous data, record limits and normalization. Recoloring must preserve the established value scale, zero, missing-value meaning and range unless a scientific change is requested. Do not introduce a diverging center only to obtain a preferred appearance. Sequential scales may include negative numbers when no central threshold is being encoded.
+
+A sequential scale may span several hues when its ordered values remain
+decodable. A signed scale can have cold and warm arms around a justified center.
+Neither case requires a muddy low end or an arbitrary rainbow. If the adopted
+reading task changes to sign-aware decoding, explicitly record the center and
+any normalization change; keep source values unchanged and show zero on the
+colorbar. Asymmetric zero-centered branches do not share one slope in raw units.
 
 When comparing the same quantity across panels, define a named profile `continuous_scales` entry with `colormap`, `color_limits`, and optional `color_center`, then select it using `continuous_scale`. The fixed scale is checked against each panel's actual values; out-of-range values fail rather than being clipped. Use separate scales when units, quantities or the intended comparisons differ.
 

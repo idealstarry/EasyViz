@@ -1,0 +1,5 @@
+Synthetic scale and alignment check. The 4 × 4 matrix contains 16 invented values, including −400, zero, and 1,000 minutes, to exercise the recipe’s display contract. Each axis includes all four literal strain identifiers, including leading zeros, ordered independently by descending full-matrix arithmetic mean and strain ID. Each mean uses all four partners, including the zero self-pairs. Binary metadata is synthetic.
+
+The diverging scale uses TwoSlopeNorm: −400 maps to 0, zero to the white midpoint 0.5, and 1,000 to 1. Negative and positive branches are separately linear; raw-minute tick positions use the same normalization, and its inverse returns raw minutes. These numbers have no biological interpretation and contain no restricted source data.
+
+The positive arm uses continuous white→pale gold→gold→orange→coral colors at 0, 100, 250, 500, and 1,000 minutes, respectively. The negative arm uses blue/light blue/white at −400, −200, and zero. These are color interpolation stops, not bins or thresholds, and introduce no extra measurement transform. Both arms pass the recorded luminance-order check.

@@ -7,6 +7,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
+import numpy as np
 import pandas as pd
 
 
@@ -22,6 +23,7 @@ def load_case(name, relative):
 
 paired = load_case("easyviz_paired_case", "examples/create/paired-myeloid-remodeling/plot.py")
 heatmap = load_case("easyviz_annotated_case", "examples/create/annotated-inhibition/plot.py")
+portable_heatmap = load_case("easyviz_portable_annotated_case", "skills/easyviz/assets/recipes/annotated-heatmap/plot.py")
 
 
 class CaseContractTests(unittest.TestCase):
@@ -62,7 +64,7 @@ class CaseContractTests(unittest.TestCase):
         data.write_text(matrix)
         metadata.write_text(annotations)
         config = json.loads((ROOT / "examples/create/annotated-inhibition/settings.json").read_text())
-        config.update(selection_count=3, color_limits=[0, 10], font="DejaVu Sans", dpi=120)
+        config.update(selection_count=3, color_limits=[-1, 10], colorbar_ticks=[0, 5, 10], font="DejaVu Sans", dpi=120)
         for key in ("receiver_mean_limits", "receiver_mean_ticks", "sender_mean_limits", "sender_mean_ticks"):
             config.pop(key, None)
         settings.write_text(json.dumps(config))
@@ -93,6 +95,32 @@ class CaseContractTests(unittest.TestCase):
                 with self.subTest(role=role, blank=blank):
                     with self.assertRaisesRegex(ValueError, f"{role} IDs must be nonempty"):
                         self.render_matrix(matrix, annotations)
+
+    def test_heatmap_zero_centered_scale_has_original_unit_inverse(self):
+        config = json.loads((ROOT / "examples/create/annotated-inhibition/settings.json").read_text())
+        raw = np.array([-400., -200., 0., 250., 500., 1000.])
+        expected = np.array([0., .25, .5, .625, .75, 1.])
+        # Exercise the development and distributable implementations separately.
+        for recipe in (heatmap, portable_heatmap):
+            with self.subTest(recipe=recipe.__name__):
+                norm, cmap, contract = recipe.color_scale(config, raw)
+                np.testing.assert_allclose(norm(raw), expected)
+                np.testing.assert_allclose(norm.inverse(expected), raw)
+                self.assertTrue(np.all(np.diff(norm(np.linspace(-400, 1000, 1001))) > 0))
+                np.testing.assert_allclose(cmap(norm(0)), [1, 1, 1, 1])
+                self.assertEqual(contract["neutral_normalized_position"], .5)
+                self.assertFalse(contract["clip"])
+                luminance = contract["branch_luminance_check"]
+                self.assertTrue(luminance["negative_arm_nondecreasing"])
+                self.assertTrue(luminance["positive_arm_nonincreasing"])
+                self.assertEqual(luminance["zero_relative_luminance"], 1)
+                np.testing.assert_allclose(cmap(norm(250)), heatmap.matplotlib.colors.to_rgba("#FFD168"))
+                for value in (-400.01, 1000.01):
+                    with self.assertRaisesRegex(ValueError, "clip measurements"):
+                        recipe.color_scale(config, [value, 0])
+                invalid = dict(config, color_limits=[0, 1000])
+                with self.assertRaisesRegex(ValueError, "center must be strictly inside"):
+                    recipe.color_scale(invalid, [0, 250, 1000])
 
 
 if __name__ == "__main__":

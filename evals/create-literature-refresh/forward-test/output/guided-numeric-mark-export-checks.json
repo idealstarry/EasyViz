@@ -1,0 +1,228 @@
+{
+  "source_sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+  "source_identical_to_first_use": true,
+  "rows": 54,
+  "svg_artist_audit": {
+    "Control": {
+      "actual_raw_glyph_count": 24,
+      "source_group_rows": 24,
+      "max_measurement_reconstruction_error_au": 1.6105031974689155e-08,
+      "all_faces_none": true,
+      "all_stroke_width_0_45": true,
+      "all_category_edges_match": true
+    },
+    "Condition": {
+      "actual_raw_glyph_count": 30,
+      "source_group_rows": 30,
+      "max_measurement_reconstruction_error_au": 1.6667053515107e-08,
+      "all_faces_none": true,
+      "all_stroke_width_0_45": true,
+      "all_category_edges_match": true
+    },
+    "outline_boxes": {
+      "box_paths": 2,
+      "all_box_faces_none": true
+    }
+  },
+  "export_measurements": {
+    "box-points": {
+      "pdf_mm": [
+        109.99999999998333,
+        85.00000000001278
+      ],
+      "pdf_fonts": [
+        {
+          "base_font": "/LJWUNA+ArialMT",
+          "embedded": true
+        }
+      ],
+      "svg_dimensions": {
+        "width": "311.811024pt",
+        "height": "240.944882pt",
+        "viewBox": "0 0 311.811024 240.944882"
+      },
+      "png_pixels": [
+        1299,
+        1004
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "file_sha256": {
+        "panel.pdf": "08256f34936af950c2b5c08a012753bb8a66712ecb6d050aa1a8f15ad1c0e620",
+        "panel.svg": "302b94c4d4abf45383ab700800152e0e1d0999e8d52585a2ccc6678b2020b1d1",
+        "panel.png": "e78cd232043bac5bfd3f1325b02753ad30f413dd176babaf91273eed31d52871"
+      }
+    },
+    "ecdf": {
+      "pdf_mm": [
+        109.99999999998333,
+        85.00000000001278
+      ],
+      "pdf_fonts": [
+        {
+          "base_font": "/FXHWDC+ArialMT",
+          "embedded": true
+        }
+      ],
+      "svg_dimensions": {
+        "width": "311.811024pt",
+        "height": "240.944882pt",
+        "viewBox": "0 0 311.811024 240.944882"
+      },
+      "png_pixels": [
+        1299,
+        1004
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "file_sha256": {
+        "panel.pdf": "35665bbd1b6d9aaa1ae686133aba0b2042a94786cdac4c789a0e26f64c607e82",
+        "panel.svg": "f5c42069ad2c1af7e352dee4d7599ad97a5ab34108740e2df1dbf58867b75e31",
+        "panel.png": "3468fab1d9fb1302106f0651051813a7b6fe0881bcfe36856516709c64761012"
+      }
+    }
+  },
+  "ecdf_png_identical_to_first_use": true,
+  "helper_audits": {
+    "source_to_artist": {
+      "status": "pass",
+      "source_rows": 54,
+      "audited_observations": 54,
+      "group_counts": {
+        "Control": 24,
+        "Condition": 30
+      },
+      "intended_point_alpha": 1.0,
+      "point_style": "hollow",
+      "actual_point_facecolors": {
+        "Control": [],
+        "Condition": []
+      },
+      "actual_point_edgecolors": {
+        "Control": [
+          [
+            0.3333333333333333,
+            0.6274509803921569,
+            0.984313725490196,
+            1.0
+          ]
+        ],
+        "Condition": [
+          [
+            1.0,
+            0.5019607843137255,
+            0.5019607843137255,
+            1.0
+          ]
+        ]
+      },
+      "numeric_values_unchanged": true,
+      "tests_performed": false,
+      "experimental_independence_inferred": false,
+      "issues": []
+    },
+    "point_layout": {
+      "status": "pass",
+      "overlapping_circle_pairs": 0,
+      "spacing_violation_pairs": 0,
+      "minimum_center_distance_pt": 3.7499999999999623,
+      "sample_overlapping_pairs": [],
+      "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+      "policy": "beeswarm",
+      "orientation": "horizontal",
+      "seed": 0,
+      "categorical_axis": "y",
+      "quantitative_axis": "x",
+      "numeric_values_changed": false,
+      "input_rows": 54,
+      "placed_rows": 54,
+      "diameter_pt": 3.45,
+      "gap_pt": 0.3,
+      "requested_max_offset_mm": 4.0,
+      "categorical_boundary_rows": [],
+      "groups": [
+        {
+          "group": "Control",
+          "rows": 24,
+          "category_spacing_pt": 92.5412155511811,
+          "available_max_offset_mm": 3.9999999999999996,
+          "actual_max_offset_mm": 1.3229166666666667,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 853010464
+        },
+        {
+          "group": "Condition",
+          "rows": 30,
+          "category_spacing_pt": 92.54121555118111,
+          "available_max_offset_mm": 3.9999999999999996,
+          "actual_max_offset_mm": 2.118865391819971,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 968060216
+        }
+      ],
+      "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+      "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit.",
+      "marker_diameter_pt": 3.0,
+      "point_edge_width_pt": 0.45,
+      "diameter_definition": "Outer circle envelope: sqrt(Matplotlib s) + edge linewidth in physical points."
+    },
+    "root_shared_settings": {
+      "status": "pass",
+      "valid_outputs": true,
+      "source_unchanged": true,
+      "shared_settings_identical": true,
+      "resolved_choices": [
+        {
+          "choice": "box-points",
+          "width_mm": 110.0,
+          "height_mm": 85.0,
+          "actual_font": "Arial",
+          "axis_font_pt": 8.0,
+          "tick_font_pt": 8.0,
+          "legend_font_pt": 8.0,
+          "colors": {
+            "Control": "#55A0FB",
+            "Condition": "#FF8080"
+          },
+          "input_sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+          "value_scale": "linear",
+          "value_limits": [
+            1.5,
+            10.2
+          ]
+        },
+        {
+          "choice": "ecdf",
+          "width_mm": 110.0,
+          "height_mm": 85.0,
+          "actual_font": "Arial",
+          "axis_font_pt": 8.0,
+          "tick_font_pt": 8.0,
+          "legend_font_pt": 8.0,
+          "colors": {
+            "Control": "#55A0FB",
+            "Condition": "#FF8080"
+          },
+          "input_sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+          "value_scale": "linear",
+          "value_limits": [
+            1.5,
+            10.2
+          ]
+        }
+      ],
+      "tests_performed": false,
+      "aggregation_performed": false,
+      "excluded_rows": 0,
+      "experimental_independence_inferred": false,
+      "visual_review_required": true,
+      "automatic_winner": false
+    }
+  }
+}

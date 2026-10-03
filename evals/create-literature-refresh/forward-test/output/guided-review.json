@@ -1,0 +1,58 @@
+{
+  "stage": "guided helper style-extension validation",
+  "reviewer_role": "self-review",
+  "pass_number": 2,
+  "status": "ready_with_notes",
+  "comparative_preference": "no_clear_preference",
+  "selected_delivery": "Initial box-points remains selected; guided hollow/outline export is a valid alternative.",
+  "comparison_reason": "Outlined boxes remove the broad pale fill and reduce summary visual area, but the black whisker line now visibly passes through many open circles. Filled points provide stronger discrete raw-subject symbols. Both preserve readable medians/quartiles and all subjects. The group spacing and box height are unchanged, so the compactness issue remains.",
+  "source_sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+  "source_rows": 54,
+  "same_source_as_first_use": true,
+  "first_use_package_hashes_unchanged": true,
+  "same_dimensions_font_limits_colors": true,
+  "explicit_styles": {
+    "point_alpha": 1,
+    "point_style": "hollow",
+    "point_edge_width_pt": 0.45,
+    "box_style": "outline",
+    "point_layout": "beeswarm"
+  },
+  "actual_opened_images": [
+    "previews/box-points/panel.png",
+    "guided-crisp/box-points/panel.png",
+    "guided-crisp/ecdf/panel.png"
+  ],
+  "numeric_mark_export_checks": "guided-numeric-mark-export-checks.json",
+  "helper_implementation_sha256": {
+    "preview_choices.py": "75e73869040e3d236b0811938e196f4f25e8762b46626a10615866212ea8461d",
+    "ecdf_plot.py": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b",
+    "render.py": "d4b5f58e7836175b907d39dc9e79c6d7a1947b215e6aff25f9a06eb096bda928",
+    "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "figure_elements.py": "57e161db343d9daf76680b690e2b86ed1e18c1b582dbc01b1595f88f3da907b8"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "location": "Full-panel geometry",
+      "evidence": "The approximately 16 mm box height and approximately 32.6 mm row-center spacing remain. Unfilled boxes reduce ink but leave the broad gap.",
+      "action": "For further compactness work, compare a custom shallower summary lane and deliberate row spacing at the same 110 x 85 mm / 8 pt settings; inspect full-panel balance rather than just shrinking box height."
+    },
+    {
+      "severity": "note",
+      "location": "Point-whisker intersections",
+      "evidence": "Black horizontal whisker lines bisect many hollow circles. The raw subject marks remain distinguishable, but the line gains visual prominence.",
+      "action": "Retain filled original as a valid primary treatment or compare separately positioned summary lanes if needed."
+    },
+    {
+      "severity": "minor",
+      "location": "Generated captions",
+      "evidence": "The unit-definition sentence still produces a doubled period and captions omit per-group n; this is the same minor issue identified in the initial independent review.",
+      "action": "Use the separate polished captions already supplied. The reusable helper could normalize terminal punctuation and include per-group n in caption text."
+    }
+  ],
+  "scope_limit": "Parent-requested guided extension on the same synthetic table, not a blinded model-uplift, benchmark, use-vs-no-use or arbitrary-data evaluation."
+}

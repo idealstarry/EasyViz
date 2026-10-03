@@ -1,0 +1,150 @@
+{
+  "fields": {
+    "value": "measurement",
+    "group": "group",
+    "unit": "subject"
+  },
+  "colors": {
+    "Control": "#55A0FB",
+    "Condition": "#FF8080"
+  },
+  "order": {
+    "group": [
+      "Control",
+      "Condition"
+    ]
+  },
+  "layout": {
+    "width_mm": 110.0,
+    "height_mm": 85.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.14607979797979795,
+      "right": 0.9818181818181818,
+      "bottom": 0.13150275735294117,
+      "top": 0.976470588235294
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "distribution",
+  "labels": {
+    "x": "Measurement (a.u.)",
+    "y": ""
+  },
+  "options": {
+    "kind": "box",
+    "orientation": "horizontal",
+    "x_scale": "linear",
+    "x_limits": [
+      1.5,
+      10.2
+    ],
+    "point_layout": "beeswarm",
+    "point_area_pt2": 9,
+    "alpha": 1.0,
+    "point_style": "filled",
+    "box_style": "outline",
+    "box_width": 0.18
+  },
+  "seed": 0,
+  "resolved_colors": {
+    "Control": "#55A0FB",
+    "Condition": "#FF8080"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/create-literature-refresh/forward-test/output/guided-compact/source.csv",
+  "input_sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+  "spec_file": "/Users/starry/Desktop/EasyViz/evals/create-literature-refresh/forward-test/output/guided-compact/box-points/spec.json",
+  "spec_file_sha256": "180817cabbddad2995ea2de00d665d5fb2dafe8cbf1853ece7909871136584ff",
+  "track": "create",
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "8e058a140eba718d7f209fa9286e9bd24bf3fac75883b7f1caafbee3d56353c3",
+    "helper_sha256": {
+      "ecdf_plot.py": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b",
+      "render.py": "6d779e4d56cb2a1a1bb9577eec3f206fccaecf2fb7b699af9fd38e6c0e927ad5",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "57e161db343d9daf76680b690e2b86ed1e18c1b582dbc01b1595f88f3da907b8"
+    }
+  },
+  "point_layout": {
+    "status": "pass",
+    "overlapping_circle_pairs": 0,
+    "spacing_violation_pairs": 0,
+    "minimum_center_distance_pt": 3.2999999999999496,
+    "sample_overlapping_pairs": [],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "horizontal",
+    "seed": 0,
+    "categorical_axis": "y",
+    "quantitative_axis": "x",
+    "numeric_values_changed": false,
+    "input_rows": 54,
+    "placed_rows": 54,
+    "diameter_pt": 3.0,
+    "gap_pt": 0.3,
+    "requested_max_offset_mm": 4.0,
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "Control",
+        "rows": 24,
+        "category_spacing_pt": 92.5412155511811,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.1641666666666666,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 853010464
+      },
+      {
+        "group": "Condition",
+        "rows": 30,
+        "category_spacing_pt": 92.54121555118111,
+        "available_max_offset_mm": 3.9999999999999996,
+        "actual_max_offset_mm": 1.6527461319601884,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 968060216
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  },
+  "axis": {
+    "x_scale": "linear",
+    "x_limits": [
+      1.5,
+      10.2
+    ]
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -16,6 +16,10 @@ Use one integrated heatmap panel, an inferno scale, 8 pt Arial labels, and a fix
 | Layout | One integrated panel; readable final-size labels; no overlapping labels or clipping; no tight crop. |
 | Reproducibility | Script uses only its local data and settings. No reference figure or author plotting code is an input. |
 
-## Adopted cosmetic refinements
+## Adopted design refinement
 
-The original request used an inferno scale; the earlier accepted example adopted a literature-inspired coral scale. The current Create refinement retains a linear −400 to 1,000 min coral/orange scale, lowers the saturation of marginal bars and genome-status strips, and uses lighter supporting strokes. These are cosmetic design choices. The source values, rank selection, complete-denominator summaries, 180 × 160 mm layout and 8 pt text remain unchanged.
+The original request used inferno; an earlier accepted example used a single linear coral ramp. The current user-requested refinement adopts a crisp blue–white–gold–orange–coral diverging scale with zero as the neutral growth-delay reference. `TwoSlopeNorm` preserves the −400 and 1,000 min limits but changes their normalized proportions explicitly: −400 → 0, 0 → 0.5, 1,000 → 1. Forward and inverse formulas, raw-minute colorbar ticks, and no-clipping checks are recorded. Marginals use clear opaque sky blue; genome status uses charcoal and outlined white. Supporting grids and matrix seams are removed.
+
+All 5,776 source values, 400 selected cells, 152 full-matrix means, rank ordering, 180 × 160 mm canvas, and 8 pt Arial remain unchanged. The only geometry adjustment expands/repositions the bottom-right colorbar for its zero and intermediate positive ticks. No significance, clustering, biological threshold, or transformed measurement table is introduced.
+
+The adopted continuous color stops make moderate positive values gold and stronger values orange/coral. They retain the same piecewise normalization and raw-minute readout; their ordered branch luminance is checked. This replaces the first blue–white–red candidate, which remained overwhelmingly pale pink for this data.

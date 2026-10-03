@@ -32,6 +32,8 @@ still requires nonconstant values and at least two observations per group.
 | `point_max_offset_mm` | Maximum center displacement from the categorical position, in mm; default 4. Must be positive and requires `beeswarm`. The actual lane may be narrower to protect adjacent categories and axes boundaries. |
 | `point_gap_pt` | Nonnegative requested edge gap between observation circles, in points; default 0.3. Requires `beeswarm`. |
 | `point_area_pt2` | Existing Matplotlib `s` parameter, squared circle diameter; default 9 means a 3 pt diameter. It is not the geometric fill area. |
+| `point_style` | `filled` retains the borderless observation default; `hollow` has no face fill and a group-colored stroke. Hollow packing uses the outer diameter `sqrt(s) + point_edge_width_pt`, not the nominal circle alone. |
+| `point_edge_width_pt` | Positive finite number, requires hollow; default 0.45 pt. An outlined observation is a fixed-size glyph, not quantitative filled-area encoding. |
 | `seed` | Replays symmetric choices and placement among equal values. Group labels also contribute to a recorded deterministic seed. |
 
 Packing uses the final plot geometry after margins, optional measured layout,

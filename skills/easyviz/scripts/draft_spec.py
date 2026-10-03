@@ -73,6 +73,10 @@ def draft(data_path, chart, assignments, out, *, normalization=None,
         # New create drafts adopt an editable starting hierarchy. Existing specs
         # and shared profiles retain their accepted stroke settings.
         spec["line_roles"] = deepcopy(renderer.SCHEMA["line_roles"])
+        if chart == "scatter":
+            spec["options"] = {"alpha": 1, "point_style": "filled"}
+        elif chart == "distribution":
+            spec["options"] = {"alpha": 1, "point_style": "filled", "box_style": "outline", "box_width": .18}
     if chart == "composition":
         renderer.require(normalization in ("none", "sample_sum", "denominator"), "Composition requires --normalization none, sample_sum, or denominator")
         spec["options"] = {"normalization": normalization}

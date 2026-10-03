@@ -63,9 +63,9 @@
     96
   ],
   "colorbar_mm": [
-    143,
-    17,
-    28,
+    119,
+    6,
+    52,
     3
   ],
   "text_positions_mm": {
@@ -86,8 +86,8 @@
       132.5
     ],
     "colorbar_title": [
-      157,
-      22
+      145,
+      11
     ],
     "genome_legend": [
       40,
@@ -99,31 +99,79 @@
     1000
   ],
   "colormap": [
-    "#FFFAF7",
-    "#FBE0D4",
-    "#F6B39C",
-    "#ED8A6A",
-    "#E36F50"
+    "#4B9BDD",
+    "#B8DCFA",
+    "#FFFFFF",
+    "#FFF0B5",
+    "#FFD168",
+    "#FF995D",
+    "#F24E55"
   ],
-  "mean_color": "#6C9FB2",
+  "mean_color": "#49ACDE",
   "genome_colors": {
-    "0": "#E8ECEF",
-    "1": "#708C94"
+    "0": "#FFFFFF",
+    "1": "#444444"
   },
   "grid_color": "#EBEDEC",
-  "palette_family": "easyviz-create-coral-muted",
-  "palette_preset": "coral-matrix-muted-marginals",
-  "palette_source": "https://www.nature.com/articles/s41467-024-52687-7",
-  "palette_status": "EasyViz design adaptation of the earlier literature-inspired coral family; the light coral/orange ramp and muted supporting colors are explicit design choices, not sampled paper colors. Linear normalization remains -400 to 1000 min.",
+  "palette_family": "easyviz-create-blue-white-gold-coral",
+  "palette_preset": "zero-centered-blue-gold-orange-coral",
+  "palette_source": [
+    "https://doi.org/10.1038/s41467-017-02391-6",
+    "https://doi.org/10.1038/s41467-023-43021-8",
+    "https://doi.org/10.1038/s41590-023-01468-3"
+  ],
+  "palette_status": "EasyViz ordered multi-hue design adaptation after inspecting PROGENy Fig. 2b/c, scWAT Fig. 2b and Vanneste Fig. 4d. Colors are chosen, not sampled. Blue-white negative/neutral and white-gold-orange-coral positive arms use explicit color-coordinate stops, each monotonic in relative luminance toward/away from zero. TwoSlopeNorm remains -400 -> 0, 0 -> 0.5 and 1000 -> 1 with piecewise linear slopes.",
   "panel_title": null,
   "caption_file": "caption.md",
-  "axis_color": "#9AA5A6",
-  "text_color": "#252E31",
+  "axis_color": "#444444",
+  "text_color": "#252525",
   "grid_width_pt": 0.35,
+  "color_normalization": "two_slope",
+  "color_center": 0,
+  "mean_grid": false,
+  "colorbar_ticks": [
+    -400,
+    0,
+    250,
+    500,
+    1000
+  ],
+  "genome_tile_outline_policy": "Genome 0: white fill with 0.45 pt charcoal outline; genome 1: solid charcoal fill. The outline makes unfilled binary cells visible; mean bars remain borderless.",
+  "color_stops": [
+    [
+      0,
+      "#4B9BDD"
+    ],
+    [
+      0.25,
+      "#B8DCFA"
+    ],
+    [
+      0.5,
+      "#FFFFFF"
+    ],
+    [
+      0.55,
+      "#FFF0B5"
+    ],
+    [
+      0.625,
+      "#FFD168"
+    ],
+    [
+      0.75,
+      "#FF995D"
+    ],
+    [
+      1,
+      "#F24E55"
+    ]
+  ],
+  "check_branch_luminance": true,
   "actual_font": "Arial",
   "source_sha256": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
   "genome_sha256": "7d3b0170f645acf20dadb4b2ed476241fb9cfd2c28863a2fcdc24e61975e9bf5",
-  "script_sha256": "328227f2f836479d046ec81d849eac3da4773bf5f1778d798f4c27954f6c533d",
+  "script_sha256": "29f2da59c65186c7f96dc579a3ff134b7e7cb7dcedc773f746a7f6c34190e74e",
   "selected_sender_ids": [
     "10040100629",
     "CP23",
@@ -191,5 +239,82 @@
     76
   ],
   "source_file": "source-data.csv",
-  "genome_file": "genome-status.csv"
+  "genome_file": "genome-status.csv",
+  "normalization_contract": {
+    "class": "TwoSlopeNorm",
+    "method": "two_slope",
+    "vmin": -400,
+    "vcenter": 0,
+    "vmax": 1000,
+    "clip": false,
+    "forward_piecewise": [
+      "x <= 0: 0.5 * (x - (-400)) / (0 - (-400))",
+      "x >= 0: 0.5 + 0.5 * (x - (0)) / (1000 - (0))"
+    ],
+    "inverse_piecewise": [
+      "u <= 0.5: -400 + 2 * u * (0 - (-400))",
+      "u >= 0.5: 0 + 2 * (u - 0.5) * (1000 - (0))"
+    ],
+    "neutral_normalized_position": 0.5,
+    "source_values_normalized_range": [
+      0.0013660501249999869,
+      0.99070895015
+    ],
+    "order_and_inverse_checked_points": 5721,
+    "strict_order_and_inverse_pass": true,
+    "color_stops": [
+      {
+        "normalized_position": 0,
+        "raw_minutes": -400.0,
+        "color": "#4B9BDD"
+      },
+      {
+        "normalized_position": 0.25,
+        "raw_minutes": -200.0,
+        "color": "#B8DCFA"
+      },
+      {
+        "normalized_position": 0.5,
+        "raw_minutes": 0.0,
+        "color": "#FFFFFF"
+      },
+      {
+        "normalized_position": 0.55,
+        "raw_minutes": 100.00000000000009,
+        "color": "#FFF0B5"
+      },
+      {
+        "normalized_position": 0.625,
+        "raw_minutes": 250.0,
+        "color": "#FFD168"
+      },
+      {
+        "normalized_position": 0.75,
+        "raw_minutes": 500.0,
+        "color": "#FF995D"
+      },
+      {
+        "normalized_position": 1,
+        "raw_minutes": 1000.0,
+        "color": "#F24E55"
+      }
+    ],
+    "branch_luminance_check": {
+      "space": "sRGB relative luminance",
+      "sampled_color_coordinates": 1025,
+      "negative_arm_nondecreasing": true,
+      "positive_arm_nonincreasing": true,
+      "negative_arm_minimum_increment": 0.0010730953586888248,
+      "positive_arm_maximum_increment": -0.0005120888205470964,
+      "zero_relative_luminance": 1.0
+    },
+    "readout_mapping": "Colorbar tick positions use norm(raw minutes); inverse(norm(x)) returns original minutes."
+  },
+  "actual_colorbar_ticks": [
+    -400,
+    0,
+    250,
+    500,
+    1000
+  ]
 }

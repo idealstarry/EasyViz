@@ -19,7 +19,7 @@ Palettes, proportions, dimensions and fonts are configurable. Each panel is expo
 
 Related panels can share a [figure profile](skills/easyviz/references/figure-profile.md) so category colors, typography and quantitative scales stay consistent. Dot plots distinguish [measured zero, unmeasured and absent data](skills/easyviz/references/dot-states.md) without changing proportional dot areas. Unknown configuration fields fail with a correction hint.
 
-Create panels use [explicit color and stroke roles](skills/easyviz/references/create-style.md) to distinguish the main observations or estimates from summaries, references, axes and grids. New core-chart drafts include an editable stroke hierarchy; existing specifications and adopted reproduction styles keep their recorded settings. Palettes are selected on the actual data rather than accepted from swatches alone.
+Create panels use [literature design mechanisms](skills/easyviz/references/literature-style.md) and [explicit mark and stroke settings](skills/easyviz/references/create-style.md): clear observations, visible summary boundaries, aligned comparisons and meaningful color scales. New core-chart drafts use opaque observations and an editable stroke hierarchy; existing specifications and adopted reproduction styles keep their recorded settings. Palettes are selected on the actual data rather than accepted from swatches alone.
 
 For a first panel, the Agent can [generate a validated specification](skills/easyviz/references/quick-start.md) from explicit column meanings and use measured layout to fit labels and legends inside the requested canvas. Dense heatmap value labels are checked against their cells. These helpers reduce repeated configuration work; actual image review still determines readability and balance.
 
@@ -44,7 +44,7 @@ definitions rather than treating every table as interchangeable.
 
 **Create · paired myeloid changes**
 
-All 832 paired changes are plotted behind stronger median/IQR summaries. Coordinated cohort colors, a quiet zero guide and aligned percentages support comparison of magnitude and consistency.
+All 832 paired changes are plotted in aligned cohort views with the same score axis. Clear observation marks, outlined median/IQR summaries and aligned fractions below zero distinguish the data layers. The observed scWAT blue/coral pair is explicitly reassigned to the two cohorts.
 
 <p align="center"><a href="examples/create/paired-myeloid-remodeling/"><img src="examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png" alt="All paired myeloid changes with cohort median, IQR and fractions below zero" width="720"></a></p>
 
@@ -52,7 +52,7 @@ All 832 paired changes are plotted behind stronger median/IQR summaries. Coordin
 
 **Create · annotated inhibition matrix**
 
-Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view.
+Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view. A cold–white–warm scale explicitly anchors zero; its asymmetric branches and original minute values are recorded separately.
 
 <p align="center"><a href="examples/create/annotated-inhibition/"><img src="examples/create/annotated-inhibition/panel.png" alt="Microbial inhibition heatmap with annotations and marginal means" width="720"></a></p>
 
@@ -114,6 +114,8 @@ names, HEX values and sources are selectable text.
 
 | Palette | Color preview |
 | --- | --- |
+| **Clear blue · coral**<br>`scwat-blue-coral` · categorical<br>[Huang 2023 · Fig. 2](https://www.nature.com/articles/s41467-023-43021-8) | <img src="docs/assets/palettes/scwat-blue-coral.png" alt="Two observed categorical colors: clear blue and coral" width="440" height="28"><br>`#55A0FB` `#FF8080` |
+| **Clear blue · white · coral**<br>`scwat-blue-white-coral` · diverging<br>Adapted · [Huang 2023 · Fig. 2](https://www.nature.com/articles/s41467-023-43021-8) | <img src="docs/assets/palettes/scwat-blue-white-coral.png" alt="Adapted diverging blue-white-coral ramp" width="440" height="28"><br>low `#55A0FB` → center `#FFFFFF` → high `#FF8080` |
 | **Blue · amber · teal · pink**<br>`notch2-balanced` · categorical<br>[Cruz Tleugabulova 2024 · Fig. 2b](https://www.nature.com/articles/s41467-024-53700-9) | <img src="docs/assets/palettes/notch2-balanced.png" alt="Four categorical colors: blue, amber, teal and pink" width="440" height="28"><br>`#2581B9` `#DF9A3C` `#1AA781` `#CC86B9` |
 | **Blue for borderless marks**<br>`notch2-blue` · sequential<br>Adapted · [Cruz Tleugabulova 2024 · Fig. 2b](https://www.nature.com/articles/s41467-024-53700-9) | <img src="docs/assets/palettes/notch2-blue.png" alt="Light-to-strong blue gradient" width="440" height="28"><br>low `#D3E6F1` → high `#2581B9` |
 | **Sky · coral · teal**<br>`somerville-bright` · categorical<br>[Somerville 2024 · Fig. 1B / 2B](https://www.nature.com/articles/s41467-024-52687-7) | <img src="docs/assets/palettes/somerville-bright.png" alt="Six categorical colors: sky, coral, teal, violet, gold and turquoise" width="440" height="28"><br>`#29ACF3` `#E47751` `#007F7F` `#A37FFF` `#FFED7F` `#00DCDC` |

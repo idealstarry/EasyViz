@@ -61,7 +61,7 @@ When the user changes a font or text size, update the shared settings and rerend
 
 ## Filled marks and palette combinations
 
-Declare one outline policy for comparable filled dots, bars, and matching legend swatches within an integrated panel. Create defaults to borderless fills: explicitly disable edge strokes rather than relying on plotting-library defaults. In reproduce, resolve the policy from the adopted specification and user requirements. Do not incidentally outline dots while leaving related bars or legend keys borderless. Axes, error bars, and other line encodings are separate roles.
+Declare an explicit treatment per comparable mark role and match its legend symbols. Fixed-size observations can be opaque filled or hollow; distribution summaries can have unfilled interiors with clear boundaries. Quantitative circle-fill areas remain filled and retain their area contract. Binary white metadata tiles may need a purposeful outline. Do not add or remove every outline together, or mix unrelated library defaults. Check actual point-summary crossings and summary thickness after layout; a clear thin dark axis is legitimate. In reproduce, resolve the policy from the adopted specification and user requirements. Axes, error bars and other line encodings remain separate roles.
 
 An outline can be intentional when it encodes a distinction or is needed to make marks readable. Record the affected mark role, edge color/width, and scientific or readability reason in the saved settings; apply its legend treatment consistently. Review any effect on the perceived area of quantitative dots. Styling exceptions must not arise solely because different plotting functions have different defaults.
 

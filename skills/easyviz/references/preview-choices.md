@@ -41,12 +41,12 @@ explicit colors.
     "unit_definition": "Sampling unit unknown; each row is one supplied measurement"
   },
   "measurement_units": null,
-  "colors": {"Control": "#0072B2", "Treatment": "#D55E00"},
+  "colors": {"Control": "#55A0FB", "Treatment": "#FF8080"},
   "order": {"group": ["Control", "Treatment"]},
   "layout": {"width_mm": 88, "height_mm": 70, "font": "Arial", "font_size_pt": 8, "dpi": 300},
   "labels": {"value": "Reading", "group": "Condition"},
   "formats": ["png", "pdf", "svg"],
-  "options": {"value_scale": "linear", "point_layout": "jitter", "point_alpha": 0.65, "include_violin": false}
+  "options": {"value_scale": "linear", "point_layout": "beeswarm", "point_alpha": 1, "point_style": "filled", "box_style": "outline", "box_width": 0.18, "include_violin": false}
 }
 ```
 
@@ -120,15 +120,27 @@ clear error before any output rather than a silent chart substitution.
 points can overlap, which must be inspected at final size. Explicit `beeswarm`
 uses the existing physically measured point placement and fails if all points
 cannot fit. Both policies retain numeric values, row membership and point size.
-The box/violin layers use a consistent .22-alpha fill and category-colored
-outline; observation points are borderless. `point_alpha` controls only those
-raw points: it must be a finite number greater than zero and at most one, with
-a default of .65 to help median strokes remain readable beneath repeated
-measurements. An explicit one restores opaque points. ECDF lines, summary
-strokes and fills retain their own settings. Opacity preserves point area,
-source values, scales and category color identity. These outlines decode
-summary geometry, while the points decode every raw value; overlapping points
-still require final-size inspection.
+`point_style` selects fixed-size `filled` or `hollow` observations.
+`point_edge_width_pt` is a positive finite number that requires hollow marks;
+the default hollow stroke is 0.45 pt. Hollow points have no face fill, use
+category-colored edges, and include stroke extent in physical placement.
+`box_style=outline` removes the box interior fill while retaining quartiles,
+whiskers and medians; it applies only to the box candidate. Optional violins
+retain their own fill and boundary, even when the box is outlined. The helper
+audits actual observation edges/faces and box fill as well as values.
+`box_width` controls categorical box thickness, with finite `0 < box_width <= 1`;
+the legacy default is 0.5. A starting 0.18 reduces oversized summary areas in
+sparse layouts without changing their numeric quartiles. Inspect final physical
+thickness and point-summary crossings. It is not applied to optional violins.
+
+Use explicit opaque marks and a clear summary boundary for the crisp treatment
+above; select a filled or other treatment after final-size inspection when
+crowding calls for it. Omitted style options retain the original filled points,
+.22-alpha summary fill and .65 observation alpha for existing requests.
+`point_alpha` affects only raw points and must satisfy finite `0 < alpha <= 1`;
+it does not change values, point size or group identity. ECDFs and summary
+strokes keep their own settings. See [Create colors and strokes](create-style.md)
+for role-based decisions rather than universally thinning/fading marks.
 
 ## Deliverables and verification
 

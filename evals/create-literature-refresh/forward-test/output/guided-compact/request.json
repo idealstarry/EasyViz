@@ -1,0 +1,59 @@
+{
+  "row_kind": "observations",
+  "fields": {
+    "value": "measurement",
+    "group": "group",
+    "unit": "subject"
+  },
+  "design": {
+    "structure": "independent",
+    "confirmed": true,
+    "unit_definition": "Each row is one independent synthetic subject, as explicitly supplied in the task."
+  },
+  "measurement_units": "a.u.",
+  "colors": {
+    "Control": "#55A0FB",
+    "Condition": "#FF8080"
+  },
+  "order": {
+    "group": [
+      "Control",
+      "Condition"
+    ]
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 85,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8
+  },
+  "labels": {
+    "value": "Measurement",
+    "group": ""
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "options": {
+    "value_scale": "linear",
+    "value_limits": [
+      1.5,
+      10.2
+    ],
+    "point_layout": "beeswarm",
+    "point_alpha": 1,
+    "include_violin": false,
+    "point_style": "filled",
+    "box_style": "outline",
+    "box_width": 0.18
+  }
+}

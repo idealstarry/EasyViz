@@ -1,0 +1,220 @@
+{
+  "version": "0.1.0",
+  "status": "pass",
+  "valid_outputs": true,
+  "track": "create",
+  "source_binding": {
+    "original_path": "/Users/starry/Desktop/EasyViz/evals/create-literature-refresh/forward-test/observations.csv",
+    "snapshot": "source.csv",
+    "sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+    "rows": 54
+  },
+  "request_binding": {
+    "original_path": "/Users/starry/Desktop/EasyViz/evals/create-literature-refresh/forward-test/output/compact-request.json",
+    "snapshot": "request.json",
+    "sha256": "50193221e574328ae6059cd5f86ffe69014ebbe177492a8d517b6a39f4b4ba66"
+  },
+  "fields": {
+    "value": "measurement",
+    "group": "group",
+    "unit": "subject"
+  },
+  "design": {
+    "structure": "independent",
+    "confirmed": true,
+    "unit_definition": "Each row is one independent synthetic subject, as explicitly supplied in the task."
+  },
+  "measurement_units": "a.u.",
+  "shared_settings": {
+    "layout": {
+      "width_mm": 110,
+      "height_mm": 85,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "line_width_pt": 0.6,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "typography": {
+      "axis": 8,
+      "tick": 8,
+      "legend": 8
+    },
+    "colors": {
+      "Control": "#55A0FB",
+      "Condition": "#FF8080"
+    },
+    "order": {
+      "group": [
+        "Control",
+        "Condition"
+      ]
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ]
+  },
+  "value_axis": {
+    "scale": "linear",
+    "limits": [
+      1.5,
+      10.2
+    ]
+  },
+  "choices": [
+    {
+      "id": "box-points",
+      "reading_task": "Compare group medians, spread and all individual measurements",
+      "definition": "Box: median and 25th/75th percentiles; whiskers reach observed values within 1.5 IQR. Every observation is also a point.",
+      "limitations": [
+        "Quartiles and whiskers describe source observations, not confidence intervals.",
+        "Box summaries can obscure multimodality; inspect every point and the ECDF."
+      ],
+      "spec": "box-points/spec.json",
+      "caption": "box-points/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "box-points/caption.md",
+          "sha256": "6e2a3a9801c37318ae1bf086fd2aba8337040ad25407d2131623c1364fe5d685"
+        },
+        {
+          "path": "box-points/elements.json",
+          "sha256": "37fcff783de780b2f55760f6ca8aed508d418b5df9f701e6c0b5947af0dcf774"
+        },
+        {
+          "path": "box-points/panel.pdf",
+          "sha256": "11647146894ed638e75da165d1d3a305be8559540a2c64745e520cb0b4a8e143"
+        },
+        {
+          "path": "box-points/panel.png",
+          "sha256": "31f0fce6ceca74cd82bc9b0f179d3b07a1b557e5a57a5bf5df7fa5cedf79c37a"
+        },
+        {
+          "path": "box-points/panel.svg",
+          "sha256": "a8fdb08c586e4b3f66043b72b3325ea3cc564e44faec3f6ad3647216bfa214f0"
+        },
+        {
+          "path": "box-points/plotting-data.csv",
+          "sha256": "f02c40e734db9993f9d6e57d71e25839142c60a82516662e26d29dbfc10f0a14"
+        },
+        {
+          "path": "box-points/qa.json",
+          "sha256": "5082922044529eb69db743fafba5484f680f0124ebe11ac250bb71230f6b187a"
+        },
+        {
+          "path": "box-points/settings.json",
+          "sha256": "3106fb3dcf7803d8f6a4f15f80d8f00c17bb9128b939d7d76a1b03969fd2054b"
+        },
+        {
+          "path": "box-points/spec.json",
+          "sha256": "180817cabbddad2995ea2de00d665d5fb2dafe8cbf1853ece7909871136584ff"
+        },
+        {
+          "path": "box-points/stats.json",
+          "sha256": "02903f28c3c540914a451ed9b459c7e9c656b920b5fa7d0f624b4928f4680308"
+        }
+      ]
+    },
+    {
+      "id": "ecdf",
+      "reading_task": "Compare the full observed distribution, tails and fraction at or below a value",
+      "definition": "Right-continuous F(x)=count(value <= x)/group observation count; all ties contribute their full jump. Horizontal tails extend only for display.",
+      "limitations": [
+        "Curve fractions use each group's own row-count denominator.",
+        "Marginal distributions do not encode within-unit changes or establish independence.",
+        "No density smoothing, fitted distribution or confidence band."
+      ],
+      "spec": "ecdf/spec.json",
+      "caption": "ecdf/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "ecdf/caption.md",
+          "sha256": "30be72295d28352dde2030d3ddb548b2f666227cbc9b573c2914f065454dcba6"
+        },
+        {
+          "path": "ecdf/cumulative-data.csv",
+          "sha256": "ee5e802486f74e899bdcea71605a1999063f84832901bf8cf1d5ab53566a7999"
+        },
+        {
+          "path": "ecdf/elements.json",
+          "sha256": "654691a4e80b8dba5c77818ff81924dbe371be9b4337f77a5f97ffe9e5021d9a"
+        },
+        {
+          "path": "ecdf/panel.pdf",
+          "sha256": "35665bbd1b6d9aaa1ae686133aba0b2042a94786cdac4c789a0e26f64c607e82"
+        },
+        {
+          "path": "ecdf/panel.png",
+          "sha256": "3468fab1d9fb1302106f0651051813a7b6fe0881bcfe36856516709c64761012"
+        },
+        {
+          "path": "ecdf/panel.svg",
+          "sha256": "f5c42069ad2c1af7e352dee4d7599ad97a5ab34108740e2df1dbf58867b75e31"
+        },
+        {
+          "path": "ecdf/plotting-data.csv",
+          "sha256": "281a87300f8ce2d0d0eab9463c8e17c65926dd186304179563eeb6ddc60ed47b"
+        },
+        {
+          "path": "ecdf/qa.json",
+          "sha256": "49d82c6ae52d24b2df6cbc65e37416e3a9f8ac655e15a34caac1b7cf47ef062d"
+        },
+        {
+          "path": "ecdf/settings.json",
+          "sha256": "c5c593ab2305529cf1b60b28ca2517837babb6cfb897834c3158ae9c5d67f29d"
+        },
+        {
+          "path": "ecdf/spec.json",
+          "sha256": "cb2f670c74b238e5bfbd6f70e105fb1c5bc275033f482fef19f691651eb6d317"
+        },
+        {
+          "path": "ecdf/stats.json",
+          "sha256": "69f6f75906288d78166871d43e844ebfa358c4c87d4940affdd01b9552f741c2"
+        }
+      ]
+    }
+  ],
+  "selection": {
+    "chosen_choice": null,
+    "automatic_winner": false
+  },
+  "visual_review_required": true,
+  "helper_sha256": {
+    "preview_choices.py": "8e058a140eba718d7f209fa9286e9bd24bf3fac75883b7f1caafbee3d56353c3",
+    "ecdf_plot.py": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b",
+    "render.py": "6d779e4d56cb2a1a1bb9577eec3f206fccaecf2fb7b699af9fd38e6c0e927ad5",
+    "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "figure_elements.py": "57e161db343d9daf76680b690e2b86ed1e18c1b582dbc01b1595f88f3da907b8"
+  },
+  "common_files": [
+    {
+      "path": "source.csv",
+      "sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd"
+    },
+    {
+      "path": "request.json",
+      "sha256": "50193221e574328ae6059cd5f86ffe69014ebbe177492a8d517b6a39f4b4ba66"
+    },
+    {
+      "path": "observation-trace.csv",
+      "sha256": "03e2c00ff2bd75512fa81f09a250205fb0492523e74c467bb59c34793f4ab578"
+    },
+    {
+      "path": "qa.json",
+      "sha256": "2f085c12ecaa3591bc6253ec68f39e223e211d00def27934d14604c897e515c5"
+    },
+    {
+      "path": "visual-review.md",
+      "sha256": "d0224217ad1db6faed7caad49609a5255a3c7268197bb760b39370a7816efacb"
+    }
+  ]
+}

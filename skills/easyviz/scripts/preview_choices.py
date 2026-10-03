@@ -48,7 +48,7 @@ CONTRACT = {
         "typography": {"axis": "optional pt", "tick": "optional pt", "legend": "optional pt"},
         "labels": {"value": "optional measurement name without invented units", "group": "optional group label"},
         "formats": ["png", "pdf", "svg"],
-        "options": {"value_scale": "linear|log", "value_limits": "optional complete ascending bounds", "point_layout": "jitter|beeswarm", "point_alpha": "finite 0 < alpha <= 1; default 0.65, raw observations only", "include_violin": False},
+        "options": {"value_scale": "linear|log", "value_limits": "optional complete ascending bounds", "point_layout": "jitter|beeswarm", "point_alpha": "finite 0 < alpha <= 1; legacy default 0.65, raw observations only", "point_style": "filled|hollow; legacy default filled", "point_edge_width_pt": "positive finite number; requires hollow", "box_style": "filled|outline; box candidate only", "box_width": "finite 0 < width <= 1; category spacing units; legacy default 0.5", "include_violin": False},
     },
     "choices": ["box-points: median/IQR/1.5-IQR whiskers and every raw observation", "ecdf: count(value <= x)/group row count, unsmoothed full tie jumps", "violin-points: optional Gaussian KDE, Scott bandwidth, all points; at least 5 distinct values in every group"],
     "invariants": ["Same byte-identical source snapshot, rows, literal IDs, dimensions, actual font, font sizes, category colors and value axis limits.", "No silent exclusion, transformation, aggregation, pairing, confidence interval or hypothesis test.", "Unknown units or independence permit clearly labeled descriptive previews only.", "Repeated unit IDs across groups and explicit paired/repeated designs require prepared complete paired data and paired_plot.py; these marginal choices do not encode pairing.", "Fresh output directory; failed QA remains marked invalid. PNG is required for inspection. Inspect all actual exports before choosing; no winner is selected."],
@@ -141,7 +141,7 @@ def prepare_request(raw, request):
         ids = [row[ui] for row in rows]
         require(len(ids) == len(set(ids)), "Unit IDs repeated across groups require an explicit paired/repeated design and complete paired_plot.py input; pairing cannot be inferred or discarded")
     options = request.get("options", {})
-    _object(options, {"value_scale", "value_limits", "point_layout", "point_alpha", "include_violin"}, "options")
+    _object(options, {"value_scale", "value_limits", "point_layout", "point_alpha", "point_style", "point_edge_width_pt", "box_style", "box_width", "include_violin"}, "options")
     require(options.get("value_scale", "linear") in ("linear", "log"), "value_scale must be linear or log")
     require(options.get("point_layout", "jitter") in ("jitter", "beeswarm"), "point_layout must be jitter or beeswarm")
     point_alpha = _number(options.get("point_alpha", .65), "point_alpha", positive=True)
@@ -183,6 +183,9 @@ def prepare_request(raw, request):
     measurement = labels.get("value", fields["value"])
     measurement += f" ({request['measurement_units']})" if request["measurement_units"] is not None else " (units unknown)"
     distribution = {**deepcopy(common), "chart": "distribution", "labels": {"x": measurement, "y": labels.get("group", fields["group"])}, "options": {"kind": "box", "orientation": "horizontal", "x_scale": scale, "x_limits": list(bounds), "point_layout": options.get("point_layout", "jitter"), "point_area_pt2": 9, "alpha": point_alpha}, "seed": 0}
+    for name in ("point_style", "point_edge_width_pt", "box_style", "box_width"):
+        if name in options:
+            distribution["options"][name] = options[name]
     empirical = {**deepcopy(common), "chart": "ecdf", "labels": {"x": measurement, "y": "Cumulative fraction"}, "options": {"x_scale": scale, "x_limits": list(bounds), "curve_line_width_pt": .8}, "legends": {"categorical": {"position": "bottom"}}}
     core.validate_spec(distribution)
     ecdf.validate_spec(empirical)
@@ -190,6 +193,8 @@ def prepare_request(raw, request):
     if options.get("include_violin", False):
         violin = deepcopy(distribution)
         violin["options"]["kind"] = "violin"
+        violin["options"].pop("box_style", None)
+        violin["options"].pop("box_width", None)
         specs.append(("violin-points", violin))
     return headers, rows, specs
 
@@ -201,9 +206,10 @@ def audit_distribution_artists(raw, spec, fig):
     vi, gi = headers.index(fields["value"]), headers.index(fields["group"])
     from matplotlib.collections import PathCollection
     points = [p for p in fig.axes[0].collections if isinstance(p, PathCollection)]
-    issues, counts, actual_facecolors = [], {}, {}
+    issues, counts, actual_facecolors, actual_edgecolors = [], {}, {}, {}
     numeric_values_unchanged = True
     intended_alpha = spec["options"]["alpha"]
+    hollow = spec["options"].get("point_style") == "hollow"
     if len(points) != len(groups):
         issues.append("actual point collections do not match groups")
     for index, (group, artist) in enumerate(zip(groups, points)):
@@ -216,7 +222,14 @@ def audit_distribution_artists(raw, spec, fig):
         facecolors = artist.get_facecolors()
         expected_rgba = core.mcolors.to_rgba(spec["colors"][group], alpha=intended_alpha)
         actual_facecolors[group] = facecolors.tolist()
-        if not len(facecolors) or not core.np.allclose(facecolors, expected_rgba):
+        if hollow:
+            edgecolors = artist.get_edgecolors()
+            actual_edgecolors[group] = edgecolors.tolist()
+            if len(facecolors) or not len(edgecolors) or not core.np.allclose(edgecolors, expected_rgba):
+                issues.append(f"actual hollow observation fill/edge differs for {group}")
+            if not core.np.allclose(artist.get_linewidths(), spec["options"].get("point_edge_width_pt", .45)):
+                issues.append(f"actual hollow observation stroke differs for {group}")
+        elif not len(facecolors) or not core.np.allclose(facecolors, expected_rgba):
             issues.append(f"actual observation color/alpha differs for {group}")
         if artist.get_alpha() is None or not core.np.allclose(artist.get_alpha(), intended_alpha):
             issues.append(f"actual observation alpha differs for {group}")
@@ -225,10 +238,13 @@ def audit_distribution_artists(raw, spec, fig):
             patches = fig.axes[0].patches
             if len(patches) <= index or not core.np.allclose([patches[index].get_path().vertices[:, 0].min(), patches[index].get_path().vertices[:, 0].max()], quartiles[[0, 2]]):
                 issues.append(f"actual box quartiles differ for {group}")
-            median = [line for line in fig.axes[0].lines if len(line.get_xdata()) == 2 and core.np.allclose(line.get_xdata(), [quartiles[1], quartiles[1]]) and core.np.allclose(line.get_ydata(), [index - .25, index + .25])]
+            if spec["options"].get("box_style") == "outline" and (len(patches) <= index or patches[index].get_facecolor()[3] != 0):
+                issues.append(f"actual outline box has a fill for {group}")
+            half_width = spec["options"].get("box_width", .5) / 2
+            median = [line for line in fig.axes[0].lines if len(line.get_xdata()) == 2 and core.np.allclose(line.get_xdata(), [quartiles[1], quartiles[1]]) and core.np.allclose(line.get_ydata(), [index - half_width, index + half_width])]
             if len(median) != 1:
                 issues.append(f"actual median differs for {group}")
-    return {"status": "pass" if not issues else "needs_revision", "source_rows": len(rows), "audited_observations": sum(counts.values()), "group_counts": counts, "intended_point_alpha": intended_alpha, "actual_point_facecolors": actual_facecolors, "numeric_values_unchanged": numeric_values_unchanged, "tests_performed": False, "experimental_independence_inferred": False, "issues": issues}
+    return {"status": "pass" if not issues else "needs_revision", "source_rows": len(rows), "audited_observations": sum(counts.values()), "group_counts": counts, "intended_point_alpha": intended_alpha, "point_style": spec["options"].get("point_style", "filled"), "actual_point_facecolors": actual_facecolors, "actual_point_edgecolors": actual_edgecolors, "numeric_values_unchanged": numeric_values_unchanged, "tests_performed": False, "experimental_independence_inferred": False, "issues": issues}
 
 
 def _render_distribution(source, raw, spec, out, spec_path):
@@ -291,6 +307,10 @@ def _caption(choice, request, rows, source_hash):
         policy = request.get("options", {}).get("point_layout", "jitter")
         text += " Categorical point offsets are deterministic jitter and carry no numerical meaning; points may overlap at the final size." if policy == "jitter" else " Beeswarm offsets affect only category position; measurement values are unchanged."
         text += f" Raw points use opacity {request.get('options', {}).get('point_alpha', .65):g}; this display setting changes neither measurement values nor category color assignments."
+        if request.get("options", {}).get("point_style") == "hollow":
+            text += " Fixed-size hollow observations have no face fill and category-colored edges; the edge extent is included in physical packing checks."
+        if choice == "box-points" and request.get("options", {}).get("box_style") == "outline":
+            text += " The box interior is unfilled; its outline and median retain the source quartiles."
     if request["design"]["structure"] == "unknown" or not request["design"]["confirmed"]:
         text += " Experimental independence is unconfirmed; group row counts are descriptive observations and are not established independent sample sizes."
     if request["measurement_units"] is None:

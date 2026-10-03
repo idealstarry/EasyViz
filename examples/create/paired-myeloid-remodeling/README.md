@@ -16,13 +16,33 @@ The matrix is useful when participant structure is the question. The distributio
 
 The main README shows the complete distribution-ledger panel at a readable
 width rather than compressing these three complex candidates into one row.
-Current exports use a coordinated blue/coral cohort mapping, faint participant
-points, stronger median/IQR segments, a lighter dashed zero guide, and quiet
-group separators. The participant matrix uses the same cohort endpoints around
-white, retaining the symmetric −12…12 score scale. These are explicit EasyViz
-design adaptations; they do not claim to recover the paper's colors. Data,
-quartiles, percentages, participant ordering and 8 pt manuscript text remain
-unchanged.
+Current exports use crisp opaque participant marks, small outlined IQR boxes
+with dark median ticks, a thin black dashed zero guide, and quiet group
+separators. The distribution ledger has two aligned cohort facets with identical
+−12…8 limits and ticks. Each facet has its own aligned below-zero percentage
+column. Its IQR boxes occupy a narrow strip below each row's participant points
+so the summary does not cover the raw observations.
+
+The blue/coral pair (`#55A0FB` / `#FF8080`) was observed in the vector strokes of
+Figure 2 on PDF page 4 of the [scWAT study](https://doi.org/10.1038/s41467-023-43021-8).
+It is reassigned to Petrus/Kerr here as an EasyViz design decision. Figure 2 of
+[Vanneste et al.](https://doi.org/10.1038/s41590-023-01468-3) informed the compact
+categories, opaque participant marks and thin purposeful axes. Neither paper's
+biological groups or statistics are transferred to this dataset. No author
+plotting code was used for these decisions.
+
+A hollow-circle candidate (1.6 pt diameter plus 0.4 pt outline) was physically
+tested in the same cohort facets. The dense Kerr rows `myC01`, `myC07`, `myC10`
+and `myC03` did not yield a feasible arrangement across 24 deterministic
+packing attempts in the bounded row lanes. The final panels use
+small 1.2 pt opaque filled circles consistently rather than fading overlapping
+marks. Deterministic tangent placement and a bounded linear repair preserve the
+exact quantitative coordinate; the exported audit checks every circle pair in
+each lane and records zero overlaps. The circles remain small at manuscript
+size: individual values can be inspected more closely in the vector output or
+`participant-placement.csv`. The matrix uses the same color endpoints around
+white and retains the symmetric −12…12 score scale. Data, quartiles,
+percentages, participant ordering and 8 pt manuscript text remain unchanged.
 
 ## Source and scientific meaning
 
@@ -51,10 +71,11 @@ To supply another source, use `--data` with `cohort`, `participant`, `year`, `su
 - `prepare.py`: one-time source-workbook conversion; the local workbook path is supplied by the caller.
 - `plot.py` and `figure-settings.json`: common rendering and statistical instructions for all candidates.
 - `output/paired-changes.csv`, `summary.csv`, and `participant-order.csv`: exact plotted data and ordering.
+- `output/participant-placement.csv`: exact changes and physical point centers for every distribution-ledger observation.
 - `output/<candidate>/panel.pdf`, `.svg`, and `.png`: separate fixed-size scientific panels.
 - `output/comparison.png`: a review board generated alongside all three candidates; it does not replace their individual manuscript exports.
 - `caption.md`: the caption text, supplied outside the panel.
 - `design-rationale.md`: reusable selection conditions and failure modes.
 - `numeric-verification.json`: independent comparison with the original workbook.
 
-Each output audit records the physical PDF page size, text sizes, missing-pair count and source hash. Automated bounds checks complement visual review; they do not establish aesthetic superiority.
+Each output audit records the physical PDF page size, text sizes, missing-pair count, source hash and physical point packing. The PDFs were rendered and viewed at 96 dpi as a final-size reading proof and at higher resolution for mark detail. Automated bounds and circle-spacing checks complement visual review; they do not establish aesthetic superiority.

@@ -22,7 +22,7 @@ Ask the reviewer to open the images before making findings. Do not prime it with
 
 Do not use pixel similarity as a pass condition when data, fonts, or final physical dimensions differ. Different data-driven shapes and documented adaptations are expected. Exact colors, statistical correctness, physical size, and font embedding cannot be certified from a screenshot alone.
 
-Review palette combinations together in the actual panel, including contrasts between continuous maps, category colors, annotation tracks, and the background. Do not approve a combination solely because it comes from literature, or request the same combination for every dataset. Flag incidental outline mismatches across related marks or legends; create defaults to borderless marks, while reproduce follows the adopted policy.
+Review palette combinations together in the actual panel, including contrasts between continuous maps, category colors, annotation tracks, and the background. Do not approve a combination solely because it comes from literature, or request the same combination for every dataset. Flag incidental outline mismatches within comparable mark roles or their legends. Fixed-size observations, distribution boundaries, quantitative filled-area dots and binary metadata may need different purposeful treatments. Check hollow-point/whisker crossings, overly thick boxes, washed-out observations and oversized empty bands. Reproduce follows its adopted policy; neither borderless nor hollow marks automatically improve Create.
 
 For create, identify which layer attracts attention first and compare it with
 the adopted reading task. Flag supporting marginal bars or metadata strips

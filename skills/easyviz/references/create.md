@@ -70,7 +70,7 @@ effects require an adopted model and a custom analysis script.
 
 Use [Panel layout](panel-layout.md) for physical dimensions and typography, and [Palettes](palettes.md) for colors. Reuse existing category-color assignments. Determine canvas proportions from chart shape, label length, category count, and expected density before the first render. Include space for adopted annotation tracks, marginal axes, and legends inside the same fixed canvas; their text uses the shared typography roles.
 
-Default comparable filled dots, bars, and matching legend swatches to one borderless policy. Set edge styling explicitly, and record any scientific or readability exception by mark role. Inspect palette combinations together on the actual panel, including small marks and adjacent annotation tracks; a palette's appearance in a paper is not evidence that it suits this data or works with the other colors.
+Declare styling by mark role: fixed-size sample points may be opaque filled or hollow; bars or distribution summaries may use clear outlines; quantitative filled-area dots retain their exact fill-area contract. Match legend symbols to the chosen treatment. Avoid assuming that borderless, thinner or lower-alpha marks are always more refined. Inspect palette combinations together on the actual panel, including small marks and adjacent annotation tracks; a palette's appearance in a paper is not evidence that it suits this data or works with the other colors. Read [Literature design mechanisms](literature-style.md) when the user asks for crisp, compact paper-like figures.
 
 Before the first render, assign a color and stroke role to each layer: primary
 observations or estimates, supporting summaries, and guides. Use
@@ -82,6 +82,16 @@ visual weight; do not let a saturated margin become the first thing the reader
 sees unless it is the scientific focus. Use a coordinated cold/warm pair for a
 two-group comparison when appropriate, rather than adding unrelated colors to
 every layer. Keep the source quantity's normalization and endpoints explicit.
+
+When overlapping cohorts become a cloud, compare aligned cohort facets with the
+same value scale and shared row order before reducing opacity. When a matrix
+contains signed deviations with a meaningful zero, explicitly compare a
+zero-centered cold/warm scale with its existing scale; record any changed
+normalization and show zero on the colorbar. For a nonnegative magnitude, a
+reviewed multihue sequential scale remains possible. A heatmap need not use one
+hue, and a preference for multiple hues does not justify arbitrary rainbow
+ordering. Keep all observations and the original numeric axis; density comes
+from alignment, usable plotting area and deliberate gaps, not added decoration.
 
 Use [Legend layout](legend-layout.md) to distinguish categorical keys, quantitative size keys, and continuous scales. Choose placement from measured key/text bounds and chart geometry; protect agreed fonts and quantitative area mappings. Inspect the legend's footprint and reserved space relative to the main plot, rather than accepting a large legend because it fits without overlap.
 

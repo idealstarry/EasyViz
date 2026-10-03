@@ -1,0 +1,56 @@
+{
+  "track": "create",
+  "chosen_choice": "box-points",
+  "automatic_winner": false,
+  "selection_basis": "Human-directed task asks for every subject and an interpretable descriptive summary. After opening both actual images, box/points directly exposes individual subjects plus median/IQR; ECDF better encodes cumulative thresholds but does not show individually distinguishable subjects or a drawn descriptive summary.",
+  "source_sha256": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd",
+  "source_rows": 54,
+  "group_counts": {
+    "Control": 24,
+    "Condition": 30
+  },
+  "reference_input_mode": "none; literature-inspired categorical colors only",
+  "dimensions_mm": [
+    110,
+    85
+  ],
+  "actual_font": "Arial",
+  "font_size_pt": 8,
+  "dpi": 300,
+  "colors": {
+    "Control": "#55A0FB",
+    "Condition": "#FF8080"
+  },
+  "mark_policy": {
+    "observations": "opaque borderless filled circles, diameter 3 pt",
+    "summaries": "0.22-alpha group fill with group outline and dark median/whiskers",
+    "point_layout": "physical beeswarm, maximum category offset 4 mm; all values unchanged"
+  },
+  "hypothesis_tests": false,
+  "confidence_intervals": false,
+  "exports": {
+    "panel.pdf": "46dacd57264b0916d916b6ad13bcdb86a35fa5ff1f3fd86d7469b93374caabde",
+    "panel.svg": "a2a2917f533b51641ad50742a02b312eeb70ec6c4e6cf0403e7c3ea0696c21d8",
+    "panel.png": "54d8cc5613e8b593b6f47270794b8342a3ff32d3f8f4e271ddad1fa270974504",
+    "caption.md": "3eecedfd92e7936f3ebdca3db4b259e8d118c2212daaba4488bdc470315207bf",
+    "source.csv": "2ad11453299a8ab513c291384259897094241b2f6c2845bfffecada60504b4fd"
+  },
+  "implementation_sha256": {
+    "preview_choices.py": "62383d7761c0d382f9542e6c43b9083ca671715e277e8736db79ca153aa6aa15",
+    "ecdf_plot.py": "29d806694cd5f0045d651f5bffad28643d8ea63857a198b3654118c2c827888b",
+    "render.py": "d4b5f58e7836175b907d39dc9e79c6d7a1947b215e6aff25f9a06eb096bda928",
+    "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "figure_elements.py": "57e161db343d9daf76680b690e2b86ed1e18c1b582dbc01b1595f88f3da907b8"
+  },
+  "independent_review_file": "independent-review.md",
+  "scope": "One bounded real skill use on explicitly synthetic data. No use-vs-no-use comparison or benchmark gain claim.",
+  "status": "ready_with_notes",
+  "findings": [
+    "Boxes approximately 16 mm tall and group spacing approximately 32.6 mm create generous empty space; all 54 points remain distinguishable.",
+    "Generated captions had repeated punctuation and omitted group counts; separate final caption corrected both."
+  ],
+  "independent_review_sha256": "4ab2034ce576c978e6cddebeb25a342bf5bede54bbd21cdbfcb7c1d6c000fb11"
+}

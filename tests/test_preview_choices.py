@@ -52,6 +52,45 @@ class PreviewChoicesTests(unittest.TestCase):
         with path.open(encoding="utf-8", newline="") as stream:
             return list(csv.DictReader(stream))
 
+    def test_hollow_outline_previews_preserve_values_and_audit_strokes(self):
+        original = self.source.read_bytes()
+        self.request["options"] = {"point_alpha": 1, "point_style": "hollow",
+                                   "point_edge_width_pt": .45, "box_style": "outline", "box_width": .18,
+                                   "point_layout": "beeswarm", "include_violin": True}
+        out, manifest = self.run_preview()
+        self.assertEqual(manifest["status"], "pass")
+        self.assertEqual(self.source.read_bytes(), original)
+        for name in ("box-points", "violin-points"):
+            audit = self.read(out / name / "qa.json")["source_to_artist_audit"]
+            self.assertEqual(audit["status"], "pass")
+            self.assertEqual(audit["audited_observations"], 12)
+            self.assertTrue(audit["numeric_values_unchanged"])
+            self.assertTrue(all(not colors for colors in audit["actual_point_facecolors"].values()))
+            self.assertTrue(all(colors for colors in audit["actual_point_edgecolors"].values()))
+        self.assertNotIn("box_style", self.read(out / "violin-points" / "spec.json")["options"])
+        self.assertNotIn("box_width", self.read(out / "violin-points" / "spec.json")["options"])
+        self.assertNotIn("point_style", self.read(out / "ecdf" / "spec.json")["options"])
+
+    def test_hollow_edge_corruption_invalidates_preview_without_losing_rows(self):
+        self.request["options"] = {"point_alpha": 1, "point_style": "hollow", "box_style": "outline"}
+        original_draw = core.draw
+
+        def corrupted_edge(*args):
+            fig, colors = original_draw(*args)
+            from matplotlib.collections import PathCollection
+            points = next(p for p in fig.axes[0].collections if isinstance(p, PathCollection))
+            points.set_edgecolor("black")
+            return fig, colors
+
+        with patch.object(core, "draw", side_effect=corrupted_edge):
+            with self.assertRaises(ValueError):
+                self.run_preview(name="corrupt-hollow")
+        child = self.root / "corrupt-hollow" / "box-points"
+        audit = self.read(child / "qa.json")["source_to_artist_audit"]
+        self.assertEqual(audit["status"], "needs_revision")
+        self.assertEqual(audit["audited_observations"], 12)
+        self.assertIn("actual hollow observation fill/edge differs", " ".join(audit["issues"]))
+
     def test_two_real_exports_retain_source_ids_ties_and_fixed_comparison(self):
         original = self.source.read_bytes()
         self.request["formats"] = ["png", "pdf", "svg", "tiff"]

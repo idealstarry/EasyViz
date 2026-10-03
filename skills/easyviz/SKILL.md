@@ -50,7 +50,8 @@ Read the resources needed for the current chart rather than loading the whole li
 | [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
 | [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
 | [Palettes](references/palettes.md) | Palette selection and consistent category-to-color mappings. |
-| [Create colors and strokes](references/create-style.md) | Assign contrast to the main evidence, separate data/summary/reference/axis/grid line roles, and inspect the actual result. |
+| [Create colors and strokes](references/create-style.md) | Choose crisp observation/summary treatments and meaningful color scales; avoid fading all layers or leaving oversized empty bands. |
+| [Literature design mechanisms](references/literature-style.md) | Transfer specific color, boundary and packing decisions from PROGENy, scWAT and Vanneste figures, with source anchors and applicability limits. |
 | [Figure profile](references/figure-profile.md) | Share typography, category colors, continuous scales and named panel sizes across a manuscript figure. |
 | [Dot data states](references/dot-states.md) | Distinguish measured zero, unmeasured and unsupplied cells while preserving exact dot area. |
 | [Design decisions](references/design-decisions.md) | Reference-informed choices about grouping, alignment, visual priority, and competing layouts. |
@@ -84,7 +85,7 @@ Read the resources needed for the current chart rather than loading the whole li
 | Caption | Put explanatory prose, abbreviation definitions, methods, source attribution, and caveats in a separate `caption.md`. Use journal-style figure/panel prose with identifiers only when known; do not invent a figure number or panel letter. The caption is a separate deliverable, not text to place on the canvas. |
 | Fixed size | Keep the entire canvas, including legends and margins. Avoid export cropping that changes physical dimensions. Use the same physical size across formats. |
 | Typography | Keep agreed font sizes while adjusting wrapping, margins, ticks, and legend position. If content needs a different canvas, resolve that change before replacing an agreed assembly size. |
-| Mark styling | Declare one outline policy for comparable filled dots, bars, and their legend swatches. Create defaults to borderless marks; reproduce follows the adopted specification and user requirements. Record purposeful scientific/readability exceptions and set styles explicitly instead of mixing library defaults. |
+| Mark styling | Choose an explicit policy per comparable mark role and match its legend: fixed-size observations may be opaque filled or hollow, distribution summaries may be outlined, and quantitative filled-area circles retain their area contract. Avoid blanket fading or removing every boundary. Reproduce follows the adopted specification and user requirements. |
 | Data integrity | Do not silently omit observations, reinterpret uncertainty, recompute upstream bioinformatics analysis, or invent values from reference pixels. |
 | Availability | In sparse dot matrices, distinguish observed zero, explicitly unmeasured and coordinates absent from the supplied table. A missing row does not establish that measurement was attempted. Retain quantitative areas; use a separate decoded presence flag if tiny positive marks need help at the final size. |
 | Traceability | Save the track, reference input mode, source paths, transformations, mappings, statistics, actual font and palette, dimensions, formats, and dpi. |

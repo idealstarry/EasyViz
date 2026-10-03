@@ -1,4 +1,6 @@
-# Independent Create style refinement review
+# Historical independent Create style refinement review
+
+**Outcome update:** the user subsequently rejected the paired-myeloid and annotated-inhibition appearance. The preferences below record that earlier reviewer judgment; they do not establish user acceptance or describe current examples. Candidate PNGs are pinned in `candidate/` and match the original recorded hashes. The new work is recorded in [create-literature-refresh](../create-literature-refresh/).
 
 Date: 2026-10-03. Reviewer: independent subagent `/root/create_aesthetic_review`. Baseline: `3e0a42d84974acb7daf792efd6d23a41133320ad`.
 

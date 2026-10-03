@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "scope": "Separate synthetic input, created only to test recipe portability; no biological claim.",
+  "scope": "Full source redraw and separate fully synthetic portable recipe input; no biological claim from synthetic numbers.",
   "synthetic_matrix_shape": [
     4,
     4
@@ -15,15 +15,22 @@
   "source_measurements_shown": 16,
   "mean_denominator": 4,
   "leading_zero_ids_preserved": true,
-  "all_one_genome_status_supported": true,
-  "negative_values_preserved": true,
+  "both_binary_genome_states_supported": true,
+  "negative_zero_and_endpoint_values_preserved": true,
   "automatic_mean_axis_limits_exercised": true,
   "cli_contract": "--data MATRIX.csv --genome STATUS.csv --settings SETTINGS.json --out DIRECTORY",
   "showcase_pdf_text_sizes_pt": [
     8.0
   ],
-  "showcase_font_size_check": "Programmatically extracted all current PDF text spans with PyMuPDF; every span is 8 pt. This is a file check, not an independent visual review.",
-  "temporary_synthetic_outputs_removed": true,
-  "style_revision_exercised": "Muted support colors, borderless colorbar and lighter axes/grids from current settings.",
-  "showcase_source_and_derived_csvs_byte_unchanged": true
+  "showcase_font_size_check": "PyMuPDF extracted every text span from the regenerated PDF; all are 8 pt.",
+  "synthetic_fixture_and_outputs": "skills/easyviz/assets/recipes/annotated-heatmap/synthetic",
+  "restricted_development_data_in_synthetic_fixture": false,
+  "normalization": "TwoSlopeNorm(-400,0,1000), unchanged forward/inverse mapping. Explicit multi-hue color stops and both relative-luminance branch checks pass in development and portable code.",
+  "unchanged_input_and_derived_csv_bytes": {
+    "source-data.csv": true,
+    "genome-status.csv": true,
+    "plotting-data.csv": true,
+    "summary-data.csv": true,
+    "selection.csv": true
+  }
 }
