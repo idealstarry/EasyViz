@@ -159,8 +159,6 @@ and write new plotting code for any layers the recipes do not cover.
 Export PDF, SVG and PNG, with a separate caption.
 ```
 
-In either track, ask the Agent to open the [local figure workbench](skills/easyviz/references/figure-workbench.md). Select a layer, a whole mapped category, or a canvas region and save a request such as “Make every Control mark and its legend purple” or “Move this legend 2 mm right; keep 8 pt text.” Requests retain the figure and source versions. The Agent edits the specification or plotting code, rerenders every requested format into a fresh attempt, and can show the previous attempt beside it. [Verified edit history](skills/easyviz/references/apply-figure-requests.md) supports accepted source/export snapshots and restoration.
-
 Deliverables include the individual panel, caption, runnable script, settings, plotting data and relevant checks. Literature Source Data cases provide auditable learning examples; they are not prerequisites for your own reproduction.
 
 In create, [actual preview choices](skills/easyviz/references/preview-choices.md)
@@ -187,6 +185,50 @@ For crowded raw observations, the Agent can use [physical beeswarm placement](sk
 [Directory exploration](skills/easyviz/references/data-exploration.md) now flags suspected summary tables, repeated identifiers and ambiguous fields before proposing analysis. [Complex reproduction guidance](skills/easyviz/references/complex-reproduction.md) covers shared coordinates, ID joins, marginal summaries and separate guides, with an optional audit of recorded layer and numeric evidence. Actual image review remains part of both tracks.
 
 The `$easyviz` shorthand requires a discoverable skill. For an uninstalled checkout, ask the Agent to read and use the absolute path to `skills/easyviz/SKILL.md`.
+
+## Local figure review
+
+After creating a panel in either **create** or **reproduce**, ask your Agent:
+
+```text
+Open the EasyViz local figure workbench for this panel and give me its browser URL.
+Let me select elements or regions and save edit requests.
+When I tell you the requests are ready, read requests.json, update the plotting
+code or specification, and export a new attempt in all requested formats.
+Show the previous and new attempts side by side.
+```
+
+The Agent starts a local Python server and opens or shares its
+`http://127.0.0.1:PORT/` address. The page runs on demand; keep the server running
+while reviewing. It requires no model API, API key or extra Python package.
+
+| On the page | What you can do |
+| --- | --- |
+| **Edit** | Select mapped marks, axes, labels, legends or a whole category; alternatively, mark a canvas region. Choose a property or write an instruction such as “Make all Control marks and their legend purple” or “Move this legend 2 mm right; keep 8 pt text.” |
+| **Requests** | Review saved changes and undo a pending request. Requests retain the figure and source versions in `requests.json`, which the Agent can read directly. |
+| **History** | Inspect recorded attempt history, including prepared, applied, accepted and restored changes. The Agent can display an earlier attempt beside the current figure and verify acceptance or restore a source/export snapshot through the [edit-history workflow](skills/easyviz/references/apply-figure-requests.md). |
+
+Saving a request records your instruction. Tell the Agent when you are ready
+to apply the saved requests; saving alone does not notify or start the Agent.
+It changes the plotting source or specification, rerenders the figure and opens
+the new attempt. The page does not execute plotting code or directly edit the
+PDF. Each new attempt keeps the earlier exports available for comparison.
+
+The figure directory needs an exported `panel.svg`. A matching `elements.json`
+enables selection of mapped elements and categories; without it, general and
+region notes are available. Ask the Agent to prepare these files when rendering.
+
+For manual startup from a repository checkout:
+
+```sh
+python skills/easyviz/scripts/figure_workbench.py \
+  --figure-dir /absolute/path/to/project/attempt-01 --port 0
+```
+
+`--port 0` chooses an available port. Add
+`--compare-dir /absolute/path/to/project/previous-attempt` for side-by-side review.
+See the [workbench guide](skills/easyviz/references/figure-workbench.md) for file
+requirements, selection controls and the Agent handoff.
 
 ## Setup
 
