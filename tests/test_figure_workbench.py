@@ -11,6 +11,7 @@ import subprocess
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 
 SCRIPT = Path(__file__).resolve().parents[1] / "skills/easyviz/scripts/figure_workbench.py"
 loader = importlib.util.spec_from_file_location("easyviz_figure_workbench", SCRIPT)
@@ -88,6 +89,30 @@ class FigureWorkbenchTests(unittest.TestCase):
         status,headers,body=self.request("GET","/logo.svg")
         self.assertEqual(headers["Content-Type"],"image/svg+xml")
         self.assertEqual(body,(SCRIPT.parents[3]/"plugins/easyviz/assets/logo.svg").read_bytes())
+
+    def test_logo_url_changes_with_artwork_and_serves_current_svg(self):
+        logo = self.root / "logo.svg"
+        previous_url = None
+        with patch.object(workbench, "LOGO", logo):
+            for artwork in (SVG, SVG.replace(b"#2581B9", b"#E47751")):
+                logo.write_bytes(artwork)
+                url = f'/logo.svg?v={hashlib.sha256(artwork).hexdigest()}'
+                status, headers, body = self.request("GET", "/")
+                self.assertEqual(status, 200)
+                self.assertEqual(headers["Cache-Control"], "no-store")
+                self.assertIn(f'<link rel="icon" href="{url}" type="image/svg+xml" sizes="any">'.encode(), body)
+                self.assertIn(f'src="{url}"'.encode(), body)
+                self.assertNotIn(b"__LOGO_VERSION__", body)
+                self.assertNotIn(b'="/logo.svg"', body)
+                if previous_url is not None:
+                    self.assertNotIn(previous_url.encode(), body)
+                self.assertEqual(self.request("GET", "/")[2], body)
+                status, headers, body = self.request("GET", url)
+                self.assertEqual(status, 200)
+                self.assertEqual(headers["Content-Type"], "image/svg+xml")
+                self.assertEqual(headers["Cache-Control"], "no-store")
+                self.assertEqual(body, artwork)
+                previous_url = url
 
     def test_semantic_request_saves_binding_and_undo_without_changing_exports(self):
         code,result=self.data("POST","/api/requests",self.change())

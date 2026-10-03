@@ -449,7 +449,11 @@ def create_server(figure_dir, port=0, compare_dir=None):
                 elif path in {"/", "/workbench.js", "/workbench.css"}:
                     name = {"/": "index.html", "/workbench.js": "workbench.js", "/workbench.css": "workbench.css"}[path]
                     content_type = {"index.html": "text/html; charset=utf-8", "workbench.js": "text/javascript; charset=utf-8", "workbench.css": "text/css; charset=utf-8"}[name]
-                    self.reply(200, (STATIC / name).read_bytes(), content_type)
+                    body = (STATIC / name).read_bytes()
+                    if name == "index.html":
+                        # Browsers keep favicons separately from their normal resource cache.
+                        body = body.replace(b"__LOGO_VERSION__", sha256(LOGO.read_bytes()).encode("ascii"))
+                    self.reply(200, body, content_type)
                 elif path.startswith("/files/") and path.removeprefix("/files/") in FILES:
                     name = path.removeprefix("/files/")
                     body = app.read_file(name)
