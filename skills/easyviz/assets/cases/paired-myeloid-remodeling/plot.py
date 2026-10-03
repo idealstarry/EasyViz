@@ -141,7 +141,9 @@ def main():
     require(np.isfinite(cfg['change_xlim']).all() and cfg['change_xlim'][0]<0<cfg['change_xlim'][1], 'The change axis must be finite, ascending and contain zero')
     plt.rcParams.update({'font.family':cfg['font'],'font.size':font,'axes.labelsize':font,
                          'xtick.labelsize':font,'ytick.labelsize':font,'legend.fontsize':font,
-                         'pdf.fonttype':42,'svg.fonttype':'none','axes.unicode_minus':True})
+                         'pdf.fonttype':42,'svg.fonttype':'none','axes.unicode_minus':True,
+                         'mathtext.fontset':'custom','mathtext.rm':cfg['font'],
+                         'mathtext.it':f"{cfg['font']}:italic",'mathtext.cal':cfg['font']})
     data=pd.read_csv(args.data,keep_default_na=False,dtype={'participant':str})
     paired=pair_data(data,ann,cohorts,args.year)
     require(paired.change.between(*cfg['change_xlim']).all(),'Observed change falls outside fixed comparison axis; explicitly widen the shared axis')
@@ -217,7 +219,7 @@ def main():
             bx.tick_params(axis='x',length=2,width=.5)
             label_rows(False)
             for i,c in enumerate(cohorts):
-                rr(47+i*42,115,2,2,cfg['cohort_colors'][c]);tx(50+i*42,116,f'{c} (n={ns[c]})')
+                rr(47+i*42,115,2,2,cfg['cohort_colors'][c]);tx(50+i*42,116,f'{c} ($n$ = {ns[c]})')
         elif design=='participant-matrix':
             label_rows(); x0,xend=44.,126.; gap=2.0
             cellw=(xend-x0-gap*(len(cohorts)-1))/sum(ns.values())
@@ -231,7 +233,7 @@ def main():
                 order=cp.groupby('participant').change.median().sort_values(kind='stable').index.tolist()
                 participant_order[c]=order
                 width=cellw*len(order)
-                tx(x0+width/2,114,f'{c} (n={ns[c]})',ha='center')
+                tx(x0+width/2,114,f'{c} ($n$ = {ns[c]})',ha='center')
                 line([x0,x0+width],[110,110],color=cfg['cohort_colors'][c],lw=.65)
                 values=cp.pivot(index='subtype',columns='participant',values='change')
                 for a in ann:
@@ -264,7 +266,7 @@ def main():
             facets=[(35.,93.,100.),(110.,168.,175.)] if len(cohorts)==2 else [(35.,168.,175.)]
             for c,(x0,x1,ledger_x) in zip(cohorts,facets):
                 xx=scale(x0,x1); color=cfg['cohort_colors'][c]
-                tx((x0+x1)/2,115,f'{c} (n={ns[c]})',ha='center')
+                tx((x0+x1)/2,115,f'{c} ($n$ = {ns[c]})',ha='center')
                 line([x0,x1],[111,111],color=color,lw=.65)
                 tx(ledger_x,113,'<0',ha='center');tx(ledger_x,109,'(%)',ha='center')
                 line([xx(0),xx(0)],[26,107],color=INK,lw=marks.get('reference_line_width_pt',.45),

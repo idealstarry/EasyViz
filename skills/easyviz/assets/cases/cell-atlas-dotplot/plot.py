@@ -71,6 +71,10 @@ def main() -> None:
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
         "savefig.bbox": None,
+        "mathtext.fontset": "custom",
+        "mathtext.rm": family,
+        "mathtext.it": f"{family}:italic",
+        "mathtext.cal": family,
     })
     width, height = config["width_mm"], config["height_mm"]
     assert width > 0 and height > 0, "Canvas dimensions must be positive"
@@ -106,12 +110,12 @@ def main() -> None:
     label(6, 110, "Subtype", color=visual["header_color"], weight=visual["header_font_weight"])
     label(57, 110, "Reported marker examples", color=visual["header_color"], weight=visual["header_font_weight"])
     label(118, 114, "Within-depot composition", ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
-    label(160, 110, "Pooled n", ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
+    label(160, 110, "Pooled $n$", ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
     depots = config["depot_order"]
     x_locations = dict(zip(depots, [102, 119, 136]))
     for depot, x in x_locations.items():
         label(x, 109, config["depot_display"][depot], ha="center", color=visual["header_color"], weight=visual["header_font_weight"])
-        label(x, 104.5, f"n={int(totals[depot]):,}", ha="center", color=muted)
+        label(x, 104.5, f"$n$ = {int(totals[depot]):,}", ha="center", color=muted)
     ax.plot([6, 175], [101, 101], lw=visual["header_rule_width_pt"],
             color=visual["header_rule_color"], zorder=1)
 

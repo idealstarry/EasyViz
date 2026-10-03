@@ -116,6 +116,8 @@ def render(data: Path, settings: Path, out: Path) -> None:
         "axes.labelsize": cfg["typography"]["axis"], "xtick.labelsize": cfg["typography"]["tick"],
         "ytick.labelsize": cfg["typography"]["tick"], "legend.fontsize": cfg["typography"]["legend"],
         "pdf.fonttype": 42, "ps.fonttype": 42, "svg.fonttype": "none",
+        "mathtext.fontset": "custom", "mathtext.rm": font["actual_family"],
+        "mathtext.it": f"{font['actual_family']}:italic", "mathtext.cal": font["actual_family"],
         "axes.unicode_minus": True, "figure.facecolor": "white", "savefig.facecolor": "white",
         "text.color": marks.get("text_color", "black"),
         "axes.labelcolor": marks.get("text_color", "black"),
@@ -194,7 +196,7 @@ def render(data: Path, settings: Path, out: Path) -> None:
     for cohort in cohorts:
         ns = sorted({row["n"] for row in rows if row["cohort"] == cohort})
         participant_counts[cohort] = ns
-        label = f"{cohort} (n = {ns[0]})" if len(ns) == 1 else cohort
+        label = f"{cohort} ($n$ = {ns[0]})" if len(ns) == 1 else cohort
         legend_labels.append(label)
     key_mm = math.sqrt(marks["point_area_pt2"]) * 25.4 / 72
     supplied_legend = cfg.get("categorical_legend", {})

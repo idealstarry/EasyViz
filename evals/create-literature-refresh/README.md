@@ -26,6 +26,8 @@ conditions to consider, not a uniform journal preset.
   [case review](../../examples/create/annotated-inhibition/independent-review.json).
 
 [Manifest](manifest.json) pins matched before/after identities and dimensions.
+Candidate PNGs are frozen snapshots of `633c47f`; later count-label typography
+changes in the live examples do not alter this review evidence.
 [Numerical verification](numeric-verification.json) separately recomputes all
 832 paired differences, 32 paired summaries, 400 displayed matrix values and
 152 full-matrix means; 12 input/derived tables are byte-identical to `ede4609`.
