@@ -128,6 +128,52 @@ class FigureElementsTests(unittest.TestCase):
         self.assertEqual(records["Primary"]["spec_paths"], ["/labels/y"])
         self.assertEqual(records["Secondary"]["spec_paths"], [])
 
+    def test_visible_axis_decorations_have_specific_svg_identities(self):
+        out, manifest = self.render("axis-elements")
+        nodes = {node.get("id"): node for node in ET.parse(out / "panel.svg").iter() if node.get("id")}
+        lines = [entry for entry in manifest["elements"] if entry["role"] == "axis-line"]
+        self.assertEqual({entry["source_keys"][0]["side"] for entry in lines}, {"bottom", "left"})
+        ticks = [entry for entry in manifest["elements"] if entry["role"] == "axis-tick"]
+        labels = [entry for entry in manifest["elements"] if entry["role"] == "tick-label"]
+        self.assertTrue(ticks)
+        self.assertEqual({entry["source_keys"][0]["axis"] for entry in labels}, {"x", "y"})
+        for entry in lines + ticks + labels:
+            self.assertIn(entry["id"], nodes)
+            self.assertEqual(entry["spec_paths"], [], "Decorations must not invent cosmetic specification bindings")
+            self.assertNotIn("text", entry["editable"], "Tick values are not free-form cosmetic text")
+        for entry in labels:
+            self.assertTrue(any(node.tag.endswith("text") for node in nodes[entry["id"]].iter()))
+        changed = deepcopy(self.spec)
+        changed["colors"] = {"A": "#2581B9", "B": "#DF9A3C"}
+        changed["labels"]["x"] = "Updated X label"
+        _, after = self.render("axis-elements-edited", changed)
+        roles = {"axis-line", "axis-tick", "tick-label"}
+        before_ids = {(entry["role"], json.dumps(entry["source_keys"], sort_keys=True)): entry["id"]
+                      for entry in manifest["elements"] if entry["role"] in roles}
+        after_ids = {(entry["role"], json.dumps(entry["source_keys"], sort_keys=True)): entry["id"]
+                     for entry in after["elements"] if entry["role"] in roles}
+        self.assertEqual(before_ids, after_ids)
+
+    def test_tick_maps_omit_hidden_and_out_of_range_ticks_and_separate_minor_ticks(self):
+        from matplotlib.ticker import FixedLocator, FormatStrFormatter
+
+        fig, ax = core.plt.subplots()
+        ax.set_xticks([-1, 0, 1, 2, 3], ["outside-left", "zero", "one", "two", "outside-right"])
+        ax.set_xlim(0, 2)
+        ax.set_yticks([])
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.xaxis.set_minor_locator(FixedLocator([.5, 1.5]))
+        ax.xaxis.set_minor_formatter(FormatStrFormatter("%.1f"))
+        ax.tick_params(axis="x", which="minor", labelbottom=True)
+        core.figure_elements.attach_layout(fig, {})
+        records = [entry for entry in fig._easyviz_elements if entry["role"] in {"axis-tick", "tick-label"}]
+        self.assertTrue(records)
+        self.assertEqual({entry["source_keys"][0]["side"] for entry in records}, {"bottom"})
+        self.assertEqual({entry["source_keys"][0]["tick_location"] for entry in records}, {0.0, .5, 1.0, 1.5, 2.0})
+        self.assertEqual({entry["source_keys"][0]["tick_kind"] for entry in records}, {"major", "minor"})
+        self.assertFalse(any("outside" in entry["label"] for entry in records))
+        self.assertEqual(len({entry["id"] for entry in records}), len(records))
+
     def test_explicit_track_is_recorded_without_changing_spec_or_inference(self):
         before = deepcopy(self.spec)
         out = self.root / "tracked"

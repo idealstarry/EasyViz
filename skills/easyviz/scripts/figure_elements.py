@@ -58,16 +58,51 @@ def register(fig, artist, role, label, *, key=None, source_keys=None,
 
 def attach_layout(fig, spec):
     """Add shared axes, labels and guides after final layout has been measured."""
+    # Locators and formatters finish tick locations/text during a draw. Tag the
+    # actual visible decorations rather than latent ticks outside the limits.
+    fig.canvas.draw()
     manager = getattr(fig, "_easyviz_legend_layout", None)
     guide_axes = {entry["artist"] for entry in manager.entries if entry["kind"] == "colorbar"} if manager else set()
     for index, ax in enumerate(axis for axis in fig.axes if axis not in guide_axes):
         register(fig, ax, "axes", "Data region" if index == 0 else f"Data region {index + 1}", key=index)
+        if not ax.get_visible() or not ax.axison:
+            continue
+        for side, spine in ax.spines.items():
+            if side not in {"bottom", "top", "left", "right"} or not spine.get_visible():
+                continue
+            direction = "x" if side in {"bottom", "top"} else "y"
+            register(fig, spine, "axis-line", f"{direction.upper()} axis line · {side}",
+                     key=[index, direction, side],
+                     source_keys=[{"axis_index": index, "axis": direction, "side": side}],
+                     editable=["color", "linewidth"])
         for direction in ("x", "y"):
-            label = getattr(ax, f"{direction}axis").label
+            axis = getattr(ax, f"{direction}axis")
+            if not axis.get_visible():
+                continue
+            label = axis.label
             if label.get_visible() and label.get_text().strip():
                 register(fig, label, "axis-label", label.get_text(), key=[index, direction],
                          spec_paths=[pointer("labels", direction)] if index == 0 and direction in spec.get("labels", {}) else [],
                          editable=["text"])
+            lower, upper = sorted(float(value) for value in axis.get_view_interval())
+            tolerance = max(abs(lower), abs(upper), 1.0) * 1e-12
+            sides = ("bottom", "top") if direction == "x" else ("left", "right")
+            for kind, ticks in (("major", axis.get_major_ticks()), ("minor", axis.get_minor_ticks())):
+                for tick in ticks:
+                    location = float(tick.get_loc())
+                    if (not tick.get_visible() or not math.isfinite(location)
+                            or not lower - tolerance <= location <= upper + tolerance):
+                        continue
+                    for side, mark, tick_label in zip(sides, (tick.tick1line, tick.tick2line), (tick.label1, tick.label2)):
+                        key = [index, direction, kind, side, location]
+                        source = [{"axis_index": index, "axis": direction, "side": side,
+                                   "tick_kind": kind, "tick_location": location}]
+                        if mark.get_visible():
+                            register(fig, mark, "axis-tick", f"{direction.upper()} {kind} tick · {location:g} · {side}",
+                                     key=key, source_keys=source, editable=["color", "linewidth"])
+                        if tick_label.get_visible() and tick_label.get_text().strip():
+                            register(fig, tick_label, "tick-label", f"{direction.upper()} tick label · {tick_label.get_text()} · {side}",
+                                     key=key, source_keys=source, editable=["color", "fontsize"])
     if manager:
         for guide_index, entry in enumerate(manager.entries):
             kind, request = entry["kind"], entry["request"]

@@ -36,6 +36,8 @@ h1 { font-size:28px; letter-spacing:-.8px; margin:0; font-weight:600; line-heigh
 #figure-host { min-height:400px; height:min(65vh,740px); padding:24px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--surface); touch-action:none; }
 #figure-host > svg { max-width:100%; max-height:100%; width:100%; height:100%; background:#fff; }
 #figure-host.region-mode { cursor:crosshair; }
+#figure-host.element-hit { cursor:pointer; }
+#preview-size { text-align:right; max-width:45%; overflow-wrap:anywhere; }
 #figure-host svg [data-review-highlight] { fill:#2581b918; stroke:var(--accent); stroke-width:1.5; stroke-dasharray:4 3; pointer-events:none; vector-effect:non-scaling-stroke; }
 .preview-footer { border-top:1px solid var(--line); padding:12px 16px; display:flex; justify-content:space-between; gap:15px; font-size:11px; color:var(--muted); }
 .preview-footer a { margin-left:12px; font-size:12px; }

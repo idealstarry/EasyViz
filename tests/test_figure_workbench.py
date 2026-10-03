@@ -290,6 +290,50 @@ class FigureWorkbenchTests(unittest.TestCase):
 
 
 class WorkbenchClientTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("node"), "Node is needed for the client click regression")
+    def test_clicks_resolve_painted_targets_nearby_without_guessing_group_boxes(self):
+        harness=r'''
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+class Element {
+  constructor(id=''){this.id=id;this.value='';this.children=[];this.listeners={};this.classList={toggle(){}};}
+  addEventListener(name,callback){this.listeners[name]=callback;}setAttribute(){}
+  replaceChildren(...children){this.children=children;}append(...children){this.children.push(...children);}add(child){this.children.push(child);}
+  querySelectorAll(){return [];}getElementById(){return null;}
+  contains(node){return node===this||!!node?.parentNode&&this.contains(node.parentNode);}
+  get options(){return this.children;}get selectedOptions(){return this.children.filter(option=>option.selected);}
+}
+const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
+const root=new Element('svg'),axes=new Element('axes'),group=new Element('points'),point=new Element('use'),guide=new Element('legend'),text=new Element('text'),axisLine=new Element('axis-line'),stroke=new Element('path');
+axes.parentNode=root;group.parentNode=axes;point.parentNode=group;guide.parentNode=root;text.parentNode=guide;axisLine.parentNode=axes;stroke.parentNode=axisLine;
+const previous=new Element('previous-svg'),duplicate=new Element('points');duplicate.parentNode=previous;
+const data={manifest_valid:true,elements:[{id:'axes',role:'axes',label:'Data region'},
+{id:'points',role:'point-group',label:'Control',editable:['color']},
+{id:'legend',role:'legend',label:'Categorical guide',editable:['layout']},
+{id:'axis-line',role:'axis-line',label:'X axis line',editable:['linewidth']}],requests:[],version:{figure_sha256:'A'}};
+let paint=(x,y)=>Math.hypot(x-125,y-80)<=2?point:axes;
+const context=vm.createContext({document:{getElementById:node,createElement:()=>new Element(),createElementNS:()=>new Element(),elementFromPoint:(x,y)=>paint(x,y)},
+Option:class extends Element{constructor(text,value){super();this.value=value;}},fetch:()=>new Promise(()=>{}),testRoot:root,testState:data,console});
+const inspect=source=>vm.runInContext(source,context);
+vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);
+inspect('svg=testRoot;state=testState;loading=false;mode="element"');
+const click=event=>node('figure-host').listeners.click(event);
+click({target:point,clientX:125,clientY:80});assert.deepEqual(Array.from(inspect('selectedIds')),['points']);
+click({target:axes,clientX:130,clientY:80});assert.deepEqual(Array.from(inspect('selectedIds')),['points'],'a near miss must select painted marks, not the enclosing data region');
+click({target:text,clientX:300,clientY:20,shiftKey:true});assert.deepEqual(Array.from(inspect('selectedIds')),['points','legend'],'nested glyphs resolve to their real mapped owner; Shift preserves previous selection');
+click({target:axes,clientX:200,clientY:80});assert.deepEqual(Array.from(inspect('selectedIds')),['axes'],'empty space within a point collection must not select that group');
+paint=(x,y)=>Math.abs(y-150)<.5?stroke:axes;
+click({target:axes,clientX:200,clientY:155});assert.deepEqual(Array.from(inspect('selectedIds')),['axis-line'],'thin axis strokes must be selectable from nearby screen pixels');
+paint=()=>duplicate;
+context.testPrevious=duplicate;
+assert.equal(inspect('pickElement({target:testPrevious,clientX:1,clientY:1})'),null,'the read-only previous SVG must not supply current IDs');
+inspect('state.manifest_valid=false');
+context.testPoint=point;
+assert.equal(inspect('pickElement({target:testPoint,clientX:125,clientY:80})'),null,'a missing or stale map must not guess identities from SVG IDs');
+'''
+        script=SCRIPT.with_name("workbench")/"workbench.js"
+        result=subprocess.run([shutil.which("node"),"-e",harness,str(script)],capture_output=True,text=True,timeout=15)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
     @unittest.skipUnless(shutil.which("node"), "Node is needed for the mocked client runtime check")
     def test_client_bulk_selection_intersects_properties_and_keeps_all_real_ids(self):
         harness=r'''

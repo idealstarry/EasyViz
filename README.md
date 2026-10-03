@@ -217,6 +217,11 @@ PDF. Each new attempt keeps the earlier exports available for comparison.
 The figure directory needs an exported `panel.svg`. A matching `elements.json`
 enables selection of mapped elements and categories; without it, general and
 region notes are available. Ask the Agent to prepare these files when rendering.
+Scatter collections select a whole point group. Selecting one observation needs
+its own source mapping. In **Select element** mode, hover to see the mapped
+target and click on or near its painted mark; the page allows a 6 px tolerance.
+Use the mapped-element list for crowded or overlapping targets. Fresh exports
+also map visible axis lines, tick marks and tick labels.
 
 For manual startup from a repository checkout:
 

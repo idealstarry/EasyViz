@@ -130,6 +130,37 @@ function setMode(next) {
   mode = next; drag = null;
   for (const item of ['element','region']) { $(item+'-mode').classList.toggle('active', item===mode); $(item+'-mode').setAttribute('aria-pressed', String(item===mode)); }
   $('figure-host').classList.toggle('region-mode', mode==='region');
+  selectionHint();
+}
+function selectionHint(element=null) {
+  $('preview-size').textContent=mode==='region'?'Drag to mark a region':element?element.label+' · '+element.role.replaceAll('-',' '):'Click a mapped element';
+  $('figure-host').classList.toggle('element-hit',!!element&&mode==='element');
+}
+function mappedElement(node) {
+  if(!svg||!node||!svg.contains(node)) return null;
+  while(node&&node!==svg) {
+    const element=state.elements.find(element=>element.id===node.id);
+    if(element) return element;
+    node=node.parentNode;
+  }
+  return null;
+}
+function pickElement(event) {
+  if(!state?.manifest_valid||!svg) return null;
+  const direct=mappedElement(event.target);
+  if(direct&&direct.role!=='axes') return direct;
+  // Probe actual painted SVG content nearby, never a collection's bounding box.
+  // Screen-pixel tolerance stays constant when the figure is scaled or zoomed.
+  if(typeof document.elementFromPoint==='function') {
+    for(let radius=1;radius<=6;radius++) {
+      for(let step=0;step<16;step++) {
+        const angle=step*Math.PI/8;
+        const candidate=mappedElement(document.elementFromPoint(event.clientX+radius*Math.cos(angle),event.clientY+radius*Math.sin(angle)));
+        if(candidate&&candidate.role!=='axes') return candidate;
+      }
+    }
+  }
+  return direct;
 }
 function svgPoint(event) {
   const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
@@ -165,7 +196,9 @@ function highlightElements(elements) {
     const node=svg.getElementById(element.id);
     if(!node) continue;
     try {
-      const mark=document.createElementNS(NS,'rect'),rect=elementBox(node);
+      const mark=document.createElementNS(NS,'rect'),rect=elementBox(node),matrix=svg.getScreenCTM();
+      const padX=2/Math.hypot(matrix.a,matrix.b),padY=2/Math.hypot(matrix.c,matrix.d);
+      rect.x-=padX;rect.y-=padY;rect.width+=2*padX;rect.height+=2*padY;
       for(const key of ['x','y','width','height']) mark.setAttribute(key,String(rect[key]));
       mark.setAttribute('data-review-highlight','true');svg.append(mark);
     } catch (_) { /* An artist without a measurable box remains selectable by ID. */ }
@@ -307,16 +340,20 @@ $('property').addEventListener('change',()=>{$('value-field').hidden=!$('propert
 $('reload').addEventListener('click',load);
 $('figure-host').addEventListener('click',event=>{
   if(loading||mode!=='element'||!svg) return;
-  let node=event.target;
-  while(node&&node!==svg) {if(state.elements.some(element=>element.id===node.id)){const ids=event.shiftKey?(selectedIds.includes(node.id)?selectedIds.filter(id=>id!==node.id):[...selectedIds,node.id]):[node.id];$('semantic-list').value='';selectElements(ids);return;}node=node.parentNode;}
+  const element=pickElement(event);
+  if(!element) {message('No mapped element here. Choose an item in the list or use Select region.');return;}
+  const ids=event.shiftKey?(selectedIds.includes(element.id)?selectedIds.filter(id=>id!==element.id):[...selectedIds,element.id]):[element.id];
+  $('semantic-list').value='';selectElements(ids);
+  message(selectedIds.length?`Selected ${selectedIds.length===1?element.label+' · '+element.role.replaceAll('-',' '):selectedIds.length+' mapped elements'}. Describe a change and save your request.`:'Selection cleared.');
 });
 $('figure-host').addEventListener('pointerdown',event=>{
   if(loading||mode!=='region'||!svg||!svg.contains(event.target)||event.button!==0) return;
   event.preventDefault();$('figure-host').setPointerCapture(event.pointerId);drag=svgPoint(event);selectedId=null;selectedIds=[];selectedSelector=null;region=null;
 });
 $('figure-host').addEventListener('pointermove',event=>{
-  if(!drag) return;const point=svgPoint(event);highlight({x:Math.min(point.x,drag.x),y:Math.min(point.y,drag.y),width:Math.abs(point.x-drag.x),height:Math.abs(point.y-drag.y)});
+  if(!drag) {if(!loading&&mode==='element') selectionHint(pickElement(event));return;}const point=svgPoint(event);highlight({x:Math.min(point.x,drag.x),y:Math.min(point.y,drag.y),width:Math.abs(point.x-drag.x),height:Math.abs(point.y-drag.y)});
 });
+$('figure-host').addEventListener('pointerleave',()=>selectionHint());
 $('figure-host').addEventListener('pointerup',event=>{
   if(!drag) return;const point=svgPoint(event),rect={x:Math.min(point.x,drag.x),y:Math.min(point.y,drag.y),width:Math.abs(point.x-drag.x),height:Math.abs(point.y-drag.y)};
   drag=null;region=rect.width>0&&rect.height>0?toMm(rect):null;selectionChanged();

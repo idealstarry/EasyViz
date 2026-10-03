@@ -35,6 +35,14 @@ definitions and their local references.
 
 - Select an SVG element on the figure or in the keyboard-accessible element
   list. Mapped elements can include marks, axes, labels, legends and colorbars.
+  In element mode, hovering names the mapped target and clicking permits a
+  6 screen-pixel tolerance around actual painted content. A collection's empty
+  bounding-box area does not select its points. Use the list when targets
+  overlap. Scatter collections select the whole group; a single observation
+  requires its own source-bound artist registration.
+  Fresh shared exports register visible axis spines, tick marks and tick labels;
+  older exports need rerendering to receive these mappings. Tick-label changes
+  are cosmetic, not permission to alter the displayed measurement values.
 - Use Ctrl/Command in the element list or Shift-click mapped artists to select
   several elements. **Select a mapped group** expands a category, role, source
   key or specification path to actual mapped IDs. Category selection uses
@@ -53,7 +61,7 @@ definitions and their local references.
 
 The **Edit**, **Requests** and **History** tabs keep the inspector within the
 desktop viewport; long content scrolls inside the active tab. On small screens
-it follows the figure in normal page flow. Expand **Individual elements** to
+it follows the figure in normal page flow. Expand **Mapped elements** to
 use the keyboard-accessible multiple-selection list. Arrow keys, Home and End
 move between inspector tabs. The page uses the bundled plugin SVG mark and
 plain surfaces; document previews keep their opaque white canvas.
