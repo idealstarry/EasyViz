@@ -1,0 +1,96 @@
+{
+  "status": "ready_with_notes",
+  "review_pass": 3,
+  "reviewer_role": "Independent child agent using easyviz-figure-reviewer; implementing agent also viewed full PNG and 680 x 605 preview.",
+  "candidate": "examples/create/annotated-inhibition/panel.png",
+  "candidate_sha256": "ed50ba5f6ddd796e58f592cc063bff2c1461221e9f3e8eb3dac8213e684e2c9a",
+  "baseline": "evals/create-literature-refresh/baseline/matrix.png",
+  "first_signed_candidate": "evals/create-literature-refresh/alternatives/matrix-blue-white-red.png",
+  "synthetic": "skills/easyviz/assets/recipes/annotated-heatmap/synthetic/output/panel.png",
+  "comparative_preference_order": [
+    "final_multi_hue_candidate",
+    "first_blue_white_red_candidate",
+    "original_pale_coral_baseline"
+  ],
+  "reading_task": "Read sign and ordered magnitude, with visibly different positive hues through moderate/strong values; retain full-matrix mean context.",
+  "inspected_full_exports_and_680x605_previews": true,
+  "reasons": [
+    "Middle positives visibly use pale gold, gold and orange; strongest positives use coral.",
+    "Zero stays white and negative cells stay cool; values near zero stay appropriately faint.",
+    "Matrix ordering, bar lengths, keyed genome tracks and five original-minute ticks remain aligned and readable."
+  ],
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Matrix near-zero cells",
+      "evidence": "Very small effects remain faint under the continuous mapping.",
+      "action": "Retain scale and caption explanation; use colorbar for detailed small-magnitude reading."
+    }
+  ],
+  "critical_major_minor_findings": [],
+  "independent_checks": {
+    "png_dimensions": "All four opened PNGs independently read 2126 x 1890 px.",
+    "palette_luminance": "Recomputed at 1025 normalized coordinates: negative arm nondecreasing, positive arm nonincreasing; zero relative luminance 1.0.",
+    "actual_rendered_colorbar_scanline": {
+      "images": "Main and synthetic PNGs",
+      "png_y": 1801,
+      "png_x_inclusive": [
+        1406,
+        2018
+      ],
+      "both_branch_luminance_orders_pass": true,
+      "brightest_center_x": 1712,
+      "normalized_stop_positions": [
+        0,
+        0.25,
+        0.5,
+        0.55,
+        0.625,
+        0.75,
+        1
+      ],
+      "observed_stop_rgb": [
+        [
+          75,
+          155,
+          221
+        ],
+        [
+          184,
+          220,
+          250
+        ],
+        [
+          255,
+          255,
+          254
+        ],
+        [
+          255,
+          240,
+          180
+        ],
+        [
+          255,
+          209,
+          104
+        ],
+        [
+          255,
+          153,
+          93
+        ],
+        [
+          242,
+          79,
+          85
+        ]
+      ],
+      "agreement_with_declared_colors": "Within one RGB level in both images."
+    },
+    "source_values_selection_means_metadata": "Passed in supplied QA records; not independently recomputed by reviewer.",
+    "physical_size_typography_embedding": "Passed in supplied 180 x 160 mm / 8 pt Arial / embedded PDF font records; not independently remeasured by reviewer.",
+    "caption": "Continuous interpolation stops distinguished from bins/thresholds; zero, minutes, asymmetric slopes, provenance and retained measurements stated."
+  },
+  "residual_issues": "Near-zero values are intentionally faint; no required visual revision."
+}

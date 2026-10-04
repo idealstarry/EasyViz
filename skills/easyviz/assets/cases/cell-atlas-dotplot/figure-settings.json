@@ -16,17 +16,17 @@
     40
   ],
   "color_stops": [
-    "#BED9EA",
-    "#97C3DE",
-    "#71ACD2",
-    "#4B96C5",
-    "#2581B9"
+    "#75D7E7",
+    "#55CAED",
+    "#3CB9F4",
+    "#2DAAF6",
+    "#2D98ED"
   ],
   "group_colors": {
-    "M2 macrophages": "#2581B9",
-    "Other macrophages": "#DF9A3C",
-    "Monocytes": "#1AA781",
-    "DC": "#CC86B9"
+    "M2 macrophages": "#55B7F3",
+    "Other macrophages": "#FF8B88",
+    "Monocytes": "#35CBA6",
+    "DC": "#A68AF4"
   },
   "depot_order": [
     "sc",
@@ -39,11 +39,11 @@
     "pvat": "pv"
   },
   "pooled_count_axis_max": 4000,
-  "palette_family": "notch2-balanced",
-  "palette_preset": "Custom 30%-to-100% tint adaptation of notch2-blue; use the explicit color_stops",
-  "size_legend_color": "#2581B9",
-  "palette_source": "https://www.nature.com/articles/s41467-024-53700-9",
-  "palette_status": "Categorical swatches sampled from one paper figure; blue sequential ramp explicitly derived with a 30% endpoint tint to improve small borderless marks on white without changing quantitative areas or the 0-40% scale.",
+  "palette_family": "easyviz-atlas-bright",
+  "palette_preset": "Custom EasyViz sky/coral/jade/violet categorical mapping and cyan-to-azure sequential ramp; use explicit HEX values",
+  "size_legend_color": "#2DAAF6",
+  "palette_source": null,
+  "palette_status": "Categorical colors and the cyan-to-azure sequential ramp are EasyViz design choices following the user request for brighter colors; these HEX values were not sampled from an author figure. The sequential map retains linear 0\u201340% normalization and strictly decreasing relative luminance.",
   "panel_title": null,
   "caption_file": "caption.md",
   "mark_style": {
@@ -68,7 +68,7 @@
     "colorbar_tick_width_pt": 0.4,
     "header_font_weight": "normal"
   },
-  "categorical_palette": "notch2-balanced",
+  "categorical_palette": "easyviz-atlas-bright",
   "row_pitch": 4.8,
   "legends": {
     "categorical": {

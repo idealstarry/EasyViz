@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
@@ -57,6 +58,33 @@ class CaseContractTests(unittest.TestCase):
         self.assertEqual(len(result), 3)
         self.assertTrue(result.change.eq(2).all())
 
+    def test_paired_ledger_exports_a_single_complete_pair(self):
+        source = self.root / "single-pair.csv"
+        pd.DataFrame([
+            ("Petrus", "001", 0, "myC00", 1),
+            ("Petrus", "001", 2, "myC00", 3)
+        ], columns=["cohort", "participant", "year", "subtype", "score"]).to_csv(source, index=False)
+        annotations = self.root / "single-annotation.json"
+        annotations.write_text(json.dumps([{"cluster": 0, "label": "M2", "display_group": "M2"}]))
+        config = json.loads((ROOT / "examples/create/paired-myeloid-remodeling/figure-settings.json").read_text())
+        config.update(cohort_order=["Petrus"], font="DejaVu Sans", dpi=120)
+        settings = self.root / "single-settings.json"
+        settings.write_text(json.dumps(config))
+        output = self.root / "single-output"
+        with patch("sys.argv", ["plot.py", "--data", str(source), "--annotations", str(annotations),
+                                "--settings", str(settings), "--out", str(output),
+                                "--design", "distribution-ledger"]), redirect_stdout(io.StringIO()):
+            paired.main()
+        qa = json.loads((output / "qa.json").read_text())
+        self.assertEqual(qa["status"], "passed")
+        self.assertEqual(qa["paired_changes"], 1)
+        actual = pd.read_csv(output / "participant-placement.csv", dtype={"participant": str})
+        self.assertEqual(actual.participant.tolist(), ["001"])
+        np.testing.assert_allclose(actual.change, [2.])
+        self.assertTrue((output / "distribution-ledger/panel.pdf").is_file())
+        self.assertTrue((output / "distribution-ledger/panel.svg").is_file())
+        self.assertTrue((output / "distribution-ledger/panel.png").is_file())
+
     def render_matrix(self, matrix, annotations):
         data = self.root / "matrix.csv"
         metadata = self.root / "annotations.csv"
@@ -65,7 +93,7 @@ class CaseContractTests(unittest.TestCase):
         metadata.write_text(annotations)
         config = json.loads((ROOT / "examples/create/annotated-inhibition/settings.json").read_text())
         config.update(selection_count=3, color_limits=[-1, 10], colorbar_ticks=[0, 5, 10], font="DejaVu Sans", dpi=120)
-        for key in ("receiver_mean_limits", "receiver_mean_ticks", "sender_mean_limits", "sender_mean_ticks"):
+        for key in ("receiver_mean_limits", "receiver_mean_ticks", "sender_mean_limits", "sender_mean_ticks", "mean_limits", "mean_ticks"):
             config.pop(key, None)
         settings.write_text(json.dumps(config))
         with redirect_stdout(io.StringIO()):
@@ -96,10 +124,10 @@ class CaseContractTests(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError, f"{role} IDs must be nonempty"):
                         self.render_matrix(matrix, annotations)
 
-    def test_heatmap_zero_centered_scale_has_original_unit_inverse(self):
+    def test_heatmap_linear_scale_preserves_equal_minute_steps_and_inverse(self):
         config = json.loads((ROOT / "examples/create/annotated-inhibition/settings.json").read_text())
         raw = np.array([-400., -200., 0., 250., 500., 1000.])
-        expected = np.array([0., .25, .5, .625, .75, 1.])
+        expected = (raw + 400) / 1400
         # Exercise the development and distributable implementations separately.
         for recipe in (heatmap, portable_heatmap):
             with self.subTest(recipe=recipe.__name__):
@@ -107,20 +135,33 @@ class CaseContractTests(unittest.TestCase):
                 np.testing.assert_allclose(norm(raw), expected)
                 np.testing.assert_allclose(norm.inverse(expected), raw)
                 self.assertTrue(np.all(np.diff(norm(np.linspace(-400, 1000, 1001))) > 0))
-                np.testing.assert_allclose(cmap(norm(0)), [1, 1, 1, 1])
-                self.assertEqual(contract["neutral_normalized_position"], .5)
+                self.assertEqual(contract["class"], "Normalize")
+                self.assertIsNone(contract["neutral_normalized_position"])
                 self.assertFalse(contract["clip"])
-                luminance = contract["branch_luminance_check"]
-                self.assertTrue(luminance["negative_arm_nondecreasing"])
-                self.assertTrue(luminance["positive_arm_nonincreasing"])
-                self.assertEqual(luminance["zero_relative_luminance"], 1)
-                np.testing.assert_allclose(cmap(norm(250)), heatmap.matplotlib.colors.to_rgba("#FFD168"))
+                # Equal minute differences have equal color-coordinate differences,
+                # including across zero. This does not certify perceptual uniformity.
+                np.testing.assert_allclose(np.diff(norm([-200., 0., 200.])), [1/7, 1/7])
                 for value in (-400.01, 1000.01):
                     with self.assertRaisesRegex(ValueError, "clip measurements"):
                         recipe.color_scale(config, [value, 0])
-                invalid = dict(config, color_limits=[0, 1000])
+                invalid = dict(config, color_limits=[0, 1000], color_normalization="two_slope", color_center=0)
                 with self.assertRaisesRegex(ValueError, "center must be strictly inside"):
                     recipe.color_scale(invalid, [0, 250, 1000])
+
+    def test_shared_mean_scale_retains_negative_bars_and_rejects_conflicts(self):
+        chosen = {role: pd.DataFrame({"full_matrix_mean_gii_min": values})
+                  for role, values in (("sender", [-10., 40.]), ("receiver", [0., 600.]))}
+        for recipe in (heatmap, portable_heatmap):
+            scales = recipe.mean_scales({"mean_scale": "shared"}, chosen)
+            self.assertEqual(scales["sender"], scales["receiver"])
+            self.assertLessEqual(scales["sender"]["limits"][0], -10)
+            self.assertGreaterEqual(scales["sender"]["limits"][1], 600)
+            with self.assertRaisesRegex(ValueError, "clip bars"):
+                recipe.mean_scales({"mean_scale": "shared", "mean_limits": [0, 700]}, chosen)
+            with self.assertRaisesRegex(ValueError, "conflicts"):
+                recipe.mean_scales({"mean_scale": "shared", "sender_mean_limits": [0, 700]}, chosen)
+            with self.assertRaisesRegex(ValueError, "ticks"):
+                recipe.mean_scales({"mean_scale": "shared", "mean_limits": [-10, 700], "mean_ticks": [0, 800]}, chosen)
 
 
 if __name__ == "__main__":

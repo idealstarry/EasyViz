@@ -24,31 +24,13 @@
     40,
     136,
     96,
-    12
+    16
   ],
   "sender_mean_mm": [
     143,
     34,
     28,
     96
-  ],
-  "receiver_mean_limits": [
-    0,
-    400
-  ],
-  "receiver_mean_ticks": [
-    0,
-    200,
-    400
-  ],
-  "sender_mean_limits": [
-    0,
-    750
-  ],
-  "sender_mean_ticks": [
-    0,
-    300,
-    600
   ],
   "receiver_genome_mm": [
     40,
@@ -63,9 +45,9 @@
     96
   ],
   "colorbar_mm": [
-    119,
-    6,
-    52,
+    114,
+    8.5,
+    57,
     3
   ],
   "text_positions_mm": {
@@ -79,15 +61,15 @@
     ],
     "receiver_mean": [
       40,
-      151
+      154
     ],
     "sender_mean": [
       143,
       132.5
     ],
     "colorbar_title": [
-      145,
-      11
+      142.5,
+      13.5
     ],
     "genome_legend": [
       40,
@@ -99,73 +81,45 @@
     1000
   ],
   "colormap": [
-    "#4B9BDD",
-    "#B8DCFA",
-    "#FFFFFF",
-    "#FFF0B5",
-    "#FFD168",
-    "#FF995D",
-    "#F24E55"
+    "#EDF8FE",
+    "#29A8E5"
   ],
-  "mean_color": "#49ACDE",
+  "mean_color": "#29ACF3",
   "genome_colors": {
     "0": "#FFFFFF",
     "1": "#444444"
   },
   "grid_color": "#EBEDEC",
-  "palette_family": "easyviz-create-blue-white-gold-coral",
-  "palette_preset": "zero-centered-blue-gold-orange-coral",
-  "palette_source": [
-    "https://doi.org/10.1038/s41467-017-02391-6",
-    "https://doi.org/10.1038/s41467-023-43021-8",
-    "https://doi.org/10.1038/s41590-023-01468-3"
-  ],
-  "palette_status": "EasyViz ordered multi-hue design adaptation after inspecting PROGENy Fig. 2b/c, scWAT Fig. 2b and Vanneste Fig. 4d. Colors are chosen, not sampled. Blue-white negative/neutral and white-gold-orange-coral positive arms use explicit color-coordinate stops, each monotonic in relative luminance toward/away from zero. TwoSlopeNorm remains -400 -> 0, 0 -> 0.5 and 1000 -> 1 with piecewise linear slopes.",
+  "palette_family": "easyviz-bright-sky",
+  "palette_preset": "linear-single-hue-sky",
+  "palette_source": [],
+  "palette_status": "EasyViz chosen single-hue sky-blue ramp, globally linear from -400 to 1000 minutes; bounds round outward around the complete source range (-398.9071599, 981.4179003), without clipping. Zero is an explicit tick, not a color-center boundary. These colors are design choices, not publication samples.",
   "panel_title": null,
   "caption_file": "caption.md",
   "axis_color": "#444444",
   "text_color": "#252525",
   "grid_width_pt": 0.35,
-  "color_normalization": "two_slope",
-  "color_center": 0,
+  "color_normalization": "linear",
   "mean_grid": false,
   "colorbar_ticks": [
     -400,
+    -200,
     0,
-    250,
-    500,
+    200,
+    400,
+    600,
+    800,
     1000
   ],
   "genome_tile_outline_policy": "Genome 0: white fill with 0.45 pt charcoal outline; genome 1: solid charcoal fill. The outline makes unfilled binary cells visible; mean bars remain borderless.",
-  "color_stops": [
-    [
-      0,
-      "#4B9BDD"
-    ],
-    [
-      0.25,
-      "#B8DCFA"
-    ],
-    [
-      0.5,
-      "#FFFFFF"
-    ],
-    [
-      0.55,
-      "#FFF0B5"
-    ],
-    [
-      0.625,
-      "#FFD168"
-    ],
-    [
-      0.75,
-      "#FF995D"
-    ],
-    [
-      1,
-      "#F24E55"
-    ]
+  "mean_scale": "shared",
+  "mean_limits": [
+    0,
+    700
   ],
-  "check_branch_luminance": true
+  "mean_ticks": [
+    0,
+    350,
+    700
+  ]
 }

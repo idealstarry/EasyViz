@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "baseline_revision": "43662af",
+  "byte_identity_scope": [
+    {
+      "path": "examples/create/paired-myeloid-remodeling/source-data.csv",
+      "sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/paired-myeloid-remodeling/output/paired-changes.csv",
+      "sha256": "58f7803a0d1c265cdd75f9f51c21e2e65223deeed932b96595656ad3cabb99c3",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/paired-myeloid-remodeling/output/summary.csv",
+      "sha256": "9be2c9a196e00fd775f30f209262d7978a16933c8de506bb8254a6b6eae25b1b",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/paired-myeloid-remodeling/output/participant-order.csv",
+      "sha256": "4a194494d4e6aeb83cf8f42403e13d74b1df2db1c534cb5983cb276e23208691",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/paired-myeloid-remodeling/transfer-five-year/paired-changes.csv",
+      "sha256": "005b8c3356b244c399713024b8315e52d6d1b36e77873d2d25145b03814dc3a7",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/paired-myeloid-remodeling/transfer-five-year/summary.csv",
+      "sha256": "443341ad3d8a782017f18fa18aecb4f7db7dd94b6aaa05b35a2e87fde678f06c",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/paired-myeloid-remodeling/transfer-five-year/participant-order.csv",
+      "sha256": "77ecbabae69f5d454eaf17bc688d4df9f2b1ad50278cf41eea00bfbef4c58089",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/annotated-inhibition/source-data.csv",
+      "sha256": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/annotated-inhibition/genome-status.csv",
+      "sha256": "7d3b0170f645acf20dadb4b2ed476241fb9cfd2c28863a2fcdc24e61975e9bf5",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/annotated-inhibition/plotting-data.csv",
+      "sha256": "644a4c6fc12bcf8c7cbc0bc478aff12434995ebfea20d15a27c6686d60cfe668",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/annotated-inhibition/summary-data.csv",
+      "sha256": "f7a2bb0d2373e5a28afc712f7d83f86444cce1b3354a9ea1d0d9dc1d56a266cf",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/annotated-inhibition/selection.csv",
+      "sha256": "3c8008f2e2cf213ede9a82d1e45676c3d12ff5c4c55f398e2fb9496521dfd0dc",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/cell-atlas-dotplot/source-data.csv",
+      "sha256": "6fd2268a8c9db407912dd33769391e26704898badbe67f7164cc02feb02d0538",
+      "byte_identical_to_baseline": true
+    },
+    {
+      "path": "examples/create/cell-atlas-dotplot/output/plotted-data.csv",
+      "sha256": "b3e999625576abbab8bd1e992e369e6b1afc8b07deffb85823f4d6450e749647",
+      "byte_identical_to_baseline": true
+    }
+  ],
+  "paired": {
+    "output": {
+      "year": 2,
+      "changes_compared": 832,
+      "summaries_compared": 32,
+      "max_change_or_source_error": 1.7763568394002505e-15,
+      "max_summary_error": 1.4210854715202004e-14
+    },
+    "transfer-five-year": {
+      "year": 5,
+      "changes_compared": 592,
+      "summaries_compared": 16,
+      "max_change_or_source_error": 1.7763568394002505e-15,
+      "max_summary_error": 1.4210854715202004e-14
+    }
+  },
+  "paired_placement_csv": {
+    "points": 832,
+    "max_decoded_x_error": 6.106226635438361e-15,
+    "scope": "CSV coordinate decode; actual-artist verification is recorded separately in case QA."
+  },
+  "matrix": {
+    "displayed_values_matched": 400,
+    "full_matrix_means_matched": 152,
+    "max_mean_error": 2.2737367544323206e-13,
+    "color_limits_include_all_source_values": true,
+    "mean_limits_include_zero_and_all_means": true
+  },
+  "atlas": {
+    "rows": 48,
+    "pooled_objects": 22539,
+    "within_depot_proportions_recomputed": true
+  },
+  "limit": "Checks verify data preservation and arithmetic, not aesthetic acceptance."
+}

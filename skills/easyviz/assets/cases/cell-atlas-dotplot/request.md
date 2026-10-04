@@ -15,3 +15,5 @@ Use the released myeloid subtype counts to compare all three human adipose depot
 | Statistics | Descriptive compositions and count totals only |
 
 Preserve the complete source data, show the three denominators, and make clear that pooled objects are not independent participant replicates. Keep all text at its final physical size and preserve the complete export canvas.
+
+Style revision, 2026-10-04: the user requested brighter categorical colors and a brighter quantitative gradient. Retain the existing 0–40% share scale, count-to-size mapping, all 48 records, 180 × 120 mm canvas, Arial 8 pt text, and italic *n* with spaces around the equals sign. Selected colors are EasyViz design choices and must not be attributed as sampled author colors.

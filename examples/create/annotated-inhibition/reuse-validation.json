@@ -25,7 +25,7 @@
   "showcase_font_size_check": "PyMuPDF extracted every text span from the regenerated PDF; all are 8 pt.",
   "synthetic_fixture_and_outputs": "skills/easyviz/assets/recipes/annotated-heatmap/synthetic",
   "restricted_development_data_in_synthetic_fixture": false,
-  "normalization": "TwoSlopeNorm(-400,0,1000), unchanged forward/inverse mapping. Explicit multi-hue color stops and both relative-luminance branch checks pass in development and portable code.",
+  "normalization": "Globally linear Normalize(-400,1000), ordered/invertible original-minute mapping, no clipping; shared automatic mean bounds in synthetic input.",
   "unchanged_input_and_derived_csv_bytes": {
     "source-data.csv": true,
     "genome-status.csv": true,

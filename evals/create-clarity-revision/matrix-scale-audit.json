@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-04",
+  "baseline_revision": "43662af",
+  "primary_article_doi": "10.3390/microorganisms10091794",
+  "primary_definition_location": "Section 2.2, printed PDF page 3 of 21",
+  "measurement": "GII = t2 - t1 in minutes; time to OD595 = 0.2 with cell-free supernatant versus fresh medium only.",
+  "source_inhibition_criterion": "GII > 300 min; no new classification or significance test in this panel.",
+  "full": {
+    "measurements": 5776,
+    "range": [
+      -398.9071599,
+      981.4179003
+    ],
+    "negative": 89,
+    "exact_zero": 0
+  },
+  "displayed": {
+    "measurements": 400,
+    "range": [
+      -51.70510314,
+      961.5094691
+    ],
+    "negative": 11,
+    "exact_zero": 0
+  },
+  "sender_mean_range": [
+    33.55672648804824,
+    664.245493066535
+  ],
+  "receiver_mean_range": [
+    26.63828563819737,
+    370.72364465986846
+  ],
+  "old_mapping": "TwoSlopeNorm(-400, 0, 1000); negative minute slope 1/800, positive 1/2000. The inverse is valid but the quantitative slopes differ.",
+  "adopted_mapping": "Normalize(-400, 1000); u = (x + 400)/1400, inverse x = -400 + 1400u. Bounds round outward around the complete source range; all negative values are retained.",
+  "adopted_marginal_range": [
+    0,
+    700
+  ],
+  "physical_mean_axis_dimensions_mm": {
+    "receiver": 16,
+    "sender": 28
+  },
+  "comparison_limit": "Shared numeric range does not create equal physical bar-length scaling.",
+  "classification_limit": "Positive GII indicates delay; negative indicates earlier attainment and does not establish statistically significant growth promotion.",
+  "independent_numeric_scope": "Independent reviewer recomputed all displayed matches, means and ranks from the complete source and read the primary PDF. Maximum mean rounding difference: 2.84e-14.",
+  "palette_limit": "Linear normalization does not certify perceptual uniformity or publication acceptance."
+}

@@ -12,7 +12,8 @@
       "max_absolute_change_error": 3.552713678800501e-15,
       "max_absolute_summary_error": 1.4210854715202004e-14,
       "missing_pairs": 0,
-      "status": "passed"
+      "status": "passed",
+      "expected_pair_count_from_workbook": 832
     },
     "transfer-five-year": {
       "pairs_compared_to_workbook": 592,
@@ -20,7 +21,15 @@
       "max_absolute_change_error": 1.7763568394002505e-15,
       "max_absolute_summary_error": 1.4210854715202004e-14,
       "missing_pairs": 0,
-      "status": "passed"
+      "status": "passed",
+      "expected_pair_count_from_workbook": 592
     }
-  }
+  },
+  "unchanged_from_pre_redesign": {
+    "main_pairs": true,
+    "main_summaries": true,
+    "transfer_pairs": true,
+    "transfer_summaries": true
+  },
+  "independent_key_set_method": "Construct all cohort, participant, time-point and subtype keys directly from original workbook sheets and source columns; compare the complete selected follow-up key set with plotted changes."
 }

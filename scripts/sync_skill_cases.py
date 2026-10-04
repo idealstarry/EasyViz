@@ -117,7 +117,8 @@ def sync():
     target = ASSETS / 'cases/paired-myeloid-remodeling'
     for name in ('plot.py', 'prepare.py', 'figure-settings.json', 'annotations.json',
                  'source-data.csv', 'provenance.json', 'README.md', 'caption.md',
-                 'design-rationale.md', 'numeric-verification.json', 'pdf-verification.json'):
+                 'design-rationale.md', 'numeric-verification.json', 'pdf-verification.json',
+                 'visual-review.json', 'standalone-verification.json'):
         copy_file(source / name, target / name)
     for folder in ('output', 'transfer-five-year'):
         for file in (source / folder).rglob('*'):

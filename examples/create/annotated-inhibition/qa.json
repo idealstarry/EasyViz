@@ -35,7 +35,7 @@
   "clipped_text": [],
   "missing_glyphs": [],
   "inferential_statistics": "none",
-  "visual_review_required": false,
+  "visual_review_required": true,
   "pdf_fonts": [
     {
       "font": "/CFVUKA+ArialMT",
@@ -50,102 +50,70 @@
     179.99999983333333,
     159.99999996944445
   ],
-  "svg_editable_text_elements": 58,
+  "svg_editable_text_elements": 61,
   "valid_outputs": true,
   "color_normalization": {
-    "class": "TwoSlopeNorm",
-    "method": "two_slope",
+    "class": "Normalize",
+    "method": "linear",
     "vmin": -400,
-    "vcenter": 0,
+    "vcenter": null,
     "vmax": 1000,
     "clip": false,
     "forward_piecewise": [
-      "x <= 0: 0.5 * (x - (-400)) / (0 - (-400))",
-      "x >= 0: 0.5 + 0.5 * (x - (0)) / (1000 - (0))"
+      "u = (x - (-400)) / (1000 - (-400))"
     ],
     "inverse_piecewise": [
-      "u <= 0.5: -400 + 2 * u * (0 - (-400))",
-      "u >= 0.5: 0 + 2 * (u - 0.5) * (1000 - (0))"
+      "x = -400 + u * (1000 - (-400))"
     ],
-    "neutral_normalized_position": 0.5,
+    "neutral_normalized_position": null,
     "source_values_normalized_range": [
-      0.0013660501249999869,
-      0.99070895015
+      0.0007806000714285639,
+      0.9867270716428571
     ],
     "order_and_inverse_checked_points": 5721,
     "strict_order_and_inverse_pass": true,
-    "color_stops": [
-      {
-        "normalized_position": 0,
-        "raw_minutes": -400.0,
-        "color": "#4B9BDD"
-      },
-      {
-        "normalized_position": 0.25,
-        "raw_minutes": -200.0,
-        "color": "#B8DCFA"
-      },
-      {
-        "normalized_position": 0.5,
-        "raw_minutes": 0.0,
-        "color": "#FFFFFF"
-      },
-      {
-        "normalized_position": 0.55,
-        "raw_minutes": 100.00000000000009,
-        "color": "#FFF0B5"
-      },
-      {
-        "normalized_position": 0.625,
-        "raw_minutes": 250.0,
-        "color": "#FFD168"
-      },
-      {
-        "normalized_position": 0.75,
-        "raw_minutes": 500.0,
-        "color": "#FF995D"
-      },
-      {
-        "normalized_position": 1,
-        "raw_minutes": 1000.0,
-        "color": "#F24E55"
-      }
-    ],
-    "branch_luminance_check": {
-      "space": "sRGB relative luminance",
-      "sampled_color_coordinates": 1025,
-      "negative_arm_nondecreasing": true,
-      "positive_arm_nonincreasing": true,
-      "negative_arm_minimum_increment": 0.0010730953586888248,
-      "positive_arm_maximum_increment": -0.0005120888205470964,
-      "zero_relative_luminance": 1.0
-    },
+    "color_stops": [],
+    "branch_luminance_check": null,
     "readout_mapping": "Colorbar tick positions use norm(raw minutes); inverse(norm(x)) returns original minutes."
   },
   "colorbar_ticks": [
     -400,
+    -200,
     0,
-    250,
-    500,
+    200,
+    400,
+    600,
+    800,
     1000
   ],
   "summary_count": 152,
   "all_summary_means_recomputed_from_all_partners": true,
-  "figure_text_sizes_pt": [
-    8.0
-  ],
-  "figure_text_sizes_evidence": "Every regenerated PDF text span extracted with PyMuPDF; all 8 pt.",
-  "unchanged_input_and_derived_csv_bytes": {
-    "source-data.csv": true,
-    "genome-status.csv": true,
-    "plotting-data.csv": true,
-    "summary-data.csv": true,
-    "selection.csv": true
-  },
-  "visual_review_status": "ready_with_notes",
-  "visual_review_role": "Implementation self-review plus independent third-pass child using EasyViz Figure Reviewer.",
-  "visual_review_pass": 3,
-  "visual_review_residual_note": "Values very close to zero remain intentionally faint under continuous color interpolation.",
-  "independent_actual_colorbar_luminance_order_checked": true,
-  "comparative_preference": "final multi-hue > first signed > original pale-coral"
+  "mean_axis_scales": {
+    "mode": "shared",
+    "roles": {
+      "sender": {
+        "limits": [
+          0,
+          700
+        ],
+        "ticks": [
+          0,
+          350,
+          700
+        ]
+      },
+      "receiver": {
+        "limits": [
+          0,
+          700
+        ],
+        "ticks": [
+          0,
+          350,
+          700
+        ]
+      }
+    },
+    "comparison_note": "Matching numeric limits do not imply equal physical bar lengths across axes with different dimensions/orientations."
+  }
 }

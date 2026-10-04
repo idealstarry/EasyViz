@@ -22,6 +22,14 @@ boundaries, visible category identity and organized density can coexist.
   for borderless dots; compare `notch2-blue` on low-value dots when appropriate.
 - Use a diverging scale only around a declared meaningful center. A striking
   color range is insufficient justification for a zero-centered scale.
+- For direct magnitude reading, begin with one globally linear sequential map
+  over justified input bounds. Inspect the actual distribution before adding
+  hues, unequal branches or hand-picked color stops. Preserve negative values;
+  label zero without forcing it to the white midpoint. Explain any alternative
+  normalization in original units, including its different slopes.
+- Related mean tracks in the same units can share numeric limits when readers
+  compare them. Include the zero baseline and every bar; check the range over
+  both tracks. Different physical axis lengths still require reading the ticks.
 - Choose one treatment per comparable mark role: borderless filled observations,
   group-colored hollow observations, or outlined distribution summaries.
   Match legend symbols. A stroke does not establish a new categorical mapping;
@@ -84,6 +92,14 @@ clear filled treatment or aligned facets before fading it. Any size/layout
 change must be explicit; packing must not jitter the numeric coordinate.
 When a whisker crosses a hollow observation, consider an opaque filled glyph
 or a separate summary lane; exposing the crossing is not automatically cleaner.
+
+For many repeated categories, compare adjacent group tracks on one quantitative
+axis before using distant facets. Give raw observations and descriptive
+summaries separate lanes; a compact filled IQR strip and a distinct median can
+carry the main comparison when hundreds of raw points must remain small.
+Measure mark extents before assigning row room, and retain exact numeric
+positions when packing points vertically. This arrangement suits distribution
+comparison; it does not retain participant correspondence across categories.
 
 ## Explicit line roles in core charts
 

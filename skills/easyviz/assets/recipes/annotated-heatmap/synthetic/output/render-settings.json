@@ -24,7 +24,7 @@
     40,
     136,
     96,
-    12
+    16
   ],
   "sender_mean_mm": [
     143,
@@ -45,9 +45,9 @@
     96
   ],
   "colorbar_mm": [
-    119,
-    6,
-    52,
+    114,
+    8.5,
+    57,
     3
   ],
   "text_positions_mm": {
@@ -61,15 +61,15 @@
     ],
     "receiver_mean": [
       40,
-      151
+      154
     ],
     "sender_mean": [
       143,
       132.5
     ],
     "colorbar_title": [
-      145,
-      11
+      142.5,
+      13.5
     ],
     "genome_legend": [
       40,
@@ -81,79 +81,42 @@
     1000
   ],
   "colormap": [
-    "#4B9BDD",
-    "#B8DCFA",
-    "#FFFFFF",
-    "#FFF0B5",
-    "#FFD168",
-    "#FF995D",
-    "#F24E55"
+    "#EDF8FE",
+    "#29A8E5"
   ],
-  "mean_color": "#49ACDE",
+  "mean_color": "#29ACF3",
   "genome_colors": {
     "0": "#FFFFFF",
     "1": "#444444"
   },
   "grid_color": "#EBEDEC",
-  "palette_family": "easyviz-create-blue-white-gold-coral",
-  "palette_preset": "zero-centered-blue-gold-orange-coral",
-  "palette_source": [
-    "https://doi.org/10.1038/s41467-017-02391-6",
-    "https://doi.org/10.1038/s41467-023-43021-8",
-    "https://doi.org/10.1038/s41590-023-01468-3"
-  ],
-  "palette_status": "EasyViz ordered multi-hue design adaptation after inspecting PROGENy Fig. 2b/c, scWAT Fig. 2b and Vanneste Fig. 4d. Colors are chosen, not sampled. Blue-white negative/neutral and white-gold-orange-coral positive arms use explicit color-coordinate stops, each monotonic in relative luminance toward/away from zero. TwoSlopeNorm remains -400 -> 0, 0 -> 0.5 and 1000 -> 1 with piecewise linear slopes.",
+  "palette_family": "easyviz-bright-sky",
+  "palette_preset": "linear-single-hue-sky",
+  "palette_source": [],
+  "palette_status": "EasyViz chosen single-hue sky-blue ramp, globally linear from -400 to 1000 minutes; bounds round outward around the complete source range (-398.9071599, 981.4179003), without clipping. Zero is an explicit tick, not a color-center boundary. These colors are design choices, not publication samples.",
   "panel_title": null,
   "caption_file": "caption.md",
   "axis_color": "#444444",
   "text_color": "#252525",
   "grid_width_pt": 0.35,
-  "color_normalization": "two_slope",
-  "color_center": 0,
+  "color_normalization": "linear",
   "mean_grid": false,
   "colorbar_ticks": [
     -400,
+    -200,
     0,
-    250,
-    500,
+    200,
+    400,
+    600,
+    800,
     1000
   ],
   "genome_tile_outline_policy": "Genome 0: white fill with 0.45 pt charcoal outline; genome 1: solid charcoal fill. The outline makes unfilled binary cells visible; mean bars remain borderless.",
-  "color_stops": [
-    [
-      0,
-      "#4B9BDD"
-    ],
-    [
-      0.25,
-      "#B8DCFA"
-    ],
-    [
-      0.5,
-      "#FFFFFF"
-    ],
-    [
-      0.55,
-      "#FFF0B5"
-    ],
-    [
-      0.625,
-      "#FFD168"
-    ],
-    [
-      0.75,
-      "#FF995D"
-    ],
-    [
-      1,
-      "#F24E55"
-    ]
-  ],
-  "check_branch_luminance": true,
+  "mean_scale": "shared",
   "actual_font": "Arial",
   "source_sha256": "993073d198b3d279bae423ce5171fc3751588bd4626cc9c72d84444f194a769b",
   "genome_sha256": "91d448f73e0c01dd058990c6e8b4fe32f2de02564a67498b99138a1a25a5cedb",
-  "script_sha256": "29f2da59c65186c7f96dc579a3ff134b7e7cb7dcedc773f746a7f6c34190e74e",
+  "script_sha256": "52567df8c6dc3f45aed878c20c0eec39dcdcb7697dd03b904fe41af5fdf05038",
   "selected_sender_ids": [
     "003",
     "002",
@@ -175,80 +138,63 @@
   "source_file": "matrix.csv",
   "genome_file": "genome-status.csv",
   "normalization_contract": {
-    "class": "TwoSlopeNorm",
-    "method": "two_slope",
+    "class": "Normalize",
+    "method": "linear",
     "vmin": -400,
-    "vcenter": 0,
+    "vcenter": null,
     "vmax": 1000,
     "clip": false,
     "forward_piecewise": [
-      "x <= 0: 0.5 * (x - (-400)) / (0 - (-400))",
-      "x >= 0: 0.5 + 0.5 * (x - (0)) / (1000 - (0))"
+      "u = (x - (-400)) / (1000 - (-400))"
     ],
     "inverse_piecewise": [
-      "u <= 0.5: -400 + 2 * u * (0 - (-400))",
-      "u >= 0.5: 0 + 2 * (u - 0.5) * (1000 - (0))"
+      "x = -400 + u * (1000 - (-400))"
     ],
-    "neutral_normalized_position": 0.5,
+    "neutral_normalized_position": null,
     "source_values_normalized_range": [
       0.0,
       1.0
     ],
     "order_and_inverse_checked_points": 29,
     "strict_order_and_inverse_pass": true,
-    "color_stops": [
-      {
-        "normalized_position": 0,
-        "raw_minutes": -400.0,
-        "color": "#4B9BDD"
-      },
-      {
-        "normalized_position": 0.25,
-        "raw_minutes": -200.0,
-        "color": "#B8DCFA"
-      },
-      {
-        "normalized_position": 0.5,
-        "raw_minutes": 0.0,
-        "color": "#FFFFFF"
-      },
-      {
-        "normalized_position": 0.55,
-        "raw_minutes": 100.00000000000009,
-        "color": "#FFF0B5"
-      },
-      {
-        "normalized_position": 0.625,
-        "raw_minutes": 250.0,
-        "color": "#FFD168"
-      },
-      {
-        "normalized_position": 0.75,
-        "raw_minutes": 500.0,
-        "color": "#FF995D"
-      },
-      {
-        "normalized_position": 1,
-        "raw_minutes": 1000.0,
-        "color": "#F24E55"
-      }
-    ],
-    "branch_luminance_check": {
-      "space": "sRGB relative luminance",
-      "sampled_color_coordinates": 1025,
-      "negative_arm_nondecreasing": true,
-      "positive_arm_nonincreasing": true,
-      "negative_arm_minimum_increment": 0.0010730953586888248,
-      "positive_arm_maximum_increment": -0.0005120888205470964,
-      "zero_relative_luminance": 1.0
-    },
+    "color_stops": [],
+    "branch_luminance_check": null,
     "readout_mapping": "Colorbar tick positions use norm(raw minutes); inverse(norm(x)) returns original minutes."
   },
   "actual_colorbar_ticks": [
     -400,
+    -200,
     0,
-    250,
-    500,
+    200,
+    400,
+    600,
+    800,
     1000
-  ]
+  ],
+  "actual_mean_scales": {
+    "sender": {
+      "limits": [
+        0.0,
+        600.0
+      ],
+      "ticks": [
+        0.0,
+        200.0,
+        400.0,
+        600.0
+      ]
+    },
+    "receiver": {
+      "limits": [
+        0.0,
+        600.0
+      ],
+      "ticks": [
+        0.0,
+        200.0,
+        400.0,
+        600.0
+      ]
+    }
+  }
 }

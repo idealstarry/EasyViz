@@ -1,0 +1,207 @@
+{
+  "status": "passed",
+  "runtime": {
+    "python_executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+    "python": "3.12.2",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0"
+    },
+    "matplotlib_defaults_reset": true,
+    "backend": "Agg"
+  },
+  "renderer_sha256": "cc27915ca0a58d66ac1c936b82c6d78886f505d37db973033145ef2f1cd211b7",
+  "font": "Arial, 8 pt",
+  "canvas_mm": [
+    180,
+    125
+  ],
+  "isolated_replay_root": "/tmp/easyviz-paired-redesign/replay",
+  "pixel_replay": {
+    "baseline": {
+      "fresh_isolated_cli": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 0,
+        "max_channel_difference": 0,
+        "difference_bbox_px": null
+      },
+      "caller_style_reset": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 0,
+        "max_channel_difference": 0,
+        "difference_bbox_px": null
+      },
+      "reviewed_png_sha256": "dd0a1d3e87b626bcd6605a981e133ff2444ec15345397c047bd42df4eabbd2c9"
+    },
+    "participant-matrix": {
+      "fresh_isolated_cli": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 0,
+        "max_channel_difference": 0,
+        "difference_bbox_px": null
+      },
+      "caller_style_reset": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 0,
+        "max_channel_difference": 0,
+        "difference_bbox_px": null
+      },
+      "reviewed_png_sha256": "4d0bdb9bd1b59a4405f82b0714a4553d9c4bf78e3cbbea5d12b141dd7432b028"
+    },
+    "distribution-ledger": {
+      "fresh_isolated_cli": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 0,
+        "max_channel_difference": 0,
+        "difference_bbox_px": null
+      },
+      "caller_style_reset": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 0,
+        "max_channel_difference": 0,
+        "difference_bbox_px": null
+      },
+      "reviewed_png_sha256": "cf789bec80eb7d79d358ea15802b8cd3db00d856ea9527058c970669f886dd74"
+    },
+    "transfer": {
+      "dimensions_px": [
+        2125,
+        1476
+      ],
+      "different_pixels": 0,
+      "max_channel_difference": 0,
+      "difference_bbox_px": null
+    }
+  },
+  "caller_style_test": {
+    "before": {
+      "axes.facecolor": "#191919",
+      "axes.edgecolor": "#FF00FF",
+      "text.antialiased": false,
+      "lines.antialiased": false,
+      "patch.antialiased": false,
+      "font.size": 19,
+      "xtick.color": "#FF00FF",
+      "savefig.transparent": true
+    },
+    "after": {
+      "axes.facecolor": "white",
+      "axes.edgecolor": "black",
+      "text.antialiased": true,
+      "lines.antialiased": true,
+      "patch.antialiased": true,
+      "font.size": 8.0,
+      "xtick.color": "black",
+      "savefig.transparent": false
+    }
+  },
+  "single_complete_pair": {
+    "participant": "001",
+    "change": 2,
+    "paired_changes": 1,
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ],
+    "status": "passed",
+    "minimum_pairwise_distance_mm": null,
+    "distance_requirement": "Skipped only because no pair of glyphs exists.",
+    "raw_circle_clipping_count": 0,
+    "overlap_pairs": 0,
+    "output_path": "/tmp/easyviz-paired-redesign/replay/single-pair/output/distribution-ledger"
+  },
+  "unchanged_pair_and_summary_tables": {
+    "main_pairs": true,
+    "main_summaries": true,
+    "transfer_pairs": true,
+    "transfer_summaries": true
+  },
+  "runtime_correction": {
+    "cause": "Previous renders were produced by miniconda Matplotlib 3.10.8; repository package replay uses .venv Matplotlib 3.11.1.",
+    "previous_matplotlib": "3.10.8",
+    "current_matplotlib": "3.11.1",
+    "before_after_pixel_differences": {
+      "baseline": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 48468,
+        "max_channel_difference": 255,
+        "difference_bbox_px": [
+          73,
+          89,
+          2052,
+          1307
+        ]
+      },
+      "participant-matrix": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 51051,
+        "max_channel_difference": 238,
+        "difference_bbox_px": [
+          73,
+          90,
+          2076,
+          1454
+        ]
+      },
+      "distribution-ledger": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 62925,
+        "max_channel_difference": 238,
+        "difference_bbox_px": [
+          61,
+          31,
+          2055,
+          1365
+        ]
+      },
+      "transfer": {
+        "dimensions_px": [
+          2125,
+          1476
+        ],
+        "different_pixels": 47398,
+        "max_channel_difference": 238,
+        "difference_bbox_px": [
+          73,
+          90,
+          2076,
+          1454
+        ]
+      }
+    },
+    "action": "Rerender all main and transfer exports with the project runtime; reset Matplotlib defaults before applying recorded panel settings; record the actual runtime."
+  },
+  "scope": "Same recorded project runtime and fonts, exact PNG pixel replay. No weakened comparison, data change, font change, canvas change, or new aesthetic candidate."
+}

@@ -1,96 +1,240 @@
 {
+  "reviewer": "Independent /root/matrix_scale_audit agent",
+  "reviewed_at_utc": "2026-10-04T01:25:41.435892+00:00",
+  "skill": "/Users/starry/.codex/plugins/cache/personal/easyviz/0.4.2/skills/easyviz-figure-reviewer/SKILL.md",
+  "track": "create",
   "status": "ready_with_notes",
-  "review_pass": 3,
-  "reviewer_role": "Independent child agent using easyviz-figure-reviewer; implementing agent also viewed full PNG and 680 x 605 preview.",
-  "candidate": "examples/create/annotated-inhibition/panel.png",
-  "candidate_sha256": "ed50ba5f6ddd796e58f592cc063bff2c1461221e9f3e8eb3dac8213e684e2c9a",
-  "baseline": "evals/create-literature-refresh/baseline/matrix.png",
-  "first_signed_candidate": "evals/create-literature-refresh/alternatives/matrix-blue-white-red.png",
-  "synthetic": "skills/easyviz/assets/recipes/annotated-heatmap/synthetic/output/panel.png",
-  "comparative_preference_order": [
-    "final_multi_hue_candidate",
-    "first_blue_white_red_candidate",
-    "original_pale_coral_baseline"
+  "preference": "candidate",
+  "candidate_image": "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.png",
+  "baseline_image": "/Users/starry/Desktop/EasyViz/evals/create-clarity-revision/baseline/matrix.png",
+  "images_actually_opened": [
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.png",
+    "/Users/starry/Desktop/EasyViz/evals/create-clarity-revision/baseline/matrix.png"
   ],
-  "reading_task": "Read sign and ordered magnitude, with visibly different positive hues through moderate/strong values; retain full-matrix mean context.",
-  "inspected_full_exports_and_680x605_previews": true,
-  "reasons": [
-    "Middle positives visibly use pale gold, gold and orange; strongest positives use coral.",
-    "Zero stays white and negative cells stay cool; values near zero stay appropriately faint.",
-    "Matrix ordering, bar lengths, keyed genome tracks and five original-minute ticks remain aligned and readable."
+  "read_scope": [
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/settings.json",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/caption.md",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/qa.json"
   ],
+  "implementation_source_read_for_this_visual_review": false,
+  "sha256": {
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.png": "5f91cce4e99396bbf9dfef94eb5452fcf8543a9ea718b57775cf54e2a30bbdeb",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.pdf": "c6079e14ca1d7feb9d34c7bf908480ae909d2e2639d2702d9da255aee60a09e1",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.svg": "7d7df72340e31067e2b4f94cad805a14f09c31676a87b33b1f5142afb6157133",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/settings.json": "3fd44d9e5ae24cd183993703f0529a2aea5a71a9b05321a5156c30b79806511a",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/caption.md": "d0b208c30b7332e414fa1e289ae0c1d6c4b2a9f1294500ddfe5c400542d48f9b",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/qa.json": "75f8255fa892c1a245e43f14ed6cd3c437cc6eb2d992c6dd6d2f9ed6391c334f",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/source-data.csv": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/plotting-data.csv": "644a4c6fc12bcf8c7cbc0bc478aff12434995ebfea20d15a27c6686d60cfe668",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/summary-data.csv": "f7a2bb0d2373e5a28afc712f7d83f86444cce1b3354a9ea1d0d9dc1d56a266cf",
+    "/Users/starry/Desktop/EasyViz/evals/create-clarity-revision/baseline/matrix.png": "ed50ba5f6ddd796e58f592cc063bff2c1461221e9f3e8eb3dac8213e684e2c9a"
+  },
+  "adopted_specification": {
+    "canvas_mm": [
+      180,
+      160
+    ],
+    "font": "Arial",
+    "font_size_pt": 8,
+    "heatmap": "Single blue hue, Normalize(-400,1000), no clipping",
+    "colorbar_ticks_min": [
+      -400,
+      -200,
+      0,
+      200,
+      400,
+      600,
+      800,
+      1000
+    ],
+    "marginal_numeric_limits_min": [
+      0,
+      700
+    ],
+    "marginal_ticks_min": [
+      0,
+      350,
+      700
+    ],
+    "receiver_value_axis_mm": 16,
+    "sender_value_axis_mm": 28,
+    "in_image_narrative": false
+  },
+  "comparison": {
+    "grouping_and_order": "The same 20 sender and 20 receiver labels and the aligned genome-status strips remain in the same visible order. No grouping or strain lookup change is observed.",
+    "pattern_visibility": "The strongest top sender rows remain visibly darker than the remaining matrix. The baseline makes moderate differences more chromatically conspicuous; the candidate gives one ordered magnitude cue with no named hue transitions.",
+    "scientific_reading_task": "Candidate preferred for the adopted absolute-minute reading task: one uninterrupted blue ramp with eight equally spaced 200-minute ticks, and both marginal axes explicitly showing the same 0–700 numeric range.",
+    "alignment": "Receiver bars, sender bars and both binary strips remain aligned to matrix columns/rows. Genome tiles have visible outlined-white versus solid-charcoal states and matching guide keys.",
+    "guide_readability": "The final colorbar title, all eight ticks, receiver-axis title and genome legend appear separate and readable in the complete panel. No visually apparent clipping, label collision or missing glyph is observed. The 57 × 3 mm colorbar remains subordinate to the 96 × 96 mm data region.",
+    "styling": "Opaque bright-blue marginal bars remain borderless; binary states retain purposeful charcoal boundaries. Dark text and axes provide contrast against white space.",
+    "limits": "Preference is scoped to this dataset and the adopted globally linear full-range task. It does not establish better sign decoding, finer discrimination among small 100–200 min differences, universal superiority, or publication acceptance."
+  },
   "findings": [
     {
       "severity": "note",
-      "location": "Matrix near-zero cells",
-      "evidence": "Very small effects remain faint under the continuous mapping.",
-      "action": "Retain scale and caption explanation; use colorbar for detailed small-magnitude reading."
+      "location": "Heatmap, common 100–200 min values",
+      "evidence": "The darker first three sender rows and isolated stronger cells remain visible. Most of the remaining cells occupy a narrow part of the same blue ramp; the displayed IQR is 79.1904777225–200.663884225 min under the complete −400–1000 min range.",
+      "requirement": "Retain one globally linear full-source scale; make no claim of improved decoding of tiny effects.",
+      "action": "Accepted limitation. Retain the full range and avoid a claim of fine-effect discrimination or universal palette superiority."
+    },
+    {
+      "severity": "note",
+      "location": "Zero and sign in the heatmap/colorbar",
+      "evidence": "Zero is a readable guide tick at 2/7 of the colorbar. The continuous single-hue ramp does not create a distinct white center or signed hue boundary.",
+      "requirement": "Honor the adopted single-hue global linear mapping while retaining the signed measurement definition.",
+      "action": "Accepted adaptation. The separate caption states the positive/negative meaning and the source GII > 300 min inhibition criterion; no new classification is drawn."
+    },
+    {
+      "severity": "note",
+      "location": "Receiver and sender marginal means",
+      "evidence": "Both visible numeric axes use 0, 350 and 700 min. The receiver value axis is 16 mm high and the sender value axis is 28 mm wide, corresponding to 2.2857142857 and 4 mm per 100 min.",
+      "requirement": "Share numeric 0–700 min limits without claiming identical physical bar-length scaling.",
+      "action": "Accepted limitation. Compare values through ticks; the caption explicitly distinguishes numeric limits from physical lengths."
     }
   ],
-  "critical_major_minor_findings": [],
-  "independent_checks": {
-    "png_dimensions": "All four opened PNGs independently read 2126 x 1890 px.",
-    "palette_luminance": "Recomputed at 1025 normalized coordinates: negative arm nondecreasing, positive arm nonincreasing; zero relative luminance 1.0.",
-    "actual_rendered_colorbar_scanline": {
-      "images": "Main and synthetic PNGs",
-      "png_y": 1801,
-      "png_x_inclusive": [
-        1406,
-        2018
-      ],
-      "both_branch_luminance_orders_pass": true,
-      "brightest_center_x": 1712,
-      "normalized_stop_positions": [
-        0,
-        0.25,
-        0.5,
-        0.55,
-        0.625,
-        0.75,
-        1
-      ],
-      "observed_stop_rgb": [
-        [
-          75,
-          155,
-          221
+  "external_numerical_and_export_checks": [
+    {
+      "status": "passed",
+      "check": "Actual PNG dimensions and density",
+      "evidence": {
+        "pixels": [
+          2126,
+          1890
         ],
-        [
-          184,
-          220,
-          250
+        "dpi": [
+          299.9994,
+          299.9994
         ],
-        [
-          255,
-          255,
-          254
-        ],
-        [
-          255,
-          240,
-          180
-        ],
-        [
-          255,
-          209,
-          104
-        ],
-        [
-          255,
-          153,
-          93
-        ],
-        [
-          242,
-          79,
-          85
-        ]
-      ],
-      "agreement_with_declared_colors": "Within one RGB level in both images."
+        "mode": "RGB"
+      },
+      "independent": true
     },
-    "source_values_selection_means_metadata": "Passed in supplied QA records; not independently recomputed by reviewer.",
-    "physical_size_typography_embedding": "Passed in supplied 180 x 160 mm / 8 pt Arial / embedded PDF font records; not independently remeasured by reviewer.",
-    "caption": "Continuous interpolation stops distinguished from bins/thresholds; zero, minutes, asymmetric slopes, provenance and retained measurements stated."
-  },
-  "residual_issues": "Near-zero values are intentionally faint; no required visual revision."
+    {
+      "status": "passed",
+      "check": "Baseline matching image dimensions",
+      "evidence": {
+        "pixels": [
+          2126,
+          1890
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ],
+        "mode": "RGB"
+      },
+      "independent": true
+    },
+    {
+      "status": "passed",
+      "check": "Actual PDF physical dimensions, embedded fonts and point size",
+      "evidence": {
+        "pages": 1,
+        "page_mm": [
+          179.99999999998556,
+          159.999999999995
+        ],
+        "fonts": [
+          {
+            "base_font": "/CFVUKA+ArialMT",
+            "embedded": true
+          },
+          {
+            "base_font": "/CECFXM+ArialMT",
+            "embedded": true
+          }
+        ],
+        "all_text_font_sizes_pt": [
+          8.0
+        ]
+      },
+      "independent": true
+    },
+    {
+      "status": "passed",
+      "check": "Actual SVG dimensions and typography",
+      "evidence": {
+        "canvas_mm": [
+          179.99999983333333,
+          159.99999996944445
+        ],
+        "editable_text_elements": 61,
+        "all_text_arial_8_in_svg_coordinate_units": true
+      },
+      "independent": true
+    },
+    {
+      "status": "passed",
+      "check": "Rendered matrix colors agree with global linear mapping",
+      "evidence": {
+        "sampled_cell_centers": 400,
+        "maximum_rgb_channel_difference": 0,
+        "mapping": "Normalize(-400,1000), settings two-endpoint blue palette, 1025 color coordinates"
+      },
+      "independent": true
+    },
+    {
+      "status": "passed",
+      "check": "Actual colorbar tick labels and equal physical intervals",
+      "evidence": {
+        "labels": [
+          "−400",
+          "−200",
+          "0",
+          "200",
+          "400",
+          "600",
+          "800",
+          "1000"
+        ],
+        "x_positions_svg_pt": [
+          323.149606,
+          346.231721,
+          369.313836,
+          392.395951,
+          415.478065,
+          438.56018,
+          461.642295,
+          484.724409
+        ],
+        "adjacent_gaps_mm": [
+          8.142857236111105,
+          8.142857236111105,
+          8.142857236111126,
+          8.14285688333333,
+          8.142857236111105,
+          8.142857236111105,
+          8.14285688333333
+        ],
+        "expected_gap_mm": 8.142857142857142
+      },
+      "independent": true
+    },
+    {
+      "status": "passed",
+      "check": "Full-source and displayed data integrity, descriptive means",
+      "evidence": "Direct recomputation in the preceding audit: 5776 finite source values, range −398.9071599–981.4179003 min, 89 negatives and zero exact zeros; all 400 displayed cells match source; 152 means use all 76 partners; maximum mean rounding discrepancy 2.842170943040401e-14. Current source SHA-256 matches that audit. Current QA independently inspected and agrees.",
+      "independent": true
+    },
+    {
+      "status": "passed",
+      "check": "Text clipping, missing glyphs and text-bounds intersections",
+      "evidence": "Current qa.json reports no clipped text and no missing glyphs; the implementing agent reports a completed actual PDF text-bounding-box intersection check after the bottom-guide fix. This reviewer independently inspected both PNGs and saw no text collision. The implementation bounding-box check was not rerun by this reviewer.",
+      "independent": false
+    },
+    {
+      "status": "passed",
+      "check": "Separate caption semantics and scope",
+      "evidence": "Caption declares t2−t1 measurement semantics, negative/positive interpretation, source >300 min criterion, full-denominator means, rank selection, global linear inverse, and unequal physical marginal scales; no new significance or growth-promotion inference.",
+      "independent": true
+    }
+  ],
+  "required_unchecked_items": [],
+  "unresolved_items": [
+    "Intentional subtle color differences among common values under the complete source range.",
+    "Intentional lack of a distinct sign/zero hue boundary.",
+    "Shared marginal numeric limits do not calibrate equal physical bar lengths."
+  ],
+  "further_revision_required": false,
+  "scope_statement": "Visual comparison covers only these actual final and baseline PNGs. Metadata and numerical sampling cover the identified current PDF/SVG/settings/data files. No plot.py was read for this visual review, no artifact was rerendered, and no palette claim is generalized beyond this data and reading task."
 }

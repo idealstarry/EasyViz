@@ -1,31 +1,93 @@
 {
   "status": "ready_with_notes",
-  "reviewer_role": "self-review",
-  "date": "2026-10-03",
+  "reviewer_role": "independent candidate review followed by implementing-agent final review",
+  "date": "2026-10-04",
   "track": "create",
-  "reviewed_files": ["figure.png", "pdf-preview.png"],
-  "baseline_image_inspected": "/private/tmp/easyviz-create-before/cell-atlas-dotplot.png",
-  "baseline_repository_revision": "3e0a42d84974acb7daf792efd6d23a41133320ad",
-  "review_passes": 3,
-  "reading_task": "Compare within-depot shares and counts while preserving subtype groups, reported marker annotations and pooled marginal totals.",
-  "comparison": {
-    "preference": "candidate",
+  "review_passes": 2,
+  "visual_pass_limit": 2,
+  "reviewed_files": [
+    "figure.png",
+    "pdf-preview.png"
+  ],
+  "readme_display_check": {
+    "width_pixels": 1000,
+    "image": "/private/tmp/easyviz-atlas-bright-20261004/final-readme-preview.png"
+  },
+  "baseline_image_inspected": "/private/tmp/easyviz-atlas-bright-20261004/baseline.png",
+  "baseline_png_sha256": "8487847f195f80539e28c02cd6106b93ebd7c5879e30107075a9b3c1f2e0a2e8",
+  "final_png_sha256": "f8dc96aceedbeee77d768eca73d18ddf0cdd99304da9731320c8f8105c50797a",
+  "reading_task": "Compare within-depot shares and counts while preserving subtype groups, reported marker annotations and pooled marginal totals; satisfy the requested brighter palette.",
+  "candidate_review": {
+    "reviewer": "independent EasyViz figure reviewer",
+    "skill": "skills/easyviz-figure-reviewer/SKILL.md",
+    "pass": 1,
+    "inspected_baseline_and_candidates": true,
+    "full_canvas_and_1000_pixel_previews": true,
+    "preferred_candidate": "A",
     "basis": [
-      "The white field removes broad alternating bands and continuous vertical rules that competed with the sparse quantitative dots.",
-      "Group gaps, narrow categorical strips and three pale separators retain row grouping without boxing each data column.",
-      "Normal-weight headers, quieter identifiers and marker text, and an unframed continuous guide reduce the visual weight of decoding aids.",
-      "The stronger light endpoint improves contrast of small positive dots on white while preserving exact count-to-size and share-to-color mappings."
+      "Both candidates are visibly brighter than the baseline.",
+      "Candidate A retains stronger small-dot visibility at README width.",
+      "Its cyan-to-blue numerical scale combines clearly with coral, jade and violet categories.",
+      "Candidate B is softer and its purple highest-share dot echoes the DC categorical color."
     ],
-    "scope": "A self-reviewed improvement for this fixed 16-subtype by 3-depot panel; not a generalization or publication-acceptance result."
+    "candidate_A": {
+      "group_colors": {
+        "M2 macrophages": "#55B7F3",
+        "Other macrophages": "#FF8B88",
+        "Monocytes": "#35CBA6",
+        "DC": "#A68AF4"
+      },
+      "color_stops": [
+        "#75D7E7",
+        "#55CAED",
+        "#3CB9F4",
+        "#2DAAF6",
+        "#2D98ED"
+      ]
+    },
+    "candidate_B": {
+      "group_colors": {
+        "M2 macrophages": "#60B4F7",
+        "Other macrophages": "#FF8593",
+        "Monocytes": "#31C4A6",
+        "DC": "#A08AF0"
+      },
+      "color_stops": [
+        "#91DFF0",
+        "#77D0F4",
+        "#64BBF7",
+        "#6DA1F4",
+        "#7F86EB"
+      ]
+    }
+  },
+  "comparison": {
+    "preference": "candidate_A",
+    "basis": [
+      "Sky-blue marginal bars are brighter than the previous deep blue; coral replaces amber and violet replaces muted pink.",
+      "Cyan-to-azure dots show a clear saturated progression on white without introducing a separate categorical hue at the upper end.",
+      "The lowest continuous endpoint is more visibly colored than the baseline light blue; dot-size parameters remain exact."
+    ],
+    "scope": "This fixed 16-subtype by 3-depot panel, evaluated for the user request for brighter colors; no generalization or publication-acceptance claim."
   },
   "checks": {
-    "numeric": "passed: 48 source rows and 22539 pooled objects retained; plotted-data.csv unchanged; source-table hash and original TSV contents verified.",
-    "mappings": "passed: all 16 subtype rows, category assignments, 88*n/2700 scatter size parameters, and 0-40% linear share scale retained.",
-    "exports": "passed: PDF/SVG 180 by 120 mm, PNG 300 dpi, all PDF text 8 pt, fonts embedded, editable SVG text and no text outside PDF canvas.",
-    "legend_geometry": "passed: final guide validation has no overlap, clipping or geometry issues.",
-    "visual": "PNG and independently rasterized PDF inspected for row alignment, required labels, legends, clipping, grouping and color/line hierarchy."
+    "numeric": "passed: all 48 original rows and fields verified against original TSV and hashes; 22539 pooled objects retained; plotted-data.csv bytes equal baseline.",
+    "mappings": "passed: all 16 subtype rows, 88*n/2700 Matplotlib dot-size parameters, depot denominators and fixed linear 0\u201340% share normalization retained.",
+    "palette_order": "passed: all 256 sequential-map relative-luminance samples strictly decrease, with no range clipping.",
+    "exports": "passed: PDF/SVG 180 by 120 mm, PNG 300 dpi, all PDF text 8 pt, embedded Arial and Arial Italic, editable SVG text, no PDF text outside canvas.",
+    "legend_geometry": "passed: rendered validation has no guide overlap, clipping or geometry issues.",
+    "visual": "Independent first pass inspected baseline and both candidates; final second pass inspected actual PNG, 1000-pixel README preview and independently rasterized PDF for required labels, row alignment, count label typography, legends, color hierarchy and clipping."
   },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Rare positive pv dots",
+      "evidence": "The n=1 and n=2 dots remain difficult to see when reduced; their exact quantitative sizes are less than or near a raster pixel.",
+      "requirement": "Preserve all records and exact proportional dot sizes.",
+      "action": "Retain the colored dots and vector precision; no artificial size floor or replaced values."
+    }
+  ],
   "residual_notes": [
-    "Extremely rare positive counts remain very small at the final physical size; no minimum size, row deletion or replacement values were used."
+    "Extremely rare positive counts remain tiny at the final physical size and may be difficult to see in a reduced README preview."
   ]
 }

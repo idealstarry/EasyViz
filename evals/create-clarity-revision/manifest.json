@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-04",
+  "baseline_revision": "43662af",
+  "track": "create",
+  "user_request": "Redesign the paired panel, justify matrix normalization and marginal ranges, brighten the atlas palette.",
+  "cases": {
+    "paired": {
+      "baseline": "evals/create-clarity-revision/baseline/paired.png",
+      "baseline_sha256": "fe8fb648bee02fb251a19509a869761618b2f67e72b8c0827ad39ec41aa50eda",
+      "candidate": "evals/create-clarity-revision/candidate/paired.png",
+      "candidate_sha256": "cf789bec80eb7d79d358ea15802b8cd3db00d856ea9527058c970669f886dd74",
+      "current_case_panel": "examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png",
+      "review_record": "examples/create/paired-myeloid-remodeling/visual-review.json"
+    },
+    "matrix": {
+      "baseline": "evals/create-clarity-revision/baseline/matrix.png",
+      "baseline_sha256": "ed50ba5f6ddd796e58f592cc063bff2c1461221e9f3e8eb3dac8213e684e2c9a",
+      "candidate": "evals/create-clarity-revision/candidate/matrix.png",
+      "candidate_sha256": "5f91cce4e99396bbf9dfef94eb5452fcf8543a9ea718b57775cf54e2a30bbdeb",
+      "current_case_panel": "examples/create/annotated-inhibition/panel.png",
+      "review_record": "examples/create/annotated-inhibition/independent-review.json"
+    },
+    "atlas": {
+      "baseline": "evals/create-clarity-revision/baseline/atlas.png",
+      "baseline_sha256": "8487847f195f80539e28c02cd6106b93ebd7c5879e30107075a9b3c1f2e0a2e8",
+      "candidate": "evals/create-clarity-revision/candidate/atlas.png",
+      "candidate_sha256": "f8dc96aceedbeee77d768eca73d18ddf0cdd99304da9731320c8f8105c50797a",
+      "current_case_panel": "examples/create/cell-atlas-dotplot/output/figure.png",
+      "review_record": "examples/create/cell-atlas-dotplot/output/visual-review.json"
+    }
+  },
+  "numerical_evidence": "numeric-verification.json",
+  "matrix_primary_source_audit": "matrix-scale-audit.json",
+  "review_status": "Independent candidate review completed; user acceptance pending.",
+  "limits": [
+    "Fixed example review does not prove generalized model improvement.",
+    "Dense paired dots chiefly show distributions at small raster sizes.",
+    "A full-range single-hue matrix sacrifices subtle middle-value contrast.",
+    "Atlas tiny circles retain true proportional sizes."
+  ]
+}

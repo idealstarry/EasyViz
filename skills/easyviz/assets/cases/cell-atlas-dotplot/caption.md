@@ -4,6 +4,8 @@ Composition of 16 myeloid subtypes across subcutaneous (sc), omental (om), and p
 
 Subtype descriptors and marker examples follow the publication. Marker labels are descriptive annotations; this source table does not measure their expression. The colored annotation strip groups the published descriptors into M2 macrophages, other macrophages, monocytes, and dendritic cells for display. No new clustering or differential-abundance analysis was performed. Counts describe pooled objects, not independent subjects, and no subject-level statistical inference is implied.
 
+Category colors and the cyan-to-blue sequential scale are EasyViz design choices. The color scale is linear from 0 to 40% within-depot share. Rare positive counts retain their exact proportional dot sizes and may be difficult to see in a reduced preview.
+
 LAM, lipid-associated macrophages; MMe, metabolic-regulated macrophages; Mox, redox-regulatory metabolic macrophages; Mo, monocytes; DC2, dendritic cells of subtype 2.
 
 Data and descriptors: Massier et al., *An integrated single cell and spatial transcriptomic map of human white adipose tissue*, Nature Communications 14, 1438 (2023), [doi:10.1038/s41467-023-36983-2](https://doi.org/10.1038/s41467-023-36983-2), Figure 2d and Figure 2f. The chart uses the authors' [released source data](https://data.mendeley.com/datasets/y3pxvr4xbf/2) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), with a new chart design, editorial row grouping, selected marker examples, and explicit percentage calculations. This caption is provided separately for manuscript assembly; the panel has no assigned figure letter.

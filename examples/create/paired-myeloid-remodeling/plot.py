@@ -6,7 +6,8 @@ annotations. Statistical summaries are recomputed from all complete pairs;
 upstream deconvolution is deliberately outside this script.
 """
 from __future__ import annotations
-import argparse, hashlib, json, os, tempfile
+import argparse, hashlib, json, os, sys, tempfile
+from importlib.metadata import version as package_version
 from pathlib import Path
 os.environ.setdefault('MPLCONFIGDIR',str(Path(tempfile.gettempdir())/'easyviz-remodeling-mpl'))
 import matplotlib
@@ -139,6 +140,9 @@ def main():
     require(1<=len(ann)<=16,'This 125 mm layout needs one to 16 subtypes; do not shrink typography')
     require(len({a['cluster'] for a in ann})==len(ann),'Subtype annotations must be unique')
     require(np.isfinite(cfg['change_xlim']).all() and cfg['change_xlim'][0]<0<cfg['change_xlim'][1], 'The change axis must be finite, ascending and contain zero')
+    # Reset caller/user Matplotlib styles before applying this panel's recorded
+    # configuration; isolated CLI replay must not inherit another figure's style.
+    plt.rcdefaults()
     plt.rcParams.update({'font.family':cfg['font'],'font.size':font,'axes.labelsize':font,
                          'xtick.labelsize':font,'ytick.labelsize':font,'legend.fontsize':font,
                          'pdf.fonttype':42,'svg.fonttype':'none','axes.unicode_minus':True,
@@ -192,7 +196,7 @@ def main():
             if label:tx((x0+x1)/2,y-8.2,label,ha='center')
             return xx
         offsets=np.linspace(.92,-.92,len(cohorts)) if len(cohorts)>1 else [0]
-        point_audits=[]; hollow_audits=[]
+        point_audits=[]; hollow_audits=[]; ledger_geometry=None; ledger_artists=[]
         if design=='baseline':
             # A competent conventional baseline, with matched differences rather
             # than misleading unpaired before/after boxes.
@@ -262,42 +266,106 @@ def main():
             for tick in [cfg['change_xlim'][0],0,cfg['change_xlim'][1]]: tx(xx(tick),21.8,str(tick),ha='center')
             tx(154.5,16,'Change in score',ha='center')
         else:
-            label_rows()
-            facets=[(35.,93.,100.),(110.,168.,175.)] if len(cohorts)==2 else [(35.,168.,175.)]
-            for c,(x0,x1,ledger_x) in zip(cohorts,facets):
-                xx=scale(x0,x1); color=cfg['cohort_colors'][c]
-                tx((x0+x1)/2,115,f'{c} ($n$ = {ns[c]})',ha='center')
-                line([x0,x1],[111,111],color=color,lw=.65)
-                tx(ledger_x,113,'<0',ha='center');tx(ledger_x,109,'(%)',ha='center')
-                line([xx(0),xx(0)],[26,107],color=INK,lw=marks.get('reference_line_width_pt',.45),
-                     ls=(0,tuple(marks.get('reference_dash_pattern_pt',[2,2]))),zorder=0)
-                for a in ann:
-                    s=f'myC{a["cluster"]:02}'
+            # One exact quantitative axis; one row per subtype. Dense rows get
+            # measured vertical room, while their supplied order remains fixed.
+            x0,x1=35.,136.; xx=scale(x0,x1)
+            diameter=marks.get('ledger_participant_diameter_pt',1.4)
+            radius=diameter*25.4/72/2
+            packed_rows={}; extents={}
+            for a in ann:
+                s=f'myC{a["cluster"]:02}'; heights=[]
+                for ci,c in enumerate(cohorts):
                     rows=paired[(paired.cohort==c)&(paired.subtype==s)].sort_values('participant')
-                    values=rows.change.to_numpy(); st=stats[c,s]
-                    # Test the requested hollow-circle policy at the same geometry.
-                    _,hollow=pack_points(xx(values),2.0,marks.get('participant_max_offset_mm',1.5),
-                                         gap_pt=marks.get('participant_gap_pt',.1),seed=23)
-                    hollow_audits.append({'cohort':c,'subtype':s,**hollow})
-                    diameter=marks.get('participant_diameter_pt',1.2)
+                    values=rows.change.to_numpy()
                     packed,info=pack_points(xx(values),diameter,marks.get('participant_max_offset_mm',1.5),
-                                            gap_pt=marks.get('participant_gap_pt',.1),seed=23)
+                                            gap_pt=marks.get('ledger_participant_gap_pt',.05),seed=23)
                     require(packed is not None,f'Participant lane cannot fit {c}/{s}: {info}')
+                    recenter=float((packed.min()+packed.max())/2); packed=packed-recenter
+                    info.update({'packing_recentering_mm':recenter,
+                                 'maximum_actual_offset_mm':float(np.max(abs(packed)))})
                     point_audits.append({'cohort':c,'subtype':s,**info})
-                    yy=ys[s]+.45+packed
-                    dot(xx(values),yy,color,diameter**2,zorder=2)
-                    # A dedicated lower strip keeps summary boxes off the raw marks.
-                    iqr_box(xx,st,ys[s]-1.7,color,height=.55)
-                    tx(ledger_x,ys[s],f'{st["negative_percent"]:.0f}',ha='center')
-                    for participant,value,x,y in zip(rows.participant,values,xx(values),yy):
+                    # All raw circle edges sit beyond the summary strips.
+                    if ci==0:
+                        raw_center=.70+radius-float(packed.min())
+                        high=raw_center+float(packed.max())+radius
+                        low=.55
+                    else:
+                        raw_center=-.70-radius-float(packed.max())
+                        low=-raw_center-float(packed.min())+radius
+                        high=.55
+                    packed_rows[c,s]=(rows,values,packed,raw_center)
+                    heights.append((high,low))
+                extents[s]=(heights[0][0],heights[-1][1])
+            upper,lower=107.,24.
+            extra_groups=sum(a['display_group']!=ann[i-1]['display_group'] for i,a in enumerate(ann) if i)
+            group_gap=1.7
+            row_gap=(upper-lower-sum(sum(v) for v in extents.values())-extra_groups*group_gap)/max(1,len(ann)-1)
+            require(row_gap>=.35,'Raw points and summaries need more vertical room at this size; choose another layout')
+            ledger_ys={}; separators=[]; cursor=upper
+            for i,a in enumerate(ann):
+                s=f'myC{a["cluster"]:02}'
+                if i:
+                    cursor-=row_gap
+                    if a['display_group']!=ann[i-1]['display_group']:
+                        separators.append(cursor-group_gap/2);cursor-=group_gap
+                high,low=extents[s]; ledger_ys[s]=cursor-high;cursor-=high+low
+            for ysep in separators:
+                line([5,176],[ysep,ysep],color=marks.get('separator_color',GRID),
+                     lw=marks.get('separator_line_width_pt',.25),zorder=0)
+            line([xx(0),xx(0)],[lower,upper],color=INK,lw=marks.get('reference_line_width_pt',.45),
+                 ls=(0,tuple(marks.get('reference_dash_pattern_pt',[2,2]))),zorder=0)
+            ledger_xs=[149.,170.] if len(cohorts)==2 else [159.5]
+            tx(float(np.mean(ledger_xs)),121,'Below zero (%)',ha='center')
+            for c,ledger_x in zip(cohorts,ledger_xs):
+                color=cfg['cohort_colors'][c]
+                tx(ledger_x,116,c,ha='center',color=color)
+                tx(ledger_x,112,f'$n$ = {ns[c]}',ha='center')
+            line([140,176],[108.5,108.5],color=INK,lw=.45)
+            for a in ann:
+                s=f'myC{a["cluster"]:02}';y=ledger_ys[s]
+                label=a['label'].replace('Non-classical Mo','Non-class. Mo').replace('Classical Mo','Class. Mo')
+                tx(5,y,f'{s}  {label}')
+                for ci,(c,ledger_x) in enumerate(zip(cohorts,ledger_xs)):
+                    rows,values,packed,raw_center=packed_rows[c,s];st=stats[c,s];color=cfg['cohort_colors'][c]
+                    yy=y+raw_center+packed
+                    artist=dot(xx(values),yy,color,diameter**2,zorder=3)
+                    ledger_artists.append((artist,values.copy()))
+                    sy=y+(.30 if ci==0 else -.30)
+                    left,right=float(xx(st['q1'])),float(xx(st['q3']))
+                    rr(left,sy-.25,right-left,.5,color,zorder=4)
+                    line([xx(st['median']),xx(st['median'])],[sy-.25,sy+.25],color=INK,lw=1.0,zorder=5)
+                    tx(ledger_x,y,f'{st["negative_percent"]:.0f}',ha='center')
+                    for participant,value,x,py in zip(rows.participant,values,xx(values),yy):
                         placement_rows.append({'design':design,'cohort':c,'subtype':s,'participant':participant,
-                                               'change':float(value),'x_mm':float(x),'y_mm':float(y)})
-                horizontal_axis(x0,x1,23,None)
-            tx(104,14.8,f'Change in deconvolution score ({args.year} years − baseline)',ha='center')
-            # Essential layer keys, with the same outline and fill policies as data.
-            iqr_box(lambda v:v,{'q1':58,'q3':63,'median':60.5},6.3,INK,height=.9)
-            tx(66,6.3,'Median / IQR')
-            dot(111,6.3,INK,marks.get('participant_diameter_pt',1.2)**2);tx(114,6.3,'Participant')
+                                               'change':float(value),'x_mm':float(x),'y_mm':float(py)})
+            # Re-read the actual scatter offsets and audit all raw glyph pairs,
+            # not only the independent within-cohort packing calls.
+            actual=np.vstack([np.asarray(a.get_offsets(),dtype=float) for a,_ in ledger_artists])
+            expected=np.concatenate([values for _,values in ledger_artists])
+            decoded=(actual[:,0]-x0)/(x1-x0)*(cfg['change_xlim'][1]-cfg['change_xlim'][0])+cfg['change_xlim'][0]
+            error=float(np.max(abs(decoded-expected)))
+            minimum_distance=min((float(np.min(np.hypot(actual[i+1:,0]-x,actual[i+1:,1]-y)))
+                                  for i,(x,y) in enumerate(actual[:-1])),default=None)
+            required_distance=(diameter+marks.get('ledger_participant_gap_pt',.05))*25.4/72
+            require(error<1e-12,'An actual participant glyph changed its quantitative coordinate')
+            require(minimum_distance is None or minimum_distance>=required_distance-1e-6,'Raw circles overlap across cohort or row lanes')
+            require((actual[:,0]-radius>=x0).all() and (actual[:,0]+radius<=x1).all() and
+                    (actual[:,1]-radius>=lower-1e-6).all() and (actual[:,1]+radius<=upper+1e-6).all(),
+                    'A raw circle would be clipped by the data field')
+            ledger_geometry={'shared_quantitative_axis_mm':[x0,x1], 'data_bounds_mm':[x0,lower,x1-x0,upper-lower],
+                             'row_centers_mm':ledger_ys,'row_gap_mm':row_gap,'annotation_group_gap_mm':group_gap,
+                             'summary_strip_height_mm':.5,'minimum_point_to_own_summary_gap_mm':.15,
+                             'actual_scatter_glyph_count':len(actual),'max_abs_decoded_change_error':error,
+                             'minimum_all_raw_circle_center_distance_mm':minimum_distance,
+                             'minimum_required_center_distance_mm':required_distance,
+                             'raw_circle_clipping_count':0,'cross_row_or_cohort_overlap_pairs':0}
+            horizontal_axis(x0,x1,19,f'Change in deconvolution score ({args.year} years − baseline)')
+            # A compact in-canvas guide replaces the duplicated facet headers
+            # and the floating bottom legend. Categorical sizes are fixed.
+            dot(36.5,117,INK,diameter**2);tx(39,117,'Participant')
+            rr(80,116.75,6,.5,'#777777')
+            line([83,83],[116.6,117.4],color=INK,lw=1.0)
+            tx(89,117,'Median / IQR')
         fig.canvas.draw();renderer=fig.canvas.get_renderer()
         problems=[];fonts=[]
         for artist in fig.findobj(Text):
@@ -318,6 +386,7 @@ def main():
                          'all_paired_changes_preserved':len(paired),'points_or_matrix_cells':len(paired),
                          'participant_point_layout':point_audits,
                          'hollow_circle_feasibility_trial':hollow_audits,
+                         'ledger_layout':ledger_geometry,
                          'comparability':'Same source pairs, canvas, font, selected subtypes, and shared axis/color settings.'}
     if len(plots)==3:
         # A review board outside the manuscript exports; retain the complete
@@ -337,11 +406,15 @@ def main():
     if placement_rows:pd.DataFrame(placement_rows).to_csv(args.out/'participant-placement.csv',index=False,float_format='%.17g')
     (args.out/'figure-settings.json').write_text(json.dumps(cfg,indent=2)+'\n')
     audit={'status':'passed','source_sha256':digest(args.data),'settings_sha256':digest(args.settings),
+           'renderer_sha256':digest(Path(__file__)),
+           'runtime':{'python_executable':sys.executable,'python':sys.version.split()[0],
+                      'packages':{name:package_version(name) for name in ('matplotlib','numpy','pandas','scipy','Pillow','pypdf')},
+                      'matplotlib_defaults_reset':True,'backend':matplotlib.get_backend()},
            'actual_font_path':font_manager.findfont(cfg['font'],fallback_to_default=False),
            'actual_cohort_colors':{c:cfg['cohort_colors'][c] for c in cohorts},'mark_roles':marks,
            'followup_year':args.year,'cohorts':ns,
            'paired_participants':sum(ns.values()),'subtypes':len(ann),'paired_changes':len(paired),
-           'missing_pairs':0,'imputed_values':0,'change_range':[paired.change.min(),paired.change.max()],
+           'missing_pairs':0,'imputed_values':0,'change_range':[float(paired.change.min()),float(paired.change.max())],
            'score_unit':'Published deconvolution score; differences are score units, not proportions or percentage points.',
            'summary_interval':'Interquartile range of participant differences; not a confidence interval.',
            'designs':records}

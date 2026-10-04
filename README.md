@@ -44,7 +44,7 @@ definitions rather than treating every table as interchangeable.
 
 **Create · paired myeloid changes**
 
-All 832 paired changes are plotted in aligned cohort views with the same score axis. Clear observation marks, outlined median/IQR summaries and aligned fractions below zero distinguish the data layers. The observed scWAT blue/coral pair is explicitly reassigned to the two cohorts.
+All 832 paired changes use one shared score axis, with adjacent blue/coral participant tracks for each subtype. Filled IQR strips, dark median ticks and aligned fractions below zero make the cohort summaries directly comparable. The observed scWAT blue/coral pair is explicitly reassigned to the two cohorts.
 
 <p align="center"><a href="examples/create/paired-myeloid-remodeling/"><img src="examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png" alt="All paired myeloid changes with cohort median, IQR and fractions below zero" width="720"></a></p>
 
@@ -52,13 +52,13 @@ All 832 paired changes are plotted in aligned cohort views with the same score a
 
 **Create · annotated inhibition matrix**
 
-Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view. A cold–white–warm scale explicitly anchors zero; its asymmetric branches and original minute values are recorded separately.
+Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view. A single-hue blue scale maps original minutes globally linearly; both mean tracks share the same numeric range, justified by the complete data.
 
 <p align="center"><a href="examples/create/annotated-inhibition/"><img src="examples/create/annotated-inhibition/panel.png" alt="Microbial inhibition heatmap with annotations and marginal means" width="720"></a></p>
 
 **Create · cell atlas composition**
 
-Counts, within-depot proportions, and aligned totals for 16 myeloid subtypes across three depots.
+Counts, within-depot proportions, and aligned totals for 16 myeloid subtypes across three depots. Bright sky, coral, jade and violet mark subtype groups; a cyan-to-blue quantitative ramp retains the original linear percent scale.
 
 <p align="center"><a href="examples/create/cell-atlas-dotplot/"><img src="examples/create/cell-atlas-dotplot/output/figure.png" alt="Myeloid subtype composition across three adipose depots" width="720"></a></p>
 

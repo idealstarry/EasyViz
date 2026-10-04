@@ -41,7 +41,7 @@
   },
   "structural_reference_image_used": false,
   "palette_reference_used": true,
-  "style_refinement": {
+  "prior_style_refinement": {
     "basis": "Actual PDF inspection of PROGENy Fig. 2b/c, scWAT Fig. 2b and Vanneste Fig. 4d; adopted strong signed contrast around a light neutral center, thin purposeful axes and compact metadata. Colors chosen by EasyViz, not sampled.",
     "current_colors_sampled_from_publication": false,
     "colormap": [
@@ -93,6 +93,30 @@
         "#F24E55"
       ]
     ],
-    "luminance": "Actual 1025-color sRGB relative-luminance sampling passes negative nondecreasing and positive nonincreasing arms. No asinh, power, quantile mapping, clipping, or binning."
+    "luminance": "Actual 1025-color sRGB relative-luminance sampling passes negative nondecreasing and positive nonincreasing arms. No asinh, power, quantile mapping, clipping, or binning.",
+    "historical_user_rejected": true
+  },
+  "style_refinement": {
+    "basis": "User request for a simpler bright single-hue map and interpretable numeric ranges; independent full-source and primary-method audit.",
+    "current_colors_sampled_from_publication": false,
+    "colormap": [
+      "#EDF8FE",
+      "#29A8E5"
+    ],
+    "mean_color": "#29ACF3",
+    "genome_colors": {
+      "0": "#FFFFFF",
+      "1": "#444444"
+    },
+    "normalization": "Normalize(-400,1000); u=(x+400)/1400, inverse x=-400+1400u. One slope throughout; zero at2/7, no special white center.",
+    "range_basis": "Outward-rounded complete observed measurement range [-398.9071599,981.4179003] minutes.",
+    "mean_range": [
+      0,
+      700
+    ],
+    "mean_range_basis": "Both same-unit tracks; observed means span [26.63828563819737,664.245493066535]. Numeric range is shared; unequal physical axis lengths remain explicit.",
+    "data_selection_and_statistics_changed": false,
+    "measurement_definition_checked": "Primary paper Section2.2 on printedPDFpage3: time-to-OD595=0.2 difference, GII=t2-t1; publication inhibition criterionGII>300min, without a new inference in this panel.",
+    "visual_review": "Actual final PNG independently reviewed with caption/settings/QA, ready_with_notes; all 400 rendered cell colors, equal tick spacings, 8pt embedded Arial and physical dimensions verified. Limits: common-value contrast remains subtle; no special zero hue; unequal physical mean-axis lengths."
   }
 }

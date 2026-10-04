@@ -102,7 +102,7 @@ with tempfile.TemporaryDirectory(prefix='easyviz-package-') as temporary:
         w = csv.writer(f); w.writerow(['strain','genome']); w.writerows((strain,0) for strain in ids)
     config = json.loads((recipe / 'settings.json').read_text())
     config.update(selection_count=4, color_limits=[-5,15])
-    for key in ('receiver_mean_limits','receiver_mean_ticks','sender_mean_limits','sender_mean_ticks'):
+    for key in ('receiver_mean_limits','receiver_mean_ticks','sender_mean_limits','sender_mean_ticks','mean_limits','mean_ticks'):
         config.pop(key, None)
     (sandbox / 'recipe.json').write_text(json.dumps(config))
     run(recipe / 'plot.py', '--data', sandbox / 'matrix.csv', '--genome', sandbox / 'genome.csv',

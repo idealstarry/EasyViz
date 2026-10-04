@@ -94,6 +94,44 @@ def color_scale(cfg, values):
     return norm, cmap, contract
 
 
+def mean_scales(cfg, chosen):
+    """Resolve comparable mean readouts without clipping bars or losing zero."""
+    mode = cfg.get("mean_scale", "independent")
+    if mode not in ("shared", "independent"):
+        raise ValueError("mean_scale must be shared or independent")
+
+    def resolve(values, limits=None, ticks=None):
+        low, high = min(0., float(np.min(values))), max(0., float(np.max(values)))
+        if limits is None:
+            if low == high:
+                high = low + 1
+            automatic = MaxNLocator(nbins=3).tick_values(low, high).tolist()
+            limits = [automatic[0], automatic[-1]]
+            ticks = automatic if ticks is None else ticks
+        elif ticks is None:
+            ticks = np.linspace(*limits, 3).tolist()
+        if (len(limits) != 2 or not np.isfinite(limits).all()
+                or not limits[0] < limits[1] or not limits[0] <= low <= high <= limits[1]):
+            raise ValueError("Mean limits would clip bars or exclude their zero baseline")
+        if (not len(ticks) or not np.isfinite(ticks).all()
+                or not np.all(np.diff(ticks) > 0)
+                or min(ticks) < limits[0] or max(ticks) > limits[1]):
+            raise ValueError("Mean ticks must increase within the declared limits")
+        return {"limits": list(limits), "ticks": list(ticks)}
+
+    if mode == "shared":
+        if any(f"{role}_mean_{field}" in cfg for role in chosen for field in ("limits", "ticks")):
+            raise ValueError("Shared mean scale conflicts with role-specific mean limits/ticks")
+        values = np.concatenate([table.full_matrix_mean_gii_min.to_numpy() for table in chosen.values()])
+        shared = resolve(values, cfg.get("mean_limits"), cfg.get("mean_ticks"))
+        return {role: dict(shared) for role in chosen}
+    if "mean_limits" in cfg or "mean_ticks" in cfg:
+        raise ValueError("mean_limits/mean_ticks require mean_scale=shared")
+    return {role: resolve(table.full_matrix_mean_gii_min.to_numpy(),
+                          cfg.get(f"{role}_mean_limits"), cfg.get(f"{role}_mean_ticks"))
+            for role, table in chosen.items()}
+
+
 def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-status.csv", settings_path=HERE / "settings.json"):
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False})
@@ -135,6 +173,7 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         summaries.append(table)
         chosen[role] = table.iloc[ranks].copy()
     summary = pd.concat(summaries, ignore_index=True)
+    resolved_means = mean_scales(cfg, chosen)
     rows, cols = chosen["sender"].strain.tolist(), chosen["receiver"].strain.tolist()
     shown = full.loc[rows, cols]
     selected = shown.rename_axis(index="sender", columns="receiver").stack().rename("gii_min").reset_index()
@@ -169,18 +208,7 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         text("receiver_axis", "Receiver strain", ha="center", va="center")
 
         def mean_axis_limits(role):
-            values = chosen[role].full_matrix_mean_gii_min
-            if f"{role}_mean_limits" in cfg:
-                limits = cfg[f"{role}_mean_limits"]
-                ticks = cfg.get(f"{role}_mean_ticks", np.linspace(*limits, 3).tolist())
-            else:
-                low, high = min(0, values.min()), max(0, values.max())
-                if low == high:
-                    high = low + 1
-                ticks = MaxNLocator(nbins=3).tick_values(low, high).tolist()
-                limits = [ticks[0], ticks[-1]]
-            assert len(limits) == 2 and limits[0] <= min(0, values.min()) <= max(0, values.max()) <= limits[1], "Mean limits would clip bars"
-            return limits, ticks
+            return resolved_means[role]["limits"], resolved_means[role]["ticks"]
 
         # Top bar heights and side bar lengths use all partners, not the crop.
         top = axis("receiver_mean_mm")
@@ -272,10 +300,12 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
     summary.to_csv(out / "summary-data.csv", index=False)
     selection = pd.concat([chosen[role] for role in ("sender", "receiver")], ignore_index=True)
     selection.to_csv(out / "selection.csv", index=False)
-    cfg.update(actual_font=font, source_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest(), genome_sha256=hashlib.sha256(genome_path.read_bytes()).hexdigest(), script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), selected_sender_ids=rows, selected_receiver_ids=cols, selected_ranks_one_based=(ranks + 1).tolist(), source_file=data_path.name, genome_file=genome_path.name, normalization_contract=normalization, actual_colorbar_ticks=ticks, selection=f"Rounded {count} equally spaced ranks from 0 to {n - 1}, after sorting means descending then strain ID.")
+    cfg.update(actual_font=font, source_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest(), genome_sha256=hashlib.sha256(genome_path.read_bytes()).hexdigest(), script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), selected_sender_ids=rows, selected_receiver_ids=cols, selected_ranks_one_based=(ranks + 1).tolist(), source_file=data_path.name, genome_file=genome_path.name, normalization_contract=normalization, actual_colorbar_ticks=ticks, actual_mean_scales=resolved_means, selection=f"Rounded {count} equally spaced ranks from 0 to {n - 1}, after sorting means descending then strain ID.")
     write_json(out / "render-settings.json", cfg)
     qa = {"status": "pass" if not clipped and not missing else "needs_revision", "full_matrix_shape": list(full.shape), "full_input_measurements": int(full.size), "selected_shape": list(shown.shape), "selected_measurements": len(selected), "selected_values_equal_source": bool(np.array_equal(selected.gii_min.to_numpy(), full.loc[rows, cols].to_numpy().ravel())), "negative_input_measurements_retained": int((full.values < 0).sum()), "negative_selected_measurements_retained": int((shown.values < 0).sum()), "summary_denominator": n, "summary_means_recomputed_from_all_partners": bool(np.allclose(chosen["sender"].full_matrix_mean_gii_min, full.loc[rows].mean(axis=1)) and np.allclose(chosen["receiver"].full_matrix_mean_gii_min, full.loc[:, cols].mean(axis=0))), "genome_strips_match_strain_ids": True, "pdf_mm": page_mm, "png_pixels": pixels, "png_dpi": png_dpi, "font": font, "body_font_pt": cfg["font_size_pt"], "panel_title_rendered": False, "caption_file": "caption.md", "clipped_text": clipped, "missing_glyphs": missing, "inferential_statistics": "none", "visual_review_required": True}
     qa.update(pdf_fonts=fonts, svg_mm=svg_mm, svg_editable_text_elements=svg_text_count, valid_outputs=not clipped and not missing, color_normalization=normalization, colorbar_ticks=ticks, summary_count=len(summary), all_summary_means_recomputed_from_all_partners=bool(np.allclose(summary[summary.role == "sender"].set_index("strain").full_matrix_mean_gii_min.reindex(full.index), full.mean(axis=1)) and np.allclose(summary[summary.role == "receiver"].set_index("strain").full_matrix_mean_gii_min.reindex(full.columns), full.mean(axis=0))))
+    qa["mean_axis_scales"] = {"mode": cfg.get("mean_scale", "independent"), "roles": resolved_means,
+                              "comparison_note": "Matching numeric limits do not imply equal physical bar lengths across axes with different dimensions/orientations."}
     write_json(out / "qa.json", qa)
     assert qa["status"] == "pass", qa
     print(json.dumps({"status": qa["status"], "output": str(out), "measurements_shown": len(selected)}))

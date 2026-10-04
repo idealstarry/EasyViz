@@ -1,0 +1,200 @@
+{
+  "status": "ready_with_notes",
+  "track": "create",
+  "maximum_visual_passes": 2,
+  "visual_passes_completed": 2,
+  "panel_requirements": {
+    "width_mm": 180,
+    "height_mm": 125,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "paired_changes": 832,
+    "cohorts": {
+      "Petrus": 15,
+      "Kerr": 37
+    },
+    "subtypes": 16,
+    "units": "Original deconvolution score differences",
+    "change_axis": [
+      -12,
+      8
+    ],
+    "colors": {
+      "Petrus": "#55A0FB",
+      "Kerr": "#FF8080"
+    },
+    "panel_text": "Data-reading apparatus only; no title, narrative or footnote."
+  },
+  "passes": [
+    {
+      "number": 1,
+      "reviewer_role": "Independent EasyViz figure reviewer plus implementing-agent and root image inspection",
+      "reviewer_task": "/root/paired_layout_revision/paired_layout_review",
+      "images": [
+        {
+          "role": "original",
+          "path": "/tmp/easyviz-paired-redesign/before.png",
+          "sha256": "fe8fb648bee02fb251a19509a869761618b2f67e72b8c0827ad39ec41aa50eda"
+        },
+        {
+          "role": "shared-axis candidate",
+          "path": "/tmp/easyviz-paired-redesign/shared/distribution-ledger/panel.png",
+          "sha256": "8a4cbf04425849a0d0f861f4fc54d655582ab8b82892f6380ba551e2037c5acd"
+        },
+        {
+          "role": "stronger-summary facets candidate",
+          "path": "/tmp/easyviz-paired-redesign/facets/distribution-ledger/panel.png",
+          "sha256": "4bfe61d85feed2d012f93a9ca9e4b1399947655c775d2a3edd0ca6a4971e04f4"
+        }
+      ],
+      "display_evidence": "Full candidate PNGs and 96 dpi PDF rasters at identical canvas dimensions; original resized to the same preview dimensions by reviewer.",
+      "preference": "shared-axis candidate",
+      "reasons": [
+        "Adjacent blue/coral summaries permit direct median and IQR comparison on one axis.",
+        "Aligned percentage columns reduce lookup between cohort fields.",
+        "Stronger-summary facets retain duplicated axes and distant cohort fields."
+      ],
+      "findings": [
+        {
+          "severity": "minor",
+          "location": "Candidate settings/QA",
+          "evidence": "Candidate prose still described unfilled boxes and old summary positions.",
+          "resolution": "Final settings and QA describe filled IQR strips between participant tracks."
+        },
+        {
+          "severity": "minor",
+          "location": "Provisional candidate caption",
+          "evidence": "The brief provisional caption omitted subtype abbreviation definitions.",
+          "resolution": "The final caption retains definitions for myC, LAM, Mo and DC2."
+        },
+        {
+          "severity": "note",
+          "location": "Dense raw tracks",
+          "evidence": "Dense participants read primarily as distribution shape at final size.",
+          "resolution": "Retain all exact raw marks and vector exports; prioritize clear summaries."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "reviewer_role": "Independent EasyViz figure reviewer and implementing-agent image inspection",
+      "reviewer_task": "/root/paired_layout_revision/paired_layout_review",
+      "images": [
+        {
+          "role": "Adopted ledger before runtime correction; actual pass-2 image",
+          "path": "/tmp/easyviz-paired-redesign/runtime-before/output/distribution-ledger/panel.png",
+          "sha256": "9f340616f1e2f289c87b5e7c175892db59dad6df41901c9eabb219cf5c4f6d16"
+        },
+        {
+          "role": "720 px display proof",
+          "path": "/tmp/easyviz-paired-redesign/final-distribution-ledger-720px.png",
+          "sha256": "26b8654714f9f2c54ee51e2bca207df51a0e283d1225d548cec2eb833f258cf3"
+        },
+        {
+          "role": "96 dpi PDF proof",
+          "path": "/tmp/easyviz-paired-redesign/final-distribution-ledger-96dpi.png",
+          "sha256": "403deb5081385e1f965c4682a7be2aa8d669e2672ffa5beed643f230f9a1f4ff"
+        }
+      ],
+      "corrections": [
+        "Neutral gray summary key with a distinct protruding black median.",
+        "Final dark median ticks remain inside the colored IQR strips and separate from raw circles.",
+        "Descriptive records and manuscript abbreviation definitions updated."
+      ],
+      "findings": [
+        {
+          "severity": "note",
+          "location": "Dense participant tracks, especially Kerr myC07",
+          "evidence": "At 720 px and 96 dpi, dense points chiefly convey distribution shape; IQRs, medians and percentages remain distinguishable.",
+          "action": "Accepted; use vector output for closer inspection."
+        }
+      ],
+      "critical_major_minor_findings": 0,
+      "status": "ready_with_notes"
+    }
+  ],
+  "technical_evidence": {
+    "source_and_statistics": "numeric-verification.json independently compares original workbook source scores and complete selected pair keys, with tolerance 1e-12. Main/transfer pair and summary CSVs are byte-identical to pre-redesign snapshots.",
+    "actual_scatter": {
+      "shared_quantitative_axis_mm": [
+        35.0,
+        136.0
+      ],
+      "data_bounds_mm": [
+        35.0,
+        24.0,
+        101.0,
+        83.0
+      ],
+      "row_centers_mm": {
+        "myC00": 105.02695240083645,
+        "myC01": 100.70236763603016,
+        "myC04": 95.92742513645074,
+        "myC07": 91.08267564553329,
+        "myC08": 84.73941516444984,
+        "myC09": 79.7992514350581,
+        "myC11": 75.39985375153738,
+        "myC12": 70.70065284635511,
+        "myC13": 65.55789025726921,
+        "myC02": 58.93497756449444,
+        "myC06": 53.968451937880836,
+        "myC10": 49.22583117364425,
+        "myC15": 44.2282301130095,
+        "myC05": 37.63778099708455,
+        "myC14": 33.01726163320736,
+        "myC03": 26.448546382640416
+      },
+      "row_gap_mm": 0.5409220399250914,
+      "annotation_group_gap_mm": 1.7,
+      "summary_strip_height_mm": 0.5,
+      "minimum_point_to_own_summary_gap_mm": 0.15,
+      "actual_scatter_glyph_count": 832,
+      "max_abs_decoded_change_error": 4.440892098500626e-15,
+      "minimum_all_raw_circle_center_distance_mm": 0.5115277777777592,
+      "minimum_required_center_distance_mm": 0.5115277777777778,
+      "raw_circle_clipping_count": 0,
+      "cross_row_or_cohort_overlap_pairs": 0
+    },
+    "exports": "pdf-verification.json: all four PDFs retain 180 × 125 mm, only 8 pt Arial/Arial Italic and embedded fonts. output/qa.json and transfer-five-year/qa.json contain renderer/source/settings hashes and output identities.",
+    "replayed": "All three main designs plus comparison board; five-year Kerr participant-matrix transfer."
+  },
+  "limits": [
+    "The visual preference is for this source, canvas and stated comparison task. It is not a publication acceptance claim or general superiority proof.",
+    "Raw points remain small at manuscript size; distinct vector marks do not establish effortless individual counting in a small raster preview.",
+    "Y packing and variable row room are organizational and have no quantitative or biological-distance meaning.",
+    "No causal cohort-effect inference, confidence interval or significance claim was added.",
+    "Temporary alternatives and display proofs remain under /tmp; final manuscript outputs are in the case directory."
+  ],
+  "adopted_final_image": {
+    "path": "/Users/starry/Desktop/EasyViz/examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png",
+    "sha256": "cf789bec80eb7d79d358ea15802b8cd3db00d856ea9527058c970669f886dd74"
+  },
+  "runtime_correction": {
+    "reason": "Project package replay uses Matplotlib 3.11.1; the first rendering had used miniconda Matplotlib 3.10.8.",
+    "runtime": {
+      "python_executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "python": "3.12.2",
+      "packages": {
+        "matplotlib": "3.11.1",
+        "numpy": "2.5.3",
+        "pandas": "3.0.5",
+        "scipy": "1.18.1",
+        "Pillow": "12.3.0",
+        "pypdf": "6.18.0"
+      },
+      "matplotlib_defaults_reset": true,
+      "backend": "Agg"
+    },
+    "renderer_sha256": "cc27915ca0a58d66ac1c936b82c6d78886f505d37db973033145ef2f1cd211b7",
+    "final_png_sha256": "cf789bec80eb7d79d358ea15802b8cd3db00d856ea9527058c970669f886dd74",
+    "layout_recheck": {
+      "reviewer_role": "Root actual-image inspection",
+      "finding": "The intended shared-axis layout and summary hierarchy are intact.",
+      "additional_aesthetic_candidates": 0
+    },
+    "standalone_replay_record": "standalone-verification.json",
+    "standalone_replay": "All three main PNGs and the five-year transfer reproduce identical pixels in a separate copied case and fresh CLI process. Altered caller styles also reproduce the three main PNGs identically after the explicit defaults reset.",
+    "single_pair": "Participant 001, one cohort and one subtype export all three formats with change 2 and null minimum pairwise distance.",
+    "data_identity": "Main and transfer pairs and summary CSVs remain byte-identical to the pre-redesign snapshots."
+  }
+}

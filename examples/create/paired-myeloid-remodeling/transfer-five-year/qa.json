@@ -1,7 +1,22 @@
 {
   "status": "passed",
   "source_sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
-  "settings_sha256": "391c6ebcd3fd579a09a7c74eda48f87ba18eb32bbb649e702988692edfc49bf6",
+  "settings_sha256": "81b55be4efceaae433c4716bae1a56fefadf19225c3abcca16d76f5c7ccdbcbd",
+  "renderer_sha256": "cc27915ca0a58d66ac1c936b82c6d78886f505d37db973033145ef2f1cd211b7",
+  "runtime": {
+    "python_executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+    "python": "3.12.2",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0"
+    },
+    "matplotlib_defaults_reset": true,
+    "backend": "Agg"
+  },
   "actual_font_path": "/System/Library/Fonts/Supplemental/Arial.ttf",
   "actual_cohort_colors": {
     "Kerr": "#FF8080"
@@ -28,8 +43,10 @@
     "participant_outline_width_pt": 0,
     "participant_max_offset_mm": 1.5,
     "participant_gap_pt": 0.1,
-    "participant_outline_policy": "Opaque borderless filled circles. A 1.6 pt hollow circle with 0.4 pt outline was physically tested first; dense near-ties cannot all fit within the compact facet lanes.",
-    "summary_policy": "Compact unfilled Q1\u2013Q3 box with a dark median tick; IQR is participant spread, not a confidence interval. Ledger summaries occupy a separate strip below the participant dots in each row."
+    "participant_outline_policy": "Opaque borderless filled circles: 1.2 pt in the conventional baseline and 1.4 pt in the shared-axis distribution ledger. No observation alpha reduction or quantitative-coordinate jitter.",
+    "summary_policy": "Baseline and matrix use compact unfilled Q1\u2013Q3 boxes and dark medians. The shared-axis ledger uses 0.5 mm filled Q1\u2013Q3 strips with dark median ticks, in separate middle lanes between the two participant tracks. IQR is participant spread, not a confidence interval.",
+    "ledger_participant_diameter_pt": 1.4,
+    "ledger_participant_gap_pt": 0.05
   },
   "followup_year": 5,
   "cohorts": {
@@ -50,8 +67,8 @@
     "participant-matrix": {
       "formats": {
         "png": "68c9fd153666a0abfb616bf69c7ec155f8dfa83d10da0e419ff34dd0bdeb909d",
-        "pdf": "a159b49ef07c5b2884d4c73196447953bd7ca71783014d2977a0199dd5f2b9b4",
-        "svg": "05a1408cc5119f78c08c8d7abd02cfb8e8ee75034c98125bd10dba8a480aca4a"
+        "pdf": "eedbc731d113b3cf44e8e8dc1aaaed6c0639337098e25e1f3dec01a46dcbac45",
+        "svg": "f3a608105243d8f48d0b6eac991295dcb3b72384c971e096590aa74bad1cb3be"
       },
       "width_height_mm": [
         179.99999999998556,
@@ -65,6 +82,7 @@
       "points_or_matrix_cells": 592,
       "participant_point_layout": [],
       "hollow_circle_feasibility_trial": [],
+      "ledger_layout": null,
       "comparability": "Same source pairs, canvas, font, selected subtypes, and shared axis/color settings."
     }
   }
