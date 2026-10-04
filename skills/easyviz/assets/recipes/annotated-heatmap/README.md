@@ -35,6 +35,6 @@ The supplied single-hue sky-blue scale uses `Normalize(vmin=-400, vmax=1000)`: `
 
 For the development GII measurement, positive values mean delayed attainment time and negative values earlier attainment; the original paper calls values >300 min inhibition. Do not infer a significance test or threshold for another measurement from these colors. Adapt units, definitions and supported inference from the actual input.
 
-Opaque sky-blue means and charcoal/outlined-white metadata keep their own guides. Supporting grids are disabled. Text remains 8 pt on the 180 × 160 mm canvas. The full bottom-right guide is checked after rendering; numeric range checks alone do not establish readability.
+White 0.5 pt internal heatmap boundaries and charcoal 0.45 pt mean-bar outlines follow the adopted user request. Set `heatmap_grid_color`/`heatmap_grid_width_pt` and `mean_edge_color`/`mean_edge_width_pt` independently; omitted widths default to zero. Opaque sky-blue means and charcoal/outlined-white metadata keep their own guides. Mean-axis grids remain disabled. Text remains 8 pt on the 180 × 160 mm canvas. The full bottom-right guide is checked after rendering; numeric range checks alone do not establish readability.
 
 A fully synthetic [4 × 4 fixture](synthetic/README.md) and its full-canvas outputs exercise this contract without the excluded development data. They contain invented numbers and support no biological claim.

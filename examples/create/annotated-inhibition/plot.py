@@ -15,6 +15,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
+from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap, Normalize, TwoSlopeNorm
 from matplotlib.patches import Patch, Rectangle
 from matplotlib.text import Text
@@ -199,6 +200,13 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
 
         ax = axis("heatmap_mm")
         image = ax.imshow(shown, cmap=cmap, norm=norm, aspect="equal", interpolation="nearest")
+        # Cell boundaries sit above the image and below labels and other marks.
+        cell_edges = np.arange(.5, count - .5)
+        segments = ([[(edge, -.5), (edge, count - .5)] for edge in cell_edges] +
+                    [[(-.5, edge), (count - .5, edge)] for edge in cell_edges])
+        cell_grid = LineCollection(segments, colors=cfg.get("heatmap_grid_color", "#FFFFFF"),
+                                   linewidths=cfg.get("heatmap_grid_width_pt", 0), zorder=1)
+        ax.add_collection(cell_grid)
         ax.set_xticks(range(count), cols, rotation=90, ha="center", va="top")
         ax.set_yticks(range(count), rows)
         ax.tick_params(length=0, pad=3)
@@ -211,8 +219,12 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
             return resolved_means[role]["limits"], resolved_means[role]["ticks"]
 
         # Top bar heights and side bar lengths use all partners, not the crop.
+        mean_edge_color = cfg.get("mean_edge_color", cfg.get("axis_color", "#252E31"))
+        mean_edge_width = cfg.get("mean_edge_width_pt", 0)
         top = axis("receiver_mean_mm")
-        top.bar(np.arange(count), chosen["receiver"].full_matrix_mean_gii_min, width=.82, color=cfg["mean_color"], linewidth=0, zorder=2)
+        top_bars = top.bar(np.arange(count), chosen["receiver"].full_matrix_mean_gii_min, width=.82,
+                           color=cfg["mean_color"], edgecolor=mean_edge_color,
+                           linewidth=mean_edge_width, zorder=2)
         top.set_xlim(-.5, count - .5)
         limits, ticks = mean_axis_limits("receiver")
         top.set_ylim(*limits)
@@ -226,7 +238,9 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
         text("receiver_mean", "Receiver mean GII (min)", ha="left", va="bottom")
 
         right = axis("sender_mean_mm")
-        right.barh(np.arange(count), chosen["sender"].full_matrix_mean_gii_min, height=.82, color=cfg["mean_color"], linewidth=0, zorder=2)
+        right_bars = right.barh(np.arange(count), chosen["sender"].full_matrix_mean_gii_min, height=.82,
+                               color=cfg["mean_color"], edgecolor=mean_edge_color,
+                               linewidth=mean_edge_width, zorder=2)
         right.set_ylim(count - .5, -.5)
         limits, ticks = mean_axis_limits("sender")
         right.set_xlim(*limits)
@@ -306,6 +320,15 @@ def run(out, data_path=HERE / "source-data.csv", genome_path=HERE / "genome-stat
     qa.update(pdf_fonts=fonts, svg_mm=svg_mm, svg_editable_text_elements=svg_text_count, valid_outputs=not clipped and not missing, color_normalization=normalization, colorbar_ticks=ticks, summary_count=len(summary), all_summary_means_recomputed_from_all_partners=bool(np.allclose(summary[summary.role == "sender"].set_index("strain").full_matrix_mean_gii_min.reindex(full.index), full.mean(axis=1)) and np.allclose(summary[summary.role == "receiver"].set_index("strain").full_matrix_mean_gii_min.reindex(full.columns), full.mean(axis=0))))
     qa["mean_axis_scales"] = {"mode": cfg.get("mean_scale", "independent"), "roles": resolved_means,
                               "comparison_note": "Matching numeric limits do not imply equal physical bar lengths across axes with different dimensions/orientations."}
+    qa["mark_boundaries"] = {
+        "heatmap_internal_segments": len(cell_grid.get_segments()),
+        "heatmap_grid_width_pt": float(cell_grid.get_linewidths()[0]),
+        "heatmap_grid_color_rgba": cell_grid.get_colors()[0].tolist(),
+        "mean_bars": {
+            role: {"count": len(bars), "edge_width_pt": sorted({bar.get_linewidth() for bar in bars}),
+                   "edge_color_rgba": bars[0].get_edgecolor()}
+            for role, bars in (("receiver", top_bars), ("sender", right_bars))},
+        "policy": "Explicit user request: visible internal cell boundaries and outlined marginal bars."}
     write_json(out / "qa.json", qa)
     assert qa["status"] == "pass", qa
     print(json.dumps({"status": qa["status"], "output": str(out), "measurements_shown": len(selected)}))

@@ -1,17 +1,17 @@
-# Independent visual review
+# 本轮矩阵边界改动：独立视觉审核
 
-**Status: ready_with_notes. Preference: candidate for the adopted absolute-minute reading task.** The reviewer actually opened the current `panel.png` and `evals/create-clarity-revision/baseline/matrix.png`, and read the current settings, caption and QA. No implementation source was read for this visual review and no panel was rerendered.
+本轮偏好候选，限于用户明确提出的“内部格线明显一些、上侧和右侧柱子有边框”。已实际查看候选、基线，以及两份 96 dpi 最终尺寸 PDF 预览；已读当前 settings、caption 和 QA。未读实现代码、重绘或修改数据。
 
-The final matrix retains the visible ordering, aligned mean tracks and readable binary genome strips. Its strongest top sender rows remain apparent. The continuous blue ramp and equally spaced 200-minute colorbar ticks give one ordered magnitude cue. The baseline makes moderate differences more chromatically conspicuous; the final mapping removes the previous sign-dependent slope and hue transitions. This preference is specific to the adopted full-range reading task.
+候选中的白色内部格线清楚地区分相邻单元格，逐格定位更直接；两组柱子的炭灰轮廓在 96 dpi 预览中也能辨认。原有较深的上侧行、局部强值、顺序与对齐均保留。未见新增裁切、文字碰撞或图例拥挤。
 
-All eight colorbar labels, the colorbar title, receiver-axis label and genome legend appear uncrowded in the complete panel. Dark text, visible binary boundaries and borderless bright-blue bars remain clear. No material clipping, overlap or glyph defect was observed. No further aesthetic iteration is required.
+| Severity | Location | Evidence | Requirement | Action |
+|---|---|---|---|---|
+| Note | 热图内部 | 新格线更清楚，同时分割连续色块。 | 白色 0.5 pt 内部格线。 | 已满足；不宣称普遍审美提升或细微色差增强。 |
+| Note | 极矮柱子 | 边框占据更大的视觉比例，96 dpi 下尤为明显。 | 两组柱子采用炭灰 0.45 pt 边框。 | 已满足；读取柱值时使用刻度，无需返工。 |
+| Note | 沿用尺度 | 均值轴同为 0–700 min，但上侧 16 mm、右侧 28 mm；常见值在全色阶内仍只有细微差别。 | 保留原数值映射。 | 沿用独立 caption 的阅读限制。 |
 
-| Severity | Location | Evidence and requirement | Action |
-|---|---|---|---|
-| Note | Common heatmap values | Many values near 100–200 min occupy a narrow part of the full −400–1000 min range. | Accepted. Do not claim improved decoding of tiny effects. |
-| Note | Sign and zero | Zero is labeled at 2/7 of the continuous single-hue guide and has no distinct hue boundary. | Accepted. Retain the caption's signed meaning and source >300 min criterion. |
-| Note | Mean tracks | Both numeric axes are 0–700 min; receiver height 16 mm and sender width 28 mm give 2.286 versus 4 mm per 100 min. | Accepted. Read tick values; equal numeric limits do not imply equal physical bar lengths. |
+独立核实：SVG 有 19 条竖线与 19 条横线，均为白色 0.5 pt 内部线；两组各 20 根柱子均为炭灰 0.45 pt 轮廓，其几何长度与 CSV 均值相符。400 个单元格中心 RGB 与本轮基线完全相同；源、展示与汇总 CSV 的 SHA-256 与上一轮审核一致。PDF/SVG 仍为 180 × 160 mm，PDF 为嵌入 Arial 8 pt。完整哈希、测量值和检查范围见 [boundary-review.json](boundary-review.json)。
 
-Independent export checks passed: both PNGs are 2126 × 1890 pixels at approximately 300 dpi; the final PDF and SVG retain 180 × 160 mm. PDF text uses embedded Arial at 8 pt. All 400 sampled matrix cell-center RGB values exactly match the declared global linear blue mapping. SVG tick anchors verify all seven colorbar intervals are 57/7 mm. Current QA agrees with the preceding independent CSV audit. The implementing agent's PDF text-bounds check was inspected as supplied evidence, not rerun here.
+历史说明：[independent-review.json](independent-review.json) 保留上一轮单色全局线性色阶与共享均值数值范围的审核；其中“无边框”的描述对应旧候选，不适用于本轮。
 
-Input SHA-256 hashes, measured values, comparison scope and check provenance are saved in `independent-review.json`. The conclusion does not establish better sign decoding, universal palette superiority, fine-effect discrimination or publication acceptance.
+**最终状态：ready_with_notes。无 critical/major 问题；本轮不需要继续修改。**

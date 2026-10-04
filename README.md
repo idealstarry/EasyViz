@@ -52,7 +52,7 @@ All 832 paired changes use one shared score axis, with adjacent blue/coral parti
 
 **Create · annotated inhibition matrix**
 
-Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view. A single-hue blue scale maps original minutes globally linearly; both mean tracks share the same numeric range, justified by the complete data.
+Genome-status annotations and full-matrix summaries accompany a selected 20 × 20 view. White cell boundaries and thin charcoal bar outlines make the aligned tracks distinct. A single-hue blue scale maps original minutes globally linearly; both mean tracks share the same numeric range, justified by the complete data.
 
 <p align="center"><a href="examples/create/annotated-inhibition/"><img src="examples/create/annotated-inhibition/panel.png" alt="Microbial inhibition heatmap with annotations and marginal means" width="720"></a></p>
 

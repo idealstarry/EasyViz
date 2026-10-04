@@ -1,0 +1,255 @@
+{
+  "reviewer": "Independent /root/matrix_scale_audit agent",
+  "reviewed_at_utc": "2026-10-04T02:20:28.460341+00:00",
+  "skill": "/Users/starry/Desktop/EasyViz/skills/easyviz-figure-reviewer/SKILL.md",
+  "track": "create",
+  "scope": "仅审核本轮用户要求的矩阵内部格线及上侧、右侧柱边框；图像与导出检查针对 sha256 标识的实际文件。",
+  "status": "ready_with_notes",
+  "preference": "candidate",
+  "preference_reason": "候选实际增加清楚的内部格线和两组柱轮廓，满足本轮边界要求；基线的连续色块仍是一种有效视觉选择，因此不作普遍审美优劣判断。",
+  "images_actually_opened": [
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.png",
+    "/tmp/easyviz-matrix-boundaries-20261004/baseline.png",
+    "/tmp/easyviz-matrix-boundaries-20261004/candidate-96dpi.png",
+    "/tmp/easyviz-matrix-boundaries-20261004/baseline-96dpi.png"
+  ],
+  "documents_read": [
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/settings.json",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/caption.md",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/qa.json"
+  ],
+  "implementation_code_read": false,
+  "rerender_performed": false,
+  "data_or_source_edits_performed": false,
+  "sha256": {
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.png": "36fc039de63b6047af4ebf5761c6227b8ebb3e9b7b7f34e7862968de937830df",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.pdf": "7455ad4217ac81d320e1e877f6524fda9d3474ce42156de177c5a80c88c288e3",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.svg": "9a26d3de4d59b6a33acb137a14c9c61aaf0d597d71d75a4cdab9c8278ce51c28",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/settings.json": "cc6f9cfd227d0c38b23b68578a83460627286959ffe7c6b393d6444ece7db6ed",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/caption.md": "d0b208c30b7332e414fa1e289ae0c1d6c4b2a9f1294500ddfe5c400542d48f9b",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/qa.json": "078c10a975c7690512a379cf7089e01a47416bb4a5e4ef263ee9ed863e6ba755",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/source-data.csv": "15e9624d1350b6703a5955be2ce3e40a34ca34749135558cb85ab2d9f5ce7f6f",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/plotting-data.csv": "644a4c6fc12bcf8c7cbc0bc478aff12434995ebfea20d15a27c6686d60cfe668",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/summary-data.csv": "f7a2bb0d2373e5a28afc712f7d83f86444cce1b3354a9ea1d0d9dc1d56a266cf",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/independent-review.json": "4daf57e32af9c1d0183471cda27988a6f132c9ac8fe1d2c2c0e726c1f7fea17a",
+    "/tmp/easyviz-matrix-boundaries-20261004/baseline.png": "5f91cce4e99396bbf9dfef94eb5452fcf8543a9ea718b57775cf54e2a30bbdeb",
+    "/tmp/easyviz-matrix-boundaries-20261004/baseline.pdf": "c6079e14ca1d7feb9d34c7bf908480ae909d2e2639d2702d9da255aee60a09e1",
+    "/tmp/easyviz-matrix-boundaries-20261004/candidate-96dpi.png": "9ebafa1b406cc2f39c8abeb75468d6240a34af859f4da9b89982d72fa859f458",
+    "/tmp/easyviz-matrix-boundaries-20261004/baseline-96dpi.png": "92aac5b3abb04b1fec575beb6748ac6c69d1b7b88a88f4693a3edc3aac806bfe"
+  },
+  "adopted_requirements": {
+    "internal_grid_color": "#FFFFFF",
+    "internal_grid_width_pt": 0.5,
+    "mean_edge_color": "#444444",
+    "mean_edge_width_pt": 0.45,
+    "canvas_mm": [
+      180,
+      160
+    ],
+    "font": "Arial",
+    "font_size_pt": 8,
+    "heatmap_normalization": "global linear",
+    "heatmap_limits_min": [
+      -400,
+      1000
+    ],
+    "mean_limits_min": [
+      0,
+      700
+    ]
+  },
+  "comparison": {
+    "grouping_and_order": "相同的 20 行和 20 列、元数据顺序及均值排序均保留。",
+    "pattern_visibility": "强值上侧行及局部较深单元格仍可见；新增格线支持逐格定位，但不增强原有细微色差。",
+    "alignment": "所有内部格线落在单元格边界；上侧、右侧均值柱继续与列、行对齐。",
+    "lookup_effort": "相近颜色相邻时，新格线提供明确的行列分隔；柱轮廓提供清楚的柱端边界。",
+    "contrast_and_space": "白色格线及炭灰柱轮廓在 96 dpi PDF 预览中也可辨。图例、文本和轴的布局未出现新增拥挤。",
+    "claim_limit": "偏好仅针对本轮明确的边界要求与这份数据；不宣称普遍审美提升、细微效应解码改善或出版接受。"
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "热图内部格线",
+      "evidence": "白色格线在本轮候选的 300 dpi PNG 和 96 dpi PDF 预览中均可见；相同或相近颜色的相邻单元格也被分开。它比基线更直接地支持逐格定位，同时把原先连续的色块分割为网格。",
+      "requirement": "用户要求热图内部格线明显一些；采用白色 0.5 pt。",
+      "action": "本轮要求已满足。保留该取舍，不将格线更明显解读为数值差异更大或普遍审美提升。"
+    },
+    {
+      "severity": "note",
+      "location": "上侧低值柱子及右侧柱子",
+      "evidence": "两组柱子均有清楚的炭灰轮廓；极矮的上侧末端柱子中，边框占据相对更大的视觉比例，在 96 dpi 预览中尤其明显，但仍保留与相邻柱子的分隔和数值顺序。",
+      "requirement": "用户要求上侧和右侧柱子有边框；采用炭灰 0.45 pt。",
+      "action": "已满足要求，无需修改。读取低值时使用轴刻度；不依据蓝色内部填充面积比较柱值。"
+    },
+    {
+      "severity": "note",
+      "location": "沿用的数值尺度",
+      "evidence": "本轮延续蓝色全局线性 −400..1000 min 色阶和均值 0..700 min。上侧数值轴 16 mm、右侧 28 mm；相同数值不对应相同物理柱长。常见 100–200 min 数值在完整 1400 min 色阶中仍只有细微色差。",
+      "requirement": "本轮只调整边界，保留既定数值映射及科学解释。",
+      "action": "沿用 caption.md 中的说明，不宣称细微效应解码改善。"
+    }
+  ],
+  "external_numerical_and_export_checks": [
+    {
+      "status": "passed",
+      "check": "本轮图像均实际查看",
+      "independent": true,
+      "evidence": {
+        "candidate_png": {
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/panel.png",
+          "pixels": [
+            2126,
+            1890
+          ],
+          "dpi": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "baseline_png": {
+          "path": "/tmp/easyviz-matrix-boundaries-20261004/baseline.png",
+          "pixels": [
+            2126,
+            1890
+          ],
+          "dpi": [
+            299.9994,
+            299.9994
+          ]
+        },
+        "candidate_pdf_preview": {
+          "path": "/tmp/easyviz-matrix-boundaries-20261004/candidate-96dpi.png",
+          "pixels": [
+            681,
+            605
+          ],
+          "dpi": [
+            96.012,
+            96.012
+          ]
+        },
+        "baseline_pdf_preview": {
+          "path": "/tmp/easyviz-matrix-boundaries-20261004/baseline-96dpi.png",
+          "pixels": [
+            681,
+            605
+          ],
+          "dpi": [
+            96.012,
+            96.012
+          ]
+        }
+      }
+    },
+    {
+      "status": "passed",
+      "check": "PDF/SVG 物理尺寸与 PDF 字体",
+      "independent": true,
+      "evidence": {
+        "candidate_pdf_mm": [
+          179.99999999998556,
+          159.999999999995
+        ],
+        "baseline_pdf_mm": [
+          179.99999999998556,
+          159.999999999995
+        ],
+        "svg_mm": [
+          179.99999983333333,
+          159.99999996944445
+        ],
+        "candidate_and_baseline_pdf_text_sizes_pt": [
+          8.0
+        ],
+        "pdf_embedded_fonts": [
+          "/CFVUKA+ArialMT",
+          "/CECFXM+ArialMT"
+        ]
+      }
+    },
+    {
+      "status": "passed",
+      "check": "SVG 实际内部边界笔画",
+      "independent": true,
+      "evidence": {
+        "total_segments": 38,
+        "vertical": 19,
+        "horizontal": 19,
+        "internal_only": true,
+        "stroke": "#ffffff",
+        "stroke_width_pt": 0.5
+      }
+    },
+    {
+      "status": "passed",
+      "check": "SVG 实际均值柱子笔画与几何值",
+      "independent": true,
+      "evidence": {
+        "receiver_bars": 20,
+        "sender_bars": 20,
+        "fill": "#29acf3",
+        "stroke": "#444444",
+        "stroke_width_pt": 0.45,
+        "receiver_max_path_extent_error_pt_vs_csv_mean": 3.4743330523667737e-07,
+        "sender_max_path_extent_error_pt_vs_csv_mean": 7.007873996656144e-07,
+        "mean_numeric_limits": [
+          0,
+          700
+        ],
+        "receiver_value_axis_mm": 16,
+        "sender_value_axis_mm": 28
+      }
+    },
+    {
+      "status": "passed",
+      "check": "数据和单元格颜色未被边界改动改变",
+      "independent": true,
+      "evidence": {
+        "source_data_sha256_matches_previous_review": true,
+        "plotting_data_sha256_matches_previous_review": true,
+        "summary_data_sha256_matches_previous_review": true,
+        "sampled_matrix_centers": 400,
+        "max_rgb_difference_from_this_round_baseline": 0,
+        "caption_sha256_matches_previous_review": true
+      }
+    },
+    {
+      "status": "passed",
+      "check": "本轮基线身份",
+      "independent": true,
+      "evidence": {
+        "baseline_png_matches_previous_review_candidate_sha256": true,
+        "baseline_pdf_matches_previous_review_candidate_sha256": true
+      }
+    },
+    {
+      "status": "passed",
+      "check": "图例、标签、顺序与对齐",
+      "independent": true,
+      "evidence": "两种实际分辨率比较均未见新增裁切、文字碰撞、缺失字符或错位。白色内部格线与单元格边界对齐，均值柱与原行列对应。原有轴标题、8 个色阶刻度和基因组图例保留且可辨。"
+    },
+    {
+      "status": "passed",
+      "check": "当前 QA 与说明",
+      "independent": false,
+      "evidence": "实际读过当前 qa.json 和 caption.md。QA 记载 38 条内部格线、上侧/右侧各 20 个 0.45 pt 柱边框、无裁切文字、无缺失字符及既定数值尺度；这些记录与本轮独立 SVG/图像核查一致。未扩大到可复用包或全仓库测试。"
+    }
+  ],
+  "required_unchecked_items": [],
+  "critical_or_major_findings": [],
+  "unresolved_items": [
+    "内部格线增强逐格定位，同时分割连续色块。",
+    "极矮柱子中边框的视觉比例较大。",
+    "沿用的全范围色阶和不同物理长度的均值轴仍有既定阅读限制。"
+  ],
+  "further_revision_required": false,
+  "historical_review": {
+    "path": "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/independent-review.json",
+    "sha256": "4daf57e32af9c1d0183471cda27988a6f132c9ac8fe1d2c2c0e726c1f7fea17a",
+    "meaning": "上一轮单色全局线性色阶及共享均值数值范围的独立审核；保留原文件，不把其无边框描述作为本轮候选描述。"
+  },
+  "written_files": [
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/boundary-review.json",
+    "/Users/starry/Desktop/EasyViz/examples/create/annotated-inhibition/visual-review.md"
+  ]
+}

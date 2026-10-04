@@ -22,7 +22,7 @@ python plot.py --data matrix.csv --genome genome-status.csv --settings settings.
 | Genome CSV | Columns `strain,genome`; exactly one row for every strain; `genome` is 0 or 1. Leading-zero IDs are preserved as strings. |
 | `selection_count` | Integer from 2 through the number of strains. The same mean-rank algorithm is used; the number of strains and denominator are inferred from the input. |
 | Physical layout | Canvas width/height, every track rectangle `[left, bottom, width, height]`, and every text anchor are in mm in the settings file. This supplied layout is visually tuned for 20 × 20 at 180 × 160 mm. |
-| Typography and palette | Text size, font, axis line widths/colors, continuous colors, genome colors, and mean-track color are configurable. Mean bars are borderless. White genome tiles and their legend key have a purposeful thin charcoal outline; analyzed tiles are solid charcoal. |
+| Typography and palette | Text size, font, axis line widths/colors, continuous colors, genome colors, and mean-track color are configurable. The adopted user-requested styling uses white 0.5 pt internal heatmap boundaries and charcoal 0.45 pt mean-bar outlines; `heatmap_grid_color`/`heatmap_grid_width_pt` and `mean_edge_color`/`mean_edge_width_pt` control them independently. Omitted widths default to zero for older settings. White genome tiles and their legend key have a purposeful thin charcoal outline; analyzed tiles are solid charcoal. |
 | Data scales | `color_limits` must contain every full-matrix measurement. `color_normalization="linear"` is the default. Optional `two_slope` requires a meaningful `color_center` strictly inside the limits. `mean_scale="shared"` uses common `mean_limits`/`mean_ticks`, or automatically derives one range over both tracks. Explicit bounds must include zero and all bars. Role-specific limits are supported only with `mean_scale="independent"`. |
 | Exports | This recipe always writes PDF, SVG, and 300 dpi PNG by default; `dpi` is adjustable. It is a deliberately scoped recipe rather than a replacement for the five-family renderer. |
 
@@ -53,6 +53,7 @@ Both mean tracks use the same numeric range, **0–700 min**, covering sender me
 | `panel.pdf`, `panel.svg`, `panel.png` | Final-size panel and preview |
 | `qa.json` | Numeric invariants, export dimensions, glyph and text-boundary checks |
 | `visual-review.md` | Actual rendered-panel inspection |
+| `boundary-review.json` | Independent inspection of the adopted cell boundaries and bar outlines |
 
 The PNG uses 300 dpi metadata. PDF preserves the physical canvas and embeds the selected font. SVG preserves editable text and requires the recorded font on the assembly system. Place the panel at 180 × 160 mm during manuscript assembly; changing its scale also changes the effective text size.
 
@@ -62,6 +63,6 @@ The copied matrix and genome table inherit the supplied repository’s **CC BY-N
 
 The current palette is an EasyViz choice in response to the user's request for simpler, brighter quantitative colors. It is not sampled from a publication. Earlier signed multi-hue candidates and their reviews are historical evidence; their independent positive review did not establish user acceptance. The prior candidate is retained in `evals/create-clarity-revision/baseline/matrix.png`.
 
-Opaque sky-blue means (`#29ACF3`), thin charcoal axes, and charcoal/outlined-white binary tiles support the single-hue matrix. The colorbar gives equally spaced 200-minute ticks; the larger mean-track height and repositioned guide keep labels readable within 180 × 160 mm at 8 pt. The matrix and metadata remain keyed to exactly the same selected IDs.
+White 0.5 pt internal boundaries distinguish the matrix cells. Opaque sky-blue means (`#29ACF3`) have thin charcoal 0.45 pt outlines, matching the axis weight and the outlined-white genome tiles. These mark boundaries follow the user’s explicit request; mean-axis grids remain disabled. The colorbar gives equally spaced 200-minute ticks; the larger mean-track height and repositioned guide keep labels readable within 180 × 160 mm at 8 pt. The matrix and metadata remain keyed to exactly the same selected IDs.
 
 The portable code and settings are in `skills/easyviz/assets/recipes/annotated-heatmap`; its synthetic fixture exercises negative, zero and positive values, leading-zero IDs, full-denominator means and both binary states without redistributing the restricted development inputs. Inspect `visual-review.md` for the actual rendered-panel findings; numeric checks alone do not establish visual quality.

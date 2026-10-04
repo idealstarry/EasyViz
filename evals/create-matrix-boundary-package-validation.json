@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "archive": "easyviz-0.4.2.zip",
+  "archive_sha256": "1085cfd31ceac846279a57e4ed1698850ecc3591964cd4679c6b1ea476ea8f9c",
+  "extracted_file_count": 528,
+  "checks": {
+    "core_renderer": "pass",
+    "cell-atlas-dotplot": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "massier-bmi-violin": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "massier-integration-radar": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "paired-effects": "pass; rerendered PNG pixels match the reviewed bundled preview",
+    "shi_paper": "pass; 120 supplied summaries and all band endpoints; reviewed PNG and plotting CSV replay identically",
+    "shi_transfer-reproduce": "pass; 12 supplied summaries and all band endpoints; reviewed PNG and plotting CSV replay identically",
+    "shi_transfer": "pass; 18 supplied summaries and all band endpoints; reviewed PNG and plotting CSV replay identically",
+    "paired_myeloid_alternatives": "pass; all three PNGs match reviewed previews; 832 matched changes from prepared CSV",
+    "paired_myeloid_same_study_transfer": "pass; same recipe on 592 five-year changes, without original workbook or author code",
+    "forest_renamed_field_transfer": "pass; five terms, three cohorts and renamed field mappings preserve all 15 supplied asymmetric intervals",
+    "annotated_heatmap_recipe": "pass; separate synthetic 4\u00d74 matrix, leading-zero IDs, constant binary annotation, negative values and automatic means"
+  },
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Darwin",
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5",
+      "scipy": "1.18.1",
+      "Pillow": "12.3.0",
+      "pypdf": "6.18.0",
+      "PyMuPDF": "1.28.2"
+    }
+  },
+  "scope": "Isolated extracted files and different working directory in the recorded Python environment, using fonts available on this host. No original paper archives or author code are required. Not a fresh operating-system installation or Codex automatic-discovery test."
+}

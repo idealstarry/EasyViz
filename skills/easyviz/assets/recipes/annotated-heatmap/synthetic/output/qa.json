@@ -117,5 +117,42 @@
       }
     },
     "comparison_note": "Matching numeric limits do not imply equal physical bar lengths across axes with different dimensions/orientations."
+  },
+  "mark_boundaries": {
+    "heatmap_internal_segments": 6,
+    "heatmap_grid_width_pt": 0.5,
+    "heatmap_grid_color_rgba": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "mean_bars": {
+      "receiver": {
+        "count": 4,
+        "edge_width_pt": [
+          0.45
+        ],
+        "edge_color_rgba": [
+          0.26666666666666666,
+          0.26666666666666666,
+          0.26666666666666666,
+          1.0
+        ]
+      },
+      "sender": {
+        "count": 4,
+        "edge_width_pt": [
+          0.45
+        ],
+        "edge_color_rgba": [
+          0.26666666666666666,
+          0.26666666666666666,
+          0.26666666666666666,
+          1.0
+        ]
+      }
+    },
+    "policy": "Explicit user request: visible internal cell boundaries and outlined marginal bars."
   }
 }
