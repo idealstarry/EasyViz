@@ -58,9 +58,10 @@
     "participant_max_offset_mm": 1.5,
     "participant_gap_pt": 0.1,
     "participant_outline_policy": "Opaque borderless filled circles: 1.2 pt in the conventional baseline and 1.4 pt in the shared-axis distribution ledger. No observation alpha reduction or quantitative-coordinate jitter.",
-    "summary_policy": "Baseline and matrix use compact unfilled Q1–Q3 boxes and dark medians. The shared-axis ledger uses 0.5 mm filled Q1–Q3 strips with dark median ticks, in separate middle lanes between the two participant tracks. IQR is participant spread, not a confidence interval.",
+    "summary_policy": "All candidates use compact unfilled Q1–Q3 boxes and dark median ticks. The shared-axis ledger uses 0.5 mm outline boxes with 0.5 pt cohort-colored borders, in separate middle lanes between participant tracks. IQR is participant spread, not a confidence interval.",
     "ledger_participant_diameter_pt": 1.4,
-    "ledger_participant_gap_pt": 0.05
+    "ledger_participant_gap_pt": 0.05,
+    "ledger_summary_line_width_pt": 0.5
   },
   "palette_status": "Blue #55A0FB and coral #FF8080 are rounded 8-bit vector stroke colors observed in scWAT.pdf page 4, Figure 2 (DOI 10.1038/s41467-023-43021-8). Reassignment to Petrus/Kerr and to the zero-centered matrix is an explicit EasyViz design adaptation; the source paper's biological labels and statistics are not transferred.",
   "style_sources": [
@@ -76,9 +77,9 @@
       "figure": "2",
       "pdf_page": 4,
       "observed": "Small hollow participant circles, compact repeated categories, purposeful thin black guides.",
-      "adopted": "Compact repeated categories, crisp participant marks, and purposeful thin axes. Shared-axis comparison, density-dependent row spacing and filled IQR strips are case-specific EasyViz design decisions."
+      "adopted": "Compact repeated categories, crisp participant marks, and purposeful thin axes. Shared-axis comparison, density-dependent row spacing and outlined IQR boxes are case-specific EasyViz design decisions."
     }
   ],
   "selection": "All 16 Myeloid_* source columns, all matched subjects at the requested time points.",
-  "distribution_ledger_layout": "One common −12…8 axis, adjacent cohort tracks per source subtype, filled median/IQR summaries between raw-point tracks, and aligned below-zero percentage columns. Row room is measured from exact packed circle extents; supplied subtype order and annotation-defined groups are preserved."
+  "distribution_ledger_layout": "One common −12…8 axis, adjacent cohort tracks per source subtype, unfilled median/IQR boxes between raw-point tracks, and aligned below-zero percentage columns. Row room is measured from exact packed circle extents; supplied subtype order and annotation-defined groups are preserved."
 }

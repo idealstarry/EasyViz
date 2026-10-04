@@ -155,7 +155,7 @@
       "raw_circle_clipping_count": 0,
       "cross_row_or_cohort_overlap_pairs": 0
     },
-    "exports": "pdf-verification.json: all four PDFs retain 180 × 125 mm, only 8 pt Arial/Arial Italic and embedded fonts. output/qa.json and transfer-five-year/qa.json contain renderer/source/settings hashes and output identities.",
+    "exports": "pdf-verification.json: all four PDFs retain 180 \u00d7 125 mm, only 8 pt Arial/Arial Italic and embedded fonts. output/qa.json and transfer-five-year/qa.json contain renderer/source/settings hashes and output identities.",
     "replayed": "All three main designs plus comparison board; five-year Kerr participant-matrix transfer."
   },
   "limits": [
@@ -196,5 +196,11 @@
     "standalone_replay": "All three main PNGs and the five-year transfer reproduce identical pixels in a separate copied case and fresh CLI process. Altered caller styles also reproduce the three main PNGs identically after the explicit defaults reset.",
     "single_pair": "Participant 001, one cohort and one subtype export all three formats with change 2 and null minimum pairwise distance.",
     "data_identity": "Main and transfer pairs and summary CSVs remain byte-identical to the pre-redesign snapshots."
+  },
+  "record_scope": "Prior shared-axis layout selection and runtime correction at360a131; the subsequent user-requested outline version is checked in hollow-box-review.json.",
+  "current_final_image": {
+    "path": "output/distribution-ledger/panel.png",
+    "sha256": "1f06909ee0774d74002304c0ecb2894b29a5becdf560115ead0590a2112f0cd4",
+    "review_record": "hollow-box-review.json"
   }
 }

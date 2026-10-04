@@ -15,7 +15,7 @@ The matrix is useful when participant structure is the question. The distributio
 <p align="center"><img src="output/comparison.png" alt="Three designs on the same paired myeloid source data" width="960"></p>
 
 The adopted distribution ledger uses one shared −12…8 axis. Each subtype has
-adjacent blue Petrus and coral Kerr participant tracks, with filled IQR strips
+adjacent blue Petrus and coral Kerr participant tracks, with outlined IQR boxes
 and dark median ticks between them. This makes the cohort summaries directly
 comparable without looking between two distant fields. Two compact percentage
 columns share the same subtype rows.
@@ -26,20 +26,20 @@ All 832 observations remain at their exact quantitative positions. The ledger
 uses 1.4 pt opaque filled circles, compared with 1.2 pt circles in the
 conventional baseline. Deterministic tangent packing and a bounded linear
 repair place the raw circles in physical units; row room is measured from their
-actual extents. The raw tracks and summary strips remain separate, and the
+actual extents. The raw tracks and summary boxes remain separate, and the
 supplied subtype order and annotation-defined groups stay intact. Vertical
 packing and spacing have no quantitative meaning. The saved audit re-reads the
 actual scatter positions, checks every raw circle pair across all rows/cohorts,
 and checks the complete circle edges against the data field. Individual values
 remain small at manuscript size and can be inspected in the vector export or
-`participant-placement.csv`; the summary strips carry the first comparison.
+`participant-placement.csv`; the summary boxes carry the first comparison.
 
 The blue/coral pair (`#55A0FB` / `#FF8080`) was observed in the vector strokes of
 Figure 2 on PDF page 4 of the [scWAT study](https://doi.org/10.1038/s41467-023-43021-8).
 It is reassigned to Petrus/Kerr here as an EasyViz design decision. Figure 2 of
 [Vanneste et al.](https://doi.org/10.1038/s41590-023-01468-3) informed compact
 repeated categories and purposeful thin axes. The shared-axis organization,
-filled IQR strips, and density-dependent row room are case-specific design
+outlined IQR boxes, and density-dependent row room are case-specific design
 choices. Neither paper's biological groups or statistics are transferred.
 No author plotting code was used. The matrix retains its symmetric −12…12
 score scale. Data, quartiles, percentages, participant ordering and 8 pt
@@ -48,9 +48,11 @@ manuscript text remain unchanged.
 Two materially different revisions were inspected at the same physical size:
 a stronger-summary version of the two cohort facets, and the adopted shared
 axis. Both the implementing agent and an independent reviewer preferred the
-shared axis for direct comparison and less duplicated furniture. The final
-panel received a second visual pass; `visual-review.json` records this bounded
-review and its limitations.
+shared axis for direct comparison and less duplicated furniture.
+`visual-review.json` retains that layout selection and its limitations.
+The subsequent user request adopts hollow summary boxes and a matching outline
+legend. Lane spacing includes the outline's outer stroke; `hollow-box-review.json`
+records the current panel check.
 
 ## Source and scientific meaning
 
@@ -89,6 +91,7 @@ To supply another source, use `--data` with `cohort`, `participant`, `year`, `su
 - `design-rationale.md`: reusable selection conditions and failure modes.
 - `numeric-verification.json`: independent comparison with the original workbook.
 - `visual-review.json`: inspected candidate identities, comparison reasons, final visual findings, runtime correction and limitations.
+- `hollow-box-review.json`: current user-requested outline treatment and actual-image/export checks.
 - `standalone-verification.json`: exact PNG replay in the recorded runtime and the single-pair export check.
 
 Each output audit records the physical PDF page size, text sizes, missing-pair count, source hash and physical point packing. The PDFs were rendered and viewed at 96 dpi as a final-size reading proof and at higher resolution for mark detail. Automated bounds and circle-spacing checks complement visual review; they do not establish aesthetic superiority.

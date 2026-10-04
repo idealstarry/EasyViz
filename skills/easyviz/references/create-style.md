@@ -95,7 +95,7 @@ or a separate summary lane; exposing the crossing is not automatically cleaner.
 
 For many repeated categories, compare adjacent group tracks on one quantitative
 axis before using distant facets. Give raw observations and descriptive
-summaries separate lanes; a compact filled IQR strip and a distinct median can
+summaries separate lanes; a compact outlined IQR box and a distinct median can
 carry the main comparison when hundreds of raw points must remain small.
 Measure mark extents before assigning row room, and retain exact numeric
 positions when packing points vertically. This arrangement suits distribution

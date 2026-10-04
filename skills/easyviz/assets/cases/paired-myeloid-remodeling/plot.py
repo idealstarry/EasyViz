@@ -271,6 +271,10 @@ def main():
             x0,x1=35.,136.; xx=scale(x0,x1)
             diameter=marks.get('ledger_participant_diameter_pt',1.4)
             radius=diameter*25.4/72/2
+            summary_width=marks.get('ledger_summary_line_width_pt',.5)
+            summary_height=.5; summary_offset=.35; summary_gap=.09
+            # Reserve the outline's outer stroke as well as its box geometry.
+            raw_edge=summary_offset+summary_height/2+summary_width*25.4/72/2+summary_gap
             packed_rows={}; extents={}
             for a in ann:
                 s=f'myC{a["cluster"]:02}'; heights=[]
@@ -286,13 +290,13 @@ def main():
                     point_audits.append({'cohort':c,'subtype':s,**info})
                     # All raw circle edges sit beyond the summary strips.
                     if ci==0:
-                        raw_center=.70+radius-float(packed.min())
+                        raw_center=raw_edge+radius-float(packed.min())
                         high=raw_center+float(packed.max())+radius
-                        low=.55
+                        low=summary_offset+summary_height/2+summary_width*25.4/72/2
                     else:
-                        raw_center=-.70-radius-float(packed.max())
+                        raw_center=-raw_edge-radius-float(packed.max())
                         low=-raw_center-float(packed.min())+radius
-                        high=.55
+                        high=summary_offset+summary_height/2+summary_width*25.4/72/2
                     packed_rows[c,s]=(rows,values,packed,raw_center)
                     heights.append((high,low))
                 extents[s]=(heights[0][0],heights[-1][1])
@@ -330,10 +334,8 @@ def main():
                     yy=y+raw_center+packed
                     artist=dot(xx(values),yy,color,diameter**2,zorder=3)
                     ledger_artists.append((artist,values.copy()))
-                    sy=y+(.30 if ci==0 else -.30)
-                    left,right=float(xx(st['q1'])),float(xx(st['q3']))
-                    rr(left,sy-.25,right-left,.5,color,zorder=4)
-                    line([xx(st['median']),xx(st['median'])],[sy-.25,sy+.25],color=INK,lw=1.0,zorder=5)
+                    sy=y+(summary_offset if ci==0 else -summary_offset)
+                    iqr_box(xx,st,sy,color,height=summary_height,width=summary_width)
                     tx(ledger_x,y,f'{st["negative_percent"]:.0f}',ha='center')
                     for participant,value,x,py in zip(rows.participant,values,xx(values),yy):
                         placement_rows.append({'design':design,'cohort':c,'subtype':s,'participant':participant,
@@ -354,7 +356,8 @@ def main():
                     'A raw circle would be clipped by the data field')
             ledger_geometry={'shared_quantitative_axis_mm':[x0,x1], 'data_bounds_mm':[x0,lower,x1-x0,upper-lower],
                              'row_centers_mm':ledger_ys,'row_gap_mm':row_gap,'annotation_group_gap_mm':group_gap,
-                             'summary_strip_height_mm':.5,'minimum_point_to_own_summary_gap_mm':.15,
+                             'summary_box_height_mm':summary_height,'summary_box_outline_width_pt':summary_width,
+                             'summary_box_fill':'none','minimum_point_to_own_summary_gap_mm':summary_gap,
                              'actual_scatter_glyph_count':len(actual),'max_abs_decoded_change_error':error,
                              'minimum_all_raw_circle_center_distance_mm':minimum_distance,
                              'minimum_required_center_distance_mm':required_distance,
@@ -363,8 +366,7 @@ def main():
             # A compact in-canvas guide replaces the duplicated facet headers
             # and the floating bottom legend. Categorical sizes are fixed.
             dot(36.5,117,INK,diameter**2);tx(39,117,'Participant')
-            rr(80,116.75,6,.5,'#777777')
-            line([83,83],[116.6,117.4],color=INK,lw=1.0)
+            iqr_box(lambda v:v,{'q1':80,'q3':86,'median':83},117,'#777777',height=.65,width=summary_width)
             tx(89,117,'Median / IQR')
         fig.canvas.draw();renderer=fig.canvas.get_renderer()
         problems=[];fonts=[]

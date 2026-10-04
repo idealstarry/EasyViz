@@ -1,8 +1,8 @@
 {
   "status": "passed",
   "source_sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
-  "settings_sha256": "81b55be4efceaae433c4716bae1a56fefadf19225c3abcca16d76f5c7ccdbcbd",
-  "renderer_sha256": "cc27915ca0a58d66ac1c936b82c6d78886f505d37db973033145ef2f1cd211b7",
+  "settings_sha256": "74e99aa6d75b21bf4243905b50b14ee8c2bb19e96dae2e8fc46c21b67682a829",
+  "renderer_sha256": "5884a463cf1fdfc1a3e41b5d5694cfcc7b2b7ac5551107c418855c0b1132a193",
   "runtime": {
     "python_executable": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
     "python": "3.12.2",
@@ -44,9 +44,10 @@
     "participant_max_offset_mm": 1.5,
     "participant_gap_pt": 0.1,
     "participant_outline_policy": "Opaque borderless filled circles: 1.2 pt in the conventional baseline and 1.4 pt in the shared-axis distribution ledger. No observation alpha reduction or quantitative-coordinate jitter.",
-    "summary_policy": "Baseline and matrix use compact unfilled Q1\u2013Q3 boxes and dark medians. The shared-axis ledger uses 0.5 mm filled Q1\u2013Q3 strips with dark median ticks, in separate middle lanes between the two participant tracks. IQR is participant spread, not a confidence interval.",
+    "summary_policy": "All candidates use compact unfilled Q1\u2013Q3 boxes and dark median ticks. The shared-axis ledger uses 0.5 mm outline boxes with 0.5 pt cohort-colored borders, in separate middle lanes between participant tracks. IQR is participant spread, not a confidence interval.",
     "ledger_participant_diameter_pt": 1.4,
-    "ledger_participant_gap_pt": 0.05
+    "ledger_participant_gap_pt": 0.05,
+    "ledger_summary_line_width_pt": 0.5
   },
   "followup_year": 5,
   "cohorts": {
@@ -67,8 +68,8 @@
     "participant-matrix": {
       "formats": {
         "png": "68c9fd153666a0abfb616bf69c7ec155f8dfa83d10da0e419ff34dd0bdeb909d",
-        "pdf": "eedbc731d113b3cf44e8e8dc1aaaed6c0639337098e25e1f3dec01a46dcbac45",
-        "svg": "f3a608105243d8f48d0b6eac991295dcb3b72384c971e096590aa74bad1cb3be"
+        "pdf": "95822fa1a566c8665ebc87f53d4798e30f2b7a56614dd3ff76e64f3fb8b788d1",
+        "svg": "e1db7641722626b4ceb9e82ccf1081be2b9380c1b5924cb049785ba1cec624d8"
       },
       "width_height_mm": [
         179.99999999998556,

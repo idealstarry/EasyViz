@@ -118,7 +118,7 @@ def sync():
     for name in ('plot.py', 'prepare.py', 'figure-settings.json', 'annotations.json',
                  'source-data.csv', 'provenance.json', 'README.md', 'caption.md',
                  'design-rationale.md', 'numeric-verification.json', 'pdf-verification.json',
-                 'visual-review.json', 'standalone-verification.json'):
+                 'visual-review.json', 'standalone-verification.json', 'hollow-box-review.json'):
         copy_file(source / name, target / name)
     for folder in ('output', 'transfer-five-year'):
         for file in (source / folder).rglob('*'):

@@ -1,8 +1,8 @@
 {
   "status": "passed",
   "source_sha256": "2c2ab62a696ebe9e3b46bac5c1d6474732d3bb857f973a7c5bb1c66d3d5a5369",
-  "settings_sha256": "81b55be4efceaae433c4716bae1a56fefadf19225c3abcca16d76f5c7ccdbcbd",
-  "renderer_sha256": "cc27915ca0a58d66ac1c936b82c6d78886f505d37db973033145ef2f1cd211b7",
+  "settings_sha256": "74e99aa6d75b21bf4243905b50b14ee8c2bb19e96dae2e8fc46c21b67682a829",
+  "renderer_sha256": "5884a463cf1fdfc1a3e41b5d5694cfcc7b2b7ac5551107c418855c0b1132a193",
   "runtime": {
     "python_executable": "python",
     "python": "3.12.2",
@@ -45,9 +45,10 @@
     "participant_max_offset_mm": 1.5,
     "participant_gap_pt": 0.1,
     "participant_outline_policy": "Opaque borderless filled circles: 1.2 pt in the conventional baseline and 1.4 pt in the shared-axis distribution ledger. No observation alpha reduction or quantitative-coordinate jitter.",
-    "summary_policy": "Baseline and matrix use compact unfilled Q1\u2013Q3 boxes and dark medians. The shared-axis ledger uses 0.5 mm filled Q1\u2013Q3 strips with dark median ticks, in separate middle lanes between the two participant tracks. IQR is participant spread, not a confidence interval.",
+    "summary_policy": "All candidates use compact unfilled Q1\u2013Q3 boxes and dark median ticks. The shared-axis ledger uses 0.5 mm outline boxes with 0.5 pt cohort-colored borders, in separate middle lanes between participant tracks. IQR is participant spread, not a confidence interval.",
     "ledger_participant_diameter_pt": 1.4,
-    "ledger_participant_gap_pt": 0.05
+    "ledger_participant_gap_pt": 0.05,
+    "ledger_summary_line_width_pt": 0.5
   },
   "followup_year": 2,
   "cohorts": {
@@ -69,8 +70,8 @@
     "baseline": {
       "formats": {
         "png": "dd0a1d3e87b626bcd6605a981e133ff2444ec15345397c047bd42df4eabbd2c9",
-        "pdf": "33f81889953a034fd7ccd2516f8e200093d8c694759e15b1c8ca4cfc4ac8d081",
-        "svg": "52d3e60d23fa88893d7fb5b85f6b4f7b86ee5d30e321191a3dbc3b3a30117334"
+        "pdf": "2e01afe373cbf1378abd2a3dd3a50109ae5b6d932aeb641f284d6f398add763a",
+        "svg": "a72526bcb5bff324417bbfa9b811ce53574ef925219d2014fb0563ec25d8dcbc"
       },
       "width_height_mm": [
         179.99999999998556,
@@ -571,8 +572,8 @@
     "participant-matrix": {
       "formats": {
         "png": "4d0bdb9bd1b59a4405f82b0714a4553d9c4bf78e3cbbea5d12b141dd7432b028",
-        "pdf": "2f3ac4cd6b0dbcb995b0f7c3f08669ff71fca5804eac293e22ace9a96f9428c8",
-        "svg": "241433a5dbd1446f676a101fe29fd8b6f7e194e0447de0d6ae161e1c8edbcd45"
+        "pdf": "d650b84a7d70b1f33b92fd88e914f8b97651e07fe2ecf4b7dd21230fdee79a76",
+        "svg": "a9d0518f087f0fd242e1c35212d9bc9ed0fdc7c77984bc774f748f83888fa76d"
       },
       "width_height_mm": [
         179.99999999998556,
@@ -591,9 +592,9 @@
     },
     "distribution-ledger": {
       "formats": {
-        "png": "cf789bec80eb7d79d358ea15802b8cd3db00d856ea9527058c970669f886dd74",
-        "pdf": "f88ca27bb9355eaced209dcb2b92fdf3a5e91e4de7361303492583a45de9f770",
-        "svg": "c7331c9ca3445b16945cc4c878ec61ad67694350252586c8dd237782536ebc54"
+        "png": "1f06909ee0774d74002304c0ecb2894b29a5becdf560115ead0590a2112f0cd4",
+        "pdf": "df5b356504e6e1ab3663716e4cd42d0c2d21094a9aa24c517902aa533096aba2",
+        "svg": "331acbecf5609ff6748032885320591f64509a34e046bdc037118eeac454d85e"
       },
       "width_height_mm": [
         179.99999999998556,
@@ -1132,27 +1133,29 @@
           83.0
         ],
         "row_centers_mm": {
-          "myC00": 105.02695240083645,
-          "myC01": 100.70236763603016,
-          "myC04": 95.92742513645074,
-          "myC07": 91.08267564553329,
-          "myC08": 84.73941516444984,
-          "myC09": 79.7992514350581,
-          "myC11": 75.39985375153738,
-          "myC12": 70.70065284635511,
-          "myC13": 65.55789025726921,
-          "myC02": 58.93497756449444,
-          "myC06": 53.968451937880836,
-          "myC10": 49.22583117364425,
-          "myC15": 44.2282301130095,
-          "myC05": 37.63778099708455,
-          "myC14": 33.01726163320736,
-          "myC03": 26.448546382640416
+          "myC00": 104.948757956392,
+          "myC01": 100.63459911751163,
+          "myC04": 95.87008254385812,
+          "myC07": 91.0357589788666,
+          "myC08": 84.70292442370908,
+          "myC09": 79.77318662024327,
+          "myC11": 75.38421486264848,
+          "myC12": 70.69543988339214,
+          "myC13": 65.56310322023216,
+          "myC02": 58.95061645338333,
+          "myC06": 53.99451675269565,
+          "myC10": 49.262321914385,
+          "myC15": 44.27514677967618,
+          "myC05": 37.695123589677145,
+          "myC14": 33.08503015172589,
+          "myC03": 26.52674082708487
         },
-        "row_gap_mm": 0.5409220399250914,
+        "row_gap_mm": 0.374107225110277,
         "annotation_group_gap_mm": 1.7,
-        "summary_strip_height_mm": 0.5,
-        "minimum_point_to_own_summary_gap_mm": 0.15,
+        "summary_box_height_mm": 0.5,
+        "summary_box_outline_width_pt": 0.5,
+        "summary_box_fill": "none",
+        "minimum_point_to_own_summary_gap_mm": 0.09,
         "actual_scatter_glyph_count": 832,
         "max_abs_decoded_change_error": 4.440892098500626e-15,
         "minimum_all_raw_circle_center_distance_mm": 0.5115277777777592,

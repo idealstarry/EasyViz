@@ -44,7 +44,7 @@ definitions rather than treating every table as interchangeable.
 
 **Create · paired myeloid changes**
 
-All 832 paired changes use one shared score axis, with adjacent blue/coral participant tracks for each subtype. Filled IQR strips, dark median ticks and aligned fractions below zero make the cohort summaries directly comparable. The observed scWAT blue/coral pair is explicitly reassigned to the two cohorts.
+All 832 paired changes use one shared score axis, with adjacent blue/coral participant tracks for each subtype. Outlined IQR boxes, dark median ticks and aligned fractions below zero make the cohort summaries directly comparable. The observed scWAT blue/coral pair is explicitly reassigned to the two cohorts.
 
 <p align="center"><a href="examples/create/paired-myeloid-remodeling/"><img src="examples/create/paired-myeloid-remodeling/output/distribution-ledger/panel.png" alt="All paired myeloid changes with cohort median, IQR and fractions below zero" width="720"></a></p>
 
