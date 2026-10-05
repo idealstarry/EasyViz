@@ -1,0 +1,13 @@
+Package check failed: Extracted basic panels failed: {"case": "replicate-bars", "run": "candidate", "status": "pass", "input_rows": 15, "output": "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-package-smoke-tvdgnf6k/basic-output/replicate-bars/output"}
+Traceback (most recent call last):
+  File "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-package-smoke-tvdgnf6k/easyviz/skills/easyviz/assets/cases/basic-panels/plot.py", line 85, in <module>
+    main()
+  File "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-package-smoke-tvdgnf6k/easyviz/skills/easyviz/assets/cases/basic-panels/plot.py", line 77, in main
+    qa = renderer.render(data, spec, out, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-package-smoke-tvdgnf6k/easyviz/skills/easyviz/scripts/render.py", line 1552, in render
+    require(spec_raw is None or parse_spec_bytes(spec_raw) == spec,
+  File "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-package-smoke-tvdgnf6k/easyviz/skills/easyviz/scripts/render.py", line 166, in require
+    raise SpecError(message)
+basic_panel_core.SpecError: Supplied specification differs from the captured spec file; save the adopted dictionary or omit the file claim
+

@@ -1,0 +1,80 @@
+test_cli_profile_and_panel_arguments_and_relative_spec_paths (test_figure_profile.FigureProfileTests.test_cli_profile_and_panel_arguments_and_relative_spec_paths) ... ok
+test_conflicts_are_errors_and_failed_reruns_invalidate_previous_exports (test_figure_profile.FigureProfileTests.test_conflicts_are_errors_and_failed_reruns_invalidate_previous_exports) ... ERROR
+test_named_continuous_scale_does_not_follow_local_observed_range (test_figure_profile.FigureProfileTests.test_named_continuous_scale_does_not_follow_local_observed_range) ... ERROR
+test_named_scales_reject_degenerate_ranges_and_invalid_size_keys (test_figure_profile.FigureProfileTests.test_named_scales_reject_degenerate_ranges_and_invalid_size_keys) ... ok
+test_shared_colors_and_physical_settings_survive_subset_and_order_changes (test_figure_profile.FigureProfileTests.test_shared_colors_and_physical_settings_survive_subset_and_order_changes) ... ERROR
+test_shared_dot_size_scale_preserves_actual_area_with_different_maxima (test_figure_profile.FigureProfileTests.test_shared_dot_size_scale_preserves_actual_area_with_different_maxima) ... ERROR
+test_unknown_fields_and_wrong_types_fail_with_actionable_messages (test_figure_profile.FigureProfileTests.test_unknown_fields_and_wrong_types_fail_with_actionable_messages) ... ok
+
+======================================================================
+ERROR: test_conflicts_are_errors_and_failed_reruns_invalidate_previous_exports (test_figure_profile.FigureProfileTests.test_conflicts_are_errors_and_failed_reruns_invalidate_previous_exports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_profile.py", line 174, in test_conflicts_are_errors_and_failed_reruns_invalidate_previous_exports
+    renderer.render(data, self.base, output, spec_path=self.root / "plot.json")
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 1527, in render
+    bindings["spec_file"] = {"path": str(spec_file), "sha256": hashlib.sha256(spec_file.read_bytes()).hexdigest()}
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-profile-l2la6me_/plot.json'
+
+======================================================================
+ERROR: test_named_continuous_scale_does_not_follow_local_observed_range (test_figure_profile.FigureProfileTests.test_named_continuous_scale_does_not_follow_local_observed_range)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_profile.py", line 92, in test_named_continuous_scale_does_not_follow_local_observed_range
+    renderer.render(data, spec, output, spec_path=self.root / "plot.json")
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 1527, in render
+    bindings["spec_file"] = {"path": str(spec_file), "sha256": hashlib.sha256(spec_file.read_bytes()).hexdigest()}
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-profile-clku123h/plot.json'
+
+======================================================================
+ERROR: test_shared_colors_and_physical_settings_survive_subset_and_order_changes (test_figure_profile.FigureProfileTests.test_shared_colors_and_physical_settings_survive_subset_and_order_changes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_profile.py", line 61, in test_shared_colors_and_physical_settings_survive_subset_and_order_changes
+    renderer.render(data, spec, output, spec_path=self.root / f"{name}.json")
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 1527, in render
+    bindings["spec_file"] = {"path": str(spec_file), "sha256": hashlib.sha256(spec_file.read_bytes()).hexdigest()}
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-profile-5h5jrm0v/full.json'
+
+======================================================================
+ERROR: test_shared_dot_size_scale_preserves_actual_area_with_different_maxima (test_figure_profile.FigureProfileTests.test_shared_dot_size_scale_preserves_actual_area_with_different_maxima)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_profile.py", line 113, in test_shared_dot_size_scale_preserves_actual_area_with_different_maxima
+    renderer.render(data, spec, output, spec_path=self.root / "plot.json")
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 1527, in render
+    bindings["spec_file"] = {"path": str(spec_file), "sha256": hashlib.sha256(spec_file.read_bytes()).hexdigest()}
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-profile-lmo3pmki/plot.json'
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.045s
+
+FAILED (errors=4)

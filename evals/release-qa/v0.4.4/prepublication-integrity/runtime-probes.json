@@ -1,0 +1,246 @@
+{
+  "scope": "Strict CSV/source/spec/profile continuity and exact composition normalization; no aesthetic or scientific-design approval",
+  "source_hashes": {
+    "skills/easyviz/scripts/render.py": "05981e39daf33cf71af6d0d421beb678a18076974f2af59cfd53418d932746a8",
+    "skills/easyviz/scripts/figure_elements.py": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76",
+    "tests/test_renderer.py": "11f9d0885ae31252ad43d03b607ea6fb3fea65bdc5c8f86efe912ab319357bd1",
+    "tests/test_figure_elements.py": "522df7f7d523809a391936c7be11edf2eddc4617dea1992470a5113f6ea821ba",
+    "tests/test_figure_profile.py": "105e2de783f5d613dccd2952894f1f59a3dd154701355aaf64f0a8790c59b98d"
+  },
+  "probe_script_sha256": "92445faa9eb70e28df4471d52802b61e69abc6de1b306d7e927d6dd2a61751a0",
+  "independent_cases": 24,
+  "cases": [
+    {
+      "case": "extra-column",
+      "source_sha256": "e87cd5138610a5e63fdb6ac270ee5c5038cc856114824bf781f175497822fa5b",
+      "expected_refusal": true,
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "missing-column",
+      "source_sha256": "e117092732fa43bed27e36281082d1f33af207d381ceefde9e6b5a8a484afabd",
+      "expected_refusal": true,
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "duplicate-header",
+      "source_sha256": "a7afee571af886090533a551ac3dc276bc799b4e84626c234d04e50ccbf13741",
+      "expected_refusal": true,
+      "error": "CSV headers must be nonempty and unique before mapping fields",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "whitespace-header",
+      "source_sha256": "390d8d67206c755f5f8e7152ec4cacd7c54b48f5b5d2867253d288bda993d784",
+      "expected_refusal": true,
+      "error": "CSV headers must be nonempty and unique before mapping fields",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "empty-header",
+      "source_sha256": "ff9d5b890907a9f718d3941ae1591d9add93fec6f98e5d173414da71b77fd3a5",
+      "expected_refusal": true,
+      "error": "CSV headers must be nonempty and unique before mapping fields",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "blank-record",
+      "source_sha256": "85a758635c697fb058b6c0fc5d8d1c15d77db8293b000da58fb623a0acc0987f",
+      "expected_refusal": true,
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "empty-record",
+      "source_sha256": "585ac12efeaa3e0a43f6ca8dc8c7b8921e54e77077587354646b9b01577453dc",
+      "expected_refusal": true,
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "unterminated-quote",
+      "source_sha256": "2199e511ef51d1e2fb185440cff12948851d542f6d6ad7c49a88858390f5f8e8",
+      "expected_refusal": true,
+      "error": "Input must be a valid UTF-8 CSV: unexpected end of data",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "non-utf8",
+      "source_sha256": "716c7722b595684d10f667e2586bd2825a22fba7429a90c590b9c68394377ba6",
+      "expected_refusal": true,
+      "error": "Input must be a valid UTF-8 CSV: 'utf-8' codec can't decode byte 0xff in position 6: invalid start byte",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "missing-header-or-data",
+      "source_sha256": "9c6536d38fa37da58fac066342747e6d20fdace12ab5b287cf04506f2afe95b0",
+      "expected_refusal": true,
+      "error": "Input requires a header and nonempty records",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "bom-crlf-multiline-literal-IDs",
+      "valid_outputs": true,
+      "exact_source_snapshot": true,
+      "ids": [
+        "0001",
+        "0002",
+        "0003"
+      ],
+      "source_sha256": "9eb4b59b0133a3b29543905e1f2a1fb28d7c78bb991f61800b8902046a942c79"
+    },
+    {
+      "case": "source-after-parse",
+      "source_sha256": "c68f2ff910323b7bdb0e0bf2ad6665b8354a549a8245acee7f57ffb2f3318a0a",
+      "expected_refusal": true,
+      "error": "Source/spec/profile changed before rendering; prepare the current inputs again",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "source-during-export",
+      "source_sha256": "c68f2ff910323b7bdb0e0bf2ad6665b8354a549a8245acee7f57ffb2f3318a0a",
+      "expected_refusal": true,
+      "error": "Source/spec/profile changed during export; old consumed bytes are preserved in source-data.csv and this run is invalid",
+      "qa_status": "needs_revision",
+      "valid_outputs": false,
+      "retained_consumed_bytes": true,
+      "manifest_keeps_consumed_hash": true
+    },
+    {
+      "case": "cli-spec-byte-race",
+      "error": "Source/spec/profile changed before rendering; prepare the current inputs again",
+      "captured_spec_sha256": "a0aab5e76883dec1bc63c7f0f287aa34ce0894341e347fff5983d47085b5d387",
+      "all_parsed_bytes_are_original": true,
+      "valid_outputs": false
+    },
+    {
+      "case": "profile-after-resolve",
+      "source_sha256": "c68f2ff910323b7bdb0e0bf2ad6665b8354a549a8245acee7f57ffb2f3318a0a",
+      "expected_refusal": true,
+      "error": "Source/spec/profile changed before rendering; prepare the current inputs again",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "binary64-sum-overflow",
+      "fractions": [
+        0.5,
+        0.5
+      ],
+      "actual_bar_heights": [
+        0.5,
+        0.5
+      ],
+      "exact_total": [
+        "2.000000000000000000000000000E+308",
+        "2.000000000000000000000000000E+308"
+      ],
+      "passed": true
+    },
+    {
+      "case": "binary64-sum-overflow-supplied-denominator-excess",
+      "source_sha256": "b7648fde0ada81305be9ccc71f582bb0cd868274df549220722aa111babc6567",
+      "expected_refusal": true,
+      "error": "Category sum exceeds the supplied sample denominator",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "unsigned-integer-sum-overflow",
+      "fractions": [
+        0.9473684210526315,
+        0.05263157894736842
+      ],
+      "actual_bar_heights": [
+        0.9473684210526315,
+        0.052631578947368474
+      ],
+      "exact_total": [
+        "19000000000000000000",
+        "19000000000000000000"
+      ],
+      "passed": true
+    },
+    {
+      "case": "unsigned-integer-sum-overflow-supplied-denominator-excess",
+      "source_sha256": "0d754530fda82fa9d4a46a401bd55be55192c8328ee0250c03bfc1aa21494c16",
+      "expected_refusal": true,
+      "error": "Category sum exceeds the supplied sample denominator",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "positive-numeric-underflow",
+      "source_sha256": "d2c9ca4ca152d8bd03a7353161e083c4c8e52c1c663486ae976692475d8598dc",
+      "expected_refusal": true,
+      "error": "A nonzero value in y is below floating-point representability; no source value is silently replaced by zero",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "negative-numeric-underflow",
+      "source_sha256": "6c8c249486abc9ede5dd629523f233c0e8c7d197072a56296ee90f48db12b96c",
+      "expected_refusal": true,
+      "error": "A nonzero value in y is below floating-point representability; no source value is silently replaced by zero",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "positive-normalized-fraction-underflow",
+      "source_sha256": "84e05839a91a9cdae8342eaaa9bdc0fe8488d9eff23d9cc8896216e476db6a82",
+      "expected_refusal": true,
+      "error": "A positive composition fraction is below floating-point representability; provide an explicit alternative scale",
+      "qa_status": "failed",
+      "valid_outputs": false
+    },
+    {
+      "case": "extreme-zero-exponent",
+      "token": "0e-1000000000",
+      "fractions": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "case": "extreme-zero-exponent",
+      "token": "0e1000000000",
+      "fractions": [
+        0,
+        1
+      ],
+      "passed": true
+    }
+  ],
+  "focused_tests": [
+    {
+      "pattern": "test_renderer.py",
+      "returncode": 0,
+      "output": "...EasyViz: Source/spec/profile changed before rendering; prepare the current inputs again\n...........................................\n----------------------------------------------------------------------\nRan 46 tests in 7.184s\n\nOK\n"
+    },
+    {
+      "pattern": "test_figure_elements.py",
+      "returncode": 0,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 12.382s\n\nOK\n"
+    },
+    {
+      "pattern": "test_figure_profile.py",
+      "returncode": 0,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 3.388s\n\nOK\n"
+    }
+  ],
+  "all_passed": true
+}

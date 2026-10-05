@@ -1,0 +1,245 @@
+{
+  "figure_dir": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output",
+  "artifacts": {
+    "panel.png": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/panel.png",
+      "sha256": "2f7fd78671fc9e641481890ef58a2551c57080180708e21289969f26751a9c7e",
+      "bytes": 9965
+    },
+    "panel.pdf": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/panel.pdf",
+      "sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518",
+      "bytes": 7148
+    },
+    "panel.svg": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/panel.svg",
+      "sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74",
+      "bytes": 8376
+    },
+    "settings.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/settings.json",
+      "sha256": "638a4717d99beab83fba8687434518bd65f6cd74615f730cf620810a7915781b",
+      "bytes": 3653
+    },
+    "elements.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/elements.json",
+      "sha256": "ad0798746697e614ae95e500ecebc2747d177ea216aab13ceaef5f642abc90d3",
+      "bytes": 15713
+    },
+    "qa.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/qa.json",
+      "sha256": "919e8c61828014e02612fb1b817157dd1ca1fc49a91cb4785d9a7008375658bb",
+      "bytes": 10711
+    },
+    "stats.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/stats.json",
+      "sha256": "7785750ce5d0ab05f724fa8a9247aa4c1c7e3ba20d92fa0e0a6d3c4e53bee163",
+      "bytes": 94
+    },
+    "plotting-data.csv": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/plotting-data.csv",
+      "sha256": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+      "bytes": 20
+    },
+    "caption": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/caption.md",
+      "sha256": "846e018b8a9a6e19350a2f3798d39e4556e20ed7afa6efe29a59d06ed274fbf9",
+      "bytes": 89
+    }
+  },
+  "source_bindings": {
+    "data_file": [
+      {
+        "declared_by": "elements.json:input.data_file",
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/input.csv",
+        "sha256": "de6fa87f70f5877b9210e86ac4f8ab5f8b04521b12a5875fa114398d57c42621",
+        "expected_sha256": "de6fa87f70f5877b9210e86ac4f8ab5f8b04521b12a5875fa114398d57c42621",
+        "status": "passed"
+      }
+    ],
+    "source_script": [
+      {
+        "declared_by": "elements.json:input.source_script",
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+        "expected_sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+        "status": "passed"
+      }
+    ],
+    "spec_file": [
+      {
+        "declared_by": "elements.json:input.spec_file",
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/spec.json",
+        "sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+        "expected_sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+        "status": "passed"
+      }
+    ],
+    "figure_profile": []
+  },
+  "panel": {
+    "width_mm": 88.0,
+    "height_mm": 66.0
+  },
+  "measured_checks": {
+    "export_dimensions": {
+      "status": "passed",
+      "evidence": {
+        "adopted_canvas_mm": {
+          "width_mm": 88.0,
+          "height_mm": 66.0
+        },
+        "actual_png": {
+          "pixels": [
+            554,
+            416
+          ],
+          "dpi": [
+            159.9946,
+            159.9946
+          ]
+        },
+        "qa_exports": {
+          "png": {
+            "pixels": [
+              554,
+              416
+            ],
+            "dpi": [
+              159.9946,
+              159.9946
+            ],
+            "sha256": "2f7fd78671fc9e641481890ef58a2551c57080180708e21289969f26751a9c7e"
+          },
+          "svg": {
+            "width_mm": 88.0000000361111,
+            "height_mm": 65.99999993888888,
+            "text_preserved": true,
+            "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+            "sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74"
+          },
+          "pdf": {
+            "width_mm": 87.99999999998667,
+            "height_mm": 65.99999999999,
+            "sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518"
+          }
+        },
+        "format_bindings": {
+          "png": {
+            "status": "passed",
+            "measurement_source": "current_file",
+            "recorded_sha256": "2f7fd78671fc9e641481890ef58a2551c57080180708e21289969f26751a9c7e",
+            "actual_sha256": "2f7fd78671fc9e641481890ef58a2551c57080180708e21289969f26751a9c7e"
+          },
+          "svg": {
+            "status": "passed",
+            "measurement_source": "current_file",
+            "recorded_sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74",
+            "actual_sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74"
+          },
+          "pdf": {
+            "status": "passed",
+            "measurement_source": "hash_bound_qa",
+            "recorded_sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518",
+            "actual_sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518"
+          }
+        },
+        "actual_svg": {
+          "width_mm": 88.0000000361111,
+          "height_mm": 65.99999993888888
+        }
+      }
+    },
+    "typography": {
+      "status": "passed",
+      "evidence": {
+        "actual_font": "DejaVu Sans",
+        "font_substituted": false,
+        "sizes_pt": {
+          "axis": 8.0,
+          "tick": 8.0,
+          "legend": 8.0,
+          "annotation": 8.0,
+          "title": 9.0,
+          "panel": 9.0
+        },
+        "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+      }
+    },
+    "source_provenance": {
+      "status": "passed",
+      "evidence": {
+        "declared_sources": {
+          "data_file": [
+            {
+              "declared_by": "elements.json:input.data_file",
+              "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/input.csv",
+              "sha256": "de6fa87f70f5877b9210e86ac4f8ab5f8b04521b12a5875fa114398d57c42621",
+              "expected_sha256": "de6fa87f70f5877b9210e86ac4f8ab5f8b04521b12a5875fa114398d57c42621",
+              "status": "passed"
+            }
+          ],
+          "source_script": [
+            {
+              "declared_by": "elements.json:input.source_script",
+              "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+              "sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+              "expected_sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+              "status": "passed"
+            }
+          ],
+          "spec_file": [
+            {
+              "declared_by": "elements.json:input.spec_file",
+              "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/spec.json",
+              "sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+              "expected_sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+              "status": "passed"
+            }
+          ],
+          "figure_profile": []
+        },
+        "saved_specification": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/settings.json",
+          "sha256": "638a4717d99beab83fba8687434518bd65f6cd74615f730cf620810a7915781b",
+          "bytes": 3653
+        },
+        "resolved_spec_sha256": "1048206063306d06e3e95b317cd42da7e0970e9cfa29c91c17816a75d59121ed",
+        "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+      }
+    },
+    "technical_qa": {
+      "status": "passed",
+      "evidence": {
+        "qa": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/qa.json",
+          "sha256": "919e8c61828014e02612fb1b817157dd1ca1fc49a91cb4785d9a7008375658bb",
+          "bytes": 10711
+        },
+        "status": "pass",
+        "valid_outputs": true,
+        "input_rows": 4,
+        "plotted_input_rows": 4,
+        "readability_advisory": "no_advisory_flags",
+        "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+      }
+    },
+    "caption": {
+      "status": "passed",
+      "evidence": {
+        "artifact": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/caption.md",
+          "sha256": "846e018b8a9a6e19350a2f3798d39e4556e20ed7afa6efe29a59d06ed274fbf9",
+          "bytes": 89
+        },
+        "scope": "Separate caption is present; its scientific wording is a review attestation."
+      }
+    }
+  },
+  "candidate_png": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/01-source-race/output/panel.png",
+    "sha256": "2f7fd78671fc9e641481890ef58a2551c57080180708e21289969f26751a9c7e",
+    "bytes": 9965
+  },
+  "baseline_png": null
+}

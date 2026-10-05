@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduce.py", line 214, in <module>
+    main()
+  File "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduce.py", line 113, in main
+    qa = replicate.render(source, dup, folder / "output", spec_path=folder / "spec.json")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py", line 512, in render
+    require(passed, "Source or fixed-canvas QA needs revision; inspect qa.json and actual panel at the requested dimensions and font.")
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 158, in require
+    raise SpecError(message)
+easyviz_replicate_core.SpecError: Source or fixed-canvas QA needs revision; inspect qa.json and actual panel at the requested dimensions and font.

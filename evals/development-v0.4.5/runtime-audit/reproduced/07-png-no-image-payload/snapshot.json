@@ -1,0 +1,245 @@
+{
+  "figure_dir": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output",
+  "artifacts": {
+    "panel.png": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/panel.png",
+      "sha256": "6ed5b7f01817be3e785751581e7fd39a2f88c8d1cefea6c0691256b10c086433",
+      "bytes": 66
+    },
+    "panel.pdf": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/panel.pdf",
+      "sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518",
+      "bytes": 7148
+    },
+    "panel.svg": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/panel.svg",
+      "sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74",
+      "bytes": 8376
+    },
+    "settings.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/settings.json",
+      "sha256": "d74b11d8503053b697c65372fc0d2865c3029fb5077ca16620ad64c0a0865fb5",
+      "bytes": 3653
+    },
+    "elements.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/elements.json",
+      "sha256": "189ca0a85baae9877027bbe676ac463d3bec8952d92e24ee58a177a8899c2eef",
+      "bytes": 15753
+    },
+    "qa.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/qa.json",
+      "sha256": "31019afc67580df3be762c446c63655f20b26513aeefe68b11471a55a2af05c9",
+      "bytes": 10807
+    },
+    "stats.json": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/stats.json",
+      "sha256": "7785750ce5d0ab05f724fa8a9247aa4c1c7e3ba20d92fa0e0a6d3c4e53bee163",
+      "bytes": 94
+    },
+    "plotting-data.csv": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/plotting-data.csv",
+      "sha256": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+      "bytes": 20
+    },
+    "caption": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/caption.md",
+      "sha256": "846e018b8a9a6e19350a2f3798d39e4556e20ed7afa6efe29a59d06ed274fbf9",
+      "bytes": 89
+    }
+  },
+  "source_bindings": {
+    "data_file": [
+      {
+        "declared_by": "elements.json:input.data_file",
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/input.csv",
+        "sha256": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+        "expected_sha256": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+        "status": "passed"
+      }
+    ],
+    "source_script": [
+      {
+        "declared_by": "elements.json:input.source_script",
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+        "expected_sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+        "status": "passed"
+      }
+    ],
+    "spec_file": [
+      {
+        "declared_by": "elements.json:input.spec_file",
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/spec.json",
+        "sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+        "expected_sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+        "status": "passed"
+      }
+    ],
+    "figure_profile": []
+  },
+  "panel": {
+    "width_mm": 88.0,
+    "height_mm": 66.0
+  },
+  "measured_checks": {
+    "export_dimensions": {
+      "status": "passed",
+      "evidence": {
+        "adopted_canvas_mm": {
+          "width_mm": 88.0,
+          "height_mm": 66.0
+        },
+        "actual_png": {
+          "pixels": [
+            554,
+            416
+          ],
+          "dpi": [
+            159.9946,
+            159.9946
+          ]
+        },
+        "qa_exports": {
+          "png": {
+            "pixels": [
+              554,
+              416
+            ],
+            "dpi": [
+              159.9946,
+              159.9946
+            ],
+            "sha256": "6ed5b7f01817be3e785751581e7fd39a2f88c8d1cefea6c0691256b10c086433"
+          },
+          "svg": {
+            "width_mm": 88.0000000361111,
+            "height_mm": 65.99999993888888,
+            "text_preserved": true,
+            "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+            "sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74"
+          },
+          "pdf": {
+            "width_mm": 87.99999999998667,
+            "height_mm": 65.99999999999,
+            "sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518"
+          }
+        },
+        "format_bindings": {
+          "png": {
+            "status": "passed",
+            "measurement_source": "current_file",
+            "recorded_sha256": "6ed5b7f01817be3e785751581e7fd39a2f88c8d1cefea6c0691256b10c086433",
+            "actual_sha256": "6ed5b7f01817be3e785751581e7fd39a2f88c8d1cefea6c0691256b10c086433"
+          },
+          "svg": {
+            "status": "passed",
+            "measurement_source": "current_file",
+            "recorded_sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74",
+            "actual_sha256": "ff91871b911f1d37d3620a32b2070e25c79e29e1ae50edef3f4d9672c91a4d74"
+          },
+          "pdf": {
+            "status": "passed",
+            "measurement_source": "hash_bound_qa",
+            "recorded_sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518",
+            "actual_sha256": "3a351edc7618b13c9ef513e10ca987a0a9134e7c8aa613b9de848459156be518"
+          }
+        },
+        "actual_svg": {
+          "width_mm": 88.0000000361111,
+          "height_mm": 65.99999993888888
+        }
+      }
+    },
+    "typography": {
+      "status": "passed",
+      "evidence": {
+        "actual_font": "DejaVu Sans",
+        "font_substituted": false,
+        "sizes_pt": {
+          "axis": 8.0,
+          "tick": 8.0,
+          "legend": 8.0,
+          "annotation": 8.0,
+          "title": 9.0,
+          "panel": 9.0
+        },
+        "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+      }
+    },
+    "source_provenance": {
+      "status": "passed",
+      "evidence": {
+        "declared_sources": {
+          "data_file": [
+            {
+              "declared_by": "elements.json:input.data_file",
+              "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/input.csv",
+              "sha256": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+              "expected_sha256": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+              "status": "passed"
+            }
+          ],
+          "source_script": [
+            {
+              "declared_by": "elements.json:input.source_script",
+              "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+              "sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+              "expected_sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+              "status": "passed"
+            }
+          ],
+          "spec_file": [
+            {
+              "declared_by": "elements.json:input.spec_file",
+              "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/spec.json",
+              "sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+              "expected_sha256": "9d8a84cb7fc6f8cb6931644454e270978cbb019ce614718ce2f32119661ea0f9",
+              "status": "passed"
+            }
+          ],
+          "figure_profile": []
+        },
+        "saved_specification": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/settings.json",
+          "sha256": "d74b11d8503053b697c65372fc0d2865c3029fb5077ca16620ad64c0a0865fb5",
+          "bytes": 3653
+        },
+        "resolved_spec_sha256": "1048206063306d06e3e95b317cd42da7e0970e9cfa29c91c17816a75d59121ed",
+        "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+      }
+    },
+    "technical_qa": {
+      "status": "passed",
+      "evidence": {
+        "qa": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/qa.json",
+          "sha256": "31019afc67580df3be762c446c63655f20b26513aeefe68b11471a55a2af05c9",
+          "bytes": 10807
+        },
+        "status": "pass",
+        "valid_outputs": true,
+        "input_rows": 4,
+        "plotted_input_rows": 4,
+        "readability_advisory": "no_advisory_flags",
+        "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+      }
+    },
+    "caption": {
+      "status": "passed",
+      "evidence": {
+        "artifact": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/caption.md",
+          "sha256": "846e018b8a9a6e19350a2f3798d39e4556e20ed7afa6efe29a59d06ed274fbf9",
+          "bytes": 89
+        },
+        "scope": "Separate caption is present; its scientific wording is a review attestation."
+      }
+    }
+  },
+  "candidate_png": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/07-png-no-image-payload/output/panel.png",
+    "sha256": "6ed5b7f01817be3e785751581e7fd39a2f88c8d1cefea6c0691256b10c086433",
+    "bytes": 66
+  },
+  "baseline_png": null
+}

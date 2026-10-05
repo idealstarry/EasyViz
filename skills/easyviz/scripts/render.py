@@ -3,16 +3,30 @@
 from __future__ import annotations
 
 import argparse
+import csv
+from decimal import Decimal, localcontext
 import hashlib
 import importlib.util
 from importlib.metadata import version as package_version
 import json
+import io
 import math
 import os
 import platform
 from pathlib import Path
+import sys
 import tempfile
 import warnings
+
+# Capture this executing renderer before importing third-party code or sibling
+# helpers. Timestamp/size-valid .pyc caches can still contain different code;
+# compare the compiled source with the actual executing module, rather than
+# declaring whatever file happens to exist to be the code that ran. Code
+# equality does not depend on the loader's filename or module metadata.
+_RENDER_SOURCE_BYTES = Path(__file__).read_bytes()
+if compile(_RENDER_SOURCE_BYTES, str(Path(__file__)), "exec", dont_inherit=True) != sys._getframe().f_code:
+    raise RuntimeError("Executing renderer code differs from its source file; remove stale bytecode and reload the current renderer")
+RUNTIME_SOURCE_DIGESTS = {"render.py": hashlib.sha256(_RENDER_SOURCE_BYTES).hexdigest()}
 
 os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "easyviz-matplotlib"))
 import matplotlib
@@ -24,26 +38,27 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-# Resolve the sibling helper even when this module is loaded with importlib by
-# tests or copied into a portable skill directory outside the Python path.
-_legend_spec = importlib.util.spec_from_file_location("easyviz_legend_layout", Path(__file__).with_name("legend_layout.py"))
-legend_layout = importlib.util.module_from_spec(_legend_spec)
-_legend_spec.loader.exec_module(legend_layout)
-_profile_spec = importlib.util.spec_from_file_location("easyviz_figure_profile", Path(__file__).with_name("figure_profile.py"))
-figure_profile = importlib.util.module_from_spec(_profile_spec)
-_profile_spec.loader.exec_module(figure_profile)
-_auto_spec = importlib.util.spec_from_file_location("easyviz_auto_layout", Path(__file__).with_name("auto_layout.py"))
-auto_layout = importlib.util.module_from_spec(_auto_spec)
-_auto_spec.loader.exec_module(auto_layout)
-_annotation_spec = importlib.util.spec_from_file_location("easyviz_annotation_review", Path(__file__).with_name("annotation_review.py"))
-annotation_review = importlib.util.module_from_spec(_annotation_spec)
-_annotation_spec.loader.exec_module(annotation_review)
-_elements_spec = importlib.util.spec_from_file_location("easyviz_figure_elements", Path(__file__).with_name("figure_elements.py"))
-figure_elements = importlib.util.module_from_spec(_elements_spec)
-_elements_spec.loader.exec_module(figure_elements)
-_readability_spec = importlib.util.spec_from_file_location("easyviz_panel_readability", Path(__file__).with_name("panel_readability.py"))
-panel_readability = importlib.util.module_from_spec(_readability_spec)
-_readability_spec.loader.exec_module(panel_readability)
+def _load_captured_helper(module_name, filename):
+    """Execute and bind one exact sibling source snapshot, never cached code."""
+    path = Path(__file__).with_name(filename)
+    raw = path.read_bytes()
+    module_spec = importlib.util.spec_from_file_location(module_name, path)
+    module = importlib.util.module_from_spec(module_spec)
+    # exec_module can execute an existing .pyc or read bytes independently of
+    # the later digest. Compile the captured bytes so the digest describes the
+    # helper that actually ran, even if its source changes during execution.
+    RUNTIME_SOURCE_DIGESTS[filename] = hashlib.sha256(raw).hexdigest()
+    exec(compile(raw, str(path), "exec"), module.__dict__)
+    return module
+
+
+# Portable importlib callers retain normal module metadata and sibling paths.
+legend_layout = _load_captured_helper("easyviz_legend_layout", "legend_layout.py")
+figure_profile = _load_captured_helper("easyviz_figure_profile", "figure_profile.py")
+auto_layout = _load_captured_helper("easyviz_auto_layout", "auto_layout.py")
+annotation_review = _load_captured_helper("easyviz_annotation_review", "annotation_review.py")
+figure_elements = _load_captured_helper("easyviz_figure_elements", "figure_elements.py")
+panel_readability = _load_captured_helper("easyviz_panel_readability", "panel_readability.py")
 
 
 class SpecError(ValueError):
@@ -156,6 +171,91 @@ SCHEMA = {
 def require(condition, message):
     if not condition:
         raise SpecError(message)
+
+
+def read_source_csv(data_path):
+    """Parse the exact captured UTF-8 bytes without index or header inference."""
+    raw = Path(data_path).read_bytes()
+    try:
+        table = list(csv.reader(io.StringIO(raw.decode("utf-8-sig"), newline=""), strict=True))
+    except (UnicodeError, csv.Error) as exc:
+        raise SpecError(f"Input must be a valid UTF-8 CSV: {exc}") from None
+    require(len(table) > 1, "Input requires a header and nonempty records")
+    header, rows = table[0], table[1:]
+    require(header and all(name.strip() for name in header) and len(header) == len(set(header)),
+            "CSV headers must be nonempty and unique before mapping fields")
+    require(all(len(row) == len(header) and any(cell.strip() for cell in row) for row in rows),
+            "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped")
+    data = pd.DataFrame(rows, columns=header, dtype=object)
+    data.attrs["source_csv_bytes"] = raw
+    data.attrs["source_csv_sha256"] = hashlib.sha256(raw).hexdigest()
+    return data
+
+
+def source_continuity(bindings):
+    """Check actual current bytes against digests captured when inputs were used."""
+    issues = []
+    for role, record in bindings.items():
+        try:
+            actual = hashlib.sha256(Path(record["path"]).read_bytes()).hexdigest()
+        except OSError:
+            actual = None
+        if actual != record["sha256"]:
+            issues.append({"code": "source_changed_during_render", "role": role,
+                           "path": record["path"], "captured_sha256": record["sha256"],
+                           "current_sha256": actual})
+    return {"status": "needs_revision" if issues else "pass", "issues": issues,
+            "scope": "Current-file continuity against actually captured source/spec/profile bytes; not an aesthetic or independent scientific audit."}
+
+
+def composition_normalization(data, fields, normalization, raw_numeric):
+    """Use exact source decimals for sums, then finite plotted proportions."""
+    values = [Decimal(value) for value in raw_numeric["value"]]
+    denominators = [Decimal(value) for value in raw_numeric["denominator"]] if normalization == "denominator" else None
+    fractions = np.empty(len(data), dtype=float)
+    totals_out, total_text = [None] * len(data), [None] * len(data)
+    for sample, indices in data.groupby(fields["sample"], sort=False).groups.items():
+        indices = list(indices)
+        supplied = [values[index] for index in indices]
+        participating = supplied + ([denominators[index] for index in indices] if denominators else [])
+        # Enough precision for the exact decimal sum, including unequal
+        # exponents and a carry from the entire group; no fixed-width integer
+        # arithmetic or float-infinity total is used.
+        nonzero = [value for value in participating if value]
+        precision = max((value.adjusted() for value in nonzero), default=0) - min((value.as_tuple().exponent for value in nonzero), default=0) + len(str(len(indices))) + 2
+        with localcontext() as context:
+            context.prec = max(28, precision)
+            # Literal zero may carry an arbitrary exponent (0e-1000000000);
+            # it contributes no significant digits or value to this sum.
+            total = sum((value for value in supplied if value), Decimal(0))
+            require(total > 0 or normalization == "denominator", "Every sample sum must be positive")
+            if denominators is not None:
+                selected = {denominators[index] for index in indices}
+                require(len(selected) == 1, "Each sample must have one consistent denominator")
+                denominator = selected.pop()
+                require(denominator > 0, "Denominators must be positive")
+                require(total <= denominator + max(Decimal(1), denominator) * Decimal("1e-12"),
+                        "Category sum exceeds the supplied sample denominator")
+            else:
+                denominator = total
+            for index in indices:
+                proportion = float(values[index] / denominator)
+                require(math.isfinite(proportion) and 0 <= proportion <= 1 + 1e-12,
+                        "Composition fractions must remain finite and within the declared denominator")
+                require(not values[index] or proportion > 0,
+                        "A positive composition fraction is below floating-point representability; provide an explicit alternative scale")
+                fractions[index] = proportion
+                total_text[index] = str(denominator)
+                numeric = float(denominator)
+                # A finite source can have a sum above binary64 capacity.
+                # Preserve its exact decimal total as text instead of infinity.
+                totals_out[index] = numeric if math.isfinite(numeric) else str(denominator)
+            if normalization == "sample_sum":
+                require(math.isclose(math.fsum(fractions[index] for index in indices), 1., rel_tol=1e-12, abs_tol=1e-12),
+                        "Sample-sum proportions must sum to one")
+    data["_easyviz_denominator"] = totals_out
+    data["_easyviz_denominator_text"] = total_text
+    data["_easyviz_plotted_value"] = fractions
 
 
 def require_core_chart(chart):
@@ -554,7 +654,7 @@ def prepare(data_path, spec):
     require(all(k in fields for k in REQUIRED[chart]), f"{chart} requires fields {REQUIRED[chart]}")
     # Preserve literal category names such as "NA" and "null". Empty fields are
     # rejected explicitly below; numeric non-finite tokens still fail validation.
-    data = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    data = read_source_csv(data_path)
     require(len(data) > 0, "Input has no observations")
     require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
     observed = pd.Series(True, index=data.index)
@@ -576,16 +676,20 @@ def prepare(data_path, spec):
         "heatmap": ["value"], "composition": ["value", "denominator"],
         "dotplot": ["size", "color"], "scatter": ["x", "y", "size"], "distribution": ["value"],
     }[chart]
+    raw_numeric = {}
     for role in numerical:
         if role not in fields:
             continue
         col = fields[role]
         selected = data.loc[observed, col] if chart == "dotplot" else data[col]
+        raw_numeric[role] = selected.astype(str).tolist()
         try:
             converted = pd.to_numeric(selected, errors="raise")
         except (ValueError, TypeError):
             raise SpecError(f"{col} must contain only numeric values") from None
         require(np.isfinite(converted.to_numpy(dtype=float)).all(), f"Non-finite values in {col}")
+        require(all(float(value) != 0 or Decimal(text) == 0 for value, text in zip(converted, raw_numeric[role])),
+                f"A nonzero value in {col} is below floating-point representability; no source value is silently replaced by zero")
         if chart == "dotplot":
             data[col] = pd.Series(np.nan, index=data.index, dtype=float)
             data.loc[observed, col] = converted.to_numpy(dtype=float)
@@ -610,20 +714,9 @@ def prepare(data_path, spec):
         values = data[fields["value"]].astype(float)
         if normalization == "none":
             data["_easyviz_plotted_value"] = values
-        elif normalization == "sample_sum":
-            denominator = data.groupby(fields["sample"], sort=False)[fields["value"]].transform("sum")
-            require((denominator > 0).all(), "Every sample sum must be positive")
-            data["_easyviz_denominator"] = denominator
-            data["_easyviz_plotted_value"] = values / denominator
         else:
-            require("denominator" in fields, "Denominator normalization requires fields.denominator")
-            denominator = data[fields["denominator"]].astype(float)
-            require((denominator > 0).all(), "Denominators must be positive")
-            require(data.groupby(fields["sample"])[fields["denominator"]].nunique().eq(1).all(), "Each sample must have one consistent denominator")
-            totals = data.groupby(fields["sample"], sort=False)[fields["value"]].transform("sum")
-            require((totals <= denominator + np.maximum(1, denominator) * 1e-12).all(), "Category sum exceeds the supplied sample denominator")
-            data["_easyviz_denominator"] = denominator
-            data["_easyviz_plotted_value"] = values / denominator
+            require(normalization != "denominator" or "denominator" in fields, "Denominator normalization requires fields.denominator")
+            composition_normalization(data, fields, normalization, raw_numeric)
     return data
 
 
@@ -1316,9 +1409,18 @@ def check_tick_label_overlap(fig, painter):
     return overlaps, skipped
 
 
-def _render(data_path, spec, out, profile_record=None, spec_path=None, track=None):
+def _render(data_path, spec, out, profile_record=None, spec_path=None, track=None, source_bindings=None):
     data_path, out = Path(data_path), Path(out)
     data = prepare(data_path, spec)
+    bindings = dict(source_bindings or {})
+    bindings["data_file"] = {"path": str(data_path.resolve()), "sha256": data.attrs["source_csv_sha256"]}
+    for name, digest in RUNTIME_SOURCE_DIGESTS.items():
+        role = "source_script" if name == "render.py" else f"helper:{name}"
+        bindings[role] = {"path": str(Path(__file__).with_name(name).resolve()), "sha256": digest}
+    if profile_record is not None:
+        bindings["figure_profile"] = {"path": profile_record["path"], "sha256": profile_record["sha256"]}
+    continuity = source_continuity(bindings)
+    require(continuity["status"] == "pass", "Source/spec/profile changed before rendering; prepare the current inputs again")
     results = statistics(data, spec)
     layout, typography, rc = setup(spec)
     out.mkdir(parents=True, exist_ok=True)
@@ -1337,6 +1439,7 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             fig._easyviz_track = track
             fig._easyviz_resolved_colors = colors
+            fig._easyviz_source_bindings = bindings
             fig.canvas.draw()
             renderer = fig.canvas.get_renderer()
             width, height = fig.bbox.width, fig.bbox.height
@@ -1361,19 +1464,25 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             legends = fig._easyviz_legend_layout.validate()
             cell_annotations = annotation_review.check_heatmap_annotations(fig, fig.axes[0], getattr(fig, "_easyviz_cell_annotations", []))
             fitted = getattr(fig, "_easyviz_auto_layout", None)
+            continuity = source_continuity(bindings)
+            require(continuity["status"] == "pass", "Source/spec/profile changed before export; prepare the current inputs again")
             exports = export(fig, out, spec, layout)
+            continuity = source_continuity(bindings)
             readability = panel_readability.measure(fig)
             missing_glyphs = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             settings = dict(spec)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=spec.get("formats", ["pdf", "png"]), seed=spec.get("seed", 0), input_file=data_path.name, input_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest())
-            settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=spec.get("formats", ["pdf", "png"]), seed=spec.get("seed", 0), input_file=data_path.name, input_sha256=bindings["data_file"]["sha256"])
+            settings["source_bindings"] = bindings
+            settings["source_snapshot"] = {"file": "source-data.csv", "sha256": bindings["data_file"]["sha256"],
+                                           "row_count": len(data), "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; parsed once with strict header/record width."}
+            settings["renderer"] = {"version": VERSION, "sha256": RUNTIME_SOURCE_DIGESTS["render.py"]}
             if track is not None:
                 settings["track"] = track
-            settings["renderer"]["legend_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("legend_layout.py").read_bytes()).hexdigest()
-            settings["renderer"]["profile_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("figure_profile.py").read_bytes()).hexdigest()
-            settings["renderer"]["auto_layout_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("auto_layout.py").read_bytes()).hexdigest()
-            settings["renderer"]["annotation_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("annotation_review.py").read_bytes()).hexdigest()
-            settings["renderer"]["readability_helper_sha256"] = hashlib.sha256(Path(__file__).with_name("panel_readability.py").read_bytes()).hexdigest()
+            settings["renderer"]["legend_helper_sha256"] = RUNTIME_SOURCE_DIGESTS["legend_layout.py"]
+            settings["renderer"]["profile_helper_sha256"] = RUNTIME_SOURCE_DIGESTS["figure_profile.py"]
+            settings["renderer"]["auto_layout_helper_sha256"] = RUNTIME_SOURCE_DIGESTS["auto_layout.py"]
+            settings["renderer"]["annotation_helper_sha256"] = RUNTIME_SOURCE_DIGESTS["annotation_review.py"]
+            settings["renderer"]["readability_helper_sha256"] = RUNTIME_SOURCE_DIGESTS["panel_readability.py"]
             if fitted:
                 settings["auto_layout"] = fitted
             if profile_record is not None:
@@ -1387,11 +1496,12 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             if point_layout:
                 settings["point_layout"] = point_layout
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}
-            passed = not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass" and cell_annotations["status"] == "pass" and (not fitted or fitted["status"] == "pass") and (not point_layout or point_layout["status"] != "needs_revision")
+            passed = continuity["status"] == "pass" and not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass" and cell_annotations["status"] == "pass" and (not fitted or fitted["status"] == "pass") and (not point_layout or point_layout["status"] != "needs_revision")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover canvas boundaries, same-axis horizontal/vertical tick-label overlap and heatmap cell annotations. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
             qa["legend_layout"] = legends
             qa["cell_annotations"] = cell_annotations
             qa["readability"] = readability
+            qa["source_continuity"] = continuity
             if fitted:
                 qa["auto_layout"] = fitted
             if chart_states:
@@ -1399,9 +1509,11 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             if point_layout:
                 qa["point_layout"] = point_layout
             data.to_csv(out / "plotting-data.csv", index=False)
+            (out / "source-data.csv").write_bytes(data.attrs["source_csv_bytes"])
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", results)
             write_json(out / "qa.json", qa)
+            require(continuity["status"] == "pass", "Source/spec/profile changed during export; old consumed bytes are preserved in source-data.csv and this run is invalid")
             point_issues = point_layout.get("spacing_violation_pairs", 0) if point_layout else 0
             point_boundary_issues = len(point_layout.get("categorical_boundary_rows", [])) if point_layout else 0
             require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {point_issues} observation spacing conflicts, {point_boundary_issues} observation marker boundary issues, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit.")
@@ -1410,7 +1522,23 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             plt.close(fig)
 
 
-def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, track=None):
+def parse_spec_bytes(raw):
+    """Parse one exact spec byte snapshot without duplicate or nonfinite JSON."""
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("Duplicate JSON keys")
+            result[key] = value
+        return result
+    try:
+        return json.loads(raw.decode("utf-8-sig"), object_pairs_hook=unique,
+                          parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
+    except (UnicodeError, ValueError) as exc:
+        raise SpecError("Specification must be finite UTF-8 JSON without duplicate keys") from exc
+
+
+def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, track=None, captured_spec_bytes=None):
     """Mark every attempted run so stale exports cannot retain a passing QA record."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -1418,8 +1546,39 @@ def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, tr
     write_json(out / "qa.json", status)
     try:
         require(track in (None, "create", "reproduce"), "track must be create or reproduce when supplied")
+        bindings = {}
+        require(captured_spec_bytes is None or isinstance(captured_spec_bytes, bytes) and spec_path is not None,
+                "captured_spec_bytes requires exact bytes and the corresponding spec_path")
+        if spec_path is not None:
+            spec_file = Path(spec_path).resolve()
+            # Python callers can use a not-yet-saved spec path only as the
+            # base for a relative profile. Preserve that established API, but
+            # never claim bytes were consumed from an absent file or bind a
+            # file that first appears during rendering.
+            spec_raw = captured_spec_bytes if captured_spec_bytes is not None else spec_file.read_bytes() if spec_file.is_file() else None
+            require(spec_raw is None or parse_spec_bytes(spec_raw) == spec,
+                    "Supplied specification differs from the captured spec file; save the adopted dictionary or omit the file claim")
+            bindings["spec_file"] = {"path": str(spec_file), "sha256": hashlib.sha256(spec_raw).hexdigest() if spec_raw is not None else None}
         resolved, profile_record = resolve_spec(spec, profile=profile, panel=panel, spec_path=spec_path)
-        return _render(data_path, resolved, out, profile_record, spec_path=spec_path, track=track)
+        return _render(data_path, resolved, out, profile_record, spec_path=spec_path, track=track, source_bindings=bindings)
+    except Exception as exc:
+        current = json.loads((out / "qa.json").read_text())
+        if current.get("status") == "in_progress":
+            current.update(status="failed", error=str(exc))
+            write_json(out / "qa.json", current)
+        raise
+
+
+def render_spec_file(data_path, spec_path, out, *, profile=None, panel=None, track=None):
+    """Load and render one captured spec snapshot; failed parsing invalidates QA."""
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False,
+                                "note": "Specification loading and rendering must both finish before these exports are validated."})
+    try:
+        raw = Path(spec_path).read_bytes()
+        return render(data_path, parse_spec_bytes(raw), out, profile=profile, panel=panel,
+                      spec_path=spec_path, track=track, captured_spec_bytes=raw)
     except Exception as exc:
         current = json.loads((out / "qa.json").read_text())
         if current.get("status") == "in_progress":
@@ -1444,7 +1603,7 @@ def main():
     if not all([args.data, args.spec, args.out]):
         parser.error("--data, --spec and --out are required unless --describe-spec is used")
     try:
-        qa = render(args.data, json.loads(args.spec.read_text()), args.out, profile=args.profile, panel=args.panel, spec_path=args.spec, track=args.track)
+        qa = render_spec_file(args.data, args.spec, args.out, profile=args.profile, panel=args.panel, track=args.track)
     except (ValueError, OSError, ImportError) as exc:
         parser.exit(2, f"EasyViz: {exc}\n")
     print(json.dumps({"status": qa["status"], "output": str(args.out), "width_mm": qa["width_mm"], "height_mm": qa["height_mm"]}))

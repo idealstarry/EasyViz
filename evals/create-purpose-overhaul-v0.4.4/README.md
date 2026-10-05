@@ -1,9 +1,12 @@
-# Held v0.4.4 purpose and geometry overhaul
+# v0.4.4 purpose and geometry overhaul
 
-Publication is on hold at the user's request. This folder records a new
-overhaul after the Linux core-check failure, separately from the frozen
-first-delivery and choice-space evaluations. A successful test or complete
-review record does not establish aesthetic improvement or journal acceptance.
+This folder records the overhaul after the Linux core-check failure,
+separately from the frozen first-delivery and choice-space evaluations.
+The original publication hold was superseded by the user's subsequent
+authorization to complete and release 0.4.4, 0.4.5 and 0.4.6. Current validation
+and publication evidence is in [release QA](../release-qa/v0.4.4/README.md).
+A successful test or complete review record does not establish aesthetic
+improvement or journal acceptance.
 
 ## Changes under review
 

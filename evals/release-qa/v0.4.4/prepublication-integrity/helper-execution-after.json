@@ -1,0 +1,42 @@
+{
+  "scope": "Actual executed-helper bytes and post-execution renderer/helper replacement",
+  "source_hashes": {
+    "render.py": "05981e39daf33cf71af6d0d421beb678a18076974f2af59cfd53418d932746a8",
+    "figure_elements.py": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+  },
+  "temporary_copies_only": true,
+  "probe_script_sha256": "1c3a5fd393813aef840496adaece4b4d94eb1fdea9ec551e6b1c90f1f824980b",
+  "cases": [
+    {
+      "replaced_source": "figure_elements.py",
+      "hook_reached": true,
+      "consumed_sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76",
+      "replacement_sha256": "d42499dba43cc2d92b2ac8d97a0f4a71d191bf6b1168c8a361a06f8477d832c0",
+      "recorded_loaded_sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76",
+      "race_blocked_before_export": true,
+      "qa": {
+        "status": "failed",
+        "valid_outputs": false,
+        "note": "Until this run passes, any exports in this directory are unverified and may belong to an earlier run.",
+        "error": "Source/spec/profile changed before rendering; prepare the current inputs again"
+      },
+      "error": "Source/spec/profile changed before rendering; prepare the current inputs again"
+    },
+    {
+      "replaced_source": "render.py",
+      "hook_reached": true,
+      "consumed_sha256": "05981e39daf33cf71af6d0d421beb678a18076974f2af59cfd53418d932746a8",
+      "replacement_sha256": "97b21c6b62c865fae9a7801e3d732904245769924389d85be245013890d7d77b",
+      "recorded_loaded_sha256": "05981e39daf33cf71af6d0d421beb678a18076974f2af59cfd53418d932746a8",
+      "race_blocked_before_export": true,
+      "qa": {
+        "status": "failed",
+        "valid_outputs": false,
+        "note": "Until this run passes, any exports in this directory are unverified and may belong to an earlier run.",
+        "error": "Source/spec/profile changed before rendering; prepare the current inputs again"
+      },
+      "error": "Source/spec/profile changed before rendering; prepare the current inputs again"
+    }
+  ],
+  "all_blocked_before_export": true
+}

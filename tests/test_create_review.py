@@ -7,13 +7,16 @@ from __future__ import annotations
 
 from copy import deepcopy
 import importlib.util
+import io
 import json
 import math
 from pathlib import Path
 import shutil
+import struct
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
+import zlib
 
 from PIL import Image
 
@@ -29,6 +32,129 @@ def module(name, path):
 
 gate = module("easyviz_create_review_test", SCRIPTS / "create_review.py")
 renderer = module("easyviz_create_review_renderer", SCRIPTS / "render.py")
+
+
+class PngIntegrityTests(unittest.TestCase):
+    @staticmethod
+    def chunk(kind, body):
+        return struct.pack(">I", len(body)) + kind + body + struct.pack(">I", zlib.crc32(kind + body) & 0xffffffff)
+
+    @staticmethod
+    def chunks(raw):
+        records, offset = [], 8
+        while offset < len(raw):
+            length = struct.unpack(">I", raw[offset:offset + 4])[0]
+            records.append((raw[offset + 4:offset + 8], raw[offset + 8:offset + 8 + length]))
+            offset += length + 12
+        return records
+
+    def encoded(self, chunks):
+        return b"\x89PNG\r\n\x1a\n" + b"".join(self.chunk(kind, body) for kind, body in chunks)
+
+    @staticmethod
+    def actual_image(mode="RGB", **options):
+        image = Image.new(mode, (7, 5))
+        if mode == "P":
+            image.putpalette([component for value in range(256) for component in (value, 255 - value, value)])
+            depth = options.get("bits", 8)
+            image.putdata([value % (2 ** depth) for value in range(35)])
+        buffer = io.BytesIO()
+        image.save(buffer, format="PNG", dpi=(300, 300), **options)
+        image.close()
+        return buffer.getvalue()
+
+    def test_actual_decodable_modes_and_consecutive_image_chunks(self):
+        for mode in ("1", "L", "LA", "RGB", "RGBA", "P", "I;16"):
+            with self.subTest(mode=mode):
+                raw = self.actual_image(mode)
+                with Image.open(io.BytesIO(raw)) as image:
+                    image.load()
+                    self.assertEqual(image.size, (7, 5))
+                self.assertEqual(gate.png_measurement(raw)["pixels"], [7, 5])
+                chunks = self.chunks(raw)
+                payload = b"".join(body for kind, body in chunks if kind == b"IDAT")
+                split = []
+                placed = False
+                for kind, body in chunks:
+                    if kind != b"IDAT":
+                        split.append((kind, body))
+                    elif not placed:
+                        split.extend([(b"IDAT", b"")] + [(b"IDAT", payload[index:index + 3]) for index in range(0, len(payload), 3)])
+                        placed = True
+                segmented = self.encoded(split)
+                with Image.open(io.BytesIO(segmented)) as image:
+                    image.load()
+                self.assertEqual(gate.png_measurement(segmented), gate.png_measurement(raw))
+        for depth in (1, 2, 4):
+            with self.subTest(indexed_depth=depth):
+                self.assertEqual(gate.png_measurement(self.actual_image("P", bits=depth))["pixels"], [7, 5])
+
+    def test_real_adam7_image_including_empty_small_passes(self):
+        for width, height in ((9, 5), (1, 1), (1, 7)):
+            image = Image.new("RGB", (width, height))
+            for y in range(height):
+                for x in range(width):
+                    image.putpixel((x, y), (x * 20, y * 30, (x + y) * 15))
+            passes = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4),
+                      (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))
+            scanlines = bytearray()
+            for x_start, y_start, x_step, y_step in passes:
+                xs = list(range(x_start, width, x_step))
+                for y in range(y_start, height, y_step):
+                    if xs:
+                        scanlines.append(0)
+                        for x in xs:
+                            scanlines.extend(image.getpixel((x, y)))
+            raw = self.encoded([(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 1)),
+                                (b"IDAT", zlib.compress(scanlines)), (b"IEND", b"")])
+            with Image.open(io.BytesIO(raw)) as decoded:
+                decoded.load()
+                self.assertEqual(decoded.tobytes(), image.tobytes())
+            self.assertEqual(gate.png_measurement(raw)["pixels"], [width, height])
+            image.close()
+
+    def test_checksum_valid_header_without_pixels_or_corrupt_scanlines_is_rejected(self):
+        chunks = self.chunks(self.actual_image())
+        without_image = self.encoded([(kind, body) for kind, body in chunks if kind != b"IDAT"])
+        with Image.open(io.BytesIO(without_image)) as decoded:
+            with self.assertRaises(OSError):
+                decoded.load()
+        with self.assertRaisesRegex(gate.ReviewError, "pixel payload"):
+            gate.png_measurement(without_image)
+        original = zlib.decompress(b"".join(body for kind, body in chunks if kind == b"IDAT"))
+        variants = {"invalid-zlib": b"invalid pixels", "truncated-stream": zlib.compress(original)[:-3],
+                    "missing-row": zlib.compress(original[:-22]), "extra-row": zlib.compress(original + original[:22]),
+                    "invalid-filter": zlib.compress(b"\x05" + original[1:])}
+        for name, payload in variants.items():
+            with self.subTest(name=name):
+                bad = self.encoded([(kind, payload if kind == b"IDAT" else body) for kind, body in chunks])
+                with self.assertRaises(gate.ReviewError):
+                    gate.png_measurement(bad)
+
+    def test_unused_final_idat_padding_is_legal_but_duplicate_physical_metadata_is_not(self):
+        raw = self.actual_image()
+        chunks = self.chunks(raw)
+        padded = self.encoded([(kind, body + b"\x00" * 16 if kind == b"IDAT" else body) for kind, body in chunks])
+        with Image.open(io.BytesIO(padded)) as decoded:
+            decoded.load()
+        self.assertEqual(gate.png_measurement(padded), gate.png_measurement(raw))
+        duplicate = []
+        for kind, body in chunks:
+            duplicate.append((kind, body))
+            if kind == b"pHYs":
+                duplicate.append((kind, body))
+        with self.assertRaisesRegex(gate.ReviewError, "physical metadata"):
+            gate.png_measurement(self.encoded(duplicate))
+
+    def test_invalid_encoding_and_bounded_pixel_payload(self):
+        chunks = self.chunks(self.actual_image())
+        for name, header in (("invalid-depth", struct.pack(">IIBBBBB", 7, 5, 12, 2, 0, 0, 0)),
+                             ("missing-palette", struct.pack(">IIBBBBB", 7, 5, 8, 3, 0, 0, 0)),
+                             ("oversized-pixels", struct.pack(">IIBBBBB", 1000000, 1000000, 8, 2, 0, 0, 0))):
+            with self.subTest(name=name):
+                encoded = self.encoded([(kind, header if kind == b"IHDR" else body) for kind, body in chunks])
+                with self.assertRaises(gate.ReviewError):
+                    gate.png_measurement(encoded)
 
 
 class CreateReviewTests(unittest.TestCase):
@@ -176,6 +302,30 @@ class CreateReviewTests(unittest.TestCase):
                 result = self.assert_blocked(staged, "changed since staging")
                 self.assertIn("source_provenance", "\n".join(result["errors"]))
                 path.write_bytes(original)
+
+    def test_consumed_source_snapshot_is_required_when_declared_and_bound_to_review(self):
+        path = self.figure / "source-data.csv"
+        original = path.read_bytes()
+        self.assertEqual(original, self.data.read_bytes())
+        staged = self.stage()
+        self.recorded_fixture(staged)
+        for raw in (b"x,y\n1,999\n", None):
+            with self.subTest(raw=raw):
+                if raw is None:
+                    path.unlink()
+                else:
+                    path.write_bytes(raw)
+                self.assertEqual(gate.snapshot(self.figure, caption=self.caption)["measured_checks"]["source_provenance"]["status"], "failed")
+                self.assert_blocked(staged, "changed since staging")
+                path.write_bytes(original)
+        self.assertEqual(gate.check(staged["packet"])["gate_status"], "recorded")
+
+    def test_source_continuity_failure_cannot_be_masked_by_top_level_qa(self):
+        qa_path = self.figure / "qa.json"
+        qa = self.read(qa_path)
+        qa["source_continuity"] = {"status": "needs_revision", "issues": [{"role": "data_file"}]}
+        self.write(qa_path, qa)
+        self.assertEqual(gate.snapshot(self.figure, caption=self.caption)["measured_checks"]["technical_qa"]["status"], "failed")
 
     def test_recorded_source_script_is_hashed_without_guessing_bundled_location(self):
         # Relocate the actual recorded source bytes, as in a copied writable case.

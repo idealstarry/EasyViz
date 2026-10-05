@@ -1,0 +1,144 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "arm",
+    "unit": "id",
+    "value": "value"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd"
+  },
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 66.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.11962841303661619,
+      "right": 0.9772727272727273,
+      "bottom": 0.11047979797979797,
+      "top": 0.9696969696969696
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "formats": [
+    "png",
+    "svg",
+    "pdf"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "A": "#C5C5C5",
+    "B": "#C5C5C5"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/runtime-audit/reproduced/03-duplicate-csv-header/input.csv",
+  "input_sha256": "4014a403e4b575087cc551cee38ae90b5d982cd354dfbf49ddb7d04f0fe610d2",
+  "supplied_spec": {
+    "chart": "replicate",
+    "fields": {
+      "condition": "arm",
+      "unit": "id",
+      "value": "value"
+    },
+    "options": {
+      "mode": "summary",
+      "uncertainty": "sample_sd"
+    },
+    "layout": {
+      "width_mm": 88,
+      "height_mm": 66,
+      "dpi": 160,
+      "font": "DejaVu Sans",
+      "auto_fit": true
+    },
+    "formats": [
+      "png",
+      "svg",
+      "pdf"
+    ]
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.11962841303661619,
+      "right": 0.9772727272727273,
+      "bottom": 0.11047979797979797,
+      "top": 0.9696969696969696
+    },
+    "data_region_mm": [
+      10.527300347222225,
+      7.291666666666667,
+      75.47269965277778,
+      56.708333333333336
+    ],
+    "data_area_fraction": 0.7369027220172645,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.7369027220172645
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+    "helper_sha256": {
+      "render.py": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "e34d6e7c5e720782671e356b960c4f6052d26ed3fa3b0f868dbbf004e4b03f48",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    }
+  },
+  "spec_file_sha256": "2b04c748cb875ed2d1c534f72d4112cd32873377a75152adce6e464a3199a6ce"
+}

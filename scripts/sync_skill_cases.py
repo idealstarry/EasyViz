@@ -151,6 +151,7 @@ def sync():
         for file in source.rglob('*'):
             relative = file.relative_to(source)
             if (not file.is_file() or any(part in ('first-render', '__pycache__') for part in relative.parts)
+                    or relative.parts[0].startswith('revision-v')
                     or file.name in ('access-log.json', 'first-attempt-evidence.json')
                     or file.suffix == '.pyc'):
                 continue

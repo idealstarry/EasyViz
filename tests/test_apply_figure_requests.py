@@ -368,6 +368,57 @@ class ApplyRequestsTests(unittest.TestCase):
                 self.assertEqual((snapshot / "qa.json").read_bytes(), good_qa)
                 self.assertEqual([entry["action"] for entry in app.ledger()["history"]], ["accepted"])
 
+    def test_accept_binds_actual_copied_primary_bytes_even_when_sources_revert_before_recheck(self):
+        for name, changed in (("source.csv", b'x,y,group\n100,200,A\n'),
+                              ("plot.py", b'# Replacement source must not enter the accepted snapshot.\n'),
+                              ("plot-spec.json", (json.dumps({**self.spec, "options": {"alpha": .5}}) + "\n").encode())):
+            with self.subTest(source=name):
+                attempt = self.root / ("transient-" + name.replace(".", "-"))
+                self.make_attempt(attempt, self.spec)
+                app = helper.FigureWorkbench(attempt)
+                app.change({"version": app.state()["version"], "instruction": "Keep this note pending if snapshot capture fails."})
+                queue = (attempt / "requests.json").read_bytes()
+                selected = attempt / name
+                original = selected.read_bytes()
+                read = helper.read_regular
+                reads = 0
+                fired = False
+                def capture_replacement(path):
+                    nonlocal reads, fired
+                    if Path(path) == selected:
+                        reads += 1
+                        # Spec is read once for eligibility and again for the copy.
+                        if reads == (2 if name == "plot-spec.json" else 1):
+                            fired = True
+                            selected.write_bytes(changed)
+                            try:
+                                return read(path)
+                            finally:
+                                selected.write_bytes(original)
+                    return read(path)
+                with patch.object(helper, "read_regular", side_effect=capture_replacement):
+                    with self.assertRaisesRegex(helper.WorkbenchError, "changed while capturing"):
+                        helper.accept_attempt(attempt, validation="A before/after current source check cannot prove the bytes copied in between.")
+                self.assertTrue(fired)
+                self.assertTrue(app.state()["source_current"])
+                self.assertEqual(selected.read_bytes(), original)
+                self.assertEqual((attempt / "requests.json").read_bytes(), queue)
+                self.assertFalse((attempt / "accepted-snapshot").exists())
+
+    def test_restore_binds_acceptance_qa_digest_before_creating_output(self):
+        accepted = helper.accept_attempt(self.attempt, validation="Actual preserved source and export bundle reviewed.")
+        receipt_path = self.attempt / "accepted-snapshot/acceptance.json"
+        original = receipt_path.read_bytes()
+        accepted["qa_sha256"] = "0" * 64
+        receipt_path.write_text(json.dumps(accepted))
+        output = self.root / "tampered-qa-identity"
+        with self.assertRaisesRegex(helper.WorkbenchError, "QA digest"):
+            helper.restore_attempt(self.attempt, output)
+        self.assertFalse(output.exists())
+        receipt_path.write_bytes(original)
+        helper.restore_attempt(self.attempt, output)
+        self.assertTrue(helper.FigureWorkbench(output).state()["source_current"])
+
     def test_snapshot_tampering_path_escape_and_symlink_restores_are_refused(self):
         helper.accept_attempt(self.attempt,validation="Visual review passed.")
         snapshot=self.attempt/"accepted-snapshot"

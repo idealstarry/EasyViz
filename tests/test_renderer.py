@@ -5,12 +5,21 @@ Run: .venv/bin/python -m unittest discover -s tests -p test_renderer.py -v
 from __future__ import annotations
 
 from copy import deepcopy
+import builtins
+from decimal import Decimal
 import importlib.util
+import hashlib
 import json
 import math
+import os
 from pathlib import Path
+import py_compile
+import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 SCRIPT = Path(__file__).resolve().parents[1] / "skills/easyviz/scripts/render.py"
@@ -89,6 +98,333 @@ class RendererTests(unittest.TestCase):
         no_normalization["options"] = {}
         with self.assertRaises(renderer.SpecError):
             renderer.prepare(self.csv("s,c,v,total\ns,A,2,10\n"), no_normalization)
+
+    def test_csv_structure_is_rejected_before_inferred_index_or_duplicate_mapping(self):
+        output = self.root / "strict-csv"
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        spec = {**deepcopy(self.base), "formats": ["png"]}
+        renderer.render(source, spec, output)
+        for body in ("x,y\n1,2,9\n2,4,8\n3,6,7\n", "x,y,y\n1,2,200\n2,3,300\n",
+                     "x,\n1,2\n", "x,y\n1,2\n\n2,3\n", "x,y\n,\n",
+                     'x,y\n1,"2\n'):
+            with self.subTest(body=body):
+                source.write_text(body)
+                with self.assertRaises(renderer.SpecError):
+                    renderer.render(source, spec, output)
+                qa = json.loads((output / "qa.json").read_text())
+                self.assertEqual(qa["status"], "failed")
+                self.assertFalse(qa["valid_outputs"])
+
+    def test_quoted_bom_csv_preserves_literal_ids_and_consumed_byte_snapshot(self):
+        source = self.root / "quoted.csv"
+        raw = '\ufeffid,x,y,note\n0001,1.00,2e0,"a,b"\n0002,2.0,3.00,"two\nlines"\n0003,3,4,"say ""yes"""\n'.encode("utf-8")
+        source.write_bytes(raw)
+        spec = {**deepcopy(self.base), "fields": {"x": "x", "y": "y", "unit": "id"}, "formats": ["png", "svg"]}
+        spec_path = self.root / "spec.json"
+        spec_path.write_text(json.dumps(spec))
+        prepared = renderer.prepare(source, spec)
+        self.assertEqual(prepared.id.tolist(), ["0001", "0002", "0003"])
+        self.assertEqual(prepared.note.tolist(), ["a,b", "two\nlines", 'say "yes"'])
+        output = self.root / "quoted-output"
+        qa = renderer.render(source, spec, output, spec_path=spec_path, track="create")
+        self.assertTrue(qa["valid_outputs"])
+        self.assertEqual((output / "source-data.csv").read_bytes(), raw)
+        self.assertEqual(source.read_bytes(), raw)
+        settings = json.loads((output / "settings.json").read_text())
+        elements = json.loads((output / "elements.json").read_text())
+        digest = hashlib.sha256(raw).hexdigest()
+        self.assertEqual(settings["input_sha256"], digest)
+        self.assertEqual(settings["source_snapshot"]["sha256"], digest)
+        self.assertEqual(elements["version"]["input_sha256"], digest)
+        self.assertEqual(qa["source_continuity"]["status"], "pass")
+        with Image.open(output / "panel.png") as image:
+            image.load()
+
+    def test_change_after_parse_is_rejected_before_export(self):
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        actual_reader = renderer.read_source_csv
+        def replacement(path):
+            data = actual_reader(path)
+            source.write_text("x,y\n1,200\n2,300\n3,400\n")
+            return data
+        output = self.root / "changed-after-parse"
+        with patch.object(renderer, "read_source_csv", side_effect=replacement):
+            with self.assertRaisesRegex(renderer.SpecError, "changed before rendering"):
+                renderer.render(source, deepcopy(self.base), output)
+        self.assertFalse((output / "panel.png").exists())
+        self.assertFalse(json.loads((output / "qa.json").read_text())["valid_outputs"])
+
+    def test_loaded_helper_and_renderer_replacements_keep_actual_executed_digests(self):
+        # Copy the real portable runtime and change its source immediately
+        # after a real helper execution; authoritative files stay untouched.
+        real_exec = builtins.exec
+        for changed_name in ("figure_elements.py", "render.py"):
+            with self.subTest(changed_name=changed_name):
+                runtime = self.root / changed_name.replace(".", "-")
+                shutil.copytree(SCRIPT.parent, runtime)
+                helper = runtime / "figure_elements.py"
+                helper.write_bytes(helper.read_bytes() + b'\ndef runtime_capture_probe():\n    return "executed-before-replacement"\n')
+                target = runtime / changed_name
+                consumed = target.read_bytes()
+                replacement = consumed + b'\n# Replacement source was never executed.\n'
+                replaced = []
+
+                def replace_after_helper_exec(code, globals=None, locals=None, **kwargs):
+                    real_exec(code, globals, locals, **kwargs)
+                    if isinstance(globals, dict) and globals.get("__file__") == str(helper):
+                        target.write_bytes(replacement)
+                        replaced.append(changed_name)
+
+                portable_loader = importlib.util.spec_from_file_location("portable_capture_render", runtime / "render.py")
+                portable = importlib.util.module_from_spec(portable_loader)
+                with patch("builtins.exec", side_effect=replace_after_helper_exec):
+                    portable_loader.loader.exec_module(portable)
+                self.assertEqual(replaced, [changed_name])
+                self.assertEqual(portable.figure_elements.runtime_capture_probe(), "executed-before-replacement")
+                expected = hashlib.sha256(consumed).hexdigest()
+                self.assertEqual(portable.RUNTIME_SOURCE_DIGESTS[changed_name], expected)
+                self.assertNotEqual(expected, hashlib.sha256(target.read_bytes()).hexdigest())
+                output = runtime / "output"
+                with self.assertRaisesRegex(portable.SpecError, "changed before rendering"):
+                    portable.render(self.csv("x,y\n1,2\n2,3\n3,4\n"), deepcopy(self.base), output)
+                self.assertFalse(json.loads((output / "qa.json").read_text())["valid_outputs"])
+                self.assertFalse((output / "panel.png").exists())
+
+    def test_stale_self_bytecode_cannot_bind_replacement_source_to_old_marker_geometry(self):
+        runtime = self.root / "stale-self-runtime"
+        shutil.copytree(SCRIPT.parent, runtime, ignore=shutil.ignore_patterns("__pycache__"))
+        script = runtime / "render.py"
+        original = script.read_bytes()
+        replaced = original.replace(b'options.get("point_area_pt2", 12)', b'options.get("point_area_pt2", 81)')
+        self.assertNotEqual(original, replaced)
+        self.assertEqual(len(original), len(replaced))
+        old_stat = script.stat()
+        py_compile.compile(str(script), doraise=True)
+        script.write_bytes(replaced)
+        os.utime(script, ns=(old_stat.st_atime_ns, old_stat.st_mtime_ns))
+        cached_loader = importlib.util.spec_from_file_location("portable_stale_render", script)
+        portable = importlib.util.module_from_spec(cached_loader)
+        with self.assertRaisesRegex(RuntimeError, "Executing renderer code differs"):
+            cached_loader.loader.exec_module(portable)
+        self.assertFalse(hasattr(portable, "render"), "Refuse the old module before its export API is loaded")
+        self.assertEqual(script.read_bytes(), replaced)
+        self.assertFalse(list(runtime.glob("panel.*")))
+
+    def test_portable_cli_runs_current_source_with_relative_or_absolute_loader_paths(self):
+        runtime = self.root / "portable-cli"
+        shutil.copytree(SCRIPT.parent, runtime, ignore=shutil.ignore_patterns("__pycache__"))
+        source = runtime / "data.csv"
+        source.write_bytes(b"x,y\n1,2\n2,3\n3,4\n")
+        spec = {**deepcopy(self.base), "formats": ["png", "svg"]}
+        spec_path = runtime / "spec.json"
+        spec_path.write_text(json.dumps(spec))
+        for relative in (True, False):
+            with self.subTest(relative=relative):
+                output = runtime / ("relative-output" if relative else "absolute-output")
+                command = [sys.executable, "render.py" if relative else str(runtime / "render.py"),
+                           "--data", str(source), "--spec", str(spec_path), "--out", str(output)]
+                ran = subprocess.run(command, cwd=runtime, capture_output=True, text=True, timeout=30)
+                self.assertEqual(ran.returncode, 0, ran.stderr)
+                qa = json.loads((output / "qa.json").read_text())
+                self.assertTrue(qa["valid_outputs"])
+                self.assertEqual(json.loads((output / "settings.json").read_text())["renderer"]["sha256"],
+                                 hashlib.sha256((runtime / "render.py").read_bytes()).hexdigest())
+                with Image.open(output / "panel.png") as image:
+                    image.load()
+
+    def test_source_change_during_export_fails_and_retains_consumed_bindings(self):
+        before = b"x,y\n1,2\n2,3\n3,5\n4,4\n"
+        source = self.csv(before.decode())
+        actual_export = renderer.export
+        def replacement(fig, out, spec, layout):
+            source.write_text("x,y\n1,200\n2,300\n3,500\n4,400\n")
+            return actual_export(fig, out, spec, layout)
+        output = self.root / "changed-during-export"
+        with patch.object(renderer, "export", side_effect=replacement):
+            with self.assertRaisesRegex(renderer.SpecError, "changed during export"):
+                renderer.render(source, deepcopy(self.base), output, track="create")
+        qa = json.loads((output / "qa.json").read_text())
+        self.assertFalse(qa["valid_outputs"])
+        self.assertEqual(qa["source_continuity"]["issues"][0]["role"], "data_file")
+        self.assertEqual(pd.read_csv(output / "plotting-data.csv").y.tolist(), [2, 3, 5, 4])
+        self.assertEqual((output / "source-data.csv").read_bytes(), before)
+        expected = hashlib.sha256(before).hexdigest()
+        self.assertEqual(json.loads((output / "settings.json").read_text())["input_sha256"], expected)
+        self.assertEqual(json.loads((output / "elements.json").read_text())["version"]["input_sha256"], expected)
+        self.assertNotEqual(expected, hashlib.sha256(source.read_bytes()).hexdigest())
+
+    def test_spec_and_profile_replacements_cannot_retain_passing_qa(self):
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        spec_path, profile_path = self.root / "spec.json", self.root / "profile.json"
+        profile = {"version": 1, "layout": {"font": "DejaVu Sans", "font_size_pt": 8, "line_width_pt": .6, "dpi": 120},
+                   "panels": {"A": {"width_mm": 88, "height_mm": 66}}}
+        spec = {**deepcopy(self.base), "profile": str(profile_path), "panel": "A"}
+        actual_export = renderer.export
+        for role, target in (("spec_file", spec_path), ("figure_profile", profile_path)):
+            with self.subTest(role=role):
+                spec_path.write_text(json.dumps(spec))
+                profile_path.write_text(json.dumps(profile))
+                original = target.read_bytes()
+                def replacement(fig, out, supplied, layout):
+                    target.write_bytes(original + b"\n")
+                    return actual_export(fig, out, supplied, layout)
+                output = self.root / role
+                with patch.object(renderer, "export", side_effect=replacement):
+                    with self.assertRaisesRegex(renderer.SpecError, "changed during export"):
+                        renderer.render(source, deepcopy(spec), output, spec_path=spec_path)
+                qa = json.loads((output / "qa.json").read_text())
+                self.assertFalse(qa["valid_outputs"])
+                self.assertEqual(qa["source_continuity"]["issues"][0]["role"], role)
+                if role == "spec_file":
+                    self.assertEqual(json.loads((output / "elements.json").read_text())["input"]["supplied_spec_sha256"], hashlib.sha256(original).hexdigest())
+
+    def test_virtual_spec_path_keeps_relative_profile_context_without_claiming_file_bytes(self):
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        profile = {"version": 1, "layout": {"font": "DejaVu Sans", "font_size_pt": 8, "line_width_pt": .6, "dpi": 120},
+                   "panels": {"A": {"width_mm": 88, "height_mm": 66}}}
+        (self.root / "profile.json").write_text(json.dumps(profile))
+        spec_path = self.root / "not-yet-saved.json"
+        spec = {**deepcopy(self.base), "profile": "profile.json", "panel": "A", "formats": ["png", "svg"]}
+        output = self.root / "virtual-context"
+        qa = renderer.render(source, spec, output, spec_path=spec_path)
+        self.assertTrue(qa["valid_outputs"])
+        self.assertIsNone(json.loads((output / "elements.json").read_text())["input"]["supplied_spec_sha256"])
+        actual_export = renderer.export
+        def create_file(fig, out, supplied, layout):
+            spec_path.write_text(json.dumps(spec))
+            return actual_export(fig, out, supplied, layout)
+        with patch.object(renderer, "export", side_effect=create_file):
+            with self.assertRaisesRegex(renderer.SpecError, "changed during export"):
+                renderer.render(source, spec, output, spec_path=spec_path)
+        self.assertFalse(json.loads((output / "qa.json").read_text())["valid_outputs"])
+        self.assertIsNone(json.loads((output / "elements.json").read_text())["input"]["supplied_spec_sha256"])
+
+    def test_composition_huge_finite_sources_normalize_without_overflow(self):
+        spec = {"chart": "composition", "fields": {"sample": "s", "category": "c", "value": "v"},
+                "options": {"normalization": "sample_sum"}, "layout": {**self.base["layout"], "auto_fit": True},
+                "formats": ["png", "svg", "pdf"]}
+        cases = (("1e308", "1e308", [.5, .5], "2E+308"),
+                 ("18000000000000000000", "1000000000000000000", [18 / 19, 1 / 19], "19000000000000000000"))
+        for ordinal, (first, second, expected, total) in enumerate(cases):
+            with self.subTest(first=first):
+                body = f"s,c,v\nA,c1,{first}\nA,c2,{second}\n"
+                source = self.csv(body)
+                prepared = renderer.prepare(source, spec)
+                self.assertEqual([Decimal(value) for value in prepared["_easyviz_denominator_text"]], [Decimal(total), Decimal(total)])
+                self.assertTrue(renderer.np.allclose(prepared["_easyviz_plotted_value"], expected, rtol=1e-14, atol=0))
+                self.assertAlmostEqual(math.fsum(prepared["_easyviz_plotted_value"]), 1)
+                layout, typography, rc = renderer.setup(spec)
+                with renderer.plt.rc_context(rc):
+                    fig, _ = renderer.draw(prepared, spec, layout, typography, renderer.statistics(prepared, spec))
+                    self.assertTrue(renderer.np.allclose([bar.get_height() for bar in fig.axes[0].patches], expected, rtol=1e-14, atol=0))
+                    renderer.plt.close(fig)
+                output = self.root / f"safe-composition-{ordinal}"
+                qa = renderer.render(source, spec, output)
+                self.assertTrue(qa["valid_outputs"])
+                self.assertEqual((output / "source-data.csv").read_text(), body)
+                plotted = pd.read_csv(output / "plotting-data.csv")
+                self.assertTrue(renderer.np.allclose(plotted["_easyviz_plotted_value"], expected, rtol=1e-14, atol=0))
+                with Image.open(output / "panel.png") as image:
+                    image.load()
+
+    def test_explicit_denominator_rejects_true_excess_despite_wrapped_integer_sum(self):
+        spec = {"chart": "composition", "fields": {"sample": "s", "category": "c", "value": "v", "denominator": "d"},
+                "options": {"normalization": "denominator"}}
+        for first, second, denominator in (("18000000000000000000", "1000000000000000000", "18000000000000000000"),
+                                            ("1e308", "1e308", "1e308")):
+            with self.subTest(first=first):
+                source = self.csv(f"s,c,v,d\nA,c1,{first},{denominator}\nA,c2,{second},{denominator}\n")
+                with self.assertRaisesRegex(renderer.SpecError, "sum exceeds"):
+                    renderer.prepare(source, spec)
+        exact = renderer.prepare(self.csv("s,c,v,d\nA,c1,.1,.3\nA,c2,.2,.3\n"), spec)
+        self.assertTrue(renderer.np.allclose(exact["_easyviz_plotted_value"], [1 / 3, 2 / 3]))
+
+    def test_nonzero_numeric_underflow_is_explicitly_rejected(self):
+        for value in ("1e-400", "-1e-400"):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(renderer.SpecError, "representability"):
+                    renderer.prepare(self.csv(f"x,y\n1,{value}\n2,3\n"), self.base)
+        prepared = renderer.prepare(self.csv("x,y\n1,0e-400\n2,3\n"), self.base)
+        self.assertEqual(prepared.y.tolist(), [0, 3])
+
+    def test_zero_with_extreme_exponent_does_not_allocate_a_giant_decimal_sum(self):
+        spec = {"chart": "composition", "fields": {"sample": "s", "category": "c", "value": "v"},
+                "options": {"normalization": "sample_sum"}}
+        actual_context = renderer.localcontext
+        class BoundedContext:
+            def __init__(self):
+                self.context = actual_context()
+            def __enter__(self):
+                self.value = self.context.__enter__()
+                return self
+            @property
+            def prec(self):
+                return self.value.prec
+            @prec.setter
+            def prec(self, value):
+                if value > 10000:
+                    raise AssertionError("A zero exponent must not demand huge context precision")
+                self.value.prec = value
+            def __exit__(self, *args):
+                return self.context.__exit__(*args)
+        for zero in ("0e-1000000000", "0e1000000000"):
+            with self.subTest(zero=zero), patch.object(renderer, "localcontext", side_effect=BoundedContext):
+                data = renderer.prepare(self.csv(f"s,c,v\nA,zero,{zero}\nA,one,1\n"), spec)
+                self.assertEqual(data["_easyviz_plotted_value"].tolist(), [0, 1])
+                self.assertEqual([Decimal(value) for value in data["_easyviz_denominator_text"]], [Decimal(1), Decimal(1)])
+
+    def test_cli_replacement_after_spec_parse_cannot_bind_old_dict_to_new_file(self):
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        spec_path = self.root / "spec.json"
+        spec_path.write_text(json.dumps(self.base))
+        original = spec_path.read_bytes()
+        output = self.root / "spec-load-race"
+        actual_render = renderer.render
+        def replacement(data_path, adopted, out, **kwargs):
+            changed = deepcopy(self.base)
+            changed["labels"]["y"] = "Changed file label"
+            spec_path.write_text(json.dumps(changed))
+            self.assertEqual(kwargs["captured_spec_bytes"], original)
+            return actual_render(data_path, adopted, out, **kwargs)
+        argv = ["render.py", "--data", str(source), "--spec", str(spec_path), "--out", str(output)]
+        with patch("sys.argv", argv), patch.object(renderer, "render", side_effect=replacement):
+            with self.assertRaises(SystemExit) as raised:
+                renderer.main()
+        self.assertEqual(raised.exception.code, 2)
+        qa = json.loads((output / "qa.json").read_text())
+        self.assertFalse(qa["valid_outputs"])
+        self.assertIn("changed before rendering", qa["error"])
+        self.assertFalse((output / "panel.png").exists())
+
+    def test_supplied_dictionary_must_match_an_existing_spec_file_claim(self):
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        spec_path = self.root / "spec.json"
+        spec_path.write_text(json.dumps(self.base))
+        adopted = deepcopy(self.base)
+        adopted["labels"]["y"] = "Adopted in memory"
+        output = self.root / "different-spec"
+        with self.assertRaisesRegex(renderer.SpecError, "differs from the captured spec file"):
+            renderer.render(source, adopted, output, spec_path=spec_path)
+        self.assertFalse(json.loads((output / "qa.json").read_text())["valid_outputs"])
+        # Omitting the unrelated file claim keeps an in-memory spec valid.
+        self.assertTrue(renderer.render(source, adopted, output)["valid_outputs"])
+
+    def test_spec_file_parse_failure_invalidates_old_export_qa(self):
+        source = self.csv("x,y\n1,2\n2,3\n3,4\n")
+        spec_path = self.root / "spec.json"
+        spec_path.write_text(json.dumps(self.base))
+        output = self.root / "invalid-spec-rerun"
+        renderer.render_spec_file(source, spec_path, output)
+        png = (output / "panel.png").read_bytes()
+        for raw in (b"{", b'{"chart":"scatter","chart":"heatmap"}', b'{"chart":"scatter","seed":NaN}'):
+            with self.subTest(raw=raw):
+                spec_path.write_bytes(raw)
+                with self.assertRaises(renderer.SpecError):
+                    renderer.render_spec_file(source, spec_path, output)
+                qa = json.loads((output / "qa.json").read_text())
+                self.assertEqual(qa["status"], "failed")
+                self.assertFalse(qa["valid_outputs"])
+                self.assertEqual((output / "panel.png").read_bytes(), png)
 
     def test_category_order_and_colors_never_drop_or_cycle(self):
         categories = [f"group {i}" for i in range(9)]

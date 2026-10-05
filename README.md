@@ -11,7 +11,7 @@
 EasyViz helps a local Agent turn data into editable scientific figures, with
 literature-informed design, actual image review and PDF, SVG and PNG exports.
 
-v0.4.4 is a development draft under review; the latest published stable version is v0.4.3.
+[Latest stable release](https://github.com/idealstarry/EasyViz/releases/latest).
 
 | Track | Start with | The Agent does |
 | --- | --- | --- |

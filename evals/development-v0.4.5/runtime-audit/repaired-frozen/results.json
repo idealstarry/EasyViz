@@ -1,0 +1,66 @@
+{
+  "scope": "Actual P1 repair evidence, not an aesthetic or generalization benchmark",
+  "runtime_hashes": {
+    "render.py": "28256c31b636210a58ec32c8e28672d5ce4c501d3e5623a172bf0efc1f5c20ef",
+    "figure_elements.py": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76",
+    "create_review.py": "f2db9f778830f164a8fd56dcdf7407cddb81e68ba1f6cc7343aca6c8d6cecc33"
+  },
+  "results": {
+    "source-race": {
+      "error": "Source/spec/profile changed during export; old consumed bytes are preserved in source-data.csv and this run is invalid",
+      "qa_status": "needs_revision",
+      "valid_outputs": false,
+      "captured_old_source_hash": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+      "saved_element_source_hash": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+      "review_source_provenance": "failed"
+    },
+    "ragged": {
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "qa_status": "failed",
+      "valid_outputs": false,
+      "panel_exported": false
+    },
+    "duplicate-header": {
+      "error": "CSV headers must be nonempty and unique before mapping fields",
+      "qa_status": "failed",
+      "valid_outputs": false,
+      "panel_exported": false
+    },
+    "float-sum": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "fractions": [
+        0.5,
+        0.5
+      ],
+      "expected_fractions": [
+        0.5,
+        0.5
+      ],
+      "fraction_sum": 1.0,
+      "exact_denominator_text": [
+        "2.000000000000000000000000000E+308",
+        "2.000000000000000000000000000E+308"
+      ],
+      "literal_source_snapshot_matches": true
+    },
+    "integer-sum": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "fractions": [
+        0.9473684210526316,
+        0.0526315789473684
+      ],
+      "expected_fractions": [
+        0.9473684210526315,
+        0.05263157894736842
+      ],
+      "fraction_sum": 1.0,
+      "exact_denominator_text": [
+        "19000000000000000000",
+        "19000000000000000000"
+      ],
+      "literal_source_snapshot_matches": true
+    }
+  }
+}

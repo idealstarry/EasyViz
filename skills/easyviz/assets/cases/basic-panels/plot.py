@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 from copy import deepcopy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -68,10 +69,24 @@ def main():
             runs.append(("transfer", folder / "transfer/source-data.csv", folder / "transfer/spec.json", destination / "transfer/output"))
         renderer = replicate if case["renderer"] == "replicate_plot.py" else core
         for role, data, spec_path, out in runs:
-            spec = deepcopy(json.loads(spec_path.read_text()))
+            original = spec_path.read_bytes()
+            spec = deepcopy(json.loads(original))
             if args.font:
                 spec["layout"]["font"] = args.font
-            kwargs = {"spec_path": spec_path}
+                # An explicitly overridden dictionary is a new adopted spec,
+                # not the bytes of the unchanged original case file.
+                out.mkdir(parents=True, exist_ok=True)
+                adopted_path = out / "adopted-spec.json"
+                adopted_path.write_text(json.dumps(spec, indent=2, allow_nan=False) + "\n")
+                (out / "spec-adoption.json").write_text(json.dumps({
+                    "base_spec_file": str(spec_path.resolve()),
+                    "base_spec_sha256": hashlib.sha256(original).hexdigest(),
+                    "explicit_override": {"layout.font": args.font},
+                    "adopted_spec_file": str(adopted_path.resolve()),
+                }, indent=2) + "\n")
+            else:
+                adopted_path = spec_path
+            kwargs = {"spec_path": adopted_path}
             if renderer is core:
                 kwargs["track"] = "create"
             qa = renderer.render(data, spec, out, **kwargs)

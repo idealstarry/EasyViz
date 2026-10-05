@@ -1,0 +1,286 @@
+core	Set up job	﻿2026-10-05T15:11:22.2930861Z Current runner version: '2.337.0'
+core	Set up job	2026-10-05T15:11:22.2956160Z ##[group]Runner Image Provisioner
+core	Set up job	2026-10-05T15:11:22.2957147Z Hosted Compute Agent
+core	Set up job	2026-10-05T15:11:22.2957831Z Version: 20260901.588
+core	Set up job	2026-10-05T15:11:22.2958507Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+core	Set up job	2026-10-05T15:11:22.2959265Z Build Date: 2026-09-01T19:56:44Z
+core	Set up job	2026-10-05T15:11:22.2960339Z Worker ID: {4eb73de0-21e5-4716-86ed-249838d7396f}
+core	Set up job	2026-10-05T15:11:22.2961171Z Azure Region: westus
+core	Set up job	2026-10-05T15:11:22.2961839Z ##[endgroup]
+core	Set up job	2026-10-05T15:11:22.2963516Z ##[group]Operating System
+core	Set up job	2026-10-05T15:11:22.2964187Z Ubuntu
+core	Set up job	2026-10-05T15:11:22.2964799Z 24.04.5
+core	Set up job	2026-10-05T15:11:22.2965355Z LTS
+core	Set up job	2026-10-05T15:11:22.2965859Z ##[endgroup]
+core	Set up job	2026-10-05T15:11:22.2966484Z ##[group]Runner Image
+core	Set up job	2026-10-05T15:11:22.2967124Z Image: ubuntu-24.04
+core	Set up job	2026-10-05T15:11:22.2967748Z Version: 20260927.320.1
+core	Set up job	2026-10-05T15:11:22.2968853Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+core	Set up job	2026-10-05T15:11:22.2971086Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+core	Set up job	2026-10-05T15:11:22.2972129Z ##[endgroup]
+core	Set up job	2026-10-05T15:11:22.2973309Z ##[group]GITHUB_TOKEN Permissions
+core	Set up job	2026-10-05T15:11:22.2975222Z Contents: read
+core	Set up job	2026-10-05T15:11:22.2976331Z Metadata: read
+core	Set up job	2026-10-05T15:11:22.2976915Z ##[endgroup]
+core	Set up job	2026-10-05T15:11:22.2979044Z Secret source: Actions
+core	Set up job	2026-10-05T15:11:22.2980404Z Cache mode: write
+core	Set up job	2026-10-05T15:11:22.2981426Z Prepare workflow directory
+core	Set up job	2026-10-05T15:11:22.3326986Z Prepare all required actions
+core	Set up job	2026-10-05T15:11:22.3376438Z Getting action download info
+core	Set up job	2026-10-05T15:11:22.7489728Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+core	Set up job	2026-10-05T15:11:22.8631689Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+core	Set up job	2026-10-05T15:11:23.0473708Z Complete job name: core
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-05T15:11:23.1266194Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1267287Z with:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1267751Z   repository: idealstarry/EasyViz
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1272057Z   token: ***
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1272584Z   ssh-strict: true
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1273094Z   ssh-user: git
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1273607Z   persist-credentials: true
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1274157Z   clean: true
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1274653Z   sparse-checkout-cone-mode: true
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1275179Z   fetch-depth: 1
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1275614Z   fetch-tags: false
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1276062Z   show-progress: true
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1276520Z   lfs: false
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1276934Z   submodules: false
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1277389Z   set-safe-directory: true
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1277909Z   allow-unsafe-pr-checkout: false
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.1278706Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2336061Z Syncing repository: idealstarry/EasyViz
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2338588Z ##[group]Getting Git version info
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2339812Z Working directory is '/home/runner/work/EasyViz/EasyViz'
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2341900Z [command]/usr/bin/git version
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2428887Z git version 2.55.0
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2455443Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2472147Z Temporarily overriding HOME='/home/runner/work/_temp/2d5e4053-9fa2-4ffb-ae8c-7ec458262c17' before making global git config changes
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2477717Z Adding repository directory to the temporary git global config as a safe directory
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2479695Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EasyViz/EasyViz
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2535192Z Deleting the contents of '/home/runner/work/EasyViz/EasyViz'
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2540400Z ##[group]Initializing the repository
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2544397Z [command]/usr/bin/git init /home/runner/work/EasyViz/EasyViz
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2696082Z hint: Using 'master' as the name for the initial branch. This default branch name
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2698243Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2718748Z hint: to use in all of your new repositories, which will suppress this warning,
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2726949Z hint: call:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2727937Z hint:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2729088Z hint: 	git config --global init.defaultBranch <name>
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2730408Z hint:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2731407Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2732990Z hint: 'development'. The just-created branch can be renamed via this command:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2734197Z hint:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2734845Z hint: 	git branch -m <name>
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2735603Z hint:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2736681Z hint: Disable this message with "git config set advice.defaultBranchName false"
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2738321Z Initialized empty Git repository in /home/runner/work/EasyViz/EasyViz/.git/
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2741204Z [command]/usr/bin/git remote add origin https://github.com/idealstarry/EasyViz
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2777666Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2778865Z ##[group]Disabling automatic garbage collection
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2782639Z [command]/usr/bin/git config --local gc.auto 0
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2815448Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2816638Z ##[group]Setting up auth
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2822744Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.2857624Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3275119Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3315443Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3542551Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3581118Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3831299Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3874571Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3876262Z ##[group]Fetching the repository
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:23.3886506Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6c3d833b2025613a28e2461b9c8384ca130612c2:refs/remotes/origin/main
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8679741Z From https://github.com/idealstarry/EasyViz
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8682065Z  * [new ref]         6c3d833b2025613a28e2461b9c8384ca130612c2 -> origin/main
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8686977Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8688563Z ##[group]Determining the checkout info
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8690545Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8695313Z [command]/usr/bin/git sparse-checkout disable
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8760623Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8796280Z ##[group]Checking out the ref
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:27.8801101Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:28.6034088Z Switched to a new branch 'main'
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:28.6038905Z branch 'main' set up to track 'origin/main'.
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:28.6062043Z ##[endgroup]
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:28.6109306Z [command]/usr/bin/git log -1 --format=%H
+core	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:11:28.6137201Z 6c3d833b2025613a28e2461b9c8384ca130612c2
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	﻿2026-10-05T15:11:28.6504699Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6506332Z with:
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6507174Z   python-version: 3.12
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6508110Z   cache: pip
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6508957Z   check-latest: false
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6518998Z   token: ***
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6519926Z   update-environment: true
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6521337Z   allow-prereleases: false
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6522346Z   freethreaded: false
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.6523253Z ##[endgroup]
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.7890222Z ##[group]Installed versions
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.7982025Z (node:2291) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.7985715Z (Use `node --trace-deprecation ...` to show where the warning was created)
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.7987812Z Successfully set up CPython (3.12.14)
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:28.7990195Z ##[endgroup]
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:29.5589461Z [command]/opt/hostedtoolcache/Python/3.12.14/x64/bin/pip cache dir
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:29.8913512Z /home/runner/.cache/pip
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:30.1783975Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.12.14-pip-43d8a86729b52016276b81bb5d14058c936e40ba6577ef55eedc4b734e0a7334
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:30.1899225Z (node:2291) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:31.4477986Z Received 4194304 of 122472829 (3.4%), 4.0 MBs/sec
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:32.4604991Z Received 122472829 of 122472829 (100.0%), 58.0 MBs/sec
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:32.4609693Z Cache Size: ~117 MB (122472829 B)
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:32.4676583Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f88a9e32-c972-4f21-8a69-d45c673ad35f/cache.tzst -P -C /home/runner/work/EasyViz/EasyViz --use-compress-program unzstd
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:32.6411349Z Cache restored successfully
+core	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:11:32.6473926Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.12.14-pip-43d8a86729b52016276b81bb5d14058c936e40ba6577ef55eedc4b734e0a7334
+core	Install declared development dependencies	﻿2026-10-05T15:11:32.6668130Z ##[group]Run python -m pip install -r requirements-dev.txt
+core	Install declared development dependencies	2026-10-05T15:11:32.6668694Z ^[[36;1mpython -m pip install -r requirements-dev.txt^[[0m
+core	Install declared development dependencies	2026-10-05T15:11:32.6988527Z shell: /usr/bin/bash -e {0}
+core	Install declared development dependencies	2026-10-05T15:11:32.6988939Z env:
+core	Install declared development dependencies	2026-10-05T15:11:32.6989363Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Install declared development dependencies	2026-10-05T15:11:32.6990260Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+core	Install declared development dependencies	2026-10-05T15:11:32.6990924Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Install declared development dependencies	2026-10-05T15:11:32.6991503Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Install declared development dependencies	2026-10-05T15:11:32.6992077Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Install declared development dependencies	2026-10-05T15:11:32.6992674Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+core	Install declared development dependencies	2026-10-05T15:11:32.6993167Z ##[endgroup]
+core	Install declared development dependencies	2026-10-05T15:11:33.3904012Z Collecting PyYAML==6.0.3 (from -r requirements-dev.txt (line 2))
+core	Install declared development dependencies	2026-10-05T15:11:33.3919457Z   Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+core	Install declared development dependencies	2026-10-05T15:11:33.5302763Z Collecting matplotlib==3.11.1 (from -r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:33.5317131Z   Using cached matplotlib-3.11.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+core	Install declared development dependencies	2026-10-05T15:11:33.7264916Z Collecting numpy==2.5.3 (from -r requirements-dev.txt (line 6))
+core	Install declared development dependencies	2026-10-05T15:11:33.7279528Z   Using cached numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+core	Install declared development dependencies	2026-10-05T15:11:33.8337381Z Collecting pandas==3.0.5 (from -r requirements-dev.txt (line 7))
+core	Install declared development dependencies	2026-10-05T15:11:33.8351204Z   Using cached pandas-3.0.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.0210545Z Collecting Pillow==12.3.0 (from -r requirements-dev.txt (line 8))
+core	Install declared development dependencies	2026-10-05T15:11:34.0225020Z   Using cached pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.0413149Z Collecting pypdf==6.18.0 (from -r requirements-dev.txt (line 9))
+core	Install declared development dependencies	2026-10-05T15:11:34.0425477Z   Using cached pypdf-6.18.0-py3-none-any.whl.metadata (7.5 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.1708310Z Collecting PyMuPDF==1.28.2 (from -r requirements-dev.txt (line 10))
+core	Install declared development dependencies	2026-10-05T15:11:34.1722603Z   Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.3005317Z Collecting scipy==1.18.1 (from -r requirements-dev.txt (line 11))
+core	Install declared development dependencies	2026-10-05T15:11:34.3020636Z   Using cached scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.3258019Z Collecting openpyxl==3.1.5 (from -r requirements-dev.txt (line 12))
+core	Install declared development dependencies	2026-10-05T15:11:34.3270435Z   Using cached openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.3839610Z Collecting contourpy>=1.0.1 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.3856360Z   Using cached contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.3948136Z Collecting cycler>=0.10 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.3963435Z   Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.5318859Z Collecting fonttools>=4.28.2 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.5333602Z   Using cached fonttools-4.66.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (130 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6018260Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.6032783Z   Using cached kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6167845Z Collecting packaging>=20.0 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.6179781Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6370394Z Collecting pyparsing>=3 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.6382534Z   Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6477625Z Collecting python-dateutil>=2.7 (from matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.6489641Z   Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6614150Z Collecting et-xmlfile (from openpyxl==3.1.5->-r requirements-dev.txt (line 12))
+core	Install declared development dependencies	2026-10-05T15:11:34.6625704Z   Using cached et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6740863Z Collecting six>=1.5 (from python-dateutil>=2.7->matplotlib==3.11.1->-r requirements-dev.txt (line 5))
+core	Install declared development dependencies	2026-10-05T15:11:34.6752965Z   Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6793120Z Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6807409Z Using cached matplotlib-3.11.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (10.0 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6856200Z Using cached numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6929376Z Using cached pandas-3.0.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.0 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.6981305Z Using cached pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7032583Z Using cached pypdf-6.18.0-py3-none-any.whl (393 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7054183Z Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7162956Z Using cached scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7307461Z Using cached openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7320821Z Using cached contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (383 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7333862Z Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7345840Z Using cached fonttools-4.66.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7378490Z Using cached kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7395675Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7407833Z Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7420893Z Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7434029Z Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+core	Install declared development dependencies	2026-10-05T15:11:34.7445841Z Using cached et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+core	Install declared development dependencies	2026-10-05T15:11:35.0683727Z Installing collected packages: six, PyYAML, pypdf, pyparsing, PyMuPDF, Pillow, packaging, numpy, kiwisolver, fonttools, et-xmlfile, cycler, scipy, python-dateutil, openpyxl, contourpy, pandas, matplotlib
+core	Install declared development dependencies	2026-10-05T15:11:51.1970667Z 
+core	Install declared development dependencies	2026-10-05T15:11:51.1994938Z Successfully installed Pillow-12.3.0 PyMuPDF-1.28.2 PyYAML-6.0.3 contourpy-1.4.0 cycler-0.12.1 et-xmlfile-2.0.0 fonttools-4.66.1 kiwisolver-1.5.1 matplotlib-3.11.1 numpy-2.5.3 openpyxl-3.1.5 packaging-26.3 pandas-3.0.5 pyparsing-3.3.3 pypdf-6.18.0 python-dateutil-2.9.0.post0 scipy-1.18.1 six-1.17.0
+core	Verify dependency compatibility	﻿2026-10-05T15:11:51.2985330Z ##[group]Run python -m pip check
+core	Verify dependency compatibility	2026-10-05T15:11:51.2985697Z ^[[36;1mpython -m pip check^[[0m
+core	Verify dependency compatibility	2026-10-05T15:11:51.3053233Z shell: /usr/bin/bash -e {0}
+core	Verify dependency compatibility	2026-10-05T15:11:51.3053548Z env:
+core	Verify dependency compatibility	2026-10-05T15:11:51.3053864Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify dependency compatibility	2026-10-05T15:11:51.3054396Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+core	Verify dependency compatibility	2026-10-05T15:11:51.3054923Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify dependency compatibility	2026-10-05T15:11:51.3055397Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify dependency compatibility	2026-10-05T15:11:51.3055867Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify dependency compatibility	2026-10-05T15:11:51.3056343Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+core	Verify dependency compatibility	2026-10-05T15:11:51.3056742Z ##[endgroup]
+core	Verify dependency compatibility	2026-10-05T15:11:51.5426202Z No broken requirements found.
+core	Test data, statistics, geometry and export contracts	﻿2026-10-05T15:11:51.5701827Z ##[group]Run python -m unittest discover -s tests -p 'test_*.py'
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5702390Z ^[[36;1mpython -m unittest discover -s tests -p 'test_*.py'^[[0m
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5768656Z shell: /usr/bin/bash -e {0}
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5768963Z env:
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5769302Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5769849Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5770522Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5771013Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5771488Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5771972Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:11:51.5772375Z ##[endgroup]
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:17:54.7506472Z .............................................................................................................................................................findfont: Font family ['Arial'] not found. Falling back to DejaVu Sans.
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:27:03.0044676Z .........................................................................................................................................................................................................................................................................................................................................................................................................
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:27:03.0046920Z ----------------------------------------------------------------------
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:27:03.0047436Z Ran 550 tests in 908.409s
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:27:03.0047641Z 
+core	Test data, statistics, geometry and export contracts	2026-10-05T15:27:03.0047743Z OK
+core	Build the portable plugin	﻿2026-10-05T15:27:03.3192479Z ##[group]Run python scripts/build_plugin.py
+core	Build the portable plugin	2026-10-05T15:27:03.3192887Z ^[[36;1mpython scripts/build_plugin.py^[[0m
+core	Build the portable plugin	2026-10-05T15:27:03.3256552Z shell: /usr/bin/bash -e {0}
+core	Build the portable plugin	2026-10-05T15:27:03.3256822Z env:
+core	Build the portable plugin	2026-10-05T15:27:03.3257104Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Build the portable plugin	2026-10-05T15:27:03.3257575Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+core	Build the portable plugin	2026-10-05T15:27:03.3258223Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Build the portable plugin	2026-10-05T15:27:03.3258632Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Build the portable plugin	2026-10-05T15:27:03.3259060Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Build the portable plugin	2026-10-05T15:27:03.3259476Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+core	Build the portable plugin	2026-10-05T15:27:03.3259827Z ##[endgroup]
+core	Build the portable plugin	2026-10-05T15:27:04.8237760Z Synced thirteen CC BY case collections, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).
+core	Build the portable plugin	2026-10-05T15:27:04.8238830Z {
+core	Build the portable plugin	2026-10-05T15:27:04.8239133Z   "version": "0.4.4",
+core	Build the portable plugin	2026-10-05T15:27:04.8239582Z   "archive": "easyviz-0.4.4.zip",
+core	Build the portable plugin	2026-10-05T15:27:04.8240447Z   "sha256": "fa007486f6ea6171c3785e455eb81a96883c4ebf7f416fe78eae0104c77ea42d",
+core	Build the portable plugin	2026-10-05T15:27:04.8241334Z   "content_sha256": "6a5520ce3b6f5df363ba69076548633e1fb30ce12a6db42ef2b1143fa058f94e",
+core	Build the portable plugin	2026-10-05T15:27:04.8242000Z   "files": 854,
+core	Build the portable plugin	2026-10-05T15:27:04.8242301Z   "bytes": 12244417
+core	Build the portable plugin	2026-10-05T15:27:04.8242611Z }
+core	Verify ZIP resources and extracted core runtime	﻿2026-10-05T15:27:04.8352389Z ##[group]Run python scripts/check_package.py
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8352769Z ^[[36;1mpython scripts/check_package.py^[[0m
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8415416Z shell: /usr/bin/bash -e {0}
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8415700Z env:
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8416000Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8416508Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8416998Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8417433Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8417872Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8418311Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:27:04.8418679Z ##[endgroup]
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8962711Z {
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8964592Z   "status": "pass",
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8965120Z   "version": "0.4.4",
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8965643Z   "archive": "easyviz-0.4.4.zip",
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8966435Z   "sha256": "fa007486f6ea6171c3785e455eb81a96883c4ebf7f416fe78eae0104c77ea42d",
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8967323Z   "files": 854,
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8969297Z   "checks": "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+"
+core	Verify ZIP resources and extracted core runtime	2026-10-05T15:29:01.8971819Z }
+core	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	﻿2026-10-05T15:29:01.9158599Z Post job cleanup.
+core	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:29:02.0464231Z Cache hit occurred on the primary key setup-python-Linux-x64-24.04-Ubuntu-python-3.12.14-pip-43d8a86729b52016276b81bb5d14058c936e40ba6577ef55eedc4b734e0a7334, not saving cache.
+core	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:29:02.0466629Z (node:3263) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+core	Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-10-05T15:29:02.0468169Z (Use `node --trace-deprecation ...` to show where the warning was created)
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-05T15:29:02.0630752Z Post job cleanup.
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1542855Z [command]/usr/bin/git version
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1601881Z git version 2.55.0
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1631317Z Temporarily overriding HOME='/home/runner/work/_temp/b25c3bf7-c0e8-4c2f-8bf5-c4f7c98fd075' before making global git config changes
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1632784Z Adding repository directory to the temporary git global config as a safe directory
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1639624Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EasyViz/EasyViz
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1678746Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.1716356Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.2014483Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.2050667Z http.https://github.com/.extraheader
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.2073110Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.2130503Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.2484344Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+core	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-05T15:29:02.2538939Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+core	Complete job	﻿2026-10-05T15:29:02.2999436Z Cleaning up orphan processes
+core	Complete job	2026-10-05T15:29:02.3255233Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

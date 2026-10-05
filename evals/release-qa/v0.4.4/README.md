@@ -1,12 +1,19 @@
-# EasyViz v0.4.4 draft QA
+# EasyViz v0.4.4 release QA
 
-The user paused publication after Linux Core checks failed. This is a development
-draft, not a published stable release. Current local checks use Python 3.12.2 on
-macOS. The original published v0.4.3 tag and package remain unchanged.
+The original publication hold after Linux Core checks failed was superseded by
+the user's authorization to finish and release 0.4.4, 0.4.5 and 0.4.6. Current
+local checks use Python 3.12.2 on macOS; publication also requires successful
+GitHub Core checks for the release commit. See the
+[release](https://github.com/idealstarry/EasyViz/releases/tag/v0.4.4) and its
+commit checks for the authoritative publication state. The original published
+v0.4.3 tag and package remain unchanged.
 
 | Current check | Evidence |
 | --- | --- |
-| Full runtime suite: **550 tests passed** in 260.900 s | [Unit log](unit-tests.log) |
+| Full runtime suite: **575 tests passed** in 269.866 s | [Unit log](unit-tests.log) |
+| Consumed-source/spec/helper/code checks, strict CSV and exact large-value normalization independently reviewed | [Runtime review](prepublication-integrity/independent-runtime-review.md) |
+| PNG scanlines: 150 independent real-decode probes; 28 regression tests; unchanged successful custom review retained | [PNG review](prepublication-integrity/independent-png-review.md), [forward check](prepublication-integrity/png-forward-check.json) |
+| Snapshot capture and restore QA guards: 24 application tests and actual unchanged PNG/PDF/SVG probes | [Actual after-repair evidence](../../development-v0.4.5/workbench-audit/reviewer-production-snapshot-after/evidence.json) |
 | Current code review: 47 intake tests and 7 critical layout/state tests independently passed | [Code review](../../create-purpose-overhaul-v0.4.4/code-review.md) |
 | Known font regression: 30 focused tests; actual PNG/SVG exports checked | [Diagnosis](../../create-purpose-overhaul-v0.4.4/font-layout/diagnosis.md) |
 | Actual new font images independently inspected; explicit locked failure retained | [Image review](../../create-purpose-overhaul-v0.4.4/font-layout/independent-image-review.md) |
@@ -15,7 +22,8 @@ macOS. The original published v0.4.3 tag and package remain unchanged.
 | New real Source Data first-finished exercise; both outputs independently inspected and numerically verified | [Exercise review](../../create-purpose-overhaul-v0.4.4/fresh-run/independent-review.md) |
 | Current source, README image and portable resource links pass | [Resource check](resource-links.json) |
 | Portable ZIP: 854 files; extracted runtime and cases passed | [Build metadata](build.json), [package check](package-check.log) |
-| Authorized local draft source/cache copies match all 854 package files and remain enabled | [Local installation](local-install.json), [content check](installed-content-check.json) |
+| Authorized local source/cache copies match all 854 package files and remain enabled | [Local installation](local-install.json), [content check](installed-content-check.json) |
+| Future unreviewed development revisions are omitted from the archive | [Curation check](prepublication-integrity/package-curation-check.json) |
 
 ## What failed and changed
 
@@ -31,8 +39,9 @@ the [original CI log](../../create-purpose-overhaul-v0.4.4/ci-failure.log).
 The first local full rerun produced 29 workbench setup errors because the
 restricted execution environment prohibited temporary loopback servers.
 [That log](unit-tests-restricted-sandbox.log) is environment evidence, not 29
-code regressions. The current full log above runs all 550 tests with loopback
-permission and passes, including the six added raster-review regressions.
+code regressions. The current full log above runs all 575 tests with loopback
+permission and passes. The 550-test prepublication state is retained separately;
+the current 575-test run also covers the source, PNG and snapshot repairs below.
 
 A normal Matplotlib PNG also exposed a nearest-integer-only dimension error.
 The repair accepts supported floor/nearest conversion, checks saved PNG fields
@@ -47,6 +56,33 @@ so the package does not require the development `evals` directory. The original
 [package-check failure](package-check-before-case-link-fix.log) is retained;
 this was a documentation resource error, not a plotting-runtime change.
 
+## Prepublication reliability repairs
+
+An independent forward audit reproduced source replacement, malformed CSV
+index inference, unsigned and floating-point composition-sum overflow, and a
+PNG with dimensions but no image data. The
+[original evidence and actual repaired exports](../../development-v0.4.5/runtime-audit/README.md)
+retain both outcomes. The core now parses/hashes the same captured source and
+spec bytes, compiles the same captured helper bytes, rejects stale self bytecode,
+checks continuity before and after export, and preserves literal source CSV
+separately from plotting data. Exact decimal totals produce correct proportions
+for the large valid inputs; unrepresentable positive fractions fail explicitly.
+
+The PNG helper checks bounded filtered scanlines and physical geometry, without
+claiming exhaustive PNG conformance or appearance inspection. Captured source
+snapshots are bound when declared; legacy custom review records retain their
+unchanged shape. Existing-source snapshot acceptance also verifies the bytes
+actually copied, and restoration verifies the accepted QA digest and declared
+exports before creating output. Custom no-map handoff and full auxiliary-input
+support remain separately developed 0.4.5 work; they are not claimed here.
+
+The extracted-package check caught a legitimate explicit font override being
+bound to the unchanged case specification. The wrapper now saves the adopted
+specification and original-font override provenance. A concurrent new 0.4.6
+development revision also exposed an overbroad recursive case copy; named
+development revisions are omitted until separately reviewed and curated.
+The final 854-file archive is checked directly, with no such entries.
+
 ## Evidence boundaries
 
 The [original first-delivery evaluation](../../create-first-delivery-v0.4.4/README.md)
@@ -58,6 +94,10 @@ its package and installed copy; they do not describe the current draft.
 `unit-tests-before-raster-review.log` preserves the 544-test run before the
 six final raster regressions. The current build and extracted-package evidence
 are [build metadata](build.json) and [package check](package-check.log).
+Files named `*-before-prepublication-integrity` preserve the 550-test state and
+its installed archive. The [prepublication folder](prepublication-integrity/)
+also retains intermediate successful checks and actual failed package evidence;
+they describe their own frozen source scope, not the final release.
 
 Actual image review, source/artist checks and export checks establish different
 properties. Technical success and current-file identity cannot establish
@@ -79,11 +119,7 @@ python scripts/check_package.py
 ```
 
 Workbench and extracted-package tests require local loopback-server permission.
-The public release, when approved, will contain only the plugin ZIP; there is
+The authorized public release contains only the plugin ZIP; there is
 no separate checksum download. Starting a new chat is needed to load a newly
-installed Skill version. Successful CI is a technical check and does not
-remove the user's publication hold.
-
-The local installation above is the reviewed development draft. It does not
-change the latest published stable release, v0.4.3. The current chat may retain
-its previously loaded Skill; a new chat loads the updated installed files.
+installed Skill version. Successful CI is a technical check; it does not prove
+aesthetic superiority or statistical validity on an unknown study.

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EasyViz · Figure review</title>
+  <link rel="icon" href="/logo.svg?v=__LOGO_VERSION__" type="image/svg+xml" sizes="any">
+  <link rel="stylesheet" href="/workbench.css">
+  <script src="/workbench.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><img class="brand-mark" src="/logo.svg?v=__LOGO_VERSION__" alt="" width="36" height="36"><div><strong>EasyViz</strong><span class="subtle">Figure review</span></div></div>
+    <div class="top-actions"><span id="track" class="pill" hidden></span><button id="reload" type="button">Reload figure</button></div>
+  </header>
+  <main>
+    <div class="heading"><div><h1 id="figure-name">Loading figure…</h1><p id="selection-message" class="subtle">Open a figure, select an element and describe what you want to change.</p></div><div id="dimensions" class="dimensions"></div></div>
+    <div class="layout">
+      <section class="preview-card" aria-label="Figure preview">
+        <div class="preview-toolbar"><div class="mode-group" aria-label="Selection mode"><button id="element-mode" type="button" class="active" aria-pressed="true">Select element</button><button id="region-mode" type="button" aria-pressed="false">Select region</button><button id="clear" type="button">Clear drafts</button></div><span class="subtle" id="preview-size">Full canvas</span></div>
+        <div id="comparison" class="comparison" hidden><p id="comparison-label" class="comparison-label"></p><div id="comparison-host" aria-label="Read-only previous attempt preview"></div></div>
+        <p id="current-label" class="comparison-label" hidden></p>
+        <div id="figure-host" tabindex="0" aria-label="Interactive SVG figure; use the element list to select with a keyboard"></div>
+        <div class="preview-footer"><span>Original exports stay intact. Your requests are saved separately.</span><div id="downloads"></div></div>
+      </section>
+      <aside class="review-card" aria-label="Edit requests">
+        <nav class="inspector-tabs" role="tablist" aria-label="Review panels">
+          <button id="edit-tab" type="button" role="tab" aria-selected="true" aria-controls="edit-panel" tabindex="0">Edit</button>
+          <button id="requests-tab" type="button" role="tab" aria-selected="false" aria-controls="requests-panel" tabindex="-1">Requests <span id="request-count" class="tab-count" hidden></span></button>
+          <button id="history-tab" type="button" role="tab" aria-selected="false" aria-controls="history-panel" tabindex="-1">History</button>
+        </nav>
+        <div id="edit-panel" class="inspector-panel" role="tabpanel" aria-labelledby="edit-tab" tabindex="0">
+        <form id="request-form" novalidate>
+          <div class="section-title"><h2>Describe a change</h2></div>
+          <p id="source-status" class="source-status"></p>
+          <div class="annotation-heading"><span>Annotations</span><button id="add-general" type="button" class="text-button">General note</button></div>
+          <div id="annotation-list" class="annotation-list" role="group" aria-label="Numbered annotations"></div>
+          <div class="annotation-heading" id="active-annotation" hidden><strong id="annotation-title"></strong><button id="remove-annotation" type="button" class="text-button">Remove</button></div>
+          <p id="annotation-state" class="help" hidden></p>
+          <button id="new-instruction" type="button" class="text-button" hidden>Add another instruction here</button>
+          <p id="selection-details" class="selection-details">Leave a general note, choose an element or mark a region.</p>
+          <details class="selection-options"><summary>Choose from mapped elements</summary>
+          <label for="semantic-list">Select a mapped group</label><select id="semantic-list"><option value="">Choose a category, role or source/spec path…</option></select>
+          <label for="element-list">Select an element</label><select id="element-list" size="5" aria-describedby="selection-help"><option value="">Whole figure / general note</option></select>
+          <p id="selection-help" class="help selection-help">Each click or drawn region adds a numbered annotation. Choose its number to edit the instruction. Scatter collections select a whole point group; use a region for a specific point.</p>
+          </details>
+          <div class="property-fields"><div>
+          <label for="property">What to change</label><select id="property"><option value="">Free-form instruction</option></select>
+          </div>
+          <div id="value-field" hidden><label for="property-value">New value</label><input id="property-value" type="text" placeholder="For example: #2581B9 or 0.8" maxlength="4000"></div>
+          </div>
+          <label for="instruction">Your instruction</label><textarea id="instruction" rows="3" maxlength="8000" placeholder="Move this legend 2 mm to the right. Keep the font size and panel dimensions."></textarea>
+          <details class="workflow-help"><summary>How changes work</summary>
+          <p class="help">Your Agent reads <code>requests.json</code>, updates the plotting code and renders a new attempt. This page records changes; it does not run code.</p>
+          </details>
+        </form>
+        </div>
+        <div id="edit-footer" class="inspector-footer"><button class="primary" id="save" type="submit" form="request-form">Save requests</button></div>
+        <div id="requests-panel" class="inspector-panel" role="tabpanel" aria-labelledby="requests-tab" tabindex="0" hidden>
+        <section class="queue-section" aria-label="Saved requests"><div class="section-title"><h2>Saved requests</h2><button id="undo" type="button" class="text-button" disabled>Undo pending</button></div><div id="request-list"><p class="empty">No changes requested yet.</p></div><a id="download-requests" class="small-link" href="/files/requests.json" download>Download requests</a><details class="workflow-help"><summary>Undo and restore</summary><p class="help">Undo cancels a pending instruction. To restore an applied change, ask your Agent to restore a verified accepted attempt with its source and specification.</p></details></section>
+        </div>
+        <div id="history-panel" class="inspector-panel" role="tabpanel" aria-labelledby="history-tab" tabindex="0" hidden>
+        <p id="history-empty" class="empty">No attempt history yet.</p>
+        <section id="history-section" class="queue-section" aria-label="Attempt history" hidden><div class="section-title"><h2>Attempt history</h2></div><div id="history-list"></div></section>
+        </div>
+      </aside>
+    </div>
+    <p id="message" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

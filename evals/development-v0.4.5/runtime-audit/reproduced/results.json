@@ -1,0 +1,145 @@
+{
+  "scope": "Actual minimal current-main runtime reproductions; no aesthetic efficacy claims.",
+  "runtime_hashes": {
+    "render.py": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+    "create_review.py": "f487a2b14a7a41c90c0c8cae64f3590a402d5dc47696629089da8a825f1bd314",
+    "replicate_plot.py": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74"
+  },
+  "findings": {
+    "source_race": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "plotted_y": [
+        2,
+        3,
+        5,
+        4
+      ],
+      "current_source_y": [
+        200,
+        300,
+        500,
+        400
+      ],
+      "settings_source_hash": "de6fa87f70f5877b9210e86ac4f8ab5f8b04521b12a5875fa114398d57c42621",
+      "before_hash": "d898277d8c757be2be4bce3569f2622ed057ce0a744c135fe80f1d7a3f650cee",
+      "after_hash": "de6fa87f70f5877b9210e86ac4f8ab5f8b04521b12a5875fa114398d57c42621",
+      "review_source_provenance_status": "passed"
+    },
+    "ragged_csv": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "input_rows_claim": 3,
+      "inferred_index": [
+        "1",
+        "2",
+        "3"
+      ],
+      "mapped_x": [
+        2,
+        4,
+        6
+      ],
+      "mapped_y": [
+        9,
+        8,
+        7
+      ],
+      "raw_csv": "x,y\n1,2,9\n2,4,8\n3,6,7\n"
+    },
+    "duplicate_header": {
+      "focused_qa_status": "needs_revision",
+      "focused_valid_outputs": false,
+      "focused_exception": "Source or fixed-canvas QA needs revision; inspect qa.json and actual panel at the requested dimensions and font.",
+      "core_qa_status": "pass",
+      "core_valid_outputs": true,
+      "parsed_columns": [
+        "arm",
+        "id",
+        "value",
+        "value.1",
+        "_easyviz_source_value_text",
+        "_easyviz_source_row"
+      ],
+      "mapped_values": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "second_literal_value_column": [
+        "200",
+        "300",
+        "400",
+        "500"
+      ]
+    },
+    "04-float-composition-overflow": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "value_dtype": "float64",
+      "denominator": [
+        "inf",
+        "inf"
+      ],
+      "plotted_fractions": [
+        0.0,
+        0.0
+      ],
+      "fraction_sum": 0.0,
+      "warnings": []
+    },
+    "05-integer-composition-overflow": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "value_dtype": "uint64",
+      "denominator": [
+        "553255926290448384",
+        "553255926290448384"
+      ],
+      "plotted_fractions": [
+        32.5346718302487,
+        1.8074817683471498
+      ],
+      "fraction_sum": 34.34215359859585,
+      "warnings": []
+    },
+    "numeric_marker_clipping": {
+      "qa_status": "pass",
+      "valid_outputs": true,
+      "clipped_marker_rows": [
+        {
+          "row": 1,
+          "clipped_outer_footprint_mm": {
+            "left": 1.7638888888888893,
+            "bottom": 1.7638888888888893
+          }
+        },
+        {
+          "row": 3,
+          "clipped_outer_footprint_mm": {
+            "right": 1.7638888888888846,
+            "top": 1.7638888888888846
+          }
+        }
+      ],
+      "qa_clipped_text": []
+    },
+    "nondecodable_png": {
+      "actual_png_decode": "OSError: cannot load this image",
+      "review_export_dimensions_status": "passed",
+      "review_technical_qa_status": "passed",
+      "actual_bytes": 66,
+      "actual_png_header_measurement": {
+        "pixels": [
+          554,
+          416
+        ],
+        "dpi": [
+          159.9946,
+          159.9946
+        ]
+      }
+    }
+  }
+}

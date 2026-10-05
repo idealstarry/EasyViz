@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.4 — Unreleased draft
+## 0.4.4 — 2026-10-06
 
 - First finished Create delivery now includes actual image inspection, concrete internal corrections within three visual passes, and a current-file review record. Routine edits retain their adopted workflow.
 - Create chooses a reading task, organization and visual roles before using a card or recipe. Conditional design paths explain when to emphasize summaries, observations, direct category labels or matrix patterns; examples are starting materials rather than the only allowed solution.
@@ -12,6 +12,11 @@
 - Five original synthetic design cards pair actual exports with specific failure examples, applicability limits, source anchors, editable specs and separate captions. Their comparisons teach design mechanisms rather than measure Skill effectiveness.
 - A review companion binds image attestations to source/specification/caption/export hashes, checks available physical and technical evidence, and rejects stale or incomplete records. It does not perform vision or certify aesthetic superiority.
 - Raster review accepts supported floor/nearest pixel conversion of an exact vector canvas, verifies current PNG metadata and retains TIFF identity checks. A valid Matplotlib export no longer fails solely on normal one-pixel raster quantization.
+- Core CSV input is parsed from one captured byte buffer with unique headers and exact record widths; malformed tables cannot silently acquire an inferred index. Literal source bytes are preserved separately from derived plotting data.
+- Data, specification and profile continuity is checked before rendering, before export and after export. Saved source and element bindings refer to the bytes actually consumed; changed inputs invalidate the attempted output. CLI specification parsing also shares its exact byte snapshot with rendering.
+- Composition normalization uses exact decimal source totals, avoiding floating-point overflow and fixed-width integer wrapping. Valid large sums retain correct fractions; unrepresentable nonzero values and inconsistent denominators fail explicitly.
+- PNG review validates bounded filtered scanline payloads, including Adam7 and compressed-stream completeness, rather than accepting a dimensions-only file with no image data. It retains legitimate legacy review records and does not claim exhaustive PNG conformance or aesthetic inspection.
+- Snapshot acceptance verifies the input bytes actually copied; restoration verifies accepted QA and exports before creating output. Portable case synchronization excludes unreviewed development revisions.
 - Workbench writers share a bounded process lock; late versions are rejected, ordinary request/history failures roll back, and restored settings bind their actual frozen inputs. Current QA is checked again before request/accept publication.
 - Installation and build checks reject unsafe source/output links and archive path aliases, preserve the previous same-version cache on failure, and protect cooperating catalog updates. ZIP extraction has explicit resource budgets.
 - New-data first-delivery checks and extracted-package runs are recorded in [0.4.4 validation](evals/create-first-delivery-v0.4.4/README.md) and [release QA](evals/release-qa/v0.4.4/README.md).
