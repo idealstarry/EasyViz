@@ -41,6 +41,7 @@ Copy bundled case folders into your writable project before running or adapting 
 
 - [Chart inputs and settings](skills/easyviz/references/chart-library.md)
 - [Five basic Create panels with runnable Source Data](skills/easyviz/assets/cases/basic-panels/README.md)
+- [Narrow repair-outcome bar panels and a grouped alternative](skills/easyviz/assets/cases/repair-outcomes/README.md)
 - [Create mark colors and line roles](skills/easyviz/references/create-style.md)
 - [Directory exploration](skills/easyviz/references/data-exploration.md)
 - [Planned analysis](skills/easyviz/references/statistical-analysis.md)

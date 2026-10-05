@@ -1,0 +1,1024 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 15,
+  "input_sha256": "53b04b47c15148c641b8ad413afc79ed2f69288db3cbb5ef4fe502bb9b653c61",
+  "width_mm": 60.0,
+  "height_mm": 62.0,
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "source_to_artist_audit": {
+    "status": "pass",
+    "source_rows": 15,
+    "raw_points": 15,
+    "component_values_normalized": false,
+    "ratios_derived": false,
+    "sample_size_independence_inferred": false,
+    "issues": []
+  },
+  "mark_geometry": {
+    "status": "pass",
+    "issues": [],
+    "intentional_baseline_contacts": [
+      {
+        "condition": "DMSO",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      },
+      {
+        "condition": "NU",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      },
+      {
+        "condition": "KU",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      },
+      {
+        "condition": "L755",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      },
+      {
+        "condition": "SCR7",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      }
+    ],
+    "grouped_separation": {
+      "status": "unchecked",
+      "note": "No positive component_gap adopted; legacy bar placement is retained."
+    }
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "exports": {
+    "pdf": {
+      "width_mm": 60.00000000000694,
+      "height_mm": 62.00000000001305
+    },
+    "svg": {
+      "width_mm": 59.99999994444444,
+      "height_mm": 61.999999824999996,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system."
+    },
+    "png": {
+      "pixels": [
+        709,
+        732
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    }
+  },
+  "auto_layout": null,
+  "visual_review_required": true,
+  "readability": {
+    "schema_version": 1,
+    "status": "no_advisory_flags",
+    "advisory_only": true,
+    "thresholds": {
+      "small_point_span_mm": 0.35,
+      "low_contrast_ratio": 2.0,
+      "thin_stroke_pt": 0.25,
+      "large_legend_canvas_fraction": 0.25
+    },
+    "totals": {
+      "point_artists": 15,
+      "stroke_artists": 21,
+      "legend_artists": 0,
+      "finite_marks": 15,
+      "zero_size_parameters": 0,
+      "small_visible_marks": 0,
+      "low_contrast_small_marks": 0,
+      "thin_data_stroke_artists": 0
+    },
+    "stroke_roles": {
+      "summary-box": {
+        "artist_count": 5,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "summary-line": {
+        "artist_count": 5,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "axis-line": {
+        "artist_count": 2,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "axis-tick": {
+        "artist_count": 9,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      }
+    },
+    "artists": [
+      {
+        "id": "easyviz-bar-1",
+        "role": "summary-box",
+        "label": "DMSO",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-1",
+        "role": "summary-line",
+        "label": "DMSO · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-bar-2",
+        "role": "summary-box",
+        "label": "NU",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-2",
+        "role": "summary-line",
+        "label": "NU · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-bar-3",
+        "role": "summary-box",
+        "label": "KU",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-3",
+        "role": "summary-line",
+        "label": "KU · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-bar-4",
+        "role": "summary-box",
+        "label": "L755",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-4",
+        "role": "summary-line",
+        "label": "L755 · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-bar-5",
+        "role": "summary-box",
+        "label": "SCR7",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-5",
+        "role": "summary-line",
+        "label": "SCR7 · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-observation-1",
+        "role": "point-group",
+        "label": "DMSO · condition_3_replicate_1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-2",
+        "role": "point-group",
+        "label": "DMSO · condition_3_replicate_2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-3",
+        "role": "point-group",
+        "label": "DMSO · condition_3_replicate_3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-4",
+        "role": "point-group",
+        "label": "NU · condition_4_replicate_1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-5",
+        "role": "point-group",
+        "label": "NU · condition_4_replicate_2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-6",
+        "role": "point-group",
+        "label": "NU · condition_4_replicate_3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-7",
+        "role": "point-group",
+        "label": "KU · condition_5_replicate_1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-8",
+        "role": "point-group",
+        "label": "KU · condition_5_replicate_2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-9",
+        "role": "point-group",
+        "label": "KU · condition_5_replicate_3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-10",
+        "role": "point-group",
+        "label": "L755 · condition_6_replicate_1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-11",
+        "role": "point-group",
+        "label": "L755 · condition_6_replicate_2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-12",
+        "role": "point-group",
+        "label": "L755 · condition_6_replicate_3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-13",
+        "role": "point-group",
+        "label": "SCR7 · condition_7_replicate_1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-14",
+        "role": "point-group",
+        "label": "SCR7 · condition_7_replicate_2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-15",
+        "role": "point-group",
+        "label": "SCR7 · condition_7_replicate_3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            4.45633840657307,
+            4.45633840657307
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "positive_outer_span_mm_range": [
+            0.7447153433290048,
+            0.7447153433290048
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-axis-line-a25b05ec84419760",
+        "role": "axis-line",
+        "label": "Y axis line · left",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-583586e852f58ad3",
+        "role": "axis-line",
+        "label": "X axis line · bottom",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+        "role": "axis-tick",
+        "label": "X major tick · 0 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-d2f9de54ec255438",
+        "role": "axis-tick",
+        "label": "X major tick · 1 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-a369cdb522813c9c",
+        "role": "axis-tick",
+        "label": "X major tick · 2 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e9950117fc321fa",
+        "role": "axis-tick",
+        "label": "X major tick · 3 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-5a1f6e5dc2b9c6dd",
+        "role": "axis-tick",
+        "label": "X major tick · 4 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e1c294e3379762a",
+        "role": "axis-tick",
+        "label": "Y major tick · 0 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-23f8ddcc854605f8",
+        "role": "axis-tick",
+        "label": "Y major tick · 5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-63bf692f9cee0146",
+        "role": "axis-tick",
+        "label": "Y major tick · 10 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-5422336878fea5a9",
+        "role": "axis-tick",
+        "label": "Y major tick · 15 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      }
+    ],
+    "artist_count": 36,
+    "artists_omitted_from_detail": 0,
+    "warnings": [],
+    "warning_count": 0,
+    "warnings_omitted_from_detail": 0,
+    "layout_evidence": {},
+    "scope": "Actual visible artist settings after draw; finite unmasked locations are counted without clipping/occlusion inference. PathCollection sizes are Matplotlib size parameters, not universal fill areas; marker path geometry supplies physical bounding spans. Zero size parameters are preserved separately. Contrast is actual face/edge RGBA composited once over a uniform axes/figure background.",
+    "not_checked": [
+      "Scientific or statistical validity",
+      "Reference fidelity and missing layers",
+      "Color-vision accessibility or between-category color distinction",
+      "Nonuniform backgrounds, image contrast, mark occlusion or point/label overlap",
+      "Heatmap value normalization, bar fill design, text readability and arbitrary patches",
+      "Line2D markevery marker selection"
+    ],
+    "policy": "Thresholds are configurable review cues. They do not change artist properties, data, quantitative marker areas, exports, or core QA pass/fail."
+  }
+}

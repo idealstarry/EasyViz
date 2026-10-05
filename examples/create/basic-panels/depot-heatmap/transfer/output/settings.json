@@ -6,12 +6,12 @@
     "font_size_pt": 8.0,
     "line_width_pt": 0.6,
     "dpi": 300,
-    "auto_fit": true,
+    "auto_fit": false,
     "margins": {
-      "left": 0.35693768150252525,
-      "right": 0.8468673690025252,
-      "bottom": 0.1270197088068182,
-      "top": 0.965598551432292
+      "left": 0.43636363636363634,
+      "right": 0.6963636363636363,
+      "bottom": 0.15,
+      "top": 0.96
     },
     "actual_font": "Arial",
     "font_substituted": false
@@ -55,7 +55,7 @@
   },
   "labels": {
     "x": "Adipose depot",
-    "y": "Myeloid subtype",
+    "y": "",
     "color": "Source objects"
   },
   "options": {
@@ -65,20 +65,29 @@
     ],
     "cell_aspect": "auto",
     "x_rotation": 0,
-    "annotate_values": false
+    "annotate_values": true,
+    "value_format": ".0f",
+    "column_labels": {
+      "Subcutaneous": "SC",
+      "Omental": "OM",
+      "Perivascular": "PV"
+    },
+    "cell_border_color": "#B7CAD7",
+    "cell_border_width_pt": 0.35
   },
   "legends": {
     "colorbar": {
       "position": "right",
       "orientation": "vertical",
-      "length_mm": 30,
-      "thickness_mm": 2,
+      "length_mm": 32,
+      "thickness_mm": 2.2,
       "ticks": [
         0,
         900,
         1800,
         2700
-      ]
+      ],
+      "gap_mm": 3
     }
   },
   "line_roles": {
@@ -104,9 +113,9 @@
     }
   },
   "colormap": [
-    "#EDF8FE",
-    "#55B7F3",
-    "#218EDD"
+    "#F6FBFE",
+    "#8CD5F6",
+    "#29ACF3"
   ],
   "typography": {
     "axis": 8.0,
@@ -121,7 +130,7 @@
   "input_sha256": "304791df8745197804e64c67260fb5fa63ba9f65afb888f43adf0a7c6de16e0b",
   "renderer": {
     "version": "0.4.3",
-    "sha256": "c6ff4aefdf0d16ce4226b6f7ed34c0d93830a10272ec7ba7c749c15a6e4e2ead",
+    "sha256": "64db2976b99bcbb7341a74620e03de68b971f41652bf97134eff89300b546976",
     "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
     "profile_helper_sha256": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
     "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
@@ -129,37 +138,6 @@
     "readability_helper_sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
   },
   "track": "create",
-  "auto_layout": {
-    "status": "pass",
-    "issues": [],
-    "margins": {
-      "left": 0.35693768150252525,
-      "right": 0.8468673690025252,
-      "bottom": 0.1270197088068182,
-      "top": 0.965598551432292
-    },
-    "data_region_mm": [
-      39.26314496527778,
-      11.177734375,
-      53.892265625000014,
-      73.79493815104169
-    ],
-    "data_area_fraction": 0.4108446703116101,
-    "attempts": [
-      {
-        "automatic_guide_side": null,
-        "reserved_mm": {
-          "right": 14.844589409722207,
-          "bottom": 0.0,
-          "top": 1.0273274739583238
-        },
-        "issues": [],
-        "data_area_fraction": 0.4108446703116101
-      }
-    ],
-    "padding_mm": 2.0,
-    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
-  },
   "legend_layout": {
     "status": "pass",
     "legends": [
@@ -172,12 +150,12 @@
           "row_gap_mm": 0.6,
           "column_gap_mm": 2.0,
           "borderpad_mm": 0.2,
-          "gap_mm": 2.0,
+          "gap_mm": 3.0,
           "canvas_padding_mm": 1.0,
           "position": "right",
           "orientation": "vertical",
-          "length_mm": 30.000000000000004,
-          "thickness_mm": 2.000000000000007,
+          "length_mm": 32.0,
+          "thickness_mm": 2.2,
           "ticks": [
             0.0,
             900.0,
@@ -185,45 +163,47 @@
             2700.0
           ],
           "rect_mm": [
-            95.1554105902778,
-            54.97267252604169,
-            2.000000000000007,
-            30.000000000000004
+            79.60000000000001,
+            52.48,
+            2.2,
+            32.0
           ],
           "font_size_pt": 8.0
         },
         "bbox_mm": [
-          95.1554105902778,
-          53.351410590277794,
-          12.844589409722207,
-          32.64858940972223
+          79.60000000000001,
+          50.8587380642361,
+          13.04458940972221,
+          34.64858940972223
         ],
         "plot_bbox_mm": [
-          39.26314496527778,
-          11.177734375,
-          53.892265625000014,
-          73.79493815104169
+          48.0,
+          13.200000000000003,
+          28.600000000000005,
+          71.27999999999999
         ],
         "canvas_mm": [
           110.0,
           88.0
         ],
-        "area_fraction_of_plot": 0.10544636997743309,
-        "width_fraction_of_plot": 0.23833827100718036,
-        "height_fraction_of_plot": 0.4424231556763133,
-        "area_fraction_of_canvas": 0.043322079108934576,
+        "area_fraction_of_plot": 0.22170845129415542,
+        "width_fraction_of_plot": 0.4561045248154618,
+        "height_fraction_of_plot": 0.48609132168521646,
+        "area_fraction_of_canvas": 0.046691799842549134,
         "reserved_band_fraction": null,
         "reserved_band_mm": null,
-        "available_region_fraction": 0.3522135962992471,
+        "available_region_fraction": 0.1787599361160717,
         "available_region_mm": [
-          95.1554105902778,
+          79.60000000000001,
           1.0,
-          13.84458940972221,
+          29.400000000000006,
           85.99999999999999
         ],
         "key_bboxes_mm": [],
         "issues": [],
-        "warnings": [],
+        "warnings": [
+          "Review area_fraction_of_plot=0.222 above adjustable threshold 0.2; this is not a journal limit."
+        ],
         "text_overlaps": [],
         "mapped_range": [
           0.0,
@@ -233,12 +213,12 @@
           {
             "position": "right",
             "ncol": null,
-            "length_mm": 30,
+            "length_mm": 32,
             "bbox_mm": [
-              95.1554105902778,
-              53.351410590277794,
-              12.844589409722207,
-              32.64858940972223
+              79.60000000000001,
+              50.8587380642361,
+              13.04458940972221,
+              34.64858940972223
             ],
             "issues": []
           }
@@ -247,24 +227,27 @@
     ],
     "combined": {
       "guide_count": 1,
-      "occupied_envelope_union_area_mm2": 419.3577257744867,
-      "sum_envelope_area_mm2": 419.3577257744867,
+      "occupied_envelope_union_area_mm2": 451.9766224758757,
+      "sum_envelope_area_mm2": 451.9766224758757,
       "envelope_overlap_area_mm2": 0.0,
       "has_envelope_overlap": false,
-      "area_fraction_of_plot": 0.10544636997743313,
-      "area_fraction_of_canvas": 0.043322079108934576,
+      "area_fraction_of_plot": 0.22170845129415542,
+      "area_fraction_of_canvas": 0.046691799842549134,
       "enclosing_bbox_mm": [
-        95.1554105902778,
-        53.351410590277794,
-        12.844589409722207,
-        32.64858940972223
+        79.60000000000001,
+        50.8587380642361,
+        13.04458940972221,
+        34.64858940972223
       ],
-      "max_individual_width_mm": 12.844589409722207,
-      "max_individual_height_mm": 32.64858940972223,
+      "max_individual_width_mm": 13.04458940972221,
+      "max_individual_height_mm": 34.64858940972223,
       "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
     },
     "issues": [],
-    "warnings": [],
+    "warnings": [
+      "colorbar: Review area_fraction_of_plot=0.222 above adjustable threshold 0.2; this is not a journal limit.",
+      "Combined guides: review area_fraction_of_plot=0.222 above adjustable threshold 0.2; this is not a journal limit."
+    ],
     "review_thresholds": {
       "area_fraction_of_plot": 0.2,
       "area_fraction_of_canvas": 0.12,

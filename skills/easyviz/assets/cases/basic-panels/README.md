@@ -14,9 +14,9 @@ quality gain. No fitted trend, hypothesis test or significance mark is added.
 | --- | --- | --- |
 | [Replicate bars](replicate-bars/output/panel.png) | Fifteen author-supplied HDR percentages: five treatments, three biological replicates each. Read treatment means alongside all observations and sample SD. | One bright blue outcome, outline bars, same-hue opaque points, independently readable dark SD. |
 | [Paired scatter](paired-scatter/output/panel.png) | Both IgG measurements from all 127 paired participants. Compare before/after values and the source prior-infection groups. | Clear blue/coral fixed-size points, log display axes, compact group keys; no invented fit or threshold. |
-| [Cohort boxes](cohort-box/output/panel.png) | All 129 BMI values in three explicitly selected cohorts. Read median, IQR, whiskers and every raw value. | Narrow open boxes, visible median/whiskers, bright cohort identity, categorical-only beeswarm. |
-| [Cohort violins](cohort-violin/output/panel.png) | The same 129 BMI values. Read the estimated distribution shape together with raw observations and quartiles. | Opaque shape boundaries separated from light fills, open inner Q1–Q3 boxes and dark medians. |
-| [Depot heatmap](depot-heatmap/output/panel.png) | All 48 source myeloid subtype/depot percentages. Compare within-depot shares on one 0–40% scale. | One linear sky-blue magnitude scale, source order, a clear data-region boundary and a compact quantitative guide. |
+| [Cohort boxes](cohort-box/output/panel.png) | All 129 BMI values in three explicitly selected cohorts. Read median, IQR, whiskers and every raw value. | Clear open boxes and median/whiskers beside a same-color raw-point lane; categorical shifts preserve every BMI coordinate. |
+| [Cohort violins](cohort-violin/output/panel.png) | The same 129 BMI values. Read the estimated distribution shape together with raw observations and quartiles. | Narrow, thin neutral KDE contours; colored Q1–Q3 boxes, dark medians and neighboring raw points. This is an alternative distribution view. |
+| [Depot heatmap](depot-heatmap/output/panel.png) | All 48 source myeloid subtype/depot percentages. Read individual shares and their pattern on one 0–40% scale. | Compact cells, vector seams, full-precision colors and rounded value labels; short column headers are defined in the caption. |
 
 ![Replicate bars](replicate-bars/output/panel.png)
 
@@ -52,9 +52,11 @@ KDE definition or percentage denominator into an unrelated dataset.
 
 `baseline-spec.json` uses the earlier tool's omitted-option defaults on the
 same prepared input. `first-render/` freezes those exports. The main candidate
-retains source values, numeric limits/normalization, labels, font sizes and
-canvas. Colors, categorical mark treatment, widths and raw-point placement are
-explicit design choices. The violin candidate also adds a declared raw-scale
+retains source values, numeric limits/normalization, measurement meanings, font
+sizes and canvas. Colors, categorical mark treatment, widths and raw-point
+placement are explicit design choices. The heatmap adds source-derived numeric
+labels and short display headers; neither changes its actual matrix or scale.
+The violin candidate also adds a declared raw-scale
 Q1/median/Q3 summary, so that comparison is **not solely cosmetic**; its KDE
 method and input values stay the same.
 
@@ -88,16 +90,19 @@ artist checks are distinguished from actual saved-export checks. Technical QA
 and small transfer probes do not replace independent visual inspection or a
 new-model evaluation.
 
-An independent reviewer opened all 15 baseline/candidate/transfer PNGs and all
-15 PDF-derived 96 dpi previews individually. No critical or major visual issue
-was found. The reviewer preferred the candidate bars, boxes, violins and this
-heatmap for their declared reading tasks, with no clear preference for the
-scatter. Nearby scatter observations still touch in both versions. The violin
-preference includes its added quartile layer. This is a scoped visual judgment
-on these supplied cases; the review did not establish source/statistical
-correctness, color-vision accessibility, physical print quality, model
-advantage or publication acceptance. The separate transfer captions were added
-after that review without rerendering any image.
+The original release review covered all 15 omitted-default/candidate/transfer
+PNG and PDF preview pairs. Preference over those defaults did not establish
+high-quality manuscript design. The same-version refinement therefore compares
+the redesigned box, violin and heatmap against the actual published candidates,
+and separately inspects their transfer probes at the final-size proportions.
+It examines point/summary separation, KDE hierarchy and matrix proportions
+against specific mechanisms visible in scWAT and PROGENy, rather than treating
+a palette change or a software check as aesthetic proof. The complete
+[refinement record](https://github.com/idealstarry/EasyViz/tree/main/evals/create-refinement-v0.4.3)
+retains the actual predecessor images and scoped numerical/export checks.
+Scatter and bars retain their existing reviewed designs; no new improvement
+is claimed for them. These cases do not establish physical print quality,
+color-vision accessibility, a causal model advantage or publication acceptance.
 
 ## Source attribution
 

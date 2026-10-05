@@ -18,10 +18,11 @@
   "prepared_csv_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
   "main_rows": 129,
   "candidate_changes": [
-    "Bright blue/coral/jade cohort colors",
-    "Opaque raw points; unfilled box or crisp violin boundaries",
-    "Declared summary strokes independent of data outlines",
-    "Add a declared raw-scale Q1/median/Q3 inner box; this comparison is not solely cosmetic"
+    "Bright cohort colors on raw observations and quartile summaries",
+    "Thin neutral KDE contour, narrow categorical width, independently readable colored Q1/Q3 box and dark median",
+    "Separate raw-point lane at +0.28 category spacing; explicit 4 pt\u00b2 opaque points",
+    "Scott KDE bandwidth/evaluation/trim preserved; only categorical silhouette width changes",
+    "The original omitted-option comparison also adds a declared Q1/median/Q3 layer; this is not solely cosmetic"
   ],
   "comparison_preserved": [
     "source CSV bytes",
@@ -36,5 +37,10 @@
     "rows": 185,
     "synthetic": false,
     "not_a_fresh_biological_analysis": true
+  },
+  "same_version_refinement": {
+    "date": "2026-10-05",
+    "comparison_snapshot": "Published v0.4.3 commit 5acbb5b36166b99097f2a0fffad321a4abf7c315",
+    "scope": "Current main refinements keep version 0.4.3; the published tag remains a historical snapshot. Both source-preserving technical checks and actual-image comparisons are required."
   }
 }

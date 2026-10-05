@@ -55,6 +55,24 @@ Stacked totals are computed within each unit before calculating SD. Adding compo
 
 `bar_width` is the total occupied fraction of one condition spacing (`0 < width <= 0.85`); grouped components share that width. Raw point offsets depend on sorted unit IDs, so reordering rows does not move observations. `marker_area_pt2` is geometric circle fill area; marks are filled and borderless. The circle's Matplotlib size is `4 / pi × area`.
 
+For `mode: "grouped"`, optional `component_gap` leaves space between component
+bars inside that block. It is a nonnegative fraction of condition spacing.
+Each bar has width `(bar_width - (k - 1) × component_gap) / k` for `k` components;
+this must stay positive. For example, `bar_width: 0.8` with three components and
+`component_gap: 0.07` gives a width of 0.22 per bar. The complete treatment block
+keeps its center and total span; points follow the narrower individual bar.
+Means, sample SD and numeric observations stay exact.
+
+Check visible edge clearance, not only distance between bar centers. A positive
+gap is measured after final layout using actual patch extents and both stroke
+widths. `qa.json` records `mark_geometry.grouped_separation`; touching strokes
+require revision even when a positive numeric gap was entered. Positive
+clearance alone does not certify attractive spacing. Choose physical bar
+thickness and group gaps together, with a visibly larger gap between treatments.
+Omission or `0` keeps legacy adjoining geometry and leaves this separation
+check `unchecked`; avoid that legacy default when independent hollow outlines
+are part of the adopted design.
+
 Optional `point_color`, `bar_color`, `grid`, `y_limits` and `y_ticks` provide explicit styling. Component colors map component names; optional summary colors map condition names. Conditions use their axis labels rather than a redundant color guide. A state guide decodes hatching. Explicit limits must contain every observation, bar baseline and SD endpoint; geometry QA also rejects clipped point glyphs. Do not reduce font sizes to force a crowded panel to fit.
 
 For outlined bars, set `bar_style: "outline"`, optionally
@@ -71,6 +89,9 @@ remain distinguishable when a common edge color is adopted.
 The [basic bar case](../assets/cases/basic-panels/README.md) demonstrates an
 outlined summary with biological observations and sample SD. This treatment
 is optional and does not define which summary or uncertainty is appropriate.
+The [repair-outcome case](../assets/cases/repair-outcomes/README.md) provides
+three narrow individual bar panels for within-outcome treatment comparisons,
+an unscaled row preview and a corrected global-scale grouped alternative.
 
 ## Review and reuse
 

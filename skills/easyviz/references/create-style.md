@@ -7,10 +7,13 @@ starting values, not journal rules or evidence of publication quality.
 Reproduce follows its adopted reference and user settings; do not insert a
 create style into an accepted reproduction.
 
-Refine the basic chart before composing extra tracks. A small palette, definite
-edges and well-sized data region can improve a single scatter or bar without
-adding a statistic, label or annotation. Use additional layers only to answer
-an adopted reading task.
+Refine the basic chart before composing extra tracks. Decide whether readers
+should see observations, a summary or density shape first, then set their
+relative size, contrast and placement. A shared palette or line width cannot
+make that decision. Use additional layers only to answer an adopted reading task.
+The starting family may be a grouped bar or another genuine repeated comparison.
+Compact repeated geometry makes its supplied relationships readable; it should
+not remove relevant outcomes to resemble a minimal tutorial.
 
 For a crisp literature-inspired design, read the specific mechanisms in
 [PROGENy, scWAT and Vanneste](literature-style.md). Avoid turning "light" into
@@ -88,15 +91,19 @@ Use a hollow alternative with `point_style="hollow"` and
 `point_edge_width_pt=0.45` when an unfilled glyph improves separation. Check
 summary crossings and the visible edge at final size before adopting it.
 
-For a sparse categorical layout, `box_width` controls box thickness in category
-spacing units (`0 < box_width <= 1`, original default 0.5). Inspect its physical
-size after layout; a two-group chart can turn 0.5 into an unnecessarily thick
-box. New drafts start at 0.18. This changes categorical thickness only; quartile
-endpoints, whisker values, median and raw observations stay unchanged.
+`box_width` controls box thickness in category spacing units
+(`0 < box_width <= 1`, original default 0.5). New drafts start at 0.18;
+this is a tunable starting value, not a physical-size target. With only a few
+categories, filling the available axis can produce wide blank bands even with
+narrow boxes. Choose the data-region width, category gaps and physical box
+thickness together. This changes categorical geometry only; quartile endpoints,
+whisker values, median and raw observations stay unchanged.
 
 The shared `scripts/create_style.py` supplies missing cosmetics for new
 unprofiled drafts and distribution previews. The default mode is `crisp`:
 opaque filled observations, narrow outline boxes and the role widths below.
+Adjust these roles when, for example, a violin outline competes with its
+inner summary; the same stroke priority does not suit every family.
 Explicit options and category colors remain adopted choices. Profile-based
 drafts retain the existing profile without receiving these new defaults.
 
@@ -110,6 +117,13 @@ These choices need image review. If a hollow glyph is weak or exposes a whisker
 crossing, compare a filled glyph or separate summary lane. If packing fails,
 make an explicit size/layout decision; numeric positions must stay intact.
 
+For a distribution, `point_category_offset` moves the raw-point lane along
+the categorical direction (`-0.4` to `0.4` category spacing, default `0`).
+Use a nonzero value only when separation improves the adopted reading task;
+beeswarm/jitter still needs room within the original category. Inspect the
+association between each point lane and its summary. Numeric observations,
+statistics and category identity do not move.
+
 For `kind="violin"`, an explicit `violin_fill_alpha` in `[0, 1]` changes only
 the KDE face and keeps its edge opaque. Omission preserves earlier behavior.
 `violin_inner="box"` adds a hollow raw-value Q1–Q3 summary, with an optional
@@ -117,28 +131,50 @@ median controlled by `violin_median_visible` (default `true`). Its
 `violin_inner_width` is category spacing (`0 < width <= 0.7`, default `0.12`),
 independent of KDE density and sample count. This is an added statistical
 summary layer; adopt it deliberately and define it in the caption.
+`violin_width` adjusts displayed categorical width (`0 < width <= 1`, default
+`0.7`); it does not alter KDE bandwidth or observed values. A narrow contour,
+visible inner summary and optional neighboring raw lane can reduce competing
+edges; these are candidate choices, not mandatory layering.
 
 The separate [replicate-bar recipe](replicate-plot.md) supports explicit
 `bar_style="outline"` or optional edges on filled bars. Its bar settings are
 not core `line_roles`. Compare fill and edge treatments with the actual raw
 layer rather than making every basic chart hollow.
 
+For grouped outlined bars, adopt a visible `component_gap` in that recipe.
+Neighboring outline strokes must not overwrite each other. Check actual stroke
+clearance, within-group spacing, between-group spacing and physical thickness
+after layout; a positive center gap by itself is insufficient. When outcomes
+have very different ranges and the task is within-outcome treatment comparison,
+consider narrow individual panels with repeated order and geometry. Label each
+range explicitly and preserve fixed type size when arranging panels together;
+different scales do not support absolute-height comparisons across panels.
+
 ## Basic chart checks
 
-| Chart | Useful design decision | When to choose another treatment |
+| Chart | Geometry and layer decision | Check on the actual export |
 | --- | --- | --- |
-| Scatter | Keep group identity visible in the actual point field; make any adopted fit distinct from points and reference guides. | Dense overlap may need hollow glyphs, modest transparency or facets. Compare actual density; do not fade a sparse cloud by habit. |
-| Bar | Set fill/edge treatment, bar thickness and category gaps together. Make an adopted interval visible against the bar and any raw points. | Open bars help when they reveal a raw layer; a filled bar can be clearer when height alone is the evidence. Styling does not define the summary or uncertainty. |
-| Box and points | Keep quartile boundaries and median legible; inspect point/whisker crossings and physical box thickness. | Separate the summary and raw layer into neighboring lanes or facets when marks mask each other. An outlined box is a starting choice, not a reason to shrink every point. |
-| Violin | Make the density boundary, any adopted box/median and raw points distinct. | Shape adds little for sparse or discrete groups; use box/points when KDE would suggest unsupported detail. |
-| Heatmap | Choose a justified scale and readable cell proportions. Subtle cell seams can identify large cells; keep the colorbar interpretable in original units. | Framing every tiny cell can overwhelm a dense matrix. A diverging map needs a declared center, not merely two signs or a desire for more colors. |
+| Scatter | Give the relationship a useful data-region aspect; preserve adopted equal-coordinate constraints. Let small observations carry identity, with an adopted fit stronger than reference guides. | Inspect both sparse and crowded areas, and the guide footprint. Hollow glyphs, modest transparency or facets can help dense overlap; do not fade a sparse cloud by habit. |
+| Bar | Set bar thickness, within-group gaps and between-group gaps together. Keep interval endpoints and replicate marks readable at the bar top. | Open bars help reveal raw values; filled bars may serve height alone. Keep the zero baseline and full uncertainty extent. Do not fill spare width by enlarging bars or inventing annotations. |
+| Grouped bar | Repeat the adopted series order and widths within each category, with a larger gap between categories and one decoded color assignment per series. Keep small replicate marks and honest uncertainty visible. | Readers should associate each series with its category without repeatedly searching the legend. A common axis requires comparable units and purpose; unrelated scales or unsupported stacking cannot be repaired cosmetically. |
+| Box and points | Make median and quartile boundaries continuous. If points hide them, compare a narrow summary lane beside a raw-value lane within the same category. | Inspect numerical values unchanged, lane association clear, and points contained within their category. Choose lane width and group gaps from mark capacity; avoid huge blank bands or miniature boxes. |
+| Violin | Use density shape only when it adds a reading task beyond box/points. For summary-first reading, make the KDE outline lighter than the inner box/median and keep its face unobtrusive. | A broad silhouette with points and an equally strong inner box has three competing layers. Adjust displayed width, strokes or categorical placement; never tune KDE bandwidth or remove observations merely for appearance. |
+| Heatmap | Set the data-region aspect from row/column count and label needs. Three columns should not automatically fill a wide axis as horizontal ribbons. | Rectangular cells are valid; judge whether adjacent cells and columns remain distinct. Use visible but subordinate seams for large cells, less framing for dense tiny cells, and a readable colorbar in original units. |
 
-Measure the space needed by category labels and legend keys, then give the rest
-to the data. Inspect within-group gaps, between-group gaps and outer margins
-separately. Reducing a legend should release usable plot space rather than
-leave its oversized empty band in place. For repeated categories, adjacent
-group lanes and aligned facets are alternatives; preserve unit correspondence
-when it is part of the question.
+Measure label and guide bounds, then choose a data rectangle suited to the
+chart; all remaining canvas area need not become plotting width. At fixed
+dimensions and fonts, resolve wrapping, label orientation, guide placement,
+category spacing and inner-axis bounds before seeking a new canvas. Avoid
+using wide gaps to disguise a point/summary collision. Retain every observation,
+its numeric coordinate and any adopted pairing.
+
+For core heatmaps, explicit `cell_border_color` and
+`cell_border_width_pt` can make large cells distinct (default width `0`).
+Choose the width at final size so seams remain subordinate to cell values.
+`column_labels` supplies a complete real-category-to-display-label mapping
+without changing category order or plotting data. Short aliases can fit a
+narrow matrix; define unfamiliar abbreviations in the caption and retain the
+original identifiers in the spec and exported table.
 
 ## Explicit line roles in core charts
 
@@ -190,7 +226,7 @@ existing guide contract.
 
 ## Review the result
 
-The [five runnable basic panels](../assets/cases/basic-panels/README.md) show
+The [runnable basic panels](../assets/cases/basic-panels/README.md) show
 these decisions on real data and preserve matched-spec comparison records in
 the development repository. Use their contracts and adjustable settings, not
 their biological names or scientific assumptions, on a new input.

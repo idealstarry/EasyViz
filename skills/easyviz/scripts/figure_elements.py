@@ -101,8 +101,14 @@ def attach_layout(fig, spec):
                             register(fig, mark, "axis-tick", f"{direction.upper()} {kind} tick · {location:g} · {side}",
                                      key=key, source_keys=source, editable=["color", "linewidth"])
                         if tick_label.get_visible() and tick_label.get_text().strip():
+                            paths = []
+                            columns = getattr(fig, "_easyviz_column_label_keys", [])
+                            if index == 0 and direction == "x" and kind == "major" and location.is_integer() and 0 <= int(location) < len(columns):
+                                column = columns[int(location)]
+                                source = [{**source[0], "column": column, "display_label": tick_label.get_text()}]
+                                paths = [pointer("options", "column_labels", column)]
                             register(fig, tick_label, "tick-label", f"{direction.upper()} tick label · {tick_label.get_text()} · {side}",
-                                     key=key, source_keys=source, editable=["color", "fontsize"])
+                                     key=key, source_keys=source, spec_paths=paths, editable=["color", "fontsize"])
     if manager:
         for guide_index, entry in enumerate(manager.entries):
             kind, request = entry["kind"], entry["request"]

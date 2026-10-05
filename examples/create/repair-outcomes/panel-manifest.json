@@ -1,0 +1,30 @@
+{
+  "panels": [
+    {
+      "id": "hdr",
+      "component": "HDR",
+      "rows": 15,
+      "source": "panels/hdr/source-data.csv",
+      "spec": "panels/hdr/spec.json"
+    },
+    {
+      "id": "both",
+      "component": "HDR and mutEJ",
+      "rows": 15,
+      "source": "panels/both/source-data.csv",
+      "spec": "panels/both/spec.json"
+    },
+    {
+      "id": "mutej",
+      "component": "mutEJ",
+      "rows": 15,
+      "source": "panels/mutej/source-data.csv",
+      "spec": "panels/mutej/spec.json"
+    }
+  ],
+  "width_mm": 60,
+  "height_mm": 62,
+  "shared_condition_order": true,
+  "shared_numeric_scale": false,
+  "scope": "Within-outcome treatment comparison; outcome-specific ranges remain in original percent units."
+}

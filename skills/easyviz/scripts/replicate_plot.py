@@ -22,11 +22,12 @@ _loader.loader.exec_module(core)
 plt, np, pd, require, SpecError = core.plt, core.np, core.pd, core.require, core.SpecError
 VERSION = "0.1.0"
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "palette", "legends"}
-OPTIONS = {"mode", "uncertainty", "bar_width", "bar_style", "bar_edge_width_pt", "bar_edge_color", "marker_area_pt2", "point_color", "bar_color", "x_rotation", "y_limits", "y_ticks", "grid", "state_hatches"}
+OPTIONS = {"mode", "uncertainty", "bar_width", "component_gap", "bar_style", "bar_edge_width_pt", "bar_edge_color", "marker_area_pt2", "point_color", "bar_color", "x_rotation", "y_limits", "y_ticks", "grid", "state_hatches"}
 SCHEMA = {"chart": "replicate", "fields": {"condition": "condition column", "unit": "replicate identifier", "value": "supplied numeric value", "component": "required for stacked/grouped only", "state": "optional summary-only declared category"},
           "options": {"mode": "stacked|grouped|summary", "uncertainty": "sample_sd|none", "bar_width": .6, "bar_style": "filled (legacy default)|outline; all three modes", "bar_edge_width_pt": "outline default 0.55 pt and must be >0; filled default 0 and may be >=0", "bar_edge_color": "optional visible color; defaults to the mapped bar color when edge width is positive", "marker_area_pt2": 7, "x_rotation": 0, "y_limits": "optional [low, high] containing all values and SD intervals", "y_ticks": "optional ordered numeric list", "state_hatches": "required complete state-to-hatch map when state is mapped; outline bars do not support states"},
           "layout": {"width_mm": 130, "height_mm": 90, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
           "semantics": ["Stacked segments are component means. Points and SD describe per-unit TOTALS, not shifted component observations.", "Grouped bars summarize each component independently; points retain its raw values.", "Summary bars use only the supplied values; a precomputed ratio is never replaced by a ratio of means.", "SD is sample SD (ddof=1), not SEM or a confidence interval. None draws no interval.", "Every condition-unit must have every component exactly once; missing components are rejected, never filled.", "Unit identifiers do not establish biological independence or cross-condition pairing.", "Declared states are retained and decoded using explicit hatches; state labels do not infer significance.", "No normalization, hypothesis tests, titles, or narrative annotations."]}
+SCHEMA["options"]["component_gap"] = "Optional finite nonnegative JSON number, grouped mode only; default 0 retains legacy touching bars. Gap is in condition-spacing units and stays inside the total bar_width block. Bar width=(bar_width-(component_count-1)*component_gap)/component_count must remain positive. Positive gaps are audited after layout against actual stroke edges; too-small visible clearance requires revision."
 
 
 def _object(value, allowed, name):
@@ -64,6 +65,9 @@ def validate_spec(spec):
     require(isinstance(options.get("grid", False), bool), "grid must be a boolean")
     width = _number(options.get("bar_width", .6), "bar_width", positive=True)
     require(width <= .85, "bar_width must be <= 0.85 condition spacing")
+    if "component_gap" in options:
+        require(mode == "grouped", "component_gap requires grouped mode")
+        require(_number(options["component_gap"], "component_gap") >= 0, "component_gap must be nonnegative")
     _number(options.get("marker_area_pt2", 7), "marker_area_pt2", positive=True)
     rotation = _number(options.get("x_rotation", 0), "x_rotation")
     require(0 <= rotation <= 90, "x_rotation must be between 0 and 90 degrees")
@@ -128,6 +132,9 @@ def prepare(data_path, spec):
     conditions = core.ordered(data, fields["condition"], spec, "condition")
     if "component" in fields:
         components = core.ordered(data, fields["component"], spec, "component")
+        if options.get("mode") == "grouped":
+            require(options.get("bar_width", .6) - (len(components) - 1) * options.get("component_gap", 0) > 0,
+                    "component_gap leaves no positive bar width inside the bar_width block")
         for _, group in data.groupby([fields["condition"], fields["unit"]], sort=False):
             require(set(group[fields["component"]]) == set(components), "Every condition-unit must contain all components exactly once; missing is not zero")
         if options.get("mode") == "stacked":
@@ -206,8 +213,10 @@ def draw(data, spec, layout, typography):
     fig.subplots_adjust(**layout["margins"])
     manager = _StateLegend(fig, ax, typography, spec.get("legends"))
     width = options.get("bar_width", .6)
-    individual_width = width / len(components) if mode == "grouped" else width
+    gap = options.get("component_gap", 0)
+    individual_width = (width - (len(components) - 1) * gap) / len(components) if mode == "grouped" else width
     offsets = dict(zip(components, np.linspace(-width / 2 + individual_width / 2, width / 2 - individual_width / 2, len(components)))) if mode == "grouped" else dict.fromkeys(components, 0.)
+    fig._easyviz_component_gap = gap if mode == "grouped" else 0
     bases, bars, intervals, points = dict.fromkeys(conditions, 0.), [], [], []
     positions = {c: float(i) for i, c in enumerate(conditions)}
     for summary in summaries:
@@ -221,7 +230,8 @@ def draw(data, spec, layout, typography):
             patch.set_gid(f"easyviz-bar-{len(bars) + 1}")
             core.figure_elements.register(fig, patch, "component" if mode == "stacked" else "summary-box", f"{condition} · {component}" if component is not None else str(condition),
                                           source_keys=[{"condition": condition, "component": component}],
-                                          spec_paths=["/options/bar_style", "/options/bar_edge_width_pt", "/options/bar_edge_color"],
+                                          spec_paths=["/options/bar_style", "/options/bar_edge_width_pt", "/options/bar_edge_color"]
+                                                     + (["/options/component_gap"] if "component_gap" in options else []),
                                           editable={"linewidth": "/options/bar_edge_width_pt", "edgecolor": "/options/bar_edge_color"})
             bars.append({**summary, "artist": patch, "x": x, "bottom": bottom, "width": individual_width})
             if mode == "stacked":
@@ -294,8 +304,9 @@ def audit_source_artists(data_path, spec, fig):
     colors = core.palette_colors(spec, components) if components else (core.palette_colors(spec, conditions) if "colors" in spec else dict.fromkeys(conditions, options.get("bar_color", "#C5C5C5")))
     expected, observations = {}, {}
     width = options.get("bar_width", .6)
-    individual = width / len(components) if mode == "grouped" else width
-    offsets = {component: -width / 2 + individual / 2 + i * individual for i, component in enumerate(components)} if mode == "grouped" else dict.fromkeys(components, 0.)
+    gap = options.get("component_gap", 0)
+    individual = (width - (len(components) - 1) * gap) / len(components) if mode == "grouped" else width
+    offsets = {component: -width / 2 + individual / 2 + i * (individual + gap) for i, component in enumerate(components)} if mode == "grouped" else dict.fromkeys(components, 0.)
     for i, condition in enumerate(conditions):
         selected = [(n, row) for n, row in enumerate(raw, 1) if row[f["condition"]] == condition]
         units, bottom = sorted({row[f["unit"]] for _, row in selected}), 0.
@@ -428,7 +439,34 @@ def _canvas_checks(fig):
         # vlines use butt caps: linewidth expands horizontally, not beyond ends.
         if endpoints[:, 0].min() - half < box.x0 - .1 or endpoints[:, 0].max() + half > box.x1 + .1 or endpoints[:, 1].min() < box.y0 - .1 or endpoints[:, 1].max() > box.y1 + .1:
             marks.append({"code": "sample_sd_stroke_clipped", "condition": record["condition"]})
-    return clipped, {"status": "pass" if not marks else "needs_revision", "issues": marks, "intentional_baseline_contacts": baseline_contacts}
+    separation = {"status": "unchecked", "note": "No positive component_gap adopted; legacy bar placement is retained."}
+    if getattr(fig, "_easyviz_component_gap", 0) > 0:
+        by_condition = {}
+        for record in fig._easyviz_replicate_artists["bars"]:
+            by_condition.setdefault(record["condition"], []).append(record)
+        clearances = []
+        for condition, records in by_condition.items():
+            records.sort(key=lambda record: record["x"])
+            for left, right in zip(records, records[1:]):
+                a, b = left["artist"], right["artist"]
+                first = a.get_path().get_extents(a.get_transform())
+                second = b.get_path().get_extents(b.get_transform())
+                stroke_a = a.get_linewidth() if a.get_edgecolor()[3] > 0 else 0
+                stroke_b = b.get_linewidth() if b.get_edgecolor()[3] > 0 else 0
+                nominal_pt = (second.x0 - first.x1) * 72 / fig.dpi
+                visible_pt = nominal_pt - (stroke_a + stroke_b) / 2
+                clearances.append({"condition": condition, "left_component": left["component"], "right_component": right["component"],
+                                   "path_gap_pt": nominal_pt, "stroke_clearance_pt": visible_pt,
+                                   "stroke_clearance_mm": visible_pt / 72 * 25.4})
+                if visible_pt <= 1e-8:
+                    marks.append({"code": "grouped_bar_edges_touch", "condition": condition,
+                                  "left_component": left["component"], "right_component": right["component"],
+                                  "stroke_clearance_pt": visible_pt})
+        separation = {"status": "pass" if all(item["stroke_clearance_pt"] > 1e-8 for item in clearances) else "needs_revision",
+                      "clearances": clearances, "requested_component_gap": fig._easyviz_component_gap,
+                      "note": "Actual final-layout path gap minus both visible half-strokes; positive clearance prevents touching but does not certify aesthetic spacing."}
+    return clipped, {"status": "pass" if not marks else "needs_revision", "issues": marks, "intentional_baseline_contacts": baseline_contacts,
+                     "grouped_separation": separation}
 
 
 def render(data_path, spec, out, *, spec_path=None):

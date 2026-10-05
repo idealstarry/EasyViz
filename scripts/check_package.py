@@ -91,6 +91,14 @@ def validate_plugin(plugin: Path) -> dict:
             destination = (entry.parent / target.split("#", 1)[0]).resolve()
             if not destination.is_relative_to(plugin.resolve()) or not destination.exists():
                 raise ValueError(f"Broken skill resource: {name}: {target}")
+    grouped = plugin / "skills/easyviz/assets/cases/repair-outcomes"
+    if grouped.exists():
+        required.extend(f"skills/easyviz/assets/cases/repair-outcomes/{name}" for name in
+                        ("plot.py", "compose.py", "validate.py", "spec.json", "source-data.csv", "caption.md", "provenance.json",
+                         "panel-manifest.json", "transfer/spec.json", "transfer/source-data.csv", "transfer/panel-manifest.json"))
+        for relative in ("panels/hdr", "panels/both", "panels/mutej", "transfer/panels/hdr", "transfer/panels/mutej"):
+            required.extend(f"skills/easyviz/assets/cases/repair-outcomes/{relative}/{name}"
+                            for name in ("spec.json", "source-data.csv", "caption.md"))
     for key in ("logo", "composerIcon"):
         target = manifest.get("interface", {}).get(key)
         if target:
@@ -293,9 +301,20 @@ def main() -> int:
                     checked = subprocess.run(command, cwd=isolated, env=env, capture_output=True, text=True)
                     if checked.returncode:
                         raise RuntimeError("Extracted basic panels failed: " + checked.stdout + checked.stderr)
+            grouped = skill / "assets/cases/repair-outcomes"
+            if grouped.is_dir():
+                output = isolated / "grouped-output"
+                for command in ([sys.executable, str(grouped / "plot.py"), "--tools", str(skill / "scripts"),
+                                 "--font", "DejaVu Sans", "--transfer", "--out", str(output)],
+                                [sys.executable, str(grouped / "validate.py"), "--tools", str(skill / "scripts"),
+                                 "--font", "DejaVu Sans", "--outputs", str(output),
+                                 "--out", str(isolated / "grouped-validation.json")]):
+                    checked = subprocess.run(command, cwd=isolated, env=env, capture_output=True, text=True)
+                    if checked.returncode:
+                        raise RuntimeError("Extracted grouped comparison failed: " + checked.stdout + checked.stderr)
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers and basic panels when present"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present"}, indent=2))
     return 0
 
 

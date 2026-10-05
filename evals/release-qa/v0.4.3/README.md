@@ -1,5 +1,9 @@
 # EasyViz v0.4.3 release QA
 
+This is the original published v0.4.3 package snapshot. For the subsequent
+Create improvements on main, while retaining version 0.4.3, see the
+[refinement checks](../../create-refinement-v0.4.3/README.md).
+
 Validated on 2026-10-05 with Python 3.12.2 on macOS. This release concentrates
 on basic Create panels while preserving the two Create/Reproduce tracks.
 The manifest and release tag identify version 0.4.3; the archive contents are

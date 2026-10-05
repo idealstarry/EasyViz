@@ -10,6 +10,11 @@ Apply the mark, color and spacing mechanism to a basic single plot first. The
 number of tracks or annotations in a paper is not a quality target. Borrow a
 composite arrangement only when its extra layer answers the current reading
 task and has supplied data with a declared meaning.
+Basic chart families can carry a complete experimental comparison. In scWAT,
+repeated groups, relevant outcomes and visible sample/summary layers give
+the bars purpose as well as compact geometry. Transfer those relationships
+when supplied data support them; colors alone or decorative repetition cannot
+give an underspecified demonstration the same scientific completeness.
 
 The actual PDF pages and detail crops were visually inspected. Source anchors
 use one-based PDF pages. Images establish appearance; captions and the user's
@@ -20,12 +25,12 @@ marks, transformations, cell labels or filtering into a new dataset.
 
 | Reading problem | Observed mechanism and source | Adaptation to consider | Boundary |
 | --- | --- | --- | --- |
-| Samples disappear into a pale fill | scWAT Fig. 2c,i,j (p. 4): hollow blue/coral bars plus small same-hue observations. Vanneste Fig. 2e–h (p. 4): colored open circles over hollow bars. | Opaque observation marks; open summaries leave the raw layer readable. Match hollow/filled legend symbols to actual marks. | A hollow glyph is a fixed-size observation symbol. It cannot silently replace a circle whose filled area encodes a number. Bars still need an adopted summary and uncertainty definition. |
+| Samples disappear into a pale fill | scWAT Fig. 2c,i,j (p. 4): hollow blue/coral bars, small same-hue observations and readable interval strokes. Vanneste Fig. 2e–h (p. 4): colored open circles over hollow bars. | Set bar, point and interval geometry together: small observations remain distinct, open summaries leave the raw layer visible, and intervals survive at the bar top. | Borrowing blue/coral alone does not reproduce this hierarchy. Bars need an adopted summary and uncertainty definition; a hollow glyph cannot replace quantitative filled-area circles. |
 | Two cohorts make an indistinct cloud | Vanneste Fig. 5d (p. 7): repeated aligned plot boxes, shared labels and deliberate class blocks. | Compare neighboring group lanes or aligned facets with shared numeric scales and row order; pack points only along the categorical direction. | Faceting reduces each plot's available width. Check mark capacity at final size, retain every observation and do not erase pairing that the question needs. |
-| Distribution shape looks washed out | PROGENy Fig. 4c (p. 6): closed violin boundary, inner rectangular box and median stroke are separately visible. | Give the shape and its summary explicit outlines; use color for identity rather than fading the whole layer. | Do not infer KDE bandwidth, sample size or interval meaning from an image. A plain box/points view may be more appropriate. |
+| Distribution layers compete | PROGENy Fig. 4c (p. 6): a fine closed violin contour surrounds a more prominent rectangular summary and median, in compact repeated groups. | For summary-first reading, give the inner box more emphasis than the contour. Choose displayed violin width and group gaps together; a raw-point overlay is another explicit layer, not a requirement inherited from this figure. | Do not infer KDE bandwidth, sample size or interval meaning from an image, or alter bandwidth to copy its silhouette. A box/points view may serve the task without density estimation. |
 | A dense point field overwhelms its summary | Vanneste Fig. 5d (p. 7): smooth curves are wider than tiny green points, with a visible white edge separating layers. | Allocate stroke to the summary locally; a narrow contrasting under-stroke can separate a declared curve from points. | A fitted curve requires an adopted method. Adding a smooth line for appearance alone is not justified. |
-| Matrix values are difficult to compare | scWAT Fig. 2b (p. 4), Vanneste Fig. 4d (p. 6): cold/neutral/warm expression fields; PROGENy Fig. 2b,c (p. 4) uses green/yellow/red fields. | Begin with a reviewed sequential scale for magnitude. Consider multiple hues or a diverging alternative only when they improve the intended reading; a meaningful center needs its own labeled tick. | The papers' expression colors do not define a universal heatmap. Both positive and negative values may fit one sequential scale. A neutral threshold, normalization or unequal color slopes requires scientific justification and an explicit record. |
-| Repeated bars look sparse or disconnected | scWAT Fig. 3g,m (p. 5): tight within-category bars, wider category gaps, compact keys. | Use repeated geometry, consistent gaps and shared decoding. Reserve only the space needed by data and annotations. | Retain units and actual experimental grouping. Density is not a reason to invent annotations or enlarge bars independently of values. |
+| Matrix values are difficult to compare | scWAT Fig. 2b (p. 4): a tall narrow expression matrix uses its few columns as compact reading units. PROGENy Fig. 2b,c (p. 4) and Vanneste Fig. 4d (p. 6) use different cell densities and color fields. | Set data-region aspect from matrix shape and label needs before choosing colors. Begin with a reviewed sequential scale for magnitude; use subordinate seams for large cells and a readable guide. | Square cells are not compulsory. Do not stretch a few columns solely to fill width, infer a universal heatmap palette, or introduce an unmotivated neutral threshold. Preserve normalization, ordering and all values. |
+| Repeated bars look sparse or disconnected | scWAT Fig. 3g,m (p. 5): tight within-category bars, wider category gaps, compact keys. | Retain relevant supplied outcomes/groupings and repeat their geometry and series order consistently. Show supported observations and uncertainty; use one shared decoding guide. | Retain units and actual experimental grouping. Small data remain a small comparison; density is not a reason to invent annotations, extra outcomes or enlarged marks. |
 | Two grouping variables become a long legend | scWAT Fig. 3g (p. 5): hue/edge and open/filled interiors distinguish separate variables; Fig. 5b,c (p. 9) uses hatching. | Use a second decoded visual channel when both groupings matter. | Do not introduce shape, hatch or stroke differences without a meaning; quantify their legend footprint. |
 
 ## Color and stroke observations
@@ -38,8 +43,9 @@ marks, transformations, cell labels or filtering into a new dataset.
   comparison strokes remain clear. A guide can be dark and thin; all supporting
   strokes do not need to be pale or weaker than every data stroke.
 - The source figures mix hollow/filled marks, vivid/pale fills and narrow/wide
-  strokes by role. Low alpha is useful for a declared dense background or
-  uncertainty band, but should not erase the layer the reader must inspect.
+  strokes by role. PROGENy's light contour and stronger inner summary differ
+  from a point-first plot. Low alpha may support a density face or uncertainty
+  band, but should not erase the primary evidence or its definite boundary.
 - PROGENy separates small discrete cells with white boundaries; Vanneste's
   large cell-level heatmaps avoid framing every tiny cell. The separator policy
   depends on cell size, not a universal no-grid rule.
@@ -51,9 +57,12 @@ the actual category mapping, mark treatment, summary meaning, scale and physical
 layout. For a basic chart, check the color combination, role of each stroke,
 point/summary crossings, category gaps and guide space before adding a layer.
 Render the real data; check complete-panel balance and inspect marks at final
-size. Compare a baseline and candidate with equal dimensions, font and
-numeric scales. Where a normalization change is intentional, disclose it
-separately from a cosmetic comparison.
+size. Compare the accepted candidate and revision with equal dimensions, font
+and numeric scales. An omitted-default comparison only tests preference over
+that particular baseline. Separately assess whether the target paper's
+layer hierarchy, compact grouping and cell proportions have transferred;
+different data make this a design comparison, not matched performance evidence.
+Disclose intentional normalization changes outside cosmetic comparisons.
 
 Do not call the result better merely because it has more colors, thinner lines,
 less grid or more empty space. If the main evidence becomes a faint cloud,

@@ -1,5 +1,11 @@
 # Basic-panel design evidence for v0.4.3
 
+This record is the original release snapshot at tag `v0.4.3`
+(`5acbb5b36166b99097f2a0fffad321a4abf7c315`). Current main has a separate
+[same-version refinement record](../create-refinement-v0.4.3/README.md), with
+actual published-candidate comparisons and new checks. The original review
+preference below is not an assessment of the subsequently refined images.
+
 This is bounded implementation and design evidence on known Source Data,
 not a new-Agent comparison or evidence of CNS acceptance. Five ordinary plot
 types were rendered on the same source and scales before/after explicit design
@@ -12,7 +18,7 @@ The comparison sheet is a review aid; each cell embeds the actual standalone
 panel. Place a manuscript export at its recorded 110 × 88 mm size rather than
 using this contact sheet. Final PNG/PDF/SVG, 96 dpi PDF previews, explicit specs,
 captions and source provenance are in
-[`examples/create/basic-panels`](../../examples/create/basic-panels/).
+[`examples/create/basic-panels` at the release tag](https://github.com/idealstarry/EasyViz/tree/v0.4.3/examples/create/basic-panels).
 
 `validation.json` records 15 baseline/candidate/transfer runs, independent mean
 and sample SD/quartile checks, exact raw numeric artist coordinates and matrix

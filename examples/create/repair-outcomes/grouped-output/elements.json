@@ -1,0 +1,2210 @@
+{
+  "schema_version": 1,
+  "chart": "replicate",
+  "track": null,
+  "panel": {
+    "width_mm": 110.0,
+    "height_mm": 82.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "e895d888822d3e1abf9378e6b6bd4f3911cbd09fbf2b1446b7105547d8c59ef8",
+    "spec_sha256": "57487493851da8a6b58b71db882c7a76a984bbc80ec3a24b600153624cbe26c3",
+    "input_sha256": "95db70bf6d9bd4921004f337eae92c3e4b3b704dd432bd7e81c23acfc779c845",
+    "source_script_sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/source-data.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+    "supplied_spec_sha256": "82dffed99e02456217c76b866e702149ff8c054b3fcb7d192582894257866b13"
+  },
+  "elements": [
+    {
+      "id": "easyviz-bar-1",
+      "role": "summary-box",
+      "label": "DMSO · HDR",
+      "source_keys": [
+        {
+          "condition": "DMSO",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        15.358433398011986,
+        14.67243923611111,
+        3.592224011097495,
+        3.675527243125675
+      ]
+    },
+    {
+      "id": "easyviz-sd-1",
+      "role": "summary-line",
+      "label": "DMSO · sample SD",
+      "source_keys": [
+        {
+          "condition": "DMSO",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-2",
+      "role": "summary-box",
+      "label": "DMSO · HDR and mutEJ",
+      "source_keys": [
+        {
+          "condition": "DMSO",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        20.179576149748097,
+        14.67243923611111,
+        3.592224011097497,
+        4.464569150958469
+      ]
+    },
+    {
+      "id": "easyviz-sd-2",
+      "role": "summary-line",
+      "label": "DMSO · sample SD",
+      "source_keys": [
+        {
+          "condition": "DMSO",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-3",
+      "role": "summary-box",
+      "label": "DMSO · mutEJ",
+      "source_keys": [
+        {
+          "condition": "DMSO",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        25.00071890148421,
+        14.67243923611111,
+        3.592224011097497,
+        49.384053173897996
+      ]
+    },
+    {
+      "id": "easyviz-sd-3",
+      "role": "summary-line",
+      "label": "DMSO · sample SD",
+      "source_keys": [
+        {
+          "condition": "DMSO",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-4",
+      "role": "summary-box",
+      "label": "NU-7441\n(1 µM) · HDR",
+      "source_keys": [
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        34.26487556168301,
+        14.67243923611111,
+        3.592224011097497,
+        11.874031648154553
+      ]
+    },
+    {
+      "id": "easyviz-sd-4",
+      "role": "summary-line",
+      "label": "NU-7441\n(1 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-5",
+      "role": "summary-box",
+      "label": "NU-7441\n(1 µM) · HDR and mutEJ",
+      "source_keys": [
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        39.086018313419125,
+        14.67243923611111,
+        3.592224011097497,
+        4.102412173196129
+      ]
+    },
+    {
+      "id": "easyviz-sd-5",
+      "role": "summary-line",
+      "label": "NU-7441\n(1 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-6",
+      "role": "summary-box",
+      "label": "NU-7441\n(1 µM) · mutEJ",
+      "source_keys": [
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        43.907161065155236,
+        14.67243923611111,
+        3.592224011097497,
+        22.505124818083615
+      ]
+    },
+    {
+      "id": "easyviz-sd-6",
+      "role": "summary-line",
+      "label": "NU-7441\n(1 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-7",
+      "role": "summary-box",
+      "label": "KU-0060548\n(0.25 µM) · HDR",
+      "source_keys": [
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        53.171317725354044,
+        14.67243923611111,
+        3.592224011097497,
+        14.400117793316753
+      ]
+    },
+    {
+      "id": "easyviz-sd-7",
+      "role": "summary-line",
+      "label": "KU-0060548\n(0.25 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-8",
+      "role": "summary-box",
+      "label": "KU-0060548\n(0.25 µM) · HDR and mutEJ",
+      "source_keys": [
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        57.992460477090155,
+        14.67243923611111,
+        3.5922240110974872,
+        2.1085482175511374
+      ]
+    },
+    {
+      "id": "easyviz-sd-8",
+      "role": "summary-line",
+      "label": "KU-0060548\n(0.25 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-9",
+      "role": "summary-box",
+      "label": "KU-0060548\n(0.25 µM) · mutEJ",
+      "source_keys": [
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        62.813603228826274,
+        14.67243923611111,
+        3.592224011097497,
+        10.956816714778931
+      ]
+    },
+    {
+      "id": "easyviz-sd-9",
+      "role": "summary-line",
+      "label": "KU-0060548\n(0.25 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-10",
+      "role": "summary-box",
+      "label": "L755507\n(5 µM) · HDR",
+      "source_keys": [
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        72.07775988902507,
+        14.67243923611111,
+        3.592224011097497,
+        3.79040621857252
+      ]
+    },
+    {
+      "id": "easyviz-sd-10",
+      "role": "summary-line",
+      "label": "L755507\n(5 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-11",
+      "role": "summary-box",
+      "label": "L755507\n(5 µM) · HDR and mutEJ",
+      "source_keys": [
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        76.8989026407612,
+        14.67243923611111,
+        3.592224011097497,
+        4.6897725838371755
+      ]
+    },
+    {
+      "id": "easyviz-sd-11",
+      "role": "summary-line",
+      "label": "L755507\n(5 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-12",
+      "role": "summary-box",
+      "label": "L755507\n(5 µM) · mutEJ",
+      "source_keys": [
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        81.7200453924973,
+        14.67243923611111,
+        3.592224011097497,
+        42.57551095797877
+      ]
+    },
+    {
+      "id": "easyviz-sd-12",
+      "role": "summary-line",
+      "label": "L755507\n(5 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-13",
+      "role": "summary-box",
+      "label": "SCR7 pyrazine\n(1 µM) · HDR",
+      "source_keys": [
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        90.98420205269612,
+        14.67243923611111,
+        3.592224011097497,
+        3.9404097502186675
+      ]
+    },
+    {
+      "id": "easyviz-sd-13",
+      "role": "summary-line",
+      "label": "SCR7 pyrazine\n(1 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": "HDR"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-14",
+      "role": "summary-box",
+      "label": "SCR7 pyrazine\n(1 µM) · HDR and mutEJ",
+      "source_keys": [
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        95.80534480443222,
+        14.67243923611111,
+        3.592224011097516,
+        4.775054318647244
+      ]
+    },
+    {
+      "id": "easyviz-sd-14",
+      "role": "summary-line",
+      "label": "SCR7 pyrazine\n(1 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-bar-15",
+      "role": "summary-box",
+      "label": "SCR7 pyrazine\n(1 µM) · mutEJ",
+      "source_keys": [
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/options/bar_style",
+        "/options/bar_edge_width_pt",
+        "/options/bar_edge_color",
+        "/options/component_gap"
+      ],
+      "editable": {
+        "linewidth": "/options/bar_edge_width_pt",
+        "edgecolor": "/options/bar_edge_color"
+      },
+      "bbox_mm": [
+        100.62648755616833,
+        14.67243923611111,
+        3.592224011097497,
+        44.95404139188766
+      ]
+    },
+    {
+      "id": "easyviz-sd-15",
+      "role": "summary-line",
+      "label": "SCR7 pyrazine\n(1 µM) · sample SD",
+      "source_keys": [
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": "mutEJ"
+        }
+      ],
+      "spec_paths": [],
+      "editable": []
+    },
+    {
+      "id": "easyviz-observation-1",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            1
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-2",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            4
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-3",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            7
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-4",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            2
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-5",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            5
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-6",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            8
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-7",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            3
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-8",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            6
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-9",
+      "role": "point-group",
+      "label": "DMSO · condition_3_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            9
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-10",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            10
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-11",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            13
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-12",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            16
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-13",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            11
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-14",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            14
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-15",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            17
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-16",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            12
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-17",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            15
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-18",
+      "role": "point-group",
+      "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            18
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-19",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            19
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-20",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            22
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-21",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            25
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-22",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            20
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-23",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            23
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-24",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            26
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-25",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            21
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-26",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            24
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-27",
+      "role": "point-group",
+      "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            27
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-28",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            28
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-29",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            31
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-30",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            34
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-31",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            29
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-32",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            32
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-33",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            35
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-34",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            30
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-35",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            33
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-36",
+      "role": "point-group",
+      "label": "L755507\n(5 µM) · condition_6_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            36
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-37",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            37
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-38",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            40
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-39",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            43
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-40",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            38
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-41",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            41
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-42",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            44
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-43",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+      "source_keys": [
+        {
+          "source_rows": [
+            39
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-44",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+      "source_keys": [
+        {
+          "source_rows": [
+            42
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-observation-45",
+      "role": "point-group",
+      "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+      "source_keys": [
+        {
+          "source_rows": [
+            45
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/options/point_color",
+        "/options/marker_area_pt2"
+      ],
+      "editable": {
+        "color": "/options/point_color"
+      }
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        11.57714496527778,
+        14.67243923611111,
+        96.42285503472223,
+        60.27897135416667
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-a25b05ec84419760",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.342422743055558,
+        14.67243923611111,
+        1.2347222222222218,
+        60.27897135416667
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-583586e852f58ad3",
+      "role": "axis-line",
+      "label": "X axis line · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.577144965277776,
+        13.437717013888888,
+        96.42285503472226,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Treatment",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        53.5754943576389,
+        1.9999999999999996,
+        12.42615625,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+      "role": "axis-tick",
+      "label": "X major tick · 0 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        21.358327044185735,
+        14.055078125,
+        1.234722222222223,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-5d983dcecf828e06",
+      "role": "tick-label",
+      "label": "X tick label · DMSO · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        17.784688155296845,
+        9.554405381944443,
+        8.382,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-d2f9de54ec255438",
+      "role": "axis-tick",
+      "label": "X major tick · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        40.26476920785676,
+        14.055078125,
+        1.2347222222222254,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-92ea1202889afa8b",
+      "role": "tick-label",
+      "label": "X tick label · NU-7441\n(1 µM) · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        35.336463652301205,
+        6.059700520833333,
+        11.091333333333333,
+        6.143294270833334
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-a369cdb522813c9c",
+      "role": "axis-tick",
+      "label": "X major tick · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        59.171211371527804,
+        14.055078125,
+        1.2347222222222158,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b281a5203f58abf3",
+      "role": "tick-label",
+      "label": "X tick label · KU-0060548\n(0.25 µM) · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        52.04157248263891,
+        6.059700520833333,
+        15.494,
+        6.143294270833334
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-8e9950117fc321fa",
+      "role": "axis-tick",
+      "label": "X major tick · 3 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 3.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        78.07765353519882,
+        14.055078125,
+        1.2347222222222158,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-865985a3371cdbf9",
+      "role": "tick-label",
+      "label": "X tick label · L755507\n(5 µM) · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 3.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        73.36101464630993,
+        6.059700520833333,
+        10.668,
+        6.143294270833334
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-5a1f6e5dc2b9c6dd",
+      "role": "axis-tick",
+      "label": "X major tick · 4 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 4.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        96.98409569886984,
+        14.055078125,
+        1.2347222222222352,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-26430bb33cb41647",
+      "role": "tick-label",
+      "label": "X tick label · SCR7 pyrazine\n(1 µM) · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 4.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        88.2457901433143,
+        6.059700520833333,
+        18.711333333333332,
+        6.143294270833334
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Cells (%)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        2.0000000000000004,
+        39.18159157986112,
+        2.6485894097222227,
+        11.260666666666667
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-8e1c294e3379762a",
+      "role": "axis-tick",
+      "label": "Y major tick · 0 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.95978385416667,
+        14.055078125,
+        1.2347222222222207,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-57febe4cb684f4bd",
+      "role": "tick-label",
+      "label": "Y tick label · 0 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.583700520833335,
+        13.05117730034722,
+        1.524,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-63bf692f9cee0146",
+      "role": "axis-tick",
+      "label": "Y major tick · 10 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 10.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.95978385416667,
+        25.014891098484846,
+        1.2347222222222207,
+        1.2347222222222254
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-2b892f5599040a30",
+      "role": "tick-label",
+      "label": "Y tick label · 10 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 10.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        6.059700520833335,
+        24.01099027383207,
+        3.048,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-3a52d5e291e51e71",
+      "role": "axis-tick",
+      "label": "Y major tick · 20 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 20.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.95978385416667,
+        35.97470407196969,
+        1.2347222222222207,
+        1.2347222222222254
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-85679d703310217d",
+      "role": "tick-label",
+      "label": "Y tick label · 20 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 20.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        6.059700520833335,
+        34.970803247316915,
+        3.048,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-2fe6a3a8cb75ab11",
+      "role": "axis-tick",
+      "label": "Y major tick · 30 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 30.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.95978385416667,
+        46.934517045454555,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-d81333f4e0a767cc",
+      "role": "tick-label",
+      "label": "Y tick label · 30 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 30.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        6.059700520833335,
+        45.930616220801774,
+        3.048,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-784e1e9096d34f11",
+      "role": "axis-tick",
+      "label": "Y major tick · 40 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 40.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.95978385416667,
+        57.894330018939385,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-d7a361502c12ed61",
+      "role": "tick-label",
+      "label": "Y tick label · 40 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 40.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        6.059700520833335,
+        56.890429194286604,
+        3.048,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-7173dfe7cd0e6657",
+      "role": "axis-tick",
+      "label": "Y major tick · 50 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 50.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.95978385416667,
+        68.85414299242424,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-354bd4a838c514c5",
+      "role": "tick-label",
+      "label": "Y tick label · 50 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 50.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        6.059700520833335,
+        67.85024216777146,
+        3.048,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-legend-b94a1284f4b3e75a",
+      "role": "legend",
+      "label": "Categorical guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/categorical"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        37.27057248263888,
+        76.95141059027777,
+        45.036,
+        3.0485894097222213
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-5a78ff8721b5bf18",
+      "role": "legend-key",
+      "label": "HDR",
+      "source_keys": [
+        {
+          "category": "HDR"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HDR"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        37.470572482638886,
+        78.00141342815171,
+        1.5000000000000007,
+        1.4999999999999958
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-13b7e70f3b00ffef",
+      "role": "legend-key",
+      "label": "HDR and mutEJ",
+      "source_keys": [
+        {
+          "category": "HDR and mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HDR and mutEJ"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        47.76657248263888,
+        78.00141342815171,
+        1.4999999999999958,
+        1.4999999999999958
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-b9466fcf75666d47",
+      "role": "legend-key",
+      "label": "mutEJ",
+      "source_keys": [
+        {
+          "category": "mutEJ"
+        }
+      ],
+      "spec_paths": [
+        "/colors/mutEJ"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        72.03257248263888,
+        78.00141342815171,
+        1.4999999999999958,
+        1.4999999999999958
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

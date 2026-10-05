@@ -6,11 +6,19 @@ Create can begin with a [data directory and figure recommendations](../skills/ea
 
 ## Create showcases
 
+[Repair outcomes](create/repair-outcomes/README.md) shows three narrow
+60 × 62 mm individual bar panels with repeated geometry and explicit
+outcome-specific ranges, an unscaled parallel vector preview and a separated
+global-scale grouped alternative. All 45 selected source values are retained.
+
 Begin with [five basic single panels](create/basic-panels/README.md): replicate
 bars, a paired-coordinate scatter, box/points, violin/points and a simple
 heatmap. They use existing attributed Source Data at 110 × 88 mm and 8 pt,
 with separate captions, explicit style settings, numerical/export verification,
-legacy-spec comparisons and bounded changed-input probes. Composite examples
+historical legacy-spec comparisons and bounded changed-input probes. The
+[same-version refinement](../evals/create-refinement-v0.4.3/README.md) separates
+raw-point lanes from summaries and compacts the three-column heatmap; the
+violin is an alternative view of the same BMI observations. Composite examples
 below are available when the reading task needs their extra layers.
 
 | Case | Design and data | Final size | Implementation |

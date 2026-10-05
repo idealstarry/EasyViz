@@ -6,13 +6,23 @@ For an undecided data directory, begin with [create exploration](data-exploratio
 
 ## Basic create
 
+[Repair-outcome panels](../assets/cases/repair-outcomes/README.md) show how a
+complete treatment comparison can use three narrow individual bar panels,
+without turning one wide grouped plot into a mandatory output. All 45 real
+values, repeated geometry, short defined source aliases and explicit ranges
+remain inspectable; an unscaled row preview keeps the separate vector exports.
+The grouped alternative demonstrates measured no-touch outline spacing.
+
 [Five basic panels](../assets/cases/basic-panels/README.md) demonstrate replicate
 bars, paired-coordinate scatter, box/points, violin/points and a simple
 heatmap through the public tools at 110 × 88 mm and 8 pt. Each contains compact
 attributed source data, an explicit specification, a separate caption and
 PNG/PDF/SVG exports. Start here for a single reading task. Adapt mappings and
 scientific definitions explicitly; style choices do not establish a summary
-method or experimental unit.
+method or experimental unit. Box/violin cases use neighboring raw-point lanes
+to keep summaries readable; the compact heatmap has explicit cell seams,
+display aliases and source-derived value labels. The violin and box use the
+same BMI observations and answer different distribution-reading tasks.
 
 ## Additional create layers
 

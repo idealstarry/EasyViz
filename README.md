@@ -19,7 +19,7 @@ Palettes, proportions, dimensions and fonts are configurable. Each panel is expo
 
 Related panels can share a [figure profile](skills/easyviz/references/figure-profile.md) so category colors, typography and quantitative scales stay consistent. Dot plots distinguish [measured zero, unmeasured and absent data](skills/easyviz/references/dot-states.md) without changing proportional dot areas. Unknown configuration fields fail with a correction hint.
 
-Create panels use [literature design mechanisms](skills/easyviz/references/literature-style.md) and [explicit mark and stroke settings](skills/easyviz/references/create-style.md): clear observations, visible summary boundaries, aligned comparisons and meaningful color scales. New core-chart drafts use opaque observations and an editable stroke hierarchy; existing specifications and adopted reproduction styles keep their recorded settings. Palettes are selected on the actual data rather than accepted from swatches alone.
+Create panels use [literature design mechanisms](skills/easyviz/references/literature-style.md) and [chart-specific design choices](skills/easyviz/references/create-style.md): separate raw points from summaries when they obscure each other, keep density contours subordinate to the intended comparison, and size a matrix to its rows and columns. New core-chart drafts use opaque observations and an editable stroke hierarchy; existing specifications and adopted reproduction styles keep their recorded settings. Palettes are selected on the actual data rather than accepted from swatches alone.
 
 For a first panel, the Agent can [generate a validated specification](skills/easyviz/references/quick-start.md) from explicit column meanings and use measured layout to fit labels and legends inside the requested canvas. Dense heatmap value labels are checked against their cells. These helpers reduce repeated configuration work; actual image review still determines readability and balance.
 
@@ -42,6 +42,17 @@ definitions rather than treating every table as interchangeable.
 
 ## Examples
 
+**Create · individual repair-outcome panels**
+
+Compare treatments within each of three real Source Data outcomes. Each
+**60 × 62 mm** bar panel has slender open bars, all biological repeats and
+sample SD; its original percentage range is stated separately. The parallel
+preview preserves the individual vector panels and **8 pt** text. The
+[case and caption](examples/create/repair-outcomes/README.md) define treatment
+aliases and the different ranges, with a global-scale grouped alternative.
+
+<p align="center"><a href="examples/create/repair-outcomes/"><img src="examples/create/repair-outcomes/output/panel.png" alt="Three narrow individual repair-outcome bar panels with raw observations and sample SD" width="680"></a></p>
+
 **Create · basic panels**
 
 Start with the chart that answers the question. These five single panels use
@@ -54,21 +65,39 @@ Open a panel to inspect its data, specification, separate caption and runnable c
 | <a href="examples/create/basic-panels/replicate-bars/"><img src="examples/create/basic-panels/replicate-bars/output/panel.png" alt="Outlined mean HDR bars with every biological replicate and sample SD" width="350"></a> | <a href="examples/create/basic-panels/paired-scatter/"><img src="examples/create/basic-panels/paired-scatter/output/panel.png" alt="Before versus after antibody concentrations with complete participant pairs" width="350"></a> |
 | Mean and sample SD, with all three biological replicates per treatment. | Both measurements of each participant on logarithmic axes; no fitted relationship is inferred. |
 
-| Box and observations | Violin and observations |
-| --- | --- |
-| <a href="examples/create/basic-panels/cohort-box/"><img src="examples/create/basic-panels/cohort-box/output/panel.png" alt="Cohort BMI distributions with narrow hollow boxes and all observations" width="350"></a> | <a href="examples/create/basic-panels/cohort-violin/"><img src="examples/create/basic-panels/cohort-violin/output/panel.png" alt="Cohort BMI densities with crisp outlines, raw points and explicit quartile summaries" width="350"></a> |
-| Hollow quartile boxes and visible medians alongside all 129 participant values. | Explicit KDE boundaries and raw-value quartiles; violin width does not encode sample count. |
+**Box and observations** · Hollow quartile boxes and clear median/whisker
+lines sit beside all 129 participant values. A separate raw-point lane keeps
+observations from covering the summaries; their BMI coordinates stay exact.
+
+<p align="center"><a href="examples/create/basic-panels/cohort-box/"><img src="examples/create/basic-panels/cohort-box/output/panel.png" alt="Cohort BMI quartile boxes and all observations in neighboring lanes" width="520"></a></p>
 
 **Simple heatmap** · Within-depot subtype percentages use one linear blue scale
-from 0 to 40%, with subtle cell boundaries. The 48 values are descriptive cell
-composition, not independent participant replicates.
+from 0 to 40%, with a compact data region, clear cell seams and 48 source-derived
+numeric labels. SC, OM and PV identify the three depots; the caption gives their
+full names. These values describe cell composition, not independent participant
+replicates.
 
-<p align="center"><a href="examples/create/basic-panels/depot-heatmap/"><img src="examples/create/basic-panels/depot-heatmap/output/panel.png" alt="Simple sixteen-subtype by three-depot heatmap with an original-percent color scale" width="440"></a></p>
+<p align="center"><a href="examples/create/basic-panels/depot-heatmap/"><img src="examples/create/basic-panels/depot-heatmap/output/panel.png" alt="Compact sixteen-subtype by three-depot heatmap with values and an original-percent color scale" width="520"></a></p>
+
+<details>
+<summary>Alternative distribution view: estimated density and quartiles</summary>
+
+The violin uses the same observations as the box example. Thin neutral density
+contours, colored quartile summaries and neighboring raw points have distinct
+roles. The density adds a different reading task; it is an alternative view,
+rather than a separate dataset. Violin width does not encode sample count.
+
+<p align="center"><a href="examples/create/basic-panels/cohort-violin/"><img src="examples/create/basic-panels/cohort-violin/output/panel.png" alt="Narrow BMI density contours, quartiles and neighboring raw-point lanes" width="520"></a></p>
+
+</details>
 
 [Basic-panel cases and bounded transfer checks](examples/create/basic-panels/README.md)
-record the reading tasks and design choices. Matched legacy-spec comparisons
-evaluate these settings on these datasets; they are not a with/without-Skill
-model experiment or a claim of journal acceptance.
+record the reading tasks and design choices. The [same-version refinement
+review](evals/create-refinement-v0.4.3/README.md) compares the three redesigned
+panels with their actual published v0.4.3 predecessors and examines literature
+design mechanisms. Earlier omitted-option comparisons remain historical
+evidence; neither comparison establishes a with/without-Skill model advantage
+or journal acceptance.
 
 <details>
 <summary>Additional Create examples: aligned layers and supplied effects</summary>

@@ -1,0 +1,109 @@
+{
+  "status": "pass",
+  "scope": "Independent source, actual public-renderer artists, export and cell annotation audit; no inferential tests or normalization added. SVG heatmap intensity layer remains imshow raster, with editable vector cell seams, ticks and text.",
+  "visual_review": "First formal source-render round accepted. Compact cells, short column headers and 48 source-derived numeric labels are readable in PNG and nominal 96dpi PDF; low-valued cells are not discernible from hue alone, so labels serve actual row comparisons. Scientific color limits unchanged. Does not establish journal acceptance.",
+  "records": [
+    {
+      "run": "candidate",
+      "status": "pass",
+      "source_rows": 48,
+      "source_sha256": "30e7007dc27f6aa504385bcc6c5197f7d2cebd49287e8221657aebd701b10f85",
+      "matrix_size": [
+        16,
+        3
+      ],
+      "values_identical_to_source": true,
+      "source_order_preserved": true,
+      "global_linear_color_limits": [
+        0,
+        40
+      ],
+      "display_columns": [
+        "SC",
+        "OM",
+        "PV"
+      ],
+      "numeric_labels": 48,
+      "display_value_format": ".2g",
+      "all_positive_values_display_positive": true,
+      "data_region_mm": [
+        28.6,
+        71.27999999999999
+      ],
+      "cell_dimensions_mm": [
+        9.533333333333333,
+        4.454999999999999
+      ],
+      "cell_width_to_height": 2.1399176954732515,
+      "cell_seam_segments": 17,
+      "seam_width_pt": 0.35,
+      "all_svg_text_pt": 8,
+      "pdf_mm": [
+        110.00000406901042,
+        88.00000110202365
+      ],
+      "embedded_fonts": true,
+      "image_reviewed": [
+        "300dpi PNG",
+        "96dpi PDF preview"
+      ],
+      "sha256": {
+        "panel.png": "eb4b3d55f31c2d584d7528537ac602d69271182ab428736c8cb5f375a9a11b3f",
+        "panel.svg": "2b6f192f2049cdb0ef2c94c24889cceee53236a2248a13e79a1de519be54d7b7",
+        "panel.pdf": "1be147186043345492efc1fd0e586a19e1dd0c977f17902c7c67d80c44ac68c0",
+        "plotting-data.csv": "2f6f90075eae0e5bff23d9c9f83d7ca171286feb1c7ad769c1502a98340dde2b"
+      }
+    },
+    {
+      "run": "transfer",
+      "status": "pass",
+      "source_rows": 48,
+      "source_sha256": "304791df8745197804e64c67260fb5fa63ba9f65afb888f43adf0a7c6de16e0b",
+      "matrix_size": [
+        16,
+        3
+      ],
+      "values_identical_to_source": true,
+      "source_order_preserved": true,
+      "global_linear_color_limits": [
+        0,
+        2700
+      ],
+      "display_columns": [
+        "SC",
+        "OM",
+        "PV"
+      ],
+      "numeric_labels": 48,
+      "display_value_format": ".0f",
+      "all_positive_values_display_positive": true,
+      "data_region_mm": [
+        28.6,
+        71.27999999999999
+      ],
+      "cell_dimensions_mm": [
+        9.533333333333333,
+        4.454999999999999
+      ],
+      "cell_width_to_height": 2.1399176954732515,
+      "cell_seam_segments": 17,
+      "seam_width_pt": 0.35,
+      "all_svg_text_pt": 8,
+      "pdf_mm": [
+        110.00000406901042,
+        88.00000110202365
+      ],
+      "embedded_fonts": true,
+      "image_reviewed": [
+        "300dpi PNG",
+        "96dpi PDF preview"
+      ],
+      "sha256": {
+        "panel.png": "cd33596302859b564fb2e6e93e7bbd8a34c6419e516fa282bb4925ff27fbacfe",
+        "panel.svg": "07d151ef87b8e1cdaea10ba19fa9c49ca3348dc51dc85a3e2b4c60f914850bf0",
+        "panel.pdf": "acb83443a33c91cdce8990d2ee28f3b2fc07309be23ad5b936002efcc2bb84de",
+        "plotting-data.csv": "a4300ee3da7bb9eaeb26133c134ccbf82a942c90325b93de9d25db22a935f776"
+      }
+    }
+  ]
+}

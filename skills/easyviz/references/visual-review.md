@@ -19,7 +19,7 @@ Ask the reviewer to open the images before making findings. Do not prime it with
 | Panel text and caption | Preserve axes/units, ticks, legends, colorbars, and essential data annotations. By default, extra titles, subtitles, standalone overview counts, and explanatory footnotes belong outside the image. Check explanatory prose, definitions, methods, source attribution, and caveats in separate `caption.md`, with figure/panel identifiers only when known. |
 | Palette | Inspect the complete combination of category colors, continuous scales, backgrounds and guide keys. Check identity in small marks and adjacent fills; literature provenance alone does not establish a coherent or distinguishable palette. |
 | Strokes and boundaries | Inspect visible data, summary, reference, axis and grid roles at final size; check adopted fills/outlines and matching legend symbols. Purposeful exceptions can differ by mark role. Check thin interval endpoints, box medians and heatmap seams rather than approving enlarged appearance alone. |
-| Geometry | Inspect point/summary crossings, physical bar/box thickness, within- and between-category gaps, outer margins and plot-to-guide proportions. Keep aspect constraints and every source observation. |
+| Geometry | Inspect point/summary crossings, physical bar/box/violin thickness, within- and between-category gaps, matrix cell aspect and plot-to-guide proportions. Ask whether spare width creates blank categorical bands or stretched cells. Keep aspect constraints and every source observation. |
 | Final-size export | Independent page/pixel measurements, preserved canvas boundaries, actual font records, matching format dimensions. These require measurements, not a visual guess. |
 
 Do not use pixel similarity as a pass condition when data, fonts, or final physical dimensions differ. Different data-driven shapes and documented adaptations are expected. Exact colors, statistical correctness, physical size, and font embedding cannot be certified from a screenshot alone.
@@ -38,7 +38,11 @@ use `panel_readability.measure(fig)` before export for the same limited evidence
 Review palette combinations together in the actual panel, including contrasts between continuous maps, category colors, annotation tracks, and the background. Do not approve a combination solely because it comes from literature, or request the same combination for every dataset. Flag incidental outline mismatches within comparable mark roles or their legends. Fixed-size observations, distribution boundaries, quantitative filled-area dots and binary metadata may need different purposeful treatments. Check hollow-point/whisker crossings, overly thick boxes, washed-out observations and oversized empty bands. Reproduce follows its adopted policy; neither borderless nor hollow marks automatically improve Create.
 
 For create, identify which layer attracts attention first and compare it with
-the adopted reading task. Flag supporting marginal bars or metadata strips
+the adopted reading task. In box/points, check whether the median and quartile
+boundaries remain continuous; side lanes need unmistakable category association.
+In violin, distinguish the contour, inner summary and raw points: an equally
+strong silhouette and summary can compete even without label collisions.
+Flag supporting marginal bars or metadata strips
 that dominate the primary evidence, grids as strong as intervals, zero guides
 as heavy as fitted curves, and pale marks that disappear on white. Assess the
 benefit of a styling revision using before/after images at the same size; a
@@ -58,6 +62,13 @@ For both tracks, flag an added in-image title unless it was explicitly requested
 A candidate can satisfy numerical, export, and collision checks yet be visually inferior to the baseline. For a claimed refinement, inspect both actual exports at the same physical size. Compare the intended reading task: visibility of the important pattern, grouping and order, association of related layers, lookup effort, contrast, and use of space. Return a preference of `baseline`, `candidate`, or `no_clear_preference`, with concrete visible reasons. Retaining the baseline is a valid outcome. Smaller bounds, fewer ticks, more layers, and more passing tests do not establish improvement.
 
 Keep requirement failures separate from preferences. An incorrect mapping or clipped required label needs correction; a preference for spacing or guide position can remain provisional. If the baseline cannot be inspected, record comparative preference as `not_checked` and make no improvement claim. This comparison supports substantive refinement; routine edits do not require competing designs.
+
+Record what the baseline represents: an accepted delivered panel or an
+omitted-option/default demonstration. Beating a weak default does not establish
+the requested literature-level finish. When a paper is the Create design target,
+assess the transferable hierarchy, grouping, cell proportions and guide balance
+separately; report remaining design gaps. Different source data and tasks make
+this a visual design comparison, not a matched quality or model-performance test.
 
 ## Findings
 

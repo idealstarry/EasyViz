@@ -1,0 +1,73 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "display_condition",
+    "unit": "unit",
+    "value": "value",
+    "component": "component"
+  },
+  "layout": {
+    "width_mm": 130,
+    "height_mm": 72,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU-7441\n(1 \u00b5M)",
+      "KU-0060548\n(0.25 \u00b5M)",
+      "L755507\n(5 \u00b5M)",
+      "SCR7 pyrazine\n(1 \u00b5M)"
+    ],
+    "component": [
+      "HDR",
+      "HDR and mutEJ",
+      "mutEJ"
+    ]
+  },
+  "labels": {
+    "y": "Cells (%)",
+    "x": "Treatment"
+  },
+  "options": {
+    "mode": "grouped",
+    "uncertainty": "sample_sd",
+    "bar_width": 0.72,
+    "marker_area_pt2": 3.5,
+    "point_color": "#333333",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.7,
+    "y_limits": [
+      0,
+      55
+    ],
+    "y_ticks": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50
+    ]
+  },
+  "colors": {
+    "HDR": "#55A0FB",
+    "HDR and mutEJ": "#23C7A4",
+    "mutEJ": "#FF7D82"
+  },
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 3
+    }
+  }
+}

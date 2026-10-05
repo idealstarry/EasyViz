@@ -110,11 +110,11 @@ OPTIONAL_FIELDS = {"scatter": {"group", "unit", "size"}, "distribution": {"unit"
 DEFAULT_COLORS = ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#000000", "#F0E442"]
 SHARED_OPTIONS = {"grid", "x_rotation", "x_limits", "y_limits", "x_scale", "y_scale"}
 CHART_OPTIONS = {
-    "heatmap": {"color_limits", "color_center", "cell_aspect", "annotate_values", "value_format"},
+    "heatmap": {"color_limits", "color_center", "cell_aspect", "annotate_values", "value_format", "cell_border_color", "cell_border_width_pt", "column_labels"},
     "composition": {"normalization", "missing_categories", "bar_width", "percent_axis"},
     "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend", "missing_cells", "state_markers", "small_positive_area_pt2"},
     "scatter": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "point_color", "regression", "regression_color", "size_max", "max_area_pt2", "size_legend", "reference_lines"},
-    "distribution": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "kind", "box_style", "box_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_median_visible", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt"},
+    "distribution": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "kind", "box_style", "box_width", "violin_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_median_visible", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt", "point_category_offset"},
 }
 SCHEMA = {
     "chart": list(REQUIRED), "fields_by_chart": REQUIRED,
@@ -141,6 +141,8 @@ SCHEMA = {
     "distribution_box_width": "Optional finite 0 < box_width <= 1, in category-center spacing units; legacy default 0.5. New drafts use 0.18; inspect the actual physical thickness after layout.",
     "distribution_violin_style": {"violin_fill_alpha": "Optional JSON number in [0, 1], controlling only the KDE face; explicit values keep the outline opaque. Omission preserves the legacy artist opacity.", "violin_inner": "none (legacy default)|box; requires kind=violin", "violin_inner_width": "Optional 0 < width <= 0.7 category-center units, requires violin_inner=box; default 0.12", "violin_median_visible": "Optional boolean, requires violin_inner=box; default true", "meaning": "The optional hollow inner box spans raw-observation Q1 to Q3, with an optional median line and no whiskers. These summaries are independent of the KDE's separately normalized width; neither width encodes sample count."},
     "distribution_point_layout": {"point_layout": "jitter (default) or beeswarm", "point_max_offset_mm": 4, "point_gap_pt": .3, "meaning": "Beeswarm moves only the categorical coordinate after final layout; preserves values, rows, marker size and canvas. Unresolved mark overlaps fail QA and remain in exported data."},
+    "distribution_layer_geometry": {"point_category_offset": "Optional finite JSON number in [-0.4, 0.4], default 0; shifts the raw layer in category-spacing units, not measurement units. Positive is right for vertical plots; orientation/reversed axes determine physical direction. Packing spread is measured around the shifted anchor; point envelopes must stay in the original category lane.", "violin_width": "Optional finite 0 < width <= 1, default 0.7; changes categorical silhouette width only. Scott bandwidth, numeric evaluation values and density normalization are unchanged."},
+    "heatmap_cell_geometry": {"cell_border_width_pt": "Optional finite nonnegative JSON number, default 0; draws editable vector internal seams exactly at half-integer cell boundaries.", "cell_border_color": "Optional valid color string, default white.", "column_labels": "Optional complete mapping from actual column keys to distinct nonempty display strings. Source keys, order and numeric values stay unchanged; define abbreviations in the caption."},
     "statistics": {"method": "none; pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)", "groups": ["A", "B"], "unit": "pairing ID column (mandatory for wilcoxon)", "annotate": False},
     "semantics": ["Margins are subplot bounds in 0..1, not padding widths.", "layout.auto_fit=true measures labels and guides within the unchanged canvas; do not combine it with margins or manual guide coordinates. It is a technical fit, not aesthetic certification.", "orders must include every category exactly once.", "dotplot and mapped scatter max_area_pt2 denote true circle geometric fill area, excluding stroke; area=size/size_max*max_area_pt2 and Matplotlib s=4/pi*area. Zero means zero area.", "Legacy point_area_pt2 for fixed scatter/distribution marks is the Matplotlib s parameter (squared diameter), not geometric circle fill area; settings record both quantities.", "Scatter size options require fields.size and cannot be combined with point_area_pt2.", "Scatter options.reference_lines draws supplied numeric positions only; it does not compute classes or significance.", "composition normalization is mandatory; sample_sum uses only supplied categories.", "denominator values repeat for all categories within a sample; incomplete composition remains below 1.", "No test is run unless requested; default distributions are descriptive boxplots and all observations.", "SVG preserves editable text and references the font; PDF embeds the selected font."]
 }
@@ -207,9 +209,18 @@ def validate_spec(spec):
             require(isinstance(options["box_style"], str) and options["box_style"] in ("filled", "outline"),
                     "options.box_style must be filled or outline")
             require(options.get("kind", "box") == "box", "options.box_style requires kind='box'")
-        violin_options = {"violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_median_visible"} & set(options)
+        violin_options = {"violin_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_median_visible"} & set(options)
         if violin_options:
             require(options.get("kind", "box") == "violin", "violin styling options require kind='violin'")
+        if "violin_width" in options:
+            width = options["violin_width"]
+            require(isinstance(width, (int, float)) and not isinstance(width, bool), "options.violin_width must be a finite JSON number in (0, 1]")
+            number(width, "options.violin_width")
+            require(width <= 1, "options.violin_width must be in (0, 1]")
+        if "point_category_offset" in options:
+            offset = options["point_category_offset"]
+            require(isinstance(offset, (int, float)) and not isinstance(offset, bool) and math.isfinite(offset) and -.4 <= offset <= .4,
+                    "options.point_category_offset must be a finite JSON number in [-0.4, 0.4]")
         if "violin_fill_alpha" in options:
             alpha = options["violin_fill_alpha"]
             require(isinstance(alpha, (int, float)) and not isinstance(alpha, bool) and math.isfinite(alpha) and 0 <= alpha <= 1,
@@ -236,6 +247,21 @@ def validate_spec(spec):
                     require(isinstance(options[key], (int, float)) and not isinstance(options[key], bool), f"options.{key} must be a numeric JSON value")
             number(options.get("point_max_offset_mm", 4), "options.point_max_offset_mm")
             number(options.get("point_gap_pt", .3), "options.point_gap_pt", strict=False)
+    if spec.get("chart") == "heatmap":
+        options = spec.get("options", {})
+        if "cell_border_width_pt" in options:
+            width = options["cell_border_width_pt"]
+            require(isinstance(width, (int, float)) and not isinstance(width, bool), "options.cell_border_width_pt must be a finite nonnegative JSON number")
+            number(width, "options.cell_border_width_pt", strict=False)
+        if "cell_border_color" in options:
+            color = options["cell_border_color"]
+            require(isinstance(color, str) and mcolors.is_color_like(color), "options.cell_border_color must be a valid color string")
+        if "column_labels" in options:
+            mapping = options["column_labels"]
+            require(isinstance(mapping, dict) and bool(mapping), "options.column_labels must be a nonempty category-to-label object")
+            require(all(isinstance(key, str) and isinstance(label, str) and bool(label.strip()) for key, label in mapping.items()),
+                    "options.column_labels must map string categories to nonempty display strings")
+            require(len(set(mapping.values())) == len(mapping), "options.column_labels display labels must remain distinct")
 
 
 def resolve_spec(spec, *, profile=None, panel=None, spec_path=None):
@@ -431,6 +457,7 @@ def place_distribution_points(fig, ax, data, spec, pending):
     diameter = marker_diameter + edge_width
     gap = float(options.get("point_gap_pt", .3))
     maximum = float(options.get("point_max_offset_mm", 4)) / 25.4 * 72
+    anchor_offset = float(options.get("point_category_offset", 0))
     fig.canvas.draw()
     px_to_pt = 72 / fig.dpi
     plot = ax.get_window_extent()
@@ -448,27 +475,31 @@ def place_distribution_points(fig, ax, data, spec, pending):
         category_step = float(ax.transData.transform(unit)[category_axis] * px_to_pt - category_center)
         # Keep circle edges inside both the axes and a separate 90%-wide lane
         # for each category. Quantitative values and circle areas stay fixed.
-        room = min(.45 * abs(category_step) - diameter / 2,
-                   category_center - low - diameter / 2,
-                   high - category_center - diameter / 2)
+        lane_low = max(low, category_center - .45 * abs(category_step))
+        lane_high = min(high, category_center + .45 * abs(category_step))
+        anchor = category_center + anchor_offset * category_step
+        room = min(anchor - lane_low - diameter / 2,
+                   lane_high - anchor - diameter / 2)
         allowed = max(0., min(maximum, room))
         stable_group_seed = int.from_bytes(hashlib.sha256(str(group).encode()).digest()[:4], "big")
         offsets, packed = pack_distribution_points(physical[:, numeric_axis], diameter, allowed,
                                                    gap_pt=gap, seed=(spec.get("seed", 0) + stable_group_seed))
-        positions = center + offsets / category_step
+        positions = center + anchor_offset + offsets / category_step
         updated = base.copy()
         updated[:, category_axis] = positions
         artist.set_offsets(updated)
         data.loc[rows, "_easyviz_jitter_position"] = positions
-        data.loc[rows, "_easyviz_point_offset_pt"] = offsets
+        data.loc[rows, "_easyviz_point_offset_pt"] = offsets + anchor_offset * category_step
         rendered = ax.transData.transform(updated) * px_to_pt
         coordinates[rows] = rendered
-        clipped = np.flatnonzero((rendered[:, category_axis] - diameter / 2 < low - 1e-8) |
-                                 (rendered[:, category_axis] + diameter / 2 > high + 1e-8))
+        clipped = np.flatnonzero((rendered[:, category_axis] - diameter / 2 < lane_low - 1e-8) |
+                                 (rendered[:, category_axis] + diameter / 2 > lane_high + 1e-8))
         boundary_rows.extend(int(rows[index]) + 1 for index in clipped)
         reports.append({"group": group, "rows": len(rows), "category_spacing_pt": abs(category_step),
                         "available_max_offset_mm": allowed / 72 * 25.4,
                         "actual_max_offset_mm": float(np.abs(offsets).max()) / 72 * 25.4,
+                        "category_anchor_offset": anchor_offset,
+                        "actual_total_offset_mm": float(np.abs(offsets + anchor_offset * category_step).max()) / 72 * 25.4,
                         "fallback_source_rows": [int(rows[index - 1]) + 1 for index in packed["fallback_rows"]],
                         "fallback_count": packed["fallback_count"], "packing_seed": packed["seed"]})
     report = distribution_collision_report(coordinates, diameter, gap)
@@ -478,6 +509,8 @@ def place_distribution_points(fig, ax, data, spec, pending):
                   numeric_values_changed=False, input_rows=len(data), placed_rows=len(data),
                   diameter_pt=diameter, gap_pt=gap,
                   requested_max_offset_mm=float(options.get("point_max_offset_mm", 4)),
+                  point_category_offset=anchor_offset,
+                  packing_origin="Category center plus point_category_offset; maximum spread is measured around that anchor.",
                   categorical_boundary_rows=boundary_rows, groups=reports,
                   algorithm="Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
                   note="Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit.")
@@ -787,8 +820,23 @@ def draw(data, spec, layout, typography, result):
         figure_elements.register(fig, artist, "matrix", "Heatmap values", key="heatmap",
                                  source_keys=[{"row": row, "column": column} for row in rows for column in cols],
                                  spec_paths=["/colormap", "/options/color_limits"], editable=["color"])
-        ax.set_xticks(range(len(cols)), cols, rotation=options.get("x_rotation", 90))
+        column_labels = options.get("column_labels")
+        if column_labels is not None:
+            require(set(column_labels) == set(cols), "options.column_labels must include every actual column category exactly once")
+            fig._easyviz_column_label_keys = cols
+        display_columns = [column_labels[column] for column in cols] if column_labels is not None else cols
+        ax.set_xticks(range(len(cols)), display_columns, rotation=options.get("x_rotation", 90))
         ax.set_yticks(range(len(rows)), rows)
+        border_width = options.get("cell_border_width_pt", 0)
+        if border_width > 0:
+            from matplotlib.collections import LineCollection
+            segments = [((j - .5, -.5), (j - .5, len(rows) - .5)) for j in range(1, len(cols))]
+            segments += [((-.5, i - .5), (len(cols) - .5, i - .5)) for i in range(1, len(rows))]
+            seams = LineCollection(segments, colors=options.get("cell_border_color", "white"), linewidths=border_width, zorder=1)
+            ax.add_collection(seams, autolim=False)
+            figure_elements.register(fig, seams, "grid-line", "Heatmap cell boundaries", key="heatmap-cell-borders",
+                                     spec_paths=["/options/cell_border_color", "/options/cell_border_width_pt"],
+                                     editable={"color": "/options/cell_border_color", "linewidth": "/options/cell_border_width_pt"})
         legend_manager.add_colorbar(artist, labels.get("color", f["value"]))
         if options.get("annotate_values", False):
             fig._easyviz_cell_annotations = []
@@ -953,7 +1001,7 @@ def draw(data, spec, layout, typography, result):
             result["box_definition"] = "Median; 25th and 75th percentiles; whiskers to observations within 1.5 IQR. Every observation is drawn as a point."
         else:
             require(all(len(s) >= 2 and np.ptp(s) > 0 for s in samples), "Violin KDE requires at least 2 nonconstant observations per group")
-            violins = ax.violinplot(samples, positions=np.arange(len(groups)), widths=.7, showextrema=False, showmedians=False, orientation=orientation, bw_method="scott")
+            violins = ax.violinplot(samples, positions=np.arange(len(groups)), widths=options.get("violin_width", .7), showextrema=False, showmedians=False, orientation=orientation, bw_method="scott")
             bodies = violins["bodies"]
             result["violin_definition"] = "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin width independently normalized. Every observation is drawn as a point."
         for body, group in zip(bodies, groups):
@@ -979,6 +1027,8 @@ def draw(data, spec, layout, typography, result):
             if kind == "violin" and "violin_fill_alpha" in options:
                 paths.append("/options/violin_fill_alpha")
                 edits["fill_alpha"] = "/options/violin_fill_alpha"
+            if kind == "violin" and "violin_width" in options:
+                paths.append("/options/violin_width")
             figure_elements.register(fig, body, "distribution", group, key=[kind, group],
                                      source_keys=[{"group": group}],
                                      spec_paths=paths, editable=edits)
@@ -1017,13 +1067,15 @@ def draw(data, spec, layout, typography, result):
         for i, (sample, group) in enumerate(zip(samples, groups)):
             positions = (np.full(len(sample), i, dtype=float) if options.get("point_layout") == "beeswarm"
                          else i + rng.uniform(-.13, .13, len(sample)))
+            positions += options.get("point_category_offset", 0)
             rows = data.index[data[f["group"]].astype(str) == group].to_numpy()
             data.loc[rows, "_easyviz_jitter_position"] = positions
             points = ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, marker="o", s=options.get("point_area_pt2", 9), **observation_style(options, resolved_colors[group]), zorder=3)
             distribution_points.append((i, group, sample, rows, points))
             figure_elements.register(fig, points, "point-group", group, key=["distribution", group],
                                      source_keys=[{"group": group}],
-                                     spec_paths=[figure_elements.pointer("colors", group), "/options/alpha"],
+                                     spec_paths=[figure_elements.pointer("colors", group), "/options/alpha"]
+                                                + (["/options/point_category_offset"] if "point_category_offset" in options else []),
                                      editable={"color": figure_elements.pointer("colors", group), "alpha": "/options/alpha"})
         if orientation == "vertical":
             ax.set_xticks(range(len(groups)), groups, rotation=options.get("x_rotation", 0))
@@ -1100,8 +1152,35 @@ def draw(data, spec, layout, typography, result):
         else:
             fig._easyviz_point_layout = {"policy": "jitter", "status": "unchecked",
                                         "seed": spec.get("seed", 0), "categorical_half_width": .13,
+                                        "point_category_offset": options.get("point_category_offset", 0),
                                         "numeric_values_changed": False,
                                         "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."}
+            if options.get("point_category_offset", 0):
+                # An explicitly shifted raw layer must stay in its original
+                # category, even when legacy jitter has no collision audit.
+                fig.canvas.draw()
+                cat_axis = 1 if options.get("orientation") == "horizontal" else 0
+                px_to_pt = 72 / fig.dpi
+                diameter = math.sqrt(float(options.get("point_area_pt2", 9)))
+                if options.get("point_style") == "hollow":
+                    diameter += float(options.get("point_edge_width_pt", .45))
+                plot = ax.get_window_extent()
+                bounds = sorted(([plot.x0, plot.x1] if cat_axis == 0 else [plot.y0, plot.y1]))
+                boundary_rows = []
+                for center, group, sample, rows, artist in distribution_points:
+                    base = [sample[0], center] if cat_axis else [center, sample[0]]
+                    category_center = ax.transData.transform(base)[cat_axis]
+                    unit = base.copy()
+                    unit[cat_axis] += 1
+                    step = abs(ax.transData.transform(unit)[cat_axis] - category_center)
+                    lower = max(bounds[0], category_center - .45 * step) * px_to_pt
+                    upper = min(bounds[1], category_center + .45 * step) * px_to_pt
+                    actual = ax.transData.transform(artist.get_offsets())[:, cat_axis] * px_to_pt
+                    outside = np.flatnonzero((actual - diameter / 2 < lower - 1e-8) | (actual + diameter / 2 > upper + 1e-8))
+                    boundary_rows.extend(int(rows[index]) + 1 for index in outside)
+                fig._easyviz_point_layout["categorical_boundary_rows"] = boundary_rows
+                if boundary_rows:
+                    fig._easyviz_point_layout["status"] = "needs_revision"
     fig._easyviz_legend_layout = legend_manager
     return fig, resolved_colors
 

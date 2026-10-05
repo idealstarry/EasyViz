@@ -1,0 +1,828 @@
+{
+  "case": "repair-outcomes",
+  "version": "0.4.3",
+  "review_round": 2,
+  "pass_count": 2,
+  "formal_review_pass_count": 2,
+  "review_limit": 3,
+  "status": "ready_with_notes",
+  "initial_judgment": "ready_with_notes",
+  "initial_judgment_withdrawn": true,
+  "scope": "Separate repair-outcome loop; existing three-case independent-review.* unchanged.",
+  "scope_evolution": "Primary standalone narrow outcome panels and unscaled previews; corrected global-scale grouped alternative retained.",
+  "independence": "All five standalone PNGs, two composition PNG/PDF previews, two corrected grouped PNG/PDF previews, supplied rejected-layout PNG and scWAT page actually opened. Visual judgment sent before numerical evidence. No implementation read.",
+  "images_inspected": [
+    {
+      "run": "candidate",
+      "role": "grouped_alternative",
+      "file": "examples/create/repair-outcomes/grouped-output/panel.png",
+      "sha256": "3b6d0922412bf3cdbcbc523802b336534aae85ef389aeedde0c5285c222a2658",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "candidate",
+      "role": "grouped_alternative",
+      "file": "examples/create/repair-outcomes/grouped-output/pdf-preview-96dpi.png",
+      "sha256": "a0c3dcfcde077034b6d144326c0eb991ae753e2e26ec3319fe47cf897c2f8285",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "candidate",
+      "role": "composition",
+      "file": "examples/create/repair-outcomes/output/panel.png",
+      "sha256": "92a8b4e318477be38d5ce8c1242b276dfe360fa32523af124fb2ba7b966a50cb",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "candidate",
+      "role": "composition",
+      "file": "examples/create/repair-outcomes/output/pdf-preview-96dpi.png",
+      "sha256": "8d19bcb7129fa79ef00b0df6c7a12754cfcf79298d2d5d4114038fd3df78c489",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "candidate",
+      "role": "hdr",
+      "file": "examples/create/repair-outcomes/panels/hdr/output/panel.png",
+      "sha256": "7d3448a98c78a5ca904b09112cb80baafd93fed28d98c980bbf7760d6b064067",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "candidate",
+      "role": "both",
+      "file": "examples/create/repair-outcomes/panels/both/output/panel.png",
+      "sha256": "fbaa375427144d13ad9d9d7e031f5ae1d404da5063c0818f91283c8c06cd1b7f",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "candidate",
+      "role": "mutej",
+      "file": "examples/create/repair-outcomes/panels/mutej/output/panel.png",
+      "sha256": "a1eca5dd74772742c635fa6a2c26bcdec75a56d9281a46f41baac4d4f3ea02c8",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "transfer",
+      "role": "grouped_alternative",
+      "file": "examples/create/repair-outcomes/transfer/grouped-output/panel.png",
+      "sha256": "0b4eee0ec37b27f7cabb5ade8a57abcdb46f49dc6085a9d6cf04bfa983567538",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "transfer",
+      "role": "grouped_alternative",
+      "file": "examples/create/repair-outcomes/transfer/grouped-output/pdf-preview-96dpi.png",
+      "sha256": "99a870df225ca497b130b67482f350218444b4065cc4df0e7e2dfed7349b8715",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "transfer",
+      "role": "composition",
+      "file": "examples/create/repair-outcomes/transfer/output/panel.png",
+      "sha256": "26231011ab019641fc9e9a6374a435ecbc84aa7ca712b48db2ee5057af05c8a1",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "transfer",
+      "role": "composition",
+      "file": "examples/create/repair-outcomes/transfer/output/pdf-preview-96dpi.png",
+      "sha256": "c68713a0d157411959387e49848c006ff323b6c50aaa9ec3aeb654615be7fab4",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "transfer",
+      "role": "hdr",
+      "file": "examples/create/repair-outcomes/transfer/panels/hdr/output/panel.png",
+      "sha256": "9668bc62a2f90004aaa0bef23911d4586d934693c6f55458f508e2e8184b457b",
+      "actually_opened": true,
+      "review_round": 2
+    },
+    {
+      "run": "transfer",
+      "role": "mutej",
+      "file": "examples/create/repair-outcomes/transfer/panels/mutej/output/panel.png",
+      "sha256": "3426e89213221b5bec9264b7989644b8fbbfc5d5897df96d49f59ac9b44855e6",
+      "actually_opened": true,
+      "review_round": 2
+    }
+  ],
+  "supplied_rejected_layout_baseline": {
+    "file": "evals/create-refinement-v0.4.3/before/repair-outcomes/panel.png",
+    "sha256": "23481606dd84f7af7199c763ce537a689a65df5d14407d3e8cfc75813c59014e",
+    "actually_opened_round": 2,
+    "byte_identical_to_round1_candidate": false,
+    "round1_candidate_sha256": "d8778cde94c914b6381e0ecd4eab206c28a3c632accf3a5cff09d8722cb1d839",
+    "identity_limit": "Actual user-supplied rejected screenshot, not a byte-identical renderer freeze of round1. Manifest documents origin and reconstructed old settings. Attachment encoding may differ; no exact historical pixel or byte comparison is claimed.",
+    "origin": "User-supplied rejected candidate PNG in the current conversation; touching outlines and poor proportions were identified by the user.",
+    "manifest": "evals/create-refinement-v0.4.3/before/repair-outcomes/manifest.json",
+    "manifest_sha256": "9c67468f6542bd5df4a6a114c84a7ce955897e42dbfd3ed0a9de2593e9571f49",
+    "not_a_published_release_candidate": true
+  },
+  "reference": {
+    "path": "/tmp/easyviz-create-review-scwat.png",
+    "paper": "scWAT",
+    "page": 4,
+    "figure": "2",
+    "actually_opened": true,
+    "scope": "Observable bright outline/raw-point/uncertainty layer roles only. No claim of universal no-touch literature rule or direct performance comparison across different scientific data."
+  },
+  "comparisons": {
+    "corrected_grouped_vs_supplied_rejected_layout": {
+      "preference": "candidate",
+      "evidence": "Retained 0–55% global task; corrected complete outlines, component gaps and compact 110 × 82 mm ratio are preferable to the touching 130 × 72 mm layout.",
+      "identity_limit": "Actual user-supplied rejected screenshot with manifest-confirmed origin; not a byte-identical round1 renderer freeze. Both rejected touching layouts were actually inspected; no exact pixel/byte comparison claimed."
+    },
+    "primary_split_vs_old_grouped": {
+      "preference": "not_checked",
+      "reason": "Different explicit per-outcome scales support within-outcome treatment comparisons. Not a matched purely cosmetic same-scale comparison.",
+      "assessment": "Meets new adopted narrow-panel task without clipping/touching edges or hidden scale changes."
+    }
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "location": "Near-identical raw values/SD, especially L755 HDR",
+      "evidence": "At nominal 96 dpi the replicate marks lie very close together and tiny SD intervals approach dot height. The reduced image alone does not let every triple be separately counted.",
+      "requirement": "Keep every source observation and original mean/SD; do not overclaim separate-dot visibility.",
+      "action": "Keep values, intervals and completeness checks. Do not shrink marks further or cosmetically enlarge small SDs."
+    },
+    {
+      "severity": "note",
+      "location": "Primary per-outcome scales",
+      "evidence": "HDR uses 0–15%, HDR and mutEJ 0–6%, mutEJ 0–55%; axes visibly differ and the common caption explains that equal physical heights do not represent equal percentages.",
+      "requirement": "The changed within-outcome reading task must remain explicit.",
+      "action": "Keep the declared separate scales; use the retained global-scale grouped alternative for absolute between-outcome comparisons. Do not call this a matched purely cosmetic same-scale improvement."
+    },
+    {
+      "severity": "note",
+      "location": "Short treatment aliases",
+      "evidence": "DMSO/NU/KU/L755/SCR7 fit and remain readable in 60 mm panels and nominal preview; captions define full names/concentrations and common transfer caption explicitly omits SCR7.",
+      "requirement": "Aliases must preserve source treatment identity.",
+      "action": "Deliver each individual caption with its panel and retain full source names/IDs in plotting tables."
+    },
+    {
+      "severity": "note",
+      "location": "Literature mechanism and claim scope",
+      "evidence": "Narrow independent panels, aligned data regions and slender complete outlines reflect an observable literature mechanism. User-preferred 60 × 62 mm geometry alone does not establish publication-grade quality.",
+      "requirement": "Keep case success distinct from universal CNS quality, model benefit or general panel-size rules.",
+      "action": "State mechanism/task applicability rather than a publication/model causal guarantee."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "severity": "major",
+      "location": "Within-treatment adjacent open bars; candidate and transfer",
+      "evidence": "The plotted bars directly abut: each outcome's right edge coincides with the next outcome's left edge. Colored outlines merge/cover one another, particularly around the low blue/green bars in the three-outcome candidate. The reviewer initially overlooked this visible defect and withdrew the initial ready_with_notes judgment after the user explicitly flagged it.",
+      "requirement": "The user adopted distinct, non-touching component outlines and better proportions for this grouped-bar case. This is an adopted case requirement, not a claim that every literature bar plot universally needs gaps.",
+      "action": "Introduce a real physical gap between component strokes, preserve a larger inter-treatment gap, and inspect actual stroke-to-stroke separation at final size. Adjust bar/panel proportions as a whole rather than relying on thin shared borders.",
+      "resolved_in_round": 2,
+      "resolution": "Standalone primary bars have distinct separated outlines. Corrected grouped alternative visibly retains gaps; saved SVG confirms approximately 0.982 mm candidate and 1.282 mm transfer stroke clearance."
+    },
+    {
+      "severity": "minor",
+      "location": "Both separate captions; excluded control names",
+      "evidence": "The sentence “No donor/Cas9 and NTC controls are outside this declared treatment subset” can be read as saying that no controls are excluded. Provenance declares these named controls are excluded.",
+      "requirement": "Caption must unambiguously describe source selection.",
+      "action": "Quote control names and state explicitly: “The ‘No donor/Cas9’ and ‘NTC’ controls are excluded from this declared treatment subset.”",
+      "resolved_in_round": 2,
+      "resolution": "Reread common/grouped captions quote the named controls and explicitly state they are excluded."
+    }
+  ],
+  "checks": [
+    {
+      "check": "Source values, arithmetic means, sample SD and raw observations",
+      "status": "passed",
+      "evidence": "Terminal validation.json reports 45 grouped candidate rows and 15 in each of three primary panels; transfer 24 grouped rows and 12 in each of two panels. Source-to-artist records pass with no normalization, derived ratios, inferred independence or issues.",
+      "verification": "Supplied evidence read after round-2 visual judgment; statistics not independently recomputed by reviewer."
+    },
+    {
+      "check": "Unscaled preview composition",
+      "status": "passed",
+      "evidence": "Supplied composition records preserve sizes, PDF text positions, font sizes, embedded fonts and unique SVG IDs, with no redraw. Actual composition PNG/PDF previews inspected.",
+      "verification": "Composition integrity is supplied evidence; page dimensions, embedded fonts and current hashes independently checked."
+    },
+    {
+      "check": "Nine PDF/export sets",
+      "status": "passed",
+      "evidence": "Independently ran pdfinfo/pdffonts: five standalone PDFs 170.079 × 175.748 pt; two grouped PDFs 311.811 × 232.441 pt; compositions 510.236 × 175.748 pt and 340.157 × 175.748 pt. These correspond to 60 × 62, 110 × 82, 180 × 62 and 120 × 62 mm. All fonts embedded ArialMT; SVG Arial/8px; PNG DPI 299.9994; all 27 PNG/PDF/SVG hashes match terminal validation.",
+      "verification": "Actual saved files independently checked; PDF 8 pt text assertion supplied, SVG typography inspected. No calibrated print proof."
+    },
+    {
+      "check": "Actual independent-panel alignment",
+      "status": "passed",
+      "evidence": "Parsed saved SVG clip rectangles are identical in all five primary/transfer panels: x34.015748, y9.666142, width130.110236, height144.992126 pt. Visible composite baselines/top/condition rows align.",
+      "verification": "Independently inspected saved vector artifacts without reading renderer implementation."
+    },
+    {
+      "check": "Actual grouped stroke separation",
+      "status": "passed",
+      "evidence": "Saved SVG rectangles/stroke widths yield within-treatment edge clearance 0.9819742306–0.9819745833 mm main and approximately 1.2817104583 mm transfer after subtracting both half-strokes. Nominal PDF previews visibly retain these gaps.",
+      "verification": "Independently parsed saved SVG geometry; positivity alone does not prove aesthetic spacing."
+    },
+    {
+      "check": "Matched split-panel superiority, publication acceptance or model causal effect",
+      "status": "not_checked",
+      "evidence": "Primary changes scales/reading task; no model or publication experiment supplied.",
+      "verification": "Explicit claim boundary, not an unexplained readiness pass."
+    }
+  ],
+  "exports": [
+    {
+      "run": "candidate",
+      "role": "grouped_alternative",
+      "path": "examples/create/repair-outcomes/grouped-output",
+      "dimensions_mm": [
+        110,
+        82
+      ],
+      "sha256": {
+        "png": "3b6d0922412bf3cdbcbc523802b336534aae85ef389aeedde0c5285c222a2658",
+        "pdf": "bcf71ce274c0af191b3a831a3c4bf2150f39f4d600d79e6e20926149505cc9da",
+        "svg": "e895d888822d3e1abf9378e6b6bd4f3911cbd09fbf2b1446b7105547d8c59ef8"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "candidate",
+      "role": "composition",
+      "path": "examples/create/repair-outcomes/output",
+      "dimensions_mm": [
+        180,
+        62
+      ],
+      "sha256": {
+        "png": "92a8b4e318477be38d5ce8c1242b276dfe360fa32523af124fb2ba7b966a50cb",
+        "pdf": "c923d7d03447ed45c24914bf0df8d3d48d3fbceb11e04440b1c4508fb25e543f",
+        "svg": "256fc73864fa25fcf6b2081af4e895e494ff4dbfbafa23f8f8099a9909e1ee67"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "candidate",
+      "role": "hdr",
+      "path": "examples/create/repair-outcomes/panels/hdr/output",
+      "dimensions_mm": [
+        60,
+        62
+      ],
+      "sha256": {
+        "png": "7d3448a98c78a5ca904b09112cb80baafd93fed28d98c980bbf7760d6b064067",
+        "pdf": "a81960340748a06c4be407ede2477c124c8a1ee7fcd9e346010277a3d793e974",
+        "svg": "139097e7436cee643602165958f54fb9f53c2f09adfa2a919ef38428294973a7"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "candidate",
+      "role": "both",
+      "path": "examples/create/repair-outcomes/panels/both/output",
+      "dimensions_mm": [
+        60,
+        62
+      ],
+      "sha256": {
+        "png": "fbaa375427144d13ad9d9d7e031f5ae1d404da5063c0818f91283c8c06cd1b7f",
+        "pdf": "c59de7032a2c7414415bfd9b496b4a047f8fa468af0ca0ff83371e99f5668473",
+        "svg": "26aae6f73d241700c4701b373562efc465152ff6d1e2d66f0f8ab5d79aab1341"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "candidate",
+      "role": "mutej",
+      "path": "examples/create/repair-outcomes/panels/mutej/output",
+      "dimensions_mm": [
+        60,
+        62
+      ],
+      "sha256": {
+        "png": "a1eca5dd74772742c635fa6a2c26bcdec75a56d9281a46f41baac4d4f3ea02c8",
+        "pdf": "6c7aad01457419c20e2e2b88db4986eab46d931559fe3c782efd3ad395c89c0f",
+        "svg": "2e7b4018189cb110252b100a68b5bc4f711eb177e258978e2b58a7496b888aff"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "transfer",
+      "role": "grouped_alternative",
+      "path": "examples/create/repair-outcomes/transfer/grouped-output",
+      "dimensions_mm": [
+        110,
+        82
+      ],
+      "sha256": {
+        "png": "0b4eee0ec37b27f7cabb5ade8a57abcdb46f49dc6085a9d6cf04bfa983567538",
+        "pdf": "38349b1ee71347bbbd2f12e6853c8abf2701cc7ae347b9b39666eef405f40801",
+        "svg": "01089601a277e35727652d82a18ec59373f31a10fe4640f14a880ff7fe79dc6e"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "transfer",
+      "role": "composition",
+      "path": "examples/create/repair-outcomes/transfer/output",
+      "dimensions_mm": [
+        120,
+        62
+      ],
+      "sha256": {
+        "png": "26231011ab019641fc9e9a6374a435ecbc84aa7ca712b48db2ee5057af05c8a1",
+        "pdf": "dcf17de886b2c69997657c26f651c60aee65980b9b465394bd731e8c04a45e7b",
+        "svg": "2438737143381fd2571359d149f39d1beedd860ffbaf31edfebe40886022c905"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "transfer",
+      "role": "hdr",
+      "path": "examples/create/repair-outcomes/transfer/panels/hdr/output",
+      "dimensions_mm": [
+        60,
+        62
+      ],
+      "sha256": {
+        "png": "9668bc62a2f90004aaa0bef23911d4586d934693c6f55458f508e2e8184b457b",
+        "pdf": "95776c411a9dee2b302a4fb242c9c89505755c14cfbfdddb15af4dc86782174d",
+        "svg": "a8f0737e3dc319b5978a9dfee0070b558887b8d10009decfa0829b75a8bdaf65"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    },
+    {
+      "run": "transfer",
+      "role": "mutej",
+      "path": "examples/create/repair-outcomes/transfer/panels/mutej/output",
+      "dimensions_mm": [
+        60,
+        62
+      ],
+      "sha256": {
+        "png": "3426e89213221b5bec9264b7989644b8fbbfc5d5897df96d49f59ac9b44855e6",
+        "pdf": "97038fb146dce0fb6ae738e97c18bd16df3bcd2f83e887162d3eb764c3d5b3e5",
+        "svg": "d9c4c351499ee8b06801f8dcb0286f00784c08bccfe5d5fcb3f5f94f8b5213e9"
+      },
+      "dimensions_fonts_hashes_independently_checked": true
+    }
+  ],
+  "review_history": [
+    {
+      "case": "repair-outcomes",
+      "version": "0.4.3",
+      "review_round": 1,
+      "pass_count": 1,
+      "formal_review_pass_count": 1,
+      "review_limit": 3,
+      "status": "needs_revision",
+      "initial_judgment": "ready_with_notes",
+      "initial_judgment_withdrawn": true,
+      "withdrawal_reason": "Visible touching component outlines were overlooked. User then explicitly adopted non-touching bar separation and better proportions; the unchanged candidate does not meet this requirement.",
+      "comparison": {
+        "preference": "not_checked",
+        "reason": "This is a new 3-outcome reading task, not a matched aesthetic comparison to the 1-outcome basic HDR example.",
+        "required_for_case_readiness": false
+      },
+      "independence": "Actual images/specs/captions/provenance inspected before numerical validation; no implementation inspected. User feedback corrected an overlooked visible layout defect.",
+      "images_inspected": [
+        {
+          "run": "candidate",
+          "file": "examples/create/repair-outcomes/output/panel.png",
+          "sha256": "d8778cde94c914b6381e0ecd4eab206c28a3c632accf3a5cff09d8722cb1d839",
+          "actually_opened": true,
+          "review_round": 1
+        },
+        {
+          "run": "candidate",
+          "file": "examples/create/repair-outcomes/output/pdf-preview-96dpi.png",
+          "sha256": "7e2c873f701229b888d213426b1dde7d64cca2e449c6f28f1f06d152b9e550a2",
+          "actually_opened": true,
+          "review_round": 1
+        },
+        {
+          "run": "transfer",
+          "file": "examples/create/repair-outcomes/transfer/output/panel.png",
+          "sha256": "8c36ec674d394f68a439893940d6858368239cc38b590c9aac8dcb285deb2d45",
+          "actually_opened": true,
+          "review_round": 1
+        },
+        {
+          "run": "transfer",
+          "file": "examples/create/repair-outcomes/transfer/output/pdf-preview-96dpi.png",
+          "sha256": "ad299cbe1cccdd6a32176030a005db6710de5e97b581aa89b551dc15bed5ff15",
+          "actually_opened": true,
+          "review_round": 1
+        }
+      ],
+      "reference": {
+        "path": "/tmp/easyviz-create-review-scwat.png",
+        "paper": "scWAT",
+        "page": 4,
+        "figure": "2",
+        "actually_opened": true,
+        "scope": "Observable bright outline/raw-point/uncertainty layer roles only. No claim of universal no-touch literature rule or direct performance comparison across different scientific data."
+      },
+      "visible_strengths": [
+        "Grouped treatment/category order and bright outline legend mapping are decodable.",
+        "Dark raw points and sample-SD intervals are distinct from outcome colors; no false significance layer was added.",
+        "Wrapped treatment labels remain readable without collisions in PNG and nominal PDF."
+      ],
+      "findings": [
+        {
+          "severity": "major",
+          "location": "Within-treatment adjacent open bars; candidate and transfer",
+          "evidence": "The plotted bars directly abut: each outcome's right edge coincides with the next outcome's left edge. Colored outlines merge/cover one another, particularly around the low blue/green bars in the three-outcome candidate. The reviewer initially overlooked this visible defect and withdrew the initial ready_with_notes judgment after the user explicitly flagged it.",
+          "requirement": "The user adopted distinct, non-touching component outlines and better proportions for this grouped-bar case. This is an adopted case requirement, not a claim that every literature bar plot universally needs gaps.",
+          "action": "Introduce a real physical gap between component strokes, preserve a larger inter-treatment gap, and inspect actual stroke-to-stroke separation at final size. Adjust bar/panel proportions as a whole rather than relying on thin shared borders."
+        },
+        {
+          "severity": "minor",
+          "location": "Both separate captions; excluded control names",
+          "evidence": "The sentence “No donor/Cas9 and NTC controls are outside this declared treatment subset” can be read as saying that no controls are excluded. Provenance declares these named controls are excluded.",
+          "requirement": "Caption must unambiguously describe source selection.",
+          "action": "Quote control names and state explicitly: “The ‘No donor/Cas9’ and ‘NTC’ controls are excluded from this declared treatment subset.”"
+        },
+        {
+          "severity": "note",
+          "location": "Very short outcome bars and SD intervals in both plots",
+          "evidence": "On the global 0–55% axis, several HDR/combined values lie near 2–4%. Their small SD intervals meet the mean-top region and are much shorter than the high mutEJ bars. Points are visible at 96 dpi but fine.",
+          "requirement": "Retain original units, all replicates and one scientifically meaningful global scale.",
+          "action": "Keep the scale and source statistics; do not cosmetically inflate small SDs or add an unrequested broken axis to create apparent detail."
+        },
+        {
+          "severity": "note",
+          "location": "Task scope and aesthetic claim",
+          "evidence": "Candidate displays 5 treatments × 3 outcomes, whereas the existing single-HDR example displays 5 × 1. More marks answer a different reading question. No same-task accepted baseline was supplied.",
+          "requirement": "Do not use additional values/layers as proof of aesthetic improvement, model benefit or publication acceptance.",
+          "action": "Treat this as a new grouped-outcome basic case. Keep its literal source/task limits and avoid a matched before/after superiority claim."
+        }
+      ],
+      "checks": [
+        {
+          "check": "Source values, means, sample SD and raw observations",
+          "status": "passed",
+          "evidence": "examples/create/repair-outcomes/validation.json reports 45 candidate and 24 transfer source rows/raw points, original value strings retained, per-outcome mean/sample SD, no composition normalization, no ratios derived or independence inferred.",
+          "verification": "Supplied record read after initial visual judgment; not independently recalculated by reviewer. Does not override the major touching-bar visual defect."
+        },
+        {
+          "check": "Actual PDF size and embedded font",
+          "status": "passed",
+          "evidence": "Reviewer independently ran pdfinfo/pdffonts on both PDFs: one page each, 368.504 × 204.094 pt (130 × 72 mm within printed rounding), embedded Unicode ArialMT CID TrueType.",
+          "verification": "Independently inspected actual saved PDFs."
+        },
+        {
+          "check": "PNG/SVG metadata and export identity",
+          "status": "passed",
+          "evidence": "Reviewer inspected PNG metadata: 1535 × 850 pixels at 299.9994 dpi; nominal PDF previews 492 × 273 pixels. SVGs retain Arial/8px styles. All six PNG/PDF/SVG hashes match supplied validation.",
+          "verification": "Metadata and hashes independently checked; 8 pt PDF text assertion remains supplied evidence."
+        },
+        {
+          "check": "Same-task aesthetic baseline, model causal benefit, physical print proof and publication acceptance",
+          "status": "not_checked",
+          "evidence": "No same-task comparator or such broader evidence supplied.",
+          "verification": "Outside the narrow case review; absence does not justify an improvement or publication-level claim."
+        }
+      ],
+      "unresolved": [
+        "Touching/overlapping component outlines and overall bar/panel proportions require revision.",
+        "Control exclusion sentence needs disambiguation.",
+        "Small-value uncertainty remains naturally short on a global scale."
+      ],
+      "verdict": "Do not finalize this unchanged figure as ready. Reinspect actual corrected candidate/transfer PNG and PDF at formal round 2 after physical bar separation and proportion revision."
+    },
+    {
+      "review_round": 2,
+      "status": "ready_with_notes",
+      "scope_evolution": "Primary standalone narrow outcome panels and unscaled previews; corrected global-scale grouped alternative retained.",
+      "images_inspected": [
+        {
+          "run": "candidate",
+          "role": "grouped_alternative",
+          "file": "examples/create/repair-outcomes/grouped-output/panel.png",
+          "sha256": "3b6d0922412bf3cdbcbc523802b336534aae85ef389aeedde0c5285c222a2658",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "candidate",
+          "role": "grouped_alternative",
+          "file": "examples/create/repair-outcomes/grouped-output/pdf-preview-96dpi.png",
+          "sha256": "a0c3dcfcde077034b6d144326c0eb991ae753e2e26ec3319fe47cf897c2f8285",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "candidate",
+          "role": "composition",
+          "file": "examples/create/repair-outcomes/output/panel.png",
+          "sha256": "92a8b4e318477be38d5ce8c1242b276dfe360fa32523af124fb2ba7b966a50cb",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "candidate",
+          "role": "composition",
+          "file": "examples/create/repair-outcomes/output/pdf-preview-96dpi.png",
+          "sha256": "8d19bcb7129fa79ef00b0df6c7a12754cfcf79298d2d5d4114038fd3df78c489",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "candidate",
+          "role": "hdr",
+          "file": "examples/create/repair-outcomes/panels/hdr/output/panel.png",
+          "sha256": "7d3448a98c78a5ca904b09112cb80baafd93fed28d98c980bbf7760d6b064067",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "candidate",
+          "role": "both",
+          "file": "examples/create/repair-outcomes/panels/both/output/panel.png",
+          "sha256": "fbaa375427144d13ad9d9d7e031f5ae1d404da5063c0818f91283c8c06cd1b7f",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "candidate",
+          "role": "mutej",
+          "file": "examples/create/repair-outcomes/panels/mutej/output/panel.png",
+          "sha256": "a1eca5dd74772742c635fa6a2c26bcdec75a56d9281a46f41baac4d4f3ea02c8",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "transfer",
+          "role": "grouped_alternative",
+          "file": "examples/create/repair-outcomes/transfer/grouped-output/panel.png",
+          "sha256": "0b4eee0ec37b27f7cabb5ade8a57abcdb46f49dc6085a9d6cf04bfa983567538",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "transfer",
+          "role": "grouped_alternative",
+          "file": "examples/create/repair-outcomes/transfer/grouped-output/pdf-preview-96dpi.png",
+          "sha256": "99a870df225ca497b130b67482f350218444b4065cc4df0e7e2dfed7349b8715",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "transfer",
+          "role": "composition",
+          "file": "examples/create/repair-outcomes/transfer/output/panel.png",
+          "sha256": "26231011ab019641fc9e9a6374a435ecbc84aa7ca712b48db2ee5057af05c8a1",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "transfer",
+          "role": "composition",
+          "file": "examples/create/repair-outcomes/transfer/output/pdf-preview-96dpi.png",
+          "sha256": "c68713a0d157411959387e49848c006ff323b6c50aaa9ec3aeb654615be7fab4",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "transfer",
+          "role": "hdr",
+          "file": "examples/create/repair-outcomes/transfer/panels/hdr/output/panel.png",
+          "sha256": "9668bc62a2f90004aaa0bef23911d4586d934693c6f55458f508e2e8184b457b",
+          "actually_opened": true,
+          "review_round": 2
+        },
+        {
+          "run": "transfer",
+          "role": "mutej",
+          "file": "examples/create/repair-outcomes/transfer/panels/mutej/output/panel.png",
+          "sha256": "3426e89213221b5bec9264b7989644b8fbbfc5d5897df96d49f59ac9b44855e6",
+          "actually_opened": true,
+          "review_round": 2
+        }
+      ],
+      "resolved_findings": [
+        {
+          "severity": "major",
+          "location": "Within-treatment adjacent open bars; candidate and transfer",
+          "evidence": "The plotted bars directly abut: each outcome's right edge coincides with the next outcome's left edge. Colored outlines merge/cover one another, particularly around the low blue/green bars in the three-outcome candidate. The reviewer initially overlooked this visible defect and withdrew the initial ready_with_notes judgment after the user explicitly flagged it.",
+          "requirement": "The user adopted distinct, non-touching component outlines and better proportions for this grouped-bar case. This is an adopted case requirement, not a claim that every literature bar plot universally needs gaps.",
+          "action": "Introduce a real physical gap between component strokes, preserve a larger inter-treatment gap, and inspect actual stroke-to-stroke separation at final size. Adjust bar/panel proportions as a whole rather than relying on thin shared borders.",
+          "resolved_in_round": 2,
+          "resolution": "Standalone primary bars have distinct separated outlines. Corrected grouped alternative visibly retains gaps; saved SVG confirms approximately 0.982 mm candidate and 1.282 mm transfer stroke clearance."
+        },
+        {
+          "severity": "minor",
+          "location": "Both separate captions; excluded control names",
+          "evidence": "The sentence “No donor/Cas9 and NTC controls are outside this declared treatment subset” can be read as saying that no controls are excluded. Provenance declares these named controls are excluded.",
+          "requirement": "Caption must unambiguously describe source selection.",
+          "action": "Quote control names and state explicitly: “The ‘No donor/Cas9’ and ‘NTC’ controls are excluded from this declared treatment subset.”",
+          "resolved_in_round": 2,
+          "resolution": "Reread common/grouped captions quote the named controls and explicitly state they are excluded."
+        }
+      ],
+      "comparisons": {
+        "corrected_grouped_vs_supplied_rejected_layout": {
+          "preference": "candidate",
+          "evidence": "Retained 0–55% global task; corrected complete outlines, component gaps and compact 110 × 82 mm ratio are preferable to the touching 130 × 72 mm layout.",
+          "identity_limit": "Actual user-supplied rejected screenshot with manifest-confirmed origin; not a byte-identical round1 renderer freeze. Both rejected touching layouts were actually inspected; no exact pixel/byte comparison claimed."
+        },
+        "primary_split_vs_old_grouped": {
+          "preference": "not_checked",
+          "reason": "Different explicit per-outcome scales support within-outcome treatment comparisons. Not a matched purely cosmetic same-scale comparison.",
+          "assessment": "Meets new adopted narrow-panel task without clipping/touching edges or hidden scale changes."
+        }
+      },
+      "checks": [
+        {
+          "check": "Source values, arithmetic means, sample SD and raw observations",
+          "status": "passed",
+          "evidence": "Terminal validation.json reports 45 grouped candidate rows and 15 in each of three primary panels; transfer 24 grouped rows and 12 in each of two panels. Source-to-artist records pass with no normalization, derived ratios, inferred independence or issues.",
+          "verification": "Supplied evidence read after round-2 visual judgment; statistics not independently recomputed by reviewer."
+        },
+        {
+          "check": "Unscaled preview composition",
+          "status": "passed",
+          "evidence": "Supplied composition records preserve sizes, PDF text positions, font sizes, embedded fonts and unique SVG IDs, with no redraw. Actual composition PNG/PDF previews inspected.",
+          "verification": "Composition integrity is supplied evidence; page dimensions, embedded fonts and current hashes independently checked."
+        },
+        {
+          "check": "Nine PDF/export sets",
+          "status": "passed",
+          "evidence": "Independently ran pdfinfo/pdffonts: five standalone PDFs 170.079 × 175.748 pt; two grouped PDFs 311.811 × 232.441 pt; compositions 510.236 × 175.748 pt and 340.157 × 175.748 pt. These correspond to 60 × 62, 110 × 82, 180 × 62 and 120 × 62 mm. All fonts embedded ArialMT; SVG Arial/8px; PNG DPI 299.9994; all 27 PNG/PDF/SVG hashes match terminal validation.",
+          "verification": "Actual saved files independently checked; PDF 8 pt text assertion supplied, SVG typography inspected. No calibrated print proof."
+        },
+        {
+          "check": "Actual independent-panel alignment",
+          "status": "passed",
+          "evidence": "Parsed saved SVG clip rectangles are identical in all five primary/transfer panels: x34.015748, y9.666142, width130.110236, height144.992126 pt. Visible composite baselines/top/condition rows align.",
+          "verification": "Independently inspected saved vector artifacts without reading renderer implementation."
+        },
+        {
+          "check": "Actual grouped stroke separation",
+          "status": "passed",
+          "evidence": "Saved SVG rectangles/stroke widths yield within-treatment edge clearance 0.9819742306–0.9819745833 mm main and approximately 1.2817104583 mm transfer after subtracting both half-strokes. Nominal PDF previews visibly retain these gaps.",
+          "verification": "Independently parsed saved SVG geometry; positivity alone does not prove aesthetic spacing."
+        },
+        {
+          "check": "Matched split-panel superiority, publication acceptance or model causal effect",
+          "status": "not_checked",
+          "evidence": "Primary changes scales/reading task; no model or publication experiment supplied.",
+          "verification": "Explicit claim boundary, not an unexplained readiness pass."
+        }
+      ],
+      "validation_path": "examples/create/repair-outcomes/validation.json",
+      "validation_sha256": "f62c3c63cb4f5dd5575327198a994fac084588f0890934837a151147613ec853",
+      "exports": [
+        {
+          "run": "candidate",
+          "role": "grouped_alternative",
+          "path": "examples/create/repair-outcomes/grouped-output",
+          "dimensions_mm": [
+            110,
+            82
+          ],
+          "sha256": {
+            "png": "3b6d0922412bf3cdbcbc523802b336534aae85ef389aeedde0c5285c222a2658",
+            "pdf": "bcf71ce274c0af191b3a831a3c4bf2150f39f4d600d79e6e20926149505cc9da",
+            "svg": "e895d888822d3e1abf9378e6b6bd4f3911cbd09fbf2b1446b7105547d8c59ef8"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "candidate",
+          "role": "composition",
+          "path": "examples/create/repair-outcomes/output",
+          "dimensions_mm": [
+            180,
+            62
+          ],
+          "sha256": {
+            "png": "92a8b4e318477be38d5ce8c1242b276dfe360fa32523af124fb2ba7b966a50cb",
+            "pdf": "c923d7d03447ed45c24914bf0df8d3d48d3fbceb11e04440b1c4508fb25e543f",
+            "svg": "256fc73864fa25fcf6b2081af4e895e494ff4dbfbafa23f8f8099a9909e1ee67"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "candidate",
+          "role": "hdr",
+          "path": "examples/create/repair-outcomes/panels/hdr/output",
+          "dimensions_mm": [
+            60,
+            62
+          ],
+          "sha256": {
+            "png": "7d3448a98c78a5ca904b09112cb80baafd93fed28d98c980bbf7760d6b064067",
+            "pdf": "a81960340748a06c4be407ede2477c124c8a1ee7fcd9e346010277a3d793e974",
+            "svg": "139097e7436cee643602165958f54fb9f53c2f09adfa2a919ef38428294973a7"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "candidate",
+          "role": "both",
+          "path": "examples/create/repair-outcomes/panels/both/output",
+          "dimensions_mm": [
+            60,
+            62
+          ],
+          "sha256": {
+            "png": "fbaa375427144d13ad9d9d7e031f5ae1d404da5063c0818f91283c8c06cd1b7f",
+            "pdf": "c59de7032a2c7414415bfd9b496b4a047f8fa468af0ca0ff83371e99f5668473",
+            "svg": "26aae6f73d241700c4701b373562efc465152ff6d1e2d66f0f8ab5d79aab1341"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "candidate",
+          "role": "mutej",
+          "path": "examples/create/repair-outcomes/panels/mutej/output",
+          "dimensions_mm": [
+            60,
+            62
+          ],
+          "sha256": {
+            "png": "a1eca5dd74772742c635fa6a2c26bcdec75a56d9281a46f41baac4d4f3ea02c8",
+            "pdf": "6c7aad01457419c20e2e2b88db4986eab46d931559fe3c782efd3ad395c89c0f",
+            "svg": "2e7b4018189cb110252b100a68b5bc4f711eb177e258978e2b58a7496b888aff"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "transfer",
+          "role": "grouped_alternative",
+          "path": "examples/create/repair-outcomes/transfer/grouped-output",
+          "dimensions_mm": [
+            110,
+            82
+          ],
+          "sha256": {
+            "png": "0b4eee0ec37b27f7cabb5ade8a57abcdb46f49dc6085a9d6cf04bfa983567538",
+            "pdf": "38349b1ee71347bbbd2f12e6853c8abf2701cc7ae347b9b39666eef405f40801",
+            "svg": "01089601a277e35727652d82a18ec59373f31a10fe4640f14a880ff7fe79dc6e"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "transfer",
+          "role": "composition",
+          "path": "examples/create/repair-outcomes/transfer/output",
+          "dimensions_mm": [
+            120,
+            62
+          ],
+          "sha256": {
+            "png": "26231011ab019641fc9e9a6374a435ecbc84aa7ca712b48db2ee5057af05c8a1",
+            "pdf": "dcf17de886b2c69997657c26f651c60aee65980b9b465394bd731e8c04a45e7b",
+            "svg": "2438737143381fd2571359d149f39d1beedd860ffbaf31edfebe40886022c905"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "transfer",
+          "role": "hdr",
+          "path": "examples/create/repair-outcomes/transfer/panels/hdr/output",
+          "dimensions_mm": [
+            60,
+            62
+          ],
+          "sha256": {
+            "png": "9668bc62a2f90004aaa0bef23911d4586d934693c6f55458f508e2e8184b457b",
+            "pdf": "95776c411a9dee2b302a4fb242c9c89505755c14cfbfdddb15af4dc86782174d",
+            "svg": "a8f0737e3dc319b5978a9dfee0070b558887b8d10009decfa0829b75a8bdaf65"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        },
+        {
+          "run": "transfer",
+          "role": "mutej",
+          "path": "examples/create/repair-outcomes/transfer/panels/mutej/output",
+          "dimensions_mm": [
+            60,
+            62
+          ],
+          "sha256": {
+            "png": "3426e89213221b5bec9264b7989644b8fbbfc5d5897df96d49f59ac9b44855e6",
+            "pdf": "97038fb146dce0fb6ae738e97c18bd16df3bcd2f83e887162d3eb764c3d5b3e5",
+            "svg": "d9c4c351499ee8b06801f8dcb0286f00784c08bccfe5d5fcb3f5f94f8b5213e9"
+          },
+          "dimensions_fonts_hashes_independently_checked": true
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    "Near-identical raw triples are not always separately countable in small nominal preview.",
+    "Differing individual scales require within-outcome interpretation and delivered captions.",
+    "Preferred geometry does not establish universal CNS/model quality."
+  ],
+  "verdict": "Ready with explicit notes for the newly adopted standalone task and corrected global-scale alternative. First-pass touching-outline major and caption-selection minor resolved; retain withdrawn initial judgment and full case evolution."
+}

@@ -2,6 +2,9 @@
 
 ## 0.4.3 — 2026-10-05
 
+- Same-version refinement: individual 60 × 62 mm repair-outcome bars and unscaled vector previews; a grouped-bar gap option measures actual stroke clearance and rejects touching edges. The original published tag and release ZIP remain unchanged.
+
+- Same-version Create refinement: neighboring summary/raw-point lanes, adjustable violin widths, compact annotated heatmaps with vector cell seams and explicit display-label mappings. Source values, KDE definitions, scales, fonts and canvas sizes remain recorded. The [refinement review](evals/create-refinement-v0.4.3/README.md) uses the published candidates as its comparison, separately from the original release's omitted-option baseline.
 - Create begins with a basic single chart. Specific literature mechanisms guide color, boundaries, spacing and line hierarchy; additional layers need an explicit reading purpose.
 - Shared crisp starting values for new core drafts and distribution previews: opaque observations, narrow hollow boxes and editable line roles. Explicit overrides and saved core specifications retain their adopted settings; legacy preview replay is explicit.
 - Optional outlined replicate bars with independently checked edge/fill/guide settings. Optional violin face opacity and hollow raw-value quartile/median summaries, separate from the KDE and its width normalization.

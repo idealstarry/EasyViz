@@ -6,7 +6,13 @@
     "font_size_pt": 8,
     "dpi": 300,
     "line_width_pt": 0.6,
-    "auto_fit": true
+    "auto_fit": false,
+    "margins": {
+      "left": 0.43636363636363634,
+      "right": 0.6963636363636363,
+      "bottom": 0.15,
+      "top": 0.96
+    }
   },
   "formats": [
     "pdf",
@@ -47,7 +53,7 @@
   },
   "labels": {
     "x": "Adipose depot",
-    "y": "Myeloid subtype",
+    "y": "",
     "color": "Source objects"
   },
   "options": {
@@ -57,20 +63,29 @@
     ],
     "cell_aspect": "auto",
     "x_rotation": 0,
-    "annotate_values": false
+    "annotate_values": true,
+    "value_format": ".0f",
+    "column_labels": {
+      "Subcutaneous": "SC",
+      "Omental": "OM",
+      "Perivascular": "PV"
+    },
+    "cell_border_color": "#B7CAD7",
+    "cell_border_width_pt": 0.35
   },
   "legends": {
     "colorbar": {
       "position": "right",
       "orientation": "vertical",
-      "length_mm": 30,
-      "thickness_mm": 2,
+      "length_mm": 32,
+      "thickness_mm": 2.2,
       "ticks": [
         0,
         900,
         1800,
         2700
-      ]
+      ],
+      "gap_mm": 3
     }
   },
   "line_roles": {
@@ -96,8 +111,8 @@
     }
   },
   "colormap": [
-    "#EDF8FE",
-    "#55B7F3",
-    "#218EDD"
+    "#F6FBFE",
+    "#8CD5F6",
+    "#29ACF3"
   ]
 }

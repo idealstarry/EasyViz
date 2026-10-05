@@ -12,7 +12,7 @@ ASSETS = ROOT / 'skills/easyviz/assets'
 GENERATED_CASES = (
     'massier-bmi-violin', 'massier-integration-radar', 'cell-atlas-dotplot',
     'paired-effects', 'paired-myeloid-remodeling', 'xiang-bubble-volcano',
-    'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma', 'basic-panels',
+    'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma', 'basic-panels', 'repair-outcomes',
 )
 
 
@@ -151,7 +151,13 @@ def sync():
         if relative.is_absolute() or '..' in relative.parts or not (source / relative).is_file():
             raise ValueError(f'Invalid basic-panel curated input: {name}')
         copy_file(source / relative, target / relative)
-    print('Synced twelve CC BY case collections, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
+    source = ROOT / 'examples/create/repair-outcomes'
+    target = ASSETS / 'cases/repair-outcomes'
+    for file in source.rglob('*'):
+        relative = file.relative_to(source)
+        if file.is_file() and '__pycache__' not in relative.parts and file.suffix != '.pyc':
+            copy_file(file, target / relative)
+    print('Synced thirteen CC BY case collections, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
 
 
 if __name__ == '__main__':

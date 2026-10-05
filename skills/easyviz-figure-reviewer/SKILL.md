@@ -28,7 +28,8 @@ If an image or specification is missing, report the resulting limitation. Do not
 | Adopted reference features | Chart structure, marks, layer order, grouping, palette relationships, relative layout, and annotation placement. |
 | Readability | Clipping, overlap, missing glyphs, label crowding, legend fit, line visibility, and annotation legibility at intended proportions. |
 | Legend proportions | Compare full key/text bounds and reserved legend space with the associated data region. Assess whether the data remains visually primary; matching font sizes and no overlap are insufficient. Categorical proxy keys/gaps may be compacted; quantitative-size keys must retain the plotted area mapping. Continuous scales need a readable physical bar and sufficient labeled ticks. |
-| Filled-mark styling | Compare dots, bars, and matching legend swatches against one declared outline policy. Create defaults to borderless fills; reproduce follows the adopted specification and user requirements. Scientific/readability exceptions must identify the mark role and reason. Flag incidental mismatches from library defaults. |
+| Mark hierarchy | Compare the adopted fill/outline policy by role and matching legend symbols. Keep quartiles, medians and interval endpoints visible through raw points. A violin contour, inner summary and observations should have deliberate priorities; a side lane must retain category association. Reproduce follows its adopted specification; neither hollow nor borderless marks automatically improve Create. |
+| Data-region geometry | Inspect physical bar/box/violin thickness, category gaps, matrix cell aspect and outer margins. Few categories need not span the full available width; a narrow matrix need not become horizontal ribbons. Judge useful reading space at the agreed dimensions and font, not whether every space is filled. |
 | Palette combination | Inspect category colors, continuous maps, annotation tracks, and background together on the actual panel. Literature provenance does not establish aesthetic suitability; judge readability, category distinction, and scale meaning for this data. |
 | Panel text and caption | Keep axis names and units, ticks, legends, colorbars, and essential data annotations. By default, extra titles, subtitles, standalone overview counts, and explanatory footnotes are omitted from the image; their relevant explanatory content belongs in separate `caption.md`. |
 | Export evidence | Verify final dimensions and typography only from supplied measurements or inspection tools; otherwise mark them `not_checked`. |
@@ -42,6 +43,13 @@ Apply the manuscript-text default to both create and reproduce. An in-image titl
 ## Findings format
 
 For a claimed refinement, compare the baseline and candidate on grouping/order, visibility of the important pattern, alignment of related layers, lookup effort, contrast, and use of space. Return `baseline`, `candidate`, or `no_clear_preference`, with visible reasons. Retaining the baseline is a valid result. Record `not_checked` when a required comparison image is unavailable, and do not claim improvement. Smaller legends, fewer ticks, more layers, or passing software checks do not establish visual superiority. Keep this preference separate from requirement failures and the final readiness status.
+
+Identify whether the baseline is an accepted output or an omitted-option/default
+demonstration. A preference over a weak default does not establish literature-level
+finish. If a paper is supplied as a Create design target, report transferred
+mechanisms and remaining hierarchy/geometry gaps separately. Different data and
+tasks prevent treating that comparison as matched quality or model-performance
+evidence; do not require its scientific shapes, tests or extra layers.
 
 Return a table with `severity`, `location`, `evidence`, `requirement`, and `action`. Name the actual conflict and a feasible change. Avoid vague requests to improve aesthetics.
 

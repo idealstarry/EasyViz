@@ -1,0 +1,334 @@
+{
+  "status": "pass",
+  "scope": "Two three-cohort candidates and four-cohort transfer probes. Source values are checked against actual public-renderer artists and saved plotting data. Summary/KDE geometry is compared by re-rendering the frozen previous specs with the same current public renderer, rather than parsing geometry from frozen exports. Saved new PDF/SVG/PNG dimensions, fonts, text and physical point packing are checked. No independent visual or causal-model claim.",
+  "records": [
+    {
+      "case": "cohort-box",
+      "run": "candidate",
+      "source_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+      "original_source_bytes_unchanged": true,
+      "every_source_field_retained_in_export": true,
+      "artist_check": {
+        "raw_numeric_coordinates_unchanged": true,
+        "source_observations": 129,
+        "independent_inclusive_quartiles": [
+          {
+            "group": "Krieg",
+            "observations": 23,
+            "q1": 43.370000000000005,
+            "median": 47.21,
+            "q3": 51.33
+          },
+          {
+            "group": "Petrus",
+            "observations": 29,
+            "q1": 24.7,
+            "median": 34.8,
+            "q3": 40.0
+          },
+          {
+            "group": "Kerr",
+            "observations": 77,
+            "q1": 30.346,
+            "median": 38.9,
+            "q3": 44.1
+          }
+        ]
+      },
+      "definition_checks": {
+        "all_original_quartile_median_whisker_cap_numeric_coordinates_unchanged": true
+      },
+      "export_check": {
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_fonts_embedded": true,
+        "pdf_text_sizes_pt": [
+          8.0
+        ],
+        "superscript_note": "5.6 pt is the standard 70% log-tick exponent of an 8 pt label, when present.",
+        "svg_mm": [
+          110.00000013333332,
+          88.0000000361111
+        ],
+        "svg_text_preserved": true,
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "sha256": {
+          "pdf": "789667c7bfdadc1a5af310b4cc649c52b7743ecf3cee481bede1604252e576b7",
+          "svg": "a88fa8f950ba306e16d224671860cacdf58e69e33612d4a0c0bdfb9318c18602",
+          "png": "78c1706cdff33fbaeeb56a5891063b5346ae44ba777971aa31d1b826a8d46793"
+        }
+      },
+      "point_spacing_check": {
+        "observations": 129,
+        "numeric_values_changed": false,
+        "overlapping_circle_pairs": 0,
+        "spacing_violation_pairs": 0,
+        "categorical_boundary_rows": []
+      },
+      "source_test_method": "none"
+    },
+    {
+      "case": "cohort-box",
+      "run": "transfer",
+      "source_sha256": "a1e077b14da39e0f851f335207a2851ca81f3c6f9a189015e7161d3972f1d500",
+      "original_source_bytes_unchanged": true,
+      "every_source_field_retained_in_export": true,
+      "artist_check": {
+        "raw_numeric_coordinates_unchanged": true,
+        "source_observations": 185,
+        "independent_inclusive_quartiles": [
+          {
+            "group": "Krieg",
+            "observations": 23,
+            "q1": 43.370000000000005,
+            "median": 47.21,
+            "q3": 51.33
+          },
+          {
+            "group": "Petrus",
+            "observations": 29,
+            "q1": 24.7,
+            "median": 34.8,
+            "q3": 40.0
+          },
+          {
+            "group": "Kerr",
+            "observations": 77,
+            "q1": 30.346,
+            "median": 38.9,
+            "q3": 44.1
+          },
+          {
+            "group": "Arner, E",
+            "observations": 56,
+            "q1": 24.23,
+            "median": 31.1,
+            "q3": 41.425
+          }
+        ]
+      },
+      "definition_checks": {
+        "all_original_quartile_median_whisker_cap_numeric_coordinates_unchanged": true
+      },
+      "export_check": {
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_fonts_embedded": true,
+        "pdf_text_sizes_pt": [
+          8.0
+        ],
+        "superscript_note": "5.6 pt is the standard 70% log-tick exponent of an 8 pt label, when present.",
+        "svg_mm": [
+          110.00000013333332,
+          88.0000000361111
+        ],
+        "svg_text_preserved": true,
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "sha256": {
+          "pdf": "bfb7957c731400e55e2ac9833e3eb9d9823125db6146daac5b2fa2d131a1c10b",
+          "svg": "ca65603d9cdd3af7587ba377850c13aeae0b7a31c9bcfac8d9e191f613c86bb2",
+          "png": "5e7a0459a108d3439065a8c1f5d28c6ac98e3a58c2494f71f71596105c8e7696"
+        }
+      },
+      "point_spacing_check": {
+        "observations": 185,
+        "numeric_values_changed": false,
+        "overlapping_circle_pairs": 0,
+        "spacing_violation_pairs": 0,
+        "categorical_boundary_rows": []
+      },
+      "source_test_method": "none"
+    },
+    {
+      "case": "cohort-violin",
+      "run": "candidate",
+      "source_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+      "original_source_bytes_unchanged": true,
+      "every_source_field_retained_in_export": true,
+      "artist_check": {
+        "raw_numeric_coordinates_unchanged": true,
+        "source_observations": 129,
+        "independent_inclusive_quartiles": [
+          {
+            "group": "Krieg",
+            "observations": 23,
+            "q1": 43.370000000000005,
+            "median": 47.21,
+            "q3": 51.33
+          },
+          {
+            "group": "Petrus",
+            "observations": 29,
+            "q1": 24.7,
+            "median": 34.8,
+            "q3": 40.0
+          },
+          {
+            "group": "Kerr",
+            "observations": 77,
+            "q1": 30.346,
+            "median": 38.9,
+            "q3": 44.1
+          }
+        ]
+      },
+      "definition_checks": {
+        "KDE_evaluation_values_unchanged": true,
+        "width_rescale_normalized_density_max_difference": 9.992007221626409e-16,
+        "original_bandwidth_method_evaluation_points_trim_unchanged": true,
+        "quartiles_median_observation_counts_unchanged": true
+      },
+      "export_check": {
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_fonts_embedded": true,
+        "pdf_text_sizes_pt": [
+          8.0
+        ],
+        "superscript_note": "5.6 pt is the standard 70% log-tick exponent of an 8 pt label, when present.",
+        "svg_mm": [
+          110.00000013333332,
+          88.0000000361111
+        ],
+        "svg_text_preserved": true,
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "sha256": {
+          "pdf": "779b0c43b9682d78187dbc8e7a6d2b884291e61497f387953dc2aad9808dadf8",
+          "svg": "913fa50cd4efbeb82eb257993df617351149f734e5c7a9cb2bd48d1fe94f0012",
+          "png": "935046169e6fdec3388bd2de87868b4aa96b1f6625424f954a7f0c3ddc52cffc"
+        }
+      },
+      "point_spacing_check": {
+        "observations": 129,
+        "numeric_values_changed": false,
+        "overlapping_circle_pairs": 0,
+        "spacing_violation_pairs": 0,
+        "categorical_boundary_rows": []
+      },
+      "source_test_method": "none"
+    },
+    {
+      "case": "cohort-violin",
+      "run": "transfer",
+      "source_sha256": "a1e077b14da39e0f851f335207a2851ca81f3c6f9a189015e7161d3972f1d500",
+      "original_source_bytes_unchanged": true,
+      "every_source_field_retained_in_export": true,
+      "artist_check": {
+        "raw_numeric_coordinates_unchanged": true,
+        "source_observations": 185,
+        "independent_inclusive_quartiles": [
+          {
+            "group": "Krieg",
+            "observations": 23,
+            "q1": 43.370000000000005,
+            "median": 47.21,
+            "q3": 51.33
+          },
+          {
+            "group": "Petrus",
+            "observations": 29,
+            "q1": 24.7,
+            "median": 34.8,
+            "q3": 40.0
+          },
+          {
+            "group": "Kerr",
+            "observations": 77,
+            "q1": 30.346,
+            "median": 38.9,
+            "q3": 44.1
+          },
+          {
+            "group": "Arner, E",
+            "observations": 56,
+            "q1": 24.23,
+            "median": 31.1,
+            "q3": 41.425
+          }
+        ]
+      },
+      "definition_checks": {
+        "KDE_evaluation_values_unchanged": true,
+        "width_rescale_normalized_density_max_difference": 1.1102230246251565e-15,
+        "original_bandwidth_method_evaluation_points_trim_unchanged": true,
+        "quartiles_median_observation_counts_unchanged": true
+      },
+      "export_check": {
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_fonts_embedded": true,
+        "pdf_text_sizes_pt": [
+          8.0
+        ],
+        "superscript_note": "5.6 pt is the standard 70% log-tick exponent of an 8 pt label, when present.",
+        "svg_mm": [
+          110.00000013333332,
+          88.0000000361111
+        ],
+        "svg_text_preserved": true,
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "sha256": {
+          "pdf": "b887c206f1a1a5c5da5a4d628aaea6a1d7880bea39337a3af98b70908aafa4bf",
+          "svg": "71fa2be3595e28de13fccf11880cdd89d31494c7260c1d9a192706ab314dbda6",
+          "png": "1eb4118079a90723928db23b66461030820eae890cf3304f4f4ee78a9080971b"
+        }
+      },
+      "point_spacing_check": {
+        "observations": 185,
+        "numeric_values_changed": false,
+        "overlapping_circle_pairs": 0,
+        "spacing_violation_pairs": 0,
+        "categorical_boundary_rows": []
+      },
+      "source_test_method": "none"
+    }
+  ]
+}
