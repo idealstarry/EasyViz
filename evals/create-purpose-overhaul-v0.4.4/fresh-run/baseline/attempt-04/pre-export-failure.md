@@ -1,0 +1,1 @@
+No image export or visual review occurred. After widening condition centers to ±0.25 row units, the shape-aware footprint assertion identified one remaining intersection: LPM N6 (+DT) and RPM H7 (−DT), overlap margin 0.4203 pt. The code snapshot is preserved. All source data remained unchanged.

@@ -1,14 +1,17 @@
 # Changelog
 
-## 0.4.4 — 2026-10-05
+## 0.4.4 — Unreleased draft
 
 - First finished Create delivery now includes actual image inspection, concrete internal corrections within three visual passes, and a current-file review record. Routine edits retain their adopted workflow.
 - Create chooses a reading task, organization and visual roles before using a card or recipe. Conditional design paths explain when to emphasize summaries, observations, direct category labels or matrix patterns; examples are starting materials rather than the only allowed solution.
 - New scene-informed candidates use measured artists to distinguish actual mark/color/guide proposals. Width or margin changes alone no longer count as another design. Explicit sizes, fonts, colors, geometry and scientific methods remain locked; constrained inputs may produce fewer candidates.
 - Distribution candidates plan physical lanes within the adopted canvas. Omitted summary widths retain a point-diameter floor; only an omitted default gap may receive one bounded positive-gap adjustment. Explicit geometry remains authoritative, and unresolved spacing stays invalid.
-- The shorter README shows seven distinct chart families once each and links to the full palette and case documentation. Public release downloads contain the plugin ZIP.
+- Create data intake no longer suggests an arbitrary scatter from the first two numeric fields. Explicit paired-wide designs require a declared condition schema and traceable reshape before plotting; eligibility alone supplies no scientific purpose.
+- Literature guidance now connects actual category/series burden, data-region proportions and layer roles to a short first-panel design brief. Repair-outcome panels adopt a new 72 × 48 mm case size and preserve all data and sample SD while improving bar and replicate spacing.
+- The shorter README avoids repetitive previews and puts an original literature panel beside its matching Reproduce output, with declared changes and source attribution. Planned public release downloads contain only the plugin ZIP.
 - Five original synthetic design cards pair actual exports with specific failure examples, applicability limits, source anchors, editable specs and separate captions. Their comparisons teach design mechanisms rather than measure Skill effectiveness.
 - A review companion binds image attestations to source/specification/caption/export hashes, checks available physical and technical evidence, and rejects stale or incomplete records. It does not perform vision or certify aesthetic superiority.
+- Raster review accepts supported floor/nearest pixel conversion of an exact vector canvas, verifies current PNG metadata and retains TIFF identity checks. A valid Matplotlib export no longer fails solely on normal one-pixel raster quantization.
 - Workbench writers share a bounded process lock; late versions are rejected, ordinary request/history failures roll back, and restored settings bind their actual frozen inputs. Current QA is checked again before request/accept publication.
 - Installation and build checks reject unsafe source/output links and archive path aliases, preserve the previous same-version cache on failure, and protect cooperating catalog updates. ZIP extraction has explicit resource budgets.
 - New-data first-delivery checks and extracted-package runs are recorded in [0.4.4 validation](evals/create-first-delivery-v0.4.4/README.md) and [release QA](evals/release-qa/v0.4.4/README.md).

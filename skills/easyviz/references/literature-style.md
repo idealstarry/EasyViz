@@ -35,6 +35,28 @@ marks, transformations, cell labels or filtering into a new dataset.
 | Repeated bars look sparse or disconnected | scWAT Fig. 3g,m (p. 5): tight within-category bars, wider category gaps, compact keys. | Retain relevant supplied outcomes/groupings and repeat their geometry and series order consistently. Show supported observations and uncertainty; use one shared decoding guide. | Retain units and actual experimental grouping. Small data remain a small comparison; density is not a reason to invent annotations, extra outcomes or enlarged marks. |
 | Two grouping variables become a long legend | scWAT Fig. 3g (p. 5): hue/edge and open/filled interiors distinguish separate variables; Fig. 5b,c (p. 9) uses hatching. | Use a second decoded visual channel when both groupings matter. | Do not introduce shape, hatch or stroke differences without a meaning; quantify their legend footprint. |
 
+## Geometry observations
+
+The following approximate width:height ratios were measured from the data
+regions on rendered PDF pages, including 300 dpi detail views. They exclude
+axis titles, tick text and legends; they are not complete-canvas ratios or
+recovered author settings. The contrasting examples show conditional geometry,
+not universal thresholds.
+
+| Observed source | Local geometry and hierarchy | Conditional adaptation |
+| --- | --- | --- |
+| PROGENy Fig. 4c (p. 6) | Each panel has eight distributions in a data region about 2.4–2.5 times as wide as high. Fine neutral density contours remain distinct from definite inner boxes/medians; categorical color occupies different summary/body roles. | When several distribution groups must be compared, test whether a wider, shallower data rectangle and compact category rhythm improve lookup. Plan any new raw-point lane separately; it is not a layer observed here. Preserve the adopted KDE and summary definitions. |
+| Vanneste Fig. 2g,h (p. 4) | Eight and nine categories respectively, each with two treatment bars, in data regions about 3.3–3.5 times as wide as high. Closely associated bar pairs, visible raw observation edges and interval strokes repeat across the row; black axes and a decoded reference line remain readable. | For a comparable repeated two-series comparison, plan pair width, within-pair gap and between-category gap together. Test horizontal extent and useful numeric-axis height rather than placing narrow bars in a tall default region. Retain the actual units and uncertainty; source comparisons and reference values are not defaults. |
+| scWAT Fig. 2c (p. 4) | Six categories with two treatment bars use a data-region ratio around 1.5. Hollow summaries, same-hue observations and visible interval endpoints remain associated. The numeric axis has a break. | A smaller repeated comparison can need more vertical space than the Vanneste example. Match its mark/interval relationship where relevant, while keeping the current adopted scale; an axis break, source limits or significance layer requires separate scientific justification. |
+| scWAT Fig. 2j (p. 4) | A single treatment pair occupies a narrow data region with readable summary, observations and uncertainty. | A one-pair comparison need not occupy the same broad region as six or nine categories. Set width from actual bar/point capacity and label/guide needs, then check complete-canvas balance. |
+
+For a new dataset, use category/series count, actual raw-point density, labels,
+range and adopted layers to select an analogue. Measure the new data region in
+mm and distinguish body width from category pitch and within/between-group gaps.
+The mechanism may suggest a geometry change; only the actual final-size view
+can establish whether it helps this panel. Copying an observed ratio or palette
+does not establish successful transfer.
+
 ## Color and stroke observations
 
 - PROGENy Fig. 2d uses uniform gray **`#595959`** bars. In Fig. 4c, selected
@@ -70,10 +92,13 @@ marks, transformations, cell labels or filtering into a new dataset.
 
 ## Apply to another dataset
 
-State the intended lookup or comparison, then select a mechanism above. Record
-the actual category mapping, mark treatment, summary meaning, scale and physical
-layout. For a basic chart, check the color combination, role of each stroke,
-point/summary crossings, category gaps and guide space before adding a layer.
+Use the [internal design brief](design-space.md#plan-the-first-panel) to connect
+the intended comparison and actual data burden to a mechanism above. Distinguish
+what was observed in the source from what is being adapted and name the expected
+geometry or hierarchy benefit. Record the actual category mapping, mark
+treatment, summary meaning, scale and physical layout. For a basic chart, check
+the color combination, role of each stroke, point/summary crossings, category
+gaps and guide space before adding a layer.
 Render the real data; check complete-panel balance and inspect marks at final
 size. Compare the accepted candidate and revision with equal dimensions, font
 and numeric scales. An omitted-default comparison only tests preference over
@@ -83,10 +108,15 @@ different data make this a design comparison, not matched performance evidence.
 Disclose intentional normalization changes outside cosmetic comparisons.
 
 Do not call the result better merely because it has more colors, thinner lines,
-less grid or more empty space. If the main evidence becomes a faint cloud,
-summary endpoints cannot be distinguished, or a colorbar hides zero, revise the
-specific encoding or layout. Technical checks support row/scale/export fidelity;
-visual inspection and user judgment assess whether the design succeeds.
+less grid, more empty space or no technical failures. If the main evidence
+becomes a faint cloud, summary endpoints cannot be distinguished, or a colorbar
+hides zero, revise the
+specific encoding or layout. Also revise a tall/slender categorical region or
+disconnected spacing when it impairs the intended comparison. Technical checks
+support row/scale/export fidelity; visual inspection and user judgment assess
+whether the design succeeds. A preference over a weak default, a known showcase
+revision and a successful held-out first delivery support different claims;
+none alone establishes publication-level quality or a causal Skill benefit.
 
 ## Sources
 

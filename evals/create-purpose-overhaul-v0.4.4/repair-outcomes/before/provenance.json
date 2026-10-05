@@ -1,0 +1,35 @@
+{
+  "track": "create",
+  "version": "0.4.3",
+  "reference_image_adopted": false,
+  "author_plotting_code_used": false,
+  "source": {
+    "article": "https://www.nature.com/articles/s41592-023-02162-w",
+    "doi": "10.1038/s41592-023-02162-w",
+    "licence": "CC-BY-4.0",
+    "prepared_source_path": "examples/no-author-code/truong-components/inputs/components.csv",
+    "prepared_source_sha256": "2396b56a4e2dc998a259f8f832591bca07517e3407b0058ac388d870c938590d",
+    "source_sheet": "Fig. 1b",
+    "source_rows": "4\u20138",
+    "selection": "All 5 drug conditions \u00d7 3 author-supplied outcome categories \u00d7 3 biological replicates; no donor/Cas9 and NTC controls excluded explicitly. Outcome categories are retained verbatim and are not assumed to sum to 100%.",
+    "original_value_strings_preserved": true,
+    "source_cells_retained": true
+  },
+  "reading_question": "Compare treatments within each of three author-supplied repair outcomes, using individual narrow bar panels. A global-scale grouped plot is an optional alternative when comparing absolute outcome magnitudes.",
+  "main_rows": 45,
+  "transfer_rows": 24,
+  "transfer": "4 treatments \u00d7 2 outcomes \u00d7 3 biological replicates, reversed CSV row order. The same category colors, means, SD and raw values must remain faithful.",
+  "candidate_decisions": [
+    "Three independent 60 \u00d7 62 mm bar panels, each with slender outline bars and all 15 biological repeats",
+    "Identical data-region margins, treatment order, font and stroke settings across panels",
+    "Explicit outcome-specific original-percent ranges, no hidden normalization and no comparison of absolute heights across differently scaled panels",
+    "Bright blue/jade/coral identify outcomes; a short defined treatment alias keeps each narrow panel readable",
+    "Unscaled side-by-side PDF/SVG preview preserves independent vector panels and 8 pt text",
+    "Grouped alternative retains a global 0\u201355% scale with positive measured stroke clearance between its hollow bars"
+  ],
+  "limits": [
+    "Descriptive comparison only; no cross-condition pairing inferred, significance marks added, or new causal biological conclusion.",
+    "This has more measured outcomes than the single-HDR basic example. It is a different reading task, not a matched before/after aesthetic experiment.",
+    "Separate outcome ranges change the reading task from between-outcome absolute amounts to within-outcome treatment comparisons; both variants are labeled and retained."
+  ]
+}

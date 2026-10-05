@@ -1,0 +1,29 @@
+core	Test data, statistics, geometry and export contracts	﻿2026-10-05T13:39:27.8436018Z ##[group]Run python -m unittest discover -s tests -p 'test_*.py'
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8436544Z ^[[36;1mpython -m unittest discover -s tests -p 'test_*.py'^[[0m
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8501065Z shell: /usr/bin/bash -e {0}
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8501356Z env:
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8501653Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8502127Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8502607Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8503023Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8503434Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8503846Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:39:27.8504190Z ##[endgroup]
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:45:01.1173104Z ..........................................................................................................................................................findfont: Font family ['Arial'] not found. Falling back to DejaVu Sans.
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6334073Z F............................................................................................................................................................................................................................................................................................................................................................................................
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6336087Z ======================================================================
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6337449Z FAIL: test_summary_proportion_floor_and_positive_gap_trial_preserve_actual_box_quantiles (test_create_candidates.CreateCandidateTests.test_summary_proportion_floor_and_positive_gap_trial_preserve_actual_box_quantiles)
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6338774Z ----------------------------------------------------------------------
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6339456Z Traceback (most recent call last):
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6346027Z   File "/home/runner/work/EasyViz/EasyViz/tests/test_create_candidates.py", line 416, in test_summary_proportion_floor_and_positive_gap_trial_preserve_actual_box_quantiles
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6347223Z     self.assertEqual(manifest["status"], "visual_review_pending")
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6348097Z AssertionError: 'needs_revision' != 'visual_review_pending'
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6348537Z - needs_revision
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6348812Z + visual_review_pending
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6348997Z 
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6349002Z 
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6349374Z ----------------------------------------------------------------------
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6349834Z Ran 535 tests in 862.671s
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6350023Z 
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.6350133Z FAILED (failures=1)
+core	Test data, statistics, geometry and export contracts	2026-10-05T13:53:54.9032377Z ##[error]Process completed with exit code 1.

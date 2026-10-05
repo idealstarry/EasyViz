@@ -1,0 +1,302 @@
+{
+  "track": "create",
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/source-intake/observations.csv",
+    "contract_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/source-intake/input-contract.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/plot.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/spec.json",
+    "supplied_spec_sha256": "df5d6c9b2bce6859b7ab770a9a7a88874b28e881cac2095580dbd262582c092f"
+  },
+  "version": {
+    "input_sha256": "e99509505b908adbb1b93ed8a2ae3b83522d4422f1e64ea69ddbc3eb2356d410",
+    "contract_sha256": "30e46e4bacb36bc9e8dddd3492eff971635e98b0fbd448d65f1ad3297a6372e3",
+    "source_script_sha256": "9f2a5a5f8076933859df2aaec01639143d6c7aa99cb8cebe4a44578e174dfb81"
+  },
+  "layout": {
+    "width_mm": 120.0,
+    "height_mm": 60.0,
+    "dpi": 300,
+    "actual_font": "Arial",
+    "font_substituted": false,
+    "font_path": "/System/Library/Fonts/Supplemental/Arial.ttf"
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "point_layout": {
+    "policy": "deterministic categorical-only circle packing",
+    "diameter_pt": 2.5,
+    "gap_pt": 0.22,
+    "groups": [
+      {
+        "population": "cMo",
+        "condition": "-DT",
+        "lane_anchor": -0.2985148514851485,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9595134694356983,
+        "fallback_rows": []
+      },
+      {
+        "population": "cMo",
+        "condition": "+DT",
+        "lane_anchor": 0.14702970297029705,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "T3"
+        ]
+      },
+      {
+        "population": "pMo",
+        "condition": "-DT",
+        "lane_anchor": 0.7014851485148516,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9481678728691885,
+        "fallback_rows": []
+      },
+      {
+        "population": "pMo",
+        "condition": "+DT",
+        "lane_anchor": 1.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9425240283560574,
+        "fallback_rows": []
+      },
+      {
+        "population": "SPM",
+        "condition": "-DT",
+        "lane_anchor": 1.7014851485148514,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "J5",
+          "I5"
+        ]
+      },
+      {
+        "population": "SPM",
+        "condition": "+DT",
+        "lane_anchor": 2.1470297029702974,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8877639834260742,
+        "fallback_rows": []
+      },
+      {
+        "population": "LPM",
+        "condition": "-DT",
+        "lane_anchor": 2.7014851485148514,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.7505145038795267,
+        "fallback_rows": []
+      },
+      {
+        "population": "LPM",
+        "condition": "+DT",
+        "lane_anchor": 3.1470297029702974,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8782410869012732,
+        "fallback_rows": []
+      },
+      {
+        "population": "RPM",
+        "condition": "-DT",
+        "lane_anchor": 3.7014851485148514,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "E7",
+          "H7"
+        ]
+      },
+      {
+        "population": "RPM",
+        "condition": "+DT",
+        "lane_anchor": 4.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "R7",
+          "Q7"
+        ]
+      },
+      {
+        "population": "KC",
+        "condition": "-DT",
+        "lane_anchor": 4.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9242065980316733,
+        "fallback_rows": []
+      },
+      {
+        "population": "KC",
+        "condition": "+DT",
+        "lane_anchor": 5.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.7621215759951171,
+        "fallback_rows": []
+      },
+      {
+        "population": "SILPM",
+        "condition": "-DT",
+        "lane_anchor": 5.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8363478702915909,
+        "fallback_rows": []
+      },
+      {
+        "population": "SILPM",
+        "condition": "+DT",
+        "lane_anchor": 6.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9523944419542151,
+        "fallback_rows": [
+          "O9"
+        ]
+      },
+      {
+        "population": "CLPM",
+        "condition": "-DT",
+        "lane_anchor": 6.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9271757762780255,
+        "fallback_rows": []
+      },
+      {
+        "population": "CLPM",
+        "condition": "+DT",
+        "lane_anchor": 7.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8716373796674457,
+        "fallback_rows": [
+          "R10"
+        ]
+      },
+      {
+        "population": "MG",
+        "condition": "-DT",
+        "lane_anchor": 7.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9595452994336853,
+        "fallback_rows": [
+          "H11",
+          "B11"
+        ]
+      },
+      {
+        "population": "MG",
+        "condition": "+DT",
+        "lane_anchor": 8.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "Q11",
+          "R11"
+        ]
+      }
+    ],
+    "unresolved_pair_count": 15,
+    "unresolved_pairs": [
+      [
+        "R3",
+        "T3",
+        1.896748068970852
+      ],
+      [
+        "D5",
+        "I5",
+        1.9615157849233011
+      ],
+      [
+        "G5",
+        "J5",
+        2.1563632896932488
+      ],
+      [
+        "D7",
+        "H7",
+        2.0125854355649175
+      ],
+      [
+        "E7",
+        "I7",
+        2.0144670536344718
+      ],
+      [
+        "O7",
+        "Q7",
+        2.388784893163841
+      ],
+      [
+        "R7",
+        "U7",
+        2.307322238044387
+      ],
+      [
+        "O9",
+        "Q9",
+        1.736249957905528
+      ],
+      [
+        "O9",
+        "S9",
+        2.679978439444778
+      ],
+      [
+        "N10",
+        "R10",
+        2.032191021597619
+      ],
+      [
+        "R10",
+        "S10",
+        1.8999800166021357
+      ],
+      [
+        "B11",
+        "D11",
+        2.6211096095562456
+      ],
+      [
+        "F11",
+        "H11",
+        2.247662722376389
+      ],
+      [
+        "L11",
+        "R11",
+        2.6555726013706917
+      ],
+      [
+        "M11",
+        "Q11",
+        2.5048251994410617
+      ]
+    ],
+    "min_center_separation_pt": 1.736249957905528,
+    "summary_crossing_count": 0,
+    "summary_crossings": [],
+    "boundary_violations": []
+  },
+  "colors": {
+    "-DT": "#454545",
+    "+DT": "#0072B2"
+  },
+  "caption_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/caption.md",
+  "font_exports": {
+    "pdf": [
+      {
+        "base_font": "/DIONFR+ArialMT",
+        "embedded": true
+      }
+    ],
+    "svg": "Editable Arial 8 pt text; font is not embedded in SVG."
+  }
+}

@@ -1,62 +1,76 @@
-# EasyViz v0.4.4 release QA
+# EasyViz v0.4.4 draft QA
 
-Validated on 2026-10-05 with Python 3.12.2 on macOS. This release improves the
-first reviewed Create delivery and repairs reproduced workflow/code failures.
-The two Create/Reproduce tracks remain the public workflow. The archive's
-identity is recorded in [build.json](build.json).
+The user paused publication after Linux Core checks failed. This is a development
+draft, not a published stable release. Current local checks use Python 3.12.2 on
+macOS. The original published v0.4.3 tag and package remain unchanged.
 
-| Check | Evidence |
+| Current check | Evidence |
 | --- | --- |
-| Complete unit suite: 535 tests passed | [Final unit log](unit-tests.log) |
-| Installed dependency compatibility: 18 packages compatible | [Dependency check](dependency-check.log) |
-| Extracted ZIP resources and actual runtime: passed | [Package check](package-check.log) |
-| Local Markdown resources: 574 source targets passed (scoped current documentation) | [Link validation](resource-links.json) |
-| Local 0.4.4 installed and enabled; all 849 source/cache files match ZIP | [Installer result](local-install.json), [Independent file comparison](installed-content-check.json) |
-| Prospective Create inputs, actual image review and current-file checks | [Evaluation and original failures](../../create-first-delivery-v0.4.4/README.md) |
-| Current five selected delivery records | [Readiness evidence](../../create-first-delivery-v0.4.4/delivery-readiness.json) |
-| Conditional design alternatives and repaired readability, 165 synthetic rows/cells | [Separate choice-space probe and three retained visual passes](../../create-choice-space-v0.4.4/README.md) |
-| Runtime and workflow failures, fixes and independent verification | [Code audit](../../create-first-delivery-v0.4.4/code-audit.md), [Workbench review](../../create-first-delivery-v0.4.4/workbench-fix-review.md), [Installer/package review](../../create-first-delivery-v0.4.4/install-fix-review.md) |
-| Portable documentation: 316 local targets passed | [Current extracted-package check](package-check.log); [original omission repair](../../create-first-delivery-v0.4.4/portable-resource-audit.md) is historical |
+| Full runtime suite: **550 tests passed** in 260.900 s | [Unit log](unit-tests.log) |
+| Current code review: 47 intake tests and 7 critical layout/state tests independently passed | [Code review](../../create-purpose-overhaul-v0.4.4/code-review.md) |
+| Known font regression: 30 focused tests; actual PNG/SVG exports checked | [Diagnosis](../../create-purpose-overhaul-v0.4.4/font-layout/diagnosis.md) |
+| Actual new font images independently inspected; explicit locked failure retained | [Image review](../../create-purpose-overhaul-v0.4.4/font-layout/independent-image-review.md) |
+| Raster review: 21 focused tests; 9 branches independently rerun; original real spacing failure retained | [Independent review](../../create-purpose-overhaul-v0.4.4/raster-review/independent-review.md) |
+| Repair-outcome source values, statistics and five new individual panels reviewed | [Case overhaul](../../create-purpose-overhaul-v0.4.4/repair-outcomes/README.md) |
+| New real Source Data first-finished exercise; both outputs independently inspected and numerically verified | [Exercise review](../../create-purpose-overhaul-v0.4.4/fresh-run/independent-review.md) |
+| Current source, README image and portable resource links pass | [Resource check](resource-links.json) |
+| Portable ZIP: 854 files; extracted runtime and cases passed | [Build metadata](build.json), [package check](package-check.log) |
+| Authorized local draft source/cache copies match all 854 package files and remain enabled | [Local installation](local-install.json), [content check](installed-content-check.json) |
 
-The candidate engine was frozen before preparing five new tasks. One new public
-Source Data input and four explicitly synthetic stress inputs retain 581
-observations/cells. Two proposed tasks passed without a required visual repair;
-three needed task-specific internal correction after actual inspection. The
-final independent image reviews resolve the inspected defects with stated
-density/overlap limits. These corrections are retained separately from the
-initial failures and do not count as unseen engine successes. All five current
-selected exports have completed, hash-bound review records.
+## What failed and changed
 
-The original first-delivery evaluation is replayable with its own frozen runtime.
-A separate probe freezes the revised candidate implementation and supplies five
-new synthetic contracts (165 rows/cells). Its initial distribution layouts fail
-raw-point spacing; pass 2 repairs spacing but leaves overly thin boxes; pass 3
-repairs that documented proportion while retaining all adopted source/science
-constraints. All three sets of outputs and actual-image reviews remain intact.
-The final local review is ready with notes; this is repaired same-input
-readability, not unseen first-draft or aesthetic effectiveness evidence. Width
-and margin changes do not inflate the count of implemented design alternatives.
+[GitHub run 37318437850](https://github.com/idealstarry/EasyViz/actions/runs/37318437850)
+ran 535 tests with one actual cross-font spacing failure. Arial passed locally;
+Linux's fallback DejaVu used enough extra text space to prevent packing at the
+retained summary width floor. The measured-margin repair uses only still-safe
+omitted default padding, retains all source/science/font/size constraints and
+keeps explicit geometry authoritative. Tests exercise real DejaVu, simulated
+missing Arial, two DPIs and horizontal layout. The old failure is retained in
+the [original CI log](../../create-purpose-overhaul-v0.4.4/ci-failure.log).
 
-Five original synthetic design-card pairs teach applicability, visible failure
-mechanisms and mark/summary geometry. Their 248 observations are unchanged.
-The initially faulty recommended violin and its failed packing repair remain in
-the evidence; the final ten card exports received actual independent image
-inspection, including nominal 96 dpi PDF previews. A complete review record
-checks provenance and recorded evidence; it cannot prove that images were opened
-or certify aesthetics, statistical validity, accessibility or journal acceptance.
-There is no new WorkBuddy/model or causal with/without-Skill effectiveness test.
+The first local full rerun produced 29 workbench setup errors because the
+restricted execution environment prohibited temporary loopback servers.
+[That log](unit-tests-restricted-sandbox.log) is environment evidence, not 29
+code regressions. The current full log above runs all 550 tests with loopback
+permission and passes, including the six added raster-review regressions.
 
-The scoped code audit reproduced and repaired request loss between cooperating
-processes, ordinary two-ledger and acceptance-publication failures, stale QA
-publication, restored source bindings, installed-cache rollback, concurrent
-catalog preservation, unsafe source/output paths, normalized ZIP aliases and
-bounded extraction. Failed runs and intermediate regressions are retained in
-[initial](unit-tests-initial.log) and [intermediate](unit-tests-intermediate.log)
-logs. macOS/POSIX locks were executed; Windows paths were inspected but not run.
-Ordinary exception rollback is not a power-loss transaction. Accepted source
-snapshots do not freeze arbitrary imported modules, profiles or external assets.
+A normal Matplotlib PNG also exposed a nearest-integer-only dimension error.
+The repair accepts supported floor/nearest conversion, checks saved PNG fields
+against actual bytes and keeps PDF/TIFF identity and real point-spacing checks.
+[Diagnostic evidence](../../create-purpose-overhaul-v0.4.4/raster-review/owner-forward-diagnostic/diagnostic-summary.json)
+records the untouched original exports. The initial trial's real spacing error
+still fails; a successful final trial review remains compatible.
 
-To repeat the runtime release checks in the selected Python environment:
+The first new build found a development-only relative evidence link in the
+portable repair-outcome README. The case now links to its GitHub evidence page,
+so the package does not require the development `evals` directory. The original
+[package-check failure](package-check-before-case-link-fix.log) is retained;
+this was a documentation resource error, not a plotting-runtime change.
+
+## Evidence boundaries
+
+The [original first-delivery evaluation](../../create-first-delivery-v0.4.4/README.md)
+and [three-pass choice-space probe](../../create-choice-space-v0.4.4/README.md)
+retain their own frozen runtimes, initial failures and subsequent repairs.
+They are historical same-input evidence, not validation of the newer engine.
+Logs named `*-before-purpose-review` preserve the 535-test pre-overhaul state,
+its package and installed copy; they do not describe the current draft.
+`unit-tests-before-raster-review.log` preserves the 544-test run before the
+six final raster regressions. The current build and extracted-package evidence
+are [build metadata](build.json) and [package check](package-check.log).
+
+Actual image review, source/artist checks and export checks establish different
+properties. Technical success and current-file identity cannot establish
+publication aesthetics, statistical validity on an unknown study, beginner or
+domestic-model effectiveness, or universal Skill improvement. The new local
+one-input exercise is explicitly exploratory.
+
+The earlier [workflow/code audit](../../create-first-delivery-v0.4.4/code-audit.md)
+retains process-lock, ordinary rollback, source binding, installer/cache and
+package/path checks. macOS/POSIX behavior was exercised; Windows was inspected
+but not run. Ordinary exception rollback is not a power-loss transaction.
+
+## Repeat checks
 
 ```sh
 python -m unittest discover -s tests -p 'test_*.py'
@@ -64,8 +78,12 @@ python scripts/build_plugin.py
 python scripts/check_package.py
 ```
 
-GitHub CI and publication are verified after the source push; the published
-ZIP must match the recorded build. The public release contains only the ZIP;
-there is no separate checksum download or user verification step. CLI registration and file
-comparison verify the local installed copy. An existing chat may retain its
-loaded skills; start a new chat to load the updated version.
+Workbench and extracted-package tests require local loopback-server permission.
+The public release, when approved, will contain only the plugin ZIP; there is
+no separate checksum download. Starting a new chat is needed to load a newly
+installed Skill version. Successful CI is a technical check and does not
+remove the user's publication hold.
+
+The local installation above is the reviewed development draft. It does not
+change the latest published stable release, v0.4.3. The current chat may retain
+its previously loaded Skill; a new chat loads the updated installed files.

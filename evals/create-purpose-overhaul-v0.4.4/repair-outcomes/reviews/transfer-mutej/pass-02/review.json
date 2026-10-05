@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "8b2e8faa582869971debececfe22cc2b9739f2f5e496db4ce7b9595005b86abb",
+  "pass_number": 2,
+  "reviewer": {
+    "role": "independent",
+    "identity": "/root/create_v043_aesthetic_review"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/panel.png",
+      "sha256": "2b55e1c89592d1c2dc5953287a766e77130ca6073795923906d552b9238efd52",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image",
+      "size_basis": "Opened the complete 300 dpi PNG and refreshed PDF 96 dpi preview at /Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/pdf-preview-96dpi.png. Both retain adopted 72 x 48 mm proportions. Screen physical size was not calibrated; this is a final-proportions view, not a print claim."
+    },
+    {
+      "role": "baseline",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/repair-outcomes/before/transfer/panels/mutej/output/panel.png",
+      "sha256": "3426e89213221b5bec9264b7989644b8fbbfc5d5897df96d49f59ac9b44855e6",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image",
+      "size_basis": "Opened the accepted baseline complete PNG. It uses the prior 60 x 62 mm canvas; comparative preference includes an explicitly adopted canvas change and is not a matched-physical-size experiment."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "4 treatment categories remain in declared source order, with original percent axes starting at zero; visible means, sample-SD intervals and three observations per category match the adopted layers. Source-to-artist and numeric checks are acknowledged from the frozen validation record, not inferred from pixels."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "Within-outcome bar-top differences are immediate; the raw triplets are distinct around each mean without being hidden by a filled bar. No decorative header, extra outcome, normalization or significance glyph was added."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Graphite small observations and intervals sit above lighter neutral open mean outlines. Raw centers are separated in the visible export; some tiny SD intervals remain short because the actual triplet spread is small."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "The complete canvas and PDF preview show a wider, shallower data rectangle and more substantial bar width than the tall accepted baseline. Acknowledged measured region 57.24 x 37.44 mm (ratio 1.529), gap/body 1.222; category labels and marks fit the selected region."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "One neutral summary hue is consistently assigned within this single-outcome panel; category identity is decoded by position and labels. Bar outlines, black axes, raw points and SD strokes remain distinct at PDF-preview proportions. Neutral color is an adaptation, not an aesthetic requirement."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "All treatment labels and outcome/percent axis text are visible without clipping or crowding, and zero/numeric ticks remain readable. There is no unnecessary legend or in-panel narrative; abbreviations and methods are in the separate caption."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "Acknowledged current hash-bound packet export measurements and validation.json: PNG/SVG/PDF retain adopted 72 x 48 mm; actual export hashes independently matched frozen-final-manifest.json in this review."
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "Acknowledged current exporter records and validation.json: Arial 8 pt, no substitution; current PDF embedded-font and SVG editable-text checks passed. The screenshot alone is not font evidence."
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "Current packet binds source-data.csv, specification and actual source script by SHA-256. Frozen manifest records unchanged source hashes relative to accepted baseline; case attribution remains Truong et al., Nature Methods, DOI 10.1038/s41592-023-02162-w."
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "Read frozen current validation.json: source values preserved, per-outcome mean/sample-SD and source-to-artist checks passed; relevant individual exported hashes match this candidate. Numerical pass is separate from this actual image review."
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "Actually read this current caption: defines original percentages, arithmetic mean, sample SD ddof=1, all three biological replicates, treatment abbreviations and concentrations, source/license, and no introduced pairing/normalization/test."
+    }
+  ],
+  "findings": [
+    {
+      "id": "scope-note",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Whole panel and baseline comparison",
+      "evidence": "The reading task remains a modest five- or four-treatment descriptive comparison, and the neutral hue is an optional adaptation. The preference is mostly geometry/raw separation and includes the new adopted canvas; it does not establish literature-level finish or model-wide benefit.",
+      "requirement": "Keep readiness and comparative preference separate from quality/efficacy claims.",
+      "action": "Retain the explicit case scope and original scientific choices; do not add layers or statistics solely for sophistication."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "scope-note"
+  ],
+  "preference": {
+    "choice": "not_checked",
+    "reasons": "Accepted baseline was 60 x 62 mm and adopted candidate is 72 x 48 mm. Both actual images were opened, but no matched-physical-size comparison was performed. Wider, shallower proportions and better raw-triplet separation are documented as scoped design-change observations, without a scored comparative preference."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance.",
+  "final_proportions_preview": {
+    "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/pdf-preview-96dpi.png",
+    "sha256": "95399f8103a1bd047306e51a59b4ad71127151beb20f5b8415bbd1c5ed419ac7",
+    "dpi": 96,
+    "physical_display_calibrated": false
+  },
+  "design_change_observation": "Compared actual accepted baseline and candidate. The wider/shallower data rectangle and greater bar width reduce the tall hollow-column appearance, while more separated raw centers make all three observations easier to distinguish. Category order, original scales and numeric summary meaning remain. There is no clear hue preference independent of these geometry changes, and different adopted canvas sizes limit matched-size comparison."
+}

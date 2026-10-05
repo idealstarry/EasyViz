@@ -1,6 +1,6 @@
 # EasyViz
 
-Create and reproduce scientific plots from user data. In create, start with a prepared data directory or a scientific question, choose a basic chart and refine its color, boundaries and proportions. In reproduce, use a reference image and your own data, including references without published Source Data or author code. Export individual panels at their final physical size.
+Create and reproduce scientific plots from user data. In create, establish the useful comparison, then choose a basic chart and plan its data-region proportions, layer relationships and color roles. Numeric fields alone do not justify a scatter. In reproduce, use a reference image and your own data, including references without published Source Data or author code. Export individual panels at their final physical size.
 
 ## Skills
 
@@ -47,7 +47,7 @@ Copy bundled case folders into your writable project before running or adapting 
 
 - [Chart inputs and settings](skills/easyviz/references/chart-library.md)
 - [Five basic Create panels with runnable Source Data](skills/easyviz/assets/cases/basic-panels/README.md)
-- [Narrow repair-outcome bar panels and a grouped alternative](skills/easyviz/assets/cases/repair-outcomes/README.md)
+- [Compact repair-outcome panels and a grouped alternative](skills/easyviz/assets/cases/repair-outcomes/README.md)
 - [Create mark colors and line roles](skills/easyviz/references/create-style.md)
 - [First reviewed Create delivery](skills/easyviz/references/first-draft.md)
 - [Visual scenario design cards](skills/easyviz/references/design-cards.md)

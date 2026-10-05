@@ -1,6 +1,5 @@
 {
   "track": "create",
-  "version": "0.4.3",
   "reference_image_adopted": false,
   "author_plotting_code_used": false,
   "source": {
@@ -15,21 +14,25 @@
     "original_value_strings_preserved": true,
     "source_cells_retained": true
   },
-  "reading_question": "Compare treatments within each of three author-supplied repair outcomes, using individual narrow bar panels. A global-scale grouped plot is an optional alternative when comparing absolute outcome magnitudes.",
+  "reading_question": "Compare treatments within each of three author-supplied repair outcomes, using individual landscape subpanels. A global-scale grouped plot is an optional alternative when comparing absolute outcome magnitudes.",
   "main_rows": 45,
   "transfer_rows": 24,
-  "transfer": "4 treatments \u00d7 2 outcomes \u00d7 3 biological replicates, reversed CSV row order. The same category colors, means, SD and raw values must remain faithful.",
+  "transfer": "4 treatments \u00d7 2 outcomes \u00d7 3 biological replicates, reversed CSV row order. The same geometry and neutral mark roles retain original source strings, means, sample SD and raw values.",
   "candidate_decisions": [
-    "Three independent 60 \u00d7 62 mm bar panels, each with slender outline bars and all 15 biological repeats",
-    "Identical data-region margins, treatment order, font and stroke settings across panels",
+    "Three independent 72 \u00d7 48 mm subpanels; 57.24 \u00d7 37.44 mm data regions, ratio 1.529; adopts a new case size after the user requested a major overhaul",
+    "Five-condition bars use .45 category pitch and graphite repeats, replacing the earlier .30 pitch and tall .897-ratio regions",
+    "Identical data-region margins, treatment order, font and stroke settings across outcomes",
     "Explicit outcome-specific original-percent ranges, no hidden normalization and no comparison of absolute heights across differently scaled panels",
-    "Bright blue/jade/coral identify outcomes; a short defined treatment alias keeps each narrow panel readable",
-    "Unscaled side-by-side PDF/SVG preview preserves independent vector panels and 8 pt text",
-    "Grouped alternative retains a global 0\u201355% scale with positive measured stroke clearance between its hollow bars"
+    "Neutral open means distinguish summary role from graphite raw observations and SD; outcome identity is explicit in each y label",
+    "Unscaled side-by-side PDF/SVG overview preserves independent vector panels and Arial 8 pt text; representative HDR is used as the primary preview",
+    "Grouped alternative retains the global 0\u201355% scale, separate series colors and positive measured outline-stroke clearance"
   ],
   "limits": [
     "Descriptive comparison only; no cross-condition pairing inferred, significance marks added, or new causal biological conclusion.",
     "This has more measured outcomes than the single-HDR basic example. It is a different reading task, not a matched before/after aesthetic experiment.",
     "Separate outcome ranges change the reading task from between-outcome absolute amounts to within-outcome treatment comparisons; both variants are labeled and retained."
-  ]
+  ],
+  "origin_version": "0.4.3",
+  "design_revision": "User-directed v0.4.4 overhaul, 2026-10-05; release held pending review",
+  "comparison_evidence": "evals/create-purpose-overhaul-v0.4.4/repair-outcomes"
 }

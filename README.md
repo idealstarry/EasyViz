@@ -4,12 +4,14 @@
 
 # EasyViz
 
-**Scientific panels, ready for your manuscript.**
+**Scientific plotting guided by data and literature.**
 
 </div>
 
 EasyViz helps a local Agent turn data into editable scientific figures, with
 literature-informed design, actual image review and PDF, SVG and PNG exports.
+
+v0.4.4 is a development draft under review; the latest published stable version is v0.4.3.
 
 | Track | Start with | The Agent does |
 | --- | --- | --- |
@@ -60,14 +62,17 @@ and corrects the images before the first finished delivery.
 
 ### Create
 
-**Replicate bars** · Three compact outcome panels, with every replicate and
-sample SD. [Data, code and caption](examples/create/repair-outcomes/README.md).
+**Treatment comparison** · One repair outcome, with every biological replicate
+and sample SD. The case also exports the other outcomes separately.
+[Data, code and caption](examples/create/repair-outcomes/README.md).
 
-<p align="center"><a href="examples/create/repair-outcomes/"><img src="examples/create/repair-outcomes/output/panel.png" alt="Three individual repair-outcome bar panels with raw replicates and sample SD" width="680"></a></p>
+<p align="center"><a href="examples/create/repair-outcomes/"><img src="examples/create/repair-outcomes/panels/hdr/output/panel.png" alt="HDR treatment comparison with neutral open means, all biological replicates and sample SD" width="440"></a></p>
 
-| Cohort distributions | Before/after coordinates |
-| --- | --- |
-| <a href="examples/create/basic-panels/cohort-box/"><img src="examples/create/basic-panels/cohort-box/output/panel.png" alt="Cohort quartile boxes with all observations" width="350"></a> | <a href="examples/create/basic-panels/paired-scatter/"><img src="examples/create/basic-panels/paired-scatter/output/panel.png" alt="Participant before-after coordinates, colored by infection class" width="350"></a> |
+**Cell-number comparison** · Compare two treatments within nine measured
+populations. Separate raw-observation and mean ± SEM lanes keep the summaries
+visible. [Fresh workflow exercise, data and limitations](evals/create-purpose-overhaul-v0.4.4/fresh-run/README.md).
+
+<p align="center"><a href="evals/create-purpose-overhaul-v0.4.4/fresh-run/README.md"><img src="evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/panel.png" alt="Nine population treatment comparisons with all 156 supplied observations and separate mean and SEM strokes" width="680"></a></p>
 
 **Composition heatmap** · Original percentages, clear cell seams and numeric
 values. [Data, code and caption](examples/create/basic-panels/depot-heatmap/).
@@ -76,15 +81,20 @@ values. [Data, code and caption](examples/create/basic-panels/depot-heatmap/).
 
 ### Reproduce
 
-| Integration radar | Supplied effects and intervals |
+**Time-course means and SD** · Original Figure 1d from
+[Shi et al., Nature Communications (2021)](https://doi.org/10.1038/s41467-021-22092-5),
+compared with the reconstruction from its 120 supplied summaries.
+
+| Original literature panel | EasyViz reconstruction |
 | --- | --- |
-| <a href="examples/no-author-code/massier-integration-radar/"><img src="examples/no-author-code/massier-integration-radar/panel.png" alt="Reference-led reconstruction of five integration methods" width="320"></a> | <a href="examples/no-author-code/vabistsevits-forest/"><img src="examples/no-author-code/vabistsevits-forest/output-a/panel.png" alt="Supplied odds ratios and asymmetric confidence intervals on a log axis" width="420"></a> |
+| <img src="examples/no-author-code/shi-timecourse/reference.png" alt="Original Shi Figure 1d with two colored axes and mean plus SD bands" width="350"> | <a href="examples/no-author-code/shi-timecourse/"><img src="examples/no-author-code/shi-timecourse/output/panel.png" alt="Reconstructed Figure 1d from all supplied means and SD, with declared axis-bound adaptation" width="350"></a> |
 
-**Time-course summaries** · Supplied means, SD bands and two labeled axes;
-recorded adaptations retain the full uncertainty bounds.
-[Reference, data and code](examples/no-author-code/shi-timecourse/README.md).
-
-<p align="center"><a href="examples/no-author-code/shi-timecourse/"><img src="examples/no-author-code/shi-timecourse/output/panel.png" alt="Supplied cell-width and cell-length time-course summaries" width="460"></a></p>
+The reproduced panel omits the original panel letter and expands the width-axis
+bounds to show the full supplied SD. Source excerpt: Shi et al.,
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+[Data, code and recorded differences](examples/no-author-code/shi-timecourse/README.md).
+Other cases include [integration radar](examples/no-author-code/massier-integration-radar/)
+and [supplied-effect forest panels](examples/no-author-code/vabistsevits-forest/).
 
 The examples use attributed literature Source Data. Each case records its
 transformations and limitations. Your own reproduction needs a reference and
@@ -127,7 +137,7 @@ matching element map; region notes remain available without one.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](evals/create-first-delivery-v0.4.4/README.md)
+[Validation and limits](evals/create-purpose-overhaul-v0.4.4/README.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

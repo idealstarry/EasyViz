@@ -113,6 +113,21 @@ every question and every table as a long questionnaire. Descriptive previews
 can proceed with explicitly unknown units when they identify their counts as
 source rows and preserve all observations.
 
+`numeric_pair_eligibility` means that numeric coordinates exist. It selects no
+chart, x/y mapping or correlation method. Resolve what the reader needs to
+compare before suggesting a scatter. Explicit x/y roles permit an association
+option but still require a useful reading purpose; before/after measurements
+may instead answer a verified within-unit change question.
+
+For an explicitly confirmed paired design in a wide table, a
+`paired_wide_candidate` describes preparation rather than creates pairs. Adopt
+which columns contain the same measurement under named conditions; unrelated
+covariates are not conditions. Verify the complete source has one row per
+scientific unit, record missing/unmatched handling, and retain original unit
+strings and source row/column or cell references in the wide-to-long export.
+An inspected prefix does not establish full-table uniqueness. Only the verified
+prepared table is eligible for the paired recipe or an adopted paired analysis.
+
 `--inventory-only` retains these descriptive signals in `manifest.json`, but
 does not invoke create guidance or emit intake questions, chart recommendations
 or analysis plans. Continue the selected track with its existing specification.
@@ -124,7 +139,8 @@ or analysis plans. Continue the selected track with its existing specification.
 2. Select a plausible reading task: measurement distribution, association, or
    verified within-unit change. Explain which question each proposed figure
    answers and which fields it uses. Keep raw observations visible where useful.
-3. Offer two or three relevant directions. A table with no quantitative field
+3. Offer a well-supported direction when the question is clear, or two or three
+   useful alternatives when the reading purpose remains unresolved. A table with no quantitative field
    needs role clarification or a prepared quantitative table; identifier counts
    are not a substitute for the missing measurement.
 4. Record the selected question, fields, units and design. Candidate mappings

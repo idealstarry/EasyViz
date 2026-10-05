@@ -1,0 +1,9 @@
+The first finished delivery is attempt 02, after two actual-image self-review passes. Attempt 01 and its unresolved findings are preserved; no third visual pass was used.
+
+Chosen reading organization: each supplied population contains −DT and +DT raw-point lanes with adjacent group mean ± SEM. All 156 literal source records and cells are preserved, and 18 means/SEMs were independently recomputed from the supplied CSV. No IDs, pairing, tests, significance, normalization or density were added.
+
+Final exports: 120 × 60 mm PDF/SVG; PNG 1417 × 709 pixels at measured 299.9994 dpi (300 dpi pHYs rounding). All readable text is Arial 8 pt, with embedded Arial in PDF; SVG retains editable Arial text and therefore depends on font availability when opened elsewhere. Source data, summaries, runnable code, specification, settings, numerical QA and the separate caption are retained in attempt 02.
+
+Visual findings: the initial tight circles were corrected through categorical-only constrained placement. The second opened image retained readable labels, matching condition keys and continuous summary strokes. Numerical geometry reports zero point-pair spacing failures, point/summary crossings, glyph boundary violations or text/tick overlaps. The current artifact-bound self-review has gate_status recorded and ready_with_notes; this validates the record and hashes, not aesthetic quality.
+
+Residual notes: MG uncertainty strokes are short on the common axis because SEM is small. The exact normalization denominator and mouse IDs/batches are unavailable. A nominal physical-size screen view was unavailable; the actual full PNG was assessed at the recorded final proportions. Independent review has not occurred inside this trial and is reserved for root after freeze. This one exploratory input supports no efficacy, generalization or journal-quality claim. Release stays held.

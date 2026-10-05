@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "37ed5d322f7d9e0d67cdc1af44cca0e0b6aaa9f0956db07a705860522110e9e0",
+  "pass_number": 2,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "fresh_create_with_skill agent"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/panel.png",
+      "sha256": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image",
+      "size_basis": "Opened the complete 1417 × 709 PNG at its recorded 120 × 60 mm proportions. This is a proportion-based screen assessment, with enlarged readable marks; no nominal physical-size screen preview is asserted."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "The actual image shows all nine supplied population labels in order, graphite −DT then blue +DT per block, on one 0–4 axis. The independent raw-y audit retains all 156 values, and the separate statistics audit reproduces all group means and SEM."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "Opaque observations visibly carry distributions, including the KC +DT high value. Each own-colored mean/SEM is beside its matching raw lane; no unnecessary density, bars or tests compete."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Dense SPM, RPM, SILPM, CLPM and MG circles are now separated in the opened image. Means and both SEM endpoints remain visible. Physical QA finds zero circle-spacing failures and zero raw/summary crossings."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "The 101 × 38 mm data field holds nine repeated blocks. The raw/summary groups remain associated under population labels, with 5.3 mm condition-center separation and 11.22 mm population pitch. The broadened lanes fit inside their population blocks."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Graphite −DT and blue +DT marks and matching summaries remain distinguishable on white, including the crowded clusters. Definite dark axes and opaque point fills retain clear edges. No grid is present."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "The two legend point keys match their observations, occupy about 2.84% of data-region area, and sit above the plotted field. All population labels, 0–4 ticks and the y-axis label are visible with no text overlaps, clipping or missing glyphs. No title, letter or count annotations."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 120.0, \"height_mm\": 60.0}, \"actual_png\": {\"pixels\": [1417, 709], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"png\": {\"pixels\": [1417, 709], \"dpi\": [299.9994, 299.9994], \"sha256\": \"f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465\"}, \"pdf\": {\"width_mm\": 120.00000000001387, \"height_mm\": 60.000000000006935, \"sha256\": \"1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6\"}, \"svg\": {\"width_mm\": 119.99999988888891, \"height_mm\": 59.999999944444454, \"sha256\": \"0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026\"}}, \"format_bindings\": {\"png\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465\", \"actual_sha256\": \"f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465\"}, \"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6\", \"actual_sha256\": \"1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026\", \"actual_sha256\": \"0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026\"}}, \"actual_svg\": {\"width_mm\": 119.99999988888888, \"height_mm\": 59.99999994444444}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8, \"tick\": 8, \"legend\": 8, \"annotation\": 8}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/source-intake/observations.csv\", \"sha256\": \"e99509505b908adbb1b93ed8a2ae3b83522d4422f1e64ea69ddbc3eb2356d410\", \"expected_sha256\": \"e99509505b908adbb1b93ed8a2ae3b83522d4422f1e64ea69ddbc3eb2356d410\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"settings.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/plot.py\", \"sha256\": \"414f9567c2757d00322b82f0058504312fd3f381663feee0ac04db717f161e0b\", \"expected_sha256\": \"414f9567c2757d00322b82f0058504312fd3f381663feee0ac04db717f161e0b\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"settings.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/spec.json\", \"sha256\": \"df5d6c9b2bce6859b7ab770a9a7a88874b28e881cac2095580dbd262582c092f\", \"expected_sha256\": \"df5d6c9b2bce6859b7ab770a9a7a88874b28e881cac2095580dbd262582c092f\", \"status\": \"passed\"}], \"figure_profile\": []}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/settings.json\", \"sha256\": \"04e9af9df15efb5f7d6295eeec91cc77bdf2b12183e0ba8bfbcaad235c3d32dd\", \"bytes\": 6262}, \"resolved_spec_sha256\": null, \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\"}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/qa.json\", \"sha256\": \"63db69ee6b5397d261194ca9fa0fdb73a29238bb68f886690c165d6791cc25ed\", \"bytes\": 8524}, \"status\": \"pass\", \"valid_outputs\": true, \"input_rows\": 156, \"plotted_input_rows\": null, \"readability_advisory\": null, \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/caption.md\", \"sha256\": \"de094e134840e6f8131b8376442e1093e46c8f0e307a36e11e8b28ffc485e25e\", \"bytes\": 1204}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f1",
+      "severity": "major",
+      "state": "resolved",
+      "location": "Dense raw-value groups",
+      "evidence": "Attempt 01 contained 15 pairs below requested spacing. Attempt 02 visibly separates those circles and its all-point audit finds zero failures.",
+      "requirement": "Retain distinguishable observations without numeric movement.",
+      "action": "Adopt bounded constrained categorical packing in ±1.3 mm lanes, 5.3 mm condition separation and summaries +1.75 mm from condition centers."
+    },
+    {
+      "id": "f2",
+      "severity": "major",
+      "state": "resolved",
+      "location": "PNG full canvas",
+      "evidence": "Attempt 01 PNG height was truncated to 708 px. Attempt 02 is 1417 × 709 px at measured 299.9994 dpi; PDF/SVG remain 120 × 60 mm.",
+      "requirement": "Full canvas, 120 × 60 mm and 300 dpi with rounded raster pixels.",
+      "action": "Pad the missing white bottom edge pixel as part of export, without resampling, cropping, numeric movement or text scaling."
+    },
+    {
+      "id": "n1",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Review scope",
+      "evidence": "This trial used actual-image self-review only. Independent review has not happened inside the trial.",
+      "requirement": "Disclose review role and avoid asserting unavailable independent judgment.",
+      "action": "Freeze this first delivery now; root arranges independent review afterward."
+    },
+    {
+      "id": "n2",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Scientific interpretation and short MG intervals",
+      "evidence": "MG intervals are short on the shared 0–4 axis because the supplied SEM is small. The exact normalization denominator and mouse IDs/batches are unavailable.",
+      "requirement": "Preserve measurement scale and summary, and disclose source limits.",
+      "action": "Keep the common scale and exact intervals; retain source caveats in the separate caption and make no inferential claim."
+    }
+  ],
+  "corrections": [
+    {
+      "finding_id": "f1",
+      "action": "Widened categorical lane and used constrained packing, preserving y and the fixed 2.5 pt point diameter; repositioned summaries and condition centers.",
+      "evidence": "The second opened image has visibly separated close clusters. QA: minimum center separation 2.72 pt, zero unresolved point pairs, zero raw/summary crossings, zero boundary violations.",
+      "candidate_sha256": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465"
+    },
+    {
+      "finding_id": "f2",
+      "action": "Rounded the raster canvas to 1417 × 709 by adding one white bottom edge pixel without scaling content.",
+      "evidence": "The opened current image retains full content; current-file/hash-bound measurement checks pass in all three formats.",
+      "candidate_sha256": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465"
+    }
+  ],
+  "residual_issues": [
+    "n1",
+    "n2"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": "One chosen route with two corrective attempts. No adopted baseline or meaningful competing design comparison was required."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

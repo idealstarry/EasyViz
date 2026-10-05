@@ -1,0 +1,503 @@
+{
+  "data_region_mm": [
+    16,
+    11,
+    101,
+    38
+  ],
+  "data_region_aspect": 2.6578947368421053,
+  "population_pitch_mm": 11.222222222222221,
+  "condition_center_separation_mm": 5,
+  "raw_anchor_relative_to_condition_mm": -0.85,
+  "summary_center_relative_to_condition_mm": 1.4,
+  "point_layout": {
+    "policy": "deterministic categorical-only circle packing",
+    "diameter_pt": 2.5,
+    "gap_pt": 0.22,
+    "groups": [
+      {
+        "population": "cMo",
+        "condition": "-DT",
+        "lane_anchor": -0.2985148514851485,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9595134694356983,
+        "fallback_rows": []
+      },
+      {
+        "population": "cMo",
+        "condition": "+DT",
+        "lane_anchor": 0.14702970297029705,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "T3"
+        ]
+      },
+      {
+        "population": "pMo",
+        "condition": "-DT",
+        "lane_anchor": 0.7014851485148516,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9481678728691885,
+        "fallback_rows": []
+      },
+      {
+        "population": "pMo",
+        "condition": "+DT",
+        "lane_anchor": 1.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9425240283560574,
+        "fallback_rows": []
+      },
+      {
+        "population": "SPM",
+        "condition": "-DT",
+        "lane_anchor": 1.7014851485148514,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "J5",
+          "I5"
+        ]
+      },
+      {
+        "population": "SPM",
+        "condition": "+DT",
+        "lane_anchor": 2.1470297029702974,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8877639834260742,
+        "fallback_rows": []
+      },
+      {
+        "population": "LPM",
+        "condition": "-DT",
+        "lane_anchor": 2.7014851485148514,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.7505145038795267,
+        "fallback_rows": []
+      },
+      {
+        "population": "LPM",
+        "condition": "+DT",
+        "lane_anchor": 3.1470297029702974,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8782410869012732,
+        "fallback_rows": []
+      },
+      {
+        "population": "RPM",
+        "condition": "-DT",
+        "lane_anchor": 3.7014851485148514,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "E7",
+          "H7"
+        ]
+      },
+      {
+        "population": "RPM",
+        "condition": "+DT",
+        "lane_anchor": 4.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "R7",
+          "Q7"
+        ]
+      },
+      {
+        "population": "KC",
+        "condition": "-DT",
+        "lane_anchor": 4.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9242065980316733,
+        "fallback_rows": []
+      },
+      {
+        "population": "KC",
+        "condition": "+DT",
+        "lane_anchor": 5.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.7621215759951171,
+        "fallback_rows": []
+      },
+      {
+        "population": "SILPM",
+        "condition": "-DT",
+        "lane_anchor": 5.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8363478702915909,
+        "fallback_rows": []
+      },
+      {
+        "population": "SILPM",
+        "condition": "+DT",
+        "lane_anchor": 6.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9523944419542151,
+        "fallback_rows": [
+          "O9"
+        ]
+      },
+      {
+        "population": "CLPM",
+        "condition": "-DT",
+        "lane_anchor": 6.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9271757762780255,
+        "fallback_rows": []
+      },
+      {
+        "population": "CLPM",
+        "condition": "+DT",
+        "lane_anchor": 7.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.8716373796674457,
+        "fallback_rows": [
+          "R10"
+        ]
+      },
+      {
+        "population": "MG",
+        "condition": "-DT",
+        "lane_anchor": 7.701485148514852,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 0.9595452994336853,
+        "fallback_rows": [
+          "H11",
+          "B11"
+        ]
+      },
+      {
+        "population": "MG",
+        "condition": "+DT",
+        "lane_anchor": 8.147029702970297,
+        "max_allowed_offset_mm": 1.0,
+        "max_actual_offset_mm": 1.0,
+        "fallback_rows": [
+          "Q11",
+          "R11"
+        ]
+      }
+    ],
+    "unresolved_pair_count": 15,
+    "unresolved_pairs": [
+      [
+        "R3",
+        "T3",
+        1.896748068970852
+      ],
+      [
+        "D5",
+        "I5",
+        1.9615157849233011
+      ],
+      [
+        "G5",
+        "J5",
+        2.1563632896932488
+      ],
+      [
+        "D7",
+        "H7",
+        2.0125854355649175
+      ],
+      [
+        "E7",
+        "I7",
+        2.0144670536344718
+      ],
+      [
+        "O7",
+        "Q7",
+        2.388784893163841
+      ],
+      [
+        "R7",
+        "U7",
+        2.307322238044387
+      ],
+      [
+        "O9",
+        "Q9",
+        1.736249957905528
+      ],
+      [
+        "O9",
+        "S9",
+        2.679978439444778
+      ],
+      [
+        "N10",
+        "R10",
+        2.032191021597619
+      ],
+      [
+        "R10",
+        "S10",
+        1.8999800166021357
+      ],
+      [
+        "B11",
+        "D11",
+        2.6211096095562456
+      ],
+      [
+        "F11",
+        "H11",
+        2.247662722376389
+      ],
+      [
+        "L11",
+        "R11",
+        2.6555726013706917
+      ],
+      [
+        "M11",
+        "Q11",
+        2.5048251994410617
+      ]
+    ],
+    "min_center_separation_pt": 1.736249957905528,
+    "summary_crossing_count": 0,
+    "summary_crossings": [],
+    "boundary_violations": []
+  },
+  "legend_bounds_mm": [
+    93.76088888888889,
+    51.593632812500005,
+    22.239111111111097,
+    4.9063671875
+  ],
+  "legend_reserved_region_mm": [
+    91,
+    50.5,
+    26,
+    7
+  ],
+  "legend_area_fraction_of_data_region": 0.02842971470420066,
+  "text": [
+    {
+      "text": "Normalized cell number",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        8.546577256944444,
+        15.522000000000004,
+        2.648589409722223,
+        28.955999999999996
+      ]
+    },
+    {
+      "text": "cMo",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        18.986444444444444,
+        6.481688368055555,
+        5.249333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "pMo",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        30.166333333333327,
+        6.481688368055555,
+        5.334,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "SPM",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        41.04988888888888,
+        6.481688368055555,
+        6.011333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "LPM",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        52.44144444444445,
+        6.481688368055555,
+        5.672666666666666,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "RPM",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        63.40966666666666,
+        6.481688368055555,
+        6.180666666666666,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "KC",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        75.77488888888888,
+        6.481688368055555,
+        3.8946666666666663,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "SILPM",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        84.79577777777776,
+        6.481688368055555,
+        8.297333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "CLPM",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        96.31433333333332,
+        6.481688368055555,
+        7.704666666666666,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "MG",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        109.14522222222222,
+        6.481688368055555,
+        4.487333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "0",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        12.606277777777777,
+        9.378738064236112,
+        1.5239999999999998,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "1",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        12.606277777777777,
+        18.87873806423611,
+        1.5239999999999998,
+        2.648589409722223
+      ]
+    },
+    {
+      "text": "2",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        12.606277777777777,
+        28.378738064236114,
+        1.5239999999999998,
+        2.6485894097222205
+      ]
+    },
+    {
+      "text": "3",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        12.606277777777777,
+        37.87873806423611,
+        1.5239999999999998,
+        2.6485894097222205
+      ]
+    },
+    {
+      "text": "4",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        12.606277777777777,
+        47.37873806423611,
+        1.5239999999999998,
+        2.6485894097222253
+      ]
+    },
+    {
+      "text": "−DT",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        97.8531111111111,
+        52.72252170138888,
+        5.334,
+        2.6485894097222253
+      ]
+    },
+    {
+      "text": "+DT",
+      "size_pt": 8.0,
+      "family": [
+        "Arial"
+      ],
+      "bbox_mm": [
+        109.5371111111111,
+        52.72252170138888,
+        5.334,
+        2.6485894097222253
+      ]
+    }
+  ]
+}

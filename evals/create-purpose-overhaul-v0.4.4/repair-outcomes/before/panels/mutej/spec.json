@@ -1,0 +1,63 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "panel_condition",
+    "unit": "unit",
+    "value": "value"
+  },
+  "layout": {
+    "width_mm": 60,
+    "height_mm": 62,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.2,
+      "right": 0.965,
+      "bottom": 0.12,
+      "top": 0.945
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU",
+      "KU",
+      "L755",
+      "SCR7"
+    ]
+  },
+  "labels": {
+    "y": "mutEJ (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "bar_width": 0.3,
+    "marker_area_pt2": 3.5,
+    "point_color": "#333333",
+    "bar_color": "#FF7D82",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.6,
+    "bar_edge_color": "#FF7D82",
+    "y_limits": [
+      0,
+      55
+    ],
+    "y_ticks": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "track": "create",
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/source-intake/observations.csv",
+    "contract_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/source-intake/input-contract.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/plot.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/spec.json",
+    "supplied_spec_sha256": "df5d6c9b2bce6859b7ab770a9a7a88874b28e881cac2095580dbd262582c092f"
+  },
+  "version": {
+    "input_sha256": "e99509505b908adbb1b93ed8a2ae3b83522d4422f1e64ea69ddbc3eb2356d410",
+    "contract_sha256": "30e46e4bacb36bc9e8dddd3492eff971635e98b0fbd448d65f1ad3297a6372e3",
+    "source_script_sha256": "414f9567c2757d00322b82f0058504312fd3f381663feee0ac04db717f161e0b"
+  },
+  "layout": {
+    "width_mm": 120.0,
+    "height_mm": 60.0,
+    "dpi": 300,
+    "actual_font": "Arial",
+    "font_substituted": false,
+    "font_path": "/System/Library/Fonts/Supplemental/Arial.ttf"
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "point_layout": {
+    "policy": "deterministic constrained categorical-only circle packing",
+    "diameter_pt": 2.5,
+    "gap_pt": 0.22,
+    "groups": [
+      {
+        "population": "cMo",
+        "condition": "-DT",
+        "lane_anchor": -0.3118811881188119,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.4797567525969193,
+        "fallback_rows": []
+      },
+      {
+        "population": "cMo",
+        "condition": "+DT",
+        "lane_anchor": 0.16039603960396043,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.8300016074032477,
+        "fallback_rows": []
+      },
+      {
+        "population": "pMo",
+        "condition": "-DT",
+        "lane_anchor": 0.6881188118811882,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.4740839365551028,
+        "fallback_rows": []
+      },
+      {
+        "population": "pMo",
+        "condition": "+DT",
+        "lane_anchor": 1.1603960396039603,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.4712620867538058,
+        "fallback_rows": []
+      },
+      {
+        "population": "SPM",
+        "condition": "-DT",
+        "lane_anchor": 1.688118811881188,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 1.2999999999999987,
+        "fallback_rows": []
+      },
+      {
+        "population": "SPM",
+        "condition": "+DT",
+        "lane_anchor": 2.1603960396039605,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.7544176317005818,
+        "fallback_rows": []
+      },
+      {
+        "population": "LPM",
+        "condition": "-DT",
+        "lane_anchor": 2.6881188118811883,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.539445135493,
+        "fallback_rows": []
+      },
+      {
+        "population": "LPM",
+        "condition": "+DT",
+        "lane_anchor": 3.1603960396039605,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.43912054345105384,
+        "fallback_rows": []
+      },
+      {
+        "population": "RPM",
+        "condition": "-DT",
+        "lane_anchor": 3.6881188118811883,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 1.178175455496159,
+        "fallback_rows": []
+      },
+      {
+        "population": "RPM",
+        "condition": "+DT",
+        "lane_anchor": 4.1603960396039605,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.9186300968184019,
+        "fallback_rows": []
+      },
+      {
+        "population": "KC",
+        "condition": "-DT",
+        "lane_anchor": 4.688118811881188,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.7137110297092482,
+        "fallback_rows": []
+      },
+      {
+        "population": "KC",
+        "condition": "+DT",
+        "lane_anchor": 5.1603960396039605,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.38106079250545216,
+        "fallback_rows": []
+      },
+      {
+        "population": "SILPM",
+        "condition": "-DT",
+        "lane_anchor": 5.688118811881188,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.41817394314831763,
+        "fallback_rows": []
+      },
+      {
+        "population": "SILPM",
+        "condition": "+DT",
+        "lane_anchor": 6.1603960396039605,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 1.2032202474064095,
+        "fallback_rows": []
+      },
+      {
+        "population": "CLPM",
+        "condition": "-DT",
+        "lane_anchor": 6.688118811881188,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 0.7113397779022504,
+        "fallback_rows": []
+      },
+      {
+        "population": "CLPM",
+        "condition": "+DT",
+        "lane_anchor": 7.1603960396039605,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 1.2443381283192756,
+        "fallback_rows": []
+      },
+      {
+        "population": "MG",
+        "condition": "-DT",
+        "lane_anchor": 7.688118811881188,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 1.2829040918741335,
+        "fallback_rows": []
+      },
+      {
+        "population": "MG",
+        "condition": "+DT",
+        "lane_anchor": 8.160396039603961,
+        "max_allowed_offset_mm": 1.3,
+        "max_actual_offset_mm": 1.1068345263197692,
+        "fallback_rows": []
+      }
+    ],
+    "unresolved_pair_count": 0,
+    "unresolved_pairs": [],
+    "min_center_separation_pt": 2.719999999985991,
+    "summary_crossing_count": 0,
+    "summary_crossings": [],
+    "boundary_violations": []
+  },
+  "colors": {
+    "-DT": "#454545",
+    "+DT": "#0072B2"
+  },
+  "caption_file": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/caption.md",
+  "font_exports": {
+    "pdf": [
+      {
+        "base_font": "/DIONFR+ArialMT",
+        "embedded": true
+      }
+    ],
+    "svg": "Editable Arial 8 pt text; font is not embedded in SVG."
+  }
+}

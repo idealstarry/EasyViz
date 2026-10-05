@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review_packet",
+  "policy_version": "0.4.4",
+  "pass_number": 2,
+  "reading_task": "Compare treatments within this original-percent repair outcome using arithmetic means, sample SD and all three biological replicates.",
+  "inputs": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output",
+    "caption": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/caption.md",
+    "baseline_dir": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/repair-outcomes/before/transfer/panels/mutej/output",
+    "baseline_kind": "accepted"
+  },
+  "snapshot": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output",
+    "artifacts": {
+      "panel.png": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/panel.png",
+        "sha256": "2b55e1c89592d1c2dc5953287a766e77130ca6073795923906d552b9238efd52",
+        "bytes": 22178
+      },
+      "panel.pdf": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/panel.pdf",
+        "sha256": "f265f2735c4160d6ae32a38e03a6062bef46658d1118bf479412ee2b5cf5ccc8",
+        "bytes": 18464
+      },
+      "panel.svg": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/panel.svg",
+        "sha256": "7d0394d1c093bc5a31739159f5be726796183ed13f9a21b6c19de0e893d90c8d",
+        "bytes": 16423
+      },
+      "settings.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/settings.json",
+        "sha256": "7f737eba8e7775488634766d53fa7fb6af682d77cad1c9bd519db0a9c0b5c459",
+        "bytes": 4992
+      },
+      "elements.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/elements.json",
+        "sha256": "7260f2c502c95eed29e2efbb2dc9eacd26308ddac1f6b35650fb6413f2a049a2",
+        "bytes": 22121
+      },
+      "qa.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/qa.json",
+        "sha256": "84cb6098a1fd3bdc7cf3539b2699e621ffef12d5eaaec6439b81c84677bfe22d",
+        "bytes": 27263
+      },
+      "stats.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/stats.json",
+        "sha256": "b0a0af971b2fa6e68decd12264ce621fef7a1583560eabee2a8d42d17e223524",
+        "bytes": 377
+      },
+      "plotting-data.csv": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/plotting-data.csv",
+        "sha256": "66c879b7152e5bb0f0a25861dd547563cf1f00341acffae44799b6dcb0c935ef",
+        "bytes": 2116
+      },
+      "caption": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/caption.md",
+        "sha256": "2b66997357465a25189413578a8262fd7bde08a9cc9068922f2c171981bb6f56",
+        "bytes": 589
+      }
+    },
+    "source_bindings": {
+      "data_file": [
+        {
+          "declared_by": "settings.json:input_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/source-data.csv",
+          "sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+          "expected_sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+          "status": "passed"
+        },
+        {
+          "declared_by": "elements.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/source-data.csv",
+          "sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+          "expected_sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+          "status": "passed"
+        }
+      ],
+      "source_script": [
+        {
+          "declared_by": "elements.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+          "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+          "expected_sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+          "status": "passed"
+        }
+      ],
+      "spec_file": [
+        {
+          "declared_by": "elements.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/spec.json",
+          "sha256": "bb8eecca31fcac88927ac3084b4ae1ac0d6e9f19397ec5e7c9f76be8b2c16d46",
+          "expected_sha256": "bb8eecca31fcac88927ac3084b4ae1ac0d6e9f19397ec5e7c9f76be8b2c16d46",
+          "status": "passed"
+        }
+      ],
+      "figure_profile": []
+    },
+    "panel": {
+      "width_mm": 72.0,
+      "height_mm": 48.0
+    },
+    "measured_checks": {
+      "export_dimensions": {
+        "status": "passed",
+        "evidence": {
+          "adopted_canvas_mm": {
+            "width_mm": 72.0,
+            "height_mm": 48.0
+          },
+          "actual_png": {
+            "pixels": [
+              850,
+              567
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          },
+          "qa_exports": {
+            "pdf": {
+              "width_mm": 72.00000000000833,
+              "height_mm": 48.000000000005556,
+              "sha256": "f265f2735c4160d6ae32a38e03a6062bef46658d1118bf479412ee2b5cf5ccc8"
+            },
+            "svg": {
+              "width_mm": 71.99999993333333,
+              "height_mm": 47.99999995555555,
+              "text_preserved": true,
+              "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+              "sha256": "7d0394d1c093bc5a31739159f5be726796183ed13f9a21b6c19de0e893d90c8d"
+            },
+            "png": {
+              "pixels": [
+                850,
+                567
+              ],
+              "dpi": [
+                299.9994,
+                299.9994
+              ],
+              "sha256": "2b55e1c89592d1c2dc5953287a766e77130ca6073795923906d552b9238efd52"
+            }
+          },
+          "format_bindings": {
+            "pdf": {
+              "status": "passed",
+              "measurement_source": "hash_bound_qa",
+              "recorded_sha256": "f265f2735c4160d6ae32a38e03a6062bef46658d1118bf479412ee2b5cf5ccc8",
+              "actual_sha256": "f265f2735c4160d6ae32a38e03a6062bef46658d1118bf479412ee2b5cf5ccc8"
+            },
+            "svg": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "7d0394d1c093bc5a31739159f5be726796183ed13f9a21b6c19de0e893d90c8d",
+              "actual_sha256": "7d0394d1c093bc5a31739159f5be726796183ed13f9a21b6c19de0e893d90c8d"
+            },
+            "png": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "2b55e1c89592d1c2dc5953287a766e77130ca6073795923906d552b9238efd52",
+              "actual_sha256": "2b55e1c89592d1c2dc5953287a766e77130ca6073795923906d552b9238efd52"
+            }
+          },
+          "actual_svg": {
+            "width_mm": 71.99999993333333,
+            "height_mm": 47.99999995555555
+          }
+        }
+      },
+      "typography": {
+        "status": "passed",
+        "evidence": {
+          "actual_font": "Arial",
+          "font_substituted": false,
+          "sizes_pt": {
+            "axis": 8.0,
+            "tick": 8.0,
+            "legend": 8.0,
+            "annotation": 8.0,
+            "title": 9.0,
+            "panel": 9.0
+          },
+          "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+        }
+      },
+      "source_provenance": {
+        "status": "passed",
+        "evidence": {
+          "declared_sources": {
+            "data_file": [
+              {
+                "declared_by": "settings.json:input_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/source-data.csv",
+                "sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+                "expected_sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+                "status": "passed"
+              },
+              {
+                "declared_by": "elements.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/source-data.csv",
+                "sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+                "expected_sha256": "bbacc071b8001e40d95836da8c2a9245a64f07d0d4f11c2c7d01650bc643f33f",
+                "status": "passed"
+              }
+            ],
+            "source_script": [
+              {
+                "declared_by": "elements.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+                "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+                "expected_sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+                "status": "passed"
+              }
+            ],
+            "spec_file": [
+              {
+                "declared_by": "elements.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/spec.json",
+                "sha256": "bb8eecca31fcac88927ac3084b4ae1ac0d6e9f19397ec5e7c9f76be8b2c16d46",
+                "expected_sha256": "bb8eecca31fcac88927ac3084b4ae1ac0d6e9f19397ec5e7c9f76be8b2c16d46",
+                "status": "passed"
+              }
+            ],
+            "figure_profile": []
+          },
+          "saved_specification": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/settings.json",
+            "sha256": "7f737eba8e7775488634766d53fa7fb6af682d77cad1c9bd519db0a9c0b5c459",
+            "bytes": 4992
+          },
+          "resolved_spec_sha256": "e1ad4589efacb8f6bcdf916af0262ae14674f793e42bcc1abde2895e1822bed3",
+          "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+        }
+      },
+      "technical_qa": {
+        "status": "passed",
+        "evidence": {
+          "qa": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/qa.json",
+            "sha256": "84cb6098a1fd3bdc7cf3539b2699e621ffef12d5eaaec6439b81c84677bfe22d",
+            "bytes": 27263
+          },
+          "status": "pass",
+          "valid_outputs": true,
+          "input_rows": 12,
+          "plotted_input_rows": null,
+          "readability_advisory": "no_advisory_flags",
+          "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+        }
+      },
+      "caption": {
+        "status": "passed",
+        "evidence": {
+          "artifact": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/caption.md",
+            "sha256": "2b66997357465a25189413578a8262fd7bde08a9cc9068922f2c171981bb6f56",
+            "bytes": 589
+          },
+          "scope": "Separate caption is present; its scientific wording is a review attestation."
+        }
+      }
+    },
+    "candidate_png": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/repair-outcomes/transfer/panels/mutej/output/panel.png",
+      "sha256": "2b55e1c89592d1c2dc5953287a766e77130ca6073795923906d552b9238efd52",
+      "bytes": 22178
+    },
+    "baseline_png": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/repair-outcomes/before/transfer/panels/mutej/output/panel.png",
+      "sha256": "3426e89213221b5bec9264b7989644b8fbbfc5d5897df96d49f59ac9b44855e6",
+      "measurement": {
+        "pixels": [
+          709,
+          732
+        ],
+        "dpi": [
+          299.9994,
+          299.9994
+        ]
+      }
+    }
+  },
+  "required_design_checks": [
+    "scientific_mapping",
+    "reading_priority",
+    "mark_hierarchy",
+    "geometry",
+    "palette_and_strokes",
+    "guides_and_text"
+  ],
+  "required_external_checks": [
+    "export_dimensions",
+    "typography",
+    "source_provenance",
+    "technical_qa",
+    "caption"
+  ],
+  "instructions": [
+    "Open the actual candidate PNG as a complete canvas before first user-visible delivery.",
+    "Consider the recorded physical size: inspect a nominal-size view if available, or honestly record a final-proportions view and its size basis. One actual opening may cover both views.",
+    "Record brief, concrete evidence for each design criterion; inspect the caption separately.",
+    "Acknowledge the saved measured evidence without inventing measurements. Required failed/not_checked items prevent readiness.",
+    "Correct critical/major failures before delivery; record corrections and residual minor/intentional differences. A clean first pass is valid.",
+    "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
+    "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."
+  ],
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

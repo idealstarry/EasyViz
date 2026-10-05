@@ -1,0 +1,29 @@
+{
+  "purpose": "Forward diagnostic of CI font/canvas packing failure and constrained default-margin repair; known regression fixture, not unseen quality evaluation. Prior three frozen evaluation rounds remain unchanged.",
+  "helper_version": "0.2.3",
+  "fonts": {
+    "arial-present": "Requested Arial resolves to installed Arial on this host",
+    "explicit-dejavu": "Real DejaVu Sans",
+    "arial-forced-unavailable": "FontManager Arial lookup patched to the real installed DejaVu Sans font path for planning and export; source still requests Arial. Other lookups unchanged."
+  },
+  "geometry_policy": "Only omitted categorical far-edge margin within measured fit padding band. Gap, marker area, font size, quantitative coordinates and limits retained. Explicit locked margins still fail honestly.",
+  "source_files_sha256": {
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/create_candidates.py": "44f644c95f6ea92d219dd98d1933b78f1dc5ef084e4c14d342a86155a69d4950",
+    "/Users/starry/Desktop/EasyViz/tests/test_create_candidates.py": "ce423eea849a00179919ac0496848a67b1b4cf25d55c19e8e79f128c8e9d217b"
+  },
+  "cases": [
+    "arial-forced-unavailable",
+    "arial-present",
+    "explicit-dejavu",
+    "explicit-dejavu-160",
+    "explicit-locked-margins",
+    "horizontal-dejavu"
+  ],
+  "review_status": "Technical/artist QA only; actual-image independent review pending.",
+  "focused_tests": {
+    "count": 30,
+    "elapsed_seconds": 67.766,
+    "result": "pass",
+    "log": "focused-tests.log"
+  }
+}

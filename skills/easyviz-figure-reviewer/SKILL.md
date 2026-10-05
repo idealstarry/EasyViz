@@ -25,6 +25,7 @@ If an image or specification is missing, report the resulting limitation. Do not
 
 | Area | Inspect |
 | --- | --- |
+| Scientific purpose | Whether the adopted question can actually be read from this panel. A numeric pair alone does not justify association, and a before/after point field need not communicate individual change. Flag a missing required comparison cue; extra chart types or layers do not establish usefulness. |
 | Scientific mapping | Axis labels and scale, legend associations, category order, and agreement of visible layers with the specification. |
 | Adopted reference features | Chart structure, marks, layer order, grouping, palette relationships, relative layout, and annotation placement. |
 | Readability | Clipping, overlap, missing glyphs, label crowding, legend fit, line visibility, and annotation legibility at intended proportions. |
@@ -51,6 +52,15 @@ finish. If a paper is supplied as a Create design target, report transferred
 mechanisms and remaining hierarchy/geometry gaps separately. Different data and
 tasks prevent treating that comparison as matched quality or model-performance
 evidence; do not require its scientific shapes, tests or extra layers.
+
+For a Create design review, also state whether a concrete design benefit is
+visible beyond a correct generic render: which comparison became easier and
+which geometry, hierarchy or color-role choice caused it. A locally relevant
+literature mechanism may inform that judgment without making the task
+Reproduce. State no demonstrated benefit when the available baseline or
+mechanism comparison does not support one; technical readiness and refinement
+remain separate conclusions. Do not grade "publication quality" from color
+provenance, absence of overlaps or completed record fields.
 
 Return a table with `severity`, `location`, `evidence`, `requirement`, and `action`. Name the actual conflict and a feasible change. Avoid vague requests to improve aesthetics.
 

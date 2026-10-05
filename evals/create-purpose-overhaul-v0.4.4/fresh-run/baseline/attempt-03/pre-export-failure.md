@@ -1,0 +1,1 @@
+No image export or visual review occurred. The shape-aware footprint assertion identified four mixed circle/square intersections: pMo G4/L4, SPM J5/N5, MG D11/Q11 and MG F11/O11. The worst overlap margin was 0.3074 pt. The code snapshot is preserved. All source data remained unchanged.

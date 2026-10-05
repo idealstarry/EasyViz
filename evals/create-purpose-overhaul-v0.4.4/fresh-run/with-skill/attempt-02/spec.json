@@ -1,0 +1,89 @@
+{
+  "track": "create",
+  "implementation": "custom grouped observations and mean ± SEM",
+  "question": "How do supplied normalized cell-number distributions differ between −DT and +DT within the nine populations?",
+  "order": {
+    "population": [
+      "cMo",
+      "pMo",
+      "SPM",
+      "LPM",
+      "RPM",
+      "KC",
+      "SILPM",
+      "CLPM",
+      "MG"
+    ],
+    "condition": [
+      "-DT",
+      "+DT"
+    ]
+  },
+  "fields": {
+    "population": "population",
+    "condition": "condition",
+    "value": "normalized_count",
+    "source": "source_cell"
+  },
+  "layout": {
+    "width_mm": 120.0,
+    "height_mm": 60.0,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "data_region_mm": [
+      16,
+      11,
+      101,
+      38
+    ]
+  },
+  "colors": {
+    "-DT": "#454545",
+    "+DT": "#0072B2"
+  },
+  "mark_roles": {
+    "raw_observation": {
+      "shape": "circle",
+      "diameter_pt": 2.5,
+      "matplotlib_s_pt2": 6.25,
+      "fill": "opaque",
+      "edge": "none"
+    },
+    "mean": {
+      "horizontal_width_mm": 1.16,
+      "line_width_pt": 1.05
+    },
+    "sem": {
+      "cap_width_mm": 0.92,
+      "line_width_pt": 0.65
+    },
+    "axes": {
+      "line_width_pt": 0.55
+    }
+  },
+  "numeric_axis": {
+    "scale": "linear",
+    "limits": [
+      0,
+      4
+    ],
+    "ticks": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "summaries": {
+    "center": "arithmetic mean",
+    "uncertainty": "sample SD with ddof=1 divided by sqrt(n)"
+  },
+  "changes": "Categorical-only circle packing. No numeric jitter, normalization, inference, filtering, pairing, or invented unit IDs.",
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ]
+}

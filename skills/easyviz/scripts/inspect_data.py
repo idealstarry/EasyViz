@@ -477,21 +477,45 @@ def _options(table, declaration, tokens):
                       "descriptive_analysis_plan": _descriptive_plan(fields, design, (declaration or {}).get("question") or "Describe the supplied measurement distribution", tokens, (declaration or {}).get("missing_policy", "error")),
                       "inference": {"status": "not_selected", "methods_to_consider_after_design": comparison_methods, "questions": common_questions},
                       "notes": ["Display raw observations and summary definitions explicitly; an observed row is not automatically a biological replicate."]})
-    if not summary and (len(numeric) >= 2 or {"x", "y"} <= set(declared_fields)):
-        x = declared_fields.get("x", numeric[0] if numeric else "")
-        y = declared_fields.get("y", next((name for name in numeric if name != x), numeric[-1] if numeric else ""))
-        plans.append({"id": "association", "reading_task": "Read whether two supplied numeric measurements vary together",
-                      "recommended_charts": ["scatter"], "field_candidates": {"x": numeric[:6], "y": numeric[:6], "group": groups[:6]},
-                      "proposed_fields": {"x": x, "y": y}, "mapping_status": "declared" if {"x", "y"} <= set(declared_fields) else "candidate; confirm field meanings before plotting",
-                      "inference": {"status": "not_selected", "methods_to_consider_after_design": ["pearson for an adopted linear association question", "spearman for an adopted monotonic association question"], "questions": common_questions + ["Are scales or transformations required, and does each unit contribute one independent pair?"]},
-                      "notes": ["A scatter preview does not establish causation or justify a fitted curve."]})
+    unit_column = next((column for column in columns if column["name"] == declared_unit), None)
+    wide_pairing = bool(not summary and design.get("confirmed") and design.get("structure") == "paired"
+                        and unit_column and len(numeric) >= 2 and not {"group", "value"} <= set(declared_fields)
+                        and not unit_column["missing"] and not unit_column["duplicate_nonmissing"])
+    if wide_pairing:
+        plans.append({"id": "paired_wide_candidate", "reading_task": "Compare the same measurement across explicitly adopted conditions within each declared unit",
+                      "recommended_charts": ["paired"], "field_candidates": {"unit": [declared_unit], "measurement_columns": numeric[:6]},
+                      "mapping_status": "requires explicit condition/measurement schema, full unit verification and recorded wide-to-long reshape before plotting",
+                      "preparation": {"status": "required_before_plotting", "source_layout": "possible wide observations; confirm from source context",
+                                      "unit_verification": {"unit": declared_unit, "inspected_rows": table["rows_inspected"],
+                                                            "unique_nonmissing": unit_column["unique_nonmissing"], "missing": unit_column["missing"],
+                                                            "duplicate_nonmissing": unit_column["duplicate_nonmissing"],
+                                                            "status": "one_row_per_unit_in_complete_source" if table["rows_complete"] else "inspected_prefix_only; verify full source"},
+                                      "required_steps": ["Adopt which columns contain the same measurement, its units and each explicit condition label/order; do not treat unrelated numeric covariates as conditions.",
+                                                         "Verify the full source has one row per declared scientific unit and adopt missing/unmatched-value handling.",
+                                                         "Record the wide-to-long reshape with original unit strings, source row/column or cell references and unchanged measurements; verify one value per adopted unit and condition before plotting."]},
+                      "inference": {"status": "blocked", "questions": ["Which columns contain the same measurement under which conditions, and what comparison should the reader make?", "Is one row one complete unit, with no technical-repeat rows or reused IDs?", "What missing/unmatched handling and traceable reshape are adopted?"]},
+                      "notes": ["This is a preparation candidate. No pairs, conditions, differences, transformed values or statistical analyses were created."]})
     repeated_ids = [unit["column"] for unit in table["intake_signals"]["identifier_candidates"] if unit["repeated_identifiers"]]
-    if not summary and ids and values and (selected_group or groups) and (repeated_ids or design.get("structure") == "paired") and not (design.get("confirmed") and design["structure"] == "independent"):
+    if not wide_pairing and not summary and ids and values and (selected_group or groups) and (repeated_ids or design.get("structure") == "paired") and not (design.get("confirmed") and design["structure"] == "independent"):
         plans.append({"id": "paired_candidate", "reading_task": "Check whether an explicit unit has measurements in multiple conditions",
                       "recommended_charts": ["paired"], "field_candidates": {"unit": [design["unit"]] if design.get("unit") else repeated_ids[:6], "group": [selected_group] if selected_group else groups[:6], "value": values},
                       "mapping_status": "requires explicit pairing verification",
                       "inference": {"status": "blocked", "questions": ["Does this identifier refer to the same unit across conditions?", "Is there one value per unit and condition, or are technical repeats present?", "How should unmatched units be handled without silently dropping them?"]},
                       "notes": ["Matching-looking identifiers are a candidate relationship; the command has not established or created pairs."]})
+    if not summary and {"x", "y"} <= set(declared_fields):
+        x, y = declared_fields["x"], declared_fields["y"]
+        plans.append({"id": "association", "reading_task": "Read whether the adopted numeric measurements vary together",
+                      "recommended_charts": ["scatter"], "field_candidates": {"x": [x], "y": [y], "group": [selected_group] if selected_group else groups[:6]},
+                      "proposed_fields": {"x": x, "y": y}, "mapping_status": "declared",
+                      "purpose_status": "requires an adopted reading purpose; field mappings alone do not establish a useful scientific question",
+                      "inference": {"status": "not_selected", "methods_to_consider_after_design": ["pearson for an adopted linear association question", "spearman for an adopted monotonic association question"], "questions": common_questions + ["What comparison should the reader make, and why does this panel answer it?", "Are scales or transformations required, and does each unit contribute one independent pair?"]},
+                      "notes": ["A scatter preview does not establish causation or justify a fitted curve."]})
+    elif not summary and len(numeric) >= 2:
+        plans.append({"id": "numeric_pair_eligibility", "reading_task": "Resolve whether numeric fields answer an intended joint reading task",
+                      "recommended_charts": [], "field_candidates": {"numeric": numeric[:6]},
+                      "mapping_status": "unresolved; adopt the reading purpose and explicit x/y roles before choosing a joint chart",
+                      "inference": {"status": "blocked", "questions": ["What should the reader compare, and why is a joint view of these fields useful?", "Which numeric columns, units and roles are supported by the source context?"]},
+                      "notes": ["Two numeric columns establish possible coordinates only. No chart, x/y mapping or correlation method is recommended from their order or names."]})
     if not plans:
         plans.append({"id": "table_structure", "reading_task": "Establish table grain and which fields can answer a quantitative question",
                       "recommended_charts": [], "field_candidates": {"identifier": ids[:6], "category": groups[:6], "date_time": dates[:6]},

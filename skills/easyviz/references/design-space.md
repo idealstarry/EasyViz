@@ -10,13 +10,47 @@ reference; this resource adds no track.
 
 1. **Reading task:** what should readers compare first—estimates, individual
    observations, distribution shape, an association, or matrix values/patterns?
-   Establish units, groups and already adopted statistical layers.
+   State the scientific question, the comparison this panel enables and why it is needed;
+   establish units, groups and already adopted statistical layers. A numeric
+   pair supplies coordinates, not a reason to draw an association panel.
 2. **Organization:** overlay or separate related groups, choose orientation,
    category spacing and data-region aspect, and place guides where lookup is
    easiest. Respect adopted order, scales and assembly constraints.
 3. **Visual roles:** decide which layer carries category identity and which
    attracts attention. Then choose its fill, contour, point treatment and hues.
    Category count limits decoding capacity; it does not choose the leading layer.
+
+## Plan the first panel
+
+Write a short internal design brief before rendering; a few lines in working
+notes or the spec rationale suffice. Resolve supported cosmetic choices without
+asking the user to approve a layout. Use source context to settle the question;
+clarify only scientific ambiguity that would change its meaning.
+
+| Brief item | Concrete decision |
+| --- | --- |
+| Purpose | State the comparison readers need to make and why this panel is needed. Identify the adopted measurement, experimental unit and summaries. |
+| Reading burden | Count actual categories, series within each category, observations per group and long labels. Inspect value ranges, uncertainty extent and adopted density layers. Keep these planning counts outside the image unless needed for decoding. |
+| Geometry | Plan the data-region width and height, category pitch, summary/body width, raw-point span and guide footprint at the adopted font size. Distinguish within-group, between-group and exterior gaps. Canvas aspect alone does not describe this geometry. |
+| Hierarchy | Decide which of raw observations, summary or density should lead. Give the other adopted layers distinct, readable boundaries; state where crossings or overly tall/slender marks are likely. |
+| Comparable mechanism | Choose a literature/card mechanism with a similar reading burden. Record the observed feature and the proposed adaptation separately; sharing a palette does not establish comparable grouping or proportions. |
+| Expected benefit | Name an observable gain, such as less disconnected category spacing, easier interval lookup or a clearer median. Check that gain on actual final-size exports before accepting it. |
+
+For vertical categorical plots, relate the measured data width to the category
+pitch and the visible summary width. A narrow body separated by several body
+widths can make a small comparison look disconnected; extending the numeric
+axis vertically can make bars look slender without adding evidence. For grouped
+bars, distinguish the series gap within a group from the gap between groups,
+including the visible strokes. For box/violin, choose summary and raw-lane
+capacity together, rather than shrinking summaries until points fit.
+
+The [observed literature geometry](literature-style.md#geometry-observations)
+offers conditional analogues for one pair, repeated double bars and multiple
+distributions. Use its mechanism to propose a data rectangle; do not assign its
+ratio to every chart. Preserve adopted dimensions, fonts, scale, statistics and
+all observations. An unadopted new-canvas default can be chosen for this task;
+an explicit canvas stays fixed. Check resulting exterior whitespace as well as
+the data rectangle.
 
 ## Conditional routes within basic families
 
@@ -25,7 +59,7 @@ reference; this resource adds no track.
 | Bar: readers mainly compare one supplied quantity | A consistent filled neutral or single-hue bar can emphasize height; use an open summary when raw replicates or intervals need more separation. Neither treatment requires one hue per x label. |
 | Bar: one adopted control or contrast is the focus | A deliberate accent with quieter remaining bars can direct that comparison. Decode the focus and retain every group and uncertainty; do not invent a control or ranking. |
 | Grouped bar: readers compare real series within categories | Repeat series order and distinguish series on their bounded areas or outlines; balance within-category and between-category gaps. Long labels or different outcomes may justify horizontal/custom or aligned views when the adopted layout permits. |
-| Scatter: a single population's relationship is the task | Neutral or one-hue observations can carry the relationship directly. Choose aspect and useful ticks from the numeric ranges; optional fits require an adopted model. |
+| Scatter: a scientifically relevant relationship is the task | Neutral or one-hue observations can carry the relationship directly. Establish why reading that relationship matters before choosing aspect and useful ticks; optional fits require an adopted model. |
 | Scatter: classes must be identified in a shared point field | Distinguishable point hues, optionally decoded symbols for fixed-size observations, support identity. Check small marks and overlap on white; quantitative filled-area circles retain their shape/area contract. |
 | Scatter: comparisons between crowded groups matter more than overlay | Separate aligned views with common adopted scales can reduce lookup and overlap when the layout permits. Retain all observations and the same fits/uncertainty; do not introduce density estimates merely for variety. |
 | Box: median and quartiles should lead | Definite summary boundaries with categorical areas or restrained neutral boxes; raw points can occupy a neighboring lane if they obscure the summary. Side placement is conditional, not mandatory. |
@@ -43,6 +77,11 @@ check the actual recipe contract or use custom code. Preserve all source rows,
 units, statistics, KDE, quantitative mark areas, explicit category mappings,
 fonts and dimensions. Do not switch chart family, summary, model, normalization
 or selection solely to make variants look different.
+
+For before/after data, decide whether the task concerns the relationship across
+occasions or verified within-unit change. Use the [Create mapping guidance](create.md)
+to choose a scatter, connected paired view or explicit change view accordingly;
+do not add a family to a panel set merely to make it varied.
 
 ## Use materials without becoming anchored
 

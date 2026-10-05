@@ -76,6 +76,110 @@ class InspectDataTests(unittest.TestCase):
             self.assertNotIn("p_value", option)
         self.assertLessEqual(len(table["options"]), 3)
 
+    def test_numeric_fields_without_adopted_roles_do_not_select_joint_chart_or_correlation(self):
+        self.source.write_text("sample_id,weight,length,height\n001,2,10,20\n002,3,11,22\n003,4,12,24\n")
+        before = self.source.read_bytes()
+        _, recommendations = intake.inspect(self.source, self.out)
+        options = recommendations["tables"][0]["options"]
+        hint = next(option for option in options if option["id"] == "numeric_pair_eligibility")
+        self.assertEqual(hint["recommended_charts"], [])
+        self.assertNotIn("proposed_fields", hint)
+        self.assertNotIn("methods_to_consider_after_design", hint["inference"])
+        self.assertEqual(hint["inference"]["status"], "blocked")
+        self.assertNotIn("association", [option["id"] for option in options])
+        self.assertNotIn("scatter", [chart for option in options for chart in option["recommended_charts"]])
+        self.assertNotIn("pearson", json.dumps(options))
+        self.assertNotIn("spearman", json.dumps(options))
+        self.assertEqual(self.source.read_bytes(), before)
+
+    def test_question_text_and_partial_x_role_do_not_fill_in_y_or_choose_joint_chart(self):
+        path = self.root / "design.json"
+        path.write_text(json.dumps({"table": self.source.name, "fields": {"x": "other"},
+                                   "question": "Plot the before/after correlation using a scatter plot"}))
+        _, recommendations = intake.inspect(self.source, self.out, path)
+        options = recommendations["tables"][0]["options"]
+        hint = next(option for option in options if option["id"] == "numeric_pair_eligibility")
+        self.assertNotIn("proposed_fields", hint)
+        self.assertEqual(hint["recommended_charts"], [])
+        self.assertNotIn("association", [option["id"] for option in options])
+        self.assertNotIn("pearson", json.dumps(options))
+        self.assertNotIn("spearman", json.dumps(options))
+
+    def test_explicit_xy_mapping_is_preserved_without_claiming_reading_purpose_adoption(self):
+        path = self.root / "design.json"
+        path.write_text(json.dumps({"table": self.source.name, "fields": {"x": "other", "y": "measurement"},
+                                   "question": "Explore this table"}))
+        _, recommendations = intake.inspect(self.source, self.out, path)
+        options = recommendations["tables"][0]["options"]
+        association = next(option for option in options if option["id"] == "association")
+        self.assertEqual(association["recommended_charts"], ["scatter"])
+        self.assertEqual(association["proposed_fields"], {"x": "other", "y": "measurement"})
+        self.assertEqual(association["field_candidates"]["x"], ["other"])
+        self.assertEqual(association["field_candidates"]["y"], ["measurement"])
+        self.assertEqual(association["mapping_status"], "declared")
+        self.assertIn("requires an adopted reading purpose", association["purpose_status"])
+        self.assertEqual(association["inference"]["status"], "not_selected")
+        self.assertNotIn("numeric_pair_eligibility", [option["id"] for option in options])
+
+    def test_confirmed_paired_wide_candidates_require_schema_and_traceable_preparation(self):
+        self.source.write_text("sample_id,cohort,before,after,age\n001,A,1.25,1.75,20\n002,A,2.5,2.0,30\n003,B,3.0,NA,40\n")
+        before = self.source.read_bytes()
+        path = self.root / "design.json"
+        declaration = {"table": self.source.name, "row_kind": "observations",
+                       "design": {"unit": "sample_id", "unit_definition": "one participant with measurements in multiple conditions", "structure": "paired", "confirmed": True}}
+        path.write_text(json.dumps(declaration))
+        manifest, recommendations = intake.inspect(self.source, self.out, path)
+        options = recommendations["tables"][0]["options"]
+        identities = [option["id"] for option in options]
+        self.assertLess(identities.index("paired_wide_candidate"), identities.index("numeric_pair_eligibility"))
+        self.assertNotIn("paired_candidate", identities, "Cohort labels must not become paired conditions")
+        candidate = next(option for option in options if option["id"] == "paired_wide_candidate")
+        self.assertEqual(candidate["recommended_charts"], ["paired"])
+        self.assertEqual(candidate["field_candidates"]["unit"], ["sample_id"])
+        self.assertNotIn("proposed_fields", candidate)
+        self.assertNotIn("descriptive_analysis_plan", candidate)
+        preparation = candidate["preparation"]
+        self.assertEqual(preparation["status"], "required_before_plotting")
+        self.assertEqual(preparation["unit_verification"]["status"], "one_row_per_unit_in_complete_source")
+        self.assertEqual(preparation["unit_verification"]["unique_nonmissing"], 3)
+        self.assertIn("unrelated numeric covariates", preparation["required_steps"][0])
+        self.assertIn("missing/unmatched", preparation["required_steps"][1])
+        self.assertIn("source row/column or cell", preparation["required_steps"][2])
+        self.assertIn("unchanged measurements", preparation["required_steps"][2])
+        self.assertEqual(candidate["inference"]["status"], "blocked")
+        self.assertNotIn("methods_to_consider_after_design", candidate["inference"])
+        self.assertEqual(manifest["tables"][0]["sample_rows"][0]["sample_id"], "001")
+        self.assertEqual(manifest["tables"][0]["sample_rows"][2]["after"], "NA")
+        self.assertEqual(self.source.read_bytes(), before)
+        self.assertEqual({file.name for file in self.out.iterdir()}, {"manifest.json", "analysis-options.json", "exploration.md"})
+
+    def test_paired_wide_prefix_check_does_not_claim_full_source_unit_verification(self):
+        self.source.write_text("sample_id,before,after\n001,1,2\n002,2,3\n001,3,4\n")
+        path = self.root / "design.json"
+        path.write_text(json.dumps({"table": self.source.name,
+                                   "design": {"unit": "sample_id", "unit_definition": "one participant", "structure": "paired", "confirmed": True}}))
+        with patch.dict(intake.LIMITS, rows_per_table=2):
+            _, recommendations = intake.inspect(self.source, self.out, path)
+        candidate = next(option for option in recommendations["tables"][0]["options"] if option["id"] == "paired_wide_candidate")
+        self.assertIn("inspected_prefix_only", candidate["preparation"]["unit_verification"]["status"])
+        self.assertEqual(candidate["preparation"]["status"], "required_before_plotting")
+
+    def test_wide_pairing_is_not_inferred_from_names_or_dirty_unit_keys(self):
+        path = self.root / "design.json"
+        examples = [("001,1,2\n002,2,3\n", "paired", False),
+                    ("001,1,2\n002,2,3\n", "independent", True),
+                    ("001,1,2\n001,2,3\n", "paired", True),
+                    ("001,1,2\n,2,3\n", "paired", True)]
+        for index, (rows, structure, confirmed) in enumerate(examples):
+            with self.subTest(structure=structure, confirmed=confirmed, rows=rows):
+                self.source.write_text("sample_id,before,after\n" + rows)
+                before = self.source.read_bytes()
+                path.write_text(json.dumps({"table": self.source.name,
+                                           "design": {"unit": "sample_id", "unit_definition": "one participant", "structure": structure, "confirmed": confirmed}}))
+                _, recommendations = intake.inspect(self.source, self.root / f"check-{index}", path)
+                self.assertNotIn("paired_wide_candidate", [option["id"] for option in recommendations["tables"][0]["options"]])
+                self.assertEqual(self.source.read_bytes(), before)
+
     def test_inventory_only_preserves_source_profiles_without_track_or_recommendations(self):
         original = self.source.read_bytes()
         result = self.cli("--inventory-only")
@@ -214,6 +318,9 @@ class InspectDataTests(unittest.TestCase):
                                                  "repeated_identifier_level_cells": 1}])
         raw = choices[self.source.name]
         self.assertIn("paired_candidate", [option["id"] for option in raw["options"]])
+        self.assertLess([option["id"] for option in raw["options"]].index("paired_candidate"),
+                        [option["id"] for option in raw["options"]].index("numeric_pair_eligibility"))
+        self.assertNotIn("association", [option["id"] for option in raw["options"]])
         self.assertEqual([item["id"] for item in raw["intake"]["priority_questions"]], ["repeated_unit", "field_meaning"])
         self.assertIn("technical repeats", raw["intake"]["priority_questions"][0]["question"])
         self.assertIn("ambiguous_headers", [item["id"] for item in raw["intake"]["cautions"]])

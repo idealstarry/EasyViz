@@ -1,0 +1,1829 @@
+{
+  "version": "0.2.3",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-font-margin-repair-hth5wopv/explicit-dejavu.csv",
+    "sha256": "a0185bdbd93f03c51804e367f1a25fe10603ae408424f980cee8843a7dc3b733",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/private/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-font-margin-repair-hth5wopv/explicit-dejavu.json",
+    "sha256": "60c554e46e5ea243b5531e58069a2b2a22971f28d7d3495d4cbcc712c24bd678",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "distribution",
+    "input_rows": 42,
+    "reading_task_source": "chart_family_hint_only",
+    "reading_task_scope": "Not the user's adopted objective; the calling Agent must establish the actual reading task and scientific contract before invoking this limited helper.",
+    "task": "compare raw distributions with the adopted summary",
+    "category_order": {
+      "group": [
+        "Control",
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "label_max_characters": {
+      "group": 7
+    },
+    "kind": "box",
+    "orientation": "vertical",
+    "category_count": 4,
+    "inner_summary": "none",
+    "group_counts": {
+      "Control": 9,
+      "Low": 10,
+      "Medium": 11,
+      "High": 12
+    },
+    "maximum_tie_count": 1,
+    "dense_raw_layer": false
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      12.400550347222223,
+      11.808545138888888,
+      65.59944965277778,
+      55.11934114583332
+    ],
+    "canvas_mm": [
+      80.0,
+      70.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.6,
+        3.6
+      ],
+      "y": [
+        0.0,
+        10.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {
+      "x": [
+        "Control",
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "issues": [],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "distribution",
+          "label": "Control",
+          "face": [
+            0.52941176,
+            0.52941176,
+            0.87058824,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "Low",
+          "face": [
+            0.74901961,
+            0.90980392,
+            0.77254902,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "Medium",
+          "face": [
+            1.0,
+            0.58823529,
+            0.58431373,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "High",
+          "face": [
+            0.79215686,
+            0.79215686,
+            0.79215686,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Control",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Low",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Medium",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "High",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "continuous_decoding": [],
+      "guide_organization": []
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [],
+      "combined": {
+        "guide_count": 0,
+        "occupied_envelope_union_area_mm2": 0.0,
+        "sum_envelope_area_mm2": 0.0,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.0,
+        "area_fraction_of_canvas": 0.0,
+        "enclosing_bbox_mm": null,
+        "max_individual_width_mm": 0.0,
+        "max_individual_height_mm": 0.0,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "font_resolution": {
+      "requested": "DejaVu Sans",
+      "actual": "DejaVu Sans",
+      "substituted": false
+    },
+    "source_to_artist": {
+      "status": "pass",
+      "numeric_coordinates_preserved": true,
+      "point_area_preserved": true,
+      "observation_count": 42
+    },
+    "point_layout": {
+      "status": "pass",
+      "overlapping_circle_pairs": 0,
+      "spacing_violation_pairs": 0,
+      "minimum_center_distance_pt": 3.76410161513772,
+      "sample_overlapping_pairs": [],
+      "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+      "policy": "beeswarm",
+      "orientation": "vertical",
+      "seed": 0,
+      "categorical_axis": "x",
+      "quantitative_axis": "y",
+      "numeric_values_changed": false,
+      "input_rows": 42,
+      "placed_rows": 42,
+      "diameter_pt": 3.4641016151377544,
+      "gap_pt": 0.3,
+      "requested_max_offset_mm": 4.0,
+      "point_category_offset": 0.0,
+      "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+      "categorical_boundary_rows": [],
+      "groups": [
+        {
+          "group": "Control",
+          "rows": 9,
+          "category_spacing_pt": 44.27409425384326,
+          "available_max_offset_mm": 3.9999999999999996,
+          "actual_max_offset_mm": 2.380672437023503,
+          "category_anchor_offset": 0.0,
+          "actual_total_offset_mm": 2.380672437023503,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 853010464
+        },
+        {
+          "group": "Low",
+          "rows": 10,
+          "category_spacing_pt": 44.27409425384327,
+          "available_max_offset_mm": 3.9999999999999996,
+          "actual_max_offset_mm": 2.3806724370234997,
+          "category_anchor_offset": 0.0,
+          "actual_total_offset_mm": 2.3806724370234997,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 4153663008
+        },
+        {
+          "group": "Medium",
+          "rows": 11,
+          "category_spacing_pt": 44.27409425384323,
+          "available_max_offset_mm": 3.9999999999999996,
+          "actual_max_offset_mm": 2.5606496933668113,
+          "category_anchor_offset": 0.0,
+          "actual_total_offset_mm": 2.5606496933668113,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 2388167889
+        },
+        {
+          "group": "High",
+          "rows": 12,
+          "category_spacing_pt": 44.274094253843316,
+          "available_max_offset_mm": 3.9999999999999996,
+          "actual_max_offset_mm": 2.5921791056421997,
+          "category_anchor_offset": 0.0,
+          "actual_total_offset_mm": 2.5921791056421997,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 3303786196
+        }
+      ],
+      "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+      "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+    },
+    "category_pitch_mm": 15.618916583994709,
+    "summary_thickness_mm": 2.4990266534391536,
+    "raw_summary_categorical_envelope_crossings": 35,
+    "summary_raw_separation_note": "Envelope crossings require visual inspection, particularly opaque points over box medians; violin contour width is a conservative envelope, not a density crossing test.",
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "distribution-summary-lane"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/box_fill_alpha",
+        "/options/box_style",
+        "/options/box_width",
+        "/options/point_category_offset",
+        "/options/point_color",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#454545",
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/point_color",
+          "/palette"
+        ],
+        "palette": {
+          "name": "progeny-summary",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Schubert et al., Nature Communications (2018), Figure 4c",
+          "source_id": "progeny-2018",
+          "provenance": "Selected PDF vector area fills rounded to 8-bit RGB, observed across inner summaries and colored density/pathway areas. Their selection/order and assignment to cohort IQR areas and new categories are EasyViz adaptations, not an author palette product.",
+          "note": "Intended for bounded summary areas with dark-neutral boundaries and observation marks. The pale mint is unsuitable as a habitual tiny-dot or thin-line color on white."
+        }
+      },
+      "route_id": "summary-area",
+      "visual_role": "Category identity on bounded summary/density areas; uniform raw observations",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Control",
+            "face": [
+              0.52941176,
+              0.52941176,
+              0.87058824,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Low",
+            "face": [
+              0.74901961,
+              0.90980392,
+              0.77254902,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Medium",
+            "face": [
+              1.0,
+              0.58823529,
+              0.58431373,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "High",
+            "face": [
+              0.79215686,
+              0.79215686,
+              0.79215686,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Control",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Low",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Medium",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "High",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Category identity on bounded summary/density areas; uniform raw observations. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "distribution_lane_planning": {
+        "scope": "Omitted categorical geometry only; no numeric movement, area/font/canvas change or new packing algorithm",
+        "status": "pass",
+        "attempts": [
+          {
+            "category_pitch_pt": 42.519685039370046,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.8031496062992005,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0,
+            "point_max_offset_mm": 4
+          },
+          {
+            "category_pitch_pt": 42.519685039370046,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.8031496062992005,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.0449084651076395
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.0449084651076395
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 2.110087927928845,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 3.470175855857633,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.07784659185878805,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 2.110087927928845,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 3.470175855857633,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.07784659185878805,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2509111468054035,
+            "point_max_offset_mm": 2.5198049913920997
+          }
+        ],
+        "summary_floor_pt": 3.4641016151377544,
+        "summary_body_width_pt": 3.470175855857633,
+        "summary_floor_met": true,
+        "summary_width_explicit": false,
+        "actual_gap_pt": 0.2,
+        "gap_reduction_reason": "The omitted .3 pt gap cannot fit the required spread while keeping the summary at least as wide as the marker outer diameter; one .2 pt positive-gap alternative is measured.",
+        "available_region_margin_borrowing": {
+          "required_extra_mm": 0.448963904268152,
+          "available_extra_mm": 0.5000000000000071,
+          "minimum_canvas_padding_mm": 1.5,
+          "edge": "right",
+          "applied": true,
+          "prospective_gap_pt": 0.2,
+          "reason": "Measured spread deficit at the retained summary/point floor; omitted default fit padding only."
+        },
+        "explicit_geometry_keys": [],
+        "note": "Actual renderer packing and source/artist QA remain decisive. Conservative summary-envelope separation requires actual-image review; infeasible layouts remain invalid."
+      },
+      "font_resolution": {
+        "requested": "DejaVu Sans",
+        "actual": "DejaVu Sans",
+        "substituted": false
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [
+        "distribution-summary-lane"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/box_style",
+        "/options/box_width",
+        "/options/point_category_offset",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "route_id": "observation-color",
+      "visual_role": "Category identity on raw observations; open neutral summaries/contours",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Control",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Low",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Medium",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "High",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Control",
+            "face": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Low",
+            "face": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Medium",
+            "face": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "High",
+            "face": [
+              [
+                0.8,
+                0.5254902,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8,
+                0.5254902,
+                0.7254902,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Category identity on raw observations; open neutral summaries/contours. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-02/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "distribution_lane_planning": {
+        "scope": "Omitted categorical geometry only; no numeric movement, area/font/canvas change or new packing algorithm",
+        "status": "pass",
+        "attempts": [
+          {
+            "category_pitch_pt": 42.519685039370046,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.8031496062992005,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0,
+            "point_max_offset_mm": 4
+          },
+          {
+            "category_pitch_pt": 42.519685039370046,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.8031496062992005,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.0449084651076395
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.0449084651076395
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 2.110087927928845,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 3.470175855857633,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.07784659185878805,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 2.110087927928845,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 3.470175855857633,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.07784659185878805,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2509111468054035,
+            "point_max_offset_mm": 2.5198049913920997
+          }
+        ],
+        "summary_floor_pt": 3.4641016151377544,
+        "summary_body_width_pt": 3.470175855857633,
+        "summary_floor_met": true,
+        "summary_width_explicit": false,
+        "actual_gap_pt": 0.2,
+        "gap_reduction_reason": "The omitted .3 pt gap cannot fit the required spread while keeping the summary at least as wide as the marker outer diameter; one .2 pt positive-gap alternative is measured.",
+        "available_region_margin_borrowing": {
+          "required_extra_mm": 0.448963904268152,
+          "available_extra_mm": 0.5000000000000071,
+          "minimum_canvas_padding_mm": 1.5,
+          "edge": "right",
+          "applied": true,
+          "prospective_gap_pt": 0.2,
+          "reason": "Measured spread deficit at the retained summary/point floor; omitted default fit padding only."
+        },
+        "explicit_geometry_keys": [],
+        "note": "Actual renderer packing and source/artist QA remain decisive. Conservative summary-envelope separation requires actual-image review; infeasible layouts remain invalid."
+      },
+      "font_resolution": {
+        "requested": "DejaVu Sans",
+        "actual": "DejaVu Sans",
+        "substituted": false
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-03",
+      "spec": "candidate-03/spec.json",
+      "eligible_design_card_ids": [
+        "distribution-summary-lane"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/box_style",
+        "/options/box_width",
+        "/options/point_category_offset",
+        "/options/point_color",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#454545",
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/point_color"
+        ],
+        "area_role": "Open neutral summaries use direct category labels for identity. Catalog category colors remain an unused fallback for unfilled bodies; no multicolor mixture is drawn."
+      },
+      "route_id": "neutral-position",
+      "visual_role": "Direct category labels/positions decode identity; open neutral marks",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Control",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Low",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Medium",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "High",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Control",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Low",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Medium",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "High",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Direct category labels/positions decode identity; open neutral marks. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-03/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "distribution_lane_planning": {
+        "scope": "Omitted categorical geometry only; no numeric movement, area/font/canvas change or new packing algorithm",
+        "status": "pass",
+        "attempts": [
+          {
+            "category_pitch_pt": 42.519685039370046,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.8031496062992005,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0,
+            "point_max_offset_mm": 4
+          },
+          {
+            "category_pitch_pt": 42.519685039370046,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.8031496062992005,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.0449084651076395
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.0449084651076395
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.27409425384323,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.916927540307512,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.08385508061491,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27262296791584234,
+            "point_max_offset_mm": 2.159408033146655
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 7.347909275836148,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 3.941168561010386,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 7.132337122020687,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 2.110087927928845,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 3.470175855857633,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "needs_revision",
+            "spacing_violation_pairs": 8,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.07784659185878805,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.27257115081300354,
+            "point_max_offset_mm": 2.1791838241679944
+          },
+          {
+            "category_pitch_pt": 44.5771070126294,
+            "marker_outer_diameter_pt": 3.4641016151377544,
+            "summary_outer_half_width_pt": 2.110087927928845,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 3.470175855857633,
+            "summary_minimum_body_width_pt": 3.4641016151377544,
+            "gap_pt": 0.2,
+            "demand_gap_pt": 0.2,
+            "required_spread_pt": 7.142754206308318,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.07784659185878805,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2509111468054035,
+            "point_max_offset_mm": 2.5198049913920997
+          }
+        ],
+        "summary_floor_pt": 3.4641016151377544,
+        "summary_body_width_pt": 3.470175855857633,
+        "summary_floor_met": true,
+        "summary_width_explicit": false,
+        "actual_gap_pt": 0.2,
+        "gap_reduction_reason": "The omitted .3 pt gap cannot fit the required spread while keeping the summary at least as wide as the marker outer diameter; one .2 pt positive-gap alternative is measured.",
+        "available_region_margin_borrowing": {
+          "required_extra_mm": 0.448963904268152,
+          "available_extra_mm": 0.5000000000000071,
+          "minimum_canvas_padding_mm": 1.5,
+          "edge": "right",
+          "applied": true,
+          "prospective_gap_pt": 0.2,
+          "reason": "Measured spread deficit at the retained summary/point floor; omitted default fit padding only."
+        },
+        "explicit_geometry_keys": [],
+        "note": "Actual renderer packing and source/artist QA remain decisive. Conservative summary-envelope separation requires actual-image review; infeasible layouts remain invalid."
+      },
+      "font_resolution": {
+        "requested": "DejaVu Sans",
+        "actual": "DejaVu Sans",
+        "substituted": false
+      },
+      "geometry_evidence": "candidate-03/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "summary-area",
+      "observation-color",
+      "neutral-position"
+    ],
+    "excluded_routes": [],
+    "requested_count": 3,
+    "returned_count": 3,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

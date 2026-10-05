@@ -136,7 +136,7 @@ def main():
                         "individual_panels": panels,
                         "composition": check_composition(destination / "output", panel_outputs)})
     report = {"status": "pass", "runs": records,
-              "scope": "Two known-source grouped comparisons; numerical/export checks do not assess aesthetics or model-wide effectiveness."}
+              "scope": "Two known-source inputs, with all individual outcomes and global-scale grouped alternatives; numerical/export checks do not assess aesthetics or model-wide effectiveness."}
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({"status": "pass", "runs": len(records)}))

@@ -14,7 +14,10 @@ plotting proceeds. Fill cosmetic defaults from the project or task; the user
 need not approve a palette or choose a renderer.
 
 Decide reading task, organization and visual roles separately using
-[Create design paths](design-space.md). Then open relevant
+[Create design paths](design-space.md). Before the first render, use its short
+[panel planning brief](design-space.md#plan-the-first-panel) to choose the
+data-region shape and layer relationships from this task and a relevant
+literature mechanism. A passed generic render does not establish that benefit. Then open relevant
 [card mechanisms](design-cards.md), checking their feature conditions and limits.
 A card's whole palette/layout is not a mandatory solution, and its data or
 biological names do not become assumptions about the user's table.
@@ -88,7 +91,12 @@ diameter, summary envelopes and available category pitch in at most three
 bounded numerical stages: compact lane, available categorical region within
 the same canvas, then adjust omitted summary width if necessary. Its body
 cannot become narrower than the actual point outer diameter and must retain
-the interior/stroke floor. Only when that floor needs it, the third stage may
+the interior/stroke floor. The available-region stage can borrow a measured
+spread deficit from omitted default fit padding, retaining at least 1.5 mm
+canvas padding after text/guide measurement; it leaves numeric-axis geometry
+unchanged. Actual font resolution is recorded because fallback glyph metrics
+can alter available category space. Explicit margins and profiles skip this
+automatic lane planning. Only when the body floor needs it, the third stage may
 try the omitted default positive gap once at 0.2 pt instead of 0.3 pt. Explicit
 geometry and gap remain fixed; `manifest.candidates[].distribution_lane_planning`
 records trials. Infeasible packing remains invalid, and numerical fit does

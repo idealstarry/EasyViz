@@ -1,0 +1,48 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "g",
+    "value": "v",
+    "unit": "id"
+  },
+  "order": {
+    "group": [
+      "Control",
+      "Low",
+      "Medium",
+      "High"
+    ]
+  },
+  "options": {
+    "kind": "box",
+    "point_area_pt2": 12,
+    "orientation": "horizontal",
+    "x_limits": [
+      0,
+      10
+    ]
+  },
+  "labels": {
+    "x": "Response (a.u.)",
+    "y": "Condition"
+  },
+  "statistics": {
+    "method": "welch",
+    "groups": [
+      "Control",
+      "High"
+    ],
+    "annotate": false
+  },
+  "layout": {
+    "width_mm": 70,
+    "height_mm": 80,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 100
+  },
+  "formats": [
+    "png",
+    "svg"
+  ]
+}

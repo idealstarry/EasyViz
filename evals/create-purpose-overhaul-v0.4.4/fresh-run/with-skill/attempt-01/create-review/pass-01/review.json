@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "b532ece636df97375f96eeb2adc563d6439abd08b655976306f7347f45aff521",
+  "pass_number": 1,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "fresh_create_with_skill agent"
+  },
+  "status": "needs_revision",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/panel.png",
+      "sha256": "f3b9229d28c1cb4a6783e61a2971768ff8d1d5bf8a8f5ff88ff8b91a8571b980",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image",
+      "size_basis": "Opened complete 1417 × 708 PNG at its recorded 120 × 60 mm proportions. This is a proportion-based screen inspection; no nominal physical-size display is asserted."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Nine populations in supplied order, graphite −DT to blue +DT within each, same 0–4 numeric scale; retained 156 raw y values and source-adopted mean ± SEM."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "The individual observations lead; neighboring short mean/SEM strokes are readable without being covered."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "failed",
+      "evidence": "Dense raw clusters in SPM, RPM, SILPM, CLPM and MG contain touching/overlapping circles; numerical audit finds 15 pairs below the 2.72 pt requested separation."
+    },
+    {
+      "criterion": "geometry",
+      "status": "failed",
+      "evidence": "The 101 × 38 mm field is broad and category order readable, but the ±1 mm raw lanes and greedy packing are insufficient for several close clusters."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Graphite and blue marks remain distinct on white; both summary strokes match their raw-point condition, with definite interval endpoints."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Axis label, 0–4 ticks, all nine population labels and the two matching legend symbols are visible without clipping or label collisions. No title, letter or count labels."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "failed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 120.0, \"height_mm\": 60.0}, \"actual_png\": {\"pixels\": [1417, 708], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"png\": {\"pixels\": [1417, 708], \"dpi\": [299.9994, 299.9994], \"sha256\": \"f3b9229d28c1cb4a6783e61a2971768ff8d1d5bf8a8f5ff88ff8b91a8571b980\"}, \"pdf\": {\"width_mm\": 120.00000000001387, \"height_mm\": 60.000000000006935, \"sha256\": \"2fe84030f54755f1981c1456486d19a65ad98ad5e8988cc2bbce8eee4e31b7c9\"}, \"svg\": {\"width_mm\": 119.99999988888891, \"height_mm\": 59.999999944444454, \"sha256\": \"2f8e85e246cccf6c1e8fcd79c53f9be8b71fb0febdf6068a3f720cb7003715df\"}}, \"format_bindings\": {\"png\": {\"status\": \"failed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"f3b9229d28c1cb4a6783e61a2971768ff8d1d5bf8a8f5ff88ff8b91a8571b980\", \"actual_sha256\": \"f3b9229d28c1cb4a6783e61a2971768ff8d1d5bf8a8f5ff88ff8b91a8571b980\"}, \"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"2fe84030f54755f1981c1456486d19a65ad98ad5e8988cc2bbce8eee4e31b7c9\", \"actual_sha256\": \"2fe84030f54755f1981c1456486d19a65ad98ad5e8988cc2bbce8eee4e31b7c9\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"2f8e85e246cccf6c1e8fcd79c53f9be8b71fb0febdf6068a3f720cb7003715df\", \"actual_sha256\": \"2f8e85e246cccf6c1e8fcd79c53f9be8b71fb0febdf6068a3f720cb7003715df\"}}, \"actual_svg\": {\"width_mm\": 119.99999988888888, \"height_mm\": 59.99999994444444}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8, \"tick\": 8, \"legend\": 8, \"annotation\": 8}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/source-intake/observations.csv\", \"sha256\": \"e99509505b908adbb1b93ed8a2ae3b83522d4422f1e64ea69ddbc3eb2356d410\", \"expected_sha256\": \"e99509505b908adbb1b93ed8a2ae3b83522d4422f1e64ea69ddbc3eb2356d410\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"settings.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/plot.py\", \"sha256\": \"9f2a5a5f8076933859df2aaec01639143d6c7aa99cb8cebe4a44578e174dfb81\", \"expected_sha256\": \"9f2a5a5f8076933859df2aaec01639143d6c7aa99cb8cebe4a44578e174dfb81\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"settings.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/spec.json\", \"sha256\": \"df5d6c9b2bce6859b7ab770a9a7a88874b28e881cac2095580dbd262582c092f\", \"expected_sha256\": \"df5d6c9b2bce6859b7ab770a9a7a88874b28e881cac2095580dbd262582c092f\", \"status\": \"passed\"}], \"figure_profile\": []}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/settings.json\", \"sha256\": \"493f16358c95cf18c936322bf01a2b434b16835682d1ed0b08f4a648987fa1ad\", \"bytes\": 7540}, \"resolved_spec_sha256\": null, \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\"}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "failed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/qa.json\", \"sha256\": \"e16d5c74702b002a2cdcac71b36601043a9ced4611985ed5c3ca5f05899ee940\", \"bytes\": 9603}, \"status\": \"needs_revision\", \"valid_outputs\": false, \"input_rows\": 156, \"plotted_input_rows\": null, \"readability_advisory\": null, \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-01/caption.md\", \"sha256\": \"de094e134840e6f8131b8376442e1093e46c8f0e307a36e11e8b28ffc485e25e\", \"bytes\": 1204}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f1",
+      "severity": "major",
+      "state": "open",
+      "location": "Dense raw-value groups",
+      "evidence": "15 circle pairs fail the requested physical spacing; some visible circles merge. Numeric values are still retained.",
+      "requirement": "All raw observations should remain distinguishable within the fixed panel.",
+      "action": "Widen categorical raw lanes and replace greedy fallback with bounded constrained packing; move summaries to preserve clearance."
+    },
+    {
+      "id": "f2",
+      "severity": "major",
+      "state": "open",
+      "location": "PNG full canvas",
+      "evidence": "Matplotlib export is 1417 × 708 px; rounded 120 × 60 mm at 300 dpi requires 1417 × 709 px. The review helper marks PNG dimensions failed. PDF/SVG dimensions pass.",
+      "requirement": "Full raster canvas must use the requested physical size and resolution with rounded pixel dimensions.",
+      "action": "Export the rounded PNG canvas without rescaling content, preserving PDF/SVG dimensions and adding the missing white canvas edge pixel."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "f1",
+    "f2"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": ""
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

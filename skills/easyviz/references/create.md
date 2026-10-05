@@ -2,19 +2,24 @@
 
 Create an individual scientific panel from source data, a communication goal or chart type, optional additions, and export preferences. Reuse the same data, typography, palette, and physical-size rules as reproduce.
 
-Start with the scientific comparison and a basic chart family. A scatter, bar,
+State the scientific question, the comparison readers should make and why this
+panel is needed. Confirm that the supplied variables and study design support that
+reading before choosing a chart family. A scatter, bar,
 box, violin or heatmap can form a complete manuscript panel when it presents
 the relevant groups, quantities and supported summaries clearly. A basic
 family can include real grouped comparisons; it does not require restricting
 the data to a single outcome. Make colors, strokes and proportions work at the
-adopted size. Add another track or encoding when that reading task needs it.
+adopted size. Add another layer or encoding when that reading task needs it.
 Use the bundled [literature mechanisms](literature-style.md) and
 [palette roles](palettes.md) without requiring a runtime reference. If the user
 asks to adopt a supplied figure's layout/style, follow Reproduce instead.
 
 Choose the reading task, graphical organization and visual roles separately.
 [Create design paths](design-space.md) give conditional alternatives within
-each basic family; one case or card is not its mandatory finished design.
+each basic family; one case or card is not its mandatory finished design. Use
+the [internal design brief](design-space.md#plan-the-first-panel) to plan a
+concrete data rectangle, category/group gaps and leading layer from the actual
+data before choosing colors or rendering.
 
 For the first finished panel, follow [First reviewed delivery](first-draft.md):
 inspect applicable [card mechanisms](design-cards.md), implement the chosen
@@ -27,9 +32,10 @@ If the user supplies a directory without a clear question or chart, start with
 [Data exploration](data-exploration.md). Inventory the tables, inspect actual
 values, and propose a few concrete reading tasks with field mappings and small
 descriptive previews. Candidate fields are hints, not established units or study
-design. Ask only for scientific facts that change a proposed analysis; keep
-descriptive exploration moving while those facts remain unknown. The user need
-not choose a renderer or write a specification.
+design. Two numeric columns make a scatter possible; they do not establish a
+useful association question. Ask only for scientific facts that change a
+proposed analysis; keep descriptive exploration moving while those facts
+remain unknown. The user need not choose a renderer or write a specification.
 
 For an eligible observation table with an unresolved reading task, use [Actual preview choices](preview-choices.md)
 to show box + all points and an unsmoothed ECDF at the same final dimensions,
@@ -57,7 +63,7 @@ Record the adopted chart type, field mappings, transformations, order, and reque
 
 | Starting chart | Use when | Resolve before styling |
 | --- | --- | --- |
-| Scatter | The relationship between two supplied variables is the task. | Point identity, units, scale and overlap; add a fitted curve only with an adopted model. A line joining unordered observations invents a relationship. |
+| Scatter | A scientifically relevant relationship between the supplied variables is the reading task. | State what the relationship would help readers assess, then establish point identity, units, scale and overlap; add a fitted curve only with an adopted model. A line joining unordered observations invents a relationship. |
 | Bar | An adopted estimate, count, total or composition is the quantity to compare. | What height summarizes, the zero baseline, denominator and uncertainty meaning. Do not turn raw measurements into means merely because bars look compact. |
 | Box with raw points | Median, spread and individual measurements matter. | Quartiles and whisker convention, independent unit or pairing, point capacity and summary crossings. Separate lanes or small facets can help without adding statistics. |
 | Violin | Density shape adds a useful question beyond median, spread and raw observations. | KDE method/bandwidth and width normalization. Choose contour, inner summary and raw-layer emphasis deliberately; small or repeated-value groups may be clearer as box/points. A wide violin is not automatically a larger sample. |
@@ -66,6 +72,14 @@ Record the adopted chart type, field mappings, transformations, order, and reque
 These starting choices preserve the user’s chart preference when its meaning
 fits the data. ECDF, intervals, paired trajectories and other supported families
 remain available when they answer the reading task more directly.
+
+For before/after data, a scatter serves an explicit relationship or retention
+of relative values across occasions. If readers need within-unit change, use
+connected paired observations or explicit `after − before` values on the
+declared measurement scale when verified pairing and the adopted design
+support them. Preserve unit joins and unmatched-unit handling; changing the
+view does not authorize additional aggregation, transformations or inference.
+Each panel needs a supported reading purpose; chart variety alone adds none.
 
 ### Complete the scientific comparison
 
@@ -96,7 +110,7 @@ context; a manuscript panel should retain the adopted comparison scope.
 
 ### Design the comparison
 
-Identify what the reader should compare first and which context makes that comparison valid. Use [Create design paths](design-space.md) to select organization and visual roles before choosing a case or palette. [Design decisions](design-decisions.md) supplies transferable relationships without inheriting sample-specific filtering, colors, or coordinates. A single panel can contain aligned annotations or summaries; each layer should contribute to the scientific reading task.
+Identify what the reader should compare first and which context makes that comparison valid. Use the [internal design brief](design-space.md#plan-the-first-panel) to turn the question, category/series counts, observations, labels and adopted layers into concrete geometry and hierarchy choices. Compare a relevant [literature mechanism](literature-style.md#geometry-observations), and name the expected reading benefit. [Design decisions](design-decisions.md) supplies transferable relationships without inheriting sample-specific filtering, colors, or coordinates. A single panel can contain aligned annotations or summaries; each layer should contribute to the scientific reading task.
 
 | Decision | Compare |
 | --- | --- |
@@ -198,7 +212,11 @@ the affected formats. It is a shared editing tool, not another plotting track.
 
 Inspect an actual rendering at final-size proportions. First check the whole
 palette, visible axes and mark edges, point/summary overlap, category spacing,
-and the plot-to-guide proportions. Use the family-specific checks in
+and the plot-to-guide proportions against the internal brief. Measure the
+actual data-region width/height and category/body gaps; inspect whether the
+chosen leading layer is readable and the planned benefit is visible. A clean
+render with no overlap can still have slender bars, disconnected groups or a
+weak summary. Use the family-specific checks in
 [Create colors and strokes](create-style.md): thin boxes cannot compensate for
 excessive category spacing, and a three-column matrix need not fill a wide
 axis. Adjust wrapping, ticks, guides and inner-axis bounds at the agreed canvas
@@ -206,8 +224,12 @@ and font size. If the canvas cannot fit the content,
 use the shared procedure for choosing a larger panel or splitting the content.
 
 For a styling refinement, compare the accepted and candidate exports at the
-same dimensions. Check the main data, palest positive marks, interval endpoints,
-reference lines and guide keys before calling the result an improvement. Also
+same dimensions, font and numeric scale. Compare the relevant literature's
+local grouping, proportions and layer relationships separately, allowing for
+different data; a matching palette or unclipped export does not establish
+publication-level refinement. Check the main data, palest positive marks,
+interval endpoints, reference lines and guide keys before calling the result
+an improvement. Also
 inspect the actual delivery thumbnail: a three-panel comparison compressed
 into one README row may hide good individual figures. Present a complete
 representative panel with readable labels, and keep alternatives accessible on

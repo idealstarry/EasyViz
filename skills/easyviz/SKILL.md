@@ -27,7 +27,9 @@ Choose statistics from the study design: establish pairing, independent replicat
 | **reproduce** | A reference or “standard” defines the visual structure or style. Default input is a reference image plus user data, without author code. The reference paper need not publish Source Data. | [Reproduce](references/reproduce.md), then [Reference to code](references/reference-to-code.md) when staging inputs or implementing unfamiliar layers. |
 | **create** | Build from data and a specified or yet-to-be-selected question/chart. A directory and no plot idea are valid inputs. | [Create](references/create.md), then [First reviewed delivery](references/first-draft.md) for a new panel; start with [Data exploration](references/data-exploration.md) when files or useful comparisons are unresolved. |
 
-Honor an explicit track. Create can learn color and mark mechanisms from the
+Honor an explicit track. Create first establishes the scientific comparison and
+why each panel is useful; numeric-field eligibility or a gallery type is not a
+plotting purpose. It can learn color and mark mechanisms from the
 bundled literature guidance without a runtime reference image. Reproduce adopts
 a supplied reference's structure/style. For additions to an existing plot,
 retain its track, script, and accepted settings, then review the changed result.
@@ -39,38 +41,27 @@ replace an adopted reference's structure. Keep only these two tracks.
 
 ## Shared resources
 
-Read the resources needed for the current chart rather than loading the whole library.
+For a new Create panel, begin with the linked Create workflow. Read the relevant
+scene in [Literature mechanisms](references/literature-style.md) and write the
+short [first-panel design brief](references/design-space.md#plan-the-first-panel)
+before selecting colors or a recipe. Then follow [First reviewed delivery](references/first-draft.md).
+A useful first result needs task-specific geometry and layer relationships,
+not just an exported template. Read only the details needed for this panel.
 
-| Resource | Use |
+| Need | Resource |
 | --- | --- |
-| [First reviewed delivery](references/first-draft.md) | New Create panels: scene-based actual candidates or justified custom code, image inspection, bounded correction and a review of current exports before delivery. |
-| [Scenario design cards](references/design-cards.md) | Inspect visual mechanisms and failure examples eligible for the input features; transfer color roles and geometry without importing scientific assumptions. |
-| [First panel](references/quick-start.md) | Generate a validated core-chart spec from explicit column roles; measure text and guide space. Use within the reviewed-delivery workflow for new Create panels. |
-| [Statistical analysis](references/statistical-analysis.md) | Execute an explicit design and comparison plan separately from drawing; retain effects, supported intervals, exclusions and multiplicity. |
-| [Actual preview choices](references/preview-choices.md) | In create, render comparable box/points and ECDF candidates from the same observations; optional KDE is explicit. Choose after inspecting reading tasks at final size. |
-| [Annotated matrices](references/annotated-matrix.md) | Keyed metadata strips, observed/unmeasured/unsupplied states, declared mean/sum marginals and supplied trees; compose custom aligned tracks without inferring clustering. |
-| [Point placement](references/collision-placement.md) | Resolve overlapping distribution points in physical units, preserving values and mark sizes; report unresolved packing. |
-| [Figure workbench](references/figure-workbench.md) | Select SVG layers or canvas regions, save version-bound change requests, then edit source/spec and redraw all formats in either track. |
-| [Edit application and history](references/apply-figure-requests.md) | Prepare verified cosmetic spec edits, record actual Agent rerenders, compare attempts and restore accepted source/export snapshots. |
-| [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
-| [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
-| [Palettes](references/palettes.md) | Palette selection and consistent category-to-color mappings. |
-| [Create colors and strokes](references/create-style.md) | Apply task-specific color and stroke roles; [design paths](references/design-space.md) describe multiple conditional organizations within a basic family. |
-| [Literature design mechanisms](references/literature-style.md) | Transfer specific color, boundary and packing decisions from PROGENy, scWAT and Vanneste figures, with source anchors and applicability limits. |
-| [Figure profile](references/figure-profile.md) | Share typography, category colors, continuous scales and named panel sizes across a manuscript figure. |
-| [Dot data states](references/dot-states.md) | Distinguish measured zero, unmeasured and unsupplied cells while preserving exact dot area. |
-| [Design decisions](references/design-decisions.md) | Reference-informed choices about grouping, alignment, visual priority, and competing layouts. |
-| [Chart library](references/chart-library.md) | Supported chart recipes, input contracts, reusable scripts, and examples. |
-| [Worked cases](references/examples.md) | Runnable panels and reviewed image-data reconstructions with explicit input contracts, scripts and provenance. |
-| [Literature Source Data](references/literature-source-data.md) | Select auditable paper panels, retain source semantics, and extract reusable implementations with bounded transfer checks. |
-| [Time courses](references/timecourse-plot.md) | Supplied estimates with SD or explicit interval bands, irregular x grids and explicitly labelled single/dual axes. |
-| [Supplied intervals](references/interval-plot.md) | Plot estimates and asymmetric intervals with explicit log/reference/fill semantics; no sample-size requirement or model fitting. |
-| [Paired observations](references/paired-plot.md) | Keep explicit unit correspondence across conditions; display raw values with median/IQR and optionally adopted connectors. |
-| [Replicate bars](references/replicate-plot.md) | Stacked or grouped component summaries with raw replicate layers, or supplied ratio observations; distinguish component SD from total SD. |
-| [Empirical cumulative distributions](references/ecdf-plot.md) | Compare complete raw distributions as unsmoothed cumulative steps, retaining tied values and explicit linear/log scales. |
-| [Reference specification](references/reference-spec.md) | Separate image observations from decisions and record adopted requirements. |
-| [Complex reproduction](references/complex-reproduction.md) | Implement aligned layers with explicit source keys and separate guides; optionally audit saved layer coverage, SVG alignment and numeric evidence. |
-| [Visual review](references/visual-review.md) | Inspect rendered images, prioritize corrections, and record unresolved differences. |
+| Unresolved data/question or an adopted statistical analysis | [Data exploration](references/data-exploration.md), then [Statistical analysis](references/statistical-analysis.md) for an explicit plan. |
+| Implement the chosen chart | [Chart library](references/chart-library.md): choose a core/focused recipe or custom code from its contract. [Worked cases](references/examples.md) are adaptable examples. |
+| Decide graphical organization and mark/color roles | [Design paths](references/design-space.md), [Create colors and strokes](references/create-style.md), [Palettes](references/palettes.md). |
+| An applicable local design mechanism or failure example | [Design cards](references/design-cards.md). Inspect relevant cards, not the whole gallery; their complete layout is not mandatory. |
+| Physical size, fonts, guides and profiles | [Panel layout](references/panel-layout.md), [Legend layout](references/legend-layout.md), [Figure profile](references/figure-profile.md). |
+| Actual-image review and unresolved overlaps | [Visual review](references/visual-review.md), [Point placement](references/collision-placement.md). Measurements support image inspection. |
+| User-selected edits and attempt history | [Figure workbench](references/figure-workbench.md), then [Edit application](references/apply-figure-requests.md). |
+
+For an unfamiliar Reproduce layer, read [Reference to code](references/reference-to-code.md)
+and, when needed, [Complex reproduction](references/complex-reproduction.md).
+[Source Data cases](references/literature-source-data.md) supply learning material;
+they do not require the user's reference paper to publish its data or code.
 
 ## Execute
 
