@@ -1,0 +1,74 @@
+{
+  "track": "create",
+  "chart": "custom-cross-sectional-timecourse",
+  "compartment": "Lung",
+  "layout": {
+    "width_mm": 82,
+    "height_mm": 65,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "axes_fraction": [
+      0.2,
+      0.2,
+      0.75,
+      0.69
+    ]
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "Control": "#2585C6",
+    "IM-DTR": "#E95555"
+  },
+  "order": {
+    "condition": [
+      "Control",
+      "IM-DTR"
+    ],
+    "hour": [
+      0,
+      12,
+      24,
+      48
+    ]
+  },
+  "labels": {
+    "x": "Hours post-DT",
+    "y": "Lung Ccl2\n(pg/mg protein)"
+  },
+  "options": {
+    "x_limits": [
+      -5,
+      53
+    ],
+    "y_limits": [
+      0,
+      280
+    ],
+    "y_ticks": [
+      0,
+      100,
+      200
+    ],
+    "axis_line_pt": 0.65,
+    "mean_line_pt": 0.85,
+    "sem_line_pt": 0.75,
+    "mean_marker_pt": 4.2,
+    "mean_edge_pt": 0.7,
+    "raw_marker_pt": 2.4,
+    "raw_edge_pt": 0.45,
+    "raw_gap_pt": 0.2,
+    "raw_slot_mm": 2.81,
+    "raw_min_offset_mm": 1.2,
+    "raw_max_offset_mm": 4.45,
+    "markers": {
+      "Control": "o",
+      "IM-DTR": "s"
+    },
+    "mean_marker": "_"
+  }
+}

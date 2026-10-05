@@ -26,8 +26,8 @@ available port; a requested fixed port is also accepted. The service listens on
 
 The directory must contain `panel.svg` with a finite viewBox and physical width
 and height. Existing `panel.pdf`, `panel.png`, `settings.json`, `qa.json` and
-`elements.json` are optional. SVG, PDF and PNG downloads return the original
-exports. The SVG displayed on the page excludes scripts, active HTML and
+`elements.json` and `handoff.json` are optional. SVG, PDF and PNG downloads
+return the original exports. The SVG displayed on the page excludes scripts, active HTML and
 external-resource references while retaining safe symbol and arrow-marker
 definitions and their local references.
 
@@ -100,17 +100,31 @@ against the recorded hashes. A changed source blocks new requests even when the
 SVG is unchanged. Missing historical paths are shown as unavailable; they do not
 invent current provenance or authorize automatic application.
 
+A custom script first captures its source bytes before plotting and uses those
+returned data/spec/auxiliary byte payloads in its analysis. After final exports,
+it writes a source handoff receipt (`handoff.json`) that checks continuity and
+binds the actual SVG/PDF/PNG/TIFF bytes to the adopted specification and those
+declared consumed inputs. This enables verified region/general request recording and
+accepted restore even when the script has not registered selectable artists.
+The receipt does not create element IDs or permit automatic property edits.
+
+Each declared auxiliary input is checked independently. A changed metadata,
+linkage or other declared source blocks saving against the old export. A
+missing file remains unverified and cannot be accepted or recorded as an applied
+target. Existing `input.aligned_layer_inputs` maps use these same checks.
+
 Without a matching map, the page supports general and region notes and explains
 that element identity is unavailable. An external SVG can be reviewed this way.
 Fallback coordinates use the SVG's actual physical dimensions. Stale or malformed
 maps supply neither source/spec provenance nor additional version hashes to a
-new note; regenerate the map to restore that traceability.
+new note. Regenerate the map or render a fresh captured attempt to restore
+traceability. A stale or conflicting receipt blocks new requests.
 A PDF alone cannot supply semantic SVG IDs or recover its source code; export an
 SVG from the plotting script, or collect PDF annotations separately.
 
 ## Add selection to a custom plotting script
 
-Scripts written from a reference can use the shared `figure_elements.py` helper
+Custom scripts in either track can use the shared `figure_elements.py` helper
 without adopting a bundled chart recipe. Register real Matplotlib artists before
 export, identify the relevant source records and specification paths, and write
 the manifest after saving the final SVG:
@@ -131,6 +145,59 @@ figure_elements.write(
     {"width_mm": 120, "height_mm": 90},
 )
 ```
+
+For custom code, capture every consumed source before plotting into a fresh
+attempt. Read the returned bytes directly; reopening files could consume a
+replacement while preserving a hash from a different version:
+
+```python
+import io
+import json
+import pandas as pd
+from figure_handoff import capture_inputs, write_receipt
+
+capture = capture_inputs(
+    output_dir,  # no panel exports or handoff.json may exist yet
+    data_file=source_csv,
+    source_script=__file__,
+    spec_file=adopted_spec_json,
+    auxiliary_inputs={"metadata": source_metadata_csv},  # omit if none
+)
+data = pd.read_csv(io.BytesIO(capture.read("data_file")))
+spec = json.loads(capture.read("spec_file"))
+metadata = pd.read_csv(io.BytesIO(capture.read_auxiliary("metadata")))
+# Analyze these captured inputs, draw/register actual artists, and save exports.
+write_receipt(
+    output_dir,
+    capture=capture,
+    resolved_spec=spec,  # the actual adopted spec, including resolved defaults
+    formats=["svg", "pdf", "png"],
+    track="create",  # or the explicitly adopted reproduce track
+)
+```
+
+The receipt refuses a changed primary, spec, script or declared auxiliary file.
+Its complete declared consumption record is checked by the workbench. A normal
+capture cannot be added after old exports to claim that newly read inputs
+produced them. The helper records the caller's declared consumption; it cannot
+certify arbitrary code execution or that code used a returned payload.
+
+Declare auxiliary files by stable roles and actual paths, including metadata,
+linkage, source contracts or author modules that the attempt consumes. The
+helper does not guess imports, missing mouse IDs or point identities. `formats`
+lists only actual exported files and must include SVG. A receipt supports
+region/general notes; register real artists as above for element selection. An
+empty artist registry keeps selection disabled and preserves source bindings.
+
+Legacy exports with complete consumed source/spec/script hashes and matching
+passing QA/export identities may use the separate `migrate_receipt` API. Supply
+each auxiliary's explicit settings JSON pointers, for example
+`auxiliary_claims={"source_contract": {"path": "/input/contract_file",
+"sha256": "/version/contract_sha256"}}`. Migration verifies the original claims
+against the current source and every declared export; it does not restamp old
+outputs with replacement inputs. Missing or ambiguous consumption evidence
+requires a fresh render with `capture_inputs`. Region/general note collection
+remains available for a raw external SVG, while acceptance stays unverified.
 
 Set `fig._easyviz_track` to the adopted `"create"` or `"reproduce"` track when
 using a custom script. The core CLI accepts `--track create|reproduce`; it never
@@ -232,7 +299,7 @@ for a collection or raster panel. Agent helper outcomes add `applied` or
 `superseded` statuses and root `history` events. Undo cancels instructions;
 restoring an applied version requires its matching source/spec/input/exports.
 
-`GET /api/state` returns the current version, manifest validity, available
+`GET /api/state` returns the current version, element-map validity (`manifest_valid`), independent source binding validity (`provenance_valid`), any receipt error (`handoff_error`), available
 exports, queue, history, source-version checks, optional comparison metadata and
 ephemeral session token. `GET /api/preview.svg?v=HASH` returns
 the safe preview only when the supplied figure hash is current.

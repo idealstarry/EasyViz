@@ -1,0 +1,41 @@
+{
+  "status": "pass",
+  "scenarios": [
+    {
+      "scenario": "changed transformed abundance",
+      "status": "rejected",
+      "reason": "Expression transform differs from Decimal recomputation"
+    },
+    {
+      "scenario": "wrong expression fill with refreshed byte hashes",
+      "status": "rejected",
+      "reason": "Actual SVG fill does not encode the source-derived expression"
+    },
+    {
+      "scenario": "moved expression rectangle with refreshed byte hashes",
+      "status": "rejected",
+      "reason": "Actual matrix rectangle moved, vanished, or changed size"
+    },
+    {
+      "scenario": "false source-cell artist identity",
+      "status": "rejected",
+      "reason": "Expression artist has a false source binding"
+    },
+    {
+      "scenario": "cropped actual PDF with refreshed byte hash",
+      "status": "rejected",
+      "reason": "PDF physical canvas changed"
+    },
+    {
+      "scenario": "required renderer helper omitted from mutually refreshed metadata",
+      "status": "rejected",
+      "reason": "Consumed renderer sibling closure is incomplete or invented"
+    },
+    {
+      "scenario": "wrong receipt physical height with refreshed receipt evidence hash",
+      "status": "rejected",
+      "reason": "Receipt physical dimensions differ from the independently validated adopted canvas"
+    }
+  ],
+  "scope": "Seven fault-injection checks for actual source/geometry/closure/receipt invariants; selected source and exports are untouched."
+}

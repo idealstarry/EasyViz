@@ -11,6 +11,7 @@ import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import build_plugin
+from check_package import CURATED_CREATE_RESOURCES
 
 
 class BuildPluginTests(unittest.TestCase):
@@ -28,10 +29,15 @@ class BuildPluginTests(unittest.TestCase):
             'plugins/easyviz/README.md': 'Portable EasyViz\n',
             'skills/easyviz/SKILL.md': 'Scientific figures\n',
             'skills/easyviz/scripts/render.py': 'print("figure")\n',
+            'skills/easyviz/scripts/figure_handoff.py': '# Bound custom source handoff\n',
+            'skills/easyviz/scripts/observation_clipping.py': '# Final observation envelope check\n',
             'skills/easyviz/scripts/__pycache__/render.pyc': 'generated cache',
             'LICENSE': 'License\n',
             'THIRD_PARTY_NOTICES.md': 'Attribution\n',
         }
+        for case, names in CURATED_CREATE_RESOURCES.items():
+            for name in names:
+                resources[f"skills/easyviz/assets/cases/{case}/{name}"] = "portable curated source resource\n"
         for name, content in resources.items():
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -228,6 +234,14 @@ class BuildPluginTests(unittest.TestCase):
             self.assertIsNone(package.testzip())
             self.assertIn('easyviz/.codex-plugin/plugin.json', package.namelist())
             self.assertIn('easyviz/skills/easyviz/scripts/render.py', package.namelist())
+            for helper in ('figure_handoff.py', 'observation_clipping.py'):
+                self.assertEqual(package.read('easyviz/skills/easyviz/scripts/' + helper),
+                                 (self.root / 'skills/easyviz/scripts' / helper).read_bytes())
+            for case, names in CURATED_CREATE_RESOURCES.items():
+                for name in names:
+                    relative = f"skills/easyviz/assets/cases/{case}/{name}"
+                    self.assertEqual(package.read("easyviz/" + relative),
+                                     (self.root / relative).read_bytes())
             self.assertFalse(any('__pycache__' in name for name in package.namelist()))
             self.assertTrue(all(info.date_time == (1980, 1, 1, 0, 0, 0) for info in package.infolist()))
             self.assertEqual(len(package.infolist()), summary['files'])

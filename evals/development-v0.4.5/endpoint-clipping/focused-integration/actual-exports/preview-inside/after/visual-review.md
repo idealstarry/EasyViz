@@ -1,0 +1,1 @@
+Visual review pending. Inspect every panel.png at the declared final size and its vector exports. Compare the stated reading tasks, label/mark crowding, curve distinguishability and point overlap. Record observations and a scientifically justified choice here; automated QA does not select a winner.

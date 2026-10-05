@@ -1,0 +1,134 @@
+{
+  "scope": "Actual unchanged legacy 127-observation exports and genuine fresh Matplotlib exports consuming captured CSV/spec/contract bytes; no original trials changed.",
+  "runtime_hashes": {
+    "figure_handoff.py": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a",
+    "figure_workbench.py": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7",
+    "apply_figure_requests.py": "0a76ac35026e1e2b9608c36c57943081934311f85017c3de03c052936904a4e4"
+  },
+  "cases": {
+    "legacy-valid": {
+      "exports_before": {
+        "panel.svg": "0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026",
+        "panel.pdf": "1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6",
+        "panel.png": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465"
+      },
+      "receipt_kind": "legacy-recorded-evidence",
+      "source_current": true,
+      "provenance_valid": true,
+      "elements": [],
+      "accepted": true,
+      "restored_source_current": true,
+      "restored_export_hashes_match": true,
+      "restored_settings_contract_path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/reviewer-capture-api-final/legacy-valid-restored/auxiliary-0001.json",
+      "restored_receipt_contract_path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/reviewer-capture-api-final/legacy-valid-restored/auxiliary-0001.json",
+      "receipt_exists": true,
+      "snapshot_exists": true,
+      "exports_unchanged": true
+    },
+    "legacy-data-replaced": {
+      "exports_before": {
+        "panel.svg": "0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026",
+        "panel.pdf": "1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6",
+        "panel.png": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465"
+      },
+      "refused": "Existing consumed settings contradict captured primary source/spec/script bytes",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false,
+      "exports_unchanged": true
+    },
+    "legacy-aux-replaced": {
+      "exports_before": {
+        "panel.svg": "0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026",
+        "panel.pdf": "1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6",
+        "panel.png": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465"
+      },
+      "refused": "Legacy consumed auxiliary evidence contradicts actual source bytes",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false,
+      "exports_unchanged": true
+    },
+    "capture-existing-exports": {
+      "exports_before": {
+        "panel.svg": "0f29e33d109623c1166c3b896020c20a56f97d792ce0d4e897e64442f2926026",
+        "panel.pdf": "1a5e3390289c03c06c65e160302cd650b1712ddba530d824c1ea2cb289de27d6",
+        "panel.png": "f1edbf804344195d3523e4859995982d37227633d464903a60c7248af75f2465"
+      },
+      "refused": "Capture source bytes before exports in a fresh attempt; existing exports need verified legacy migration or rerendering",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false,
+      "exports_unchanged": true
+    },
+    "fresh-valid": {
+      "actual_data_read_from_capture": true,
+      "actual_aux_read_from_capture": true,
+      "actual_svg_pdf_png": true,
+      "receipt_kind": "captured-bytes-before-export",
+      "source_current": true,
+      "provenance_valid": true,
+      "elements": [],
+      "accepted": true,
+      "restored_source_current": true,
+      "restored_settings_source_bindings": {
+        "data_file": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/reviewer-capture-api-final/fresh-valid/restored/source-data.csv",
+          "sha256": "ba508c072e273e0077a1d6fa412cb3475a79096b956be9232005f216311425f5"
+        },
+        "source_script": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/reviewer-capture-api-final/fresh-valid/restored/plot-source.py",
+          "sha256": "8886101a334e12d2c0441099fead2579543cb0aed0813520a182c7fd79471d93"
+        },
+        "spec_file": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/reviewer-capture-api-final/fresh-valid/restored/plot-spec.json",
+          "sha256": "c83ad7391a7a149426a4072dd3a26159071f11931efb6d1ca2ca340802db4197"
+        },
+        "source_contract": {
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/reviewer-capture-api-final/fresh-valid/restored/auxiliary-0001.json",
+          "sha256": "5f71af08d9453269b649c9bf131b4987517dd04bde1fe3d5363d617c913a3966"
+        }
+      },
+      "all_settings_bindings_rebound_to_restored": true,
+      "restored_source_current_after_original_inputs_deleted": true,
+      "receipt_exists": true,
+      "snapshot_exists": true
+    },
+    "fresh-data-replaced": {
+      "actual_data_read_from_capture": true,
+      "actual_aux_read_from_capture": true,
+      "actual_svg_pdf_png": true,
+      "refused": "A primary source/spec/script changed after its bytes were captured",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false
+    },
+    "fresh-aux-replaced": {
+      "actual_data_read_from_capture": true,
+      "actual_aux_read_from_capture": true,
+      "actual_svg_pdf_png": true,
+      "refused": "A declared auxiliary input changed after its bytes were captured",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false
+    },
+    "fresh-top-level-contradiction": {
+      "actual_data_read_from_capture": true,
+      "actual_aux_read_from_capture": true,
+      "actual_svg_pdf_png": true,
+      "refused": "Existing consumed settings contradict captured primary source/spec/script bytes",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false
+    },
+    "fresh-source-bindings-contradiction": {
+      "actual_data_read_from_capture": true,
+      "actual_aux_read_from_capture": true,
+      "actual_svg_pdf_png": true,
+      "refused": "Existing consumed settings contradict captured primary source/spec/script bytes",
+      "exception_type": "HandoffError",
+      "receipt_exists": false,
+      "snapshot_exists": false
+    }
+  }
+}

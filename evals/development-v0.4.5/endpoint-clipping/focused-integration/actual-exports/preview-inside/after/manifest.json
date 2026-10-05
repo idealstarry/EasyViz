@@ -1,0 +1,220 @@
+{
+  "version": "0.2.0",
+  "status": "pass",
+  "valid_outputs": true,
+  "track": "create",
+  "source_binding": {
+    "original_path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/endpoint-clipping/focused-integration/actual-exports/preview-inside/source.csv",
+    "snapshot": "source.csv",
+    "sha256": "31437c48f200f7b9011b385b578d178c1a5f9d54b4aad5591e823715648e87e5",
+    "rows": 3
+  },
+  "request_binding": {
+    "original_path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/endpoint-clipping/focused-integration/actual-exports/preview-inside/adopted.json",
+    "snapshot": "request.json",
+    "sha256": "a27eb651bf25af16527fd5a0b7294bf8e8c307acd7c3edc6c7b6365fadbf0797"
+  },
+  "fields": {
+    "group": "group",
+    "value": "value"
+  },
+  "design": {
+    "structure": "unknown",
+    "confirmed": false,
+    "unit_definition": "Unknown supplied observation"
+  },
+  "measurement_units": "a.u.",
+  "shared_settings": {
+    "layout": {
+      "width_mm": 88,
+      "height_mm": 66,
+      "font": "DejaVu Sans",
+      "font_size_pt": 8,
+      "line_width_pt": 0.6,
+      "dpi": 160,
+      "auto_fit": true
+    },
+    "typography": {},
+    "colors": {
+      "A": "#29ACF3"
+    },
+    "order": {
+      "group": [
+        "A"
+      ]
+    },
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ]
+  },
+  "value_axis": {
+    "scale": "linear",
+    "limits": [
+      0,
+      4
+    ]
+  },
+  "choices": [
+    {
+      "id": "box-points",
+      "reading_task": "Compare group medians, spread and all individual measurements",
+      "definition": "Box: median and 25th/75th percentiles; whiskers reach observed values within 1.5 IQR. Every observation is also a point.",
+      "limitations": [
+        "Quartiles and whiskers describe source observations, not confidence intervals.",
+        "Box summaries can obscure multimodality; inspect every point and the ECDF.",
+        "Deterministic categorical jitter retains every point but may overlap; final-size visual review is required.",
+        "Independent sampling is unconfirmed; rows are descriptive observation counts."
+      ],
+      "spec": "box-points/spec.json",
+      "caption": "box-points/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "box-points/caption.md",
+          "sha256": "995c48e5380a4070fdbb21cba8ad3f563ba6453ccc8d1a17b07927d2e4065905"
+        },
+        {
+          "path": "box-points/elements.json",
+          "sha256": "7188a528692d5de61e46385956d285b6c19712318a123daabd5f4ba90d7f55ba"
+        },
+        {
+          "path": "box-points/panel.pdf",
+          "sha256": "8617823bdef686710de74cf4390679bc71d148b18e5344d94487527e4178e44c"
+        },
+        {
+          "path": "box-points/panel.png",
+          "sha256": "9268f22747ac32e8d6b2a3ac12d80afcd066ee01530f6b5d1ab74fbe3affa682"
+        },
+        {
+          "path": "box-points/panel.svg",
+          "sha256": "77573193b59574f435d28260fe9a43466e67fa306873b7c9cbba49880d5dadaa"
+        },
+        {
+          "path": "box-points/plotting-data.csv",
+          "sha256": "25f24169c88abd2f42dab52ea1fae6d8e37df8aef773ffa4d74ff88c15f65765"
+        },
+        {
+          "path": "box-points/qa.json",
+          "sha256": "84b2a040a36c9e5141ca3967978f58a259b6f9091d3221ebd755e38df89c06d0"
+        },
+        {
+          "path": "box-points/settings.json",
+          "sha256": "87f8f2fad38fb936931241383a4d7e1160f95a6dd5b9b3266e1ddbc9f143f84d"
+        },
+        {
+          "path": "box-points/spec.json",
+          "sha256": "0bf075c8247233ffa8e03b7f884c3bb52fba4210b8dc45ee7968a03dbbd86521"
+        },
+        {
+          "path": "box-points/stats.json",
+          "sha256": "b1bd57a25fdea2c5cf84958cac8e92acb88a8673b3152fa51419c99755aa0b69"
+        }
+      ]
+    },
+    {
+      "id": "ecdf",
+      "reading_task": "Compare the full observed distribution, tails and fraction at or below a value",
+      "definition": "Right-continuous F(x)=count(value <= x)/group observation count; all ties contribute their full jump. Horizontal tails extend only for display.",
+      "limitations": [
+        "Curve fractions use each group's own row-count denominator.",
+        "Marginal distributions do not encode within-unit changes or establish independence.",
+        "No density smoothing, fitted distribution or confidence band.",
+        "Independent sampling is unconfirmed; rows are descriptive observation counts."
+      ],
+      "spec": "ecdf/spec.json",
+      "caption": "ecdf/caption.md",
+      "status": "pass",
+      "valid_outputs": true,
+      "files": [
+        {
+          "path": "ecdf/caption.md",
+          "sha256": "9d95d0599d54d2123ed4aed56e1ab9d3e21f96525539a433e13455c6aa68ec15"
+        },
+        {
+          "path": "ecdf/cumulative-data.csv",
+          "sha256": "5e936516a98da0ea31d19b03dbbd650662a5932c4b61d4cb0d3fd350a4697ea6"
+        },
+        {
+          "path": "ecdf/elements.json",
+          "sha256": "0edf003ed82e88cfaccf720e17b4bf8ea87abc7c96b829ce98569dc291c6ba95"
+        },
+        {
+          "path": "ecdf/panel.pdf",
+          "sha256": "729fc836dd02287ce1b3cf66235f61655e8d52e3c1148db288c4eb1faea01550"
+        },
+        {
+          "path": "ecdf/panel.png",
+          "sha256": "4ed9c8aa2b4d77362dea6db3bd11d97a57523ec5ed9913095a225268d2f13dff"
+        },
+        {
+          "path": "ecdf/panel.svg",
+          "sha256": "ed003431c9185415289aa189e29d08d31f5ecfdc2e35dc64f798fadfd05c5dcd"
+        },
+        {
+          "path": "ecdf/plotting-data.csv",
+          "sha256": "6985f7bfa5ba638cb3d632ccc2bce3a608258d7d4537d8fad26edc2ecc0adbae"
+        },
+        {
+          "path": "ecdf/qa.json",
+          "sha256": "ff367e5c3028c7349ac3f929f9f737387e9cb6892215c5ec37282bbaaeb6dc75"
+        },
+        {
+          "path": "ecdf/settings.json",
+          "sha256": "f5fc962b236fbe744e15a7db4d5fea0ca34d08a823e4315366f3ec86be2c2150"
+        },
+        {
+          "path": "ecdf/spec.json",
+          "sha256": "1bfefed72cf1c9afec2a7c2bf58a7f70fbf0f47508627cefb41f3b33dcfdac7d"
+        },
+        {
+          "path": "ecdf/stats.json",
+          "sha256": "3f4843dafbc7df635d6c112e62a43283f603389ab5ff4981f90b954b6dbdefab"
+        }
+      ]
+    }
+  ],
+  "selection": {
+    "chosen_choice": null,
+    "automatic_winner": false
+  },
+  "visual_review_required": true,
+  "helper_sha256": {
+    "preview_choices.py": "503f07b5470908a8d572011f27562ff6d527e735e7ad4a63ee918edb6d88a7a7",
+    "create_style.py": "f16b05bd09bd23a8c72eb0e1934e405e235f868022c8d2febda63ade789f1e26",
+    "ecdf_plot.py": "d9c53f4c6456968d1c2cf337f1584bbdc1f3ab58a5812c22b958cfa719f4fa7e",
+    "render.py": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3",
+    "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "figure_elements.py": "add6cef5f847bc07628fded15ef922eb7fd674850a41279db296250096956ce3",
+    "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+    "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+  },
+  "style_mode": "crisp",
+  "common_files": [
+    {
+      "path": "source.csv",
+      "sha256": "31437c48f200f7b9011b385b578d178c1a5f9d54b4aad5591e823715648e87e5"
+    },
+    {
+      "path": "request.json",
+      "sha256": "a27eb651bf25af16527fd5a0b7294bf8e8c307acd7c3edc6c7b6365fadbf0797"
+    },
+    {
+      "path": "observation-trace.csv",
+      "sha256": "5378e453a8214ab53ca87ec1f0fa1fd5179eb43b4fc56acbb954ed2a71daf446"
+    },
+    {
+      "path": "qa.json",
+      "sha256": "8b11abb41ff82d4890cd0614dbbccd134256dc34d6470c0618c1860efed2cf03"
+    },
+    {
+      "path": "visual-review.md",
+      "sha256": "d0224217ad1db6faed7caad49609a5255a3c7268197bb760b39370a7816efacb"
+    }
+  ]
+}

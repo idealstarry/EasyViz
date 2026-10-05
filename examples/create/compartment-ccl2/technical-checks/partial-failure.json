@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "purpose": "Two controlled failures in copied temporary helpers invalidate partial delivery metadata without modifying scientific input or shared runtime.",
+  "checks": {
+    "auxiliary_changed_after_export": {
+      "status": "pass",
+      "actual_partial_export_preserved": true,
+      "qa_status": "needs_revision",
+      "valid_outputs": false,
+      "failed_real_map_preserved": true,
+      "no_active_map_or_receipt": true,
+      "caught_error_type": "ValueError"
+    },
+    "receipt_error_after_passing_qa": {
+      "status": "pass",
+      "actual_partial_export_preserved": true,
+      "qa_status": "needs_revision",
+      "valid_outputs": false,
+      "failed_real_map_preserved": true,
+      "no_active_map_or_receipt": true,
+      "caught_error_type": "HandoffError"
+    }
+  }
+}

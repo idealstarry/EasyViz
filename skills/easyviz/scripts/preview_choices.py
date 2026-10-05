@@ -298,12 +298,16 @@ def _render_distribution(source, raw, spec, out, spec_path):
             fig._easyviz_data_file, fig._easyviz_spec_file = source.resolve(), spec_path.resolve()
             fig._easyviz_source_script, fig._easyviz_track = Path(__file__).resolve(), "create"
             exports = core.export(fig, out, spec, layout)
+            clipping_report = fig._easyviz_observation_clipping
             readability = core.panel_readability.measure(fig)
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
-            passed = not clipped and not overlaps and not missing and audit["status"] == legends["status"] == "pass" and (not fitted or fitted["status"] == "pass") and point_layout["status"] != "needs_revision"
+            passed = not clipped and not overlaps and not missing and audit["status"] == legends["status"] == "pass" and (not fitted or fitted["status"] == "pass") and point_layout["status"] != "needs_revision" and clipping_report["status"] != "needs_revision"
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "input_sha256": _hash(source), "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "exports": exports, "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "legend_layout": legends, "auto_layout": fitted, "point_layout": point_layout, "visual_review_required": True}
             qa["readability"] = readability
+            qa["observation_clipping"] = clipping_report
             settings = {**deepcopy(spec), "layout": layout, "typography": typography, "resolved_colors": colors, "input_file": str(source.resolve()), "input_sha256": _hash(source), "spec_file": str(spec_path.resolve()), "spec_file_sha256": _hash(spec_path), "track": "create", "renderer": {"version": VERSION, "sha256": _hash(Path(__file__)), "helper_sha256": {name: _hash(Path(__file__).with_name(name)) for name in HELPERS}}, "point_layout": point_layout, "axis": {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim()))}, "runtime": {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}}
+            settings["observation_clipping"] = clipping_report
+            settings["renderer"]["helper_sha256"]["observation_clipping.py"] = core.RUNTIME_SOURCE_DIGESTS["observation_clipping.py"]
             headers, rows = _read_source(raw)
             data["_easyviz_source_row"] = range(1, len(rows) + 1)
             data["_easyviz_source_value_text"] = [row[headers.index(spec["fields"]["value"])] for row in rows]

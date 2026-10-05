@@ -1,0 +1,74 @@
+{
+  "track": "create",
+  "reference_image_adopted_as_target": false,
+  "author_plotting_code_used": false,
+  "source": {
+    "authors": "Vanneste et al.",
+    "title": "MafB-restricted local monocyte proliferation precedes lung interstitial macrophage differentiation",
+    "doi": "10.1038/s41590-023-01468-3",
+    "article": "https://www.nature.com/articles/s41590-023-01468-3",
+    "source_file": "41590_2023_1468_MOESM5_ESM.xlsx",
+    "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41590-023-01468-3/MediaObjects/41590_2023_1468_MOESM5_ESM.xlsx",
+    "source_sha256": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc",
+    "source_bytes": 22487,
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_evidence": "Official article Rights and permissions section; no panel-specific third-party attribution in the inspected figure."
+  },
+  "selection": "Every nonblank value from worksheet 3c: Lung Control B:F and IM-DTR G:L; Serum Control N:U and IM-DTR V:AC; rows 3–6, with source hours A/M and all 20 blanks recorded. No source observation is selected out.",
+  "observations": 88,
+  "summary_groups": 16,
+  "supplied_author_adjusted_p_values": 8,
+  "preparation": "CSV numeric strings equal the original XLSX XML values verbatim; actual cell addresses retained. Descriptive means and SEM independently recomputed from every source value; no renormalization.",
+  "reference": {
+    "file": "inputs/literature-reference.png",
+    "origin": {
+      "file": "vanneste-figure3c-reference.png",
+      "source_pdf": "Vanneste et al., Nat. Immun., 2023.pdf",
+      "page_1_based": 5,
+      "clip_pdf_points": [
+        422,
+        148,
+        578,
+        332
+      ],
+      "render_scale": 3,
+      "change": "rectangular crop and raster rendering only; no figure marks/colors changed",
+      "sha256": "9b46669033d010e72fe12a91640157abbb24103a192224ce474250b58ed08669"
+    },
+    "role": "Observable visual mechanisms for Create design; not the required layout. The published Days label is corrected from explicit hours in the caption and workbook."
+  },
+  "semantic_limits": [
+    "Terminal mouse sampling supports cross-sectional time groups; absent mouse/batch IDs forbid cross-time or cross-compartment pairing.",
+    "Separate lung pg/mg protein and serum pg/ml axes; cross-panel absolute heights cannot be compared.",
+    "Eight supplied adjusted P values retained separately, not plotted or independently recomputed; cross-compartment correction family scope is not supplied.",
+    "Raw x is a bounded categorical physical offset; original hours and display offsets are both recorded. Exact source hours anchor means/SEM.",
+    "One literature-informed real-data case; no model-wide or CNS-level efficacy claim."
+  ],
+  "layout": {
+    "individual_mm": [
+      82,
+      65
+    ],
+    "text": "Arial 8 pt",
+    "data_region_mm": [
+      61.5,
+      44.85
+    ],
+    "composition_mm": [
+      167,
+      65
+    ],
+    "composition_gap_mm": 3,
+    "composition_rescaled": false
+  },
+  "source_input_hashes": {
+    "inputs/41590_2023_1468_MOESM5_ESM.xlsx": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc",
+    "inputs/author-adjusted-p.csv": "e3f9da2874061ef403b4917158b75c4f4c48fc92d4551302b383420d418d0ea4",
+    "inputs/blank-cells.csv": "6edd050b3d61b0e7ae86eafcb15029fa9329c9845ebc44d019f47c30e3b98ac6",
+    "inputs/descriptive-summary.csv": "72f8ba667f8f1ef7030c99496e63181c324d2b53ff00a3f3c33b3aca894ab016",
+    "inputs/input-contract.json": "76b7fc33609aabcb88f9c2d619c9d89babd5f69769408a927bce72b5f8cdb44f",
+    "inputs/literature-reference.png": "9b46669033d010e72fe12a91640157abbb24103a192224ce474250b58ed08669",
+    "inputs/observations.csv": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "scenarios": [
+    {
+      "scenario": "changed transformed abundance",
+      "status": "rejected",
+      "reason": "Expression transform differs from Decimal recomputation"
+    },
+    {
+      "scenario": "wrong expression fill with refreshed byte hashes",
+      "status": "rejected",
+      "reason": "Actual SVG fill does not encode the source-derived expression"
+    },
+    {
+      "scenario": "moved expression rectangle with refreshed byte hashes",
+      "status": "rejected",
+      "reason": "Actual matrix rectangle moved, vanished, or changed size"
+    },
+    {
+      "scenario": "false source-cell artist identity",
+      "status": "rejected",
+      "reason": "Expression artist has a false source binding"
+    },
+    {
+      "scenario": "cropped actual PDF with refreshed byte hash",
+      "status": "rejected",
+      "reason": "PDF physical canvas changed"
+    }
+  ],
+  "scope": "Five fault-injection checks for this known-source validator; selected source and exports are untouched."
+}

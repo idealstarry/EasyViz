@@ -1,0 +1,141 @@
+{
+  "track": "create",
+  "chart": "custom-cross-sectional-timecourse",
+  "compartment": "Lung",
+  "layout": {
+    "width_mm": 82,
+    "height_mm": 65,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "axes_fraction": [
+      0.2,
+      0.2,
+      0.75,
+      0.69
+    ],
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "Control": "#2585C6",
+    "IM-DTR": "#E95555"
+  },
+  "order": {
+    "condition": [
+      "Control",
+      "IM-DTR"
+    ],
+    "hour": [
+      0,
+      12,
+      24,
+      48
+    ]
+  },
+  "labels": {
+    "x": "Hours post-DT",
+    "y": "Lung Ccl2\n(pg/mg protein)"
+  },
+  "options": {
+    "x_limits": [
+      -5,
+      53
+    ],
+    "y_limits": [
+      0,
+      280
+    ],
+    "y_ticks": [
+      0,
+      100,
+      200
+    ],
+    "axis_line_pt": 0.65,
+    "mean_line_pt": 0.85,
+    "sem_line_pt": 0.75,
+    "mean_marker_pt": 4.2,
+    "mean_edge_pt": 0.7,
+    "raw_marker_pt": 2.4,
+    "raw_edge_pt": 0.45,
+    "raw_gap_pt": 0.2,
+    "raw_slot_mm": 2.81,
+    "raw_min_offset_mm": 1.2,
+    "raw_max_offset_mm": 4.45,
+    "markers": {
+      "Control": "o",
+      "IM-DTR": "s"
+    },
+    "mean_marker": "_"
+  },
+  "explicit_overrides": {
+    "font": {
+      "original": "Arial",
+      "requested": "DejaVu Sans"
+    }
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/inputs/observations.csv",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/plot.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/portable-forward/DejaVu-Sans-captured/panels/lung/output/adopted-spec.json",
+    "supplied_spec_sha256": "cda7754ad1c513f332500e95b00753cc43940b6ee37138116798a06554a9b426",
+    "selection": {
+      "compartment": "Lung",
+      "source_rows": 88,
+      "selected_rows": 37
+    }
+  },
+  "version": {
+    "input_sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11",
+    "source_script_sha256": "7ef02b9c172e6a3cefa0be04fbd48d61a388a6954f84a77f0f43a99993cac14d"
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11"
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "resolved_colors": {
+    "Control": "#2585C6",
+    "IM-DTR": "#E95555"
+  },
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/inputs/observations.csv",
+      "sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/plot.py",
+      "sha256": "7ef02b9c172e6a3cefa0be04fbd48d61a388a6954f84a77f0f43a99993cac14d"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/portable-forward/DejaVu-Sans-captured/panels/lung/output/adopted-spec.json",
+      "sha256": "cda7754ad1c513f332500e95b00753cc43940b6ee37138116798a06554a9b426"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/staged-runtime/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "figure_workbench_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/workbench-audit/staged-runtime/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    },
+    "original_spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/panels/lung/spec.json",
+      "sha256": "f2bf9f6414e42b908aaf94157896ac47d19f1c41dd27feb131d035734705b52f"
+    }
+  }
+}

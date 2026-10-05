@@ -1,0 +1,24 @@
+{
+  "scope": "Actual copied core outputs and isolated recorded attestation fixture. No production source/export modified, no claim that an image was viewed.",
+  "create_review_sha256": "8ca3a731b20d7697cf55ab00572f9d83520754ded157dced5a887b29aa052e99",
+  "before_gate_status": "recorded",
+  "after_gate_status": "blocked",
+  "after_errors": [
+    "Export, source, saved specification, caption or QA evidence changed since staging. Review the current exports in a fresh packet.",
+    "Saved measured evidence for source_provenance is failed or not_checked; an attestation cannot upgrade it"
+  ],
+  "after_source_provenance": "failed",
+  "checked_source_roles": [
+    "data_file",
+    "source_script",
+    "spec_file",
+    "figure_profile",
+    "auxiliary_inputs:helper:legend_layout.py",
+    "auxiliary_inputs:helper:figure_profile.py",
+    "auxiliary_inputs:helper:auto_layout.py",
+    "auxiliary_inputs:helper:annotation_review.py",
+    "auxiliary_inputs:helper:figure_elements.py",
+    "auxiliary_inputs:helper:panel_readability.py",
+    "auxiliary_inputs:helper:observation_clipping.py"
+  ]
+}

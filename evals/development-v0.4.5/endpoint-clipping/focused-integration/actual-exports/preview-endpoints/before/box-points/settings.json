@@ -1,0 +1,136 @@
+{
+  "fields": {
+    "group": "group",
+    "value": "value"
+  },
+  "colors": {
+    "A": "#29ACF3"
+  },
+  "order": {
+    "group": [
+      "A"
+    ]
+  },
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 66.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.12054292929292931,
+      "right": 0.9420951704545455,
+      "bottom": 0.17580716014309763,
+      "top": 0.9696969696969695
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "chart": "distribution",
+  "labels": {
+    "x": "value (a.u.)",
+    "y": "group"
+  },
+  "options": {
+    "alpha": 1.0,
+    "point_style": "filled",
+    "box_style": "outline",
+    "box_width": 0.18,
+    "kind": "box",
+    "orientation": "horizontal",
+    "x_scale": "linear",
+    "x_limits": [
+      1,
+      3
+    ],
+    "point_layout": "jitter",
+    "point_area_pt2": 9
+  },
+  "seed": 0,
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "resolved_colors": {
+    "A": "#29ACF3"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/endpoint-clipping/focused-integration/actual-exports/preview-endpoints/before/source.csv",
+  "input_sha256": "31437c48f200f7b9011b385b578d178c1a5f9d54b4aad5591e823715648e87e5",
+  "spec_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.5/endpoint-clipping/focused-integration/actual-exports/preview-endpoints/before/box-points/spec.json",
+  "spec_file_sha256": "bb895142a642b5c601291e723c5a8d4edf40b20a631a7e8f215ebdbf63f3ab27",
+  "track": "create",
+  "renderer": {
+    "version": "0.2.0",
+    "sha256": "9f88399e4e4a03bd2ad9f7866baed1186b409c2c7c539761cce1e3b206f72fd4",
+    "helper_sha256": {
+      "create_style.py": "f16b05bd09bd23a8c72eb0e1934e405e235f868022c8d2febda63ade789f1e26",
+      "ecdf_plot.py": "d9c53f4c6456968d1c2cf337f1584bbdc1f3ab58a5812c22b958cfa719f4fa7e",
+      "render.py": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "add6cef5f847bc07628fded15ef922eb7fd674850a41279db296250096956ce3",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+      "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "point_layout": {
+    "policy": "jitter",
+    "status": "unchecked",
+    "seed": 0,
+    "categorical_half_width": 0.13,
+    "point_category_offset": 0,
+    "numeric_values_changed": false,
+    "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."
+  },
+  "axis": {
+    "x_scale": "linear",
+    "x_limits": [
+      1.0,
+      3.0
+    ]
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

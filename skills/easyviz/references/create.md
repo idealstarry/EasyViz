@@ -21,6 +21,11 @@ the [internal design brief](design-space.md#plan-the-first-panel) to plan a
 concrete data rectangle, category/group gaps and leading layer from the actual
 data before choosing colors or rendering.
 
+For an aligned matrix contrast or separate-unit time course, consult
+[Purposeful extra layers](complex-create.md). Its worked cases transfer concrete
+geometry and layer relationships; their complete layouts and analyses are
+optional. Add a companion only when it answers the adopted question.
+
 For the first finished panel, follow [First reviewed delivery](first-draft.md):
 inspect applicable [card mechanisms](design-cards.md), implement the chosen
 route, and correct actual image findings internally. Use a meaningful additional

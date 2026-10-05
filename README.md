@@ -68,16 +68,18 @@ and sample SD. The case also exports the other outcomes separately.
 
 <p align="center"><a href="examples/create/repair-outcomes/"><img src="examples/create/repair-outcomes/panels/hdr/output/panel.png" alt="HDR treatment comparison with neutral open means, all biological replicates and sample SD" width="440"></a></p>
 
-**Cell-number comparison** · Compare two treatments within nine measured
-populations. Separate raw-observation and mean ± SEM lanes keep the summaries
-visible. [Fresh workflow exercise, data and limitations](evals/create-purpose-overhaul-v0.4.4/fresh-run/README.md).
+**Compartment response** · All 88 Ccl2 observations and exact-hour mean ± SEM,
+with separate lung and serum units. [Data, code and design decisions](examples/create/compartment-ccl2/README.md).
 
-<p align="center"><a href="evals/create-purpose-overhaul-v0.4.4/fresh-run/README.md"><img src="evals/create-purpose-overhaul-v0.4.4/fresh-run/with-skill/attempt-02/panel.png" alt="Nine population treatment comparisons with all 156 supplied observations and separate mean and SEM strokes" width="680"></a></p>
+<p align="center"><a href="examples/create/compartment-ccl2/"><img src="examples/create/compartment-ccl2/output/panel.png" alt="Lung and serum Ccl2 time courses with all supplied observations and separate concentration axes" width="680"></a></p>
 
-**Composition heatmap** · Original percentages, clear cell seams and numeric
-values. [Data, code and caption](examples/create/basic-panels/depot-heatmap/).
+**Expression and genotype contrasts** · All 174 sample-level TPM values and an
+aligned descriptive comparison. [Data, code and design decisions](examples/create/thermogenic-expression/README.md).
 
-<p align="center"><a href="examples/create/basic-panels/depot-heatmap/"><img src="examples/create/basic-panels/depot-heatmap/output/panel.png" alt="Subtype percentages across three adipose depots" width="420"></a></p>
+<p align="center"><a href="examples/create/thermogenic-expression/"><img src="examples/create/thermogenic-expression/output/panel.png" alt="Twenty-nine genes across six samples, with absolute expression and aligned genotype contrasts" width="440"></a></p>
+
+[Basic panels and other cases](examples/README.md) remain available for simpler
+questions. Extra layers serve a specific comparison; they are optional.
 
 ### Reproduce
 
@@ -127,7 +129,9 @@ The Agent shares a `http://127.0.0.1:PORT/` page. Click or draw to add numbered
 annotations, write an instruction for each, and use **Save requests** together.
 Saving records the requests; tell the Agent when to apply them. It edits the
 plotting code and rerenders a new attempt. SVG element selection requires a
-matching element map; region notes remain available without one.
+matching element map. Custom code can bind its consumed inputs and actual
+exports for region notes, saved requests and accepted-history restoration;
+register real elements when click selection is useful.
 [Workbench guide](skills/easyviz/references/figure-workbench.md).
 
 ## Guides
@@ -137,7 +141,7 @@ matching element map; region notes remain available without one.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](evals/create-purpose-overhaul-v0.4.4/README.md)
+[Validation and limits](evals/release-qa/v0.4.5/README.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

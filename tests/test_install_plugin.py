@@ -11,7 +11,7 @@ import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import install_plugin
-from check_package import extract_package, validate_plugin
+from check_package import CURATED_CREATE_RESOURCES, extract_package, validate_plugin
 
 
 class InstallerTests(unittest.TestCase):
@@ -44,6 +44,8 @@ class InstallerTests(unittest.TestCase):
                  "skills/easyviz/scripts/audit_reproduction.py",
                  "skills/easyviz/scripts/figure_elements.py",
                  "skills/easyviz/scripts/figure_workbench.py",
+                 "skills/easyviz/scripts/figure_handoff.py",
+                 "skills/easyviz/scripts/observation_clipping.py",
                  "skills/easyviz/scripts/workbench/index.html",
                  "skills/easyviz/scripts/workbench/workbench.js",
                  "skills/easyviz/scripts/workbench/workbench.css",
@@ -83,6 +85,13 @@ class InstallerTests(unittest.TestCase):
             path = self.source / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("test resource\n")
+        # Structure fixtures include every future runtime-consumed dependency;
+        # actual numeric/vector correctness is tested by the extracted smoke.
+        for case, resources in CURATED_CREATE_RESOURCES.items():
+            for name in resources:
+                path = self.source / "skills/easyviz/assets/cases" / case / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"portable case test resource\n")
         self.manifest = self.source / ".codex-plugin/plugin.json"
         self.manifest.parent.mkdir()
         self.manifest.write_text(json.dumps({"name": "easyviz", "version": "0.4.2"}))
@@ -170,11 +179,62 @@ class InstallerTests(unittest.TestCase):
         repo = Path(__file__).resolve().parents[1]
         shutil.copytree(repo / "skills/easyviz/assets/design-cards",
                         self.source / "skills/easyviz/assets/design-cards")
+        for version in ("0.4.4", "0.4.5"):
+            with self.subTest(version=version):
+                self.manifest.write_text(json.dumps({"name": "easyviz", "version": version}))
+                with mock.patch.object(install_plugin, "run", side_effect=self.fake_cli):
+                    result = self.install()
+                self.assertEqual(result["version"], version)
+                self.assertEqual(validate_plugin(Path(result["installed_path"]))["version"], version)
+
+    def test_new_handoff_dependency_is_required_before_install_writes_but_old_packages_remain_valid(self):
+        for name in ("scripts/create_candidates.py", "scripts/create_review.py",
+                     "references/first-draft.md", "references/design-cards.md"):
+            path = self.source / "skills/easyviz" / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("release test resource\n")
+        repo = Path(__file__).resolve().parents[1]
+        shutil.copytree(repo / "skills/easyviz/assets/design-cards",
+                        self.source / "skills/easyviz/assets/design-cards")
+        for helper_name in ("figure_handoff.py", "observation_clipping.py"):
+            with self.subTest(helper=helper_name):
+                helper = self.source / "skills/easyviz/scripts" / helper_name
+                original = helper.read_bytes()
+                helper.unlink()
+                self.manifest.write_text(json.dumps({"name": "easyviz", "version": "0.4.4"}))
+                self.assertEqual(validate_plugin(self.source)["version"], "0.4.4")
+                self.manifest.write_text(json.dumps({"name": "easyviz", "version": "0.4.5"}))
+                with mock.patch.object(install_plugin, "run") as cli:
+                    with self.assertRaisesRegex(ValueError, helper_name):
+                        self.install()
+                    cli.assert_not_called()
+                self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+                self.assertFalse(self.target.exists())
+                self.assertFalse((self.codex_home / "plugins/cache").exists())
+                helper.write_bytes(original)
+                self.assertEqual(validate_plugin(self.source)["version"], "0.4.5")
+
+    def test_missing_curated_source_workbook_refuses_future_install_without_writes(self):
+        for name in ("scripts/create_candidates.py", "scripts/create_review.py",
+                     "references/first-draft.md", "references/design-cards.md"):
+            path = self.source / "skills/easyviz" / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("release test resource\n")
+        repo = Path(__file__).resolve().parents[1]
+        shutil.copytree(repo / "skills/easyviz/assets/design-cards",
+                        self.source / "skills/easyviz/assets/design-cards")
+        workbook = self.source / "skills/easyviz/assets/cases/compartment-ccl2/inputs/41590_2023_1468_MOESM5_ESM.xlsx"
+        workbook.unlink()
         self.manifest.write_text(json.dumps({"name": "easyviz", "version": "0.4.4"}))
-        with mock.patch.object(install_plugin, "run", side_effect=self.fake_cli):
-            result = self.install()
-        self.assertEqual(result["version"], "0.4.4")
-        self.assertEqual(validate_plugin(Path(result["installed_path"]))["version"], "0.4.4")
+        self.assertEqual(validate_plugin(self.source)["version"], "0.4.4")
+        self.manifest.write_text(json.dumps({"name": "easyviz", "version": "0.4.5"}))
+        with mock.patch.object(install_plugin, "run") as cli:
+            with self.assertRaisesRegex(ValueError, "41590_2023_1468_MOESM5_ESM.xlsx"):
+                self.install()
+            cli.assert_not_called()
+        self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+        self.assertFalse(self.target.exists())
+        self.assertFalse((self.codex_home / "plugins/cache").exists())
 
     def test_extra_source_links_and_special_files_are_rejected_before_writes(self):
         outside = self.root / "private-file.txt"

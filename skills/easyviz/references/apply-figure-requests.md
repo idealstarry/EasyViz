@@ -85,8 +85,13 @@ python /absolute/path/to/easyviz/scripts/apply_figure_requests.py record \
   --validation 'Inspected SVG/PNG at final dimensions and verified PDF content.'
 ```
 
-The target needs a current map, verified provenance, unchanged data hash and
-passing `qa.json`. Changed files must be regular files contained in the target
+The target needs a current source handoff receipt or a current element map,
+verified declared consumption/source provenance, unchanged primary and declared
+auxiliary data hashes, and passing `qa.json`. New custom receipts require a
+pre-export byte capture; complete legacy recorded claims use explicit migration.
+Post-export hashing cannot verify consumption of unknown historical inputs. Region/general requests do not require fabricated element
+identities. A raw external SVG can collect notes, but missing source provenance
+cannot be recorded as an applied or accepted result. Changed files must be regular files contained in the target
 attempt. Repeat `--changed-file` for the changed source/spec files. Use
 `--superseded-id` for a processed request replaced by another processed request.
 The source and target ledgers retain original requests, their target version,
@@ -110,19 +115,23 @@ python /absolute/path/to/easyviz/scripts/apply_figure_requests.py restore \
   --out /absolute/path/to/project/attempt-restored
 ```
 
-Acceptance requires current source/spec/data hashes and passing QA, and saves
+Acceptance requires current source/spec/data and every declared auxiliary input hash, matching actual export bytes, and passing QA. It saves
 one immutable `accepted-snapshot` inside that attempt. Restoring verifies every
-snapshot hash and its matching SVG/source/spec/input provenance, copies the
-bundle into a fresh attempt, rewrites only manifest input locations to the new
-copies, and writes `restoration.json` plus a `restored` history event. Existing
+snapshot hash, the accepted QA identity and its actual export bindings, plus
+matching SVG/source/spec/input provenance, then copies the bundle into a fresh attempt, rebinds the map/receipt and corresponding settings input locations to the new copies, and writes `restoration.json` plus a `restored` history event. Existing
 attempts are never overwritten. Pending instructions inherited from the accepted
 attempt become superseded in the restored attempt's ledger.
 
+Snapshots retain all declared auxiliary input bytes, including aligned matrix
+metadata and supplied linkage files. A changed or missing secondary source
+cannot be omitted from acceptance; a missing or tampered dependency in the
+snapshot prevents restoration before creating a new output. Restored file
+locations may change, while source role/hash identity and original export bytes
+remain unchanged.
+
 Restoration executes no author code. It restores the accepted source contents,
 spec, input and already reviewed exports together; it cannot infer lost code
-from SVG/PDF. This snapshot workflow handles one source/spec/data attempt;
-shared profiles, imported author modules and external assets need explicit Agent
-preservation of those dependencies. A restored copy of a core source file is
+from SVG/PDF. This workflow handles one source/spec/data attempt and its explicitly declared auxiliary files. Shared profiles still require Agent preservation of every dependent panel. Imported author modules and external assets are preserved only when explicitly declared; the helper cannot discover undeclared runtime dependencies. A restored copy of a core source file is
 provenance, not permission for `--render` to execute it as an arbitrary script.
 
 Open the fresh result with `figure_workbench.py --figure-dir NEW_ATTEMPT

@@ -282,7 +282,7 @@ class ReplicatePlotTests(unittest.TestCase):
     def test_copied_runtime_works_outside_checkout(self):
         runtime, out = self.root / "runtime", self.root / "portable"
         runtime.mkdir()
-        for name in ("replicate_plot.py", "render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py"):
+        for name in ("replicate_plot.py", "render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py", "observation_clipping.py"):
             shutil.copy2(SCRIPT.with_name(name), runtime / name)
         spec_path = self.root / "spec.json"
         spec_path.write_text(json.dumps(self.spec))

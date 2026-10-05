@@ -185,6 +185,23 @@ def write(fig, out, spec, layout):
         "elements": elements,
         "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable.",
     }
+    auxiliary = {}
+    if isinstance(captured, dict):
+        for role, record in captured.items():
+            if role in ("data_file", "source_script", "spec_file"):
+                continue
+            if (not isinstance(role, str) or not role.strip() or not isinstance(record, dict)
+                    or not isinstance(record.get("path"), str) or not record["path"].strip()
+                    or not isinstance(record.get("sha256"), str)
+                    or not re.fullmatch(r"[0-9a-f]{64}", record["sha256"])):
+                raise ValueError("Consumed auxiliary bindings need an actual path and source digest")
+            auxiliary[role] = {"path": str(Path(record["path"]).expanduser().resolve()), "sha256": record["sha256"]}
+    if auxiliary:
+        manifest["input"]["auxiliary_inputs"] = auxiliary
+        encoded = json.dumps({role: record["sha256"] for role, record in auxiliary.items()},
+                             ensure_ascii=False, sort_keys=True, allow_nan=False,
+                             separators=(",", ":")).encode()
+        manifest["version"]["auxiliary_inputs_sha256"] = hashlib.sha256(encoded).hexdigest()
     colors = getattr(fig, "_easyviz_resolved_colors", None)
     if isinstance(colors, dict) and colors:
         palette = json.dumps(colors, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode()

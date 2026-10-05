@@ -439,6 +439,45 @@ class FigureWorkbenchTests(unittest.TestCase):
                 self.assertEqual(self.data("POST","/api/requests",{**request,"region_mm":invalid})[0],400)
         self.assertEqual(self.data("POST","/api/requests",{**request,"element_id":"data-group-a"})[0],400)
 
+    def test_receipt_bound_region_and_general_http_requests_keep_real_sources_without_fake_ids(self):
+        from figure_handoff import capture_inputs, write_receipt
+        (self.root / "elements.json").unlink()
+        (self.root / "source.csv").write_text("id,x,y\n001,1,2\n")
+        (self.root / "metadata.csv").write_text("id,group\n001,A\n")
+        (self.root / "plot.py").write_text('raise RuntimeError("Must never execute recorded source")\n')
+        (self.root / "spec.json").write_text(json.dumps({"chart": "custom",
+            "layout": {"width_mm": 120, "height_mm": 90}}))
+        for name in ("panel.svg", "panel.pdf", "panel.png"):
+            (self.root / name).unlink()
+        capture = capture_inputs(self.root, data_file=self.root / "source.csv",
+            source_script=self.root / "plot.py", spec_file=self.root / "spec.json",
+            auxiliary_inputs={"metadata": self.root / "metadata.csv"})
+        (self.root / "panel.svg").write_bytes(SVG)
+        receipt = write_receipt(self.root, capture=capture, formats=["svg"], track="create")
+        code, state = self.data("GET", "/api/state")
+        self.assertEqual(code, 200)
+        self.assertTrue(state["provenance_valid"])
+        self.assertTrue(state["source_current"])
+        self.assertFalse(state["manifest_valid"])
+        self.assertEqual(state["elements"], [])
+        self.assertEqual(state["version"], receipt["version"])
+        requests = [{"version": state["version"], "annotation_number": 1,
+            "instruction": "Move the selected region label.",
+            "region_mm": {"x": 5, "y": 10, "width": 20, "height": 15}},
+            {"version": state["version"], "annotation_number": 2,
+             "instruction": "Retain the whole figure's source values and dimensions."}]
+        code, result = self.data("POST", "/api/requests/batch", {"version": state["version"], "requests": requests})
+        self.assertEqual(code, 200)
+        self.assertEqual([item["annotation_number"] for item in result["requests"]], [1, 2])
+        for item in result["requests"]:
+            self.assertEqual(item["input"]["auxiliary_inputs"], receipt["input"]["auxiliary_inputs"])
+            self.assertEqual(item["element_ids"], [])
+        (self.root / "metadata.csv").write_text("id,group\n001,B\n")
+        code, stale = self.data("GET", "/api/state")
+        self.assertEqual(code, 200)
+        self.assertFalse(stale["source_current"])
+        self.assertEqual(self.data("POST", "/api/requests", requests[0])[0], 409)
+
     def test_stale_export_or_map_cannot_receive_semantic_edits(self):
         self.assertEqual(self.data("POST","/api/requests",self.change())[0],200)
         newer=SVG.replace(b"#2581B9",b"#00DCDC")

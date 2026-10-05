@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "9be657beb80f1a563a65a6592de3cbe5b23355ab40a7ad4c8588e0bcd873beed",
+  "pass_number": 3,
+  "reviewer": {
+    "role": "independent",
+    "identity": "/root/v045_ccl2_create"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/panel.png",
+      "sha256": "5484604b8c63839ea42b6919f18dd9fb2a97e0c5feca9cc5cfcb2dc1774363df",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image on actual PNG and separately rendered actual PDF at 96 dpi",
+      "size_basis": "Recorded 112 × 128 mm; an actual 96 dpi PDF preview was opened, with all axes, headers and gene labels at 8 pt. The full PNG and original matrix/colorbar crops were also opened."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "All 29 source-order genes × 6 mice show absolute log2(TPM + 1) with a 1 TPM pseudocount. YT-AKO minus YT-FF mean log-expression differences are identified separately as descriptive quantities. Atp5o zeros remain observed zeros, with a contrast-origin glyph; no significance or clustering layer is inferred."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "The wider sample matrix preserves gene/sample lookup. The aligned difference lane highlights Ucp1, Cox8b and Cox7a1 without replacing sample values with summary bars. This gives a concrete reading benefit over a generic scatter or mean-only chart."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Crisp white seams and a definite matrix edge retain quantitative cells. A thin genotype band identifies sample blocks; outlined blue difference bars are subordinate to the larger matrix, and reference lines stay below data marks."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "The actual 112 × 128 mm Arial 8 pt PNG and 96 dpi PDF show 29 rows and 6 columns with aligned gene/difference positions. The validator rerun reports 0.464 mm actual embedded-glyph ink clearance. I see no merged gene labels or clipped ticks; cell geometry is an adaptation, not a matched reproduction."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "The separately labeled warm absolute scale spans 0–12 and includes every observed value and the six zeros. Gray/blue genotype bands and blue contrast bars have distinct categorical/contrast roles. Some adjacent warm cells give subtle within-row contrast; the numeric difference lane supplies explicit lookup."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "The original matrix and scale crops were opened. Row lookup, contiguous groups and compact guides transfer without copying absent display z scores, dendrogram or stars. Italic genes, literal log2 units and contrast direction remain legible in the actual PDF preview; no in-image narrative title or source footer is introduced."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "I separately reran the standalone validator into numeric-rerun.json. It measured actual PDF/SVG dimensions of 112 × 128 mm and checked full PNG pixels and DPI. Dimensions are not inferred from appearance."
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "The rerun checks actual embedded PDF fonts and 8 pt PDF/SVG text. The actual nominal PDF preview was opened. Visible glyph outlines stay separated, while slightly overlapping empty font-metric padding is separately documented."
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "Every packet artifact hash was checked against its actual current file before attestation. The standalone validator rereads the copied original workbook and checks 174 literal source cells and transforms without importing plot.py."
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "The independent rerun passes 203 actual SVG/PDF marks, 174 PNG cell-center colors, 87 mean/difference checks, 6 observed zeros and actual glyph-gap evidence. These are numerical and geometry checks, not aesthetic scores."
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "I read the actual caption: independent n = 3 mice per genotype, explicit log2(TPM + 1) pseudocount, no row standardization/significance/clustering, descriptive mean differences, zero-versus-missing semantics and CC BY source attribution are all stated."
+    }
+  ],
+  "findings": [
+    {
+      "id": "absolute-scale-tradeoff",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Main heatmap and aligned contrast lane",
+      "evidence": "Most nonzero abundance values occupy warm yellow/orange shades, so genotype differences within one row are subtler than in the source row-standardized diverging heatmap.",
+      "requirement": "Absolute transformed abundance and source variability are the adopted reading task; do not invent unavailable display z scores or infer source clustering.",
+      "action": "Retain the truthful absolute scale and caption plus aligned descriptive difference lane; do not claim matched visual superiority to the paper."
+    },
+    {
+      "id": "small-n-scope",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Caption and group band",
+      "evidence": "The plot has three independent source mice per genotype; its compact band does not establish inferential population-wide effects.",
+      "requirement": "Use descriptive language and preserve the full input rather than adding unsupported significance.",
+      "action": "Keep n, source observations, zero semantics and absence of significance explicit in the caption."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "absolute-scale-tradeoff",
+    "small-n-scope"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": "Paper crop is a design analogue with different quantity/geometry, not a matched baseline."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

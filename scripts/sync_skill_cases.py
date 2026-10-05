@@ -13,6 +13,7 @@ GENERATED_CASES = (
     'massier-bmi-violin', 'massier-integration-radar', 'cell-atlas-dotplot',
     'paired-effects', 'paired-myeloid-remodeling', 'xiang-bubble-volcano',
     'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma', 'basic-panels', 'repair-outcomes',
+    'thermogenic-expression', 'compartment-ccl2',
 )
 
 
@@ -170,7 +171,66 @@ def sync():
         relative = file.relative_to(source)
         if file.is_file() and '__pycache__' not in relative.parts and file.suffix != '.pyc':
             copy_file(file, target / relative)
-    print('Synced thirteen CC BY case collections, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
+    # New custom cases ship their executable dependency closure and frozen
+    # previews. Development source/QA/receipt/review records retain absolute
+    # inspected paths in the repository; they are not rewritten into a false
+    # current-source attestation after relocation. Fresh redraws create actual
+    # current metadata and element maps in the user's writable project.
+    curated_custom = {
+        'thermogenic-expression': (
+            'plot.py', 'validate.py', 'spec.json', 'caption.md', 'design-notes.md',
+            'inputs/observations.csv', 'inputs/input-contract.json',
+            'inputs/41467_2023_43021_MOESM8_ESM.xlsx',
+            'literature/figure2b-reference.png', 'literature/figure2b-colorbar-reference.png',
+            'output/panel.png', 'output/panel.pdf', 'output/panel.svg'),
+        'compartment-ccl2': (
+            'plot.py', 'validate.py', 'caption.md', 'design-rationale.md',
+            'panels/lung/spec.json', 'panels/serum/spec.json',
+            'inputs/observations.csv', 'inputs/input-contract.json',
+            'inputs/author-adjusted-p.csv', 'inputs/blank-cells.csv',
+            'inputs/descriptive-summary.csv', 'inputs/41590_2023_1468_MOESM5_ESM.xlsx',
+            'inputs/literature-reference.png', 'output/panel.png',
+            'panels/lung/output/panel.png', 'panels/lung/output/panel.pdf',
+            'panels/lung/output/panel.svg', 'panels/serum/output/panel.png',
+            'panels/serum/output/panel.pdf', 'panels/serum/output/panel.svg'),
+    }
+    import re
+    from urllib.parse import urlsplit
+    for case, names in curated_custom.items():
+        source = ROOT / 'examples/create' / case
+        target = ASSETS / 'cases' / case
+        for name in names:
+            copy_file(source / name, target / name)
+        # Keep useful prose and local runnable-input links; development-only
+        # evidence links point to the preserved original repository record.
+        for name in ('README.md', 'design-notes.md', 'design-rationale.md'):
+            if not (source / name).is_file():
+                continue
+            original = (source / name).read_text()
+            def link(match):
+                label, destination = match.group(1), match.group(2)
+                parsed = urlsplit(destination)
+                if parsed.scheme or parsed.netloc or not parsed.path:
+                    return match.group(0)
+                relative = Path(parsed.path)
+                if (target / relative).exists():
+                    return match.group(0)
+                recorded = (source / relative).resolve()
+                if not recorded.is_relative_to(ROOT) or not recorded.exists():
+                    raise ValueError(f'Custom case evidence link is missing: {case}/{destination}')
+                url = 'https://github.com/idealstarry/EasyViz/blob/main/' + recorded.relative_to(ROOT).as_posix()
+                return f'[{label}]({url})'
+            transformed = re.sub(r'\[([^\]]*)\]\(([^\s)]+)\)', link, original)
+            if name == 'README.md':
+                transformed = transformed.replace(f'python examples/create/{case}/', 'python ')
+                transformed = transformed.replace('From the repository root, redraw into a new folder',
+                                                  'From this copied case directory, redraw into a new folder')
+                transformed += ('\nThe bundled exports are frozen previews. Redraw this copied case into a fresh '
+                                'writable directory to create current source bindings, QA, selectable elements '
+                                'and a handoff receipt. Development review/history links refer to the original '
+                                'repository records.\n')
+            (target / name).write_text(transformed)
+    print('Synced reviewed CC BY cases, synthetic workflow support and the annotated-heatmap recipe; custom cases omit development histories and stale current metadata.')
 
 
 if __name__ == '__main__':

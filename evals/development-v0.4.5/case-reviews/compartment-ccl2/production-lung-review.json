@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "6b79826a9a93fb2e7b127d7684c9e710d85cf7bde38182e0c289d76629c58810",
+  "pass_number": 4,
+  "reviewer": {
+    "role": "independent",
+    "identity": "/root/v045_expression_create"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/panels/lung/output/panel.png",
+      "sha256": "5dccb28b49501059c303b2a397463e04343a2c25d07488c72615a0521dde1dae",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image: actual individual canonical PNG and actual individual 96 dpi PDF preview opened",
+      "size_basis": "Actual 82 \u00d7 65 mm panel and Arial 8 pt; individual nominal PDF preview opened. This is the recorded fourth followup view, not first-delivery success."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Independent workbook audit verifies all 37 lung numeric cells and literal 0/12/24/48-hour source cells; 50-digit Decimal recomputation verifies all eight means/SEM. Actual SVG raw y coordinates and mean x/y anchors match. Lines join terminal group means; no inferred animal pairing, fitted response or significance reconstruction."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "Definite group trajectories identify the 12-hour elevation and later return; all observations remain available as small open symbols. Separate compartment units and y scales answer the within-compartment response task, without comparing absolute heights across compartments."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Reopened current PNG and nominal PDF show separate thin mean ticks rather than partially merged filled glyphs. Independently measured minimum tick stroke-edge gap is 0.584311 mm. Open raw glyphs, capless SEM and darker mean segments remain readable; some raw points legitimately cross a segment."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "Fixed 82 \u00d7 65 mm / 8 pt individual canvas and 61.50 \u00d7 44.85 mm axis rectangle retained. Nominal means are at true linear 0/12/24/48 h, while bounded raw columns are explicit display offsets. The complete positive serum minimum has a documented display margin, not an invented negative observation."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Blue circles and coral squares combine color and shape identity. Actual output shows crisp open boundaries and source-derived mean/SEM strokes; subtle reference apparatus stays behind primary marks. This is a task-specific two-genotype encoding learned from the inspected source mechanism, not a universal palette."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Current individual PDF and PNG have clear hour ticks, full separately stated concentration units, detached condition key, and no in-panel narrative title. Actual caption separately explains mean ticks, terminal groups, offsets, units, missing IDs and author statistical scope."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "Independent current standalone export validator passes individual PDF/SVG/PNG physical geometry and unscaled composite assembly; all current packet artifact hashes verified."
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "Actual individual nominal PDF opened; standalone validator verifies embedded Arial 8 pt text, actual label bounds and glyph coverage without silent fallback."
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "Current packet artifact hashes and current source hashes are valid. Separate independent literal-workbook and SVG audit passes, and current standalone receipt/source-bound export validator passes. All 88 values across the two panels retained; no source blanks changed to zero."
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "Current source/actual SVG/actual PDF/SEM/trajectory/stroke/font/clearance validator rerun passes in a separate reviewer report. Five saved packet measured checks are passed. Followup phase 4 and its prior evidence remain explicit."
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "Current complete caption read: hours corrected from source caption/workbook, terminal cross-sectional sampling, two pooled experiments, no inferred pairing, distinct units, mean \u00b1 SEM, bounded display offsets, smallest positive serum symbol margin, separate author-adjusted P table and CC BY DOI attribution."
+    }
+  ],
+  "findings": [
+    {
+      "id": "mean-tick-visibility",
+      "severity": "major",
+      "state": "resolved",
+      "location": "lung late or baseline close-genotype summaries",
+      "evidence": "Prior filled summary glyphs partially covered one another at lung 48 h and serum 0 h; the recorded source-value check alone did not catch visibility.",
+      "requirement": "Keep both exact mean coordinates identifiable at adopted physical size.",
+      "action": "Current inspected followup uses separate thin ticks at unchanged exact source coordinates."
+    },
+    {
+      "id": "raw-display-columns",
+      "severity": "note",
+      "state": "accepted",
+      "location": "lung raw observations",
+      "evidence": "Raw symbols occupy bounded left/right columns rather than exact sampling x coordinates; all concentrations and nominal times are retained.",
+      "requirement": "Explicitly distinguish visual offsets from measurement time.",
+      "action": "Retain documented offsets and exact group-hour anchors; the caption and source-bound tables explain them."
+    },
+    {
+      "id": "raw-line-intersections",
+      "severity": "note",
+      "state": "accepted",
+      "location": "lung mean segments",
+      "evidence": "A few open raw symbols cross a mean segment and interrupt a small visible section; current ticks and condition shapes remain distinguishable.",
+      "requirement": "Preserve complete raw observations and truthful group means.",
+      "action": "Keep these source-derived crossings rather than deleting values or shifting concentrations."
+    }
+  ],
+  "corrections": [
+    {
+      "finding_id": "mean-tick-visibility",
+      "action": "Use thin horizontal mean ticks with separate actual stroke edges.",
+      "evidence": "Independent actual-SVG minimum tick edge gap 0.584311 mm; current individual PNG and nominal PDF reopened.",
+      "candidate_sha256": "5dccb28b49501059c303b2a397463e04343a2c25d07488c72615a0521dde1dae"
+    }
+  ],
+  "residual_issues": [
+    "raw-display-columns",
+    "raw-line-intersections"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": "No same-size baseline packet is supplied; readiness and visible correction are distinct from comparative superiority."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance.",
+  "delivery_scope": {
+    "phase": "followup",
+    "cumulative_pass_number": 4,
+    "first_delivery_claim": false
+  }
+}

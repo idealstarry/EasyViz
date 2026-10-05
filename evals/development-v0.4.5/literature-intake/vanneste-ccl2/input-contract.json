@@ -1,0 +1,135 @@
+{
+  "track": "create",
+  "source_file": "41590_2023_1468_MOESM5_ESM.xlsx",
+  "source_sha256": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc",
+  "article": "https://www.nature.com/articles/s41590-023-01468-3",
+  "doi": "10.1038/s41590-023-01468-3",
+  "license": "CC BY 4.0",
+  "source_sheet": "3c",
+  "question": "When does Ccl2 rise after DT in lung and serum, and how do the IM-DTR and control groups differ across the four measured hours?",
+  "experimental_unit": "mouse; Methods MCP-1/Ccl2 quantification explicitly states euthanasia at indicated times, followed by blood collection and lung dissection; terminal cross-sectional time groups, pooled from two experiments in the caption",
+  "design_evidence": "Official Methods MCP-1/Ccl2 quantification; user-provided PDF page 16. Blood and lung were collected after euthanasia. Some cross-compartment samples may derive from the same mice, but no IDs connect supplied entries and compartment group counts differ.",
+  "conditions": [
+    "Control",
+    "IM-DTR"
+  ],
+  "hours": [
+    0,
+    12,
+    24,
+    48
+  ],
+  "unit_by_compartment": {
+    "Lung": "pg mg\u22121 protein",
+    "Serum": "pg ml\u22121"
+  },
+  "observations": 88,
+  "blank_source_cells": 20,
+  "group_counts": [
+    {
+      "compartment": "Lung",
+      "condition": "Control",
+      "hour": "0",
+      "n": 5
+    },
+    {
+      "compartment": "Lung",
+      "condition": "Control",
+      "hour": "12",
+      "n": 5
+    },
+    {
+      "compartment": "Lung",
+      "condition": "Control",
+      "hour": "24",
+      "n": 5
+    },
+    {
+      "compartment": "Lung",
+      "condition": "Control",
+      "hour": "48",
+      "n": 4
+    },
+    {
+      "compartment": "Lung",
+      "condition": "IM-DTR",
+      "hour": "0",
+      "n": 4
+    },
+    {
+      "compartment": "Lung",
+      "condition": "IM-DTR",
+      "hour": "12",
+      "n": 5
+    },
+    {
+      "compartment": "Lung",
+      "condition": "IM-DTR",
+      "hour": "24",
+      "n": 5
+    },
+    {
+      "compartment": "Lung",
+      "condition": "IM-DTR",
+      "hour": "48",
+      "n": 4
+    },
+    {
+      "compartment": "Serum",
+      "condition": "Control",
+      "hour": "0",
+      "n": 6
+    },
+    {
+      "compartment": "Serum",
+      "condition": "Control",
+      "hour": "12",
+      "n": 7
+    },
+    {
+      "compartment": "Serum",
+      "condition": "Control",
+      "hour": "24",
+      "n": 8
+    },
+    {
+      "compartment": "Serum",
+      "condition": "Control",
+      "hour": "48",
+      "n": 5
+    },
+    {
+      "compartment": "Serum",
+      "condition": "IM-DTR",
+      "hour": "0",
+      "n": 6
+    },
+    {
+      "compartment": "Serum",
+      "condition": "IM-DTR",
+      "hour": "12",
+      "n": 7
+    },
+    {
+      "compartment": "Serum",
+      "condition": "IM-DTR",
+      "hour": "24",
+      "n": 8
+    },
+    {
+      "compartment": "Serum",
+      "condition": "IM-DTR",
+      "hour": "48",
+      "n": 4
+    }
+  ],
+  "pairing": "No mouse ID or experimental-batch ID supplied; source column positions do not authorize pairing across time, compartment or genotype. Do not connect individual animals.",
+  "summary": "mean \u00b1 SEM; sample standard deviation with ddof=1 divided by sqrt(n), matching the adopted descriptive summary definition",
+  "statistics": "8 author-supplied adjusted P values, including threshold strings <0.0001; preserve as source results of two-way ANOVA / Tukey from the caption. Scope of the correction family across compartments is not explicitly stated. Do not claim compartment-specific or global adjustment, reconstruct experiment IDs, or present independent recalculation",
+  "missing": "blank numeric cells are unavailable entries, not zero and not omitted observations; n is the actual nonblank count",
+  "retain": "all observations and source-cell traces; summaries use every supplied value",
+  "time_conflict": "Publication panel xlabel says Days post-DT, but workbook header and caption explicitly specify 0,12,24,48 hours. The Create panel uses Hours post-DT and documents correction instead of copying that error.",
+  "suggested_design": "two aligned compartment lanes with common linear time positions 0/12/24/48 h, independent labeled numeric axes/units, raw points offset only physically within time, compact mean/SEM summaries or straight mean trajectories, clearly decoded genotype and separately placed significance annotations",
+  "literature_reference": "../vanneste-figure3c-reference.png",
+  "reference_role": "learn compact grouped observations + mean/SEM hierarchy and explicit independent compartment axes; do not copy the erroneous days label or force a reproduction of the bar layout"
+}

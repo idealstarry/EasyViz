@@ -1,0 +1,1500 @@
+{
+  "core_sha256": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3",
+  "clipping_helper_sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4",
+  "cases": [
+    {
+      "case": "preview-endpoints",
+      "expected_clipping": true,
+      "source_sha256": "31437c48f200f7b9011b385b578d178c1a5f9d54b4aad5591e823715648e87e5",
+      "adopted": {
+        "row_kind": "observations",
+        "fields": {
+          "group": "group",
+          "value": "value"
+        },
+        "design": {
+          "structure": "unknown",
+          "confirmed": false,
+          "unit_definition": "Unknown supplied observation"
+        },
+        "measurement_units": "a.u.",
+        "colors": {
+          "A": "#29ACF3"
+        },
+        "layout": {
+          "width_mm": 88,
+          "height_mm": 66,
+          "font": "DejaVu Sans",
+          "dpi": 160
+        },
+        "formats": [
+          "png",
+          "pdf",
+          "svg"
+        ],
+        "options": {
+          "value_limits": [
+            1,
+            3
+          ]
+        }
+      },
+      "before": {
+        "exception": null,
+        "valid_outputs": true,
+        "qa_status": "pass",
+        "old_geometry": null,
+        "point_layout": {
+          "policy": "jitter",
+          "status": "unchecked",
+          "seed": 0,
+          "categorical_half_width": 0.13,
+          "point_category_offset": 0,
+          "numeric_values_changed": false,
+          "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."
+        },
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 3,
+          "audited_observations": 3,
+          "group_counts": {
+            "A": 3
+          },
+          "intended_point_alpha": 1.0,
+          "point_style": "filled",
+          "actual_point_facecolors": {
+            "A": [
+              [
+                0.1607843137254902,
+                0.6745098039215687,
+                0.9529411764705882,
+                1.0
+              ]
+            ]
+          },
+          "actual_point_edgecolors": {},
+          "actual_box_widths_category_units": {
+            "A": 0.18
+          },
+          "actual_box_thickness_mm": {
+            "A": 7.859509114583333
+          },
+          "actual_box_summary_linewidths_pt": {
+            "A": 0.75
+          },
+          "actual_axis_linewidths_pt": {
+            "left": 0.55,
+            "bottom": 0.55
+          },
+          "numeric_values_unchanged": true,
+          "tests_performed": false,
+          "experimental_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "alpha": 1.0,
+          "point_style": "filled",
+          "box_style": "outline",
+          "box_width": 0.18,
+          "kind": "box",
+          "orientation": "horizontal",
+          "x_scale": "linear",
+          "x_limits": [
+            1,
+            3
+          ],
+          "point_layout": "jitter",
+          "point_area_pt2": 9
+        },
+        "exports": {
+          "png": "41d9d41ea9144493839eca66eb8678c12bd06623184effa03b2cc6dfc31bc43a",
+          "pdf": "d3898c9ca5f2d04130a4686c43f692e695e7e6e654645a0b88048bb47d856b58",
+          "svg": "fc606d4fd3f5f4b0f94e57e66ca59ca5f89f501e0d272a71a721ce7dac3e02f5"
+        }
+      },
+      "after": {
+        "exception": "Distribution source or canvas QA needs revision; inspect qa.json and panel.png",
+        "valid_outputs": false,
+        "qa_status": "needs_revision",
+        "old_geometry": null,
+        "point_layout": {
+          "policy": "jitter",
+          "status": "unchecked",
+          "seed": 0,
+          "categorical_half_width": 0.13,
+          "point_category_offset": 0,
+          "numeric_values_changed": false,
+          "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."
+        },
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 3,
+          "audited_observations": 3,
+          "group_counts": {
+            "A": 3
+          },
+          "intended_point_alpha": 1.0,
+          "point_style": "filled",
+          "actual_point_facecolors": {
+            "A": [
+              [
+                0.1607843137254902,
+                0.6745098039215687,
+                0.9529411764705882,
+                1.0
+              ]
+            ]
+          },
+          "actual_point_edgecolors": {},
+          "actual_box_widths_category_units": {
+            "A": 0.18
+          },
+          "actual_box_thickness_mm": {
+            "A": 7.859509114583333
+          },
+          "actual_box_summary_linewidths_pt": {
+            "A": 0.75
+          },
+          "actual_axis_linewidths_pt": {
+            "left": 0.55,
+            "bottom": 0.55
+          },
+          "numeric_values_unchanged": true,
+          "tests_performed": false,
+          "experimental_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "alpha": 1.0,
+          "point_style": "filled",
+          "box_style": "outline",
+          "box_width": 0.18,
+          "kind": "box",
+          "orientation": "horizontal",
+          "x_scale": "linear",
+          "x_limits": [
+            1,
+            3
+          ],
+          "point_layout": "jitter",
+          "point_area_pt2": 9
+        },
+        "exports": {
+          "png": "41d9d41ea9144493839eca66eb8678c12bd06623184effa03b2cc6dfc31bc43a",
+          "pdf": "d3898c9ca5f2d04130a4686c43f692e695e7e6e654645a0b88048bb47d856b58",
+          "svg": "fc606d4fd3f5f4b0f94e57e66ca59ca5f89f501e0d272a71a721ce7dac3e02f5"
+        },
+        "observation_clipping": {
+          "status": "needs_revision",
+          "by_format": {
+            "png": {
+              "status": "needs_revision",
+              "checked_observations": 3,
+              "clipped_observations": 2,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observations": 3,
+                  "checked_observations": 3,
+                  "clipped_observations": 2,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      1.0,
+                      3.0
+                    ],
+                    "y_limits": [
+                      0.6,
+                      -0.6
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observation_index": 0,
+                  "source": {
+                    "record": 1
+                  },
+                  "center_mm": [
+                    10.601449273989902,
+                    36.26872944263844
+                  ],
+                  "outer_bounds_mm": [
+                    10.072282607323233,
+                    35.73956277597177,
+                    11.130615940656567,
+                    36.79789610930511
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        10.601449273989902,
+                        11.610304855850169,
+                        82.85491500355116,
+                        64.03878787878787
+                      ],
+                      "exceeded_mm": {
+                        "left": 0.529166666666667
+                      }
+                    }
+                  ]
+                },
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observation_index": 2,
+                  "source": {
+                    "record": 3
+                  },
+                  "center_mm": [
+                    82.85491500355116,
+                    43.038859758920225
+                  ],
+                  "outer_bounds_mm": [
+                    82.32574833688447,
+                    42.509693092253556,
+                    83.38408167021782,
+                    43.568026425586886
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        10.601449273989902,
+                        11.610304855850169,
+                        82.85491500355116,
+                        64.03878787878787
+                      ],
+                      "exceeded_mm": {
+                        "right": 0.5291666666666727
+                      }
+                    }
+                  ]
+                }
+              ],
+              "advisories": [],
+              "canvas_mm": [
+                87.9475,
+                66.04
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "pdf": {
+              "status": "needs_revision",
+              "checked_observations": 3,
+              "clipped_observations": 2,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observations": 3,
+                  "checked_observations": 3,
+                  "clipped_observations": 2,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      1.0,
+                      3.0
+                    ],
+                    "y_limits": [
+                      0.6,
+                      -0.6
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observation_index": 0,
+                  "source": {
+                    "record": 1
+                  },
+                  "center_mm": [
+                    10.60777777777778,
+                    36.24676170826979
+                  ],
+                  "outer_bounds_mm": [
+                    10.078611111111114,
+                    35.71759504160312,
+                    11.136944444444445,
+                    36.775928374936456
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        10.60777777777778,
+                        11.603272569444446,
+                        82.90437500000002,
+                        63.99999999999999
+                      ],
+                      "exceeded_mm": {
+                        "left": 0.529166666666667
+                      }
+                    }
+                  ]
+                },
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observation_index": 2,
+                  "source": {
+                    "record": 3
+                  },
+                  "center_mm": [
+                    82.90437500000002,
+                    43.01279140049567
+                  ],
+                  "outer_bounds_mm": [
+                    82.37520833333333,
+                    42.483624733829004,
+                    83.43354166666668,
+                    43.541958067162334
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        10.60777777777778,
+                        11.603272569444446,
+                        82.90437500000002,
+                        63.99999999999999
+                      ],
+                      "exceeded_mm": {
+                        "right": 0.5291666666666727
+                      }
+                    }
+                  ]
+                }
+              ],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.00000000000001
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "svg": {
+              "status": "needs_revision",
+              "checked_observations": 3,
+              "clipped_observations": 2,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observations": 3,
+                  "checked_observations": 3,
+                  "clipped_observations": 2,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      1.0,
+                      3.0
+                    ],
+                    "y_limits": [
+                      0.6,
+                      -0.6
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observation_index": 0,
+                  "source": {
+                    "record": 1
+                  },
+                  "center_mm": [
+                    10.60777777777778,
+                    36.24676170826979
+                  ],
+                  "outer_bounds_mm": [
+                    10.078611111111114,
+                    35.71759504160312,
+                    11.136944444444445,
+                    36.775928374936456
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        10.60777777777778,
+                        11.603272569444446,
+                        82.90437500000002,
+                        63.99999999999999
+                      ],
+                      "exceeded_mm": {
+                        "left": 0.529166666666667
+                      }
+                    }
+                  ]
+                },
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observation_index": 2,
+                  "source": {
+                    "record": 3
+                  },
+                  "center_mm": [
+                    82.90437500000002,
+                    43.01279140049567
+                  ],
+                  "outer_bounds_mm": [
+                    82.37520833333333,
+                    42.483624733829004,
+                    83.43354166666668,
+                    43.541958067162334
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        10.60777777777778,
+                        11.603272569444446,
+                        82.90437500000002,
+                        63.99999999999999
+                      ],
+                      "exceeded_mm": {
+                        "right": 0.5291666666666727
+                      }
+                    }
+                  ]
+                }
+              ],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.00000000000001
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            }
+          },
+          "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+        }
+      },
+      "unchanged_exports": {
+        "png": true,
+        "pdf": true,
+        "svg": true
+      }
+    },
+    {
+      "case": "preview-inside",
+      "expected_clipping": false,
+      "source_sha256": "31437c48f200f7b9011b385b578d178c1a5f9d54b4aad5591e823715648e87e5",
+      "adopted": {
+        "row_kind": "observations",
+        "fields": {
+          "group": "group",
+          "value": "value"
+        },
+        "design": {
+          "structure": "unknown",
+          "confirmed": false,
+          "unit_definition": "Unknown supplied observation"
+        },
+        "measurement_units": "a.u.",
+        "colors": {
+          "A": "#29ACF3"
+        },
+        "layout": {
+          "width_mm": 88,
+          "height_mm": 66,
+          "font": "DejaVu Sans",
+          "dpi": 160
+        },
+        "formats": [
+          "png",
+          "pdf",
+          "svg"
+        ],
+        "options": {
+          "value_limits": [
+            0,
+            4
+          ]
+        }
+      },
+      "before": {
+        "exception": null,
+        "valid_outputs": true,
+        "qa_status": "pass",
+        "old_geometry": null,
+        "point_layout": {
+          "policy": "jitter",
+          "status": "unchecked",
+          "seed": 0,
+          "categorical_half_width": 0.13,
+          "point_category_offset": 0,
+          "numeric_values_changed": false,
+          "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."
+        },
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 3,
+          "audited_observations": 3,
+          "group_counts": {
+            "A": 3
+          },
+          "intended_point_alpha": 1.0,
+          "point_style": "filled",
+          "actual_point_facecolors": {
+            "A": [
+              [
+                0.1607843137254902,
+                0.6745098039215687,
+                0.9529411764705882,
+                1.0
+              ]
+            ]
+          },
+          "actual_point_edgecolors": {},
+          "actual_box_widths_category_units": {
+            "A": 0.18
+          },
+          "actual_box_thickness_mm": {
+            "A": 7.859509114583333
+          },
+          "actual_box_summary_linewidths_pt": {
+            "A": 0.75
+          },
+          "actual_axis_linewidths_pt": {
+            "left": 0.55,
+            "bottom": 0.55
+          },
+          "numeric_values_unchanged": true,
+          "tests_performed": false,
+          "experimental_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "alpha": 1.0,
+          "point_style": "filled",
+          "box_style": "outline",
+          "box_width": 0.18,
+          "kind": "box",
+          "orientation": "horizontal",
+          "x_scale": "linear",
+          "x_limits": [
+            0,
+            4
+          ],
+          "point_layout": "jitter",
+          "point_area_pt2": 9
+        },
+        "exports": {
+          "png": "9268f22747ac32e8d6b2a3ac12d80afcd066ee01530f6b5d1ab74fbe3affa682",
+          "pdf": "8617823bdef686710de74cf4390679bc71d148b18e5344d94487527e4178e44c",
+          "svg": "77573193b59574f435d28260fe9a43466e67fa306873b7c9cbba49880d5dadaa"
+        }
+      },
+      "after": {
+        "exception": null,
+        "valid_outputs": true,
+        "qa_status": "pass",
+        "old_geometry": null,
+        "point_layout": {
+          "policy": "jitter",
+          "status": "unchecked",
+          "seed": 0,
+          "categorical_half_width": 0.13,
+          "point_category_offset": 0,
+          "numeric_values_changed": false,
+          "note": "Legacy uniform categorical jitter retained. Circle overlap is not automatically checked; inspect the rendered panel or explicitly use point_layout='beeswarm'."
+        },
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 3,
+          "audited_observations": 3,
+          "group_counts": {
+            "A": 3
+          },
+          "intended_point_alpha": 1.0,
+          "point_style": "filled",
+          "actual_point_facecolors": {
+            "A": [
+              [
+                0.1607843137254902,
+                0.6745098039215687,
+                0.9529411764705882,
+                1.0
+              ]
+            ]
+          },
+          "actual_point_edgecolors": {},
+          "actual_box_widths_category_units": {
+            "A": 0.18
+          },
+          "actual_box_thickness_mm": {
+            "A": 7.859509114583333
+          },
+          "actual_box_summary_linewidths_pt": {
+            "A": 0.75
+          },
+          "actual_axis_linewidths_pt": {
+            "left": 0.55,
+            "bottom": 0.55
+          },
+          "numeric_values_unchanged": true,
+          "tests_performed": false,
+          "experimental_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "alpha": 1.0,
+          "point_style": "filled",
+          "box_style": "outline",
+          "box_width": 0.18,
+          "kind": "box",
+          "orientation": "horizontal",
+          "x_scale": "linear",
+          "x_limits": [
+            0,
+            4
+          ],
+          "point_layout": "jitter",
+          "point_area_pt2": 9
+        },
+        "exports": {
+          "png": "9268f22747ac32e8d6b2a3ac12d80afcd066ee01530f6b5d1ab74fbe3affa682",
+          "pdf": "8617823bdef686710de74cf4390679bc71d148b18e5344d94487527e4178e44c",
+          "svg": "77573193b59574f435d28260fe9a43466e67fa306873b7c9cbba49880d5dadaa"
+        },
+        "observation_clipping": {
+          "status": "pass",
+          "by_format": {
+            "png": {
+              "status": "pass",
+              "checked_observations": 3,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observations": 3,
+                  "checked_observations": 3,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "y_limits": [
+                      0.6,
+                      -0.6
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                87.9475,
+                66.04
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "pdf": {
+              "status": "pass",
+              "checked_observations": 3,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observations": 3,
+                  "checked_observations": 3,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "y_limits": [
+                      0.6,
+                      -0.6
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.00000000000001
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "svg": {
+              "status": "pass",
+              "checked_observations": 3,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-point-group-885bc1ab4021ea69",
+                  "label": "A",
+                  "observations": 3,
+                  "checked_observations": 3,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "y_limits": [
+                      0.6,
+                      -0.6
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.00000000000001
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            }
+          },
+          "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+        }
+      },
+      "unchanged_exports": {
+        "png": true,
+        "pdf": true,
+        "svg": true
+      }
+    },
+    {
+      "case": "replicate-raster-only",
+      "expected_clipping": true,
+      "source_sha256": "b9b8aaeba66984109cfbf590c309a0fe0b2c54eaeaad6fdd08c9ffc2fafe3e17",
+      "adopted": {
+        "chart": "replicate",
+        "fields": {
+          "condition": "condition",
+          "unit": "unit",
+          "value": "value"
+        },
+        "colors": {
+          "A": "#29ACF3"
+        },
+        "labels": {
+          "y": "Value"
+        },
+        "layout": {
+          "width_mm": 88,
+          "height_mm": 66.1,
+          "font": "DejaVu Sans",
+          "dpi": 160,
+          "auto_fit": false,
+          "margins": {
+            "left": 0.19,
+            "right": 0.77,
+            "bottom": 0.23,
+            "top": 0.88
+          }
+        },
+        "formats": [
+          "png",
+          "pdf",
+          "svg"
+        ],
+        "options": {
+          "mode": "summary",
+          "uncertainty": "none",
+          "marker_area_pt2": 7,
+          "y_limits": [
+            0,
+            3.0372290071214656
+          ]
+        }
+      },
+      "before": {
+        "exception": null,
+        "valid_outputs": true,
+        "qa_status": "pass",
+        "old_geometry": {
+          "status": "pass",
+          "issues": [],
+          "intentional_baseline_contacts": [],
+          "grouped_separation": {
+            "status": "unchecked",
+            "note": "No positive component_gap adopted; legacy bar placement is retained."
+          }
+        },
+        "point_layout": null,
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 2,
+          "raw_points": 2,
+          "component_values_normalized": false,
+          "ratios_derived": false,
+          "sample_size_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "mode": "summary",
+          "uncertainty": "none",
+          "marker_area_pt2": 7,
+          "y_limits": [
+            0,
+            3.0372290071214656
+          ]
+        },
+        "exports": {
+          "png": "356c68c871a491275b323cbc64e72f5d9587e67d32eff1fe34d8e8b7e7329ffd",
+          "pdf": "145ba27648b1afc58a7aadf4fc9ab10e68cf14c95228d3608ec54507f8e06a15",
+          "svg": "5b2096616dba62987ebb0a09c82a4b6ea3e8b33a01d42fc15929455304da9ece"
+        }
+      },
+      "after": {
+        "exception": "Source or fixed-canvas QA needs revision; inspect qa.json and actual panel at the requested dimensions and font.",
+        "valid_outputs": false,
+        "qa_status": "needs_revision",
+        "old_geometry": {
+          "status": "pass",
+          "issues": [],
+          "intentional_baseline_contacts": [],
+          "grouped_separation": {
+            "status": "unchecked",
+            "note": "No positive component_gap adopted; legacy bar placement is retained."
+          }
+        },
+        "point_layout": null,
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 2,
+          "raw_points": 2,
+          "component_values_normalized": false,
+          "ratios_derived": false,
+          "sample_size_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "mode": "summary",
+          "uncertainty": "none",
+          "marker_area_pt2": 7,
+          "y_limits": [
+            0,
+            3.0372290071214656
+          ]
+        },
+        "exports": {
+          "png": "356c68c871a491275b323cbc64e72f5d9587e67d32eff1fe34d8e8b7e7329ffd",
+          "pdf": "145ba27648b1afc58a7aadf4fc9ab10e68cf14c95228d3608ec54507f8e06a15",
+          "svg": "5b2096616dba62987ebb0a09c82a4b6ea3e8b33a01d42fc15929455304da9ece"
+        },
+        "observation_clipping": {
+          "status": "needs_revision",
+          "by_format": {
+            "png": {
+              "status": "needs_revision",
+              "checked_observations": 2,
+              "clipped_observations": 1,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-observation-1",
+                  "label": "A \u00b7 u1",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      3.0372290071214656
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                },
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 1,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      3.0372290071214656
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observation_index": 0,
+                  "source": {
+                    "source_rows": [
+                      2
+                    ]
+                  },
+                  "center_mm": [
+                    49.17064772727273,
+                    57.58903211606733
+                  ],
+                  "outer_bounds_mm": [
+                    48.64405445795112,
+                    57.06243884674572,
+                    49.69724099659434,
+                    58.11562538538894
+                  ],
+                  "visible_stroke_width_pt": 0.0,
+                  "violations": [
+                    {
+                      "boundary": "artist_clip_box",
+                      "clip_bounds_mm": [
+                        16.710025,
+                        15.1892,
+                        67.71957499999999,
+                        58.1152
+                      ],
+                      "exceeded_mm": {
+                        "top": 0.000425385388936661
+                      }
+                    }
+                  ]
+                }
+              ],
+              "advisories": [],
+              "canvas_mm": [
+                87.9475,
+                66.04
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "pdf": {
+              "status": "pass",
+              "checked_observations": 2,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-observation-1",
+                  "label": "A \u00b7 u1",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      3.0372290071214656
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                },
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      3.0372290071214656
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.1
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "svg": {
+              "status": "pass",
+              "checked_observations": 2,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-observation-1",
+                  "label": "A \u00b7 u1",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      3.0372290071214656
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                },
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      3.0372290071214656
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.1
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            }
+          },
+          "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+        }
+      },
+      "unchanged_exports": {
+        "png": true,
+        "pdf": true,
+        "svg": true
+      }
+    },
+    {
+      "case": "replicate-inside",
+      "expected_clipping": false,
+      "source_sha256": "b9b8aaeba66984109cfbf590c309a0fe0b2c54eaeaad6fdd08c9ffc2fafe3e17",
+      "adopted": {
+        "chart": "replicate",
+        "fields": {
+          "condition": "condition",
+          "unit": "unit",
+          "value": "value"
+        },
+        "colors": {
+          "A": "#29ACF3"
+        },
+        "labels": {
+          "y": "Value"
+        },
+        "layout": {
+          "width_mm": 88,
+          "height_mm": 66.1,
+          "font": "DejaVu Sans",
+          "dpi": 160,
+          "auto_fit": false,
+          "margins": {
+            "left": 0.19,
+            "right": 0.77,
+            "bottom": 0.23,
+            "top": 0.88
+          }
+        },
+        "formats": [
+          "png",
+          "pdf",
+          "svg"
+        ],
+        "options": {
+          "mode": "summary",
+          "uncertainty": "none",
+          "marker_area_pt2": 7,
+          "y_limits": [
+            0,
+            4
+          ]
+        }
+      },
+      "before": {
+        "exception": null,
+        "valid_outputs": true,
+        "qa_status": "pass",
+        "old_geometry": {
+          "status": "pass",
+          "issues": [],
+          "intentional_baseline_contacts": [],
+          "grouped_separation": {
+            "status": "unchecked",
+            "note": "No positive component_gap adopted; legacy bar placement is retained."
+          }
+        },
+        "point_layout": null,
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 2,
+          "raw_points": 2,
+          "component_values_normalized": false,
+          "ratios_derived": false,
+          "sample_size_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "mode": "summary",
+          "uncertainty": "none",
+          "marker_area_pt2": 7,
+          "y_limits": [
+            0,
+            4
+          ]
+        },
+        "exports": {
+          "png": "4b24db8c62a6a8fa02ff4c294b521903e2f0fdd4f5c6f5ebc0ad3d57922fada1",
+          "pdf": "09b6178d3ef159c18df9a67e6b5e0f3c4c11d12736303a0766a68096a943f319",
+          "svg": "5a98c933adb2492ddefeb61f0d468539a808bd9a03c3aa40be20b39f4b53f409"
+        }
+      },
+      "after": {
+        "exception": null,
+        "valid_outputs": true,
+        "qa_status": "pass",
+        "old_geometry": {
+          "status": "pass",
+          "issues": [],
+          "intentional_baseline_contacts": [],
+          "grouped_separation": {
+            "status": "unchecked",
+            "note": "No positive component_gap adopted; legacy bar placement is retained."
+          }
+        },
+        "point_layout": null,
+        "source_to_artist_audit": {
+          "status": "pass",
+          "source_rows": 2,
+          "raw_points": 2,
+          "component_values_normalized": false,
+          "ratios_derived": false,
+          "sample_size_independence_inferred": false,
+          "issues": []
+        },
+        "adopted_options": {
+          "mode": "summary",
+          "uncertainty": "none",
+          "marker_area_pt2": 7,
+          "y_limits": [
+            0,
+            4
+          ]
+        },
+        "exports": {
+          "png": "4b24db8c62a6a8fa02ff4c294b521903e2f0fdd4f5c6f5ebc0ad3d57922fada1",
+          "pdf": "09b6178d3ef159c18df9a67e6b5e0f3c4c11d12736303a0766a68096a943f319",
+          "svg": "5a98c933adb2492ddefeb61f0d468539a808bd9a03c3aa40be20b39f4b53f409"
+        },
+        "observation_clipping": {
+          "status": "pass",
+          "by_format": {
+            "png": {
+              "status": "pass",
+              "checked_observations": 2,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-observation-1",
+                  "label": "A \u00b7 u1",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                },
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                87.9475,
+                66.04
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "pdf": {
+              "status": "pass",
+              "checked_observations": 2,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-observation-1",
+                  "label": "A \u00b7 u1",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                },
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.1
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            },
+            "svg": {
+              "status": "pass",
+              "checked_observations": 2,
+              "clipped_observations": 0,
+              "unmeasured_observations": 0,
+              "ignored_observations": {
+                "nonfinite_or_masked": 0,
+                "zero_area": 0,
+                "invisible": 0
+              },
+              "groups": [
+                {
+                  "element_id": "easyviz-observation-1",
+                  "label": "A \u00b7 u1",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                },
+                {
+                  "element_id": "easyviz-observation-2",
+                  "label": "A \u00b7 u2",
+                  "observations": 1,
+                  "checked_observations": 1,
+                  "clipped_observations": 0,
+                  "unmeasured_observations": 0,
+                  "axes": {
+                    "x_limits": [
+                      -0.55,
+                      0.55
+                    ],
+                    "y_limits": [
+                      0.0,
+                      4.0
+                    ],
+                    "x_scale": "linear",
+                    "y_scale": "linear"
+                  }
+                }
+              ],
+              "clipped": [],
+              "advisories": [],
+              "canvas_mm": [
+                88.00000000000001,
+                66.1
+              ],
+              "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+            }
+          },
+          "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+        }
+      },
+      "unchanged_exports": {
+        "png": true,
+        "pdf": true,
+        "svg": true
+      }
+    }
+  ],
+  "all_cases_pass": true
+}

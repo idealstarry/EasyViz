@@ -207,7 +207,7 @@ class IntervalPlotTests(unittest.TestCase):
     def test_cli_runs_after_copying_sibling_helpers_outside_repo(self):
         portable = self.root / "portable"
         portable.mkdir()
-        for name in ("interval_plot.py", "render.py", "legend_layout.py", "figure_profile.py", "auto_layout.py", "annotation_review.py", "figure_elements.py", "panel_readability.py"):
+        for name in ("interval_plot.py", "render.py", "legend_layout.py", "figure_profile.py", "auto_layout.py", "annotation_review.py", "figure_elements.py", "panel_readability.py", "observation_clipping.py"):
             shutil.copy(SCRIPT.with_name(name), portable / name)
         source = self.csv("label,est,lo,hi\nA,2,1,4\nB,3,2,5\n")
         spec_path = self.root / "spec.json"

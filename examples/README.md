@@ -6,8 +6,8 @@ Create can begin with a [data directory and figure recommendations](../skills/ea
 
 ## Create showcases
 
-[Repair outcomes](create/repair-outcomes/README.md) shows three narrow
-60 × 62 mm individual bar panels with repeated geometry and explicit
+[Repair outcomes](create/repair-outcomes/README.md) shows three individual
+72 × 48 mm bar panels with repeated geometry and explicit
 outcome-specific ranges, an unscaled parallel vector preview and a separated
 global-scale grouped alternative. All 45 selected source values are retained.
 
@@ -23,6 +23,8 @@ below are available when the reading task needs their extra layers.
 
 | Case | Design and data | Final size | Implementation |
 | --- | --- | --- | --- |
+| [Thermogenic expression](create/thermogenic-expression/README.md) | All 174 TPM values, a sample-level matrix and aligned descriptive genotype contrasts; observed zeros retained | 112 × 128 mm; 8 pt | Source-backed custom Create code; absolute log2(TPM + 1), no inherited z scores, clustering or tests |
+| [Compartment Ccl2 response](create/compartment-ccl2/README.md) | All 88 observations and 16 exact-hour means/SEMs, with separate lung/serum units and visible raw samples | Each 82 × 65 mm; 8 pt | Source-backed custom Create code; terminal cross-sectional observations, no guessed subject pairing |
 | [Paired myeloid remodeling](create/paired-myeloid-remodeling/README.md) | Three designs for the same 832 paired score changes: 52 participants, 16 subtypes, two cohorts | Each panel 180 × 125 mm; 8 pt | New script using published source scores and semantic annotations; no author code |
 | [Annotated inhibition](create/annotated-inhibition/README.md) | 20 × 20 deterministic selection from 5,776 measurements, genome-status strips, and full-matrix mean tracks | 180 × 160 mm; 8 pt | New script using source data; no reference image or author code |
 | [Cell atlas dot plot](create/cell-atlas-dotplot/README.md) | All 16 subtypes × 3 depots; count area, within-depot percentage color, published descriptive annotations, pooled-count margin | 180 × 120 mm; 8 pt | New design using source data and semantic annotations from the paper; no author code |

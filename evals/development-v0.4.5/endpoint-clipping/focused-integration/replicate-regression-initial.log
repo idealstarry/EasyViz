@@ -1,0 +1,45 @@
+test_actual_artist_mutations_are_detected (test_replicate_plot.ReplicatePlotTests.test_actual_artist_mutations_are_detected) ... ok
+test_component_missing_duplicate_negative_and_bad_sd_fail (test_replicate_plot.ReplicatePlotTests.test_component_missing_duplicate_negative_and_bad_sd_fail) ... ok
+test_copied_runtime_works_outside_checkout (test_replicate_plot.ReplicatePlotTests.test_copied_runtime_works_outside_checkout) ... FAIL
+test_failed_and_clipped_runs_invalidate_previous_exports (test_replicate_plot.ReplicatePlotTests.test_failed_and_clipped_runs_invalidate_previous_exports) ... ok
+test_filled_bar_optional_edge_and_invalid_outline_options (test_replicate_plot.ReplicatePlotTests.test_filled_bar_optional_edge_and_invalid_outline_options) ... ok
+test_fixed_dimensions_fonts_exports_and_statistics (test_replicate_plot.ReplicatePlotTests.test_fixed_dimensions_fonts_exports_and_statistics) ... ok
+test_grouped_retains_raw_zeros_and_component_sd (test_replicate_plot.ReplicatePlotTests.test_grouped_retains_raw_zeros_and_component_sd) ... ok
+test_input_reordering_and_renamed_roles_do_not_change_points (test_replicate_plot.ReplicatePlotTests.test_input_reordering_and_renamed_roles_do_not_change_points) ... ok
+test_optional_bar_boundaries_preserve_summary_grouped_and_stacked_quantities (test_replicate_plot.ReplicatePlotTests.test_optional_bar_boundaries_preserve_summary_grouped_and_stacked_quantities) ... ok
+test_outline_zero_axis_baseline_is_intentional_but_other_stroke_clipping_fails (test_replicate_plot.ReplicatePlotTests.test_outline_zero_axis_baseline_is_intentional_but_other_stroke_clipping_fails) ... ok
+test_source_change_during_export_is_not_validated (test_replicate_plot.ReplicatePlotTests.test_source_change_during_export_is_not_validated) ... ok
+test_stacked_outline_keeps_zero_components_and_unit_total_endpoints (test_replicate_plot.ReplicatePlotTests.test_stacked_outline_keeps_zero_components_and_unit_total_endpoints) ... ok
+test_stacked_sd_uses_unit_totals_not_component_sd (test_replicate_plot.ReplicatePlotTests.test_stacked_sd_uses_unit_totals_not_component_sd) ... ok
+test_supplied_ratio_and_declared_states_are_preserved (test_replicate_plot.ReplicatePlotTests.test_supplied_ratio_and_declared_states_are_preserved) ... ok
+
+======================================================================
+FAIL: test_copied_runtime_works_outside_checkout (test_replicate_plot.ReplicatePlotTests.test_copied_runtime_works_outside_checkout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_replicate_plot.py", line 290, in test_copied_runtime_works_outside_checkout
+    self.assertEqual(result.returncode, 0, result.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-replicate-w7g1e5nl/runtime/replicate_plot.py", line 21, in <module>
+    _loader.loader.exec_module(core)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-replicate-w7g1e5nl/runtime/render.py", line 62, in <module>
+    observation_clipping = _load_captured_helper("easyviz_observation_clipping", "observation_clipping.py")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-replicate-w7g1e5nl/runtime/render.py", line 44, in _load_captured_helper
+    raw = path.read_bytes()
+          ^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-replicate-w7g1e5nl/runtime/observation_clipping.py'
+
+
+----------------------------------------------------------------------
+Ran 14 tests in 12.628s
+
+FAILED (failures=1)

@@ -1,0 +1,132 @@
+{
+  "track": "create",
+  "chart": "custom-cross-sectional-timecourse",
+  "compartment": "Serum",
+  "layout": {
+    "width_mm": 82,
+    "height_mm": 65,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "axes_fraction": [
+      0.2,
+      0.2,
+      0.75,
+      0.69
+    ],
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "Control": "#2585C6",
+    "IM-DTR": "#E95555"
+  },
+  "order": {
+    "condition": [
+      "Control",
+      "IM-DTR"
+    ],
+    "hour": [
+      0,
+      12,
+      24,
+      48
+    ]
+  },
+  "labels": {
+    "x": "Hours post-DT",
+    "y": "Serum Ccl2\n(pg/ml)"
+  },
+  "options": {
+    "x_limits": [
+      -5,
+      53
+    ],
+    "y_limits": [
+      -5,
+      350
+    ],
+    "y_ticks": [
+      0,
+      100,
+      200,
+      300
+    ],
+    "axis_line_pt": 0.65,
+    "mean_line_pt": 0.85,
+    "sem_line_pt": 0.75,
+    "mean_marker_pt": 4.2,
+    "mean_edge_pt": 0.7,
+    "raw_marker_pt": 2.4,
+    "raw_edge_pt": 0.45,
+    "raw_gap_pt": 0.2,
+    "raw_slot_mm": 2.81,
+    "raw_min_offset_mm": 1.2,
+    "raw_max_offset_mm": 4.45,
+    "markers": {
+      "Control": "o",
+      "IM-DTR": "s"
+    },
+    "mean_marker": "_"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/inputs/observations.csv",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/plot.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/panels/serum/spec.json",
+    "supplied_spec_sha256": "e896ab97fbc730e1649f01321dbac1d5a43b89e44a5c907792707beaabb1a74c",
+    "selection": {
+      "compartment": "Serum",
+      "source_rows": 88,
+      "selected_rows": 51
+    }
+  },
+  "version": {
+    "input_sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11",
+    "source_script_sha256": "ecfcaa7960bab09d41681f8e36d3f14940378bda68c0466ab8d69f8e079c27e9"
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11"
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "resolved_colors": {
+    "Control": "#2585C6",
+    "IM-DTR": "#E95555"
+  },
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/inputs/observations.csv",
+      "sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/plot.py",
+      "sha256": "ecfcaa7960bab09d41681f8e36d3f14940378bda68c0466ab8d69f8e079c27e9"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/compartment-ccl2/panels/serum/spec.json",
+      "sha256": "e896ab97fbc730e1649f01321dbac1d5a43b89e44a5c907792707beaabb1a74c"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "figure_workbench_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    }
+  }
+}

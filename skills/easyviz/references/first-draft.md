@@ -116,6 +116,15 @@ After the third pass, report unresolved findings rather than fabricate a pass.
 If safe packing still fails, state the capacity limit; a split panel or another
 reading task is a proposal, not a silent replacement of the requested plot.
 
+Later feedback or an explicitly continued correction uses the accepted settings
+and a separate followup record. Preserve the earlier artifacts and cumulative
+pass count; do not relabel a fourth inspection as pass 3 or reset the first
+delivery budget. Stage the current output with `--phase followup`, the cumulative
+`--pass-number`, a concrete `--followup-reason` and an existing `--prior-review`
+evidence path. The prior bytes are bound alongside current sources and exports.
+The result explicitly sets `first_delivery_claim: false`; it validates recorded
+history and current files, not the truth of a claimed count or image opening.
+
 Stage a review for the selected current export directory:
 
 ```sh

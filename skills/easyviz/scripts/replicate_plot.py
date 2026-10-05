@@ -493,15 +493,19 @@ def render(data_path, spec, out, *, spec_path=None):
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
+            clipping_report = fig._easyviz_observation_clipping
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != digest:
                 audit["status"] = "needs_revision"
                 audit["issues"].append({"code": "source_changed_during_render"})
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
-            passed = not clipped and not overlap and not missing and all(item["status"] == "pass" for item in (audit, geometry, legends)) and (not fitted or fitted["status"] == "pass")
+            passed = not clipped and not overlap and not missing and all(item["status"] == "pass" for item in (audit, geometry, legends)) and (not fitted or fitted["status"] == "pass") and clipping_report["status"] != "needs_revision"
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "input_sha256": digest, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "auto_layout": fitted, "visual_review_required": True}
             qa["readability"] = core.panel_readability.measure(fig)
+            qa["observation_clipping"] = clipping_report
             settings = deepcopy(resolved)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py")}})
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py", "observation_clipping.py")}})
+            settings["observation_clipping"] = clipping_report
+            settings["renderer"]["helper_sha256"]["observation_clipping.py"] = core.RUNTIME_SOURCE_DIGESTS["observation_clipping.py"]
             if spec_path is not None:
                 settings["spec_file_sha256"] = hashlib.sha256(Path(spec_path).read_bytes()).hexdigest()
             data.to_csv(out / "plotting-data.csv", index=False)

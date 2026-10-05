@@ -19,6 +19,17 @@ from urllib.parse import unquote, urlsplit
 SKILLS = ("easyviz", "easyviz-reference-reader", "easyviz-figure-reviewer")
 CREATE_DESIGN_CARDS = ("replicate-neutral-compact", "distribution-summary-lane", "violin-summary-hierarchy",
                        "heatmap-tall-narrow", "scatter-small-mark-color")
+# Files consumed by the two Create case plotters and independent source/vector
+# validators. Version gating leaves older portable archives installable.
+CURATED_CREATE_RESOURCES = {
+    "thermogenic-expression": ("plot.py", "validate.py", "spec.json", "caption.md",
+        "inputs/observations.csv", "inputs/input-contract.json",
+        "inputs/41467_2023_43021_MOESM8_ESM.xlsx"),
+    "compartment-ccl2": ("plot.py", "validate.py", "caption.md",
+        "panels/lung/spec.json", "panels/serum/spec.json", "inputs/observations.csv",
+        "inputs/input-contract.json", "inputs/author-adjusted-p.csv", "inputs/blank-cells.csv",
+        "inputs/descriptive-summary.csv", "inputs/41590_2023_1468_MOESM5_ESM.xlsx"),
+}
 MAX_ZIP_ENTRIES = 10000
 MAX_ZIP_MEMBER_BYTES = 64 * 1024 * 1024
 MAX_ZIP_TOTAL_BYTES = 256 * 1024 * 1024
@@ -154,6 +165,11 @@ def validate_plugin(plugin: Path) -> dict:
             required.extend(f"skills/easyviz/assets/design-cards/{card}/{name}" for name in
                             ("card.json", "data.csv", "good-spec.json", "failure-spec.json", "caption.md",
                              "good/panel.png", "failure/panel.png", "good/preview-96dpi.png", "failure/preview-96dpi.png"))
+    if version_at_least(manifest["version"], (0, 4, 5)):
+        required.extend(("skills/easyviz/scripts/figure_handoff.py",
+                         "skills/easyviz/scripts/observation_clipping.py"))
+        for case, resources in CURATED_CREATE_RESOURCES.items():
+            required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
     for name in SKILLS:
         entry = plugin / "skills" / name / "SKILL.md"
         required.append(str(entry.relative_to(plugin)))
@@ -248,6 +264,60 @@ def extract_package(archive: Path, destination: Path) -> int:
                 raise ValueError(f"Conflicting existing extraction path: {name}")
         package.extractall(destination)
     return len(entries)
+
+
+def check_curated_create_cases(skill: Path, isolated: Path, env: dict) -> dict:
+    """Redraw shipped cases and verify actual source precision/vector/font/map bindings."""
+    # Redraw from this extracted package in a fresh unrelated folder;
+    # packaged canonical metadata may retain labeled historical paths.
+    results = {}
+    for name in CURATED_CREATE_RESOURCES:
+        case = skill / "assets/cases" / name
+        output = isolated / f"{name}-fresh-output"
+        commands = [[sys.executable, "-I", "-B", str(case / "plot.py"),
+                     "--font", "DejaVu Sans", "--out", str(output)]]
+        validation = isolated / f"{name}-validation.json"
+        if name == "thermogenic-expression":
+            commands.append([sys.executable, "-I", "-B", str(case / "validate.py"),
+                             "--output", str(output), "--out", str(validation)])
+            figures = [output]
+        else:
+            commands.append([sys.executable, "-I", "-B", str(case / "validate.py"),
+                             "--outputs", str(output), "--font", "DejaVu Sans",
+                             "--out", str(validation)])
+            figures = [output / "panels" / panel / "output" for panel in ("lung", "serum")]
+        for command in commands:
+            checked = subprocess.run(command, cwd=isolated, env=env,
+                                     capture_output=True, text=True)
+            if checked.returncode:
+                raise RuntimeError(f"Extracted {name} source/vector/font redraw failed: " + checked.stdout + checked.stderr)
+        if json.loads(validation.read_text()).get("status") != "pass":
+            raise ValueError(f"Extracted {name} must pass independent source/vector checks")
+        bindings = []
+        for figure in figures:
+            settings = json.loads((figure / "settings.json").read_text())
+            qa = json.loads((figure / "qa.json").read_text())
+            if (qa.get("status") != "pass" or not qa.get("valid_outputs")
+                    or settings.get("layout", {}).get("actual_font") != "DejaVu Sans"
+                    or settings.get("layout", {}).get("font_substituted")):
+                raise ValueError(f"Extracted {name} font/export QA is incomplete")
+            binding_check = (
+                "import json,sys; from pathlib import Path; "
+                "sys.path.insert(0,sys.argv[1]); from figure_workbench import FigureWorkbench; "
+                "s=FigureWorkbench(Path(sys.argv[2])).state(); "
+                "assert s['manifest_valid'] and s['provenance_valid'] and s['source_current'] is True,s; "
+                "assert s['elements'],s; "
+                "assert all(v.get('current') is True for v in s['source_versions'].values()),s; "
+                "print(json.dumps({'source_current':s['source_current'],'elements':len(s['elements']),'declared_inputs':len(s['source_versions'])}))")
+            checked = subprocess.run([sys.executable, "-I", "-B", "-c", binding_check,
+                                      str(skill / "scripts"), str(figure)],
+                                     cwd=isolated, env=env, capture_output=True, text=True)
+            if checked.returncode:
+                raise RuntimeError(f"Extracted {name} workbench source bindings failed: " + checked.stdout + checked.stderr)
+            bindings.append(json.loads(checked.stdout))
+        results[name] = {"status": "pass", "font": "DejaVu Sans", "figures": bindings,
+                         "source_vector_validation": json.loads(validation.read_text())}
+    return results
 
 
 def main() -> int:
@@ -457,6 +527,8 @@ def main() -> int:
                 raise RuntimeError("Extracted Yayon aligned case failed: " + run.stdout + run.stderr)
             if json.loads((isolated / "yayon-output/qa.json").read_text()).get("status") != "pass":
                 raise ValueError("Extracted Yayon case has incomplete source/export QA")
+            if version_at_least(manifest["version"], (0, 4, 5)):
+                check_curated_create_cases(skill, isolated, env)
             basic = skill / "assets/cases/basic-panels"
             if basic.is_dir():
                 output = isolated / "basic-output"
@@ -481,7 +553,7 @@ def main() -> int:
                         raise RuntimeError("Extracted grouped comparison failed: " + checked.stdout + checked.stderr)
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+; fresh thermogenic-expression/compartment-ccl2 source/vector/font/mapped-source checks for 0.4.5+"}, indent=2))
     return 0
 
 

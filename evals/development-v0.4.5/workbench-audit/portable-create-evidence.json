@@ -1,0 +1,381 @@
+{
+  "scope": "Internal 0.4.5 fixture only. Fresh copied/extracted redraws use explicit DejaVu, complete shipped source inputs and real source-bound artist maps; no published package, installation, original exports, release or tag changes.",
+  "runtime_sha256": {
+    "figure_handoff.py": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a",
+    "figure_workbench.py": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7",
+    "apply_figure_requests.py": "0a76ac35026e1e2b9608c36c57943081934311f85017c3de03c052936904a4e4",
+    "render.py": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3",
+    "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+  },
+  "check_package_sha256": "b37f2d677ced68fde64be0a026fdbcd866e6a3213921e80dff85346044192b57",
+  "shipped_create_dependency_sha256": {
+    "thermogenic-expression": {
+      "plot.py": "007e9b3ab0ee275bf2dc62357165aaf261c5dd2f8ceb4429628d70f033966ead",
+      "validate.py": "cfd3fe084f00f393b5821688dc7c73088ecacc627cd53cc01cda0c6ffb23a5ab",
+      "spec.json": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+      "caption.md": "fc8ae05989c873df6c1595dac8473da5521489d3e3400aee453db94f3a490a21",
+      "inputs/observations.csv": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+      "inputs/input-contract.json": "45d6a5a4744cc48bbd032e4667f5aedcc0873a68523d680ebbc4290e3b9f23b5",
+      "inputs/41467_2023_43021_MOESM8_ESM.xlsx": "afb8ab1d6d54bf7d8e14fe8d19ba05c19b06214c7878228bf46b3103f5269e49"
+    },
+    "compartment-ccl2": {
+      "plot.py": "ecfcaa7960bab09d41681f8e36d3f14940378bda68c0466ab8d69f8e079c27e9",
+      "validate.py": "29abb666edce2b3dbccca95fdfd54330020126f471fa92b3193e97f417c539b5",
+      "caption.md": "3b3dd1716aeb0202e67c663a482b120829a2989e8bd0688b0c8c52c8dc0e6898",
+      "panels/lung/spec.json": "f2bf9f6414e42b908aaf94157896ac47d19f1c41dd27feb131d035734705b52f",
+      "panels/serum/spec.json": "e896ab97fbc730e1649f01321dbac1d5a43b89e44a5c907792707beaabb1a74c",
+      "inputs/observations.csv": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11",
+      "inputs/input-contract.json": "76b7fc33609aabcb88f9c2d619c9d89babd5f69769408a927bce72b5f8cdb44f",
+      "inputs/author-adjusted-p.csv": "e3f9da2874061ef403b4917158b75c4f4c48fc92d4551302b383420d418d0ea4",
+      "inputs/blank-cells.csv": "6edd050b3d61b0e7ae86eafcb15029fa9329c9845ebc44d019f47c30e3b98ac6",
+      "inputs/descriptive-summary.csv": "72f8ba667f8f1ef7030c99496e63181c324d2b53ff00a3f3c33b3aca894ab016",
+      "inputs/41590_2023_1468_MOESM5_ESM.xlsx": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc"
+    }
+  },
+  "copied_redraw": {
+    "thermogenic-expression": {
+      "status": "pass",
+      "font": "DejaVu Sans",
+      "figures": [
+        {
+          "source_current": true,
+          "elements": 276,
+          "declared_inputs": 19
+        }
+      ],
+      "source_vector_validation": {
+        "status": "pass",
+        "source_observations": 174,
+        "genes": 29,
+        "samples": 6,
+        "genotype_counts": [
+          3,
+          3
+        ],
+        "observed_zero_cells_retained": 6,
+        "literal_source_cells_checked": 174,
+        "independent_transform": "50-digit Decimal log2(TPM + 1), without importing plot.py",
+        "maximum_transform_error": 8.881784197001252e-16,
+        "independent_group_mean_and_difference_checks": 87,
+        "maximum_contrast_error": 1.7763568394002505e-15,
+        "actual_svg_expression_and_contrast_paths_checked": 203,
+        "actual_pdf_expression_and_contrast_drawings_checked": 203,
+        "maximum_svg_path_error_pt": 4.881889879015944e-07,
+        "maximum_pdf_path_error_pt": 2.4526752980591482e-05,
+        "maximum_svg_color_rounding_error": 0.0019591974251177424,
+        "actual_png_cell_centers_checked": 174,
+        "actual_font": "DejaVu Sans",
+        "all_pdf_fonts_embedded": true,
+        "all_pdf_svg_text_size_pt": 8,
+        "minimum_actual_pdf_gene_ink_gap_mm": 0.3721725887722439,
+        "minimum_pdf_font_metric_box_gap_mm": -0.18444987403021917,
+        "glyph_gap_method": "Embedded TrueType yMin/yMax at actual PDF glyph origins and 8 pt size; font-wide empty ascender/descender padding is reported separately",
+        "canvas_mm": [
+          112,
+          128
+        ],
+        "exports_sha256": {
+          "png": "512366b661119fba534dacb6cbcf36a351bda143669bfb696bb6379e6d20bc7d",
+          "pdf": "c6ee4b9e568fee611b0bf8c2824c0458d72c5f5d93c5c4155f7cf38b4acc036b",
+          "svg": "a9bb45b6f13ca7d08ea897193586025d4b84a88c9d569ee9162a3883e7d62306"
+        },
+        "limits": "Checks this complete known-source case and its declared adaptations. Numerical/export success does not prove aesthetic superiority or general model effectiveness."
+      }
+    },
+    "compartment-ccl2": {
+      "status": "pass",
+      "font": "DejaVu Sans",
+      "figures": [
+        {
+          "source_current": true,
+          "elements": 77,
+          "declared_inputs": 8
+        },
+        {
+          "source_current": true,
+          "elements": 93,
+          "declared_inputs": 8
+        }
+      ],
+      "source_vector_validation": {
+        "status": "pass",
+        "input": {
+          "source_rows": 88,
+          "empty_source_cells": 20,
+          "group_counts_means_sems": 16,
+          "supplied_adjusted_p_retained_exactly": 8,
+          "original_numeric_strings_and_cell_traces": true,
+          "workbook_sha256": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc"
+        },
+        "panels": [
+          {
+            "status": "pass",
+            "compartment": "Lung",
+            "raw_source_to_svg_and_pdf_markers": 37,
+            "source_means_and_sem_paths": 8,
+            "exact_linear_mean_times": [
+              0,
+              12,
+              24,
+              48
+            ],
+            "actual_pdf_summary_marks_and_strokes": 16,
+            "actual_pdf_mean_trajectories": 2,
+            "numeric_y_values_preserved": true,
+            "bounded_raw_display_offsets_only": true,
+            "maximum_raw_svg_coordinate_error_pt": 4.960629524930482e-07,
+            "minimum_raw_glyph_gap_mm": 0.0705555555555495,
+            "minimum_raw_axis_glyph_clearance_mm": 1.4470713861111122,
+            "svg_text_editable": true,
+            "minimum_between_genotype_mean_tick_gap_mm": 0.5843114622519872,
+            "pdf_fonts_embedded": true,
+            "all_pdf_text_adopted_font_8pt": true,
+            "actual_font": "DejaVu Sans",
+            "explicit_overrides": {
+              "font": {
+                "original": "Arial",
+                "requested": "DejaVu Sans"
+              }
+            },
+            "captured_source_handoff_current": true,
+            "dimensions_mm": [
+              82,
+              65
+            ],
+            "exports_sha256": {
+              "png": "73a4027cb0175834145e5a3b5075696b75e7e7e65be3938b6bf561bba5272bcd",
+              "svg": "285d9e5de9967c41c106b47b44447cc5fa7f0d50f343c472f4d502f882a76189",
+              "pdf": "70d6387dbc5e9a3f22fca3ee09fc17961b43d58fe714d12b977a9a7832aad8b1"
+            }
+          },
+          {
+            "status": "pass",
+            "compartment": "Serum",
+            "raw_source_to_svg_and_pdf_markers": 51,
+            "source_means_and_sem_paths": 8,
+            "exact_linear_mean_times": [
+              0,
+              12,
+              24,
+              48
+            ],
+            "actual_pdf_summary_marks_and_strokes": 16,
+            "actual_pdf_mean_trajectories": 2,
+            "numeric_y_values_preserved": true,
+            "bounded_raw_display_offsets_only": true,
+            "maximum_raw_svg_coordinate_error_pt": 4.960629524930482e-07,
+            "minimum_raw_glyph_gap_mm": 0.0705555555555495,
+            "minimum_raw_axis_glyph_clearance_mm": 0.2395815499999951,
+            "svg_text_editable": true,
+            "minimum_between_genotype_mean_tick_gap_mm": 0.2036465973161209,
+            "pdf_fonts_embedded": true,
+            "all_pdf_text_adopted_font_8pt": true,
+            "actual_font": "DejaVu Sans",
+            "explicit_overrides": {
+              "font": {
+                "original": "Arial",
+                "requested": "DejaVu Sans"
+              }
+            },
+            "captured_source_handoff_current": true,
+            "dimensions_mm": [
+              82,
+              65
+            ],
+            "exports_sha256": {
+              "png": "b86a309b7f98cc4f21c6ed0765d85def1c58170d1284842a9fd931e2d022a726",
+              "svg": "a3259191cfc2e128f474194fc6f889166908beb5a5b3d178cdeecae535dce743",
+              "pdf": "4761c42487f139bc5a539b078aecbc6cb36c8917a9b47b4bf18abb86858f94a9"
+            }
+          }
+        ],
+        "composition": {
+          "status": "pass",
+          "individual_panels_rescaled": false,
+          "all_pdf_text_positions_preserved": true,
+          "individual_font_sizes_retained": true,
+          "svg_ids_unique": true,
+          "dimensions_mm": [
+            167,
+            65
+          ]
+        },
+        "scope": "One real source case; direct XLSX numeric strings, independent group summaries, actual SVG/PDF markers and SEM, physical glyph clearances, dimensions/fonts/text, and unscaled composition. Numerical/export success does not establish aesthetics or broad Agent efficacy."
+      }
+    }
+  },
+  "archive_entries": 890,
+  "extracted_redraw": {
+    "thermogenic-expression": {
+      "status": "pass",
+      "font": "DejaVu Sans",
+      "figures": [
+        {
+          "source_current": true,
+          "elements": 276,
+          "declared_inputs": 19
+        }
+      ],
+      "source_vector_validation": {
+        "status": "pass",
+        "source_observations": 174,
+        "genes": 29,
+        "samples": 6,
+        "genotype_counts": [
+          3,
+          3
+        ],
+        "observed_zero_cells_retained": 6,
+        "literal_source_cells_checked": 174,
+        "independent_transform": "50-digit Decimal log2(TPM + 1), without importing plot.py",
+        "maximum_transform_error": 8.881784197001252e-16,
+        "independent_group_mean_and_difference_checks": 87,
+        "maximum_contrast_error": 1.7763568394002505e-15,
+        "actual_svg_expression_and_contrast_paths_checked": 203,
+        "actual_pdf_expression_and_contrast_drawings_checked": 203,
+        "maximum_svg_path_error_pt": 4.881889879015944e-07,
+        "maximum_pdf_path_error_pt": 2.4526752980591482e-05,
+        "maximum_svg_color_rounding_error": 0.0019591974251177424,
+        "actual_png_cell_centers_checked": 174,
+        "actual_font": "DejaVu Sans",
+        "all_pdf_fonts_embedded": true,
+        "all_pdf_svg_text_size_pt": 8,
+        "minimum_actual_pdf_gene_ink_gap_mm": 0.3721725887722439,
+        "minimum_pdf_font_metric_box_gap_mm": -0.18444987403021917,
+        "glyph_gap_method": "Embedded TrueType yMin/yMax at actual PDF glyph origins and 8 pt size; font-wide empty ascender/descender padding is reported separately",
+        "canvas_mm": [
+          112,
+          128
+        ],
+        "exports_sha256": {
+          "png": "512366b661119fba534dacb6cbcf36a351bda143669bfb696bb6379e6d20bc7d",
+          "pdf": "c6ee4b9e568fee611b0bf8c2824c0458d72c5f5d93c5c4155f7cf38b4acc036b",
+          "svg": "a9bb45b6f13ca7d08ea897193586025d4b84a88c9d569ee9162a3883e7d62306"
+        },
+        "limits": "Checks this complete known-source case and its declared adaptations. Numerical/export success does not prove aesthetic superiority or general model effectiveness."
+      }
+    },
+    "compartment-ccl2": {
+      "status": "pass",
+      "font": "DejaVu Sans",
+      "figures": [
+        {
+          "source_current": true,
+          "elements": 77,
+          "declared_inputs": 8
+        },
+        {
+          "source_current": true,
+          "elements": 93,
+          "declared_inputs": 8
+        }
+      ],
+      "source_vector_validation": {
+        "status": "pass",
+        "input": {
+          "source_rows": 88,
+          "empty_source_cells": 20,
+          "group_counts_means_sems": 16,
+          "supplied_adjusted_p_retained_exactly": 8,
+          "original_numeric_strings_and_cell_traces": true,
+          "workbook_sha256": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc"
+        },
+        "panels": [
+          {
+            "status": "pass",
+            "compartment": "Lung",
+            "raw_source_to_svg_and_pdf_markers": 37,
+            "source_means_and_sem_paths": 8,
+            "exact_linear_mean_times": [
+              0,
+              12,
+              24,
+              48
+            ],
+            "actual_pdf_summary_marks_and_strokes": 16,
+            "actual_pdf_mean_trajectories": 2,
+            "numeric_y_values_preserved": true,
+            "bounded_raw_display_offsets_only": true,
+            "maximum_raw_svg_coordinate_error_pt": 4.960629524930482e-07,
+            "minimum_raw_glyph_gap_mm": 0.0705555555555495,
+            "minimum_raw_axis_glyph_clearance_mm": 1.4470713861111122,
+            "svg_text_editable": true,
+            "minimum_between_genotype_mean_tick_gap_mm": 0.5843114622519872,
+            "pdf_fonts_embedded": true,
+            "all_pdf_text_adopted_font_8pt": true,
+            "actual_font": "DejaVu Sans",
+            "explicit_overrides": {
+              "font": {
+                "original": "Arial",
+                "requested": "DejaVu Sans"
+              }
+            },
+            "captured_source_handoff_current": true,
+            "dimensions_mm": [
+              82,
+              65
+            ],
+            "exports_sha256": {
+              "png": "73a4027cb0175834145e5a3b5075696b75e7e7e65be3938b6bf561bba5272bcd",
+              "svg": "285d9e5de9967c41c106b47b44447cc5fa7f0d50f343c472f4d502f882a76189",
+              "pdf": "70d6387dbc5e9a3f22fca3ee09fc17961b43d58fe714d12b977a9a7832aad8b1"
+            }
+          },
+          {
+            "status": "pass",
+            "compartment": "Serum",
+            "raw_source_to_svg_and_pdf_markers": 51,
+            "source_means_and_sem_paths": 8,
+            "exact_linear_mean_times": [
+              0,
+              12,
+              24,
+              48
+            ],
+            "actual_pdf_summary_marks_and_strokes": 16,
+            "actual_pdf_mean_trajectories": 2,
+            "numeric_y_values_preserved": true,
+            "bounded_raw_display_offsets_only": true,
+            "maximum_raw_svg_coordinate_error_pt": 4.960629524930482e-07,
+            "minimum_raw_glyph_gap_mm": 0.0705555555555495,
+            "minimum_raw_axis_glyph_clearance_mm": 0.2395815499999951,
+            "svg_text_editable": true,
+            "minimum_between_genotype_mean_tick_gap_mm": 0.2036465973161209,
+            "pdf_fonts_embedded": true,
+            "all_pdf_text_adopted_font_8pt": true,
+            "actual_font": "DejaVu Sans",
+            "explicit_overrides": {
+              "font": {
+                "original": "Arial",
+                "requested": "DejaVu Sans"
+              }
+            },
+            "captured_source_handoff_current": true,
+            "dimensions_mm": [
+              82,
+              65
+            ],
+            "exports_sha256": {
+              "png": "b86a309b7f98cc4f21c6ed0765d85def1c58170d1284842a9fd931e2d022a726",
+              "svg": "a3259191cfc2e128f474194fc6f889166908beb5a5b3d178cdeecae535dce743",
+              "pdf": "4761c42487f139bc5a539b078aecbc6cb36c8917a9b47b4bf18abb86858f94a9"
+            }
+          }
+        ],
+        "composition": {
+          "status": "pass",
+          "individual_panels_rescaled": false,
+          "all_pdf_text_positions_preserved": true,
+          "individual_font_sizes_retained": true,
+          "svg_ids_unique": true,
+          "dimensions_mm": [
+            167,
+            65
+          ]
+        },
+        "scope": "One real source case; direct XLSX numeric strings, independent group summaries, actual SVG/PDF markers and SEM, physical glyph clearances, dimensions/fonts/text, and unscaled composition. Numerical/export success does not establish aesthetics or broad Agent efficacy."
+      }
+    }
+  },
+  "original_case_inputs_and_code_unchanged": true
+}

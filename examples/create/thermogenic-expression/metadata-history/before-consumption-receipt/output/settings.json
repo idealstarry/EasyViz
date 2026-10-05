@@ -1,0 +1,327 @@
+{
+  "chart": "custom-expression-and-contrast",
+  "track": "create",
+  "layout": {
+    "width_mm": 112.0,
+    "height_mm": 128.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.55,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "geometry_mm": {
+    "matrix": [
+      24,
+      26,
+      44,
+      90
+    ],
+    "contrast": [
+      81,
+      26,
+      24,
+      90
+    ],
+    "genotype_band": [
+      24,
+      117.3,
+      44,
+      1.5
+    ],
+    "colorbar": [
+      24,
+      11,
+      44,
+      2
+    ],
+    "header_y": 122,
+    "sample_label_y": 23
+  },
+  "fields": {
+    "gene": "gene",
+    "sample": "sample",
+    "genotype": "condition",
+    "value": "tpm"
+  },
+  "transform": {
+    "name": "log2(TPM + 1)",
+    "pseudocount_tpm": 1
+  },
+  "order": {
+    "sample": [
+      "F1",
+      "F2",
+      "F3",
+      "A1",
+      "A2",
+      "A3"
+    ],
+    "genotype": [
+      "YT-FF",
+      "YT-AKO"
+    ],
+    "gene": "source row order"
+  },
+  "expression_scale": {
+    "limits": [
+      0,
+      12
+    ],
+    "ticks": [
+      0,
+      4,
+      8,
+      12
+    ],
+    "anchors": [
+      [
+        0,
+        "#FFFBE9"
+      ],
+      [
+        0.33,
+        "#F9DC75"
+      ],
+      [
+        0.66,
+        "#F5A34D"
+      ],
+      [
+        1,
+        "#E85B48"
+      ]
+    ],
+    "meaning": "Absolute log2(TPM + 1), including the six author-supplied observed zeros; full range without row standardization or clipping"
+  },
+  "contrast": {
+    "definition": "mean(log2(TPM + 1), YT-AKO) - mean(log2(TPM + 1), YT-FF)",
+    "limits": [
+      0,
+      5
+    ],
+    "ticks": [
+      0,
+      2,
+      4
+    ],
+    "bar_height_rows": 0.49,
+    "meaning": "Descriptive difference of mean log-expression; not DESeq2 log-fold change and not a significance test",
+    "bar_face": "#5C98C4",
+    "bar_edge": "#2D526F",
+    "bar_edge_width_pt": 0.35
+  },
+  "colors": {
+    "YT-FF": "#B5BDC5",
+    "YT-AKO": "#5C98C4"
+  },
+  "strokes": {
+    "cell_seam": "#FFFFFF",
+    "cell_seam_width_pt": 0.35,
+    "matrix_frame": "#A1A1A1",
+    "matrix_frame_width_pt": 0.35,
+    "reference": "#D5D9DD",
+    "reference_width_pt": 0.3
+  },
+  "labels": {
+    "expression": "log2(TPM + 1)",
+    "contrast_header": "\u0394 mean\nlog2(TPM + 1)",
+    "contrast_direction": "YT-AKO \u2212 YT-FF"
+  },
+  "scientific_constraints": {
+    "retain_observations": 174,
+    "retain_genes": 29,
+    "retain_samples": 6,
+    "pairing": "unpaired",
+    "infer_significance": false,
+    "infer_clustering": false,
+    "reinterpret_observed_zero": false
+  },
+  "spec": {
+    "chart": "custom-expression-and-contrast",
+    "track": "create",
+    "layout": {
+      "width_mm": 112,
+      "height_mm": 128,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "line_width_pt": 0.55,
+      "dpi": 300,
+      "auto_fit": false
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "geometry_mm": {
+      "matrix": [
+        24,
+        26,
+        44,
+        90
+      ],
+      "contrast": [
+        81,
+        26,
+        24,
+        90
+      ],
+      "genotype_band": [
+        24,
+        117.3,
+        44,
+        1.5
+      ],
+      "colorbar": [
+        24,
+        11,
+        44,
+        2
+      ],
+      "header_y": 122,
+      "sample_label_y": 23
+    },
+    "fields": {
+      "gene": "gene",
+      "sample": "sample",
+      "genotype": "condition",
+      "value": "tpm"
+    },
+    "transform": {
+      "name": "log2(TPM + 1)",
+      "pseudocount_tpm": 1
+    },
+    "order": {
+      "sample": [
+        "F1",
+        "F2",
+        "F3",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "genotype": [
+        "YT-FF",
+        "YT-AKO"
+      ],
+      "gene": "source row order"
+    },
+    "expression_scale": {
+      "limits": [
+        0,
+        12
+      ],
+      "ticks": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "anchors": [
+        [
+          0,
+          "#FFFBE9"
+        ],
+        [
+          0.33,
+          "#F9DC75"
+        ],
+        [
+          0.66,
+          "#F5A34D"
+        ],
+        [
+          1,
+          "#E85B48"
+        ]
+      ],
+      "meaning": "Absolute log2(TPM + 1), including the six author-supplied observed zeros; full range without row standardization or clipping"
+    },
+    "contrast": {
+      "definition": "mean(log2(TPM + 1), YT-AKO) - mean(log2(TPM + 1), YT-FF)",
+      "limits": [
+        0,
+        5
+      ],
+      "ticks": [
+        0,
+        2,
+        4
+      ],
+      "bar_height_rows": 0.49,
+      "meaning": "Descriptive difference of mean log-expression; not DESeq2 log-fold change and not a significance test",
+      "bar_face": "#5C98C4",
+      "bar_edge": "#2D526F",
+      "bar_edge_width_pt": 0.35
+    },
+    "colors": {
+      "YT-FF": "#B5BDC5",
+      "YT-AKO": "#5C98C4"
+    },
+    "strokes": {
+      "cell_seam": "#FFFFFF",
+      "cell_seam_width_pt": 0.35,
+      "matrix_frame": "#A1A1A1",
+      "matrix_frame_width_pt": 0.35,
+      "reference": "#D5D9DD",
+      "reference_width_pt": 0.3
+    },
+    "labels": {
+      "expression": "log2(TPM + 1)",
+      "contrast_header": "\u0394 mean\nlog2(TPM + 1)",
+      "contrast_direction": "YT-AKO \u2212 YT-FF"
+    },
+    "scientific_constraints": {
+      "retain_observations": 174,
+      "retain_genes": 29,
+      "retain_samples": 6,
+      "pairing": "unpaired",
+      "infer_significance": false,
+      "infer_clustering": false,
+      "reinterpret_observed_zero": false
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/inputs/observations.csv",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/plot.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/spec.json",
+    "supplied_spec_sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+    "track": "create"
+  },
+  "input_sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+  "source_script_sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+  "renderer": {
+    "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/plot.py",
+    "sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722"
+  },
+  "resolved_colors": {
+    "YT-FF": "#B5BDC5",
+    "YT-AKO": "#5C98C4"
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d"
+  },
+  "experimental_unit": "mouse; 3 mice per genotype, as specified in the Fig. 2 caption",
+  "pairing": "unpaired; F1 and A1 do not establish paired mice"
+}

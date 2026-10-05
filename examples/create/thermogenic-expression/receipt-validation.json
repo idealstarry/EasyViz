@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "scenarios": [
+    {
+      "scenario": "data_file changed after numerical validation and before receipt publication",
+      "status": "rejected",
+      "reason": "A primary source/spec/script changed after its bytes were captured",
+      "failure_qa_preserved": true,
+      "original_consumed_snapshot_preserved": true
+    },
+    {
+      "scenario": "spec_file changed after numerical validation and before receipt publication",
+      "status": "rejected",
+      "reason": "A primary source/spec/script changed after its bytes were captured",
+      "failure_qa_preserved": true,
+      "original_consumed_snapshot_preserved": true
+    },
+    {
+      "scenario": "source_contract changed after numerical validation and before receipt publication",
+      "status": "rejected",
+      "reason": "A declared auxiliary input changed after its bytes were captured",
+      "failure_qa_preserved": true,
+      "original_consumed_snapshot_preserved": true
+    }
+  ],
+  "scope": "Three real export/late-mutation checks. Exact snapshots, failed QA and absent receipt verified; no claim about arbitrary undeclared dependencies."
+}

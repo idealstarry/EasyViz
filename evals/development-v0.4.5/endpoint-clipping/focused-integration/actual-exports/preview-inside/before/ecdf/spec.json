@@ -1,0 +1,68 @@
+{
+  "fields": {
+    "group": "group",
+    "value": "value"
+  },
+  "colors": {
+    "A": "#29ACF3"
+  },
+  "order": {
+    "group": [
+      "A"
+    ]
+  },
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 66,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "auto_fit": true
+  },
+  "typography": {},
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "chart": "ecdf",
+  "labels": {
+    "x": "value (a.u.)",
+    "y": "Cumulative fraction"
+  },
+  "options": {
+    "x_scale": "linear",
+    "x_limits": [
+      0,
+      4
+    ]
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom"
+    }
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  }
+}

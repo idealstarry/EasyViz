@@ -238,8 +238,29 @@ def evidence(status, detail):
 def source_bindings(root, records):
     """Use declared paths only; relative paths are scoped to the figure directory."""
     claims = {"data_file": [], "source_script": [], "spec_file": [], "figure_profile": []}
+    def declared_sources(origin, bindings):
+        # Preserve explicit consumed role/path/hash claims. Never discover
+        # dependencies from filenames, imports or the working directory.
+        if not isinstance(bindings, dict):
+            claims.setdefault("auxiliary_inputs:invalid_declaration", []).append((origin, None, None))
+            return
+        for role, binding in bindings.items():
+            target = role if role in claims and role in ("data_file", "source_script", "spec_file", "figure_profile") else "auxiliary_inputs:" + str(role)
+            location = binding.get("path") if isinstance(binding, dict) else None
+            expected = binding.get("sha256") if isinstance(binding, dict) else None
+            if not isinstance(role, str) or not role.strip():
+                location = None
+            claims.setdefault(target, []).append((origin + ":" + str(role), location, expected))
+
     for origin, record in records.items():
         info, version = object_at(record, "input"), object_at(record, "version")
+        if "source_bindings" in record:
+            declared_sources(origin + ":source_bindings", record["source_bindings"])
+        for field in ("auxiliary_inputs", "aligned_layer_inputs"):
+            if field in info:
+                declared_sources(origin + ":input." + field, info[field])
+        if origin in ("settings.json", "render-settings.json") and "inputs" in record:
+            declared_sources(origin + ":inputs", record["inputs"])
         profile = object_at(record, "figure_profile")
         if isinstance(profile.get("path"), str) and profile["path"].strip():
             claims["figure_profile"].append((origin + ":figure_profile.path", profile["path"], profile.get("sha256")))
@@ -264,6 +285,10 @@ def source_bindings(root, records):
     for role, entries in claims.items():
         checked = []
         for origin, location, expected in entries:
+            if not isinstance(location, str) or not location.strip():
+                checked.append({"declared_by": origin, "path": location, "expected_sha256": expected,
+                                "status": "failed", "reason": "Declared consumed source needs an explicit path and digest."})
+                continue
             path = Path(location).expanduser()
             if not path.is_absolute():
                 # Do not search cwd/parents or execute paths from provenance records.
@@ -370,7 +395,7 @@ def snapshot(figure_dir, *, caption=None, baseline_dir=None):
             provenance_status = "not_checked" if provenance_status != "failed" else "failed"
         if any(item["status"] == "failed" for item in sources[role]):
             provenance_status = "failed"
-    for role in ("spec_file", "figure_profile"):
+    for role in (role for role in sources if role not in ("data_file", "source_script")):
         if any(item["status"] == "failed" for item in sources[role]):
             provenance_status = "failed"
         elif any(item["status"] == "not_checked" for item in sources[role]) and provenance_status != "failed":
@@ -445,10 +470,47 @@ def snapshot(figure_dir, *, caption=None, baseline_dir=None):
             "measured_checks": checks, "candidate_png": artifacts.get("panel.png"), "baseline_png": baseline}
 
 
-def stage(figure_dir, reading_task, *, pass_number=1, out=None, caption=None, baseline_dir=None, baseline_kind=None):
+def review_phase(pass_number, phase, followup=None):
+    """Keep later feedback separate from a bounded first-delivery claim."""
+    if type(pass_number) is not int or pass_number < 1:
+        raise ReviewError("pass_number must be a positive integer")
+    if phase == "first_delivery":
+        if pass_number not in (1, 2, 3):
+            raise ReviewError("pass_number must be 1, 2 or 3, including the first rendering")
+        if followup is not None:
+            raise ReviewError("First delivery cannot carry followup evidence")
+    elif phase == "followup":
+        if pass_number < 2 or not isinstance(followup, dict):
+            raise ReviewError("A followup needs a cumulative pass number and prior review evidence")
+        text_required(followup.get("reason"), "Followup reason")
+        if followup.get("previous_pass_number") != pass_number - 1 or type(followup.get("previous_pass_number")) is not int:
+            raise ReviewError("Followup must retain the preceding cumulative pass number")
+        text_required(followup.get("prior_review"), "Prior review path")
+        prior = Path(followup["prior_review"]).expanduser()
+        if not prior.is_absolute():
+            raise ReviewError("Prior review path must be absolute")
+        raw = read_regular(prior, required=True)
+        if not raw or digest(raw) != followup.get("prior_review_sha256"):
+            raise ReviewError("Prior followup review evidence changed or is empty")
+    else:
+        raise ReviewError("Unknown review phase")
+
+
+def stage(figure_dir, reading_task, *, pass_number=1, out=None, caption=None, baseline_dir=None, baseline_kind=None,
+          phase="first_delivery", prior_review=None, followup_reason=None):
     text_required(reading_task, "reading_task")
-    if type(pass_number) is not int or pass_number not in (1, 2, 3):
-        raise ReviewError("pass_number must be 1, 2 or 3, including the first rendering")
+    followup = None
+    if phase == "followup":
+        text_required(followup_reason, "Followup reason")
+        if not prior_review:
+            raise ReviewError("A followup needs prior review evidence")
+        prior = Path(prior_review).expanduser().absolute()
+        raw = read_regular(prior, required=True)
+        followup = {"reason": followup_reason, "prior_review": str(prior), "prior_review_sha256": digest(raw),
+                    "previous_pass_number": pass_number - 1 if type(pass_number) is int else None}
+    elif prior_review is not None or followup_reason is not None:
+        raise ReviewError("Prior review and reason require phase=followup")
+    review_phase(pass_number, phase, followup)
     if baseline_dir and baseline_kind not in ("accepted", "default_demonstration"):
         raise ReviewError("A comparison needs baseline_kind=accepted or default_demonstration")
     if not baseline_dir and baseline_kind:
@@ -469,7 +531,12 @@ def stage(figure_dir, reading_task, *, pass_number=1, out=None, caption=None, ba
                                "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
                                "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."],
               "limitation": LIMITATION}
-    destination = Path(out).expanduser().absolute() if out else Path(bound["figure_dir"]) / "create-review" / f"pass-{pass_number:02d}"
+    if phase == "followup":
+        packet.update(delivery_phase=phase, followup=followup, first_delivery_claim=False)
+        packet["instructions"][0] = "Open the actual candidate PNG for the recorded followup correction."
+        packet["instructions"][-1] = "Preserve the cumulative review history. This followup does not establish three-pass first-delivery success."
+    folder = "create-review" if phase == "first_delivery" else "followup-review"
+    destination = Path(out).expanduser().absolute() if out else Path(bound["figure_dir"]) / folder / f"pass-{pass_number:02d}"
     if destination.is_symlink():
         raise ReviewError("Review destination must not be a symlink")
     destination.mkdir(parents=True, exist_ok=True)
@@ -598,8 +665,10 @@ def check(packet_path, review_path=None):
     packet = load_json(raw, "Review packet")
     if type(packet.get("schema_version")) is not int or packet.get("schema_version") != SCHEMA_VERSION or packet.get("kind") != "easyviz_create_review_packet" or packet.get("policy_version") != POLICY_VERSION:
         raise ReviewError("Unsupported packet schema/kind/policy version")
-    if type(packet.get("pass_number")) is not int or packet["pass_number"] not in (1, 2, 3):
-        raise ReviewError("Packet exceeds the three-pass policy or has an invalid pass number")
+    phase = packet.get("delivery_phase", "first_delivery")
+    review_phase(packet.get("pass_number"), phase, packet.get("followup"))
+    if phase == "followup" and packet.get("first_delivery_claim") is not False:
+        raise ReviewError("A followup cannot claim bounded first delivery")
     if packet.get("required_design_checks") != list(DESIGN_CRITERIA) or packet.get("required_external_checks") != list(MEASURED_CRITERIA):
         raise ReviewError("Packet required review criteria were changed")
     text_required(packet.get("reading_task"), "Packet reading_task")
@@ -624,8 +693,11 @@ def check(packet_path, review_path=None):
     # the validation path. A changed packet has already been rejected above.
     packet["snapshot"] = current
     errors.extend(validate_record(packet, review, digest(raw)))
-    return {"gate_status": "recorded" if not errors else "blocked", "readiness": review.get("status"),
+    result = {"gate_status": "recorded" if not errors else "blocked", "readiness": review.get("status"),
             "packet_sha256": digest(raw), "review": str(review_path), "errors": errors, "limitation": LIMITATION}
+    if phase == "followup":
+        result.update(delivery_phase=phase, first_delivery_claim=False, cumulative_pass_number=packet["pass_number"])
+    return result
 
 
 DESCRIPTION = {
@@ -633,6 +705,7 @@ DESCRIPTION = {
     "commands": {"stage": "stage --figure-dir DIR --reading-task TEXT [--pass-number 1..3] [--caption PATH] [--out DIR] [--baseline-dir DIR --baseline-kind accepted|default_demonstration]",
                  "check": "check --packet PATH [--review PATH]"},
     "outputs": "Default DIR/create-review/pass-01/packet.json and review.json. Identical restaging preserves the review; changed packets require a fresh output directory.",
+    "followup": "For later feedback or an explicitly continued correction, stage --phase followup --pass-number N --prior-review PATH --followup-reason TEXT. N is cumulative, not a reset; prior evidence is byte-bound. Records live in followup-review, and cannot claim three-pass first delivery. This validates recorded history, not that the feedback, image opening or pass count is true.",
     "image_attestation": {"role": "candidate", "path": "Copy snapshot.candidate_png.path", "sha256": "Copy snapshot.candidate_png.sha256",
                           "views": ["full_canvas", "final_proportions"], "tool": "Actual image-opening tool or inspection method", "size_basis": "Actual nominal-size display or honest final-proportions assessment using recorded width/height; do not claim an unavailable preview."},
     "design_criteria": list(DESIGN_CRITERIA), "external_criteria": list(MEASURED_CRITERIA),
@@ -668,6 +741,9 @@ def main(argv=None):
     staging.add_argument("--figure-dir", required=True)
     staging.add_argument("--reading-task", required=True)
     staging.add_argument("--pass-number", type=int, default=1)
+    staging.add_argument("--phase", choices=("first_delivery", "followup"), default="first_delivery")
+    staging.add_argument("--prior-review")
+    staging.add_argument("--followup-reason")
     staging.add_argument("--out")
     staging.add_argument("--caption")
     staging.add_argument("--baseline-dir")
@@ -681,7 +757,8 @@ def main(argv=None):
             result = DESCRIPTION
         elif args.command == "stage":
             result = stage(args.figure_dir, args.reading_task, pass_number=args.pass_number, out=args.out,
-                           caption=args.caption, baseline_dir=args.baseline_dir, baseline_kind=args.baseline_kind)
+                           caption=args.caption, baseline_dir=args.baseline_dir, baseline_kind=args.baseline_kind,
+                           phase=args.phase, prior_review=args.prior_review, followup_reason=args.followup_reason)
         elif args.command == "check":
             result = check(args.packet, args.review)
         else:

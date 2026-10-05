@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.5 — 2026-10-06
+
+- Add two purposeful Create cases using real literature Source Data: 174 sample-level expression values with aligned descriptive genotype contrasts, and 88 compartment Ccl2 observations with exact-hour means/SEMs and separate units. Both retain source precision, declared transformations, editable exports and explicit-font portability.
+- New custom-code handoff captures declared primary and auxiliary bytes before plotting, checks their actual consumption contract and continuity, and binds final exports. Map-free region/general notes can record, accept and restore verified custom outputs; genuine registered elements enable click selection. Unknown post-export consumption remains unverified.
+- Accepted custom history preserves all declared dependencies and rebinds restored copies. Independent replacement, contradictory metadata and changed-input tests exercise real PNG/PDF/SVG workflows.
+- Measure registered circular observation envelopes at final transforms and each export canvas; confirmed axes/page clipping invalidates core delivery without changing locked ranges or point sizes. Unsupported paths remain advisory; custom/focused QA must consume the report explicitly.
+- Later feedback can use a byte-bound followup record with a cumulative visual-pass count. Initial three-pass records stay unchanged; a fourth correction cannot claim bounded first-delivery success.
+- Expand conditional literature guidance for aligned matrices and separate-unit time courses. Portable packages include curated runnable source and frozen previews, with fresh copied/extracted redraw checks rather than repurposed stale current metadata.
+
+See [release QA](evals/release-qa/v0.4.5/README.md).
+
 ## 0.4.4 — 2026-10-06
 
 - First finished Create delivery now includes actual image inspection, concrete internal corrections within three visual passes, and a current-file review record. Routine edits retain their adopted workflow.

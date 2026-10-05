@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review_packet",
+  "policy_version": "0.4.4",
+  "pass_number": 3,
+  "reading_task": "Compare absolute gene expression across six mouse samples and aligned descriptive genotype mean differences",
+  "inputs": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output",
+    "caption": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/caption.md",
+    "baseline_dir": null,
+    "baseline_kind": null
+  },
+  "snapshot": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output",
+    "artifacts": {
+      "panel.png": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/panel.png",
+        "sha256": "5484604b8c63839ea42b6919f18dd9fb2a97e0c5feca9cc5cfcb2dc1774363df",
+        "bytes": 134476
+      },
+      "panel.pdf": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/panel.pdf",
+        "sha256": "e9c7bbf524aa990e5a0724fc136d3c10d4e981e0d2b2b287361573f7b3433687",
+        "bytes": 52604
+      },
+      "panel.svg": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/panel.svg",
+        "sha256": "54428f4a2fb18f10c4ab0a16773007891d87e36dd96e6420051e8f6104635622",
+        "bytes": 129166
+      },
+      "settings.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/settings.json",
+        "sha256": "e7b8e959d41d3c2d73eaed62808e9e536ba9d35d2e84f8e89cb75e3dd2b28c44",
+        "bytes": 6920
+      },
+      "elements.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/elements.json",
+        "sha256": "ce172ae058db93a34230d101c5a8bc18fc166d7453c7e7310bd0d1c98092dc6f",
+        "bytes": 341361
+      },
+      "qa.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/qa.json",
+        "sha256": "922d61c36ab4f10ad9c144783fd83995447bf6d75ad8109ddd8a45eae0db96fd",
+        "bytes": 1812
+      },
+      "source-data.csv": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/source-data.csv",
+        "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+        "bytes": 9513
+      },
+      "caption": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/caption.md",
+        "sha256": "fc8ae05989c873df6c1595dac8473da5521489d3e3400aee453db94f3a490a21",
+        "bytes": 1301
+      }
+    },
+    "source_bindings": {
+      "data_file": [
+        {
+          "declared_by": "settings.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/inputs/observations.csv",
+          "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+          "expected_sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+          "status": "passed"
+        },
+        {
+          "declared_by": "elements.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/inputs/observations.csv",
+          "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+          "expected_sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+          "status": "passed"
+        }
+      ],
+      "source_script": [
+        {
+          "declared_by": "settings.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/plot.py",
+          "sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+          "expected_sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+          "status": "passed"
+        },
+        {
+          "declared_by": "elements.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/plot.py",
+          "sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+          "expected_sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+          "status": "passed"
+        }
+      ],
+      "spec_file": [
+        {
+          "declared_by": "settings.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/spec.json",
+          "sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+          "expected_sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+          "status": "passed"
+        },
+        {
+          "declared_by": "elements.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/spec.json",
+          "sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+          "expected_sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+          "status": "passed"
+        }
+      ],
+      "figure_profile": []
+    },
+    "panel": {
+      "width_mm": 112.0,
+      "height_mm": 128.0
+    },
+    "measured_checks": {
+      "export_dimensions": {
+        "status": "passed",
+        "evidence": {
+          "adopted_canvas_mm": {
+            "width_mm": 112.0,
+            "height_mm": 128.0
+          },
+          "actual_png": {
+            "pixels": [
+              1323,
+              1512
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          },
+          "qa_exports": {
+            "pdf": {
+              "width_mm": 111.99999999998944,
+              "height_mm": 128.00000000000307,
+              "sha256": "e9c7bbf524aa990e5a0724fc136d3c10d4e981e0d2b2b287361573f7b3433687"
+            },
+            "svg": {
+              "width_mm": 112.0000000138889,
+              "height_mm": 128.00000011666668,
+              "text_preserved": true,
+              "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+              "sha256": "54428f4a2fb18f10c4ab0a16773007891d87e36dd96e6420051e8f6104635622"
+            },
+            "png": {
+              "pixels": [
+                1323,
+                1512
+              ],
+              "dpi": [
+                299.9994,
+                299.9994
+              ],
+              "sha256": "5484604b8c63839ea42b6919f18dd9fb2a97e0c5feca9cc5cfcb2dc1774363df"
+            }
+          },
+          "format_bindings": {
+            "pdf": {
+              "status": "passed",
+              "measurement_source": "hash_bound_qa",
+              "recorded_sha256": "e9c7bbf524aa990e5a0724fc136d3c10d4e981e0d2b2b287361573f7b3433687",
+              "actual_sha256": "e9c7bbf524aa990e5a0724fc136d3c10d4e981e0d2b2b287361573f7b3433687"
+            },
+            "svg": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "54428f4a2fb18f10c4ab0a16773007891d87e36dd96e6420051e8f6104635622",
+              "actual_sha256": "54428f4a2fb18f10c4ab0a16773007891d87e36dd96e6420051e8f6104635622"
+            },
+            "png": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "5484604b8c63839ea42b6919f18dd9fb2a97e0c5feca9cc5cfcb2dc1774363df",
+              "actual_sha256": "5484604b8c63839ea42b6919f18dd9fb2a97e0c5feca9cc5cfcb2dc1774363df"
+            }
+          },
+          "actual_svg": {
+            "width_mm": 112.00000001388888,
+            "height_mm": 128.00000011666666
+          }
+        }
+      },
+      "typography": {
+        "status": "passed",
+        "evidence": {
+          "actual_font": "Arial",
+          "font_substituted": false,
+          "sizes_pt": {
+            "axis": 8,
+            "tick": 8,
+            "legend": 8,
+            "annotation": 8
+          },
+          "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+        }
+      },
+      "source_provenance": {
+        "status": "passed",
+        "evidence": {
+          "declared_sources": {
+            "data_file": [
+              {
+                "declared_by": "settings.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/inputs/observations.csv",
+                "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+                "expected_sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+                "status": "passed"
+              },
+              {
+                "declared_by": "elements.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/inputs/observations.csv",
+                "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+                "expected_sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+                "status": "passed"
+              }
+            ],
+            "source_script": [
+              {
+                "declared_by": "settings.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/plot.py",
+                "sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+                "expected_sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+                "status": "passed"
+              },
+              {
+                "declared_by": "elements.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/plot.py",
+                "sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+                "expected_sha256": "0f33b1a139a167809879d73dcdafa77407f242bde27e9cb2c26d8bed7f42f722",
+                "status": "passed"
+              }
+            ],
+            "spec_file": [
+              {
+                "declared_by": "settings.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/spec.json",
+                "sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+                "expected_sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+                "status": "passed"
+              },
+              {
+                "declared_by": "elements.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/spec.json",
+                "sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+                "expected_sha256": "69962da75f41a5cce109d0b5eaa24c34739d054817f2dbd73f3b041b34e347cb",
+                "status": "passed"
+              }
+            ],
+            "figure_profile": []
+          },
+          "saved_specification": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/settings.json",
+            "sha256": "e7b8e959d41d3c2d73eaed62808e9e536ba9d35d2e84f8e89cb75e3dd2b28c44",
+            "bytes": 6920
+          },
+          "resolved_spec_sha256": "1de6b81eec39d2905cc6e962a02567091d3369fa03e7cb2719a9804f165ccaea",
+          "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.",
+          "captured_source": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/source-data.csv",
+            "sha256": "c9cd2d051e082bf980c8c240c1e7406d44263098b30b617da0c9e65e1491111d",
+            "bytes": 9513
+          }
+        }
+      },
+      "technical_qa": {
+        "status": "passed",
+        "evidence": {
+          "qa": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/qa.json",
+            "sha256": "922d61c36ab4f10ad9c144783fd83995447bf6d75ad8109ddd8a45eae0db96fd",
+            "bytes": 1812
+          },
+          "status": "pass",
+          "valid_outputs": true,
+          "input_rows": 174,
+          "plotted_input_rows": 174,
+          "readability_advisory": null,
+          "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+        }
+      },
+      "caption": {
+        "status": "passed",
+        "evidence": {
+          "artifact": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/caption.md",
+            "sha256": "fc8ae05989c873df6c1595dac8473da5521489d3e3400aee453db94f3a490a21",
+            "bytes": 1301
+          },
+          "scope": "Separate caption is present; its scientific wording is a review attestation."
+        }
+      }
+    },
+    "candidate_png": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/thermogenic-expression/output/panel.png",
+      "sha256": "5484604b8c63839ea42b6919f18dd9fb2a97e0c5feca9cc5cfcb2dc1774363df",
+      "bytes": 134476
+    },
+    "baseline_png": null
+  },
+  "required_design_checks": [
+    "scientific_mapping",
+    "reading_priority",
+    "mark_hierarchy",
+    "geometry",
+    "palette_and_strokes",
+    "guides_and_text"
+  ],
+  "required_external_checks": [
+    "export_dimensions",
+    "typography",
+    "source_provenance",
+    "technical_qa",
+    "caption"
+  ],
+  "instructions": [
+    "Open the actual candidate PNG as a complete canvas before first user-visible delivery.",
+    "Consider the recorded physical size: inspect a nominal-size view if available, or honestly record a final-proportions view and its size basis. One actual opening may cover both views.",
+    "Record brief, concrete evidence for each design criterion; inspect the caption separately.",
+    "Acknowledge the saved measured evidence without inventing measurements. Required failed/not_checked items prevent readiness.",
+    "Correct critical/major failures before delivery; record corrections and residual minor/intentional differences. A clean first pass is valid.",
+    "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
+    "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."
+  ],
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

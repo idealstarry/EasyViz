@@ -1,0 +1,54 @@
+test_actual_point_alpha_corruption_invalidates_exports_with_numeric_values_retained (test_preview_choices.PreviewChoicesTests.test_actual_point_alpha_corruption_invalidates_exports_with_numeric_values_retained) ... ok
+test_actual_point_coordinate_corruption_invalidates_exports_and_retains_audit (test_preview_choices.PreviewChoicesTests.test_actual_point_coordinate_corruption_invalidates_exports_and_retains_audit) ... ok
+test_cli_contract_and_extracted_scripts_are_portable (test_preview_choices.PreviewChoicesTests.test_cli_contract_and_extracted_scripts_are_portable) ... FAIL
+test_crisp_new_choices_share_draft_strokes_and_preserve_source_geometry (test_preview_choices.PreviewChoicesTests.test_crisp_new_choices_share_draft_strokes_and_preserve_source_geometry) ... ok
+test_duplicate_repeated_ids_and_bad_csv_never_drop_rows (test_preview_choices.PreviewChoicesTests.test_duplicate_repeated_ids_and_bad_csv_never_drop_rows) ... ok
+test_explicit_legacy_replay_keeps_old_box_points_and_curve_fallbacks (test_preview_choices.PreviewChoicesTests.test_explicit_legacy_replay_keeps_old_box_points_and_curve_fallbacks) ... ok
+test_explicit_styles_global_width_and_role_overrides_reach_actual_artists (test_preview_choices.PreviewChoicesTests.test_explicit_styles_global_width_and_role_overrides_reach_actual_artists) ... ok
+test_explicit_violin_is_a_third_output_with_density_limitations (test_preview_choices.PreviewChoicesTests.test_explicit_violin_is_a_third_output_with_density_limitations) ... ok
+test_fresh_directory_and_symlink_are_never_overwritten (test_preview_choices.PreviewChoicesTests.test_fresh_directory_and_symlink_are_never_overwritten) ... ok
+test_hollow_edge_corruption_invalidates_preview_without_losing_rows (test_preview_choices.PreviewChoicesTests.test_hollow_edge_corruption_invalidates_preview_without_losing_rows) ... ok
+test_hollow_outline_previews_preserve_values_and_audit_strokes (test_preview_choices.PreviewChoicesTests.test_hollow_outline_previews_preserve_values_and_audit_strokes) ... ok
+test_point_alpha_applies_only_to_raw_marks_and_rejects_invalid_values (test_preview_choices.PreviewChoicesTests.test_point_alpha_applies_only_to_raw_marks_and_rejects_invalid_values) ... ok
+test_source_mutation_after_render_cannot_claim_a_passing_set (test_preview_choices.PreviewChoicesTests.test_source_mutation_after_render_cannot_claim_a_passing_set) ... ok
+test_sparse_violin_does_not_replace_requested_kind (test_preview_choices.PreviewChoicesTests.test_sparse_violin_does_not_replace_requested_kind) ... ok
+test_two_real_exports_retain_source_ids_ties_and_fixed_comparison (test_preview_choices.PreviewChoicesTests.test_two_real_exports_retain_source_ids_ties_and_fixed_comparison) ... ok
+test_unsafe_or_ambiguous_requests_fail_before_creating_outputs (test_preview_choices.PreviewChoicesTests.test_unsafe_or_ambiguous_requests_fail_before_creating_outputs) ... ok
+
+======================================================================
+FAIL: test_cli_contract_and_extracted_scripts_are_portable (test_preview_choices.PreviewChoicesTests.test_cli_contract_and_extracted_scripts_are_portable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_preview_choices.py", line 411, in test_cli_contract_and_extracted_scripts_are_portable
+    self.assertEqual(described.returncode, 0, described.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-previews-dwp5331o/extracted plugin/scripts/preview_choices.py", line 31, in <module>
+    ecdf = _load("easyviz_preview_ecdf", "ecdf_plot.py")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-previews-dwp5331o/extracted plugin/scripts/preview_choices.py", line 27, in _load
+    loader.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-previews-dwp5331o/extracted plugin/scripts/ecdf_plot.py", line 22, in <module>
+    _loader.loader.exec_module(core)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-previews-dwp5331o/extracted plugin/scripts/render.py", line 62, in <module>
+    observation_clipping = _load_captured_helper("easyviz_observation_clipping", "observation_clipping.py")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-previews-dwp5331o/extracted plugin/scripts/render.py", line 44, in _load_captured_helper
+    raw = path.read_bytes()
+          ^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/easyviz-previews-dwp5331o/extracted plugin/scripts/observation_clipping.py'
+
+
+----------------------------------------------------------------------
+Ran 16 tests in 5.899s
+
+FAILED (failures=1)
