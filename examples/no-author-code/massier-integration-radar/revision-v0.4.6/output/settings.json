@@ -1,0 +1,261 @@
+{
+  "track": "reproduce",
+  "source": "../inputs/source-data.csv",
+  "reference": "../inputs/reference.png",
+  "layout": {
+    "width_mm": 64,
+    "height_mm": 66,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "center_mm": [
+      33,
+      40
+    ],
+    "radius_mm": 17,
+    "line_width_pt": 0.85,
+    "marker_diameter_pt": 5.1,
+    "grid_line_width_pt": 0.45,
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8
+  },
+  "radial_limits": [
+    0,
+    0.5
+  ],
+  "radial_ticks": [
+    0,
+    0.25,
+    0.5
+  ],
+  "classes": [
+    {
+      "source": "ALL",
+      "display": "all"
+    },
+    {
+      "source": "FAP",
+      "display": "FAPs"
+    },
+    {
+      "source": "ENDO",
+      "display": "vascular"
+    },
+    {
+      "source": "IMMUNE",
+      "display": "immune"
+    },
+    {
+      "source": "ADIPOCYTES",
+      "display": "adipocytes"
+    }
+  ],
+  "methods": [
+    {
+      "source": "raw",
+      "display": "raw",
+      "color": "#AAAAAA"
+    },
+    {
+      "source": "harmony",
+      "display": "Harmony",
+      "color": "#F3BC3D"
+    },
+    {
+      "source": "scVI",
+      "display": "scVI",
+      "color": "#3A9D6C"
+    },
+    {
+      "source": "bbknn",
+      "display": "BBKNN",
+      "color": "#195E84"
+    },
+    {
+      "source": "rPCA",
+      "display": "rPCA",
+      "color": "#9874A3"
+    }
+  ],
+  "colors": {
+    "background": "#F7F7F7",
+    "spokes": "#C7C7C7",
+    "intermediate_ring": "#32839A"
+  },
+  "adopted_before_render": true,
+  "adaptations": [
+    "Explicitly adopt 64 × 66 mm instead of 88 × 88 mm. Circle diameter changes from 50 to 34 mm; all text remains 8 pt.",
+    "The original selected PDF radar has a 23.88 mm diameter, approximately 7.924 pt Arial labels, 3.575 pt point geometry and 0.847 pt data strokes. Direct class labels require more outside space than its shared whole-figure class key.",
+    "Adopt 5.1 pt marks to approach the observed point-diameter/circle-diameter relationship; adopt 0.85 pt data lines. These visible geometry choices are declared, not recovered author parameters.",
+    "Remove the unrequested depot title. Keep class labels, radial ticks, metric label and a compact two-row method key.",
+    "Retain all 25 supplied values, five spokes, original method/class order and zero-origin 0–0.5 linear radial scale. Valid zeros stay coincident; no jitter or inferred central padding is introduced."
+  ],
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "adopted_spec": {
+    "track": "reproduce",
+    "source": "../inputs/source-data.csv",
+    "reference": "../inputs/reference.png",
+    "layout": {
+      "width_mm": 64,
+      "height_mm": 66,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "center_mm": [
+        33,
+        40
+      ],
+      "radius_mm": 17,
+      "line_width_pt": 0.85,
+      "marker_diameter_pt": 5.1,
+      "grid_line_width_pt": 0.45
+    },
+    "typography": {
+      "axis": 8,
+      "tick": 8,
+      "legend": 8
+    },
+    "radial_limits": [
+      0,
+      0.5
+    ],
+    "radial_ticks": [
+      0,
+      0.25,
+      0.5
+    ],
+    "classes": [
+      {
+        "source": "ALL",
+        "display": "all"
+      },
+      {
+        "source": "FAP",
+        "display": "FAPs"
+      },
+      {
+        "source": "ENDO",
+        "display": "vascular"
+      },
+      {
+        "source": "IMMUNE",
+        "display": "immune"
+      },
+      {
+        "source": "ADIPOCYTES",
+        "display": "adipocytes"
+      }
+    ],
+    "methods": [
+      {
+        "source": "raw",
+        "display": "raw",
+        "color": "#AAAAAA"
+      },
+      {
+        "source": "harmony",
+        "display": "Harmony",
+        "color": "#F3BC3D"
+      },
+      {
+        "source": "scVI",
+        "display": "scVI",
+        "color": "#3A9D6C"
+      },
+      {
+        "source": "bbknn",
+        "display": "BBKNN",
+        "color": "#195E84"
+      },
+      {
+        "source": "rPCA",
+        "display": "rPCA",
+        "color": "#9874A3"
+      }
+    ],
+    "colors": {
+      "background": "#F7F7F7",
+      "spokes": "#C7C7C7",
+      "intermediate_ring": "#32839A"
+    },
+    "adopted_before_render": true,
+    "adaptations": [
+      "Explicitly adopt 64 × 66 mm instead of 88 × 88 mm. Circle diameter changes from 50 to 34 mm; all text remains 8 pt.",
+      "The original selected PDF radar has a 23.88 mm diameter, approximately 7.924 pt Arial labels, 3.575 pt point geometry and 0.847 pt data strokes. Direct class labels require more outside space than its shared whole-figure class key.",
+      "Adopt 5.1 pt marks to approach the observed point-diameter/circle-diameter relationship; adopt 0.85 pt data lines. These visible geometry choices are declared, not recovered author parameters.",
+      "Remove the unrequested depot title. Keep class labels, radial ticks, metric label and a compact two-row method key.",
+      "Retain all 25 supplied values, five spokes, original method/class order and zero-origin 0–0.5 linear radial scale. Valid zeros stay coincident; no jitter or inferred central padding is introduced."
+    ],
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ]
+  },
+  "actual_font": "Arial",
+  "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/inputs/source-data.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/adopted-spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/plot.py",
+    "supplied_spec_sha256": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132",
+    "auxiliary_inputs": {
+      "figure_elements_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+      },
+      "figure_handoff_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+        "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+      },
+      "figure_workbench_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+        "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+      }
+    }
+  },
+  "version": {
+    "input_sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70",
+    "source_script_sha256": "0346efec69ebf27ddc3a1c0ae86a27c079f982535d0a89cb52dec47dc01400fe"
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+  },
+  "font_override": null,
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/inputs/source-data.csv",
+      "sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/plot.py",
+      "sha256": "0346efec69ebf27ddc3a1c0ae86a27c079f982535d0a89cb52dec47dc01400fe"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/adopted-spec.json",
+      "sha256": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "figure_workbench_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    }
+  }
+}

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.4.6 — 2026-10-06
+
+- Add a purposeful PROGENy Create case from all 11,143 supplied coefficients: 55 signature overlaps, two complete dominant overlap comparisons and explicitly decoded descriptive sign fractions. Structural zeros, empty agreement and small denominators remain distinct; no activity, crosstalk or inference is fabricated.
+- Reproduce revisions restore narrow paired forest lanes/shared decoding and radar mark-to-circle proportions. All 48 estimates, 96 confidence endpoints and 25 rates remain intact, with adopted fonts/canvases and directly checked PDF/SVG geometry. The README places originals beside these actual outputs.
+- New reference geometry guidance teaches data-region aspect, shared keys, relative type hierarchy, marker/stroke relationships and unknown physical source parameters. Create guidance adds coefficient relationships only for an explicitly meaningful task.
+- Paired raw observations gain source-bound selectable groups and per-format clipping checks, including real PNG rounding. Strict source-table parsing rejects hidden-index shifts instead of claiming incorrect unit identities; legal values and physical design remain fixed.
+- Replicate, ECDF, interval and summary time-course inputs share the strict captured-byte CSV reader. Malformed row widths fail before export, literal identifiers and BOM are preserved, and source hashes follow consumed bytes. Three formerly false-passing export paths are fixed; replicate's existing late refusal becomes an early parsing error.
+- New cases are tested from copied and extracted packages with explicit font adoption, independent source/vector reading and current element/receipt bindings. Portable previews omit stale current-path metadata.
+- Complete the [0.5.0 research and proposal](docs/roadmap-v0.5.0.md) with nine pinned public projects. No 0.5.0 runtime, MCP server or version is implemented.
+
+See [release QA](evals/release-qa/v0.4.6/README.md).
+
 ## 0.4.5 — 2026-10-06
 
 - Add two purposeful Create cases using real literature Source Data: 174 sample-level expression values with aligned descriptive genotype contrasts, and 88 compartment Ccl2 observations with exact-hour means/SEMs and separate units. Both retain source precision, declared transformations, editable exports and explicit-font portability.

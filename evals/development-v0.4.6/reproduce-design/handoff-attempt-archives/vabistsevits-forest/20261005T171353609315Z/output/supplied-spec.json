@@ -1,0 +1,26 @@
+{
+  "track": "reproduce",
+  "source": "../inputs/source-data.csv",
+  "reference": "../inputs/reference.png",
+  "question": "Compare supplied total and direct odds ratios across the same three exposures and eight breast-cancer outcomes.",
+  "layout": {"width_mm": 100, "height_mm": 132, "font": "Arial", "font_size_pt": 8, "dpi": 300,
+    "plot_width_mm": 32, "plot_height_mm": 92, "plot_bottom_mm": 35, "plot_left_mm": [18, 61]},
+  "typography": {"axis": 8, "tick": 8, "exposure": 8, "legend": 8, "column_header": 8},
+  "font_weight": {"column_header": "bold", "shared_variable_header": "bold"},
+  "x_scale": "log", "x_limits": [0.28, 2.8], "x_ticks": [1, 2], "reference_value": 1,
+  "y_limits": [-2, 33], "first_y_by_exposure": [30, 19, 8],
+  "exposures": ["Dense area", "Non-dense area", "Percent density"],
+  "outcomes": ["Overall breast cancer", "ER+ breast cancer", "ER- breast cancer", "Luminal A subtype", "Luminal B1 subtype", "Luminal B2 subtype", "HER2-enriched subtype", "Triple-negative subtype"],
+  "colors": {"Overall breast cancer": "#972c8d", "ER+ breast cancer": "#1794ce", "ER- breast cancer": "#ffea5e", "Luminal A subtype": "#6351a0", "Luminal B1 subtype": "#9ddaf5", "Luminal B2 subtype": "#f5bacf", "HER2-enriched subtype": "#fbbb68", "Triple-negative subtype": "#eb5291"},
+  "strokes": {"interval_pt": 0.8, "null_pt": 0.6, "frame_pt": 0.8, "reference_grid_pt": 0.8, "marker_outline_pt": 0.8},
+  "marker_diameter_pt": 5.2,
+  "adopted_before_render": true,
+  "adaptations": [
+    "Explicitly adopt a 100 × 132 mm paired figure with 32 × 92 mm data lanes, replacing the earlier two 105 × 135 mm repeated-label panels.",
+    "Keep 8 pt editable Arial throughout; the original forest figure uses outlined glyphs, so its actual point sizes cannot be recovered from PDF text metadata.",
+    "Use one shared eight-outcome color key and three rotated exposure labels, following the observed original structure. Essential column and shared-variable headers use bold 8 pt text; the shared key is reorganized into four rows and two columns.",
+    "Retain a true log odds-ratio scale and all supplied estimate/95% CI values. The existing 0.28–2.8 bounds are retained; only reference-visible ticks 1 and 2 are labeled.",
+    "Adopt explicit 5.2 pt point diameter and 0.8 pt interval strokes. Preserve the supplied filled/hollow states; confidence meaning stays in the caption.",
+    "Omit source panel letters and descriptive titles. Total effect / Direct effect are essential column headers; adjustment wording stays in the caption."
+  ]
+}

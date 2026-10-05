@@ -156,7 +156,7 @@ def axis_mapping(data, spec):
 
 def prepare(data_path, spec):
     validate_spec(spec)
-    data = pd.read_csv(data_path, dtype=str, keep_default_na=False)
+    data = core.read_source_csv(data_path)
     require(len(data) > 0, "Input must contain summaries")
     require(not any(str(column).startswith("_easyviz_") for column in data.columns), "Input columns with reserved _easyviz_ prefix are unsupported")
     fields = spec["fields"]
@@ -436,8 +436,8 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
     fig = None
     try:
         require(track in (None, "create", "reproduce"), "track must be create or reproduce when supplied")
-        input_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
         data = prepare(data_path, spec)
+        input_hash = data.attrs["source_csv_sha256"]
         resolved = deepcopy(spec)
         resolved.setdefault("chart", "timecourse")
         resolved.setdefault("layout", {}).setdefault("auto_fit", "margins" not in resolved.get("layout", {}))
@@ -448,6 +448,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
             fig = draw(data, resolved, layout, typography)
             fig._easyviz_track = track
             fig._easyviz_source_script, fig._easyviz_data_file, fig._easyviz_spec_file = Path(__file__).resolve(), data_path.resolve(), Path(spec_path).resolve() if spec_path else None
+            fig._easyviz_source_bindings = {"data_file": {"path": str(data_path.resolve()), "sha256": input_hash}}
             fig.canvas.draw()
             audit = audit_source_artists(data_path, resolved, fig)
             clipped = _clipped_text(fig)
@@ -480,6 +481,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
                             curve_interpretation="Straight connections between supplied summaries; no fit or new observations")
             if spec_path:
                 settings.update(spec_file=str(Path(spec_path).resolve()), spec_file_sha256=hashlib.sha256(Path(spec_path).read_bytes()).hexdigest())
+            settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
             write_json(out / "settings.json", settings)
             data.to_csv(out / "plotting-data.csv", index=False)
             write_json(out / "stats.json", {"method": "supplied_summaries", "uncertainty": spec["uncertainty"],

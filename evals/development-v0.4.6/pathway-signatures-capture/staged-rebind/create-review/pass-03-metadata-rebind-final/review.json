@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "7f3691f960a067e59fd1126ece158e1655fdfbc19fffdc8cafd42838da4718de",
+  "pass_number": 3,
+  "reviewer": {
+    "role": "independent",
+    "identity": "/root/v045_expression_create"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/staged-rebind/panel.png",
+      "sha256": "3216cc6305ab71bcb46acda532f5dcdd63588e1924723cf6557afe27493198aa",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image reopened actual staged PNG and actual 96 dpi PDF; export bytes individually compared with reviewed final design",
+      "size_basis": "Same measured 190 \u00d7 112 mm / Arial 8 pt design. Metadata-only source-consumption rerender has exactly identical PNG/PDF/SVG bytes and remains visual pass 3."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "The plot uses literal signed model coefficients and shared nonzero-gene counts, never measured activity or causal pathway interaction. Independent audit recomputes all 55 pairs, 48 zero overlaps, all seven nonempty sign fractions, and the exact all-pairs >10 selection of 80 genes. Empty sign agreement stays undefined rather than zero."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "All overlap counts identify the two substantive intersections, whose coefficient views show magnitude and signed agreement using all their shared genes. The fraction lane retains denominators, making 62/62 distinct from 1/1. The views therefore answer a real model-description task."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Square cells have crisp seams and lighter zero labels; nonzero counts stay visible. White-edged coefficient markers sit above faint equality guides and clear zero lines. Agreement marks sit above light reference lanes, with readable numerical fractions."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "The actual 190 \u00d7 112 mm PNG and nominal 96 dpi PDF have square matrix cells, detached lower labels and complete guides. Matrix, coefficient axes and fraction lane are separated; no clipped labels or merged guide text was observed. Actual PDF/SVG/font geometry passes the independent copied-export rerun."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "A sequential count scale of 0\u201365 includes the observed maximum of 62 and labeled zeros. Blue identifies shared-count and coefficient marks rather than falsely encoding pathway categories. The paper uses signed Wald/perturbation quantities; its diverging palette is not applicable to this nonnegative count."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Coefficient units are explicitly named, equality guides are not fitted lines, and zero lines decode signed coefficients. Italic CXCL8 now sits above its actual target in reopened pass 3, while DUSP6 remains clear. Every fraction shows its denominator; the separate caption explains structural zeros and selection."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "Separate actual-export validator rerun on a copied output checks PDF/SVG 190 \u00d7 112 mm and PNG dimensions/DPI; current packet artifact hashes were individually verified."
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "The actual nominal PDF preview was opened and the copied-export validator checks actual embedded Arial 8 pt fonts, glyph coverage and label bounds. No font size or canvas reduction is assumed."
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "Every final staged packet artifact hash verified. All consumed-sources path/hash claims match current actual data, script, specification, source contract and declared helpers; source contract and helper identities agree with handoff consumption evidence. All 11,143 literal workbook values independently reaudited. These staged helper paths are explicit and are not production adoption."
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "Independent source/actual SVG audit and updated actual-export validator rerun on a copied staged output passes; current QA validator hash matches actual validator bytes. Receipt/adopted physical dimensions also checked. Current final staged packet replaces the prior pending staged packet; no additional aesthetic pass claimed."
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "Actual caption read: structural zero versus missing, unscaled signed coefficients, >10 selection, all remaining genes retained, undefined empty-pair agreement, explicit denominators, no replication/inference/causal/activity claim, source DOI and CC BY attribution."
+    }
+  ],
+  "findings": [
+    {
+      "id": "cxcl8-attachment",
+      "severity": "minor",
+      "state": "resolved",
+      "location": "NFkB\u2013TNFa coefficient view",
+      "evidence": "Previous visible pass placed CXCL8 between its own top point and a second nearby point; independent image inspection found ambiguous attachment.",
+      "requirement": "A selected gene label must clearly attach to the actual source-bound point.",
+      "action": "Final pass 3 places CXCL8 above its unchanged target; reopened final PNG/PDF confirms clear attachment."
+    },
+    {
+      "id": "dense-coefficient-cluster",
+      "severity": "note",
+      "state": "accepted",
+      "location": "NFkB\u2013TNFa coefficient view near the origin",
+      "evidence": "Many exact coefficients occupy nearby coordinates; white seams help distinguish boundaries but individual near-coincident observations remain difficult at nominal size.",
+      "requirement": "Retain every actual coefficient, fixed size and truthful coordinates.",
+      "action": "Keep all 62 source-bound points and full shared-gene table; do not invent jitter or delete overlaps."
+    },
+    {
+      "id": "small-denominator-scope",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Same-sign fraction lane",
+      "evidence": "Three nonempty pairs contain one shared gene and two contain two; a 1/1 fraction alone would exaggerate evidential weight.",
+      "requirement": "Interpret fractions as descriptive model properties with explicit denominators.",
+      "action": "Retain all displayed numerator/denominator labels and caption statements denying biological inference."
+    }
+  ],
+  "corrections": [
+    {
+      "finding_id": "cxcl8-attachment",
+      "candidate_sha256": "3216cc6305ab71bcb46acda532f5dcdd63588e1924723cf6557afe27493198aa",
+      "action": "Place only CXCL8 above its source-bound high coefficient marker; keep values, canvas, font and DUSP6 unchanged.",
+      "evidence": "Final actual PNG and 96 dpi PDF reopened; top-label association is clear, actual SVG marker centers reaudited against source coefficients."
+    }
+  ],
+  "residual_issues": [
+    "dense-coefficient-cluster",
+    "small-denominator-scope"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": "Original Figure 2 is a design mechanism reference with different quantities, not a matched baseline."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance.",
+  "rebind_scope": {
+    "kind": "staged-consumed-byte-metadata-rebind",
+    "production_adopted": false,
+    "prior_visual_packet_sha256": "512128a9c9a9e6378b441e1055b2dd1fccd3e097d79f821c8e8e32efc78ec852",
+    "superseded_pending_staged_packet_sha256": "355fad22e4b2ab8f3ddd2a0c581280e2a86707a73dcb939bcbad655b15737204",
+    "current_packet_sha256": "7f3691f960a067e59fd1126ece158e1655fdfbc19fffdc8cafd42838da4718de",
+    "handoff_sha256": "499a12243e72161d228fa2121340c2e0dee19b9a13f17c23d9d7aab867392799",
+    "identical_design_exports": true,
+    "actual_visual_passes": 3
+  }
+}

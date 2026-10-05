@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz-source-handoff",
+  "version": {
+    "figure_sha256": "5c5c47ad02807fdc8ab83ead247fcbc627677c8ff465925398c7f3d23f869ef5",
+    "spec_sha256": "1be8ad93020d871b83f5bab1e957f0dba3b35d39cd51c779b6d1381c916de5ef",
+    "input_sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70",
+    "source_script_sha256": "0346efec69ebf27ddc3a1c0ae86a27c079f982535d0a89cb52dec47dc01400fe",
+    "auxiliary_inputs_sha256": "43d20eb1ce46dfcf743fd8bc08bc27842ab9c759feb109c51663a735be87a003"
+  },
+  "panel": {
+    "width_mm": 64.00000005833333,
+    "height_mm": 65.99999993888888
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/inputs/source-data.csv",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/plot.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/adopted-spec.json",
+    "supplied_spec_sha256": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132",
+    "auxiliary_inputs": {
+      "figure_elements_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+      },
+      "figure_handoff_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+        "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+      },
+      "figure_workbench_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+        "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+      }
+    }
+  },
+  "exports": {
+    "panel.png": "d158630d744195689e934868682f548ffd8ed5d1f3beeacaf52d401586475233",
+    "panel.pdf": "b0f9dec122d1312ff882ca4f4d1164a1db96ebcd15f29ecffb3be8e16e18f1a2",
+    "panel.svg": "5c5c47ad02807fdc8ab83ead247fcbc627677c8ff465925398c7f3d23f869ef5"
+  },
+  "track": "reproduce",
+  "consumption": {
+    "kind": "captured-bytes-before-export",
+    "source_sha256": {
+      "data_file": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70",
+      "source_script": "0346efec69ebf27ddc3a1c0ae86a27c079f982535d0a89cb52dec47dc01400fe",
+      "spec_file": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132"
+    },
+    "auxiliary_sha256": {
+      "figure_elements_helper": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+      "figure_handoff_helper": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a",
+      "figure_workbench_helper": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    }
+  },
+  "scope": "Explicit source files and actual export bytes. No element identities are inferred; aesthetics and undeclared dependencies are not verified."
+}

@@ -1,0 +1,53 @@
+{
+  "reviewer": "implementing Agent; self-review only",
+  "visual_passes": 2,
+  "metadata_repaint": "A metadata/table completion repaint used unchanged visual geometry; no new design candidate.",
+  "images_opened": [
+    "first-render/panel.png",
+    "references/progeny-figure2-reference.png",
+    "output/panel.png",
+    "output/pdf-preview-96dpi.png",
+    "portable-font-check/panel.png",
+    "portable-font-check/pdf-preview-96dpi.png"
+  ],
+  "opening_method": "functions view_image; PDF preview rendered with PyMuPDF at 96 dpi and opened at original pixels",
+  "canvas_mm": [
+    190,
+    112
+  ],
+  "font_size_pt": 8,
+  "findings": [
+    {
+      "severity": "major",
+      "location": "first-render matrix lower labels",
+      "state": "resolved",
+      "evidence": "Center-anchored rotated labels crossed the final matrix row. Top-anchored labels visibly remain below the matrix in pass 2."
+    },
+    {
+      "severity": "note",
+      "location": "NFkB\u2013TNFa low-coefficient gene points",
+      "state": "accepted",
+      "evidence": "Nearby actual coefficients form a dense lower-left cluster. Original numeric coordinates are retained without jitter; per-gene SVG artist identities preserve exact selection."
+    },
+    {
+      "severity": "note",
+      "location": "matrix first row/empty upper half",
+      "state": "accepted",
+      "evidence": "Lower-triangle-only comparison leaves intentional blank half-matrix space. Every unordered pair and all 48 zero-overlap values are retained."
+    }
+  ],
+  "technical_validation": "output/validation.json",
+  "portable_font_validation": "portable-font-check/validation.json",
+  "six_corruption_probes": "output/validation-probes.json",
+  "independent_review": "pending separate reviewer; self-review is not publication certification",
+  "freeze": {
+    "plot.py": "1631e81acea002cd6cf86ccd8efe13f2b47cece95da3d735278cbc8330d65c54",
+    "spec.json": "4beb7aee12d7c01df4563326194e49c65de17aa0975c25b64d41813560480001",
+    "caption.md": "a490c3c66aa5052d8ac589ff4a1b916bca81e33bb6ca3d9b2d7ad3a048f53232",
+    "inputs/coefficients.csv": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+    "inputs/input-contract.json": "314e3d67e2461814f7d1a0df84e9ca1325c4c6307cd5ecb0f188257042cb5889",
+    "output/panel.png": "6cf5f72c0226b4415887e8ccca6e0fed18c79b93d400beba0bb52e15e98441f1",
+    "output/panel.pdf": "80398c3f57704bb00c2954b492aecfcd54dcf646a08cd59ea2fbd19b11ac1cbf",
+    "output/panel.svg": "79af7e22dffd58f8e8f1fd85ee2d3ea34c2d49d52591558d31584e4c3f1582c0"
+  }
+}

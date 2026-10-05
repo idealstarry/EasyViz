@@ -1,5 +1,5 @@
 {
-  "status": "canonical-rebound-independent-current-review-pending",
+  "status": "final-canonical-independently-reviewed",
   "original_development_visual_passes": 3,
   "original_attempts": [
     "design-history/attempt-01",
@@ -10,11 +10,37 @@
   "followup_authorization": "Parent explicitly approved a fourth followup to remove partial mean glyph occlusion after independent review; preserve the actual four-pass count.",
   "followup_change": "Thin horizontal mean ticks retain exact nominal hours, means and SEM; separate both close genotype summaries.",
   "inspected_followup_exports": "refinement-mean-visibility/after",
-  "first_delivery_claim": "This development case does not demonstrate bounded three-pass first-delivery success.",
+  "first_delivery_claim": false,
   "gate_limitation": "Explicit phase=followup, pass_number=4 records the correction separately with first_delivery_claim=false; final current artifact review remains required.",
   "independent_current_image_review_required": true,
   "followup_packets": {
     "lung": "delivery-review/lung/packet.json",
     "serum": "delivery-review/serum/packet.json"
-  }
+  },
+  "independent_current_image_review_completed": true,
+  "independent_current_reviews": {
+    "lung": {
+      "packet": "delivery-review/lung/packet.json",
+      "packet_sha256": "0e35c9257b0cb7b316925bb87cda709f5be87f1a51ed6bb689936adaea32e052",
+      "review": "delivery-review/lung/review.json",
+      "review_sha256": "0ea558dd5e9a8ee69a9c8cc5c8e5ac519de470fd36ba404a5de70fce86cf0986",
+      "gate": "delivery-review/lung/gate.json",
+      "gate_status": "recorded",
+      "readiness": "ready_with_notes",
+      "errors": []
+    },
+    "serum": {
+      "packet": "delivery-review/serum/packet.json",
+      "packet_sha256": "3e14b5b949b995aaeb8bdb1016a9b8a864ee6763e4d3c1eb1a8db584432e17f5",
+      "review": "delivery-review/serum/review.json",
+      "review_sha256": "512e9979cef75e0299c8e7c2349efd50f9ab70cbc407dd084bd34b8bdac47689",
+      "gate": "delivery-review/serum/gate.json",
+      "gate_status": "recorded",
+      "readiness": "ready_with_notes",
+      "errors": []
+    }
+  },
+  "actual_visual_passes": 4,
+  "phase": "followup",
+  "scope_note": "Four actual visual passes are preserved: three original development attempts and one explicitly authorized independent-review followup. Final source identity replay is not an additional aesthetic pass."
 }

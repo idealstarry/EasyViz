@@ -1,0 +1,189 @@
+{
+  "review_scope": "Four focused CSV readers only; no aesthetic or first-delivery claim",
+  "runtime": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/focused-csv-identity/staged-runtime",
+  "runtime_sha256": {
+    "replicate_plot": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+    "ecdf_plot": "94b313f3374be7f87aab0b88bdbec418af915ad5dc9a6bd82c3ec9c394890607",
+    "interval_plot": "e973889618337593f9f1224d0b79e9502ecfc45a9cf50482153e68caacb29b76",
+    "timecourse_plot": "5733584c7648925704e067010ae541ed04610d36acde0aa8f14c0a16b32ec23b"
+  },
+  "cases": [
+    {
+      "recipe": "replicate_plot",
+      "variant": "legal",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "337fb7df0c871cebc33ebdc33cdd37c82eb5ef1bc1199c686bafe8447f4dfde8",
+      "exports": {
+        "png": "e16d5771d871e31ccc0f98a651849654994bc6b7f8515b8e673d4d0ffbfa6fb8",
+        "pdf": "0d4043472da1c9c73750a074edc348eadd4a5a93419b5d585629b896e1199fa9",
+        "svg": "2eb2b2a8c14a27eea8ce0f067fae127d2c3d63213dd10fcf6b8f378f98723bea"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true,
+      "all_exports_byte_identical_to_before": true
+    },
+    {
+      "recipe": "replicate_plot",
+      "variant": "extra-leading-cell",
+      "exit_code": 2,
+      "qa_valid_outputs": false,
+      "qa_status": "failed",
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "source_sha256": "b4ccafcb1d376746295eae5e00ee9f6591920bd8c501ee2c23223c6289c64e7e",
+      "exports": {},
+      "rejected_before_exports": true
+    },
+    {
+      "recipe": "replicate_plot",
+      "variant": "legal-crlf-bom-literal-identities",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "ad7f5b0cf95d6997b1a9d5938b8b018b2b64e9524e08e518e4ace40e18dc87dd",
+      "exports": {
+        "png": "8165a0250cc4bcd53f200c394629600f79120ddbddb5212bc69d4173f7b2d9ce",
+        "pdf": "96ab022fd88d96ad3e07eabda5210255a8f174cba6fd28de489e39cef98f854e",
+        "svg": "69f962c78f0c212da180673d4d5e986dde6bbbea2afaac7891a06dcd19fd1e58"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true
+    },
+    {
+      "recipe": "ecdf_plot",
+      "variant": "legal",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "6125eab43a4dddf985992d987417c53e4288b07c5c5f0da8035f46d9070529d6",
+      "exports": {
+        "png": "5b2854a8b75176a59eb0826b9ea10c29364aace19eef596c15a4e0d937ba942c",
+        "pdf": "2b6629ed75085fdebfa40c1bcecd378b94b070ac183f818876bf281d4b5f45e1",
+        "svg": "5d62e0457353b1d14ac6b125436fc957e265bfb3b319c368d8228979e039e14d"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true,
+      "all_exports_byte_identical_to_before": true
+    },
+    {
+      "recipe": "ecdf_plot",
+      "variant": "extra-leading-cell",
+      "exit_code": 2,
+      "qa_valid_outputs": false,
+      "qa_status": "failed",
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "source_sha256": "c2904be39624e8b81be6c081fa9cb01b5fefb193c06a91f32499eae40067194b",
+      "exports": {},
+      "rejected_before_exports": true
+    },
+    {
+      "recipe": "ecdf_plot",
+      "variant": "legal-crlf-bom-literal-identities",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "e4a276bc92d418710e036d7acf84d2c1aceabf3ee360aeccd0d15144c3c0b6f6",
+      "exports": {
+        "png": "5b2854a8b75176a59eb0826b9ea10c29364aace19eef596c15a4e0d937ba942c",
+        "pdf": "2b6629ed75085fdebfa40c1bcecd378b94b070ac183f818876bf281d4b5f45e1",
+        "svg": "5d62e0457353b1d14ac6b125436fc957e265bfb3b319c368d8228979e039e14d"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true
+    },
+    {
+      "recipe": "interval_plot",
+      "variant": "legal",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "297293af9cea0c6aed0b5c2ad689ce6b19b6d13a729722300165bca02d9d2ec0",
+      "exports": {
+        "png": "26a0621a251cdde80a1810b93da13aedc726c6192d617f0a3898012461c0c305",
+        "pdf": "1178a704a3640b570ed9760247eada812428e340899ea1644911e8ba273242c4",
+        "svg": "025f848e281b8af4e750b73de6368863913bd4a80875c1c1c35c275256eb84e3"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true,
+      "all_exports_byte_identical_to_before": true
+    },
+    {
+      "recipe": "interval_plot",
+      "variant": "extra-leading-cell",
+      "exit_code": 2,
+      "qa_valid_outputs": false,
+      "qa_status": "failed",
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "source_sha256": "f603f3601b5d683254b09523ea96c6d816e84d0a2105eb0d7286e580ac88c9c2",
+      "exports": {},
+      "rejected_before_exports": true
+    },
+    {
+      "recipe": "interval_plot",
+      "variant": "legal-crlf-bom-literal-identities",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "72a2b5fb6a7a574c3cc43fc3970851033cbcf8dd8c061a693cf90640ec6d5a63",
+      "exports": {
+        "png": "540b3161a51214bcfd5423b2e95d08ccbb58caf033bf7fe5c5e8ce26662e977a",
+        "pdf": "2f42feaaaadec30139f7480f2730f40aa740da64385a8493fcb950c9d682ceac",
+        "svg": "29730ca56f710e59b7d1dfa1f5079be267993552850cf036dcdfe446f3c9079a"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true
+    },
+    {
+      "recipe": "timecourse_plot",
+      "variant": "legal",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "1c738f824a775600de2aad3b81d8edeaa6f22d869784074c96389ec2704567a1",
+      "exports": {
+        "png": "2f64fef8d27458bf01f588d592a1853b577a6f255375676fd5aa0f1db9d6a616",
+        "pdf": "40e5397dc3f45f94fe11c0c969270b1eb8a19334782e71da02bf755d91dad863",
+        "svg": "263a72174d7b32b53aaf4a98abe91a2b8b40e5dc0b570b6fefbe715a9f9856ea"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true,
+      "all_exports_byte_identical_to_before": true
+    },
+    {
+      "recipe": "timecourse_plot",
+      "variant": "extra-leading-cell",
+      "exit_code": 2,
+      "qa_valid_outputs": false,
+      "qa_status": "failed",
+      "error": "CSV rows must be nonempty and exactly match header width; no index is inferred or row skipped",
+      "source_sha256": "ad4daf976c901dff598a5956820c08cfac2eb310bf4b3834a19e9bed27419d0b",
+      "exports": {},
+      "rejected_before_exports": true
+    },
+    {
+      "recipe": "timecourse_plot",
+      "variant": "legal-crlf-bom-literal-identities",
+      "exit_code": 0,
+      "qa_valid_outputs": true,
+      "qa_status": "pass",
+      "error": null,
+      "source_sha256": "6deb4ad0dafc6d79e2e7471629562cf17c3fb64f3c75d9962195a6118e4cb015",
+      "exports": {
+        "png": "2f64fef8d27458bf01f588d592a1853b577a6f255375676fd5aa0f1db9d6a616",
+        "pdf": "40e5397dc3f45f94fe11c0c969270b1eb8a19334782e71da02bf755d91dad863",
+        "svg": "263a72174d7b32b53aaf4a98abe91a2b8b40e5dc0b570b6fefbe715a9f9856ea"
+      },
+      "all_original_cells_preserved": true,
+      "all_source_identities_agree": true
+    }
+  ],
+  "all_cases_pass": true
+}

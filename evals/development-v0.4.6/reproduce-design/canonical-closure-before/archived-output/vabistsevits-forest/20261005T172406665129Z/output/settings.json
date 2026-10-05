@@ -1,0 +1,253 @@
+{
+  "track": "reproduce",
+  "source": "../inputs/source-data.csv",
+  "reference": "../inputs/reference.png",
+  "question": "Compare supplied total and direct odds ratios across the same three exposures and eight breast-cancer outcomes.",
+  "layout": {
+    "width_mm": 100,
+    "height_mm": 132,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "plot_width_mm": 32,
+    "plot_height_mm": 92,
+    "plot_bottom_mm": 35,
+    "plot_left_mm": [
+      18,
+      61
+    ],
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "exposure": 8,
+    "legend": 8,
+    "column_header": 8
+  },
+  "font_weight": {
+    "column_header": "bold",
+    "shared_variable_header": "bold"
+  },
+  "x_scale": "log",
+  "x_limits": [
+    0.28,
+    2.8
+  ],
+  "x_ticks": [
+    1,
+    2
+  ],
+  "reference_value": 1,
+  "y_limits": [
+    -2,
+    33
+  ],
+  "first_y_by_exposure": [
+    30,
+    19,
+    8
+  ],
+  "exposures": [
+    "Dense area",
+    "Non-dense area",
+    "Percent density"
+  ],
+  "outcomes": [
+    "Overall breast cancer",
+    "ER+ breast cancer",
+    "ER- breast cancer",
+    "Luminal A subtype",
+    "Luminal B1 subtype",
+    "Luminal B2 subtype",
+    "HER2-enriched subtype",
+    "Triple-negative subtype"
+  ],
+  "colors": {
+    "Overall breast cancer": "#972c8d",
+    "ER+ breast cancer": "#1794ce",
+    "ER- breast cancer": "#ffea5e",
+    "Luminal A subtype": "#6351a0",
+    "Luminal B1 subtype": "#9ddaf5",
+    "Luminal B2 subtype": "#f5bacf",
+    "HER2-enriched subtype": "#fbbb68",
+    "Triple-negative subtype": "#eb5291"
+  },
+  "strokes": {
+    "interval_pt": 0.8,
+    "null_pt": 0.6,
+    "frame_pt": 0.8,
+    "reference_grid_pt": 0.8,
+    "marker_outline_pt": 0.8
+  },
+  "marker_diameter_pt": 5.2,
+  "adopted_before_render": true,
+  "adaptations": [
+    "Explicitly adopt a 100 × 132 mm paired figure with 32 × 92 mm data lanes, replacing the earlier two 105 × 135 mm repeated-label panels.",
+    "Keep 8 pt editable Arial throughout; the original forest figure uses outlined glyphs, so its actual point sizes cannot be recovered from PDF text metadata.",
+    "Use one shared eight-outcome color key and three rotated exposure labels, following the observed original structure. Essential column and shared-variable headers use bold 8 pt text; the shared key is reorganized into four rows and two columns.",
+    "Retain a true log odds-ratio scale and all supplied estimate/95% CI values. The existing 0.28–2.8 bounds are retained; only reference-visible ticks 1 and 2 are labeled.",
+    "Adopt explicit 5.2 pt point diameter and 0.8 pt interval strokes. Preserve the supplied filled/hollow states; confidence meaning stays in the caption.",
+    "Omit source panel letters and descriptive titles. Total effect / Direct effect are essential column headers; adjustment wording stays in the caption."
+  ],
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "adopted_spec": {
+    "track": "reproduce",
+    "source": "../inputs/source-data.csv",
+    "reference": "../inputs/reference.png",
+    "question": "Compare supplied total and direct odds ratios across the same three exposures and eight breast-cancer outcomes.",
+    "layout": {
+      "width_mm": 100,
+      "height_mm": 132,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "plot_width_mm": 32,
+      "plot_height_mm": 92,
+      "plot_bottom_mm": 35,
+      "plot_left_mm": [
+        18,
+        61
+      ]
+    },
+    "typography": {
+      "axis": 8,
+      "tick": 8,
+      "exposure": 8,
+      "legend": 8,
+      "column_header": 8
+    },
+    "font_weight": {
+      "column_header": "bold",
+      "shared_variable_header": "bold"
+    },
+    "x_scale": "log",
+    "x_limits": [
+      0.28,
+      2.8
+    ],
+    "x_ticks": [
+      1,
+      2
+    ],
+    "reference_value": 1,
+    "y_limits": [
+      -2,
+      33
+    ],
+    "first_y_by_exposure": [
+      30,
+      19,
+      8
+    ],
+    "exposures": [
+      "Dense area",
+      "Non-dense area",
+      "Percent density"
+    ],
+    "outcomes": [
+      "Overall breast cancer",
+      "ER+ breast cancer",
+      "ER- breast cancer",
+      "Luminal A subtype",
+      "Luminal B1 subtype",
+      "Luminal B2 subtype",
+      "HER2-enriched subtype",
+      "Triple-negative subtype"
+    ],
+    "colors": {
+      "Overall breast cancer": "#972c8d",
+      "ER+ breast cancer": "#1794ce",
+      "ER- breast cancer": "#ffea5e",
+      "Luminal A subtype": "#6351a0",
+      "Luminal B1 subtype": "#9ddaf5",
+      "Luminal B2 subtype": "#f5bacf",
+      "HER2-enriched subtype": "#fbbb68",
+      "Triple-negative subtype": "#eb5291"
+    },
+    "strokes": {
+      "interval_pt": 0.8,
+      "null_pt": 0.6,
+      "frame_pt": 0.8,
+      "reference_grid_pt": 0.8,
+      "marker_outline_pt": 0.8
+    },
+    "marker_diameter_pt": 5.2,
+    "adopted_before_render": true,
+    "adaptations": [
+      "Explicitly adopt a 100 × 132 mm paired figure with 32 × 92 mm data lanes, replacing the earlier two 105 × 135 mm repeated-label panels.",
+      "Keep 8 pt editable Arial throughout; the original forest figure uses outlined glyphs, so its actual point sizes cannot be recovered from PDF text metadata.",
+      "Use one shared eight-outcome color key and three rotated exposure labels, following the observed original structure. Essential column and shared-variable headers use bold 8 pt text; the shared key is reorganized into four rows and two columns.",
+      "Retain a true log odds-ratio scale and all supplied estimate/95% CI values. The existing 0.28–2.8 bounds are retained; only reference-visible ticks 1 and 2 are labeled.",
+      "Adopt explicit 5.2 pt point diameter and 0.8 pt interval strokes. Preserve the supplied filled/hollow states; confidence meaning stays in the caption.",
+      "Omit source panel letters and descriptive titles. Total effect / Direct effect are essential column headers; adjustment wording stays in the caption."
+    ],
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ]
+  },
+  "actual_font": "Arial",
+  "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/inputs/source-data.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/revision-v0.4.6/adopted-spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/revision-v0.4.6/plot.py",
+    "supplied_spec_sha256": "8739541b6c7e04757e0d28b5a4c8236aaf59be8fea491be730f31a8a7f9891be",
+    "auxiliary_inputs": {
+      "figure_elements_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+      },
+      "figure_handoff_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+        "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+      },
+      "figure_workbench_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+        "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+      }
+    }
+  },
+  "version": {
+    "input_sha256": "9828fcac3d6622d8ac10b01ed4c3b84074725242ddc9aca7ff62627ee85be0a0",
+    "source_script_sha256": "2bf4364fa3afce6f8d783997c90a3ccdbfa35e2161f405e0d811d25ad686069f"
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "9828fcac3d6622d8ac10b01ed4c3b84074725242ddc9aca7ff62627ee85be0a0"
+  },
+  "font_override": null,
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/inputs/source-data.csv",
+      "sha256": "9828fcac3d6622d8ac10b01ed4c3b84074725242ddc9aca7ff62627ee85be0a0"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/revision-v0.4.6/plot.py",
+      "sha256": "2bf4364fa3afce6f8d783997c90a3ccdbfa35e2161f405e0d811d25ad686069f"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/revision-v0.4.6/adopted-spec.json",
+      "sha256": "8739541b6c7e04757e0d28b5a4c8236aaf59be8fea491be730f31a8a7f9891be"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "figure_workbench_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    }
+  }
+}

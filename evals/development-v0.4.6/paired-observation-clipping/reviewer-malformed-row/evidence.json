@@ -1,0 +1,36 @@
+{
+  "valid_outputs": true,
+  "source_csv_rows_have_4_cells_but_3_headers": true,
+  "reported_source_keys": [
+    [
+      {
+        "block": "Observations",
+        "condition": "A",
+        "records": [
+          1,
+          3
+        ],
+        "units": [
+          "u1",
+          "u2"
+        ]
+      }
+    ],
+    [
+      {
+        "block": "Observations",
+        "condition": "B",
+        "records": [
+          2,
+          4
+        ],
+        "units": [
+          "u1",
+          "u2"
+        ]
+      }
+    ]
+  ],
+  "parsed_plotting_data": "id,condition,value,_easyviz_source_value_text,_easyviz_block,_easyviz_source_row,_easyviz_x,_easyviz_marker_area_pt2,_easyviz_matplotlib_s\nu1,A,1.0,1,Observations,1,0.0,10,12.732395447351628\nu1,B,2.0,2,Observations,2,1.0000000000000002,10,12.732395447351628\nu2,A,3.0,3,Observations,3,0.0,10,12.732395447351628\nu2,B,2.5,2.5,Observations,4,1.0000000000000002,10,12.732395447351628\n",
+  "notes": "Pandas inferred a hidden index for the extra leading cell. Actual named source column id is extra but registered unit IDs are u1/u2; before preparation shares defect."
+}

@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "scope": "Actual case export from captured CSV despite invalid current file; independent helper refuses stale primary/contract/helper before receipt publication.",
+  "candidate_byte_identical": {
+    "png": true,
+    "pdf": true,
+    "svg": true
+  },
+  "visual_pass_number": 3,
+  "new_aesthetic_pass": false,
+  "captured_csv_sha256": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+  "rejections": [
+    {
+      "role": "data_file",
+      "status": "refused_before_receipt",
+      "reason": "A primary source/spec/script changed after its bytes were captured"
+    },
+    {
+      "role": "source_contract",
+      "status": "refused_before_receipt",
+      "reason": "A declared auxiliary input changed after its bytes were captured"
+    },
+    {
+      "role": "helper:figure_elements.py",
+      "status": "refused_before_receipt",
+      "reason": "A declared auxiliary input changed after its bytes were captured"
+    }
+  ]
+}

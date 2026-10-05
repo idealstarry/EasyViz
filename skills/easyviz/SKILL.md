@@ -56,6 +56,7 @@ not just an exported template. Read only the details needed for this panel.
 | An applicable local design mechanism or failure example | [Design cards](references/design-cards.md). Inspect relevant cards, not the whole gallery; their complete layout is not mandatory. |
 | A matrix contrast, compartment time course or another justified companion layer | [Purposeful extra layers](references/complex-create.md). Preserve the exact transform, shared identities and independent units. |
 | Physical size, fonts, guides and profiles | [Panel layout](references/panel-layout.md), [Legend layout](references/legend-layout.md), [Figure profile](references/figure-profile.md). |
+| Reproduce proportions, shared keys and type hierarchy | [Reference geometry](references/reference-geometry.md). Observe relationships before adopting a canvas; source physical scale or font parameters may be unknown. |
 | Actual-image review and unresolved overlaps | [Visual review](references/visual-review.md), [Point placement](references/collision-placement.md). Measurements support image inspection. |
 | User-selected edits and attempt history | [Figure workbench](references/figure-workbench.md), then [Edit application](references/apply-figure-requests.md). |
 

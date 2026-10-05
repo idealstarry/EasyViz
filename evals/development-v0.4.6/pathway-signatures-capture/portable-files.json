@@ -1,0 +1,94 @@
+{
+  "source_root": "examples/create/pathway-signatures",
+  "destination": "skills/easyviz/assets/cases/pathway-signatures",
+  "files": [
+    "plot.py",
+    "spec.json",
+    "inputs/coefficients.csv",
+    "inputs/input-contract.json",
+    "caption.md",
+    "source-record.json",
+    "validate.py",
+    "inputs/41467_2017_2391_MOESM4_ESM.xlsx",
+    "references/progeny-figure2-reference.png",
+    "README.md",
+    "design-notes.md",
+    "output/panel.png",
+    "output/panel.pdf",
+    "output/panel.svg"
+  ],
+  "runtime_and_attribution": [
+    "plot.py",
+    "spec.json",
+    "inputs/coefficients.csv",
+    "inputs/input-contract.json",
+    "caption.md",
+    "source-record.json"
+  ],
+  "independent_source_verification": [
+    "validate.py",
+    "inputs/41467_2017_2391_MOESM4_ESM.xlsx",
+    "references/progeny-figure2-reference.png"
+  ],
+  "exclude": [
+    "first-render/",
+    "pass-02-before-metadata/",
+    "reviewed-pass-02/",
+    "portable-font-check/",
+    "portable-final-check/",
+    "probe_validation.py",
+    "inputs/derived-overlap.csv",
+    "output/font-fallback-probe.json",
+    "output/validation-probes.json",
+    "output/self-review.json",
+    "output/create-review/",
+    "__pycache__/"
+  ],
+  "notes": [
+    "Nine runtime/source/attribution and independent verification files, two compact documentation files and three frozen reviewed preview files only.",
+    "Shared helper sources come from the installed EasyViz runtime, never a separate staged helper copy in the case.",
+    "Complete current QA, handoff, artist maps and review packets remain in the source repository via explicit external README links.",
+    "Packaged previews do not claim current local source paths. Rerender copied case into a fresh local output to obtain actual local source/helper/receipt/QA/map bindings before GUI use.",
+    "All source/development histories and explicit-font/mutation probes are excluded."
+  ],
+  "documentation": [
+    "README.md",
+    "design-notes.md"
+  ],
+  "frozen_previews": [
+    "output/panel.png",
+    "output/panel.pdf",
+    "output/panel.svg"
+  ],
+  "repository_only_current_evidence": [
+    "output/settings.json",
+    "output/qa.json",
+    "output/elements.json",
+    "output/handoff.json",
+    "output/consumed-sources.json",
+    "output/validation.json",
+    "output/all-pair-overlaps.csv",
+    "output/selected-paired-coefficients.csv",
+    "output/nonempty-sign-agreement.csv",
+    "output/all-shared-gene-coefficients.csv",
+    "output/create-review/"
+  ],
+  "file_bytes": {
+    "plot.py": 25868,
+    "spec.json": 2649,
+    "inputs/coefficients.csv": 321666,
+    "inputs/input-contract.json": 2213,
+    "caption.md": 2845,
+    "source-record.json": 1614,
+    "validate.py": 27893,
+    "inputs/41467_2017_2391_MOESM4_ESM.xlsx": 72324,
+    "references/progeny-figure2-reference.png": 83337,
+    "README.md": 3547,
+    "design-notes.md": 3348,
+    "output/panel.png": 211222,
+    "output/panel.pdf": 64477,
+    "output/panel.svg": 128005
+  },
+  "total_bytes": 951008,
+  "count": 14
+}

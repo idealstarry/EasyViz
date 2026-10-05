@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review_packet",
+  "policy_version": "0.4.4",
+  "pass_number": 2,
+  "reading_task": "Compare all signature overlaps, inspect original paired coefficients in the two dominant overlaps and distinguish sign agreement from absence.",
+  "inputs": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output",
+    "caption": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/caption.md",
+    "baseline_dir": null,
+    "baseline_kind": null
+  },
+  "snapshot": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output",
+    "artifacts": {
+      "panel.png": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/panel.png",
+        "sha256": "6cf5f72c0226b4415887e8ccca6e0fed18c79b93d400beba0bb52e15e98441f1",
+        "bytes": 211183
+      },
+      "panel.pdf": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/panel.pdf",
+        "sha256": "80398c3f57704bb00c2954b492aecfcd54dcf646a08cd59ea2fbd19b11ac1cbf",
+        "bytes": 64479
+      },
+      "panel.svg": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/panel.svg",
+        "sha256": "79af7e22dffd58f8e8f1fd85ee2d3ea34c2d49d52591558d31584e4c3f1582c0",
+        "bytes": 128005
+      },
+      "settings.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/settings.json",
+        "sha256": "2d23bed52604dd3f19b0eb3d3458b5dd107910af8724729c4bb17296daf6a9f1",
+        "bytes": 4753
+      },
+      "elements.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/elements.json",
+        "sha256": "923d3fb8383960e058f984ffd3402651552e0aca18961aa9dcab8b2cd9381581",
+        "bytes": 343550
+      },
+      "qa.json": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/qa.json",
+        "sha256": "07797ae3934499f712a404398591777168cb033c05333668eb01e050d9ccde49",
+        "bytes": 21402
+      },
+      "caption": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/caption.md",
+        "sha256": "a490c3c66aa5052d8ac589ff4a1b916bca81e33bb6ca3d9b2d7ad3a048f53232",
+        "bytes": 2845
+      }
+    },
+    "source_bindings": {
+      "data_file": [
+        {
+          "declared_by": "elements.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/inputs/coefficients.csv",
+          "sha256": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+          "expected_sha256": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+          "status": "passed"
+        }
+      ],
+      "source_script": [
+        {
+          "declared_by": "elements.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/plot.py",
+          "sha256": "1631e81acea002cd6cf86ccd8efe13f2b47cece95da3d735278cbc8330d65c54",
+          "expected_sha256": "1631e81acea002cd6cf86ccd8efe13f2b47cece95da3d735278cbc8330d65c54",
+          "status": "passed"
+        }
+      ],
+      "spec_file": [
+        {
+          "declared_by": "elements.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/spec.json",
+          "sha256": "4beb7aee12d7c01df4563326194e49c65de17aa0975c25b64d41813560480001",
+          "expected_sha256": "4beb7aee12d7c01df4563326194e49c65de17aa0975c25b64d41813560480001",
+          "status": "passed"
+        }
+      ],
+      "figure_profile": []
+    },
+    "panel": {
+      "width_mm": 190.0,
+      "height_mm": 112.0
+    },
+    "measured_checks": {
+      "export_dimensions": {
+        "status": "passed",
+        "evidence": {
+          "adopted_canvas_mm": {
+            "width_mm": 190.0,
+            "height_mm": 112.0
+          },
+          "actual_png": {
+            "pixels": [
+              2244,
+              1323
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          },
+          "qa_exports": {
+            "pdf": {
+              "width_mm": 190.0000000000161,
+              "height_mm": 111.99999999998944,
+              "sha256": "80398c3f57704bb00c2954b492aecfcd54dcf646a08cd59ea2fbd19b11ac1cbf"
+            },
+            "svg": {
+              "width_mm": 189.99999994166666,
+              "height_mm": 112.0000000138889,
+              "text_preserved": true,
+              "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+              "sha256": "79af7e22dffd58f8e8f1fd85ee2d3ea34c2d49d52591558d31584e4c3f1582c0"
+            },
+            "png": {
+              "pixels": [
+                2244,
+                1323
+              ],
+              "dpi": [
+                299.9994,
+                299.9994
+              ],
+              "sha256": "6cf5f72c0226b4415887e8ccca6e0fed18c79b93d400beba0bb52e15e98441f1"
+            }
+          },
+          "format_bindings": {
+            "pdf": {
+              "status": "passed",
+              "measurement_source": "hash_bound_qa",
+              "recorded_sha256": "80398c3f57704bb00c2954b492aecfcd54dcf646a08cd59ea2fbd19b11ac1cbf",
+              "actual_sha256": "80398c3f57704bb00c2954b492aecfcd54dcf646a08cd59ea2fbd19b11ac1cbf"
+            },
+            "svg": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "79af7e22dffd58f8e8f1fd85ee2d3ea34c2d49d52591558d31584e4c3f1582c0",
+              "actual_sha256": "79af7e22dffd58f8e8f1fd85ee2d3ea34c2d49d52591558d31584e4c3f1582c0"
+            },
+            "png": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "6cf5f72c0226b4415887e8ccca6e0fed18c79b93d400beba0bb52e15e98441f1",
+              "actual_sha256": "6cf5f72c0226b4415887e8ccca6e0fed18c79b93d400beba0bb52e15e98441f1"
+            }
+          },
+          "actual_svg": {
+            "width_mm": 189.99999994166666,
+            "height_mm": 112.00000001388888
+          }
+        }
+      },
+      "typography": {
+        "status": "not_checked",
+        "evidence": {
+          "actual_font": "Arial",
+          "font_substituted": false,
+          "sizes_pt": null,
+          "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+        }
+      },
+      "source_provenance": {
+        "status": "failed",
+        "evidence": {
+          "declared_sources": {
+            "data_file": [
+              {
+                "declared_by": "elements.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/inputs/coefficients.csv",
+                "sha256": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+                "expected_sha256": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+                "status": "passed"
+              }
+            ],
+            "source_script": [
+              {
+                "declared_by": "elements.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/plot.py",
+                "sha256": "1631e81acea002cd6cf86ccd8efe13f2b47cece95da3d735278cbc8330d65c54",
+                "expected_sha256": "1631e81acea002cd6cf86ccd8efe13f2b47cece95da3d735278cbc8330d65c54",
+                "status": "passed"
+              }
+            ],
+            "spec_file": [
+              {
+                "declared_by": "elements.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/spec.json",
+                "sha256": "4beb7aee12d7c01df4563326194e49c65de17aa0975c25b64d41813560480001",
+                "expected_sha256": "4beb7aee12d7c01df4563326194e49c65de17aa0975c25b64d41813560480001",
+                "status": "passed"
+              }
+            ],
+            "figure_profile": []
+          },
+          "saved_specification": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/settings.json",
+            "sha256": "2d23bed52604dd3f19b0eb3d3458b5dd107910af8724729c4bb17296daf6a9f1",
+            "bytes": 4753
+          },
+          "resolved_spec_sha256": "206f16d6e29b6c77e6efde143ae6507d9ab2b13ee54a63caad2fc391642ad93b",
+          "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+        }
+      },
+      "technical_qa": {
+        "status": "passed",
+        "evidence": {
+          "qa": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/qa.json",
+            "sha256": "07797ae3934499f712a404398591777168cb033c05333668eb01e050d9ccde49",
+            "bytes": 21402
+          },
+          "status": "pass",
+          "valid_outputs": true,
+          "input_rows": 11143,
+          "plotted_input_rows": null,
+          "readability_advisory": null,
+          "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+        }
+      },
+      "caption": {
+        "status": "passed",
+        "evidence": {
+          "artifact": {
+            "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/caption.md",
+            "sha256": "a490c3c66aa5052d8ac589ff4a1b916bca81e33bb6ca3d9b2d7ad3a048f53232",
+            "bytes": 2845
+          },
+          "scope": "Separate caption is present; its scientific wording is a review attestation."
+        }
+      }
+    },
+    "candidate_png": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/pathway-signatures/output/panel.png",
+      "sha256": "6cf5f72c0226b4415887e8ccca6e0fed18c79b93d400beba0bb52e15e98441f1",
+      "bytes": 211183
+    },
+    "baseline_png": null
+  },
+  "required_design_checks": [
+    "scientific_mapping",
+    "reading_priority",
+    "mark_hierarchy",
+    "geometry",
+    "palette_and_strokes",
+    "guides_and_text"
+  ],
+  "required_external_checks": [
+    "export_dimensions",
+    "typography",
+    "source_provenance",
+    "technical_qa",
+    "caption"
+  ],
+  "instructions": [
+    "Open the actual candidate PNG as a complete canvas before first user-visible delivery.",
+    "Consider the recorded physical size: inspect a nominal-size view if available, or honestly record a final-proportions view and its size basis. One actual opening may cover both views.",
+    "Record brief, concrete evidence for each design criterion; inspect the caption separately.",
+    "Acknowledge the saved measured evidence without inventing measurements. Required failed/not_checked items prevent readiness.",
+    "Correct critical/major failures before delivery; record corrections and residual minor/intentional differences. A clean first pass is valid.",
+    "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
+    "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."
+  ],
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

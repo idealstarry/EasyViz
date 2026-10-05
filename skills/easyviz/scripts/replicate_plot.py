@@ -114,7 +114,7 @@ def validate_spec(spec):
 
 def prepare(data_path, spec):
     validate_spec(spec)
-    data = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    data = core.read_source_csv(data_path)
     require(len(data) > 0, "Input has no observations")
     require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
     fields, options = spec["fields"], spec.get("options", {})
@@ -293,9 +293,7 @@ def draw(data, spec, layout, typography):
 
 def audit_source_artists(data_path, spec, fig):
     """Reread CSV and compute expectations with independent Python statistics."""
-    import csv
-    with Path(data_path).open(newline="") as stream:
-        raw = list(csv.DictReader(stream))
+    raw = core.read_source_csv(data_path).to_dict("records")
     f, options, issues = spec["fields"], spec.get("options", {}), []
     mode = options.get("mode", "summary")
     conditions = spec.get("order", {}).get("condition", list(dict.fromkeys(row[f["condition"]] for row in raw)))
@@ -475,8 +473,8 @@ def render(data_path, spec, out, *, spec_path=None):
     core.write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports from previous runs are unverified until this run passes."})
     fig, before = None, set(plt.get_fignums())
     try:
-        digest = hashlib.sha256(data_path.read_bytes()).hexdigest()
         data = prepare(data_path, spec)
+        digest = data.attrs["source_csv_sha256"]
         resolved = deepcopy(spec)
         resolved.setdefault("layout", {}).setdefault("auto_fit", "margins" not in resolved.get("layout", {}))
         layout, typography, rc = core.setup(resolved)
@@ -490,6 +488,7 @@ def render(data_path, spec, out, *, spec_path=None):
             legends = fig._easyviz_legend_layout.validate()
             fitted = getattr(fig, "_easyviz_auto_layout", None)
             fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_bindings = {"data_file": {"path": str(data_path.resolve()), "sha256": digest}}
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
@@ -505,6 +504,7 @@ def render(data_path, spec, out, *, spec_path=None):
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py", "observation_clipping.py")}})
             settings["observation_clipping"] = clipping_report
+            settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
             settings["renderer"]["helper_sha256"]["observation_clipping.py"] = core.RUNTIME_SOURCE_DIGESTS["observation_clipping.py"]
             if spec_path is not None:
                 settings["spec_file_sha256"] = hashlib.sha256(Path(spec_path).read_bytes()).hexdigest()

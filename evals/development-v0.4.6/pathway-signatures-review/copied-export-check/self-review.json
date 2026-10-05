@@ -1,0 +1,61 @@
+{
+  "reviewer": "implementing Agent; self-review only",
+  "visual_passes": 3,
+  "metadata_repaint": "A metadata/table completion repaint used unchanged visual geometry; no new design candidate.",
+  "images_opened": [
+    "first-render/panel.png",
+    "references/progeny-figure2-reference.png",
+    "reviewed-pass-02/panel.png",
+    "reviewed-pass-02/pdf-preview-96dpi.png",
+    "output/panel.png",
+    "output/pdf-preview-96dpi.png",
+    "portable-final-check/panel.png",
+    "portable-final-check/pdf-preview-96dpi.png"
+  ],
+  "opening_method": "functions view_image; PDF preview rendered with PyMuPDF at 96 dpi and opened at original pixels",
+  "canvas_mm": [
+    190,
+    112
+  ],
+  "font_size_pt": 8,
+  "findings": [
+    {
+      "severity": "major",
+      "location": "first-render matrix lower labels",
+      "state": "resolved",
+      "evidence": "Center-anchored rotated labels crossed the final matrix row. Top-anchored labels visibly remain below the matrix in pass 2."
+    },
+    {
+      "severity": "note",
+      "location": "NFkB\u2013TNFa low-coefficient gene points",
+      "state": "accepted",
+      "evidence": "Nearby actual coefficients form a dense lower-left cluster. Original numeric coordinates are retained without jitter; per-gene SVG artist identities preserve exact selection."
+    },
+    {
+      "severity": "note",
+      "location": "matrix first row/empty upper half",
+      "state": "accepted",
+      "evidence": "Lower-triangle-only comparison leaves intentional blank half-matrix space. Every unordered pair and all 48 zero-overlap values are retained."
+    },
+    {
+      "severity": "minor",
+      "location": "NFkB\u2013TNFa CXCL8 label",
+      "state": "resolved",
+      "evidence": "Independent reviewer observed possible attachment to the second-highest point in pass 2. Pass 3 places CXCL8 above its own actual point; DUSP6 placement is retained."
+    }
+  ],
+  "technical_validation": "output/validation.json",
+  "portable_font_validation": "portable-final-check/validation.json",
+  "six_corruption_probes": "output/validation-probes.json",
+  "independent_review": "Final independent image review pending in evals/development-v0.4.6/pathway-signatures-review; no self-certification.",
+  "freeze": {
+    "plot.py": "3a65e160d19e6ea9cc103e7a647fa1fd4af22a0ac1fae50ccf067d05aa23db0a",
+    "spec.json": "a41a218de393a8018e023576318336c6428a31b2d4f152768a3a44e601eba81b",
+    "caption.md": "a490c3c66aa5052d8ac589ff4a1b916bca81e33bb6ca3d9b2d7ad3a048f53232",
+    "inputs/coefficients.csv": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d",
+    "inputs/input-contract.json": "314e3d67e2461814f7d1a0df84e9ca1325c4c6307cd5ecb0f188257042cb5889",
+    "output/panel.png": "3216cc6305ab71bcb46acda532f5dcdd63588e1924723cf6557afe27493198aa",
+    "output/panel.pdf": "515b8532750d922ebe6211951286e4765c4ff81d1c374c9c7e98d3afe3ea1afd",
+    "output/panel.svg": "f7a1e9bb90712b353e4146e6c0ff4e10bc19bdc118b00ed31cb875b0594dfbcb"
+  }
+}

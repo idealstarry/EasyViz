@@ -1,0 +1,15 @@
+.................................................................F...........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................EasyViz: Source/spec/profile changed before rendering; prepare the current inputs again
+..............................................................................................
+======================================================================
+FAIL: test_real_focused_restore_rebinds_every_settings_source_and_preserves_exports (test_apply_figure_requests.CoreRenderRequestTests.test_real_focused_restore_rebinds_every_settings_source_and_preserves_exports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_apply_figure_requests.py", line 570, in test_real_focused_restore_rebinds_every_settings_source_and_preserves_exports
+    self.assertEqual(fresh_settings, expected_settings, "Only frozen provenance pointer changes")
+AssertionError: {'cha[11088 chars]fg1d/restored/source-data.csv', 'sha256': '44e[148 chars]9a5'} != {'cha[11088 chars]fg1d/data.csv', 'sha256': '44e2282cf4660912675[132 chars]9a5'}
+Diff is 34629 characters long. Set self.maxDiff to None to see it. : Only frozen provenance pointer changes
+
+----------------------------------------------------------------------
+Ran 635 tests in 284.585s
+
+FAILED (failures=1)

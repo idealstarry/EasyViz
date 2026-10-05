@@ -8,19 +8,18 @@
 
 </div>
 
-EasyViz helps a local Agent turn data into editable scientific figures, with
-literature-informed design, actual image review and PDF, SVG and PNG exports.
+EasyViz guides local Agents that can run Python and inspect images, from data
+or references to editable scientific figures.
 
 [Latest stable release](https://github.com/idealstarry/EasyViz/releases/latest).
 
 | Track | Start with | The Agent does |
 | --- | --- | --- |
-| **Create** | A data directory, table or scientific question | Recommends a suitable chart, applies scene-specific design and reviews the result before delivery. |
-| **Reproduce** | A reference image and your data | Reads the visual structure, writes or adapts plotting code and checks the result against the reference. |
+| **Create** | Data and a scientific question | Choose a useful chart, apply suitable design and review the image. |
+| **Reproduce** | A reference image and your data | Read the reference, implement its layers and compare the result. |
 
-Set the panel size, typography and scientific choices; EasyViz keeps them
-consistent. You receive the figure, a separate caption, runnable code and
-traceable plotting data.
+Receive PDF, SVG and PNG, a caption, code and plotting data at your chosen size
+and typography.
 
 ## Install
 
@@ -31,8 +30,7 @@ Install or update https://github.com/idealstarry/EasyViz in my local
 ChatGPT Desktop. Follow INSTALL.md and verify the installation for me.
 ```
 
-For other local Agents, follow [INSTALL.md](INSTALL.md).
-[Release packages](https://github.com/idealstarry/EasyViz/releases) are also available.
+Other local Agents: [INSTALL.md](INSTALL.md).
 Start a new chat after installing or updating.
 
 ## Use
@@ -53,54 +51,58 @@ Keep its layers and axis structure, use a 100 × 76 mm panel and 8 pt text,
 and write plotting code for any unsupported layers. Export PDF, SVG and PNG.
 ```
 
-The Agent clarifies consequential unknowns about units, pairing or comparisons.
-For a new Create panel, it uses applicable literature design rules and
-[visual design cards](skills/easyviz/references/design-cards.md), then inspects
-and corrects the images before the first finished delivery.
+The Agent clarifies units and comparisons, applies suitable
+[design cards](skills/easyviz/references/design-cards.md), and reviews actual images.
 
 ## Examples
 
 ### Create
 
-**Treatment comparison** · One repair outcome, with every biological replicate
-and sample SD. The case also exports the other outcomes separately.
-[Data, code and caption](examples/create/repair-outcomes/README.md).
-
-<p align="center"><a href="examples/create/repair-outcomes/"><img src="examples/create/repair-outcomes/panels/hdr/output/panel.png" alt="HDR treatment comparison with neutral open means, all biological replicates and sample SD" width="440"></a></p>
-
-**Compartment response** · All 88 Ccl2 observations and exact-hour mean ± SEM,
-with separate lung and serum units. [Data, code and design decisions](examples/create/compartment-ccl2/README.md).
+**Compartment response** · 88 Ccl2 observations, mean ± SEM and separate units.
+[Data and code](examples/create/compartment-ccl2/README.md).
 
 <p align="center"><a href="examples/create/compartment-ccl2/"><img src="examples/create/compartment-ccl2/output/panel.png" alt="Lung and serum Ccl2 time courses with all supplied observations and separate concentration axes" width="680"></a></p>
 
-**Expression and genotype contrasts** · All 174 sample-level TPM values and an
-aligned descriptive comparison. [Data, code and design decisions](examples/create/thermogenic-expression/README.md).
+**Expression and genotype contrasts** · 174 TPM values and an aligned
+descriptive comparison. [Data and code](examples/create/thermogenic-expression/README.md).
 
 <p align="center"><a href="examples/create/thermogenic-expression/"><img src="examples/create/thermogenic-expression/output/panel.png" alt="Twenty-nine genes across six samples, with absolute expression and aligned genotype contrasts" width="440"></a></p>
 
-[Basic panels and other cases](examples/README.md) remain available for simpler
-questions. Extra layers serve a specific comparison; they are optional.
+**Signature relationships** · Gene overlaps, paired coefficients and
+descriptive sign fractions. [Data and code](examples/create/pathway-signatures/README.md).
+
+<p align="center"><a href="examples/create/pathway-signatures/"><img src="examples/create/pathway-signatures/output/panel.png" alt="PROGENy signature overlap with paired gene coefficients and descriptive sign fractions" width="700"></a></p>
+
+[Replicate treatment bars](examples/create/repair-outcomes/README.md),
+[basic panels and other cases](examples/README.md) cover simpler questions.
 
 ### Reproduce
 
-**Time-course means and SD** · Original Figure 1d from
-[Shi et al., Nature Communications (2021)](https://doi.org/10.1038/s41467-021-22092-5),
-compared with the reconstruction from its 120 supplied summaries.
+**Paired effect lanes** · Original Figure 3a,b from
+[Vabistsevits et al., Nature Communications (2024)](https://doi.org/10.1038/s41467-024-48105-7).
 
 | Original literature panel | EasyViz reconstruction |
 | --- | --- |
-| <img src="examples/no-author-code/shi-timecourse/reference.png" alt="Original Shi Figure 1d with two colored axes and mean plus SD bands" width="350"> | <a href="examples/no-author-code/shi-timecourse/"><img src="examples/no-author-code/shi-timecourse/output/panel.png" alt="Reconstructed Figure 1d from all supplied means and SD, with declared axis-bound adaptation" width="350"></a> |
+| <img src="examples/no-author-code/vabistsevits-forest/inputs/reference.png" alt="Original Vabistsevits paired forest panels" width="350"> | <a href="examples/no-author-code/vabistsevits-forest/revision-v0.4.6/"><img src="examples/no-author-code/vabistsevits-forest/revision-v0.4.6/output/panel.png" alt="Reconstructed paired narrow forest lanes with shared outcome key" width="350"></a> |
 
-The reproduced panel omits the original panel letter and expands the width-axis
-bounds to show the full supplied SD. Source excerpt: Shi et al.,
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-[Data, code and recorded differences](examples/no-author-code/shi-timecourse/README.md).
-Other cases include [integration radar](examples/no-author-code/massier-integration-radar/)
-and [supplied-effect forest panels](examples/no-author-code/vabistsevits-forest/).
+[Data, code and declared adaptations](examples/no-author-code/vabistsevits-forest/revision-v0.4.6/README.md).
 
-The examples use attributed literature Source Data. Each case records its
-transformations and limitations. Your own reproduction needs a reference and
-your data; published Source Data or author code is optional.
+**Integration rates** · The selected depot radar from
+[Massier et al., Nature Communications (2023)](https://doi.org/10.1038/s41467-023-36983-2).
+
+| Original literature panel | EasyViz reconstruction |
+| --- | --- |
+| <img src="examples/no-author-code/massier-integration-radar/inputs/reference.png" alt="Original Massier depot integration radar" width="350"> | <a href="examples/no-author-code/massier-integration-radar/revision-v0.4.6/"><img src="examples/no-author-code/massier-integration-radar/revision-v0.4.6/output/panel.png" alt="Reconstructed radar with adjusted circle and marker proportions" width="350"></a> |
+
+[Data, code and declared adaptations](examples/no-author-code/massier-integration-radar/revision-v0.4.6/README.md).
+
+Both reconstructions retain all supplied values and adopt editable 8 pt text.
+Their case pages record measured geometry, intentional changes and remaining
+differences.
+Both original excerpts are [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+[Time-course reproduction](examples/no-author-code/shi-timecourse/README.md) is also available.
+
+Published Source Data or author code is optional for your own reproduction.
 [Browse all cases](examples/README.md).
 
 ## Colors
@@ -125,13 +127,11 @@ When I say the requests are ready, apply them and show the new attempt
 beside the previous one.
 ```
 
-The Agent shares a `http://127.0.0.1:PORT/` page. Click or draw to add numbered
-annotations, write an instruction for each, and use **Save requests** together.
-Saving records the requests; tell the Agent when to apply them. It edits the
-plotting code and rerenders a new attempt. SVG element selection requires a
-matching element map. Custom code can bind its consumed inputs and actual
-exports for region notes, saved requests and accepted-history restoration;
-register real elements when click selection is useful.
+The Agent opens `http://127.0.0.1:PORT/`. Add numbered selections or regions,
+write instructions, and **Save requests**. Tell the Agent to apply them; it
+edits the code and shows the new attempt beside the previous one. Saving alone
+does not start the Agent. Element selection needs a matching element map;
+custom plots can use the documented export handoff.
 [Workbench guide](skills/easyviz/references/figure-workbench.md).
 
 ## Guides
@@ -141,7 +141,7 @@ register real elements when click selection is useful.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](evals/release-qa/v0.4.5/README.md)
+[Validation and limits](evals/release-qa/v0.4.6/README.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

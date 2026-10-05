@@ -138,7 +138,7 @@ def validate_spec(spec):
 def prepare(data_path, spec):
     """Validate all supplied rows; preserve absent combinations and unused fields."""
     validate_spec(spec)
-    data = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    data = core.read_source_csv(data_path)
     require(len(data) > 0, "Input has no observations")
     require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
     f, options = spec["fields"], spec.get("options", {})
@@ -286,7 +286,7 @@ def draw(data, spec, layout, typography):
 
 def audit_source_artists(data_path, spec, fig):
     """Independently reread source rows and check actual artist coordinates."""
-    raw = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    raw = core.read_source_csv(data_path)
     f, options, issues, rows = spec["fields"], spec.get("options", {}), [], []
     labels = spec.get("order", {}).get("label", list(dict.fromkeys(raw[f["label"]])))
     series = spec.get("order", {}).get("series", list(dict.fromkeys(raw[f["series"]]))) if "series" in f else []
@@ -473,8 +473,8 @@ def render(data_path, spec, out, *, spec_path=None):
     fig = None
     figures_before = set(plt.get_fignums())
     try:
-        input_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
         data = prepare(data_path, spec)
+        input_hash = data.attrs["source_csv_sha256"]
         write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "input_rows": len(data), "input_sha256": input_hash, "note": "Until this run passes, exports may be stale or unverified."})
         resolved = deepcopy(spec)
         resolved.setdefault("chart", "interval")
@@ -494,6 +494,7 @@ def render(data_path, spec, out, *, spec_path=None):
             geometry = _mark_geometry(fig)
             fitted = getattr(fig, "_easyviz_auto_layout", None)
             fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_bindings = {"data_file": {"path": str(data_path.resolve()), "sha256": input_hash}}
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
@@ -509,6 +510,7 @@ def render(data_path, spec, out, *, spec_path=None):
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["pdf", "png"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim())), "explicit_x_ticks": resolved.get("options", {}).get("x_ticks"), "reference_value": resolved.get("options", {}).get("reference_value"), "reference_drawn": "reference_value" in resolved.get("options", {})}
+            settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
             area = resolved.get("options", {}).get("marker_area_pt2", 20)
             settings["mark_policy"] = {"shape": "circle", "geometric_fill_area_pt2": area, "matplotlib_s": 4 / math.pi * area, "diameter_pt": math.sqrt(4 / math.pi * area), "fill": resolved.get("options", {}).get("mark_fill", "all_filled"), "filled_outline": "none", "hollow_outline": "mapped category color", "reference_overlap_semantics": "inclusive supplied endpoint overlap; no significance inferred" if resolved.get("options", {}).get("mark_fill") == "reference_overlap" else None}
             settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": _HELPER_HASHES}

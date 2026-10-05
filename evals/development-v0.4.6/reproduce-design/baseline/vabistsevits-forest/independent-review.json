@@ -1,0 +1,101 @@
+{
+  "status": "pass_with_minor_concerns",
+  "review_scope": "Independent visual comparison and export inspection; no implementation scripts or source tables read.",
+  "reviewed_at_utc": "2026-10-02T06:38:58.429153+00:00",
+  "candidate_sha256": {
+    "output-a/panel.png": "6f92ee38e250baef3f465207f8cf93c98f3ef540bda7bfa5a9e362aaad55c554",
+    "output-a/panel.pdf": "1ffe9f4ff070f01742f6e555f915c97a4ef6d0c0a5539ca7193c08ef705c185e",
+    "output-a/panel.svg": "b8f7602194067e4d2ec8f2725c1bce4efe0d9060dd3d74936ac679fc017e7530",
+    "output-b/panel.png": "96ff894dc6ed0a6f10f4a74c6fa723ad7e246d8ab5460576ff2890cac492b48c",
+    "output-b/panel.pdf": "912ffac130df041212115d1e909495a37d53479ca14e9ea174156c3bd5746f70",
+    "output-b/panel.svg": "2a2041ad9d1bc19721338bdf0e0e7fae3e95b8feb50f456ae424eecca02db0ac"
+  },
+  "checked_evidence_sha256": {
+    "adopted-spec.md": "319498aa25071cbfaea849307919a921acc98cc5deea7fec3e2466e20d640c36",
+    "caption-a.md": "f6e12e31a5f8eaf28ac21741b12542ca12e7b08115ecf45429e33c12ad47e3dd",
+    "caption-b.md": "5fae6c44a398273ed280c6265137ae8ff6baebce637af2251ce0da5e29565a3e",
+    "output-a/qa.json": "7583917279dc860d8233625cf169a5ceddddc428b5cf451e282f875f9746b8db",
+    "output-b/qa.json": "2f5c4908dc5e728ba618e1193f744cd86c13123a1987c351b1130b8c0b5e77e1",
+    "output-a/stats.json": "d68de8823bbf45345740de11297c5dbdc9fd8bf05900017bdd0926abc3bb704c",
+    "output-b/stats.json": "d68de8823bbf45345740de11297c5dbdc9fd8bf05900017bdd0926abc3bb704c",
+    "verification.json": "56943700f14256d666363ee3aad9f618efac59019a3653379c90caf49441c4d6"
+  },
+  "visually_viewed": [
+    "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/vabistsevits-forest/reference.png",
+    "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/output-a/panel.png",
+    "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/output-b/panel.png",
+    "/private/tmp/forest-review-output-a-96dpi.png",
+    "/private/tmp/forest-review-output-b-96dpi.png"
+  ],
+  "pdf_review": {
+    "visual_page_render_viewed": false,
+    "media_boxes_independently_read": true,
+    "font_resources_independently_read": true,
+    "font_size_operators_independently_read": true,
+    "page_count_each": 1,
+    "width_mm": 105.00000000000334,
+    "height_mm": 134.99999999998917,
+    "font_families": [
+      "ArialMT",
+      "Arial-BoldMT"
+    ],
+    "actual_font_sizes_pt": [
+      8.0
+    ],
+    "text_font_operator_counts_each": {
+      "ArialMT_8pt": 30,
+      "Arial-BoldMT_8pt": 3
+    }
+  },
+  "physical_proxy": {
+    "size_pixels": [
+      397,
+      510
+    ],
+    "nominal_dpi": 96,
+    "purpose": "Reduced viewing preview approximating the target 105 x 135 mm aspect and logical size.",
+    "limitation": "Display scaling and pixel density are uncalibrated; this is not a calibrated physical or print proof."
+  },
+  "visible_findings": {
+    "source_structure": "Three exposure blocks and eight consistent outcome colors per block remain visible in both candidates.",
+    "intentional_adaptations": "Repeated neutral outcome labels, horizontal exposure headers, no panel letters or effect titles, one null reference, equal circles, no gray outer frame or x=2 guide agree with the adopted specification.",
+    "label_count_each": {
+      "outcome_labels": 24,
+      "exposure_headers": 3,
+      "major_numeric_tick_labels": 3,
+      "axis_label": 1,
+      "state_guide_entries": 2
+    },
+    "crowding": "No visible label, tick, state-guide collision or cropped label in either candidate.",
+    "balance": "The neutral label column uses about one third of the width; the plot region is about 69 mm wide. Approximately 4 mm row spacing keeps the dense 24-row panel legible, with larger gaps between exposure blocks.",
+    "hierarchy": "Bold gray exposure headers lead the three blocks; ordinary dark outcome labels identify rows; circles and uncapped intervals carry the estimates; the small two-row gray fill-state guide remains subordinate below the axis.",
+    "pale_colors": "Yellow is weakest on white at the reduced viewing size; pale blue and pink are also lighter. Neutral row labels preserve outcome identification, and pale marks remain visible in this preview.",
+    "cross_panel_consistency": "A and B visibly share color mapping, row order, layout, circle size, reference style, type sizes, and legend position."
+  },
+  "saved_checks_read": {
+    "qa_each": "pass; 24 input/plotted/audited rows, no clipped text or overlapping tick labels, mark geometry and legend layout pass",
+    "stats_each": "supplied_intervals; no interval recomputation, inferred weights or n, or tests",
+    "verification_json": "pass; 48 original records/numeric strings preserved, 24 actual PDF intervals and 24 circles per panel, source endpoints/estimates and fill states reported verified, 20 pt2 geometric area reported for every circle",
+    "verification_hashes_match_reviewed_candidates": true,
+    "reviewer_recomputed_source_numerics": false
+  },
+  "blocking_findings": [],
+  "minor_concerns": [
+    {
+      "id": "pale_color_proof",
+      "severity": "low",
+      "affected": "Both panels, especially ER- yellow intervals and hollow circles",
+      "finding": "Pale source-derived colors have limited visual contrast on white in the reduced preview.",
+      "action": "Check these marks in the final production proof. If that proof loses them, document any contrast adjustment and apply it consistently to both panels. No automatic palette change is required by this review."
+    }
+  ],
+  "residual_uncertainty": [
+    "No calibrated physical print proof or color-management check was performed.",
+    "No separate visual rendering of the PDFs was viewed; PNGs were the visual candidates, while PDF dimensions/font resources/font sizes were independently inspected.",
+    "SVG was hashed and its saved export checks read, but not visually rendered by this reviewer.",
+    "Scientific validity and independent source-table arithmetic were not assessed from appearance. Saved numeric checks are cited as evidence, not replaced by visual judgment.",
+    "Standalone effect identification depends on the accompanying separate captions, as intentionally specified.",
+    "Original physical typography and dimensions cannot be recovered from the reference raster."
+  ],
+  "publication_suitability_claimed": false
+}

@@ -1,0 +1,282 @@
+{
+  "review_pass": 2,
+  "independent": true,
+  "inspected_actual_images": [
+    "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/shi-timecourse/reference.png",
+    "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/output/panel.png",
+    "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/transfer/output/panel.png",
+    "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/shi-timecourse/panel-pdf-96dpi.png",
+    "/Users/starry/Desktop/EasyViz/evals/reproduce-inputs/shi-timecourse/transfer-pdf-96dpi.png",
+    "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/transfer-reproduce/output/panel.png"
+  ],
+  "restricted_inputs_respected": true,
+  "source_data_or_code_inspected": false,
+  "refinement_preference": "not_applicable",
+  "main": {
+    "status": "ready_with_notes",
+    "visual_repairs_needed": false,
+    "scientific_mapping": "passed",
+    "clipping_and_legibility": "passed",
+    "band_line_layering": "passed",
+    "colored_axes": "passed",
+    "marker_role": "supplied summary times, supported by adopted specification and caption",
+    "caption": "passed",
+    "approximate_plot_bounds_normalized": [
+      0.111,
+      0.026,
+      0.912,
+      0.869
+    ],
+    "findings": [
+      {
+        "severity": "note",
+        "location": "typography verification resolved",
+        "evidence": "Updated QA measures 18 visible text objects as Arial 8 pt, resolved without fallback to recorded font file/hash",
+        "requirement": "Arial 8 pt",
+        "action": "No repair; pass-1 evidence gap closed"
+      },
+      {
+        "severity": "note",
+        "location": "layout",
+        "evidence": "More canvas area allocated to plot than reference",
+        "requirement": "Fixed 100 x 76 mm canvas and 8 pt text are adopted adaptations",
+        "action": "No repair"
+      },
+      {
+        "severity": "note",
+        "location": "right axis title",
+        "evidence": "Candidate reads bottom-to-top; reference reads top-to-bottom",
+        "requirement": "No prescribed rotation direction in adopted specification",
+        "action": "Record residual difference; no required repair"
+      },
+      {
+        "severity": "note",
+        "location": "axis bounds",
+        "evidence": "Entire supplied SD bounds visible with extra clearance",
+        "requirement": "Adopted expanded limits",
+        "action": "No repair"
+      }
+    ],
+    "final_png_sha256": "78f5e70686010bccf03787abb0391cb34f5ff7a3689d313bf6957a99216ed343"
+  },
+  "synthetic_transfer": {
+    "status": "ready_with_notes",
+    "synthetic_fixture": true,
+    "visual_repairs_needed": false,
+    "scientific_mapping": "passed",
+    "clipping_and_legibility": "passed",
+    "band_line_layering": "passed",
+    "legend_order": [
+      "001",
+      "NA",
+      "null"
+    ],
+    "legend_proportions": "passed",
+    "marker_role": "supplied central summaries; not raw observations",
+    "uncertainty_role": "supplied asymmetric bounds with no inferential coverage asserted",
+    "caption": "passed",
+    "findings": [
+      {
+        "severity": "note",
+        "location": "typography verification resolved",
+        "evidence": "Updated QA measures 16 visible axis, tick and legend text objects as Arial 8 pt, resolved without fallback to recorded font file/hash",
+        "requirement": "Arial 8 pt",
+        "action": "No repair; pass-1 evidence gap closed"
+      },
+      {
+        "severity": "note",
+        "location": "scope",
+        "evidence": "Separate caption clearly states synthetic fixture unrelated to source measurements",
+        "requirement": "Keep source reproduction and transfer meanings separate",
+        "action": "No repair; do not extend success to untested datasets"
+      }
+    ],
+    "final_png_sha256": "4c40bbbf7771e8ac2966ba3671db920c1dd60e039ecf07dac7b00ef28ee7bb1e"
+  },
+  "external_checks": {
+    "png_metadata": {
+      "status": "passed",
+      "evidence": "Direct inspection of both candidate PNGs",
+      "main": {
+        "pixels": [
+          1181,
+          898
+        ],
+        "dpi": [
+          300,
+          300
+        ]
+      },
+      "synthetic_transfer": {
+        "pixels": [
+          1181,
+          898
+        ],
+        "dpi": [
+          300,
+          300
+        ]
+      }
+    },
+    "physical_pdf_svg_dimensions": {
+      "status": "passed",
+      "evidence": "Supplied QA records approximately 100 x 76 mm for both cases",
+      "independently_opened": false
+    },
+    "svg_editable_text": {
+      "status": "passed",
+      "evidence": "Supplied QA records text_preserved true",
+      "independently_opened": false
+    },
+    "source_to_artist_audit": {
+      "status": "passed",
+      "evidence": "Supplied QA: main 120 summary rows and 240 endpoints; transfer 18 rows and 36 endpoints; no issues",
+      "independently_recalculated": false
+    },
+    "actual_typography": {
+      "status": "passed",
+      "evidence": "Updated supplied QA records actual visible Text properties after final layout, resolved without fallback",
+      "family": "Arial",
+      "size_pt": 8,
+      "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+      "font_sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+      "main_text_objects": 18,
+      "transfer_text_objects": 16,
+      "font_binary_or_code_inspected": false
+    },
+    "pdf_derived_preview_legibility": {
+      "status": "passed",
+      "evidence": "Both allowed 96-DPI PDF-derived previews actually viewed at their intended page proportions; labels/ticks/legend legible and uncut",
+      "direct_pdf_file_opened": false
+    }
+  },
+  "status": "ready_with_notes",
+  "unresolved_items": [],
+  "next_correction": "None required",
+  "review_history": [
+    {
+      "pass": 1,
+      "status": "needs_revision",
+      "finding": "Actual rendered font evidence missing; no visual repair identified"
+    },
+    {
+      "pass": 2,
+      "status": "ready_with_notes",
+      "resolution": "Updated QA contains measured Arial 8 pt text, font file/hash and no-fallback resolution; both final PNGs and PDF-derived previews actually viewed"
+    },
+    {
+      "pass": 2,
+      "view": "synthetic_reproduce_transfer",
+      "status": "ready_with_notes",
+      "resolution": "Bounded additional candidate review appended; accepted main and create conclusions unchanged"
+    }
+  ],
+  "residual_differences": [
+    "Main plot occupies a larger relative canvas region than reference",
+    "Fixed compact typography is an explicit adaptation",
+    "Right y title reading direction differs",
+    "Exact author hues are unrecovered visual estimates",
+    "Expanded y bounds intentionally show all supplied band values"
+  ],
+  "synthetic_reproduce_transfer": {
+    "status": "ready_with_notes",
+    "review_scope": "Bounded third-view addition to accepted pass 2; first inspection of this candidate",
+    "track": "reproduce",
+    "track_evidence": "Supplied caption and review task; track not a field in allowed plotting spec",
+    "synthetic_fixture": true,
+    "visual_repairs_needed": false,
+    "final_png_sha256": "105af92702af60bb16c76ff4170140930023911c26d2a48684bcb2507affba56",
+    "scientific_mapping": "passed",
+    "clipping_and_legibility": "passed",
+    "band_line_layering": "passed",
+    "colored_axes": "passed",
+    "categorical_legend": "Not required; matching colored axes encode the two quantities",
+    "category_order": [
+      "Width variant",
+      "Length variant"
+    ],
+    "marker_role": "Supplied synthetic central summaries at sparse irregular times; not measured cells",
+    "uncertainty_role": "Supplied synthetic SD bands; no biological interpretation asserted",
+    "caption": "passed",
+    "approximate_plot_bounds_normalized": [
+      0.111,
+      0.026,
+      0.912,
+      0.869
+    ],
+    "findings": [
+      {
+        "severity": "note",
+        "location": "mapping transfer",
+        "evidence": "All field/category names in supplied spec differ from main case; 12 total summaries",
+        "requirement": "Retain reference two-axis central-summary and SD-band structure with new meanings",
+        "action": "No repair; source numbers not independently inspected"
+      },
+      {
+        "severity": "note",
+        "location": "trajectory shape",
+        "evidence": "Sparse central points and straight segments; new axis ranges and curves",
+        "requirement": "Preserve supplied values without smoothing or invented observations",
+        "action": "No repair; permitted synthetic new-data differences"
+      },
+      {
+        "severity": "note",
+        "location": "scope",
+        "evidence": "Caption clearly identifies synthetic reproduction and no biological experiment",
+        "requirement": "Separate source reproduction and the create exercise",
+        "action": "No repair"
+      }
+    ],
+    "external_checks": {
+      "png_metadata": {
+        "status": "passed",
+        "evidence": "Direct inspection",
+        "pixels": [
+          1181,
+          898
+        ],
+        "dpi": [
+          300,
+          300
+        ]
+      },
+      "actual_typography": {
+        "status": "passed",
+        "evidence": "Supplied QA actual visible Text measurements after final layout, resolved without fallback",
+        "family": "Arial",
+        "size_pt": 8,
+        "text_objects": 17,
+        "font_file": "/System/Library/Fonts/Supplemental/Arial.ttf",
+        "font_sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+        "font_binary_or_code_inspected": false
+      },
+      "physical_pdf_svg_dimensions": {
+        "status": "passed",
+        "evidence": "Supplied QA approximately 100 x 76 mm",
+        "independently_opened": false
+      },
+      "svg_editable_text": {
+        "status": "passed",
+        "evidence": "Supplied QA text_preserved true",
+        "independently_opened": false
+      },
+      "source_to_artist_audit": {
+        "status": "passed",
+        "evidence": "Supplied QA: 12 summaries, 2 curves, 24 band endpoints, no issues, source unchanged",
+        "independently_recalculated": false
+      },
+      "pdf_derived_small_page_preview": {
+        "status": "not_checked",
+        "evidence": "Not supplied for this new fixture; measured font/canvas requirements are otherwise supported",
+        "required_for_current_readiness": false
+      }
+    },
+    "unresolved_required_items": [],
+    "residual_differences": [
+      "Adopted plot geometry and compact typography",
+      "Right y title reading direction",
+      "Sparse constructed x grid and category labels",
+      "Synthetic units, ranges and trajectories"
+    ]
+  }
+}

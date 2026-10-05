@@ -1,0 +1,961 @@
+{
+  "schema_version": 1,
+  "chart": "custom",
+  "track": "reproduce",
+  "panel": {
+    "width_mm": 64,
+    "height_mm": 66
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "4dfa33f88326a65c8c409dc7791732cf8d12923802c90c36a8b1535e28968a93",
+    "spec_sha256": "1be8ad93020d871b83f5bab1e957f0dba3b35d39cd51c779b6d1381c916de5ef",
+    "input_sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70",
+    "source_script_sha256": "0346efec69ebf27ddc3a1c0ae86a27c079f982535d0a89cb52dec47dc01400fe",
+    "auxiliary_inputs_sha256": "11098ee0ae491a5619171995a541bae9f10e6c398b36295d2d751c3137cbfa78"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/inputs/source-data.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/adopted-spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/plot.py",
+    "supplied_spec_sha256": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132",
+    "auxiliary_inputs": {
+      "figure_elements_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+      },
+      "figure_handoff_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+        "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+      },
+      "figure_workbench_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+        "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "easyviz-axis-line-7e2bf6320ac210bb",
+      "role": "axis-line",
+      "label": "all",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        33.0,
+        40.00000000000001,
+        0.0,
+        17.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-a13048af41130e53",
+      "role": "axis-line",
+      "label": "FAPs",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        33.0,
+        40.00000000000001,
+        16.167960777017615,
+        5.253288904374097
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-d0d858a7edd9263d",
+      "role": "axis-line",
+      "label": "vascular",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        33.0,
+        26.2467110956259,
+        9.992349288972045,
+        13.753288904374104
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-b20b84d57637e36a",
+      "role": "axis-line",
+      "label": "immune",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        23.007650711027956,
+        26.2467110956259,
+        9.992349288972045,
+        13.753288904374104
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-8c55c07810c753d1",
+      "role": "axis-line",
+      "label": "adipocytes",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        16.832039222982388,
+        40.00000000000001,
+        16.167960777017612,
+        5.253288904374097
+      ]
+    },
+    {
+      "id": "easyviz-reference-line-199feb2909f93108",
+      "role": "reference-line",
+      "label": "Acceptance rate 0.25",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        24.500000000000004,
+        31.50000000000001,
+        16.999999999999996,
+        16.999999999999996
+      ]
+    },
+    {
+      "id": "easyviz-reference-line-41528636e21e9b0a",
+      "role": "reference-line",
+      "label": "Acceptance rate 0.5",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        16.0,
+        23.000000000000007,
+        34.0,
+        34.0
+      ]
+    },
+    {
+      "id": "easyviz-data-line-5d22117b463198a7",
+      "role": "data-line",
+      "label": "raw",
+      "source_keys": [
+        {
+          "source_row": "12",
+          "integration_method": "raw",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "13",
+          "integration_method": "raw",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "14",
+          "integration_method": "raw",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "15",
+          "integration_method": "raw",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "16",
+          "integration_method": "raw",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/0/color",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/methods/0/color",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        32.290543200482986,
+        31.211648390104955,
+        7.0945679951701495,
+        9.655144279116781
+      ]
+    },
+    {
+      "id": "easyviz-point-group-c32068745d179a3d",
+      "role": "point-group",
+      "label": "raw",
+      "source_keys": [
+        {
+          "source_row": "12",
+          "integration_method": "raw",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "13",
+          "integration_method": "raw",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "14",
+          "integration_method": "raw",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "15",
+          "integration_method": "raw",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "16",
+          "integration_method": "raw",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/0/color",
+        "/layout/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/methods/0/color",
+        "markersize": "/layout/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        31.390959867149657,
+        30.312065056771623,
+        8.893734661836817,
+        11.45431094578345
+      ]
+    },
+    {
+      "id": "easyviz-data-line-5da14666654c30fa",
+      "role": "data-line",
+      "label": "Harmony",
+      "source_keys": [
+        {
+          "source_row": "7",
+          "integration_method": "harmony",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "8",
+          "integration_method": "harmony",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "9",
+          "integration_method": "harmony",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "10",
+          "integration_method": "harmony",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "11",
+          "integration_method": "harmony",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/1/color",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/methods/1/color",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        32.45641619867992,
+        34.678852522897664,
+        9.225778738578542,
+        8.14216361875124
+      ]
+    },
+    {
+      "id": "easyviz-point-group-5b60d287da669a0f",
+      "role": "point-group",
+      "label": "Harmony",
+      "source_keys": [
+        {
+          "source_row": "7",
+          "integration_method": "harmony",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "8",
+          "integration_method": "harmony",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "9",
+          "integration_method": "harmony",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "10",
+          "integration_method": "harmony",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "11",
+          "integration_method": "harmony",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/1/color",
+        "/layout/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/methods/1/color",
+        "markersize": "/layout/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        31.556832865346585,
+        33.779269189564324,
+        11.024945405245209,
+        9.941330285417903
+      ]
+    },
+    {
+      "id": "easyviz-data-line-c3e3fca7c7fe30a2",
+      "role": "data-line",
+      "label": "scVI",
+      "source_keys": [
+        {
+          "source_row": "22",
+          "integration_method": "scVI",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "23",
+          "integration_method": "scVI",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "24",
+          "integration_method": "scVI",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "25",
+          "integration_method": "scVI",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "26",
+          "integration_method": "scVI",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/2/color",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/methods/2/color",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        28.07038875908733,
+        26.927498896392418,
+        14.427339240080602,
+        23.425501103607587
+      ]
+    },
+    {
+      "id": "easyviz-point-group-dd466fceb58ecdd4",
+      "role": "point-group",
+      "label": "scVI",
+      "source_keys": [
+        {
+          "source_row": "22",
+          "integration_method": "scVI",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "23",
+          "integration_method": "scVI",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "24",
+          "integration_method": "scVI",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "25",
+          "integration_method": "scVI",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "26",
+          "integration_method": "scVI",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/2/color",
+        "/layout/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/methods/2/color",
+        "markersize": "/layout/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        27.170805425753997,
+        26.027915563059086,
+        16.226505906747263,
+        25.224667770274255
+      ]
+    },
+    {
+      "id": "easyviz-data-line-8cfb1c207ce82736",
+      "role": "data-line",
+      "label": "BBKNN",
+      "source_keys": [
+        {
+          "source_row": "2",
+          "integration_method": "bbknn",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "3",
+          "integration_method": "bbknn",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "4",
+          "integration_method": "bbknn",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "5",
+          "integration_method": "bbknn",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "6",
+          "integration_method": "bbknn",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/3/color",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/methods/3/color",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        32.15441565136198,
+        37.61517970398154,
+        2.578257715345771,
+        4.593120296018468
+      ]
+    },
+    {
+      "id": "easyviz-point-group-ae4570f399b79b65",
+      "role": "point-group",
+      "label": "BBKNN",
+      "source_keys": [
+        {
+          "source_row": "2",
+          "integration_method": "bbknn",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "3",
+          "integration_method": "bbknn",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "4",
+          "integration_method": "bbknn",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "5",
+          "integration_method": "bbknn",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "6",
+          "integration_method": "bbknn",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/3/color",
+        "/layout/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/methods/3/color",
+        "markersize": "/layout/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        31.25483231802865,
+        36.7155963706482,
+        4.377424382012437,
+        6.392286962685135
+      ]
+    },
+    {
+      "id": "easyviz-data-line-5f5012b5ca203e8e",
+      "role": "data-line",
+      "label": "rPCA",
+      "source_keys": [
+        {
+          "source_row": "17",
+          "integration_method": "rPCA",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "18",
+          "integration_method": "rPCA",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "19",
+          "integration_method": "rPCA",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "20",
+          "integration_method": "rPCA",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "21",
+          "integration_method": "rPCA",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/4/color",
+        "/layout/line_width_pt"
+      ],
+      "editable": {
+        "color": "/methods/4/color",
+        "linewidth": "/layout/line_width_pt"
+      },
+      "bbox_mm": [
+        32.99400459042662,
+        39.99174802665738,
+        4.623565007489609,
+        1.5085912844318612
+      ]
+    },
+    {
+      "id": "easyviz-point-group-1de045658ded9d8a",
+      "role": "point-group",
+      "label": "rPCA",
+      "source_keys": [
+        {
+          "source_row": "17",
+          "integration_method": "rPCA",
+          "cell_class": "ALL"
+        },
+        {
+          "source_row": "18",
+          "integration_method": "rPCA",
+          "cell_class": "FAP"
+        },
+        {
+          "source_row": "19",
+          "integration_method": "rPCA",
+          "cell_class": "ENDO"
+        },
+        {
+          "source_row": "20",
+          "integration_method": "rPCA",
+          "cell_class": "IMMUNE"
+        },
+        {
+          "source_row": "21",
+          "integration_method": "rPCA",
+          "cell_class": "ADIPOCYTES"
+        }
+      ],
+      "spec_paths": [
+        "/methods/4/color",
+        "/layout/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/methods/4/color",
+        "markersize": "/layout/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        32.09442125709329,
+        39.09216469332405,
+        6.422731674156275,
+        3.307757951098528
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-70af4e8c9720d06a",
+      "role": "axis-label",
+      "label": "all",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        31.645333333333333,
+        58.6757052951389,
+        2.7093333333333334,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-d8ffdd8b1faa6dab",
+      "role": "axis-label",
+      "label": "FAPs",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        50.66796077701761,
+        43.92899419951299,
+        6.701895833333333,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-fa7fb42b05754e96",
+      "role": "axis-label",
+      "label": "adipocytes",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        2.0393725563157212,
+        43.92899419951299,
+        13.292666666666667,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-3566801d86b786aa",
+      "role": "axis-label",
+      "label": "vascular",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        43.70000000000001,
+        22.175705295138897,
+        10.414,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-2dcf0b3b9390d18b",
+      "role": "axis-label",
+      "label": "immune",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        11.563333333333334,
+        22.175705295138897,
+        9.736666666666666,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-8dda86e0f5fa203d",
+      "role": "tick-label",
+      "label": "0",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        29.076,
+        38.6757052951389,
+        1.524,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-6f7193edfdd77c5f",
+      "role": "tick-label",
+      "label": "0.25",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        25.266000000000002,
+        47.1757052951389,
+        5.334,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-67e937be100c9ff3",
+      "role": "tick-label",
+      "label": "0.5",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        26.790000000000003,
+        55.6757052951389,
+        3.81,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-8ac41c417800cc8e",
+      "role": "axis-label",
+      "label": "kBET acceptance rate",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        19.35213020833333,
+        15.675705295138894,
+        27.29573958333334,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-474f4c8d9a46fea2",
+      "role": "legend-key",
+      "label": "raw",
+      "source_keys": [],
+      "spec_paths": [
+        "/methods/0/color"
+      ],
+      "editable": {
+        "color": "/methods/0/color"
+      },
+      "bbox_mm": [
+        2.100416666666667,
+        9.100416666666673,
+        5.799166666666667,
+        1.799166666666668
+      ]
+    },
+    {
+      "id": "easyviz-legend-label-57288349ced35331",
+      "role": "legend-label",
+      "label": "raw",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        8.5,
+        8.675705295138895,
+        4.487333333333334,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-509aaf46f105d305",
+      "role": "legend-key",
+      "label": "Harmony",
+      "source_keys": [],
+      "spec_paths": [
+        "/methods/1/color"
+      ],
+      "editable": {
+        "color": "/methods/1/color"
+      },
+      "bbox_mm": [
+        22.100416666666668,
+        9.100416666666673,
+        5.799166666666667,
+        1.799166666666668
+      ]
+    },
+    {
+      "id": "easyviz-legend-label-c31362804144c483",
+      "role": "legend-label",
+      "label": "Harmony",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        28.500000000000004,
+        8.675705295138895,
+        11.260666666666667,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-2323c927edeb9f5d",
+      "role": "legend-key",
+      "label": "scVI",
+      "source_keys": [],
+      "spec_paths": [
+        "/methods/2/color"
+      ],
+      "editable": {
+        "color": "/methods/2/color"
+      },
+      "bbox_mm": [
+        47.10041666666667,
+        9.100416666666673,
+        5.799166666666662,
+        1.799166666666668
+      ]
+    },
+    {
+      "id": "easyviz-legend-label-1080ab9c1ac51869",
+      "role": "legend-label",
+      "label": "scVI",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        53.5,
+        8.675705295138895,
+        5.503333333333334,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-9fb298f4597288b6",
+      "role": "legend-key",
+      "label": "BBKNN",
+      "source_keys": [],
+      "spec_paths": [
+        "/methods/3/color"
+      ],
+      "editable": {
+        "color": "/methods/3/color"
+      },
+      "bbox_mm": [
+        13.100416666666668,
+        4.100416666666674,
+        5.799166666666667,
+        1.7991666666666661
+      ]
+    },
+    {
+      "id": "easyviz-legend-label-acc0dfedf7bc003a",
+      "role": "legend-label",
+      "label": "BBKNN",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        19.5,
+        3.6757052951388958,
+        9.652000000000003,
+        2.648589409722222
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-96ceed8336114dfb",
+      "role": "legend-key",
+      "label": "rPCA",
+      "source_keys": [],
+      "spec_paths": [
+        "/methods/4/color"
+      ],
+      "editable": {
+        "color": "/methods/4/color"
+      },
+      "bbox_mm": [
+        36.10041666666667,
+        4.100416666666674,
+        5.799166666666667,
+        1.7991666666666661
+      ]
+    },
+    {
+      "id": "easyviz-legend-label-b624e639c0893eb4",
+      "role": "legend-label",
+      "label": "rPCA",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        42.5,
+        3.6757052951388958,
+        6.688666666666666,
+        2.648589409722222
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        0.0,
+        7.327471962526035e-15,
+        64.0,
+        65.99999999999999
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

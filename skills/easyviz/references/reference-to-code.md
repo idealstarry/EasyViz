@@ -46,6 +46,12 @@ explore freely or fork a context containing previous implementations.
 
 ## 2. Read first; adopt decisions second
 
+Include data-region aspect, repeated/shared keys, text hierarchy and mark-to-
+region proportions in the geometry model. The [geometry guide](reference-geometry.md)
+shows measured examples and distinguishes unknown source font sizes from
+explicit adopted typography; screenshot pixels alone do not establish points
+or millimetres.
+
 Follow [Reproduce](reproduce.md) and [Reference specification](reference-spec.md).
 The independent reader opens the actual image, identifies the selected panel,
 and distinguishes `observed`, `inferred` and `unknown` evidence. The main Agent

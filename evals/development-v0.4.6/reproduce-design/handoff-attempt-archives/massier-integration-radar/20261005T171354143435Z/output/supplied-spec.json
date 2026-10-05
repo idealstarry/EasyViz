@@ -1,0 +1,18 @@
+{
+  "track": "reproduce", "source": "../inputs/source-data.csv", "reference": "../inputs/reference.png",
+  "layout": {"width_mm": 64, "height_mm": 66, "font": "Arial", "font_size_pt": 8, "dpi": 300,
+    "center_mm": [33, 40], "radius_mm": 17, "line_width_pt": 0.85, "marker_diameter_pt": 5.1, "grid_line_width_pt": 0.45},
+  "typography": {"axis": 8, "tick": 8, "legend": 8},
+  "radial_limits": [0, 0.5], "radial_ticks": [0, 0.25, 0.5],
+  "classes": [{"source": "ALL", "display": "all"}, {"source": "FAP", "display": "FAPs"}, {"source": "ENDO", "display": "vascular"}, {"source": "IMMUNE", "display": "immune"}, {"source": "ADIPOCYTES", "display": "adipocytes"}],
+  "methods": [{"source": "raw", "display": "raw", "color": "#AAAAAA"}, {"source": "harmony", "display": "Harmony", "color": "#F3BC3D"}, {"source": "scVI", "display": "scVI", "color": "#3A9D6C"}, {"source": "bbknn", "display": "BBKNN", "color": "#195E84"}, {"source": "rPCA", "display": "rPCA", "color": "#9874A3"}],
+  "colors": {"background": "#F7F7F7", "spokes": "#C7C7C7", "intermediate_ring": "#32839A"},
+  "adopted_before_render": true,
+  "adaptations": [
+    "Explicitly adopt 64 × 66 mm instead of 88 × 88 mm. Circle diameter changes from 50 to 34 mm; all text remains 8 pt.",
+    "The original selected PDF radar has a 23.88 mm diameter, approximately 7.924 pt Arial labels, 3.575 pt point geometry and 0.847 pt data strokes. Direct class labels require more outside space than its shared whole-figure class key.",
+    "Adopt 5.1 pt marks to approach the observed point-diameter/circle-diameter relationship; adopt 0.85 pt data lines. These visible geometry choices are declared, not recovered author parameters.",
+    "Remove the unrequested depot title. Keep class labels, radial ticks, metric label and a compact two-row method key.",
+    "Retain all 25 supplied values, five spokes, original method/class order and zero-origin 0–0.5 linear radial scale. Valid zeros stay coincident; no jitter or inferred central padding is introduced."
+  ]
+}

@@ -1,17 +1,151 @@
 {
-  "status": "awaiting-final-auxiliary-guard-packets",
-  "science": "88 source concentrations; 16 exact nominal-hour means and SEM; independent compartment axes; supplied author P retained separately",
-  "selected_visible_refinement": "refinement-mean-visibility/after",
+  "status": "final_frozen",
+  "track": "create",
+  "case": "compartment-ccl2",
+  "science": "88 literal source concentrations; 16 exact nominal-hour means and SEM; independent compartment units/axes; supplied author P retained separately",
+  "canonical_individual_panel": {
+    "dimensions_mm": [
+      82,
+      65
+    ],
+    "font": "Arial",
+    "font_size_pt": 8
+  },
+  "parallel_preview": {
+    "dimensions_mm": [
+      167,
+      65
+    ],
+    "gap_mm": 3,
+    "individual_vector_panels_rescaled": false
+  },
   "actual_canonical_visual_passes": 4,
   "original_development_passes": 3,
-  "followup_passes": 1,
-  "first_delivery_bounded_success": false,
-  "pending": [
-    "Fresh canonical replay with final figure_elements closure",
-    "Stage final auxiliary-aware followup packets",
-    "Independent current artifact reattestation",
-    "Final freeze"
-  ],
+  "review_triggered_followup_passes": 1,
+  "review_phase": "followup",
+  "first_delivery_claim": false,
+  "selected_visible_refinement": "refinement-mean-visibility/after",
+  "final_export_bytes_equal_independently_inspected_refinement": true,
+  "independent_current_reviews": {
+    "lung": {
+      "packet": "delivery-review/lung/packet.json",
+      "packet_sha256": "0e35c9257b0cb7b316925bb87cda709f5be87f1a51ed6bb689936adaea32e052",
+      "review": "delivery-review/lung/review.json",
+      "review_sha256": "0ea558dd5e9a8ee69a9c8cc5c8e5ac519de470fd36ba404a5de70fce86cf0986",
+      "gate": "delivery-review/lung/gate.json",
+      "gate_status": "recorded",
+      "readiness": "ready_with_notes",
+      "errors": []
+    },
+    "serum": {
+      "packet": "delivery-review/serum/packet.json",
+      "packet_sha256": "3e14b5b949b995aaeb8bdb1016a9b8a864ee6763e4d3c1eb1a8db584432e17f5",
+      "review": "delivery-review/serum/review.json",
+      "review_sha256": "512e9979cef75e0299c8e7c2349efd50f9ab70cbc407dd084bd34b8bdac47689",
+      "gate": "delivery-review/serum/gate.json",
+      "gate_status": "recorded",
+      "readiness": "ready_with_notes",
+      "errors": []
+    }
+  },
+  "source_to_artist_validation": "pass",
+  "explicit_portable_font_validation": {
+    "path": "portable-forward/DejaVu-Sans-final/validation.json",
+    "status": "pass",
+    "font": "DejaVu Sans",
+    "same_physical_dimensions_and_8pt": true
+  },
+  "executed_helpers": {
+    "figure_elements_helper": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+    "figure_handoff_helper": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a",
+    "figure_workbench_helper": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+  },
   "current_code_sha256": "ecfcaa7960bab09d41681f8e36d3f14940378bda68c0466ab8d69f8e079c27e9",
-  "current_validator_sha256": "2c6a26e0d81696a20844b05443a60d86a556715e1b15440dd85fef1d7e403847"
+  "current_validator_sha256": "29abb666edce2b3dbccca95fdfd54330020126f471fa92b3193e97f417c539b5",
+  "portable_package_whitelist": [
+    "plot.py",
+    "validate.py",
+    "README.md",
+    "caption.md",
+    "design-rationale.md",
+    "provenance.json",
+    "inputs/41590_2023_1468_MOESM5_ESM.xlsx",
+    "inputs/author-adjusted-p.csv",
+    "inputs/blank-cells.csv",
+    "inputs/descriptive-summary.csv",
+    "inputs/input-contract.json",
+    "inputs/literature-reference.png",
+    "inputs/observations.csv",
+    "panels/lung/spec.json",
+    "panels/lung/output/panel.png",
+    "panels/lung/output/panel.pdf",
+    "panels/lung/output/panel.svg",
+    "panels/serum/spec.json",
+    "panels/serum/output/panel.png",
+    "panels/serum/output/panel.pdf",
+    "panels/serum/output/panel.svg",
+    "output/panel.png",
+    "output/panel.pdf",
+    "output/panel.svg",
+    "output/composition.json"
+  ],
+  "portable_package_artifact_sha256": {
+    "plot.py": "ecfcaa7960bab09d41681f8e36d3f14940378bda68c0466ab8d69f8e079c27e9",
+    "validate.py": "29abb666edce2b3dbccca95fdfd54330020126f471fa92b3193e97f417c539b5",
+    "README.md": "f84c4c05c248670d0a2d734b48a847bcebe897e29fcd1bd7934182af521c295b",
+    "caption.md": "3b3dd1716aeb0202e67c663a482b120829a2989e8bd0688b0c8c52c8dc0e6898",
+    "design-rationale.md": "8fba5a1953a92a08f30aa1923ba606e3322817619a34bf8eff9c462543d32cee",
+    "provenance.json": "c58dc1dfb0370bf916fec218ce50592f5415cfd482b7fe7e20d30e2dfb9b3dd8",
+    "inputs/41590_2023_1468_MOESM5_ESM.xlsx": "e0f88d0b4f1d753fdcd82826a2e4e12093463ab46cd4649de4c15942ce2f57dc",
+    "inputs/author-adjusted-p.csv": "e3f9da2874061ef403b4917158b75c4f4c48fc92d4551302b383420d418d0ea4",
+    "inputs/blank-cells.csv": "6edd050b3d61b0e7ae86eafcb15029fa9329c9845ebc44d019f47c30e3b98ac6",
+    "inputs/descriptive-summary.csv": "72f8ba667f8f1ef7030c99496e63181c324d2b53ff00a3f3c33b3aca894ab016",
+    "inputs/input-contract.json": "76b7fc33609aabcb88f9c2d619c9d89babd5f69769408a927bce72b5f8cdb44f",
+    "inputs/literature-reference.png": "9b46669033d010e72fe12a91640157abbb24103a192224ce474250b58ed08669",
+    "inputs/observations.csv": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11",
+    "panels/lung/spec.json": "f2bf9f6414e42b908aaf94157896ac47d19f1c41dd27feb131d035734705b52f",
+    "panels/lung/output/panel.png": "5dccb28b49501059c303b2a397463e04343a2c25d07488c72615a0521dde1dae",
+    "panels/lung/output/panel.pdf": "07c9302cdeab2c6503724e0b8ae4a6afdecb27d253f133dd801047d81bd8f89c",
+    "panels/lung/output/panel.svg": "556701d8632080bbffc879f67b1f301d8940c49f52dcf74834d023e809bb6b1d",
+    "panels/serum/spec.json": "e896ab97fbc730e1649f01321dbac1d5a43b89e44a5c907792707beaabb1a74c",
+    "panels/serum/output/panel.png": "a68ac804b044cf9c43165cf5fee11480c708abab8db1c57aa3568780816191e3",
+    "panels/serum/output/panel.pdf": "33ac7a55220a0ec5ab61cbe86973eaae8a5d91f89623779ffb5d6dfaef9bf522",
+    "panels/serum/output/panel.svg": "575a0deff24fdce63004485f3bb24dc4716d9297e0ae67e77ed1b5c6b0bbedd6",
+    "output/panel.png": "de55273d4a693880ca5405f40784b0cc6a15a68c006dd5a2ea159341e756fb03",
+    "output/panel.pdf": "21b5007986f42c3ac022a59713b6cccbc730f20abcf98ea801b9c79825452d31",
+    "output/panel.svg": "aa5a09f059bd95cf5aa6dc8048913f9cdec316ee1078aa82c0fe5eca82d24455",
+    "output/composition.json": "8f16eef9f8cbee8fd6caa0e3735f5c5410754ceb17f3a517570bcc0752a2ed73"
+  },
+  "local_host_bound_evidence_sha256": {
+    "validation.json": "17cb89c233a37d1d05e467f63d4334933549df355c109a7b4e5e141a9f87ca6a",
+    "self-review.json": "c759be765858b0c207dd430f433515d79754e2fd6b8705bfc10ddde94ceafb28",
+    "captured-forward-check.json": "809be19b15e9fd1aff8af815affc534874b67cd035fa3fbd81696bf57f5d03cc",
+    "workbench-forward-check.json": "0565143023cca7bcf7641d9499b95d78b47f4aeb1df5636ccc2a5986eff1d94a",
+    "delivery-review/development-history.json": "6d60cff10b7f696bd0bbf9b6c71fdb0ad1fccd2a5b236edc1312781a75a395f4",
+    "technical-checks/partial-failure.json": "b2857c328b68959657055a551cec708058754b0fc0469d06abbdb5af0da17846",
+    "portable-forward/DejaVu-Sans-final/validation.json": "709900617d07c3bd8db5a9e31e68ea74b5e92e41532b234072ef08310bbb0960",
+    "delivery-review/lung/packet.json": "0e35c9257b0cb7b316925bb87cda709f5be87f1a51ed6bb689936adaea32e052",
+    "delivery-review/lung/review.json": "0ea558dd5e9a8ee69a9c8cc5c8e5ac519de470fd36ba404a5de70fce86cf0986",
+    "delivery-review/lung/gate.json": "3c362c88f7315ee9b126f56758c5859bdd5b6714d43d9a0a433a95619fbb6cd3",
+    "panels/lung/output/elements.json": "014eb933a55b9d955eb8f64510756fb57501bde79a1bcbcc712663bf32380a7d",
+    "panels/lung/output/handoff.json": "47fe92bb1e9eee4c3eeedd30a051d54a6344d4ccd11e4a696fdc7042dd610da3",
+    "panels/lung/output/settings.json": "7f1d597a722d9b0e655046141bed181a00f79bfc6e9d2b298c9194519527bbc8",
+    "panels/lung/output/qa.json": "1830b801b28064f75acb00948ce230445fbf6fff273ecfbc63075e9a6c70a9a1",
+    "delivery-review/serum/packet.json": "3e14b5b949b995aaeb8bdb1016a9b8a864ee6763e4d3c1eb1a8db584432e17f5",
+    "delivery-review/serum/review.json": "512e9979cef75e0299c8e7c2349efd50f9ab70cbc407dd084bd34b8bdac47689",
+    "delivery-review/serum/gate.json": "30d1f0da08ecc54f86a23c64e19554ac3940231dd6cf40af06913a9713c40e28",
+    "panels/serum/output/elements.json": "4e839317ad3a9bce10ce78c722a32503e1ad8876b13e79525da2baa225ef9e03",
+    "panels/serum/output/handoff.json": "18c53f3b3fbf0b502042fbba9926c9595c68dcffd15691450f64824d4bd5d764",
+    "panels/serum/output/settings.json": "681db79e16125a9aa24c5e96857a7e0f2c0278362493f8aa41cb043d1fae93d5",
+    "panels/serum/output/qa.json": "d315bdddbd28a9bb6a3e87f9958802a12ec38d261e633b6c1182cbd774048b18"
+  },
+  "portable_package_metadata_policy": "Keep frozen PNG/PDF/SVG and portable source inputs/spec/code/caption/design documentation; regenerate current QA, map, consumed-source receipt and review identity after installation or copied-case execution. Do not ship host-bound current metadata as portable current evidence.",
+  "residual_notes": [
+    "Some open raw symbols cross a trajectory and interrupt small segments; this is disclosed rather than claiming zero crossings.",
+    "The small raw display slots need the caption to avoid mistaking their categorical offsets for additional sampling hours.",
+    "Lung and serum have independent units and ranges; absolute vertical heights across panels must not be interpreted as directly comparable.",
+    "Numeric/export validation and this self-review do not prove top-journal quality or broadly improved Agent output."
+  ],
+  "scope": "One real source-bound Create case. Actual numerical, export and independent visible checks do not establish broad Agent efficacy, matched superiority or journal acceptance.",
+  "pending": []
 }

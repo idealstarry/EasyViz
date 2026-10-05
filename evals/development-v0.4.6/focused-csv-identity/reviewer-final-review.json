@@ -1,0 +1,50 @@
+{
+  "reviewer": "v045_workbench_audit",
+  "decision": "ready_with_scope_limits",
+  "runtime_sha256": {
+    "replicate_plot": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+    "ecdf_plot": "94b313f3374be7f87aab0b88bdbec418af915ad5dc9a6bd82c3ec9c394890607",
+    "interval_plot": "e973889618337593f9f1224d0b79e9502ecfc45a9cf50482153e68caacb29b76",
+    "timecourse_plot": "5733584c7648925704e067010ae541ed04610d36acde0aa8f14c0a16b32ec23b"
+  },
+  "unchanged_common_runtime": {
+    "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "render.py": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3",
+    "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4",
+    "figure_elements.py": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+    "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+    "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+  },
+  "findings": [],
+  "checks": {
+    "independent_cli_actual_flows": 12,
+    "legal_full_export_byte_parity": 4,
+    "malformed_rejected_before_export": 4,
+    "legal_crlf_bom_literal_identity_controls": 4,
+    "independently_run_owner_regression_methods": 3,
+    "regression_scenarios": 28
+  },
+  "before_finding": {
+    "ecdf_plot": "silently shifts parsed cells and produces PNG/PDF/SVG with valid_outputs=true",
+    "interval_plot": "silently shifts parsed cells and produces PNG/PDF/SVG with valid_outputs=true",
+    "timecourse_plot": "silently shifts parsed cells and produces PNG/PDF/SVG with valid_outputs=true",
+    "replicate_plot": "prepare silently shifts cells; renderer rejects via independent color audit; no false-pass exports"
+  },
+  "verified_behavior": [
+    "Exact existing captured-byte CSV reader rejects structural width/header errors before exports, preserving literal category/unit strings.",
+    "Legal four-module PNG/PDF/SVG bytes match frozen pre-fix controls exactly.",
+    "Captured raw source digest agrees across QA/settings/source binding/elements; source-replacement regression refuses restored-current mismatched bytes.",
+    "Replicate raw audit now handles BOM consistently; independent Python summary calculations are preserved."
+  ],
+  "limits": [
+    "Review is limited to these four focused modules; no new aesthetic, chart-selection, statistics or universal dependency claim.",
+    "No runtime or authoritative test files modified by reviewer."
+  ],
+  "evidence": {
+    "actual_cli": "reviewer-cli-final/evidence.json",
+    "regressions": "reviewer-focused-tests-final.log",
+    "reviewer_program": "reviewer_verify_csv_cli.py"
+  }
+}

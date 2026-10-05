@@ -82,6 +82,12 @@ For structural adaptations, use [Design decisions](design-decisions.md) to compa
 
 ## 3. Implement and compare
 
+Use [Reference geometry and typography](reference-geometry.md) before finalizing
+the canvas. Measure the data region apart from keys and labels; relate marker
+diameter and stroke to that region. Record the source scale when known and
+explicitly adopt physical sizes when it is unknown. Shared decoding, narrow
+data lanes and relative type hierarchy can matter more than matching a palette.
+
 Render individual panels using the adopted specification and final-size layout. Save the script, settings, data transformations, and evidence sources. Write a separate `caption.md` with explanatory prose, abbreviation definitions, methods, attribution, and caveats under the [Panel layout](panel-layout.md) caption rules. Use known figure/panel identifiers only; do not inherit the reference's numbering for a new manuscript. The reproducibility record must identify the actual inputs accessed, including optional author code.
 
 Custom implementations reuse the physical-size/font/export helpers and provide

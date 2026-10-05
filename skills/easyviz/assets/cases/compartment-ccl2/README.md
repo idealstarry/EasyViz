@@ -52,8 +52,9 @@ python validate.py --font "DejaVu Sans" --outputs /tmp/ccl2-portable --out /tmp/
 
 The [checked alternate-font redraw](https://github.com/idealstarry/EasyViz/blob/main/examples/create/compartment-ccl2/portable-forward/DejaVu-Sans-final/validation.json)
 records the actual DejaVu Sans font and its adopted specification. The
-[canonical forward check](https://github.com/idealstarry/EasyViz/blob/main/examples/create/compartment-ccl2/canonical-font-forward-check.json) confirms that
-adding this CLI support left the Arial PNG/PDF/SVG bytes unchanged.
+[final captured forward check](https://github.com/idealstarry/EasyViz/blob/main/examples/create/compartment-ccl2/captured-forward-check.json) confirms that the
+current Arial PNG/PDF/SVG bytes match the independently inspected mean-tick
+refinement and all consumed sources remain current.
 
 Each individual panel registers real source-bound observations, mean ticks,
 SEM, trajectories, guides and legend keys for the local review workbench.

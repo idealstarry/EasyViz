@@ -125,7 +125,7 @@ def curve_width(spec):
 def prepare(data_path, spec):
     """Keep all raw observations and literal category/unit strings."""
     validate_spec(spec)
-    data = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    data = core.read_source_csv(data_path)
     require(len(data) > 0, "Input has no observations")
     require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
     f, options = spec["fields"], spec.get("options", {})
@@ -283,7 +283,7 @@ def draw(data, spec, layout, typography):
 
 def audit_source_artists(data_path, spec, fig):
     """Reread source values and derive expected step vertices independently."""
-    raw = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    raw = core.read_source_csv(data_path)
     f, options, issues, counts = spec["fields"], spec.get("options", {}), [], {}
     groups = spec.get("order", {}).get("group", list(dict.fromkeys(raw[f["group"]]))) if "group" in f else ["all"]
     ax, records = fig.axes[0], getattr(fig, "_easyviz_ecdf_artists", [])
@@ -360,8 +360,8 @@ def render(data_path, spec, out, *, spec_path=None):
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports may be stale or unverified until this run passes."})
     fig, before = None, set(plt.get_fignums())
     try:
-        input_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
         data = prepare(data_path, spec)
+        input_hash = data.attrs["source_csv_sha256"]
         resolved = deepcopy(spec)
         resolved.setdefault("chart", "ecdf")
         resolved.setdefault("formats", ["pdf", "svg", "png"])
@@ -376,6 +376,7 @@ def render(data_path, spec, out, *, spec_path=None):
             overlap, oblique = core.check_tick_label_overlap(fig, fig.canvas.get_renderer())
             legends, fitted = fig._easyviz_legend_layout.validate(), getattr(fig, "_easyviz_auto_layout", None)
             fig._easyviz_data_file = data_path.resolve()
+            fig._easyviz_source_bindings = {"data_file": {"path": str(data_path.resolve()), "sha256": input_hash}}
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
@@ -390,6 +391,7 @@ def render(data_path, spec, out, *, spec_path=None):
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim())), "y_limits": list(map(float, fig.axes[0].get_ylim())), "explicit_x_ticks": resolved.get("options", {}).get("x_ticks"), "x_tick_format": resolved.get("options", {}).get("x_tick_format", "plain"), "x_tick_labels": [t.get_text() for t in fig.axes[0].get_xticklabels()]}
+            settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
             settings["curve_policy"] = {"method": "count(value <= x) / observation_count", "drawstyle": "steps-post", "ties": "full jump count", "line_width_pt": curve_width(resolved), "horizontal_tails": "display extension to x limits", "fraction_range": [0, 1], "vertical_display_padding": .02, "markers": "none", "path_simplification": False}
             settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in HELPERS}}
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "Pillow", "pypdf")}}

@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import shutil
 import stat
 import subprocess
 import sys
@@ -29,6 +30,15 @@ CURATED_CREATE_RESOURCES = {
         "panels/lung/spec.json", "panels/serum/spec.json", "inputs/observations.csv",
         "inputs/input-contract.json", "inputs/author-adjusted-p.csv", "inputs/blank-cells.csv",
         "inputs/descriptive-summary.csv", "inputs/41590_2023_1468_MOESM5_ESM.xlsx"),
+}
+V046_CASE_RESOURCES = {
+    "pathway-signatures": ("plot.py", "validate.py", "spec.json", "caption.md",
+        "source-record.json", "inputs/coefficients.csv", "inputs/input-contract.json",
+        "inputs/41467_2017_2391_MOESM4_ESM.xlsx"),
+    "vabistsevits-forest": ("inputs/source-data.csv", "revision-v0.4.6/plot.py",
+        "revision-v0.4.6/adopted-spec.json", "revision-v0.4.6/caption.md"),
+    "massier-integration-radar": ("inputs/source-data.csv", "revision-v0.4.6/plot.py",
+        "revision-v0.4.6/adopted-spec.json", "revision-v0.4.6/caption.md"),
 }
 MAX_ZIP_ENTRIES = 10000
 MAX_ZIP_MEMBER_BYTES = 64 * 1024 * 1024
@@ -169,6 +179,10 @@ def validate_plugin(plugin: Path) -> dict:
         required.extend(("skills/easyviz/scripts/figure_handoff.py",
                          "skills/easyviz/scripts/observation_clipping.py"))
         for case, resources in CURATED_CREATE_RESOURCES.items():
+            required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
+    if version_at_least(manifest["version"], (0, 4, 6)):
+        required.append("skills/easyviz/references/reference-geometry.md")
+        for case, resources in V046_CASE_RESOURCES.items():
             required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
     for name in SKILLS:
         entry = plugin / "skills" / name / "SKILL.md"
@@ -318,6 +332,45 @@ def check_curated_create_cases(skill: Path, isolated: Path, env: dict) -> dict:
         results[name] = {"status": "pass", "font": "DejaVu Sans", "figures": bindings,
                          "source_vector_validation": json.loads(validation.read_text())}
     return results
+
+
+def check_v046_cases(skill: Path, isolated: Path, env: dict, root: Path) -> None:
+    """Draw real new cases from copied/extracted files, then independently read exports."""
+    pathway = isolated / "copied-pathway-signatures"
+    shutil.copytree(skill / "assets/cases/pathway-signatures", pathway)
+    pathway_out = isolated / "pathway-fresh-output"
+    commands = [
+        [sys.executable, "-I", "-B", str(pathway / "plot.py"), "--tools", str(skill / "scripts"),
+         "--font", "DejaVu Sans", "--out", str(pathway_out)],
+        [sys.executable, "-I", "-B", str(pathway / "validate.py"), "--out", str(pathway_out)],
+    ]
+    copied = {}
+    for name in ("vabistsevits-forest", "massier-integration-radar"):
+        copied[name] = isolated / ("copied-" + name)
+        shutil.copytree(skill / "assets/cases" / name, copied[name])
+        revision = copied[name] / "revision-v0.4.6"
+        # Only the disposable copy is replaced. Frozen packaged previews stay intact.
+        shutil.rmtree(revision / "output")
+        commands.append([sys.executable, "-I", "-B", str(revision / "plot.py"),
+                         "--runtime", str(skill / "scripts"), "--font", "DejaVu Sans",
+                         "--out", str(revision / "output")])
+    commands.append([sys.executable, "-I", "-B", str(root / "evals/development-v0.4.6/reproduce-design/verify_revisions.py"),
+                     "--forest-case", str(copied["vabistsevits-forest"]),
+                     "--radar-case", str(copied["massier-integration-radar"]),
+                     "--expected-font", "DejaVu Sans", "--out", str(isolated / "reproduce-geometry-verification.json")])
+    for command in commands:
+        checked = subprocess.run(command, cwd=isolated, env=env, capture_output=True, text=True)
+        if checked.returncode:
+            raise RuntimeError("Extracted 0.4.6 actual source/vector/font validation failed: " + checked.stdout + checked.stderr)
+    for figure in (pathway_out, *(case / "revision-v0.4.6/output" for case in copied.values())):
+        probe = ("import sys; from pathlib import Path; sys.path.insert(0,sys.argv[1]); "
+                 "from figure_workbench import FigureWorkbench; s=FigureWorkbench(Path(sys.argv[2])).state(); "
+                 "assert s['manifest_valid'] and s['provenance_valid'] and s['source_current'] is True,s; "
+                 "assert s['elements'] and all(v.get('current') is True for v in s['source_versions'].values()),s")
+        checked = subprocess.run([sys.executable, "-I", "-B", "-c", probe, str(skill / "scripts"), str(figure)],
+                                 cwd=isolated, env=env, capture_output=True, text=True)
+        if checked.returncode:
+            raise RuntimeError("Extracted 0.4.6 actual source/map receipt is not current: " + checked.stdout + checked.stderr)
 
 
 def main() -> int:
@@ -529,6 +582,8 @@ def main() -> int:
                 raise ValueError("Extracted Yayon case has incomplete source/export QA")
             if version_at_least(manifest["version"], (0, 4, 5)):
                 check_curated_create_cases(skill, isolated, env)
+            if version_at_least(manifest["version"], (0, 4, 6)):
+                check_v046_cases(skill, isolated, env, root)
             basic = skill / "assets/cases/basic-panels"
             if basic.is_dir():
                 output = isolated / "basic-output"
@@ -553,7 +608,7 @@ def main() -> int:
                         raise RuntimeError("Extracted grouped comparison failed: " + checked.stdout + checked.stderr)
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+; fresh thermogenic-expression/compartment-ccl2 source/vector/font/mapped-source checks for 0.4.5+"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+; fresh thermogenic-expression/compartment-ccl2 source/vector/font/mapped-source checks for 0.4.5+; actual copied pathway/forest/radar source/vector/font and current artist/receipt checks for 0.4.6+"}, indent=2))
     return 0
 
 

@@ -1,0 +1,313 @@
+{
+  "spec": {
+    "track": "create",
+    "chart": "custom-signature-overlap-and-paired-coefficients",
+    "reading_task": "Compare all pathway-signature overlaps, then inspect the actual paired weights of genes in the two largest overlaps and sign agreement in every nonempty pair.",
+    "layout": {
+      "width_mm": 190,
+      "height_mm": 112,
+      "font": "DejaVu Sans",
+      "font_size_pt": 8,
+      "line_width_pt": 0.55,
+      "dpi": 300,
+      "auto_fit": false
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "geometry_mm": {
+      "overlap": [
+        25,
+        39,
+        55,
+        55
+      ],
+      "count_guide": [
+        35,
+        16,
+        35,
+        2.1
+      ],
+      "coefficient_nfkb_tnfa": [
+        99,
+        62,
+        39,
+        40
+      ],
+      "coefficient_egfr_mapk": [
+        147,
+        62,
+        39,
+        40
+      ],
+      "agreement": [
+        145,
+        14,
+        34,
+        31
+      ]
+    },
+    "pathway_order": [
+      "EGFR",
+      "Hypoxia",
+      "JAK.STAT",
+      "MAPK",
+      "NFkB",
+      "PI3K",
+      "TGFb",
+      "TNFa",
+      "Trail",
+      "VEGF",
+      "p53"
+    ],
+    "display_aliases": {
+      "JAK.STAT": "JAK\u2013STAT",
+      "NFkB": "NF\u03baB",
+      "TGFb": "TGF\u03b2",
+      "TNFa": "TNF\u03b1",
+      "Trail": "TRAIL"
+    },
+    "overlap_scale": {
+      "limits": [
+        0,
+        65
+      ],
+      "ticks": [
+        0,
+        20,
+        40,
+        60
+      ],
+      "anchors": [
+        [
+          0,
+          "#FFFFFF"
+        ],
+        [
+          0.15,
+          "#D2EEF8"
+        ],
+        [
+          0.5,
+          "#6AC7E6"
+        ],
+        [
+          1,
+          "#179EC8"
+        ]
+      ]
+    },
+    "coefficient_selection": {
+      "minimum_shared_exclusive": 10,
+      "meaning": "All unordered pairs with more than 10 shared nonzero genes; 80 of the 87 shared genes meet this criterion."
+    },
+    "coefficient_views": [
+      {
+        "pair": [
+          "NFkB",
+          "TNFa"
+        ],
+        "geometry": "coefficient_nfkb_tnfa",
+        "x_limits": [
+          0,
+          42
+        ],
+        "y_limits": [
+          0,
+          50
+        ],
+        "x_ticks": [
+          0,
+          20,
+          40
+        ],
+        "y_ticks": [
+          0,
+          25,
+          50
+        ]
+      },
+      {
+        "pair": [
+          "EGFR",
+          "MAPK"
+        ],
+        "geometry": "coefficient_egfr_mapk",
+        "x_limits": [
+          -5,
+          15
+        ],
+        "y_limits": [
+          -5,
+          20
+        ],
+        "x_ticks": [
+          -5,
+          0,
+          10
+        ],
+        "y_ticks": [
+          -5,
+          0,
+          10,
+          20
+        ]
+      }
+    ],
+    "gene_labels": {
+      "rule": "Largest sum of absolute paired coefficients within each displayed pair",
+      "count_per_pair": 1,
+      "offset_points": [
+        -4,
+        -8
+      ],
+      "pair_offsets": {
+        "NFkB/TNFa": [
+          -4,
+          4
+        ]
+      }
+    },
+    "point": {
+      "face": "#279BC6",
+      "edge": "#FFFFFF",
+      "edge_width_pt": 0.3,
+      "diameter_pt": 3.3
+    },
+    "agreement": {
+      "limits": [
+        0,
+        1.32
+      ],
+      "ticks": [
+        0,
+        0.5,
+        1
+      ],
+      "point_diameter_pt": 3.7,
+      "color": "#279BC6",
+      "order": "descending shared count, then original pathway order",
+      "show_numerator_denominator": true
+    },
+    "strokes": {
+      "seam": "#D5DCE1",
+      "seam_width_pt": 0.35,
+      "axis": "#333333",
+      "zero": "#9BA2A8",
+      "zero_width_pt": 0.45,
+      "equality": "#CED6DC",
+      "equality_width_pt": 0.45
+    },
+    "labels": {
+      "count": "Shared nonzero genes",
+      "agreement": "Same-sign fraction",
+      "coefficient": "coefficient"
+    },
+    "scientific_constraints": {
+      "full_source_coordinates": 11143,
+      "structural_zero_is_missing": false,
+      "compute_pathway_activity": false,
+      "infer_crosstalk": false,
+      "compute_correlation_or_p_values": false,
+      "coefficient_center": 0,
+      "overlap_diagonal": "excluded; each signature contains 100 genes"
+    }
+  },
+  "layout": {
+    "width_mm": 190.0,
+    "height_mm": 112.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.55,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "resolved_colors": {
+    "paired-coefficients": "#279BC6",
+    "agreement": "#279BC6"
+  },
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/case/inputs/coefficients.csv",
+      "sha256": "2f82b45a9b0d36a92d73b5d1390b448a044a42d23b58cad3bdd49adb6666439d"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/case/plot.py",
+      "sha256": "d4843e6288011bfcd2c44c2020d4840dbde0de8301c769208fbae4cd79ba9f3e"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/case/spec.json",
+      "sha256": "a41a218de393a8018e023576318336c6428a31b2d4f152768a3a44e601eba81b"
+    },
+    "source_contract": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/case/inputs/input-contract.json",
+      "sha256": "314e3d67e2461814f7d1a0df84e9ca1325c4c6307cd5ecb0f188257042cb5889"
+    },
+    "helper:figure_handoff.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "helper:figure_workbench.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    },
+    "helper:render.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/render.py",
+      "sha256": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3"
+    },
+    "helper:legend_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/legend_layout.py",
+      "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+    },
+    "helper:figure_profile.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/figure_profile.py",
+      "sha256": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca"
+    },
+    "helper:auto_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/auto_layout.py",
+      "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+    },
+    "helper:annotation_review.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/annotation_review.py",
+      "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    },
+    "helper:figure_elements.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "helper:panel_readability.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/panel_readability.py",
+      "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    },
+    "helper:observation_clipping.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.4.6/pathway-signatures-capture/extracted-final-smoke/payload/runtime/observation_clipping.py",
+      "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "coefficient_unit": "published linear-model coefficient; not expression, pathway activity, or experimentally confirmed cross-talk",
+  "selection": {
+    "minimum_shared_exclusive": 10,
+    "meaning": "All unordered pairs with more than 10 shared nonzero genes; 80 of the 87 shared genes meet this criterion."
+  }
+}

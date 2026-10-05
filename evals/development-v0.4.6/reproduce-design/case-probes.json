@@ -1,0 +1,155 @@
+{
+  "status": "passed",
+  "probe_count": 22,
+  "probes": [
+    {
+      "case": "vabistsevits-forest",
+      "check": "copied CLI outside repository with explicit shared runtime",
+      "status": "passed_portable_same_pixels",
+      "exit_code": 0
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "explicit DejaVu Sans adoption in portable copy; independent real PDF/SVG/source checks",
+      "status": "passed_explicit_font_real_export_verification",
+      "exit_code": 0
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "CSV row has extra field",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "duplicate source identity",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "missing required source identity",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "confidence interval outside fixed log scale",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "unexpected per-estimate n is not invented",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "real default importlib timestamp/size-valid stale source bytecode",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "Actual data replacement after byte capture; refusal before any export",
+      "status": "passed_refusal_before_export",
+      "exit_code": 0
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "Actual spec replacement after byte capture; refusal before any export",
+      "status": "passed_refusal_before_export",
+      "exit_code": 0
+    },
+    {
+      "case": "vabistsevits-forest",
+      "check": "Actual helper replacement after byte capture; refusal before any export",
+      "status": "passed_refusal_before_export",
+      "exit_code": 0
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "copied CLI outside repository with explicit shared runtime",
+      "status": "passed_portable_same_pixels",
+      "exit_code": 0
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "explicit DejaVu Sans adoption in portable copy; independent real PDF/SVG/source checks",
+      "status": "passed_explicit_font_real_export_verification",
+      "exit_code": 0
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "CSV row has extra field",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "duplicate source identity",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "missing required source identity",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "acceptance rate outside fixed radial scale",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "negative rate cannot become inner padding",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "real default importlib timestamp/size-valid stale source bytecode",
+      "status": "refused_with_no_exports",
+      "exit_code": 1
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "Actual data replacement after byte capture; refusal before any export",
+      "status": "passed_refusal_before_export",
+      "exit_code": 0
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "Actual spec replacement after byte capture; refusal before any export",
+      "status": "passed_refusal_before_export",
+      "exit_code": 0
+    },
+    {
+      "case": "massier-integration-radar",
+      "check": "Actual helper replacement after byte capture; refusal before any export",
+      "status": "passed_refusal_before_export",
+      "exit_code": 0
+    }
+  ],
+  "bindings": {
+    "vabistsevits-forest": {
+      "plot.py": "2bf4364fa3afce6f8d783997c90a3ccdbfa35e2161f405e0d811d25ad686069f",
+      "adopted-spec.json": "8739541b6c7e04757e0d28b5a4c8236aaf59be8fea491be730f31a8a7f9891be",
+      "output/panel.png": "f062cd6c8d0e0548365238f4a225e67170778a0148434b68a3df09dfaea22621",
+      "output/panel.pdf": "8f28354fea1fa0be8c9bf0ec005b30f5c060be3815f32d005111b125793001b5",
+      "output/panel.svg": "b4ba8d2a38242348edd73c29a496dcd3aa48e496444969a4e9c2a2cf84d8541b"
+    },
+    "massier-integration-radar": {
+      "plot.py": "0346efec69ebf27ddc3a1c0ae86a27c079f982535d0a89cb52dec47dc01400fe",
+      "adopted-spec.json": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132",
+      "output/panel.png": "d158630d744195689e934868682f548ffd8ed5d1f3beeacaf52d401586475233",
+      "output/panel.pdf": "b0f9dec122d1312ff882ca4f4d1164a1db96ebcd15f29ecffb3be8e16e18f1a2",
+      "output/panel.svg": "5c5c47ad02807fdc8ab83ead247fcbc627677c8ff465925398c7f3d23f869ef5"
+    }
+  },
+  "scope": "Case portability, fixed-source identity/semantics and actual stale-bytecode refusal. Does not measure aesthetics or model efficacy."
+}

@@ -34,6 +34,7 @@ Begin with the inspected inputs, selected region, and any access or legibility l
 | Layers | Marks, summaries, intervals, fits, annotation lines, labels, and visible stacking order. |
 | Colors and typography | Category-color associations, approximate hues, continuous-scale direction, font roles, relative weights and sizes. |
 | Layout | Plot box, complete legend key/text bounds, colorbar, apparent reserved legend region, margins, label angles, and relative canvas proportions. |
+| Geometry relationships | Data-region aspect apart from margins; repeated versus shared category decoding; marker diameter/stroke relative to the data span; relative type hierarchy. State whether any physical scale comes from actual PDF measurements or remains unknown. |
 | Legend roles and proportions | Categorical, quantitative-size, or continuous role; key and visible glyph heights relative to the plot, with estimation confidence. State whether the legend appears shared across panels; distinguish its full footprint from its key or colorbar rectangle. |
 | Statistics | Definitions explicitly supported by supplied text; otherwise record the visible mark and unknown calculation. |
 

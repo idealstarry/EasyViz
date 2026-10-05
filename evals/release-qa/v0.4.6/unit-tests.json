@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "tests": 635,
+  "duration_seconds": 281.123,
+  "command": "python -m unittest discover -s tests -p 'test_*.py'",
+  "log": "unit-tests.log",
+  "initial_run": {
+    "tests": 635,
+    "failures": 1,
+    "cause": "Old restore test did not expect the new consumed-data source binding path to move with the frozen source copy. Production restore was correct; expected pointer and exact source digest assertions were updated.",
+    "log": "initial-unit-tests.log",
+    "related_24_tests": "restore-tests.log"
+  },
+  "runtime_sources_unchanged_after_independent_review": true
+}

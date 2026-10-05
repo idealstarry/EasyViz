@@ -1,0 +1,3671 @@
+{
+  "schema_version": 1,
+  "chart": "custom",
+  "track": "reproduce",
+  "panel": {
+    "width_mm": 100,
+    "height_mm": 132
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "fb0e2a8f0eb04f71c1be8952c287722570775d21ddda1757d9006c22023e4f35",
+    "spec_sha256": "7959fcf532c1b94464ca0e606df256984ee335211e602882dece1e7aa82da928",
+    "input_sha256": "9828fcac3d6622d8ac10b01ed4c3b84074725242ddc9aca7ff62627ee85be0a0",
+    "source_script_sha256": "2bf4364fa3afce6f8d783997c90a3ccdbfa35e2161f405e0d811d25ad686069f",
+    "auxiliary_inputs_sha256": "11098ee0ae491a5619171995a541bae9f10e6c398b36295d2d751c3137cbfa78"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/inputs/source-data.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/revision-v0.4.6/adopted-spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/no-author-code/vabistsevits-forest/revision-v0.4.6/plot.py",
+    "supplied_spec_sha256": "8739541b6c7e04757e0d28b5a4c8236aaf59be8fea491be730f31a8a7f9891be",
+    "auxiliary_inputs": {
+      "figure_elements_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+      },
+      "figure_handoff_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+        "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+      },
+      "figure_workbench_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+        "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "easyviz-reference-line-8c5952bd512e6925",
+      "role": "reference-line",
+      "label": "Odds ratio 2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        45.32390285829638,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-reference-line-237add8f02bf0e04",
+      "role": "reference-line",
+      "label": "Null odds ratio 1",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        35.690942997048985,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-column-header-ee967cc787544723",
+      "role": "column_header",
+      "label": "Total effect",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        26.73851041666667,
+        127.67570529513891,
+        14.522979166666667,
+        2.648589409722235
+      ]
+    },
+    {
+      "id": "easyviz-interval-fa0f80e472ebf356",
+      "role": "interval",
+      "label": "a · Dense area · Overall breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "2",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        35.720661564544585,
+        119.11428571428574,
+        8.901444471078102,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-5c65bc98b550b2d0",
+      "role": "point",
+      "label": "a · Dense area · Overall breast cancer",
+      "source_keys": [
+        {
+          "source_row": "2",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.25416157786146,
+        118.19706349206352,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-e85216dc58611786",
+      "role": "interval",
+      "label": "a · Dense area · ER+ breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "3",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        35.7035882511717,
+        116.48571428571431,
+        8.942121917296705,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ddf7e6eb209508d6",
+      "role": "point",
+      "label": "a · Dense area · ER+ breast cancer",
+      "source_keys": [
+        {
+          "source_row": "3",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.25742698759786,
+        115.5684920634921,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-2e6a16e8ce203c00",
+      "role": "interval",
+      "label": "a · Dense area · ER- breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "4",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        34.341866261725016,
+        113.85714285714288,
+        8.952944841411272,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-3c8f7a6324a3070a",
+      "role": "point",
+      "label": "a · Dense area · ER- breast cancer",
+      "source_keys": [
+        {
+          "source_row": "4",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        37.9011164602084,
+        112.93992063492067,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-97dc12fa07d85fb3",
+      "role": "interval",
+      "label": "a · Dense area · Luminal A subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "5",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        35.250102460147694,
+        111.22857142857146,
+        9.28777501656052,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-08c055eeb4681f75",
+      "role": "point",
+      "label": "a · Dense area · Luminal A subtype",
+      "source_keys": [
+        {
+          "source_row": "5",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        38.976767746205695,
+        110.31134920634923,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-7f6867d527a73120",
+      "role": "interval",
+      "label": "a · Dense area · Luminal B1 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "7",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        36.007180330586586,
+        108.60000000000002,
+        10.886688488505873,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-820f5d9c6d26a7aa",
+      "role": "point",
+      "label": "a · Dense area · Luminal B1 subtype",
+      "source_keys": [
+        {
+          "source_row": "7",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        40.533302352617305,
+        107.68277777777782,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-43a54d10b7b93709",
+      "role": "interval",
+      "label": "a · Dense area · Luminal B2 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "6",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        37.200564522444516,
+        105.9714285714286,
+        7.111080976406459,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-94adbc82e621f786",
+      "role": "point",
+      "label": "a · Dense area · Luminal B2 subtype",
+      "source_keys": [
+        {
+          "source_row": "6",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.838882788425536,
+        105.05420634920638,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-1ba28630cf8f3bd3",
+      "role": "interval",
+      "label": "a · Dense area · HER2-enriched subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "8",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        35.94829581645348,
+        103.34285714285717,
+        9.635578013821139,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-763e6dad7e1808ec",
+      "role": "point",
+      "label": "a · Dense area · HER2-enriched subtype",
+      "source_keys": [
+        {
+          "source_row": "8",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.84886260114182,
+        102.42563492063496,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-78f2a3178c64cf18",
+      "role": "interval",
+      "label": "a · Dense area · Triple-negative subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "9",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        33.012923904364904,
+        100.71428571428575,
+        9.32529395178972,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-6f7c75da6f1eb601",
+      "role": "point",
+      "label": "a · Dense area · Triple-negative subtype",
+      "source_keys": [
+        {
+          "source_row": "9",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        36.75834865803755,
+        99.79706349206353,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-fd4f80ec34c04193",
+      "role": "interval",
+      "label": "a · Non-dense area · Overall breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "10",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        24.33322616767395,
+        90.20000000000002,
+        14.894047112471982,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-f4b1f071fb354464",
+      "role": "point",
+      "label": "a · Non-dense area · Overall breast cancer",
+      "source_keys": [
+        {
+          "source_row": "10",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        30.86302750168774,
+        89.2827777777778,
+        1.8344444444444412,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-4388cba80735d503",
+      "role": "interval",
+      "label": "a · Non-dense area · ER+ breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "11",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        25.534281651093877,
+        87.57142857142858,
+        13.755536281593198,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-4b1e3374baed4e57",
+      "role": "point",
+      "label": "a · Non-dense area · ER+ breast cancer",
+      "source_keys": [
+        {
+          "source_row": "11",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        31.494827569668274,
+        86.65420634920636,
+        1.8344444444444412,
+        1.8344444444444412
+      ]
+    },
+    {
+      "id": "easyviz-interval-9165d65577627542",
+      "role": "interval",
+      "label": "a · Non-dense area · ER- breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "12",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        22.42924469572355,
+        84.94285714285716,
+        19.197331334874743,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ba1a9898ce181917",
+      "role": "point",
+      "label": "a · Non-dense area · ER- breast cancer",
+      "source_keys": [
+        {
+          "source_row": "12",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        31.110688140938727,
+        84.02563492063493,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-dbb19d14f222b498",
+      "role": "interval",
+      "label": "a · Non-dense area · Luminal A subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "13",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        22.77363023568368,
+        82.31428571428573,
+        15.076046890253217,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-e72c43f802e3e0c9",
+      "role": "point",
+      "label": "a · Non-dense area · Luminal A subtype",
+      "source_keys": [
+        {
+          "source_row": "13",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        29.39443145858805,
+        81.39706349206351,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-24149762442a3726",
+      "role": "interval",
+      "label": "a · Non-dense area · Luminal B1 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "15",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        19.716175135671676,
+        79.6857142857143,
+        15.007607498085717,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-31c6f26dd2c562d4",
+      "role": "point",
+      "label": "a · Non-dense area · Luminal B1 subtype",
+      "source_keys": [
+        {
+          "source_row": "15",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        26.302756662492296,
+        78.76849206349208,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-c21e0198c60bdd7c",
+      "role": "interval",
+      "label": "a · Non-dense area · Luminal B2 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "14",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        24.874997045576666,
+        77.05714285714288,
+        13.389721329688957,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ce69cb2c8272a763",
+      "role": "point",
+      "label": "a · Non-dense area · Luminal B2 subtype",
+      "source_keys": [
+        {
+          "source_row": "14",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        30.652635488198896,
+        76.13992063492066,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-782c7236d11666a3",
+      "role": "interval",
+      "label": "a · Non-dense area · HER2-enriched subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "16",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        21.561922469609467,
+        74.42857142857144,
+        19.017961812676518,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ea667375a5666b0a",
+      "role": "point",
+      "label": "a · Non-dense area · HER2-enriched subtype",
+      "source_keys": [
+        {
+          "source_row": "16",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        30.153681153725486,
+        73.51134920634922,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-d7f4f6e78e940829",
+      "role": "interval",
+      "label": "a · Non-dense area · Triple-negative subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "17",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        20.81250040607824,
+        71.80000000000003,
+        19.073417049335102,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-2d56c81b6817fa6c",
+      "role": "point",
+      "label": "a · Non-dense area · Triple-negative subtype",
+      "source_keys": [
+        {
+          "source_row": "17",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Non-dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        29.43198670852359,
+        70.88277777777779,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-df5288855afd289b",
+      "role": "interval",
+      "label": "a · Percent density · Overall breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "18",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        33.68490349482058,
+        61.2857142857143,
+        12.6941133708815,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-226e0769cba7677a",
+      "role": "point",
+      "label": "a · Percent density · Overall breast cancer",
+      "source_keys": [
+        {
+          "source_row": "18",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.11473795803912,
+        60.36849206349208,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-d1a29d855e7705e0",
+      "role": "interval",
+      "label": "a · Percent density · ER+ breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "19",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        33.33310047353332,
+        58.65714285714286,
+        13.000396521485126,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-11537b900d65caab",
+      "role": "point",
+      "label": "a · Percent density · ER+ breast cancer",
+      "source_keys": [
+        {
+          "source_row": "19",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        38.916076512053664,
+        57.73992063492064,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-d0ee4b9a18e84041",
+      "role": "interval",
+      "label": "a · Percent density · ER- breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "20",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        32.64830143917908,
+        56.02857142857143,
+        13.12122375538466,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-3f8411d400f5ffc9",
+      "role": "point",
+      "label": "a · Percent density · ER- breast cancer",
+      "source_keys": [
+        {
+          "source_row": "20",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        38.29169109464916,
+        55.11134920634921,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-b2aea61e96f138f9",
+      "role": "interval",
+      "label": "a · Percent density · Luminal A subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "21",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        32.83548458550914,
+        53.400000000000006,
+        13.076007583227803,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-020334de0d1afd43",
+      "role": "point",
+      "label": "a · Percent density · Luminal A subtype",
+      "source_keys": [
+        {
+          "source_row": "21",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        38.45626615490085,
+        52.482777777777784,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-80c6228524a44c44",
+      "role": "interval",
+      "label": "a · Percent density · Luminal B1 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "23",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        34.14478121342053,
+        50.77142857142858,
+        14.542372273776529,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-f88cee16fd01b4ab",
+      "role": "point",
+      "label": "a · Percent density · Luminal B1 subtype",
+      "source_keys": [
+        {
+          "source_row": "23",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        40.4987451280866,
+        49.85420634920635,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-27b68bddd1460145",
+      "role": "interval",
+      "label": "a · Percent density · Luminal B2 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "22",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        34.564468534860076,
+        48.14285714285715,
+        10.888624464861449,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-2e7ad2d10df3d132",
+      "role": "point",
+      "label": "a · Percent density · Luminal B2 subtype",
+      "source_keys": [
+        {
+          "source_row": "22",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.09155854506857,
+        47.225634920634924,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-40f755dd4894ce31",
+      "role": "interval",
+      "label": "a · Percent density · HER2-enriched subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "24",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        32.439507226738186,
+        45.51428571428573,
+        16.152103433840477,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-28928af71b8bca8e",
+      "role": "point",
+      "label": "a · Percent density · HER2-enriched subtype",
+      "source_keys": [
+        {
+          "source_row": "24",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        39.59833672143623,
+        44.5970634920635,
+        1.8344444444444412,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-2786a46cee1fd0f7",
+      "role": "interval",
+      "label": "a · Percent density · Triple-negative subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "25",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        32.287379739127516,
+        42.88571428571429,
+        12.238460992452552,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-e4f8f4dc8607bdf9",
+      "role": "point",
+      "label": "a · Percent density · Triple-negative subtype",
+      "source_keys": [
+        {
+          "source_row": "25",
+          "source_sheet": "fig3",
+          "panel": "a",
+          "exposure": "Percent density",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        37.489388013131595,
+        41.96849206349207,
+        1.8344444444444412,
+        1.8344444444444412
+      ]
+    },
+    {
+      "id": "easyviz-reference-line-cdc1dd792170d883",
+      "role": "reference-line",
+      "label": "Odds ratio 2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        88.32390285829638,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-reference-line-14ef2df10f21ddee",
+      "role": "reference-line",
+      "label": "Null odds ratio 1",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        78.69094299704898,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-column-header-70f6bc532bca5030",
+      "role": "column_header",
+      "label": "Direct effect",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        68.999,
+        127.67570529513891,
+        16.002,
+        2.648589409722235
+      ]
+    },
+    {
+      "id": "easyviz-interval-42217ffbffc47f64",
+      "role": "interval",
+      "label": "b · Dense area · Overall breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "28",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        81.9500554378451,
+        119.11428571428574,
+        3.766421807650321,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ce930d7919b4534c",
+      "role": "point",
+      "label": "b · Dense area · Overall breast cancer",
+      "source_keys": [
+        {
+          "source_row": "28",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        82.91604411944802,
+        118.19706349206352,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-9a8d1c177f6d54d7",
+      "role": "interval",
+      "label": "b · Dense area · ER+ breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "27",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        81.7210042137653,
+        116.48571428571431,
+        4.022355534569055,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-4640cf35bbbc895c",
+      "role": "point",
+      "label": "b · Dense area · ER+ breast cancer",
+      "source_keys": [
+        {
+          "source_row": "27",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        82.81495975882756,
+        115.5684920634921,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-74b9f2430853e7d5",
+      "role": "interval",
+      "label": "b · Dense area · ER- breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "26",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        80.2343166865685,
+        113.85714285714288,
+        4.300461372986124,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-dfe7a60f139282e0",
+      "role": "point",
+      "label": "b · Dense area · ER- breast cancer",
+      "source_keys": [
+        {
+          "source_row": "26",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        81.46732515083934,
+        112.93992063492067,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-bac72636f895f138",
+      "role": "interval",
+      "label": "b · Dense area · Luminal A subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "30",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        81.67738580495809,
+        111.22857142857146,
+        4.1189247638260795,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-24c3c856101a8d81",
+      "role": "point",
+      "label": "b · Dense area · Luminal A subtype",
+      "source_keys": [
+        {
+          "source_row": "30",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        82.81962596464892,
+        110.31134920634923,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-a6108c2844d78b9f",
+      "role": "interval",
+      "label": "b · Dense area · Luminal B1 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "31",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        81.55767406973858,
+        108.60000000000002,
+        5.705120736559332,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-97434efee9e28fcd",
+      "role": "point",
+      "label": "b · Dense area · Luminal B1 subtype",
+      "source_keys": [
+        {
+          "source_row": "31",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        83.49301221579599,
+        107.68277777777782,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-963eae5dbc8d6620",
+      "role": "interval",
+      "label": "b · Dense area · Luminal B2 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "32",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        81.2582379768604,
+        105.9714285714286,
+        4.317152106841427,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-6d286a26831e08f0",
+      "role": "point",
+      "label": "b · Dense area · Luminal B2 subtype",
+      "source_keys": [
+        {
+          "source_row": "32",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        82.49959180805888,
+        105.05420634920638,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-f9ca90356321c38a",
+      "role": "interval",
+      "label": "b · Dense area · HER2-enriched subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "29",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        79.44813792187536,
+        103.34285714285717,
+        6.847172708849471,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ef5e97228ef88288",
+      "role": "point",
+      "label": "b · Dense area · HER2-enriched subtype",
+      "source_keys": [
+        {
+          "source_row": "29",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        81.95450205407789,
+        102.42563492063496,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-2908f0d9bb9c2be9",
+      "role": "interval",
+      "label": "b · Dense area · Triple-negative subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "33",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        79.15263739303364,
+        100.71428571428575,
+        4.91080880431155,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-5663d2475e59be89",
+      "role": "point",
+      "label": "b · Dense area · Triple-negative subtype",
+      "source_keys": [
+        {
+          "source_row": "33",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        80.69081957296717,
+        99.79706349206353,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-148ad20fc8792a4a",
+      "role": "interval",
+      "label": "b · Non-dense area · Overall breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "36",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        75.68414806686756,
+        90.20000000000002,
+        4.958128928870632,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-777a33a8b1f6c284",
+      "role": "point",
+      "label": "b · Non-dense area · Overall breast cancer",
+      "source_keys": [
+        {
+          "source_row": "36",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        77.24599030908064,
+        89.2827777777778,
+        1.834444444444451,
+        1.8344444444444317
+      ]
+    },
+    {
+      "id": "easyviz-interval-e8da1e26fccf6b62",
+      "role": "interval",
+      "label": "b · Non-dense area · ER+ breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "35",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        76.31577165684934,
+        87.57142857142858,
+        5.077542684914094,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-18a825dc1652ae35",
+      "role": "point",
+      "label": "b · Non-dense area · ER+ breast cancer",
+      "source_keys": [
+        {
+          "source_row": "35",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        77.93732077708422,
+        86.65420634920636,
+        1.834444444444451,
+        1.8344444444444412
+      ]
+    },
+    {
+      "id": "easyviz-interval-cb3c633926cc38c3",
+      "role": "interval",
+      "label": "b · Non-dense area · ER- breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "34",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        74.19882327691448,
+        84.94285714285716,
+        6.671131648485677,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-2bf196e71157d288",
+      "role": "point",
+      "label": "b · Non-dense area · ER- breast cancer",
+      "source_keys": [
+        {
+          "source_row": "34",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        76.61716687893512,
+        84.02563492063493,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-9a02960c4185a7ac",
+      "role": "interval",
+      "label": "b · Non-dense area · Luminal A subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "38",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        73.7109214686692,
+        82.31428571428573,
+        5.7172907485046585,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-1a8171e402ba2098",
+      "role": "point",
+      "label": "b · Non-dense area · Luminal A subtype",
+      "source_keys": [
+        {
+          "source_row": "38",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        75.65234462069928,
+        81.39706349206351,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-e427114a6fea2e23",
+      "role": "interval",
+      "label": "b · Non-dense area · Luminal B1 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "39",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        70.74559258027469,
+        79.6857142857143,
+        7.701958352693652,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-38450825f6f9ce4d",
+      "role": "point",
+      "label": "b · Non-dense area · Luminal B1 subtype",
+      "source_keys": [
+        {
+          "source_row": "39",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        73.67934953439928,
+        78.76849206349208,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-e6a863acd9edf82c",
+      "role": "interval",
+      "label": "b · Non-dense area · Luminal B2 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "40",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        73.83888682803959,
+        77.05714285714288,
+        6.539502632874399,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-ac625938bbc9d1cc",
+      "role": "point",
+      "label": "b · Non-dense area · Luminal B2 subtype",
+      "source_keys": [
+        {
+          "source_row": "40",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        76.19141592225455,
+        76.13992063492066,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-7b9502cd4fb1d063",
+      "role": "interval",
+      "label": "b · Non-dense area · HER2-enriched subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "37",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        75.94503108822936,
+        74.42857142857144,
+        10.317941701393838,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-3805f4d8c6e57ebd",
+      "role": "point",
+      "label": "b · Non-dense area · HER2-enriched subtype",
+      "source_keys": [
+        {
+          "source_row": "37",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        80.18677971670401,
+        73.51134920634922,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-fd73f2aef3613ee1",
+      "role": "interval",
+      "label": "b · Non-dense area · Triple-negative subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "41",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        70.60274445713407,
+        71.80000000000003,
+        7.591475651129216,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-664aa63f66e1ac0b",
+      "role": "point",
+      "label": "b · Non-dense area · Triple-negative subtype",
+      "source_keys": [
+        {
+          "source_row": "41",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Non-dense area",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        73.48126006047647,
+        70.88277777777779,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-f56c3576b271eda5",
+      "role": "interval",
+      "label": "b · Percent density · Overall breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "44",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        78.30756896415912,
+        61.2857142857143,
+        4.879483877569403,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-2df40833ac72316f",
+      "role": "point",
+      "label": "b · Percent density · Overall breast cancer",
+      "source_keys": [
+        {
+          "source_row": "44",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        79.8300886807216,
+        60.36849206349208,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-2d8402a08767f333",
+      "role": "interval",
+      "label": "b · Percent density · ER+ breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "43",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        77.6955079380793,
+        58.65714285714286,
+        5.202530322068013,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-66009d10a6a8bde8",
+      "role": "point",
+      "label": "b · Percent density · ER+ breast cancer",
+      "source_keys": [
+        {
+          "source_row": "43",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        79.37955087689103,
+        57.73992063492064,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-41d099c8657d3274",
+      "role": "interval",
+      "label": "b · Percent density · ER- breast cancer · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "42",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        77.9870842713422,
+        56.02857142857143,
+        5.592145770458982,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-1dbfd621b81fafb5",
+      "role": "point",
+      "label": "b · Percent density · ER- breast cancer",
+      "source_keys": [
+        {
+          "source_row": "42",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        79.86593493434943,
+        55.11134920634921,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-70d5c3760930fccf",
+      "role": "interval",
+      "label": "b · Percent density · Luminal A subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "46",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        77.42192378219784,
+        53.400000000000006,
+        5.32851993666836,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-29f8d02290e48809",
+      "role": "point",
+      "label": "b · Percent density · Luminal A subtype",
+      "source_keys": [
+        {
+          "source_row": "46",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        79.16896152830981,
+        52.482777777777784,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-f506634e75fe5d87",
+      "role": "interval",
+      "label": "b · Percent density · Luminal B1 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "47",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        76.53136740582725,
+        50.77142857142858,
+        7.1550581498144545,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-a88ac4bb23f9d52c",
+      "role": "point",
+      "label": "b · Percent density · Luminal B1 subtype",
+      "source_keys": [
+        {
+          "source_row": "47",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        79.19167425851228,
+        49.85420634920635,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-11e54376970f4519",
+      "role": "interval",
+      "label": "b · Percent density · Luminal B2 subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "48",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        78.152097216973,
+        48.14285714285715,
+        5.915556409097197,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-1c15f10a4520a50f",
+      "role": "point",
+      "label": "b · Percent density · Luminal B2 subtype",
+      "source_keys": [
+        {
+          "source_row": "48",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        80.19265319929937,
+        47.225634920634924,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-1768801bf8b0fe13",
+      "role": "interval",
+      "label": "b · Percent density · HER2-enriched subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "45",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        74.57662956844106,
+        45.51428571428573,
+        9.499600439055287,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-bc31feb270abaa1c",
+      "role": "point",
+      "label": "b · Percent density · HER2-enriched subtype",
+      "source_keys": [
+        {
+          "source_row": "45",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        78.40920756574644,
+        44.5970634920635,
+        1.834444444444451,
+        1.834444444444451
+      ]
+    },
+    {
+      "id": "easyviz-interval-0a24d469d3b4b8db",
+      "role": "interval",
+      "label": "b · Percent density · Triple-negative subtype · 95% CI",
+      "source_keys": [
+        {
+          "source_row": "49",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/strokes/interval_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "linewidth": "/strokes/interval_pt"
+      },
+      "bbox_mm": [
+        77.29569800497755,
+        42.88571428571429,
+        6.166567586124391,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-point-d0ab5048a2049ca6",
+      "role": "point",
+      "label": "b · Percent density · Triple-negative subtype",
+      "source_keys": [
+        {
+          "source_row": "49",
+          "source_sheet": "fig3",
+          "panel": "b",
+          "exposure": "Percent density",
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype",
+        "/marker_diameter_pt"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype",
+        "markersize": "/marker_diameter_pt"
+      },
+      "bbox_mm": [
+        79.46175957581755,
+        41.96849206349207,
+        1.834444444444451,
+        1.8344444444444412
+      ]
+    },
+    {
+      "id": "easyviz-exposure-2c7d5b2e7cd2d19e",
+      "role": "exposure",
+      "label": "Dense area",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        11.675705295138886,
+        102.7599523809524,
+        2.6485894097222253,
+        14.308666666666667
+      ]
+    },
+    {
+      "id": "easyviz-exposure-16017d02bceb3eed",
+      "role": "exposure",
+      "label": "Non-dense area",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        11.675705295138886,
+        71.09400000000002,
+        2.6485894097222253,
+        19.81200000000001
+      ]
+    },
+    {
+      "id": "easyviz-exposure-d72e77fd1e45283b",
+      "role": "exposure",
+      "label": "Percent density",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        11.675705295138886,
+        42.51838095238096,
+        2.6485894097222253,
+        19.134666666666668
+      ]
+    },
+    {
+      "id": "easyviz-axis-424cd019e6170ede",
+      "role": "axis",
+      "label": "Exposure",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        2.0757052951388886,
+        74.69233333333335,
+        2.648589409722223,
+        12.615333333333343
+      ]
+    },
+    {
+      "id": "easyviz-legend-23a0a5ed10c3e69a",
+      "role": "legend",
+      "label": "Outcome",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        14.0,
+        22.17570529513889,
+        12.02266666666667,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-839e2abdb2d07789",
+      "role": "legend-key",
+      "label": "Overall breast cancer",
+      "source_keys": [
+        {
+          "outcome": "Overall breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Overall breast cancer"
+      ],
+      "editable": {
+        "color": "/colors/Overall breast cancer"
+      },
+      "bbox_mm": [
+        11.582777777777777,
+        18.082777777777782,
+        4.834444444444445,
+        1.834444444444446
+      ]
+    },
+    {
+      "id": "easyviz-legend-95d4bf90b8ea219c",
+      "role": "legend",
+      "label": "Overall breast cancer",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        18.0,
+        17.675705295138894,
+        26.416,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-fbd901aeebad280e",
+      "role": "legend-key",
+      "label": "ER+ breast cancer",
+      "source_keys": [
+        {
+          "outcome": "ER+ breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER+ breast cancer"
+      ],
+      "editable": {
+        "color": "/colors/ER+ breast cancer"
+      },
+      "bbox_mm": [
+        11.582777777777777,
+        14.082777777777778,
+        4.834444444444445,
+        1.834444444444446
+      ]
+    },
+    {
+      "id": "easyviz-legend-a63f98872ca1807a",
+      "role": "legend",
+      "label": "ER+ breast cancer",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        18.0,
+        13.675705295138892,
+        23.114,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-0aa5a095f1a31a77",
+      "role": "legend-key",
+      "label": "ER- breast cancer",
+      "source_keys": [
+        {
+          "outcome": "ER- breast cancer"
+        }
+      ],
+      "spec_paths": [
+        "/colors/ER- breast cancer"
+      ],
+      "editable": {
+        "color": "/colors/ER- breast cancer"
+      },
+      "bbox_mm": [
+        11.582777777777777,
+        10.08277777777778,
+        4.834444444444445,
+        1.8344444444444448
+      ]
+    },
+    {
+      "id": "easyviz-legend-fe47f4b385f4c073",
+      "role": "legend",
+      "label": "ER- breast cancer",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        18.0,
+        9.67570529513889,
+        22.436666666666667,
+        2.648589409722222
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-9b8bedfcd526a58c",
+      "role": "legend-key",
+      "label": "Luminal A subtype",
+      "source_keys": [
+        {
+          "outcome": "Luminal A subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal A subtype"
+      ],
+      "editable": {
+        "color": "/colors/Luminal A subtype"
+      },
+      "bbox_mm": [
+        11.582777777777777,
+        6.08277777777778,
+        4.834444444444445,
+        1.8344444444444437
+      ]
+    },
+    {
+      "id": "easyviz-legend-d7bc39e96ef90c3c",
+      "role": "legend",
+      "label": "Luminal A subtype",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        18.0,
+        5.67570529513889,
+        22.378458333333334,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-28111a5da4bbbc62",
+      "role": "legend-key",
+      "label": "Luminal B1 subtype",
+      "source_keys": [
+        {
+          "outcome": "Luminal B1 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B1 subtype"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B1 subtype"
+      },
+      "bbox_mm": [
+        58.58277777777777,
+        18.082777777777782,
+        4.834444444444452,
+        1.834444444444446
+      ]
+    },
+    {
+      "id": "easyviz-legend-9c95ea54ac3df8f9",
+      "role": "legend",
+      "label": "Luminal B1 subtype",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        65.0,
+        17.675705295138894,
+        24.214666666666666,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-7da3d980a68a9cf3",
+      "role": "legend-key",
+      "label": "Luminal B2 subtype",
+      "source_keys": [
+        {
+          "outcome": "Luminal B2 subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Luminal B2 subtype"
+      ],
+      "editable": {
+        "color": "/colors/Luminal B2 subtype"
+      },
+      "bbox_mm": [
+        58.58277777777777,
+        14.082777777777778,
+        4.834444444444452,
+        1.834444444444446
+      ]
+    },
+    {
+      "id": "easyviz-legend-d0a9dc1be6f286c2",
+      "role": "legend",
+      "label": "Luminal B2 subtype",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        65.0,
+        13.675705295138892,
+        24.214666666666666,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-e5ab18ce70fada9c",
+      "role": "legend-key",
+      "label": "HER2-enriched subtype",
+      "source_keys": [
+        {
+          "outcome": "HER2-enriched subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/HER2-enriched subtype"
+      ],
+      "editable": {
+        "color": "/colors/HER2-enriched subtype"
+      },
+      "bbox_mm": [
+        58.58277777777777,
+        10.08277777777778,
+        4.834444444444452,
+        1.8344444444444448
+      ]
+    },
+    {
+      "id": "easyviz-legend-fae6631e450d9a8a",
+      "role": "legend",
+      "label": "HER2-enriched subtype",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        65.0,
+        9.67570529513889,
+        29.464,
+        2.648589409722222
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-0d5012b10caa349b",
+      "role": "legend-key",
+      "label": "Triple-negative subtype",
+      "source_keys": [
+        {
+          "outcome": "Triple-negative subtype"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Triple-negative subtype"
+      ],
+      "editable": {
+        "color": "/colors/Triple-negative subtype"
+      },
+      "bbox_mm": [
+        58.58277777777777,
+        6.08277777777778,
+        4.834444444444452,
+        1.8344444444444437
+      ]
+    },
+    {
+      "id": "easyviz-legend-1ee2c41d1bb7a7ed",
+      "role": "legend",
+      "label": "Triple-negative subtype",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text",
+        "position"
+      ],
+      "bbox_mm": [
+        65.0,
+        5.67570529513889,
+        28.597489583333335,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        18.0,
+        35.0,
+        32.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-a25b05ec84419760",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        18.0,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-ccc292c102dd7332",
+      "role": "axis-line",
+      "label": "Y axis line · right",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "right"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        50.0,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-583586e852f58ad3",
+      "role": "axis-line",
+      "label": "X axis line · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        18.0,
+        34.11805555555556,
+        32.0,
+        0.8819444444444461
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-d99df2d262383eca",
+      "role": "axis-line",
+      "label": "X axis line · top",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "top"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        18.0,
+        127.00000000000004,
+        32.0,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Odds ratio",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        27.607666666666667,
+        27.233376736111115,
+        12.784666666666666,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-d2f9de54ec255438",
+      "role": "axis-tick",
+      "label": "X major tick · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        35.249970774826764,
+        34.55902777777778,
+        0.8819444444444412,
+        0.8819444444444412
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-92ea1202889afa8b",
+      "role": "tick-label",
+      "label": "X tick label · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        34.928942997048985,
+        30.76391059027778,
+        1.524,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-a369cdb522813c9c",
+      "role": "axis-tick",
+      "label": "X major tick · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        44.88293063607416,
+        34.55902777777778,
+        0.8819444444444509,
+        0.8819444444444412
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b281a5203f58abf3",
+      "role": "tick-label",
+      "label": "X tick label · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        44.56190285829638,
+        30.76391059027778,
+        1.524,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axes-80f59f16ea6a58b2",
+      "role": "axes",
+      "label": "Data region 2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        61.0,
+        35.0,
+        31.999999999999993,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-aadfcac3edf9fe4a",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        61.0,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-345e28a57d78ab02",
+      "role": "axis-line",
+      "label": "Y axis line · right",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "right"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        93.0,
+        35.0,
+        0.0,
+        92.00000000000003
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-0418b07d443ec558",
+      "role": "axis-line",
+      "label": "X axis line · bottom",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "x",
+          "side": "bottom"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        61.0,
+        34.11805555555556,
+        31.999999999999993,
+        0.8819444444444461
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-fda9e4c1bb142d6c",
+      "role": "axis-line",
+      "label": "X axis line · top",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "x",
+          "side": "top"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        61.0,
+        127.00000000000004,
+        31.999999999999993,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-e9d785a662607316",
+      "role": "axis-label",
+      "label": "Odds ratio",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        70.60766666666666,
+        27.233376736111115,
+        12.784666666666666,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-863bd5ce9c89158c",
+      "role": "axis-tick",
+      "label": "X major tick · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        78.24997077482675,
+        34.55902777777778,
+        0.8819444444444509,
+        0.8819444444444412
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-4ed7080894197d0b",
+      "role": "tick-label",
+      "label": "X tick label · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        77.92894299704898,
+        30.76391059027778,
+        1.524,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-0e1ce086b4b85b65",
+      "role": "axis-tick",
+      "label": "X major tick · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        87.88293063607416,
+        34.55902777777778,
+        0.8819444444444317,
+        0.8819444444444412
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-817e4720afb20b48",
+      "role": "tick-label",
+      "label": "X tick label · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        87.56190285829638,
+        30.76391059027778,
+        1.524,
+        2.6485894097222205
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

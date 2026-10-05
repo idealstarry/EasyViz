@@ -43,6 +43,13 @@ explain which mechanism was observed and which choice is a new adaptation.
 Use a different color role, summary treatment or organization when it better
 answers the current question. Preserve an accepted project palette.
 
+The [pathway-signature case](../assets/cases/pathway-signatures/README.md) starts
+from supplied model coefficients. An overlap overview selects two supported
+coefficient comparisons; actual denominators decode a descriptive sign summary.
+It does not infer pathway activity, biological crosstalk or significance from
+coefficient proximity. Structural zeros differ from missing measurements;
+undefined empty-pair agreement and tiny denominators remain explicit.
+
 ## Plan shared geometry before styling
 
 Record which panels share literal identity, which share a quantitative scale,

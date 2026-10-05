@@ -567,7 +567,10 @@ class CoreRenderRequestTests(unittest.TestCase):
             self.assertEqual(fresh_settings["input_file"], str(restored / "source-data.csv"))
             expected_settings = copy.deepcopy(settings)
             expected_settings["input_file"] = str(restored / "source-data.csv")
-            self.assertEqual(fresh_settings, expected_settings, "Only frozen provenance pointer changes")
+            expected_settings["source_bindings"]["data_file"]["path"] = str(restored / "source-data.csv")
+            self.assertEqual(fresh_settings, expected_settings, "Only frozen provenance pointers change")
+            self.assertEqual(fresh_settings["source_bindings"]["data_file"]["sha256"],
+                             digest((restored / "source-data.csv").read_bytes()))
             for name, raw in expected_exports.items():
                 self.assertEqual((restored / name).read_bytes(), raw)
             self.assertTrue(helper.FigureWorkbench(restored).state()["source_current"])

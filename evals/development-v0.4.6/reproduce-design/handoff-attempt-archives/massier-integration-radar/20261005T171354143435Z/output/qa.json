@@ -1,0 +1,124 @@
+{
+  "technical_passed": true,
+  "visual_status": "requires_independent_review",
+  "checks": {
+    "source_coverage": true,
+    "live_artists": true,
+    "source_continuity": true,
+    "pdf_canvas": true,
+    "svg_canvas": true,
+    "png_canvas": true,
+    "pdf_fonts": true,
+    "editable_svg_text": true,
+    "text_bounds": true,
+    "text_overlap": true
+  },
+  "measurements": {
+    "pdf_mm": [
+      64.00000178019205,
+      65.99999813503689
+    ],
+    "svg_mm": [
+      64.00000005833334,
+      65.99999993888888
+    ],
+    "png_pixels": [
+      756,
+      780
+    ],
+    "expected_pixels": [
+      756,
+      780
+    ],
+    "pdf_font_sizes_pt": [
+      8.0
+    ],
+    "pdf_fonts_embedded": true,
+    "text_outside": [],
+    "text_overlap": []
+  },
+  "sources": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/inputs/source-data.csv",
+      "sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/plot.py",
+      "sha256": "dde707ef6636aad43b707ff9251359fc16666c058f3e602ddf656d35b1c28d58"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/adopted-spec.json",
+      "sha256": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "figure_workbench_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    }
+  },
+  "limits": [
+    "Text checks do not prove all text–mark relationships or aesthetic quality.",
+    "Three valid zeros coincide at the origin; no jitter or negative radial padding is inferred."
+  ],
+  "status": "pass",
+  "valid_outputs": true,
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/inputs/source-data.csv",
+      "sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/plot.py",
+      "sha256": "dde707ef6636aad43b707ff9251359fc16666c058f3e602ddf656d35b1c28d58"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/no-author-code/massier-integration-radar/revision-v0.4.6/adopted-spec.json",
+      "sha256": "9ab8544e1687a05b684ef763c27d8c436bbbe9a0ce56bdb92ec3bf0bdb6ac132"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "c5107c6fd6db3f889382299af111e4b7c5197a0a1088dca0fc51efaa9c2c6a76"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    },
+    "figure_workbench_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+      "sha256": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
+    }
+  },
+  "input_sha256": "124bef1f9480643331bd2aca74f589be25d21606b1ddf5de3e373b52ca6fbf70",
+  "input_rows": 25,
+  "plotted_input_rows": 25,
+  "exports": {
+    "png": {
+      "sha256": "d158630d744195689e934868682f548ffd8ed5d1f3beeacaf52d401586475233",
+      "pixels": [
+        756,
+        780
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    "pdf": {
+      "sha256": "6eaf53ce2a42f8358f52236da72e49b988bf8c3fe8601cb725305989e59d124f",
+      "width_mm": 64.00000178019205,
+      "height_mm": 65.99999813503689
+    },
+    "svg": {
+      "sha256": "c4d6daface44ff1d6267bf9a314b56eaf590e8178c0d3dff69bd47ac1b537d66",
+      "width_mm": 64.00000005833334,
+      "height_mm": 65.99999993888888
+    }
+  }
+}

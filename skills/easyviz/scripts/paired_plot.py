@@ -120,7 +120,7 @@ def validate_spec(spec):
 def prepare(data_path, spec):
     """Reject ambiguous, duplicate, incomplete and non-finite repeated measures."""
     validate_spec(spec)
-    data = pd.read_csv(data_path, dtype=object, keep_default_na=False)
+    data = core.read_source_csv(data_path)
     require(len(data) > 0, "Input has no observations")
     require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
     fields, opts = spec["fields"], spec.get("options", {})
@@ -247,6 +247,21 @@ def draw(data, spec, layout, typography):
             ys = cell[fields["value"]].to_numpy(float)
             point = ax.scatter(xs, ys, s=core.circle_size_parameter(area), marker="o", c=colors[block], alpha=opts.get("point_alpha", 1), edgecolors=opts.get("point_edge_color", "#777777") if edge else "none", linewidths=edge, zorder=2)
             rows = list(map(int, cell["_easyviz_source_row"]))
+            paths, edits = [], {}
+            color_path = (core.figure_elements.pointer("colors", block) if "block" in fields
+                          and block in spec.get("colors", {}) else "/options/point_color"
+                          if "block" not in fields and "point_color" in opts else None)
+            if color_path is not None:
+                paths.append(color_path)
+                edits["color"] = color_path
+            if "point_alpha" in opts:
+                paths.append("/options/point_alpha")
+                edits["alpha"] = "/options/point_alpha"
+            core.figure_elements.register(fig, point, "point-group", f"{block} · {condition}",
+                key=["paired", block, condition],
+                source_keys=[{"block": block, "condition": condition, "records": rows,
+                              "units": cell[fields["unit"]].astype(str).tolist()}],
+                spec_paths=paths, editable=edits)
             artists.append({"block": block, "condition": condition, "source_rows": rows, "point": point, "center": center})
             for (_, row), x, y in zip(cell.iterrows(), xs, ys):
                 point_map[(block, str(row[fields["unit"]]), condition)] = (float(x), float(y))
@@ -374,8 +389,8 @@ def render(data_path, spec, out, *, spec_path=None):
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports are unverified until this attempted run passes."})
     fig, figures_before = None, set(plt.get_fignums())
     try:
-        input_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
         data = prepare(data_path, spec)
+        input_hash = data.attrs["source_csv_sha256"]
         resolved = deepcopy(spec)
         resolved.setdefault("chart", "paired")
         resolved.setdefault("layout", {}).setdefault("auto_fit", "margins" not in resolved.get("layout", {}))
@@ -394,21 +409,27 @@ def render(data_path, spec, out, *, spec_path=None):
             fig._easyviz_data_file = data_path.resolve()
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
+            fig._easyviz_source_bindings = {"data_file": {"path": str(data_path.resolve()), "sha256": input_hash}}
             exports = core.export(fig, out, resolved, layout)
+            clipping_report = fig._easyviz_observation_clipping
             readability = core.panel_readability.measure(fig)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"
                 audit["issues"].append({"code": "source_changed_during_render"})
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
-            passed = not clipped and not overlap and not missing and all(record["status"] == "pass" for record in (audit, legends, geometry)) and (not fitted or fitted["status"] == "pass")
+            passed = not clipped and not overlap and not missing and all(record["status"] == "pass" for record in (audit, legends, geometry)) and (not fitted or fitted["status"] == "pass") and clipping_report["status"] != "needs_revision"
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": sum(len(r["source_rows"]) for r in fig._easyviz_paired_artists), "input_sha256": input_hash, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "visual_review_required": True, "note": "Automated geometry and source checks do not establish aesthetic quality or statistical appropriateness; inspect the actual panel."}
             qa["readability"] = readability
+            qa["observation_clipping"] = clipping_report
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["pdf", "png"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"y_scale": fig.axes[0].get_yscale(), "y_limits": list(map(float, fig.axes[0].get_ylim())), "condition_order": audit["conditions"]}
             settings["summary_policy"] = {"method": "median_iqr", "scale": "raw measurements", "quantile_method": resolved.get("options", {}).get("quantile_method", "linear"), "interval_meaning": "interquartile range of observations, not a confidence interval", "tests_performed": False}
             settings["mark_policy"] = {"geometric_circle_area_pt2": geometry["circle_geometric_area_pt2"], "matplotlib_s": core.circle_size_parameter(geometry["circle_geometric_area_pt2"]), "diameter_pt": geometry["point_diameter_pt"], "placement": resolved.get("options", {}).get("point_layout", "swarm"), "placement_measured_after_layout": True, "connect_pairs": resolved.get("options", {}).get("connect_pairs", False), "jitter_shared_within_unit": True if resolved.get("options", {}).get("point_layout") == "jitter" else None, "outline_width_pt": geometry["outline_width_pt"]}
             settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "path_simplification": False, "connector_representation": "one exact two-point segment per adjacent condition and unit", "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in HELPERS}}
+            settings["observation_clipping"] = clipping_report
+            settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
+            settings["renderer"]["helper_sha256"]["observation_clipping.py"] = core.RUNTIME_SOURCE_DIGESTS["observation_clipping.py"]
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "Pillow", "pypdf")}}
             if spec_path is not None:
                 settings["spec_file"], settings["spec_file_sha256"] = str(Path(spec_path).resolve()), hashlib.sha256(Path(spec_path).read_bytes()).hexdigest()

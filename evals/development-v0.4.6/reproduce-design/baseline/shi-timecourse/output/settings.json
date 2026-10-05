@@ -1,0 +1,246 @@
+{
+  "chart": "timecourse",
+  "fields": {
+    "x": "time_min",
+    "estimate": "mean_um",
+    "series": "dimension",
+    "sd": "sd_um"
+  },
+  "uncertainty": {
+    "kind": "sd",
+    "label": "Supplied standard deviation from 146 followed cells"
+  },
+  "order": {
+    "series": [
+      "Cell width",
+      "Cell length"
+    ]
+  },
+  "colors": {
+    "Cell width": "#0072BD",
+    "Cell length": "#D95319"
+  },
+  "options": {
+    "x_limits": [
+      0,
+      60
+    ],
+    "x_ticks": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60
+    ],
+    "y_limits": [
+      0.88,
+      1.27
+    ],
+    "y_ticks": [
+      0.9,
+      1,
+      1.1,
+      1.2
+    ],
+    "right_y_limits": [
+      1.5,
+      5.5
+    ],
+    "right_y_ticks": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "axis_by_series": {
+      "Cell width": "left",
+      "Cell length": "right"
+    },
+    "curve_line_width_pt": 0.8,
+    "marker_diameter_pt": 1.3,
+    "band_alpha": 0.3
+  },
+  "labels": {
+    "x": "Time (min)",
+    "y": "Cell width (µm)",
+    "right_y": "Cell length (µm)"
+  },
+  "layout": {
+    "width_mm": 100.0,
+    "height_mm": 76.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.11104422743055557,
+      "right": 0.9118157725694443,
+      "bottom": 0.1308291072733918,
+      "top": 0.9736842105263156
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png",
+    "tiff"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/source-data.csv",
+  "input_sha256": "eff9f0be392ee699c29af48494b6c6113df7c67a31e1a323ea57da9828308953",
+  "supplied_spec": {
+    "chart": "timecourse",
+    "fields": {
+      "x": "time_min",
+      "estimate": "mean_um",
+      "series": "dimension",
+      "sd": "sd_um"
+    },
+    "uncertainty": {
+      "kind": "sd",
+      "label": "Supplied standard deviation from 146 followed cells"
+    },
+    "order": {
+      "series": [
+        "Cell width",
+        "Cell length"
+      ]
+    },
+    "colors": {
+      "Cell width": "#0072BD",
+      "Cell length": "#D95319"
+    },
+    "options": {
+      "x_limits": [
+        0,
+        60
+      ],
+      "x_ticks": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60
+      ],
+      "y_limits": [
+        0.88,
+        1.27
+      ],
+      "y_ticks": [
+        0.9,
+        1,
+        1.1,
+        1.2
+      ],
+      "right_y_limits": [
+        1.5,
+        5.5
+      ],
+      "right_y_ticks": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "axis_by_series": {
+        "Cell width": "left",
+        "Cell length": "right"
+      },
+      "curve_line_width_pt": 0.8,
+      "marker_diameter_pt": 1.3,
+      "band_alpha": 0.3
+    },
+    "labels": {
+      "x": "Time (min)",
+      "y": "Cell width (µm)",
+      "right_y": "Cell length (µm)"
+    },
+    "layout": {
+      "width_mm": 100,
+      "height_mm": 76,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png",
+      "tiff"
+    ]
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "script_sha256": "8dca93dcac89a34b4d10b189845a5158c7e4fc28603b5c3400d0bca5e1a074ab",
+    "helper_sha256": {
+      "render.py": "71bc588e3eab3a706c18cca09ab896f62da7ebab80620906cb6149261a6cd719",
+      "legend_layout.py": "b69725d6110e94cc5b66526bba6096f7291fc2800712509704e56b4e209090eb",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "3381fd8ab9eecfcde6d2d72935e6a106cbd61776f50ebb5c829f6ff40d5c95d6",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "93419ee9aaa68f4664e3abb80f2c6610c2a806f9ea95b499f10f7b3879b7565a"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "axis_by_series": {
+    "Cell width": "left",
+    "Cell length": "right"
+  },
+  "auto_layout": {
+    "status": "pass",
+    "mode": "both_axis_text_measured",
+    "padding_mm": 2,
+    "margins": {
+      "left": 0.11104422743055557,
+      "right": 0.9118157725694443,
+      "bottom": 0.1308291072733918,
+      "top": 0.9736842105263156
+    }
+  },
+  "axes": {
+    "left": {
+      "y_scale": "linear",
+      "y_limits": [
+        0.88,
+        1.27
+      ]
+    },
+    "right": {
+      "y_scale": "linear",
+      "y_limits": [
+        1.5,
+        5.5
+      ]
+    }
+  },
+  "x_scale": "linear",
+  "x_limits": [
+    0.0,
+    60.0
+  ],
+  "curve_interpretation": "Straight connections between supplied summaries; no fit or new observations",
+  "spec_file": "/Users/starry/Desktop/EasyViz/examples/no-author-code/shi-timecourse/spec.json",
+  "spec_file_sha256": "7022ce3da3a2c8c0fba84feb7a1e15022dbf7319aa7fcdc3963bd1dc8e84aa67"
+}

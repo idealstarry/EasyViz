@@ -1,6 +1,6 @@
 {
   "status": "ready_with_notes",
-  "review_type": "Actual-image self-review; current-hash independent followup review pending",
+  "review_type": "Actual-image self-review with independently reattested final current followup artifacts",
   "actual_images_opened": [
     "inputs/literature-reference.png",
     "design-history/attempt-01/panels/lung/output/panel.png",
@@ -16,7 +16,7 @@
   "observations": [
     "The two independently labeled concentration axes prevent a false shared unit scale.",
     "Bright blue circles and coral squares decode the actual genotypes with a second shape cue, including the endpoints.",
-    "The irregular 24–48 h interval has twice the horizontal length of the 12–24 h interval; mean anchors are exact linear source hours.",
+    "The irregular 24\u201348 h interval has twice the horizontal length of the 12\u201324 h interval; mean anchors are exact linear source hours.",
     "Definite thin trajectories and thin horizontal mean ticks lead; open observations and compact SEM retain the source variability without a broad faded band.",
     "Raw observations are visible at nominal PDF size and retain definite edges; the source duplicates have separate symbols.",
     "No in-image title, narrative footer, count prose or panel lettering is added."
@@ -40,7 +40,7 @@
     ],
     "purpose": "Explicit alternate-font technical usability check, not another canonical aesthetic iteration",
     "findings": [
-      "Actual DejaVu Sans 8 pt labels fit the same 82 × 65 mm panel canvas and nominal PDF view.",
+      "Actual DejaVu Sans 8 pt labels fit the same 82 \u00d7 65 mm panel canvas and nominal PDF view.",
       "All 88 source concentrations, 16 means/SEMs and true mean hours are preserved; independent actual SVG/PDF/font/stroke/clearance checks pass.",
       "The final production capture includes an explicit adopted DejaVu specification and the original canonical specification as a real auxiliary input."
     ]
@@ -55,5 +55,33 @@
       "output/pdf-preview-96dpi.png"
     ],
     "scope": "Actual canonical production rebind, byte-identical to the selected refined images; no new aesthetic redesign pass."
+  },
+  "independent_current_reviews": {
+    "lung": {
+      "packet": "delivery-review/lung/packet.json",
+      "packet_sha256": "0e35c9257b0cb7b316925bb87cda709f5be87f1a51ed6bb689936adaea32e052",
+      "review": "delivery-review/lung/review.json",
+      "review_sha256": "0ea558dd5e9a8ee69a9c8cc5c8e5ac519de470fd36ba404a5de70fce86cf0986",
+      "gate": "delivery-review/lung/gate.json",
+      "gate_status": "recorded",
+      "readiness": "ready_with_notes",
+      "errors": []
+    },
+    "serum": {
+      "packet": "delivery-review/serum/packet.json",
+      "packet_sha256": "3e14b5b949b995aaeb8bdb1016a9b8a864ee6763e4d3c1eb1a8db584432e17f5",
+      "review": "delivery-review/serum/review.json",
+      "review_sha256": "512e9979cef75e0299c8e7c2349efd50f9ab70cbc407dd084bd34b8bdac47689",
+      "gate": "delivery-review/serum/gate.json",
+      "gate_status": "recorded",
+      "readiness": "ready_with_notes",
+      "errors": []
+    }
+  },
+  "independent_readiness": "ready_with_notes",
+  "current_canonical_helpers": {
+    "figure_elements_helper": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+    "figure_handoff_helper": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a",
+    "figure_workbench_helper": "12435e4b9c494072286b76a755f44dd39be7c1be20c78d45bce350729ddb32b7"
   }
 }
