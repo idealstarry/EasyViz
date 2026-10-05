@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "review_pass": 1,
+  "scope": "Independent actual-image review of bounded functional Create route probe, not model/causal/generalization/publication evidence",
+  "reviewer": "choice_space_visual_review",
+  "baseline_type": "No accepted or no-skill baseline; candidate-01 is a proposed route",
+  "initial_runtime": "evals/create-choice-space-v0.4.4/initial-runtime/",
+  "status": "needs_revision",
+  "images_actually_opened": 14,
+  "input_rows": 165,
+  "findings": [
+    {
+      "severity": "major",
+      "location": "quartiles/all candidates/raw side lanes",
+      "evidence": "Actually opened raw marks form overlapping clusters; supplied records report 12 overlapping circle pairs and 13 spacing violations per candidate.",
+      "requirement": "Retain every observation as a readable layer at adopted numeric positions, marker area, size and font.",
+      "action": "Widen only unlocked categorical packing lanes; keep quantitative coordinates, every observation, marker area and category association. Inspect separately rendered revisions."
+    },
+    {
+      "severity": "major",
+      "location": "density/all candidates/raw side lanes",
+      "evidence": "Actually opened raw marks merge into narrow point columns; supplied records report 43 overlapping circle pairs per candidate. Contours and inner summaries remain distinct.",
+      "requirement": "Retain every observation alongside unchanged adopted KDE and raw-value quartiles.",
+      "action": "Give raw lanes sufficient unlocked categorical spread clear of violin contours, preserving numeric values, KDE, quartiles, page size, typography and marker area."
+    },
+    {
+      "severity": "note",
+      "location": "coordinates/candidate-02 versus candidate-01",
+      "evidence": "The same blue, amber and teal hues are reassigned across class labels, with correctly corresponding legend keys.",
+      "requirement": "Describe visible differences honestly.",
+      "action": "Call this an alternative categorical mapping; do not infer improved discriminability or scientific organization from palette IDs."
+    }
+  ],
+  "cases": [
+    {
+      "case": "coordinates",
+      "adopted_spec": "evals/create-choice-space-v0.4.4/inputs/coordinates/spec.json",
+      "caption": "evals/create-choice-space-v0.4.4/inputs/coordinates/caption.md",
+      "spec_and_caption_read": true,
+      "input_rows": 36,
+      "visible_evidence": "Capacity-matched categorical assignments and an open glyph alternative are visible and legend-consistent. Second assignment uses the same hue set, not demonstrated superior discrimination.",
+      "comparison_preference": "no_clear_preference",
+      "aesthetic_winner": null,
+      "status": "ready",
+      "candidates": [
+        {
+          "id": "candidate-01",
+          "route": "scatter-decoding-1",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/coordinates/candidate-01/panel.png",
+          "png_sha256": "d072928bb89b01b5963a610d296d52b9d3d90b8b12ad757e4b67ed38451aa643",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/coordinates/candidate-01/panel.pdf",
+          "pdf_sha256": "c0907ffcc55863e6fb004c0f97ea040b810aa8e090280e2a08108f75421b50d9",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        },
+        {
+          "id": "candidate-02",
+          "route": "scatter-decoding-2",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/coordinates/candidate-02/panel.png",
+          "png_sha256": "68ccf94b3969c9093e0132f6d4f86e6847fdba8496e3238b6e87d1469cd99f9e",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/coordinates/candidate-02/panel.pdf",
+          "pdf_sha256": "c9425caf47a24d4b78c0ebcbf4860d8f8666c33a58b5aa23d14a2f3663b17dbc",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        },
+        {
+          "id": "candidate-03",
+          "route": "scatter-hollow",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/coordinates/candidate-03/panel.png",
+          "png_sha256": "aa1a0d62d0698ad6eaa871a057b0566993fc3620eac5e2687ab434d360b7e52e",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/coordinates/candidate-03/panel.pdf",
+          "pdf_sha256": "c9a2933c4c26038b6fc2f8d18bd4bcdf291380689aebb055edcee7bd26059886",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        }
+      ]
+    },
+    {
+      "case": "density",
+      "adopted_spec": "evals/create-choice-space-v0.4.4/inputs/density/spec.json",
+      "caption": "evals/create-choice-space-v0.4.4/inputs/density/caption.md",
+      "spec_and_caption_read": true,
+      "input_rows": 51,
+      "visible_evidence": "Category color moves from inner quartile summaries to raw points, then to neutral positional decoding. Contour and inner summary are visible; initial raw columns overlap.",
+      "comparison_preference": "no_clear_preference",
+      "aesthetic_winner": null,
+      "status": "needs_revision",
+      "candidates": [
+        {
+          "id": "candidate-01",
+          "route": "summary-area",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/density/candidate-01/panel.png",
+          "png_sha256": "ed374940553fbf1b7e57966f9e2f188439ab068107164b15b90769f7b606d8a1",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/density/candidate-01/panel.pdf",
+          "pdf_sha256": "411c4697a68355e93bbc348fc4c73286c5b6a37157196461888886d919aeb931",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "needs_revision",
+          "supplied_point_layout": {
+            "status": "needs_revision",
+            "overlapping_circle_pairs": 43,
+            "spacing_violation_pairs": 43
+          }
+        },
+        {
+          "id": "candidate-02",
+          "route": "observation-color",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/density/candidate-02/panel.png",
+          "png_sha256": "ba85c48df2d20369ffb3a047b452b8419314bc0ffa27334ae0e9d9b112c91da8",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/density/candidate-02/panel.pdf",
+          "pdf_sha256": "f8ed3cf8c7fc0c765e5a1a1d9030cac0cbfa1274c854bbf866b4914efc2cc8e4",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "needs_revision",
+          "supplied_point_layout": {
+            "status": "needs_revision",
+            "overlapping_circle_pairs": 43,
+            "spacing_violation_pairs": 43
+          }
+        },
+        {
+          "id": "candidate-03",
+          "route": "neutral-position",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/density/candidate-03/panel.png",
+          "png_sha256": "85ad7149f3807176530892f208422670b873ad7b7e89381ffb0b4b85e0c85a82",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/density/candidate-03/panel.pdf",
+          "pdf_sha256": "863111a721eb00ff6a92df685910a6f0728d6843c65dab715167fa31ff2194b5",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "needs_revision",
+          "supplied_point_layout": {
+            "status": "needs_revision",
+            "overlapping_circle_pairs": 43,
+            "spacing_violation_pairs": 43
+          }
+        }
+      ]
+    },
+    {
+      "case": "matrix",
+      "adopted_spec": "evals/create-choice-space-v0.4.4/inputs/matrix/spec.json",
+      "caption": "evals/create-choice-space-v0.4.4/inputs/matrix/caption.md",
+      "spec_and_caption_read": true,
+      "input_rows": 24,
+      "visible_evidence": "Blue versus teal sequential ramps with a right guide, and the same blue ramp with bottom horizontal guide. All integer annotations and adopted 0\u201350 guide labels are readable.",
+      "comparison_preference": "no_clear_preference",
+      "aesthetic_winner": null,
+      "status": "ready",
+      "candidates": [
+        {
+          "id": "candidate-01",
+          "route": "matrix-ramp-1",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/matrix/candidate-01/panel.png",
+          "png_sha256": "43766467b0f6c4280679ef2a8cd975af93ce788e480b985bf0f2820e4a2f3835",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/matrix/candidate-01/panel.pdf",
+          "pdf_sha256": "29cd3af4e5f2f7f4f69f82a5fb4f449c80049706dd9b984e5dccf6d724cb6101",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        },
+        {
+          "id": "candidate-02",
+          "route": "matrix-ramp-2",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/matrix/candidate-02/panel.png",
+          "png_sha256": "e9ef0249b09a485a0ba318be5d494feb9a947408e268b2b9f387151d0220e7cd",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/matrix/candidate-02/panel.pdf",
+          "pdf_sha256": "fbc83c7f52eb197820becc910b8fc2beb978520c0ed7059ebb09bffcdacf13e4",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        },
+        {
+          "id": "candidate-03",
+          "route": "matrix-bottom-guide",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/matrix/candidate-03/panel.png",
+          "png_sha256": "9c6e8bc44abebab16fd357a75a383930369b9e99bc34bd8bf50541a58270b6ea",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/matrix/candidate-03/panel.pdf",
+          "pdf_sha256": "947e76be2b33d53aa7ccb14e24935bcc705c1bab123e75d6bc984e10bb72d40d",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        }
+      ]
+    },
+    {
+      "case": "means",
+      "adopted_spec": "evals/create-choice-space-v0.4.4/inputs/means/spec.json",
+      "caption": "evals/create-choice-space-v0.4.4/inputs/means/caption.md",
+      "spec_and_caption_read": true,
+      "input_rows": 12,
+      "visible_evidence": "Light gray filled versus dark open summary bars, both with separated four repeats and unchanged sample-SD intervals.",
+      "comparison_preference": "no_clear_preference",
+      "aesthetic_winner": null,
+      "status": "ready",
+      "candidates": [
+        {
+          "id": "candidate-01",
+          "route": "replicate-filled",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/means/candidate-01/panel.png",
+          "png_sha256": "e2879308e646f169508b353bb6c7ff8d1b845a521627a9a7ac8ee19e6b90111a",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/means/candidate-01/panel.pdf",
+          "pdf_sha256": "c188f1786cc2789ee0f27e48ad0b1a9e1e1596ad1a45345ac8ce6c1ef573f7a1",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        },
+        {
+          "id": "candidate-02",
+          "route": "replicate-outline",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/means/candidate-02/panel.png",
+          "png_sha256": "d02ac1fd76683bbeab824e31d18c13ebd764bf783475f9a154ad1b78dbf25849",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/means/candidate-02/panel.pdf",
+          "pdf_sha256": "3bb57e3fcccadd11428affa0417133a38453d4cbf153228659a525b9e4ec91d1",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "pass",
+          "supplied_point_layout": {
+            "status": null,
+            "overlapping_circle_pairs": null,
+            "spacing_violation_pairs": null
+          }
+        }
+      ]
+    },
+    {
+      "case": "quartiles",
+      "adopted_spec": "evals/create-choice-space-v0.4.4/inputs/quartiles/spec.json",
+      "caption": "evals/create-choice-space-v0.4.4/inputs/quartiles/caption.md",
+      "spec_and_caption_read": true,
+      "input_rows": 42,
+      "visible_evidence": "Colored filled summaries/dark points; neutral open summaries/category-colored points; neutral positional summaries and points. Initial raw clusters overlap.",
+      "comparison_preference": "no_clear_preference",
+      "aesthetic_winner": null,
+      "status": "needs_revision",
+      "candidates": [
+        {
+          "id": "candidate-01",
+          "route": "summary-area",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/quartiles/candidate-01/panel.png",
+          "png_sha256": "aca24d40208b22445ed6835cc56a8cb6667982cca5cb7750daf8a130f2df069e",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/quartiles/candidate-01/panel.pdf",
+          "pdf_sha256": "fd58bf11927add16e76a55f0fd883605d674212382ee7731840804a65b634450",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "needs_revision",
+          "supplied_point_layout": {
+            "status": "needs_revision",
+            "overlapping_circle_pairs": 12,
+            "spacing_violation_pairs": 13
+          }
+        },
+        {
+          "id": "candidate-02",
+          "route": "observation-color",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/quartiles/candidate-02/panel.png",
+          "png_sha256": "bc2fb36154c53012d91dca1b3ce69b0471a800518836ea30e7cdaf343bc83191",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/quartiles/candidate-02/panel.pdf",
+          "pdf_sha256": "17695958c756fc24eb4b3d9b72cef33768d15c7af8c5f94cc4b46711723e4f37",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "needs_revision",
+          "supplied_point_layout": {
+            "status": "needs_revision",
+            "overlapping_circle_pairs": 12,
+            "spacing_violation_pairs": 13
+          }
+        },
+        {
+          "id": "candidate-03",
+          "route": "neutral-position",
+          "png_actually_opened": true,
+          "png_path": "evals/create-choice-space-v0.4.4/outputs/quartiles/candidate-03/panel.png",
+          "png_sha256": "b5a0de0f11886f47bdfd14f0cf2a71439e6218bebcbebeab1ec54ff0e8a2b9a9",
+          "pdf_path": "evals/create-choice-space-v0.4.4/outputs/quartiles/candidate-03/panel.pdf",
+          "pdf_sha256": "1a11c3fb1736937e6186c9a183e6150b33251b01b7005f5f5b2453d2fb159396",
+          "independently_measured_pdf": {
+            "pages": 1,
+            "width_mm": 79.99999953375921,
+            "height_mm": 70.00000161064995,
+            "text_font_and_size_pt": [
+              {
+                "font": "ArialMT",
+                "size_pt": 8.0
+              }
+            ]
+          },
+          "supplied_technical_status": "needs_revision",
+          "supplied_point_layout": {
+            "status": "needs_revision",
+            "overlapping_circle_pairs": 12,
+            "spacing_violation_pairs": 13
+          }
+        }
+      ]
+    }
+  ],
+  "external_checks": {
+    "pdf_physical_dimensions_and_extracted_font_size": "passed_independently",
+    "source_to_artist_numeric_invariants": "passed_from_supplied_records_not_independently_recomputed",
+    "initial_quartile_and_density_raw_separation": "failed",
+    "statistical_design_beyond_adopted_caption": "not_checked",
+    "font_subset_embedding": "not_checked",
+    "physical_printing": "not_checked",
+    "color_vision_accessibility": "not_checked",
+    "model_or_aesthetic_effectiveness": "not_checked"
+  },
+  "revisions_must_use_separate_outputs": true
+}

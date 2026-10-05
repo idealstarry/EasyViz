@@ -18,19 +18,22 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=HERE / "outputs", help="A fresh replay directory; original evidence is never overwritten")
     parser.add_argument("--verify-frozen-only", action="store_true")
+    parser.add_argument("--runtime-root", type=Path, default=HERE / "frozen-runtime",
+                        help="Original frozen dependency tree; later engine changes do not rewrite this evaluation")
     args = parser.parse_args()
+    runtime = args.runtime_root.resolve()
     frozen = json.loads((HERE / "input-freeze.json").read_text())
     for name, expected in frozen["implementation_hashes"].items():
         if Path(name).name in RENDER_DEPENDENCIES or name.endswith("assets/palettes/palettes.json"):
-            assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, name
+            assert hashlib.sha256((runtime / name).read_bytes()).hexdigest() == expected, name
     for case in frozen["cases"]:
         source = HERE / "inputs" / case["id"]
         for name, key in (("data.csv", "data_sha256"), ("spec.json", "spec_sha256"), ("caption.md", "caption_sha256")):
             assert hashlib.sha256((source / name).read_bytes()).hexdigest() == case[key]
     if args.verify_frozen_only:
-        print(json.dumps({"status": "pass", "scope": "Candidate engine, complete rendering dependency closure, review helper and palette catalog; original full runtime snapshot retained.", "cases": len(frozen["cases"])}))
+        print(json.dumps({"status": "pass", "runtime_root": str(runtime), "scope": "Original frozen candidate/render/review dependency closure and palette; all original runtime hashes retained separately.", "cases": len(frozen["cases"])}))
         return
-    path = ROOT / "skills/easyviz/scripts/create_candidates.py"
+    path = runtime / "skills/easyviz/scripts/create_candidates.py"
     loader = importlib.util.spec_from_file_location("first_delivery_engine", path)
     engine = importlib.util.module_from_spec(loader)
     loader.loader.exec_module(engine)

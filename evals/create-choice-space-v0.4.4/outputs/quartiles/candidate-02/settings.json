@@ -1,0 +1,329 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value",
+    "unit": "id"
+  },
+  "options": {
+    "alpha": 1,
+    "point_style": "filled",
+    "box_style": "outline",
+    "box_width": 0.16,
+    "kind": "box",
+    "point_area_pt2": 12,
+    "y_limits": [
+      0,
+      10
+    ],
+    "point_layout": "beeswarm",
+    "point_gap_pt": 0.3,
+    "point_max_offset_mm": 1.3,
+    "point_category_offset": 0.29
+  },
+  "order": {
+    "group": [
+      "Control",
+      "Low",
+      "Medium",
+      "High"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80.0,
+    "height_mm": 70.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.16721440972222226,
+      "right": 0.9547144097222222,
+      "bottom": 0.16114657738095237,
+      "top": 0.9566875
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75,
+      "color": "#333333"
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "palette": "notch2-balanced",
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Control": "#2581B9",
+    "Low": "#DF9A3C",
+    "Medium": "#1AA781",
+    "High": "#CC86B9"
+  },
+  "seed": 0,
+  "input_file": "source.csv",
+  "input_sha256": "49347c6cefd9e302faa6b93eaefcfb2579097bd9467098e2e2c19f4d3f044a8c",
+  "renderer": {
+    "version": "0.4.4",
+    "sha256": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+    "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "profile_helper_sha256": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "readability_helper_sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+  },
+  "track": "create",
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "fixed_matplotlib_size_parameter",
+    "marker_size_parameter_pt2": 12.0,
+    "circle_fill_area_pt2": 9.42477796076938,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "diameter_pt": 3.4641016151377544,
+    "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+    "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."
+  },
+  "point_layout": {
+    "status": "needs_revision",
+    "overlapping_circle_pairs": 12,
+    "spacing_violation_pairs": 13,
+    "minimum_center_distance_pt": 0.2561992560531223,
+    "sample_overlapping_pairs": [
+      {
+        "rows": [
+          6,
+          1
+        ],
+        "center_distance_pt": 0.5464952707677071
+      },
+      {
+        "rows": [
+          3,
+          2
+        ],
+        "center_distance_pt": 0.25619925605316496
+      },
+      {
+        "rows": [
+          15,
+          10
+        ],
+        "center_distance_pt": 0.5464952707677071
+      },
+      {
+        "rows": [
+          12,
+          11
+        ],
+        "center_distance_pt": 0.25619925605313654
+      },
+      {
+        "rows": [
+          23,
+          29
+        ],
+        "center_distance_pt": 2.590551424187546
+      },
+      {
+        "rows": [
+          25,
+          20
+        ],
+        "center_distance_pt": 0.5464952707677213
+      },
+      {
+        "rows": [
+          22,
+          21
+        ],
+        "center_distance_pt": 0.2561992560531223
+      },
+      {
+        "rows": [
+          34,
+          40
+        ],
+        "center_distance_pt": 2.590551424187558
+      },
+      {
+        "rows": [
+          36,
+          31
+        ],
+        "center_distance_pt": 0.5464952707677355
+      },
+      {
+        "rows": [
+          33,
+          32
+        ],
+        "center_distance_pt": 0.25619925605315075
+      },
+      {
+        "rows": [
+          33,
+          42
+        ],
+        "center_distance_pt": 0.6312636013287545
+      },
+      {
+        "rows": [
+          32,
+          42
+        ],
+        "center_distance_pt": 0.3750643452756037
+      }
+    ],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "vertical",
+    "seed": 0,
+    "categorical_axis": "x",
+    "quantitative_axis": "y",
+    "numeric_values_changed": false,
+    "input_rows": 42,
+    "placed_rows": 42,
+    "diameter_pt": 3.4641016151377544,
+    "gap_pt": 0.3,
+    "requested_max_offset_mm": 1.3,
+    "point_category_offset": 0.29,
+    "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "Control",
+        "rows": 9,
+        "category_spacing_pt": 42.519685039370074,
+        "available_max_offset_mm": 1.3,
+        "actual_max_offset_mm": 1.2981435922685294,
+        "category_anchor_offset": 0.29,
+        "actual_total_offset_mm": 5.616017534509399,
+        "fallback_source_rows": [
+          1,
+          2
+        ],
+        "fallback_count": 2,
+        "packing_seed": 853010464
+      },
+      {
+        "group": "Low",
+        "rows": 10,
+        "category_spacing_pt": 42.51968503937009,
+        "available_max_offset_mm": 1.3,
+        "actual_max_offset_mm": 1.2981435922685294,
+        "category_anchor_offset": 0.29,
+        "actual_total_offset_mm": 5.6481435922685295,
+        "fallback_source_rows": [
+          10,
+          11
+        ],
+        "fallback_count": 2,
+        "packing_seed": 4153663008
+      },
+      {
+        "group": "Medium",
+        "rows": 11,
+        "category_spacing_pt": 42.519685039370074,
+        "available_max_offset_mm": 1.3,
+        "actual_max_offset_mm": 1.2981435922685294,
+        "category_anchor_offset": 0.29,
+        "actual_total_offset_mm": 5.601146735923747,
+        "fallback_source_rows": [
+          20,
+          29,
+          21
+        ],
+        "fallback_count": 3,
+        "packing_seed": 2388167889
+      },
+      {
+        "group": "High",
+        "rows": 12,
+        "category_spacing_pt": 42.519685039370074,
+        "available_max_offset_mm": 1.3,
+        "actual_max_offset_mm": 1.3,
+        "category_anchor_offset": 0.29,
+        "actual_total_offset_mm": 5.601146735923749,
+        "fallback_source_rows": [
+          31,
+          40,
+          32,
+          42,
+          37
+        ],
+        "fallback_count": 5,
+        "packing_seed": 3303786196
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -1,0 +1,1383 @@
+{
+  "version": "0.2.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "needs_revision",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/density/data.csv",
+    "sha256": "2a4582222de11036e059fb7252053f13a61628c5bffe1e40e0032522153e17af",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/density/spec.json",
+    "sha256": "cd594f6ea11c33dd0154fe2966ac71a7374a965db89512d211f2a091fa3362f3",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "distribution",
+    "input_rows": 51,
+    "reading_task_source": "chart_family_hint_only",
+    "reading_task_scope": "Not the user's adopted objective; the calling Agent must establish the actual reading task and scientific contract before invoking this limited helper.",
+    "task": "compare raw distributions with the adopted summary",
+    "category_order": {
+      "group": [
+        "Baseline",
+        "Early",
+        "Late"
+      ]
+    },
+    "label_max_characters": {
+      "group": 8
+    },
+    "kind": "violin",
+    "orientation": "vertical",
+    "category_count": 3,
+    "inner_summary": "box",
+    "group_counts": {
+      "Baseline": 14,
+      "Early": 17,
+      "Late": 20
+    },
+    "maximum_tie_count": 1,
+    "dense_raw_layer": false
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      10.166805555555557,
+      11.321325954861111,
+      67.83319444444446,
+      55.646799045138906
+    ],
+    "canvas_mm": [
+      80.0,
+      70.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.6,
+        2.6
+      ],
+      "y": [
+        1.0,
+        8.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {
+      "x": [
+        "Baseline",
+        "Early",
+        "Late"
+      ]
+    },
+    "issues": [
+      "point_layout"
+    ],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "distribution",
+          "label": "Baseline",
+          "face": [
+            [
+              0.52941176,
+              0.52941176,
+              0.87058824,
+              0.0
+            ]
+          ],
+          "edge": [
+            [
+              0.33333333,
+              0.33333333,
+              0.33333333,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "Early",
+          "face": [
+            [
+              0.74901961,
+              0.90980392,
+              0.77254902,
+              0.0
+            ]
+          ],
+          "edge": [
+            [
+              0.33333333,
+              0.33333333,
+              0.33333333,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "Late",
+          "face": [
+            [
+              1.0,
+              0.58823529,
+              0.58431373,
+              0.0
+            ]
+          ],
+          "edge": [
+            [
+              0.33333333,
+              0.33333333,
+              0.33333333,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Baseline · Q1–Q3",
+          "face": [
+            0.52941176,
+            0.52941176,
+            0.87058824,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Baseline · Median",
+          "stroke": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Early · Q1–Q3",
+          "face": [
+            0.74901961,
+            0.90980392,
+            0.77254902,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Early · Median",
+          "stroke": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Late · Q1–Q3",
+          "face": [
+            1.0,
+            0.58823529,
+            0.58431373,
+            1.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Late · Median",
+          "stroke": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Baseline",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Early",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Late",
+          "face": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.27058824,
+              0.27058824,
+              0.27058824,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "continuous_decoding": [],
+      "guide_organization": []
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [],
+      "combined": {
+        "guide_count": 0,
+        "occupied_envelope_union_area_mm2": 0.0,
+        "sum_envelope_area_mm2": 0.0,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.0,
+        "area_fraction_of_canvas": 0.0,
+        "enclosing_bbox_mm": null,
+        "max_individual_width_mm": 0.0,
+        "max_individual_height_mm": 0.0,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "source_to_artist": {
+      "status": "pass",
+      "numeric_coordinates_preserved": true,
+      "point_area_preserved": true,
+      "observation_count": 51
+    },
+    "point_layout": {
+      "status": "needs_revision",
+      "overlapping_circle_pairs": 43,
+      "spacing_violation_pairs": 43,
+      "minimum_center_distance_pt": 0.01780196810847201,
+      "sample_overlapping_pairs": [
+        {
+          "rows": [
+            5,
+            14
+          ],
+          "center_distance_pt": 0.16900602634632378
+        },
+        {
+          "rows": [
+            13,
+            4
+          ],
+          "center_distance_pt": 0.422515065865781
+        },
+        {
+          "rows": [
+            8,
+            7
+          ],
+          "center_distance_pt": 0.1818504843486437
+        },
+        {
+          "rows": [
+            9,
+            12
+          ],
+          "center_distance_pt": 1.7865063691648118
+        },
+        {
+          "rows": [
+            9,
+            3
+          ],
+          "center_distance_pt": 2.4088992288561712
+        },
+        {
+          "rows": [
+            12,
+            3
+          ],
+          "center_distance_pt": 0.6223928596913595
+        },
+        {
+          "rows": [
+            1,
+            10
+          ],
+          "center_distance_pt": 0.33846273542955885
+        },
+        {
+          "rows": [
+            11,
+            2
+          ],
+          "center_distance_pt": 0.14489449992092318
+        },
+        {
+          "rows": [
+            19,
+            28
+          ],
+          "center_distance_pt": 0.16900602634632378
+        },
+        {
+          "rows": [
+            27,
+            18
+          ],
+          "center_distance_pt": 0.422515065865781
+        },
+        {
+          "rows": [
+            20,
+            29
+          ],
+          "center_distance_pt": 0.3618982377495712
+        },
+        {
+          "rows": [
+            31,
+            22
+          ],
+          "center_distance_pt": 0.01780196810848622
+        },
+        {
+          "rows": [
+            31,
+            21
+          ],
+          "center_distance_pt": 0.19965245245712993
+        },
+        {
+          "rows": [
+            31,
+            30
+          ],
+          "center_distance_pt": 0.2832541001564266
+        },
+        {
+          "rows": [
+            22,
+            21
+          ],
+          "center_distance_pt": 0.1818504843486437
+        },
+        {
+          "rows": [
+            22,
+            30
+          ],
+          "center_distance_pt": 0.2654521320479404
+        },
+        {
+          "rows": [
+            21,
+            30
+          ],
+          "center_distance_pt": 0.08360164769929668
+        },
+        {
+          "rows": [
+            23,
+            26
+          ],
+          "center_distance_pt": 1.7865063691647975
+        },
+        {
+          "rows": [
+            23,
+            17
+          ],
+          "center_distance_pt": 2.4088992288561712
+        },
+        {
+          "rows": [
+            26,
+            17
+          ],
+          "center_distance_pt": 0.6223928596913737
+        }
+      ],
+      "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+      "policy": "beeswarm",
+      "orientation": "vertical",
+      "seed": 0,
+      "categorical_axis": "x",
+      "quantitative_axis": "y",
+      "numeric_values_changed": false,
+      "input_rows": 51,
+      "placed_rows": 51,
+      "diameter_pt": 3.1622776601683795,
+      "gap_pt": 0.3,
+      "requested_max_offset_mm": 0.8,
+      "point_category_offset": 0.35,
+      "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+      "categorical_boundary_rows": [],
+      "groups": [
+        {
+          "group": "Baseline",
+          "rows": 14,
+          "category_spacing_pt": 60.0884596456693,
+          "available_max_offset_mm": 0.8000000000000002,
+          "actual_max_offset_mm": 0.0,
+          "category_anchor_offset": 0.35,
+          "actual_total_offset_mm": 7.4192556423611125,
+          "fallback_source_rows": [
+            14,
+            4,
+            7,
+            12,
+            3,
+            10,
+            2
+          ],
+          "fallback_count": 7,
+          "packing_seed": 3432949751
+        },
+        {
+          "group": "Early",
+          "rows": 17,
+          "category_spacing_pt": 60.0884596456693,
+          "available_max_offset_mm": 0.8000000000000002,
+          "actual_max_offset_mm": 0.0,
+          "category_anchor_offset": 0.35,
+          "actual_total_offset_mm": 7.4192556423611125,
+          "fallback_source_rows": [
+            28,
+            18,
+            29,
+            22,
+            21,
+            30,
+            26,
+            17,
+            24,
+            16
+          ],
+          "fallback_count": 10,
+          "packing_seed": 3349936712
+        },
+        {
+          "group": "Late",
+          "rows": 20,
+          "category_spacing_pt": 60.0884596456693,
+          "available_max_offset_mm": 0.8000000000000002,
+          "actual_max_offset_mm": 0.0,
+          "category_anchor_offset": 0.35,
+          "actual_total_offset_mm": 7.4192556423611125,
+          "fallback_source_rows": [
+            45,
+            35,
+            46,
+            39,
+            38,
+            47,
+            49,
+            43,
+            34,
+            41,
+            50,
+            42,
+            33
+          ],
+          "fallback_count": 13,
+          "packing_seed": 261426593
+        }
+      ],
+      "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+      "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+    },
+    "category_pitch_mm": 21.19787326388889,
+    "summary_thickness_mm": null,
+    "raw_summary_categorical_envelope_crossings": 0,
+    "summary_raw_separation_note": "Envelope crossings require visual inspection, particularly opaque points over box medians; violin contour width is a conservative envelope, not a density crossing test.",
+    "technical_measurement_status": "needs_revision"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "violin-summary-hierarchy"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_category_offset",
+        "/options/point_color",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/options/violin_fill_alpha",
+        "/options/violin_inner_fill_alpha",
+        "/options/violin_inner_width",
+        "/options/violin_width",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#454545",
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": "#555555"
+        },
+        "color_paths_changed": [
+          "/options/point_color",
+          "/palette"
+        ],
+        "palette": {
+          "name": "progeny-summary",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Schubert et al., Nature Communications (2018), Figure 4c",
+          "source_id": "progeny-2018",
+          "provenance": "Selected PDF vector area fills rounded to 8-bit RGB, observed across inner summaries and colored density/pathway areas. Their selection/order and assignment to cohort IQR areas and new categories are EasyViz adaptations, not an author palette product.",
+          "note": "Intended for bounded summary areas with dark-neutral boundaries and observation marks. The pale mint is unsuitable as a habitual tiny-dot or thin-line color on white."
+        }
+      },
+      "route_id": "summary-area",
+      "visual_role": "Category identity on bounded summary/density areas; uniform raw observations",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Baseline",
+            "face": [
+              [
+                0.52941176,
+                0.52941176,
+                0.87058824,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Early",
+            "face": [
+              [
+                0.74901961,
+                0.90980392,
+                0.77254902,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Late",
+            "face": [
+              [
+                1.0,
+                0.58823529,
+                0.58431373,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Baseline · Q1–Q3",
+            "face": [
+              0.52941176,
+              0.52941176,
+              0.87058824,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Baseline · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Early · Q1–Q3",
+            "face": [
+              0.74901961,
+              0.90980392,
+              0.77254902,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Early · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Late · Q1–Q3",
+            "face": [
+              1.0,
+              0.58823529,
+              0.58431373,
+              1.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Late · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Baseline",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Early",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Late",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Category identity on bounded summary/density areas; uniform raw observations. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "failed",
+        "qa_path": "candidate-01/qa.json",
+        "measured_issues": [
+          "point_layout"
+        ],
+        "renderer_status": "needs_revision",
+        "error": "Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 43 observation spacing conflicts, 0 observation marker boundary issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit."
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [
+        "violin-summary-hierarchy"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_category_offset",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/options/violin_fill_alpha",
+        "/options/violin_inner_fill_alpha",
+        "/options/violin_inner_width",
+        "/options/violin_width",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": "#555555"
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "route_id": "observation-color",
+      "visual_role": "Category identity on raw observations; open neutral summaries/contours",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Baseline",
+            "face": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Early",
+            "face": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Late",
+            "face": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Baseline · Q1–Q3",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Baseline · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Early · Q1–Q3",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Early · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Late · Q1–Q3",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Late · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Baseline",
+            "face": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Early",
+            "face": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Late",
+            "face": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Category identity on raw observations; open neutral summaries/contours. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "failed",
+        "qa_path": "candidate-02/qa.json",
+        "measured_issues": [
+          "point_layout"
+        ],
+        "renderer_status": "needs_revision",
+        "error": "Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 43 observation spacing conflicts, 0 observation marker boundary issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit."
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-03",
+      "spec": "candidate-03/spec.json",
+      "eligible_design_card_ids": [
+        "violin-summary-hierarchy"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_category_offset",
+        "/options/point_color",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/options/violin_fill_alpha",
+        "/options/violin_inner_fill_alpha",
+        "/options/violin_inner_width",
+        "/options/violin_width"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#454545",
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": "#555555"
+        },
+        "color_paths_changed": [
+          "/options/point_color"
+        ]
+      },
+      "route_id": "neutral-position",
+      "visual_role": "Direct category labels/positions decode identity; open neutral marks",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Baseline",
+            "face": [
+              [
+                0.16078431,
+                0.6745098,
+                0.95294118,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Early",
+            "face": [
+              [
+                0.89411765,
+                0.46666667,
+                0.31764706,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Late",
+            "face": [
+              [
+                0.0,
+                0.49803922,
+                0.49803922,
+                0.0
+              ]
+            ],
+            "edge": [
+              [
+                0.33333333,
+                0.33333333,
+                0.33333333,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Baseline · Q1–Q3",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Baseline · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Early · Q1–Q3",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Early · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Late · Q1–Q3",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Late · Median",
+            "stroke": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Baseline",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Early",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Late",
+            "face": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.27058824,
+                0.27058824,
+                0.27058824,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Direct category labels/positions decode identity; open neutral marks. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "failed",
+        "qa_path": "candidate-03/qa.json",
+        "measured_issues": [
+          "point_layout"
+        ],
+        "renderer_status": "needs_revision",
+        "error": "Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 43 observation spacing conflicts, 0 observation marker boundary issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit."
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-03/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "summary-area",
+      "observation-color",
+      "neutral-position"
+    ],
+    "excluded_routes": [],
+    "requested_count": 3,
+    "returned_count": 3,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

@@ -1,0 +1,83 @@
+{
+  "chart": "heatmap",
+  "fields": {
+    "row": "row",
+    "column": "column",
+    "value": "value"
+  },
+  "options": {
+    "color_limits": [
+      0,
+      50
+    ],
+    "annotate_values": true,
+    "value_format": ".0f",
+    "cell_border_width_pt": 0.3,
+    "cell_border_color": "#FFFFFF",
+    "x_rotation": 0,
+    "cell_aspect": "auto"
+  },
+  "order": {
+    "y": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6"
+    ],
+    "x": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Measurement",
+    "color": "Supplied value (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.4284322374131944,
+      "right": 0.7034322374131945,
+      "bottom": 0.2529761284722223,
+      "top": 0.7244046999007937
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "colormap": "notch2-blue"
+}

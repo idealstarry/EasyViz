@@ -1,0 +1,53 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "condition",
+    "unit": "unit",
+    "value": "value"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "marker_area_pt2": 12,
+    "y_limits": [
+      0,
+      18
+    ],
+    "bar_width": 0.55,
+    "bar_style": "outline",
+    "point_color": "#333333",
+    "bar_color": "#CACACA",
+    "bar_edge_color": "#333333",
+    "bar_edge_width_pt": 0.7
+  },
+  "order": {
+    "condition": [
+      "Control",
+      "Dose A",
+      "Dose B"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.21221440972222216,
+      "right": 0.9097144097222223,
+      "bottom": 0.16114657738095237,
+      "top": 0.9566875
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

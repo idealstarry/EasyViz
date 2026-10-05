@@ -1,0 +1,261 @@
+{
+  "notch2-balanced": {
+    "type": "categorical",
+    "display_name": "Blue · amber · teal · pink",
+    "colors": [
+      "#2581B9",
+      "#DF9A3C",
+      "#1AA781",
+      "#CC86B9"
+    ],
+    "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+    "source_short": "Cruz Tleugabulova 2024 · Fig. 2b",
+    "url": "https://www.nature.com/articles/s41467-024-53700-9",
+    "source_id": "notch2-2024",
+    "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+    "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts.",
+    "collection": "literature"
+  },
+  "notch2-blue": {
+    "type": "sequential",
+    "display_name": "Blue for borderless marks",
+    "colors": [
+      "#D3E6F1",
+      "#A8CDE3",
+      "#7CB3D5",
+      "#519AC7",
+      "#2581B9"
+    ],
+    "source": "EasyViz interpolation from Cruz Tleugabulova et al. Figure 2b I2 blue",
+    "source_short": "Adapted · Cruz Tleugabulova 2024 · Fig. 2b",
+    "url": "https://www.nature.com/articles/s41467-024-53700-9",
+    "source_id": "notch2-2024",
+    "adaptation": "White mixed with #2581B9 at 20%,40%,60%,80%,100% endpoint weight in sRGB. The stronger light endpoint supports low-value borderless marks; it is not an author colormap.",
+    "collection": "literature"
+  },
+  "somerville-bright": {
+    "type": "categorical",
+    "display_name": "Sky · coral · teal",
+    "colors": [
+      "#29ACF3",
+      "#E47751",
+      "#007F7F",
+      "#A37FFF",
+      "#FFED7F",
+      "#00DCDC"
+    ],
+    "source": "Somerville et al., Nature Communications (2024), Figures 1B and 2B",
+    "source_short": "Somerville 2024 · Fig. 1B / 2B",
+    "url": "https://www.nature.com/articles/s41467-024-52687-7",
+    "source_id": "somerville-2024",
+    "provenance": "Selected and reordered published PDF vector fills, rounded to 8-bit RGB. No claim of original author-script hex values.",
+    "note": "Prefer first four colors for compact groups; gold and turquoise need larger marks, outlines or direct labels.",
+    "collection": "literature"
+  },
+  "notch2-bright": {
+    "type": "categorical",
+    "display_name": "Teal · blue · amber",
+    "colors": [
+      "#1AA781",
+      "#2581B9",
+      "#DF9A3C",
+      "#D76F3B"
+    ],
+    "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+    "source_short": "Cruz Tleugabulova 2024 · Fig. 2b",
+    "url": "https://www.nature.com/articles/s41467-024-53700-9",
+    "source_id": "notch2-2024",
+    "provenance": "Exact RGB pixels from embedded PDF legend swatches, selected and reordered. Original author-script constants unknown.",
+    "note": "Amber and orange are closer; retain direct labels or other redundant distinctions.",
+    "collection": "literature"
+  },
+  "somerville-sky": {
+    "type": "sequential",
+    "display_name": "Light sky blue",
+    "colors": [
+      "#F5FBFE",
+      "#BFE6FB",
+      "#80CEF8",
+      "#40B5F4",
+      "#009CF0"
+    ],
+    "source": "EasyViz interpolation from Somerville et al. Figure 2A culture-202 blue",
+    "source_short": "Adapted · Somerville 2024 · Fig. 2A",
+    "url": "https://www.nature.com/articles/s41467-024-52687-7",
+    "source_id": "somerville-2024",
+    "adaptation": "Mix white with the observed #009CF0 endpoint at 4%,25%,50%,75%,100% endpoint weight in sRGB. This is an EasyViz scale, not an author colormap.",
+    "collection": "literature"
+  },
+  "somerville-coral": {
+    "type": "sequential",
+    "display_name": "Light coral",
+    "colors": [
+      "#FEFAF8",
+      "#F8DDD4",
+      "#F2BBA8",
+      "#EB997C",
+      "#E47751"
+    ],
+    "source": "EasyViz interpolation from Somerville et al. Figure 1B culture-105 coral",
+    "source_short": "Adapted · Somerville 2024 · Fig. 1B",
+    "url": "https://www.nature.com/articles/s41467-024-52687-7",
+    "source_id": "somerville-2024",
+    "adaptation": "Mix white with observed #E47751 at 4%,25%,50%,75%,100% endpoint weight in sRGB; not an author colormap.",
+    "collection": "literature"
+  },
+  "notch2-teal": {
+    "type": "sequential",
+    "display_name": "Light jade green",
+    "colors": [
+      "#F6FBFA",
+      "#C6E9E0",
+      "#8CD3C0",
+      "#53BDA0",
+      "#1AA781"
+    ],
+    "source": "EasyViz interpolation from Cruz Tleugabulova et al. Figure 2b I4 teal",
+    "source_short": "Adapted · Cruz Tleugabulova 2024 · Fig. 2b",
+    "url": "https://www.nature.com/articles/s41467-024-53700-9",
+    "source_id": "notch2-2024",
+    "adaptation": "Mix white with observed #1AA781 at 4%,25%,50%,75%,100% endpoint weight in sRGB; not an author colormap.",
+    "collection": "literature"
+  },
+  "somerville-blue-coral": {
+    "type": "diverging",
+    "display_name": "Sky blue · white · coral",
+    "colors": [
+      "#29ACF3",
+      "#FFFFFF",
+      "#E47751"
+    ],
+    "source": "EasyViz interpolation from two categorical endpoints in Somerville et al. Figure 1B",
+    "source_short": "Adapted · Somerville 2024 · Fig. 1B",
+    "url": "https://www.nature.com/articles/s41467-024-52687-7",
+    "source_id": "somerville-2024",
+    "adaptation": "New blue-white-coral continuous scale. White/interpolation are EasyViz choices, not an observed author gradient.",
+    "note": "Use only around an explicit scientifically meaningful midpoint; preserve scale and normalization when recoloring existing data.",
+    "collection": "literature"
+  },
+  "okabe-ito": {
+    "type": "categorical",
+    "colors": [
+      "#0072B2",
+      "#E69F00",
+      "#009E73",
+      "#CC79A7",
+      "#56B4E9",
+      "#D55E00",
+      "#F0E442",
+      "#000000"
+    ],
+    "source": "Masataka Okabe and Kei Ito, Color Universal Design",
+    "url": "https://jfly.uni-koeln.de/color/",
+    "note": "Order arranged for white-background plots. Use outlines for yellow; no guarantee for every adjacent pair.",
+    "collection": "established"
+  },
+  "easyviz-muted": {
+    "type": "categorical",
+    "colors": [
+      "#4C78A8",
+      "#D58C4E",
+      "#5A9B83",
+      "#B26A87",
+      "#8172AD",
+      "#8F8F8F"
+    ],
+    "source": "EasyViz project selection",
+    "note": "Legacy project-selected muted colors; explicit opt-in, not a preferred create default.",
+    "collection": "legacy"
+  },
+  "viridis": {
+    "type": "sequential",
+    "colormap": "viridis",
+    "source": "Matplotlib built-in colormap",
+    "collection": "established"
+  },
+  "cividis": {
+    "type": "sequential",
+    "colormap": "cividis",
+    "source": "Matplotlib built-in colormap",
+    "collection": "established"
+  },
+  "inferno": {
+    "type": "sequential",
+    "colormap": "inferno",
+    "source": "Matplotlib built-in colormap",
+    "collection": "established"
+  },
+  "blue-white-red": {
+    "type": "diverging",
+    "colors": [
+      "#2166AC",
+      "#F7F7F7",
+      "#B2182B"
+    ],
+    "note": "Use a meaningful center, such as zero; colors are interpolated.",
+    "collection": "established"
+  },
+  "scwat-blue-coral": {
+    "type": "categorical",
+    "display_name": "Clear blue · coral",
+    "colors": [
+      "#55A0FB",
+      "#FF8080"
+    ],
+    "source": "Huang et al., Nature Communications (2023), Figure 2",
+    "source_short": "Huang 2023 · Fig. 2",
+    "url": "https://www.nature.com/articles/s41467-023-43021-8",
+    "source_id": "scwat-2023",
+    "provenance": "Selected group-colored PDF vector strokes/fills from inspected Figure 2; RGB rounded to 8-bit HEX. Author-script constants unknown. Reassignment to new group labels is a design decision.",
+    "note": "Two colors only; no cycling. Inspect opaque observations, hollow edges and matching keys on the actual data.",
+    "collection": "literature"
+  },
+  "scwat-blue-white-coral": {
+    "type": "diverging",
+    "display_name": "Clear blue · white · coral",
+    "colors": [
+      "#55A0FB",
+      "#FFFFFF",
+      "#FF8080"
+    ],
+    "source": "EasyViz interpolation using Huang et al. Figure 2 categorical endpoints",
+    "source_short": "Adapted · Huang 2023 · Fig. 2",
+    "url": "https://www.nature.com/articles/s41467-023-43021-8",
+    "source_id": "scwat-2023",
+    "adaptation": "New continuous blue-white-coral ramp from two observed categorical colors. White and interpolation are EasyViz design decisions; this is not the paper Figure 2b heatmap palette.",
+    "note": "Requires explicit meaningful center, range and normalization. Not the stronger red endpoint used in the refreshed inhibition case.",
+    "collection": "literature"
+  },
+  "progeny-summary": {
+    "type": "categorical",
+    "display_name": "Violet · mint · salmon · gray",
+    "colors": [
+      "#8787DE",
+      "#BFE8C5",
+      "#FF9695",
+      "#CACACA"
+    ],
+    "source": "Schubert et al., Nature Communications (2018), Figure 4c",
+    "source_short": "Schubert 2018 · Fig. 4c",
+    "url": "https://www.nature.com/articles/s41467-017-02391-6",
+    "source_id": "progeny-2018",
+    "provenance": "Selected PDF vector area fills rounded to 8-bit RGB, observed across inner summaries and colored density/pathway areas. Their selection/order and assignment to cohort IQR areas and new categories are EasyViz adaptations, not an author palette product.",
+    "note": "Intended for bounded summary areas with dark-neutral boundaries and observation marks. The pale mint is unsuitable as a habitual tiny-dot or thin-line color on white.",
+    "collection": "literature"
+  },
+  "scwat-blue-pink": {
+    "type": "categorical",
+    "display_name": "Blue · pink for observations",
+    "colors": [
+      "#3795D3",
+      "#FF5FBD"
+    ],
+    "source": "Huang et al., Nature Communications (2023), Figure 2g",
+    "source_short": "Huang 2023 · Fig. 2g",
+    "url": "https://www.nature.com/articles/s41467-023-43021-8",
+    "source_id": "scwat-2023",
+    "provenance": "The two actual fitted-line vector stroke RGB colors, rounded to 8-bit RGB. Assigning these stroke colors uniformly to new raw-point groups is an EasyViz adaptation; the source point paint layers are not all identical.",
+    "note": "Compare actual two-class fixed-size observations on white. This pair does not authorize adding a fitted line or transferring the source biological labels.",
+    "collection": "literature"
+  }
+}

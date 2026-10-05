@@ -3,11 +3,17 @@
 This evaluation checks a reviewed first delivery, including internal corrections
 before human aesthetic feedback. It does not equate an engine's first render
 with a finished figure. The candidate engine was frozen before the five probe
-inputs were prepared; the [original freeze](input-freeze.json) and
-[first outputs](outputs/) remain unchanged. Later workbench/install fixes do
-not change that rendering dependency closure. `run.py --verify-frozen-only`
-checks the original candidate/renderer/review/palette hashes and input bytes;
+inputs were prepared; the [original freeze](input-freeze.json),
+[original rendering dependency tree](frozen-runtime/manifest.json) and
+[first outputs](outputs/) remain unchanged. The later correction of template
+anchoring is [evaluated separately](../create-choice-space-v0.4.4/README.md);
+these tasks do not validate that new engine.
+`run.py --verify-frozen-only` checks the saved original
+candidate/renderer/review/palette hashes and input bytes;
 `run.py --out /absolute/fresh/directory` replays without replacing the evidence.
+Replay defaults to the frozen runtime rather than silently substituting the
+current engine. `--runtime-root` can point to another matching original tree;
+its hashes must still agree with the original freeze.
 
 ## What was actually tried
 

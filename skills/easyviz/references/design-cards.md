@@ -6,8 +6,14 @@ a constructed failure illustration and applicability limits. They are original s
 attributed public-data examples, not a universal manuscript template or proof
 of publication quality. Create can learn their mechanisms without a runtime
 reference; Reproduce follows the reference the user adopted.
+Each current card illustrates one successful treatment and one local failure;
+it does not establish a single correct solution for its chart family.
 
 ## Choose by the data and reading task
+
+First choose the reading task, organization and visual roles with
+[Create design paths](design-space.md). Use cards to investigate a relevant
+mechanism, rather than selecting a finished layout before that decision.
 
 Read the [card index](../assets/design-cards/index.json)
 and actually open the applicable `good_image` and available `failure_image`.
@@ -40,11 +46,16 @@ explicit project/category assignments and user settings. Suggested new-task
 dimensions apply only where unspecified; they do not authorize resizing an
 accepted panel or shrinking its font. Evaluate physical mark thickness,
 category gaps, data-to-guide ratio and labels together on the user's data.
+Mechanisms can be used separately: clearer summary boundaries do not require
+the card's palette or side lane; readable small scatter colors do not prescribe
+one pair of hues. Neutral/open bars are one role treatment, not every bar's rule.
 
 ## Adapt and verify
 
-Use [First reviewed delivery](first-draft.md) to generate eligible actual
-candidates or an appropriate focused/custom implementation. A viewed card
+Use [First reviewed delivery](first-draft.md) with eligible actual candidates
+or a designed spec/focused/custom implementation. Missing card coverage or a
+helper's narrow proposals are reasons to design within the scientific contract,
+not to copy the nearest card. A viewed card
 cannot approve an unseen adaptation. Open the new exports and record concrete
 findings before the first finished delivery.
 

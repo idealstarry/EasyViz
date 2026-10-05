@@ -7,10 +7,11 @@ starting values, not journal rules or evidence of publication quality.
 Reproduce follows its adopted reference and user settings; do not insert a
 create style into an accepted reproduction.
 
-For a new panel, use the visual [scenario cards](design-cards.md) and
-[First reviewed delivery](first-draft.md) to make eligible geometry and color-role
-choices on the actual data. The shared defaults below are a starting treatment;
-inspect and correct the first exports before presenting them as finished.
+For a new panel, choose organization and roles using
+[Create design paths](design-space.md), then inspect relevant
+[card mechanisms](design-cards.md). The shared defaults below are one starting
+treatment; follow [First reviewed delivery](first-draft.md) to inspect and
+correct actual exports before presenting them as finished.
 
 Refine the basic chart before composing extra tracks. Decide whether readers
 should see observations, a summary or density shape first, then set their
@@ -35,9 +36,12 @@ the actual colored layer.
 
 | Reading task and mark area | Candidate treatment | Check before adopting |
 | --- | --- | --- |
-| One quantity across x-labeled categories | Neutral filled or open bars, definite intervals and observations. PROGENy Fig. 2d and scWAT Fig. 3j use neutral marks. | Labels already identify categories; color each only if it communicates another adopted meaning. Gray must remain visible on white. |
-| Two classes mixed in a scatter field | Distinguishable categorical hues on the actual small points, such as the eligible `scwat-blue-pink` pair. | Both classes remain recognizable in sparse and crowded regions; pale area colors may fail as tiny glyphs. Do not add a fit just because its source example has one. |
-| Categories separated by distribution lanes | Category color on bounded box/inner-summary areas, graphite contours and optionally neutral observations; `progeny-summary` is one eligible area palette. | Position/labels and area color still identify groups, the median remains visible, and point keys do not falsely imply colored observations. Use the same map in related box/violin views. |
+| One quantity across x-labeled categories | Neutral or single-hue filled/open bars according to whether heights or raw intervals/observations lead. PROGENy Fig. 2d and scWAT Fig. 3j demonstrate neutral options. | Labels already identify categories; one hue per label needs a purpose. Filled and open are alternatives, not fixed quality rankings. |
+| An adopted group/contrast is the focus | An accent on that group with quieter comparable marks. | Decode the focus; retain every group and uncertainty. A pleasing accent does not establish a control or ranking. |
+| Classes mixed in a scatter field | Task-suitable categorical hues on the actual small points; `scwat-blue-pink` is one eligible pair. | Recognizable sparse/crowded regions and keys; pale area colors may fail as tiny glyphs. A source fit or symbol does not authorize a new scientific layer. |
+| Distribution summaries should lead | Bounded categorical box/inner-summary areas or definite neutral summaries, with less competing raw marks; `progeny-summary` is one eligible area palette. | Median/edges remain visible and position still associates points with groups. Graphite raw points are an option, not a required distribution color. |
+| Individual distribution observations should lead | Group-colored raw marks with quieter open summaries or a restrained density layer. | Small-point distinction and summary continuity; compare central versus neighboring lanes from actual crossings. |
+| Category positions/labels already decode identity | A consistent neutral or single-hue distribution treatment. | Retain authoritative project mappings; category count alone does not choose this route. |
 
 - Inspect the whole combination, including adjacent fills and legend keys. A
   useful bright pair in one scatter need not color a single-series bar or every
@@ -71,7 +75,8 @@ four-group summary encoding.
 
 ## Crisp observation and summary options
 
-For a fixed-size core `distribution`, the crisp starting treatment is:
+One editable fixed-size core box/points treatment is below. Choose its roles
+only when they suit the task; it is not the definition of Create distribution:
 
 ```json
 {
@@ -113,7 +118,8 @@ Use a hollow alternative with `point_style="hollow"` and
 summary crossings and the visible edge at final size before adopting it.
 
 `box_width` controls box thickness in category spacing units
-(`0 < box_width <= 1`, original default 0.5). New drafts start at 0.18;
+(`0 < box_width <= 1`, original default 0.5). The unprofiled
+`draft_spec.py --style-mode crisp` treatment starts at 0.18;
 this is a tunable starting value, not a physical-size target. With only a few
 categories, filling the available axis can produce wide blank bands even with
 narrow boxes. Choose the data-region width, category gaps and physical box
@@ -266,16 +272,18 @@ these decisions on real data and preserve matched-spec comparison records in
 the development repository. Use their contracts and adjustable settings, not
 their biological names or scientific assumptions, on a new input.
 
-For an unresolved palette refinement, render two or three materially different
-whole-panel candidates: the accepted treatment, a task-suitable area/point
-alternative, and another justified option only if useful. Keep source rows,
+For a consequential unresolved design choice, compare the chosen route with
+a materially different whole-panel alternative when useful. A role/organization
+change may be more relevant than a new palette; another candidate is optional.
+Keep source rows,
 statistics, numeric scales, canvas and fonts equal. Compare category decoding,
 primary evidence, small-point contrast, adjacent areas and guide keys at final
 size. Record the preference and tradeoff; neither brighter nor more neutral
 automatically wins. Routine edits need no compulsory candidate set.
-For a supported new draft, [First reviewed delivery](first-draft.md) automates
-eligible candidate construction; custom code remains appropriate outside its
-contract. Actual image inspection still makes the selection.
+For a supported new draft, [First reviewed delivery](first-draft.md) offers
+limited candidate construction. Its list is not exhaustive; adapt a spec or use
+focused/custom code when the chosen route is absent, even if that chart family
+is supported. Actual image inspection still makes the selection.
 
 1. Check the complete palette and that the intended comparison is seen first.
    Use a grid only when it materially improves reading values; a pale grid can

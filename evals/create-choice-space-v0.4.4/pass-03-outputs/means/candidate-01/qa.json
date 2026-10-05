@@ -1,0 +1,836 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 12,
+  "input_sha256": "f712f4d5476927a653c2867eb79250d2f61e31cc059117a220fd28d2c4436a07",
+  "width_mm": 80.0,
+  "height_mm": 70.0,
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "source_to_artist_audit": {
+    "status": "pass",
+    "source_rows": 12,
+    "raw_points": 12,
+    "component_values_normalized": false,
+    "ratios_derived": false,
+    "sample_size_independence_inferred": false,
+    "issues": []
+  },
+  "mark_geometry": {
+    "status": "pass",
+    "issues": [],
+    "intentional_baseline_contacts": [],
+    "grouped_separation": {
+      "status": "unchecked",
+      "note": "No positive component_gap adopted; legacy bar placement is retained."
+    }
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "exports": {
+    "pdf": {
+      "width_mm": 79.9999999999975,
+      "height_mm": 70.00000000000222,
+      "sha256": "c188f1786cc2789ee0f27e48ad0b1a9e1e1596ad1a45345ac8ce6c1ef573f7a1"
+    },
+    "svg": {
+      "width_mm": 80.00000016111112,
+      "height_mm": 70.00000005277778,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+      "sha256": "91e60cd3b2bcb76106d4d2c76248a2615f8f26d314af3108c4214b54d9710e43"
+    },
+    "png": {
+      "pixels": [
+        504,
+        441
+      ],
+      "dpi": [
+        159.9946,
+        159.9946
+      ],
+      "sha256": "e2879308e646f169508b353bb6c7ff8d1b845a521627a9a7ac8ee19e6b90111a"
+    }
+  },
+  "auto_layout": null,
+  "visual_review_required": true,
+  "readability": {
+    "schema_version": 1,
+    "status": "no_advisory_flags",
+    "advisory_only": true,
+    "thresholds": {
+      "small_point_span_mm": 0.35,
+      "low_contrast_ratio": 2.0,
+      "thin_stroke_pt": 0.25,
+      "large_legend_canvas_fraction": 0.25
+    },
+    "totals": {
+      "point_artists": 12,
+      "stroke_artists": 18,
+      "legend_artists": 0,
+      "finite_marks": 12,
+      "zero_size_parameters": 0,
+      "small_visible_marks": 0,
+      "low_contrast_small_marks": 0,
+      "thin_data_stroke_artists": 0
+    },
+    "stroke_roles": {
+      "summary-line": {
+        "artist_count": 3,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "axis-line": {
+        "artist_count": 2,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "axis-tick": {
+        "artist_count": 13,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      }
+    },
+    "artists": [
+      {
+        "id": "easyviz-sd-1",
+        "role": "summary-line",
+        "label": "Control · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-2",
+        "role": "summary-line",
+        "label": "Dose A · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-3",
+        "role": "summary-line",
+        "label": "Dose B · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-observation-1",
+        "role": "point-group",
+        "label": "Control · R1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-2",
+        "role": "point-group",
+        "label": "Control · R2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-3",
+        "role": "point-group",
+        "label": "Control · R3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-4",
+        "role": "point-group",
+        "label": "Control · R4",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-5",
+        "role": "point-group",
+        "label": "Dose A · R1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-6",
+        "role": "point-group",
+        "label": "Dose A · R2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-7",
+        "role": "point-group",
+        "label": "Dose A · R3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-8",
+        "role": "point-group",
+        "label": "Dose A · R4",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-9",
+        "role": "point-group",
+        "label": "Dose B · R1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-10",
+        "role": "point-group",
+        "label": "Dose B · R2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-11",
+        "role": "point-group",
+        "label": "Dose B · R3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-12",
+        "role": "point-group",
+        "label": "Dose B · R4",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            15.278874536821952,
+            15.278874536821952
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "positive_outer_span_mm_range": [
+            1.3789448669260183,
+            1.3789448669260183
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-axis-line-a25b05ec84419760",
+        "role": "axis-line",
+        "label": "Y axis line · left",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-583586e852f58ad3",
+        "role": "axis-line",
+        "label": "X axis line · bottom",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+        "role": "axis-tick",
+        "label": "X major tick · 0 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-d2f9de54ec255438",
+        "role": "axis-tick",
+        "label": "X major tick · 1 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-a369cdb522813c9c",
+        "role": "axis-tick",
+        "label": "X major tick · 2 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e1c294e3379762a",
+        "role": "axis-tick",
+        "label": "Y major tick · 0 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-bd287d4ddd92159b",
+        "role": "axis-tick",
+        "label": "Y major tick · 2 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-813f58dfce7a30f9",
+        "role": "axis-tick",
+        "label": "Y major tick · 4 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-b279e7150157534f",
+        "role": "axis-tick",
+        "label": "Y major tick · 6 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-33caf1f006d9d388",
+        "role": "axis-tick",
+        "label": "Y major tick · 8 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-63bf692f9cee0146",
+        "role": "axis-tick",
+        "label": "Y major tick · 10 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-6cedac2ad16a65e3",
+        "role": "axis-tick",
+        "label": "Y major tick · 12 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-b0dcc48b27d1f9b1",
+        "role": "axis-tick",
+        "label": "Y major tick · 14 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-47b05577d9bc3695",
+        "role": "axis-tick",
+        "label": "Y major tick · 16 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-5cd4125145cd5340",
+        "role": "axis-tick",
+        "label": "Y major tick · 18 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      }
+    ],
+    "artist_count": 30,
+    "artists_omitted_from_detail": 0,
+    "warnings": [],
+    "warning_count": 0,
+    "warnings_omitted_from_detail": 0,
+    "layout_evidence": {},
+    "scope": "Actual visible artist settings after draw; finite unmasked locations are counted without clipping/occlusion inference. PathCollection sizes are Matplotlib size parameters, not universal fill areas; marker path geometry supplies physical bounding spans. Zero size parameters are preserved separately. Contrast is actual face/edge RGBA composited once over a uniform axes/figure background.",
+    "not_checked": [
+      "Scientific or statistical validity",
+      "Reference fidelity and missing layers",
+      "Color-vision accessibility or between-category color distinction",
+      "Nonuniform backgrounds, image contrast, mark occlusion or point/label overlap",
+      "Heatmap value normalization, bar fill design, text readability and arbitrary patches",
+      "Line2D markevery marker selection"
+    ],
+    "policy": "Thresholds are configurable review cues. They do not change artist properties, data, quantitative marker areas, exports, or core QA pass/fail."
+  }
+}

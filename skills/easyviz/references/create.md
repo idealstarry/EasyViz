@@ -12,9 +12,14 @@ Use the bundled [literature mechanisms](literature-style.md) and
 [palette roles](palettes.md) without requiring a runtime reference. If the user
 asks to adopt a supplied figure's layout/style, follow Reproduce instead.
 
+Choose the reading task, graphical organization and visual roles separately.
+[Create design paths](design-space.md) give conditional alternatives within
+each basic family; one case or card is not its mandatory finished design.
+
 For the first finished panel, follow [First reviewed delivery](first-draft.md):
-open applicable [scenario cards](design-cards.md), render eligible alternatives
-or justified focused/custom code, and correct actual image findings internally.
+inspect applicable [card mechanisms](design-cards.md), implement the chosen
+route, and correct actual image findings internally. Use a meaningful additional
+candidate only when it resolves a design uncertainty.
 Resolve cosmetic defaults autonomously; clarify missing scientific facts only
 when they change the adopted meaning or analysis.
 
@@ -91,7 +96,7 @@ context; a manuscript panel should retain the adopted comparison scope.
 
 ### Design the comparison
 
-Identify what the reader should compare first and which context makes that comparison valid. Use the relevant [Design decisions](design-decisions.md) pattern for its transferable relationships, without inheriting sample-specific filtering, colors, or coordinates. A single panel can contain aligned annotations or summaries; each layer should contribute to the scientific reading task.
+Identify what the reader should compare first and which context makes that comparison valid. Use [Create design paths](design-space.md) to select organization and visual roles before choosing a case or palette. [Design decisions](design-decisions.md) supplies transferable relationships without inheriting sample-specific filtering, colors, or coordinates. A single panel can contain aligned annotations or summaries; each layer should contribute to the scientific reading task.
 
 | Decision | Compare |
 | --- | --- |
@@ -131,12 +136,14 @@ Declare styling by mark role: fixed-size sample points may be opaque filled or h
 
 Before the first render, assign color and stroke roles to observations,
 adopted summaries and guides. Use [Create colors and strokes](create-style.md)
-for the shared new-task treatment and `line_roles`, or equivalent settings in a
+for eligible role treatments and `line_roles`, or equivalent settings in a
 custom script. Compare all colors together, including legend keys and any
 continuous scale. A single quantity across labeled categories may use neutral
 marks; two classes intermingled in a scatter need visible point decoding.
-Distributions may place categorical color on summary areas with graphite
-boundaries and neutral raw points. Choose colors for their actual mark area;
+Distributions may color summary areas with neutral raw points, color raw
+observations with quieter open summaries, or use position with a consistent
+neutral/single-hue treatment. Choose according to the leading layer, not
+category count or a gallery's favorite pairing. Choose colors for their actual mark area;
 light area fills do not necessarily survive as tiny glyphs on white. Keep the
 same category mapping across related box/violin views.
 The main evidence needs useful contrast. An auxiliary track should not become
@@ -169,6 +176,14 @@ and inspect actual images. Explicit scientific and project choices stay fixed;
 use the full specification for additional supported options.
 
 Inspect the recipe's input contract and supported options in the chart library. Reuse the relevant script or write an implementation that preserves the adopted mappings and export settings. The core renderer supplies basic chart families; linked metadata tracks, aligned marginal plots, and specialized annotations can require a custom script. Use [Worked cases](examples.md) for implementation patterns and provenance, and synthetic fixtures only for small runnable API examples. Keep transformation and statistics steps inspectable rather than burying them in styling code.
+
+A helper's candidate list is a limited implementation set, not the allowed
+design space. If it repeats one organization/role treatment or misses the
+chosen route, proactively adapt the spec or use focused/custom code even for
+a supported family. Width/fill changes may solve a real defect; they need not
+be treated as distinct task-level designs. Preserve the scientific contract
+and explicit preferences; uncertain default provenance is not permission to
+delete a key. Do not demand two or three outputs when one route is well supported.
 
 Treat each case's schema, selection, denominators, annotation joins, and layout capacity as an explicit applicability boundary. Reuse directly only when they fit; otherwise adapt and verify them, or write a new implementation. If a requested feature remains unsupported, state that boundary without silently replacing the chart, deleting observations, or claiming the existing example validated the new use.
 

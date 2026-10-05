@@ -1,0 +1,82 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value",
+    "unit": "id"
+  },
+  "options": {
+    "alpha": 1,
+    "point_style": "filled",
+    "kind": "violin",
+    "violin_inner": "box",
+    "point_area_pt2": 10,
+    "y_limits": [
+      1,
+      8
+    ],
+    "point_layout": "beeswarm",
+    "point_gap_pt": 0.3,
+    "point_max_offset_mm": 0.8,
+    "violin_width": 0.38,
+    "violin_inner_width": 0.12,
+    "point_category_offset": 0.35,
+    "violin_fill_alpha": 0,
+    "violin_inner_fill_alpha": 0
+  },
+  "order": {
+    "group": [
+      "Baseline",
+      "Early",
+      "Late"
+    ]
+  },
+  "labels": {
+    "x": "Time point",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.2510425347222223,
+      "right": 0.8510425347222222,
+      "bottom": 0.16173322792658731,
+      "top": 0.9566875000000001
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.5,
+      "color": "#555555"
+    },
+    "summary": {
+      "line_width_pt": 0.75,
+      "color": "#333333"
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "palette": "notch2-balanced"
+}

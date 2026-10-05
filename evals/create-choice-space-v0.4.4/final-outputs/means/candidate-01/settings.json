@@ -1,0 +1,162 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "condition",
+    "unit": "unit",
+    "value": "value"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "marker_area_pt2": 12,
+    "y_limits": [
+      0,
+      18
+    ],
+    "bar_width": 0.55,
+    "bar_style": "filled",
+    "point_color": "#333333",
+    "bar_color": "#CACACA"
+  },
+  "order": {
+    "condition": [
+      "Control",
+      "Dose A",
+      "Dose B"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80.0,
+    "height_mm": 70.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 160,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.21221440972222216,
+      "right": 0.9097144097222223,
+      "bottom": 0.16114657738095237,
+      "top": 0.9566875
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Control": "#CACACA",
+    "Dose A": "#CACACA",
+    "Dose B": "#CACACA"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/final-outputs/means/source.csv",
+  "input_sha256": "f712f4d5476927a653c2867eb79250d2f61e31cc059117a220fd28d2c4436a07",
+  "supplied_spec": {
+    "chart": "replicate",
+    "fields": {
+      "condition": "condition",
+      "unit": "unit",
+      "value": "value"
+    },
+    "options": {
+      "mode": "summary",
+      "uncertainty": "sample_sd",
+      "marker_area_pt2": 12,
+      "y_limits": [
+        0,
+        18
+      ],
+      "bar_width": 0.55,
+      "bar_style": "filled",
+      "point_color": "#333333",
+      "bar_color": "#CACACA"
+    },
+    "order": {
+      "condition": [
+        "Control",
+        "Dose A",
+        "Dose B"
+      ]
+    },
+    "labels": {
+      "x": "Condition",
+      "y": "Response (a.u.)"
+    },
+    "layout": {
+      "width_mm": 80,
+      "height_mm": 70,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 160,
+      "auto_fit": false,
+      "margins": {
+        "left": 0.21221440972222216,
+        "right": 0.9097144097222223,
+        "bottom": 0.16114657738095237,
+        "top": 0.9566875
+      }
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ]
+  },
+  "auto_layout": null,
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+    "helper_sha256": {
+      "render.py": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "e34d6e7c5e720782671e356b960c4f6052d26ed3fa3b0f868dbbf004e4b03f48",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    }
+  },
+  "spec_file_sha256": "efe17771a8d2c70e40831b5f36402cf040f4301b2ad2d934ae50326bbdcebd66"
+}

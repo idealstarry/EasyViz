@@ -1,0 +1,992 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 24,
+  "plotted_input_rows": 24,
+  "input_sha256": "fb05a42090f1fe5f7e2e6748ec5e3a8a80ded15a3e8c80be943b0c8bb175b7e3",
+  "width_mm": 80.0,
+  "height_mm": 70.0,
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "exports": {
+    "pdf": {
+      "width_mm": 79.9999999999975,
+      "height_mm": 70.00000000000222,
+      "sha256": "fbc83c7f52eb197820becc910b8fc2beb978520c0ed7059ebb09bffcdacf13e4"
+    },
+    "svg": {
+      "width_mm": 80.00000016111112,
+      "height_mm": 70.00000005277778,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+      "sha256": "95615769455790c0a491aee85b55ff594df87aa6caf6bc3c8d41519c1a4471ec"
+    },
+    "png": {
+      "pixels": [
+        504,
+        441
+      ],
+      "dpi": [
+        159.9946,
+        159.9946
+      ],
+      "sha256": "e9ef0249b09a485a0ba318be5d494feb9a947408e268b2b9f387151d0220e7cd"
+    }
+  },
+  "visual_review_required": true,
+  "note": "Automated checks cover canvas boundaries, same-axis horizontal/vertical tick-label overlap and heatmap cell annotations. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review.",
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "colorbar",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "right",
+          "orientation": "vertical",
+          "rect_mm": [
+            58.274578993055556,
+            32.70832899305555,
+            1.9999999999999964,
+            18.000000000000004
+          ],
+          "length_mm": 18.000000000000004,
+          "thickness_mm": 1.9999999999999962,
+          "ticks": [
+            0.0,
+            25.0,
+            50.0
+          ],
+          "font_size_pt": 8.0
+        },
+        "bbox_mm": [
+          58.274578993055556,
+          28.61145399305556,
+          9.973749999999997,
+          26.19375
+        ],
+        "plot_bbox_mm": [
+          34.274578993055556,
+          17.70832899305556,
+          22.000000000000004,
+          33.0
+        ],
+        "canvas_mm": [
+          80.0,
+          70.0
+        ],
+        "area_fraction_of_plot": 0.35984836647727253,
+        "width_fraction_of_plot": 0.45335227272727247,
+        "height_fraction_of_plot": 0.79375,
+        "area_fraction_of_canvas": 0.046651770368303556,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.18537189182462496,
+        "available_region_mm": [
+          58.274578993055556,
+          1.0,
+          20.72542100694445,
+          68.0
+        ],
+        "key_bboxes_mm": [],
+        "issues": [],
+        "warnings": [
+          "Review area_fraction_of_plot=0.360 above adjustable threshold 0.2; this is not a journal limit."
+        ],
+        "text_overlaps": [],
+        "mapped_range": [
+          0.0,
+          50.0
+        ],
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 18.0,
+            "bbox_mm": [
+              58.274578993055556,
+              28.61145399305556,
+              9.973749999999997,
+              26.19375
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              58.274578993055556,
+              25.08251953125,
+              9.973749999999997,
+              26.722684461805553
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              58.274578993055556,
+              21.082519531250007,
+              9.973749999999997,
+              30.657684461805545
+            ],
+            "issues": []
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 18.0,
+            "bbox_mm": [
+              32.17770399305556,
+              52.70832899305556,
+              26.19375,
+              8.821434461805547
+            ],
+            "issues": []
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              32.17770399305556,
+              52.70832899305556,
+              26.684374999999996,
+              8.821434461805547
+            ],
+            "issues": []
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              30.480828993055557,
+              52.70832899305556,
+              30.381249999999994,
+              8.821434461805547
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 18.0,
+            "bbox_mm": [
+              32.17770399305556,
+              -2.986197916666662,
+              26.19375,
+              9.456434461805555
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              32.17770399305556,
+              -2.986197916666662,
+              26.684374999999996,
+              9.456434461805555
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              30.480828993055557,
+              -2.986197916666662,
+              30.381249999999994,
+              9.456434461805555
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 261.2499140624999,
+      "sum_envelope_area_mm2": 261.2499140624999,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.3598483664772726,
+      "area_fraction_of_canvas": 0.046651770368303556,
+      "enclosing_bbox_mm": [
+        58.274578993055556,
+        28.61145399305556,
+        9.973749999999997,
+        26.19375
+      ],
+      "max_individual_width_mm": 9.973749999999997,
+      "max_individual_height_mm": 26.19375,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [
+      "colorbar: Review area_fraction_of_plot=0.360 above adjustable threshold 0.2; this is not a journal limit.",
+      "Combined guides: review area_fraction_of_plot=0.360 above adjustable threshold 0.2; this is not a journal limit."
+    ],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "cell_annotations": {
+    "status": "pass",
+    "registered_count": 24,
+    "checked_count": 24,
+    "padding_mm": 0.2,
+    "issues": [],
+    "overflow_count": 0,
+    "overlap_pair_count": 0,
+    "minimum_sufficient_cell_dimensions_mm": {
+      "width": 3.5749999999999997,
+      "height": 3.0576844618055574
+    },
+    "cells": [
+      {
+        "row": 0,
+        "column": 0,
+        "text": "7",
+        "text_bbox_mm": [
+          36.23082899305556,
+          46.62948676215279,
+          1.5875,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          34.274578993055556,
+          45.20832899305557,
+          5.5000000000000036,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 1.9874999999999998,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 0,
+        "column": 1,
+        "text": "16",
+        "text_bbox_mm": [
+          40.937078993055565,
+          46.62948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          39.77457899305556,
+          45.20832899305557,
+          5.499999999999999,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 0,
+        "column": 2,
+        "text": "25",
+        "text_bbox_mm": [
+          46.43707899305556,
+          46.62948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          45.274578993055556,
+          45.20832899305557,
+          5.499999999999995,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 0,
+        "column": 3,
+        "text": "34",
+        "text_bbox_mm": [
+          51.93707899305556,
+          46.62948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          50.774578993055556,
+          45.20832899305557,
+          5.5000000000000036,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 1,
+        "column": 0,
+        "text": "20",
+        "text_bbox_mm": [
+          35.43707899305556,
+          41.12948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          34.274578993055556,
+          39.70832899305556,
+          5.5000000000000036,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 1,
+        "column": 1,
+        "text": "29",
+        "text_bbox_mm": [
+          40.937078993055565,
+          41.12948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          39.77457899305556,
+          39.70832899305556,
+          5.499999999999999,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 1,
+        "column": 2,
+        "text": "38",
+        "text_bbox_mm": [
+          46.43707899305556,
+          41.12948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          45.274578993055556,
+          39.70832899305556,
+          5.499999999999995,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 1,
+        "column": 3,
+        "text": "47",
+        "text_bbox_mm": [
+          51.93707899305556,
+          41.12948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          50.774578993055556,
+          39.70832899305556,
+          5.5000000000000036,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 2,
+        "column": 0,
+        "text": "33",
+        "text_bbox_mm": [
+          35.43707899305556,
+          35.62948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          34.274578993055556,
+          34.20832899305557,
+          5.5000000000000036,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 2,
+        "column": 1,
+        "text": "42",
+        "text_bbox_mm": [
+          40.937078993055565,
+          35.62948676215279,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          39.77457899305556,
+          34.20832899305557,
+          5.499999999999999,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 2,
+        "column": 2,
+        "text": "0",
+        "text_bbox_mm": [
+          47.23082899305556,
+          35.62948676215279,
+          1.5875,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          45.274578993055556,
+          34.20832899305557,
+          5.499999999999995,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 1.9874999999999998,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 2,
+        "column": 3,
+        "text": "9",
+        "text_bbox_mm": [
+          52.73082899305556,
+          35.62948676215279,
+          1.5875,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          50.774578993055556,
+          34.20832899305557,
+          5.5000000000000036,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 1.9874999999999998,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 3,
+        "column": 0,
+        "text": "46",
+        "text_bbox_mm": [
+          35.43707899305556,
+          30.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          34.274578993055556,
+          28.708328993055563,
+          5.5000000000000036,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 3,
+        "column": 1,
+        "text": "4",
+        "text_bbox_mm": [
+          41.73082899305556,
+          30.129486762152787,
+          1.5875,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          39.77457899305556,
+          28.708328993055563,
+          5.499999999999999,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 1.9874999999999998,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 3,
+        "column": 2,
+        "text": "13",
+        "text_bbox_mm": [
+          46.43707899305556,
+          30.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          45.274578993055556,
+          28.708328993055563,
+          5.499999999999995,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 3,
+        "column": 3,
+        "text": "22",
+        "text_bbox_mm": [
+          51.93707899305556,
+          30.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          50.774578993055556,
+          28.708328993055563,
+          5.5000000000000036,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 4,
+        "column": 0,
+        "text": "8",
+        "text_bbox_mm": [
+          36.23082899305556,
+          24.629486762152787,
+          1.5875,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          34.274578993055556,
+          23.208328993055567,
+          5.5000000000000036,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 1.9874999999999998,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 4,
+        "column": 1,
+        "text": "17",
+        "text_bbox_mm": [
+          40.937078993055565,
+          24.629486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          39.77457899305556,
+          23.208328993055567,
+          5.499999999999999,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 4,
+        "column": 2,
+        "text": "26",
+        "text_bbox_mm": [
+          46.43707899305556,
+          24.629486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          45.274578993055556,
+          23.208328993055567,
+          5.499999999999995,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 4,
+        "column": 3,
+        "text": "35",
+        "text_bbox_mm": [
+          51.93707899305556,
+          24.629486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          50.774578993055556,
+          23.208328993055567,
+          5.5000000000000036,
+          5.499999999999995
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 5,
+        "column": 0,
+        "text": "21",
+        "text_bbox_mm": [
+          35.43707899305556,
+          19.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          34.274578993055556,
+          17.708328993055563,
+          5.5000000000000036,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 5,
+        "column": 1,
+        "text": "30",
+        "text_bbox_mm": [
+          40.937078993055565,
+          19.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          39.77457899305556,
+          17.708328993055563,
+          5.499999999999999,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 5,
+        "column": 2,
+        "text": "39",
+        "text_bbox_mm": [
+          46.43707899305556,
+          19.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          45.274578993055556,
+          17.708328993055563,
+          5.499999999999995,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      },
+      {
+        "row": 5,
+        "column": 3,
+        "text": "48",
+        "text_bbox_mm": [
+          51.93707899305556,
+          19.129486762152787,
+          3.175,
+          2.6576844618055575
+        ],
+        "cell_bbox_mm": [
+          50.774578993055556,
+          17.708328993055563,
+          5.5000000000000036,
+          5.5000000000000036
+        ],
+        "required_cell_width_mm": 3.5749999999999997,
+        "required_cell_height_mm": 3.0576844618055574
+      }
+    ],
+    "note": "Rendered text envelopes must fit their cells with the configured padding. Cell dimensions are a measured fit requirement, not a publication standard. No figure settings or data are changed."
+  },
+  "readability": {
+    "schema_version": 1,
+    "status": "no_advisory_flags",
+    "advisory_only": true,
+    "thresholds": {
+      "small_point_span_mm": 0.35,
+      "low_contrast_ratio": 2.0,
+      "thin_stroke_pt": 0.25,
+      "large_legend_canvas_fraction": 0.25
+    },
+    "totals": {
+      "point_artists": 0,
+      "stroke_artists": 15,
+      "legend_artists": 0,
+      "finite_marks": 0,
+      "zero_size_parameters": 0,
+      "small_visible_marks": 0,
+      "low_contrast_small_marks": 0,
+      "thin_data_stroke_artists": 0
+    },
+    "stroke_roles": {
+      "grid-line": {
+        "artist_count": 1,
+        "width_pt_range": [
+          0.3,
+          0.3
+        ]
+      },
+      "axis-line": {
+        "artist_count": 4,
+        "width_pt_range": [
+          0.55,
+          0.55
+        ]
+      },
+      "axis-tick": {
+        "artist_count": 10,
+        "width_pt_range": [
+          0.55,
+          0.55
+        ]
+      }
+    },
+    "artists": [
+      {
+        "id": "easyviz-grid-line-ad247402708368f7",
+        "role": "grid-line",
+        "label": "Heatmap cell boundaries",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.3,
+            0.3
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-a25b05ec84419760",
+        "role": "axis-line",
+        "label": "Y axis line · left",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-ccc292c102dd7332",
+        "role": "axis-line",
+        "label": "Y axis line · right",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-583586e852f58ad3",
+        "role": "axis-line",
+        "label": "X axis line · bottom",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-d99df2d262383eca",
+        "role": "axis-line",
+        "label": "X axis line · top",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+        "role": "axis-tick",
+        "label": "X major tick · 0 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-d2f9de54ec255438",
+        "role": "axis-tick",
+        "label": "X major tick · 1 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-a369cdb522813c9c",
+        "role": "axis-tick",
+        "label": "X major tick · 2 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e9950117fc321fa",
+        "role": "axis-tick",
+        "label": "X major tick · 3 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e1c294e3379762a",
+        "role": "axis-tick",
+        "label": "Y major tick · 0 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-7b8c8fd4a49c9682",
+        "role": "axis-tick",
+        "label": "Y major tick · 1 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-bd287d4ddd92159b",
+        "role": "axis-tick",
+        "label": "Y major tick · 2 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-0bbaa9bc49cbe83d",
+        "role": "axis-tick",
+        "label": "Y major tick · 3 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-813f58dfce7a30f9",
+        "role": "axis-tick",
+        "label": "Y major tick · 4 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-23f8ddcc854605f8",
+        "role": "axis-tick",
+        "label": "Y major tick · 5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      }
+    ],
+    "artist_count": 15,
+    "artists_omitted_from_detail": 0,
+    "warnings": [],
+    "warning_count": 0,
+    "warnings_omitted_from_detail": 0,
+    "layout_evidence": {},
+    "scope": "Actual visible artist settings after draw; finite unmasked locations are counted without clipping/occlusion inference. PathCollection sizes are Matplotlib size parameters, not universal fill areas; marker path geometry supplies physical bounding spans. Zero size parameters are preserved separately. Contrast is actual face/edge RGBA composited once over a uniform axes/figure background.",
+    "not_checked": [
+      "Scientific or statistical validity",
+      "Reference fidelity and missing layers",
+      "Color-vision accessibility or between-category color distinction",
+      "Nonuniform backgrounds, image contrast, mark occlusion or point/label overlap",
+      "Heatmap value normalization, bar fill design, text readability and arbitrary patches",
+      "Line2D markevery marker selection"
+    ],
+    "policy": "Thresholds are configurable review cues. They do not change artist properties, data, quantitative marker areas, exports, or core QA pass/fail."
+  }
+}

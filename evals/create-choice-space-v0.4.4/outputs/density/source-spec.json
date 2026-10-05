@@ -1,0 +1,40 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value",
+    "unit": "id"
+  },
+  "options": {
+    "kind": "violin",
+    "violin_inner": "box",
+    "point_area_pt2": 10,
+    "y_limits": [
+      1,
+      8
+    ]
+  },
+  "order": {
+    "group": [
+      "Baseline",
+      "Early",
+      "Late"
+    ]
+  },
+  "labels": {
+    "x": "Time point",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

@@ -7,15 +7,16 @@ identity is recorded in [build.json](build.json).
 
 | Check | Evidence |
 | --- | --- |
-| Complete unit suite: 526 tests passed | [Final unit log](unit-tests.log) |
+| Complete unit suite: 535 tests passed | [Final unit log](unit-tests.log) |
 | Installed dependency compatibility: 18 packages compatible | [Dependency check](dependency-check.log) |
 | Extracted ZIP resources and actual runtime: passed | [Package check](package-check.log) |
-| Local Markdown resources: 405 source targets passed | [Link validation](resource-links.json) |
-| Local 0.4.4 installed and enabled; all 848 source/cache files match ZIP | [Installer result](local-install.json), [Independent file comparison](installed-content-check.json) |
+| Local Markdown resources: 574 source targets passed (scoped current documentation) | [Link validation](resource-links.json) |
+| Local 0.4.4 installed and enabled; all 849 source/cache files match ZIP | [Installer result](local-install.json), [Independent file comparison](installed-content-check.json) |
 | Prospective Create inputs, actual image review and current-file checks | [Evaluation and original failures](../../create-first-delivery-v0.4.4/README.md) |
 | Current five selected delivery records | [Readiness evidence](../../create-first-delivery-v0.4.4/delivery-readiness.json) |
+| Conditional design alternatives and repaired readability, 165 synthetic rows/cells | [Separate choice-space probe and three retained visual passes](../../create-choice-space-v0.4.4/README.md) |
 | Runtime and workflow failures, fixes and independent verification | [Code audit](../../create-first-delivery-v0.4.4/code-audit.md), [Workbench review](../../create-first-delivery-v0.4.4/workbench-fix-review.md), [Installer/package review](../../create-first-delivery-v0.4.4/install-fix-review.md) |
-| Portable documentation: 307 local targets passed | [Reproduced omissions and repairs](../../create-first-delivery-v0.4.4/portable-resource-audit.md) |
+| Portable documentation: 316 local targets passed | [Current extracted-package check](package-check.log); [original omission repair](../../create-first-delivery-v0.4.4/portable-resource-audit.md) is historical |
 
 The candidate engine was frozen before preparing five new tasks. One new public
 Source Data input and four explicitly synthetic stress inputs retain 581
@@ -25,6 +26,16 @@ final independent image reviews resolve the inspected defects with stated
 density/overlap limits. These corrections are retained separately from the
 initial failures and do not count as unseen engine successes. All five current
 selected exports have completed, hash-bound review records.
+
+The original first-delivery evaluation is replayable with its own frozen runtime.
+A separate probe freezes the revised candidate implementation and supplies five
+new synthetic contracts (165 rows/cells). Its initial distribution layouts fail
+raw-point spacing; pass 2 repairs spacing but leaves overly thin boxes; pass 3
+repairs that documented proportion while retaining all adopted source/science
+constraints. All three sets of outputs and actual-image reviews remain intact.
+The final local review is ready with notes; this is repaired same-input
+readability, not unseen first-draft or aesthetic effectiveness evidence. Width
+and margin changes do not inflate the count of implemented design alternatives.
 
 Five original synthetic design-card pairs teach applicability, visible failure
 mechanisms and mark/summary geometry. Their 248 observations are unchanged.
@@ -54,6 +65,7 @@ python scripts/check_package.py
 ```
 
 GitHub CI and publication are verified after the source push; the published
-asset must match the recorded archive checksum. CLI registration and file
+ZIP must match the recorded build. The public release contains only the ZIP;
+there is no separate checksum download or user verification step. CLI registration and file
 comparison verify the local installed copy. An existing chat may retain its
 loaded skills; start a new chat to load the updated version.

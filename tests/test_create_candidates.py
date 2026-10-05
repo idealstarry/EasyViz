@@ -86,7 +86,7 @@ class CreateCandidateTests(unittest.TestCase):
             self.assertEqual(plotted.id.tolist(), [f"{v:03d}" for v in range(1, 7)])
             self.assertEqual(plotted.v.tolist(), [1, 2, 3, 2, 4, 6])
             stats.append(json.loads((directory / "stats.json").read_text()))
-        self.assertNotEqual(*widths)
+        self.assertEqual(*widths, "A material color-role alternative does not need width-only variation")
         self.assertEqual(*stats)
 
     def test_horizontal_log_distribution_retains_numeric_axes(self):
@@ -120,13 +120,10 @@ class CreateCandidateTests(unittest.TestCase):
             bodies = [item["_artist"] for item in fig._easyviz_elements if item["role"] == "distribution"]
             shapes.append([body.get_paths()[0].vertices.copy() for body in bodies])
             core.plt.close(fig)
-        # KDE evaluation coordinates and normalized density shape survive;
-        # only the categorical width differs between these real artists.
+        # Color-role alternatives keep both KDE evaluation and categorical
+        # geometry unchanged, rather than presenting width tweaks as designs.
         for first, second in zip(*shapes):
-            np.testing.assert_array_equal(first[:, 1], second[:, 1])
-            center = (first[:, 0].min() + first[:, 0].max()) / 2
-            np.testing.assert_allclose((first[:, 0] - center) / spec.get("options", {}).get("violin_width", .38),
-                                       (second[:, 0] - center) / .46, atol=1e-12)
+            np.testing.assert_array_equal(first, second)
         self.assertIn("Scott", baseline_method)
 
     def test_tall_narrow_matrix_values_order_norm_annotation_fonts_and_geometry(self):
@@ -290,6 +287,297 @@ class CreateCandidateTests(unittest.TestCase):
         self.assertTrue(all(body.get_facecolor()[3] == 0 for body in bodies))
         self.assertTrue(all(core.mcolors.to_hex(body.get_edgecolor()) == "#333333" for body in bodies))
         core.plt.close(fig)
+
+    def test_distribution_routes_change_painted_roles_without_changing_geometry_or_statistics(self):
+        body = "g,v\nA,1\nA,2\nA,3\nB,2\nB,4\nB,6\n"
+        spec = self.spec("distribution", {"group": "g", "value": "v"},
+                         options={"point_area_pt2": 16, "y_limits": [0, 8]}, order={"group": ["B", "A"]},
+                         statistics={"method": "welch", "groups": ["B", "A"], "annotate": False})
+        manifest, out = self.run_candidates(body, spec, count=3)
+        self.assertEqual(len(manifest["candidates"]), 3)
+        painted, coordinates, bodies, statistics, images = [], [], [], [], []
+        for record, result, geometry, directory in self.read_candidates(out, manifest):
+            self.assertEqual(record["technical_review"]["status"], "pass")
+            self.assertEqual(result["statistics"], spec["statistics"])
+            self.assertEqual(result["order"], spec["order"])
+            self.assertEqual(geometry["source_to_artist"]["observation_count"], 6)
+            fig, _, _, _ = candidates._draw(out / "source.csv", result)
+            raw = [entry["_artist"] for entry in fig._easyviz_elements if entry["role"] == "point-group"]
+            summaries = [entry["_artist"] for entry in fig._easyviz_elements if entry["role"] == "distribution"]
+            painted.append({"raw": [core.mcolors.to_hex(point.get_facecolors()[0]) for point in raw],
+                            "faces": [patch.get_facecolor() for patch in summaries]})
+            coordinates.append([np.asarray(point.get_offsets()).copy() for point in raw])
+            bodies.append([patch.get_path().vertices.copy() for patch in summaries])
+            self.assertTrue(all(np.array_equal(point.get_sizes(), [16]) for point in raw))
+            self.assertEqual(candidates._visual_facets(fig), record["visual_facet_evidence"])
+            self.assertEqual(geometry["visual_facets"], record["visual_facet_evidence"])
+            core.plt.close(fig)
+            statistics.append(json.loads((directory / "stats.json").read_text()))
+            images.append((directory / "panel.png").read_bytes())
+        self.assertTrue(all(face[3] > 0 for face in painted[0]["faces"]))
+        self.assertEqual(len(set(painted[0]["raw"])), 1, "Summary-area treatment keeps raw marks uniform")
+        self.assertTrue(all(face[3] == 0 for face in painted[1]["faces"]))
+        self.assertEqual(len(set(painted[1]["raw"])), 2, "Raw observations really carry category color")
+        self.assertTrue(all(face[3] == 0 for face in painted[2]["faces"]))
+        self.assertEqual(len(set(painted[2]["raw"])), 1, "Positions/labels can decode neutral marks")
+        for alternative in (1, 2):
+            for old, new in zip(coordinates[0], coordinates[alternative]): np.testing.assert_array_equal(old, new)
+            for old, new in zip(bodies[0], bodies[alternative]): np.testing.assert_array_equal(old, new)
+            self.assertEqual(statistics[0], statistics[alternative])
+            self.assertTrue(manifest["candidates"][alternative]["changed_facets_vs_candidate_01"])
+        self.assertEqual(len(set(images)), 3, "Actual exports differ beyond spec-only labels")
+
+    def test_moderate_near_equal_observations_get_physical_lanes_without_scientific_changes(self):
+        # Distinct values can collide after transformation although count/tie
+        # heuristics call them sparse. These are independent synthetic values.
+        clusters = [0, .03, .09, .28, .72, .91, 1.01, 1.04, 1.12, 1.39, 1.73, 2.18]
+        for kind, counts in (("box", [9, 10, 11, 12]), ("violin", [14, 17, 20])):
+            with self.subTest(kind=kind):
+                values = clusters if kind == "box" else [0, .02, .27, .5, .54, .8, 1.03, 1.05, 1.3, 1.54, 1.56, 1.8, 2.03, 2.05, 2.3, 2.54, 2.56, 2.8, 3.03, 3.05]
+                body = "id,g,v\n" + "".join(f"{group}-{i:02d},G{group},{1.4 + group * .8 + values[i]}\n" for group, count in enumerate(counts) for i in range(count))
+                options = {"kind": kind, "point_area_pt2": 12 if kind == "box" else 10, "y_limits": [0, 9]}
+                if kind == "violin": options["violin_inner"] = "box"
+                spec = self.spec("distribution", {"group": "g", "value": "v", "unit": "id"}, options=options,
+                                 order={"group": [f"G{i}" for i in reversed(range(len(counts)))]})
+                spec["layout"].update(width_mm=80, height_mm=70)
+                manifest, out = self.run_candidates(body, spec, name="moderate-" + kind, count=3)
+                self.assertEqual(manifest["status"], "visual_review_pending")
+                self.assertFalse(manifest["features"]["dense_raw_layer"])
+                self.assertEqual(manifest["features"]["maximum_tie_count"], 1)
+                for record, result, geometry, directory in self.read_candidates(out, manifest):
+                    self.assertEqual(record["technical_review"]["status"], "pass")
+                    self.assertEqual(record["distribution_lane_planning"]["status"], "pass")
+                    self.assertEqual(geometry["canvas_mm"], [80., 70.])
+                    self.assertEqual(geometry["typography"]["tick"], 8)
+                    self.assertEqual(geometry["point_layout"]["spacing_violation_pairs"], 0)
+                    self.assertEqual(geometry["point_layout"]["categorical_boundary_rows"], [])
+                    self.assertEqual(geometry["raw_summary_categorical_envelope_crossings"], 0)
+                    self.assertEqual(geometry["source_to_artist"]["observation_count"], sum(counts))
+                    self.assertEqual(result["order"], spec["order"])
+                    for key, value in options.items(): self.assertEqual(result["options"][key], value)
+                    self.assertEqual(json.loads((directory / "qa.json").read_text())["status"], "pass")
+                    self.assertTrue((directory / "panel.png").exists())
+                    fig, plotted, _, _ = candidates._draw(out / "source.csv", result)
+                    display = []
+                    for item in fig._easyviz_elements:
+                        if item["role"] != "point-group": continue
+                        artist = item["_artist"]
+                        coordinates = np.asarray(artist.get_offsets(), dtype=float)
+                        selected = plotted[plotted.g == item["label"]]
+                        np.testing.assert_array_equal(coordinates[:, 1], selected.v.to_numpy())
+                        np.testing.assert_array_equal(artist.get_sizes(), [options["point_area_pt2"]])
+                        display.extend(fig.axes[0].transData.transform(coordinates) * 72 / fig.dpi)
+                    distances = np.linalg.norm(np.asarray(display)[:, None] - np.asarray(display)[None, :], axis=2)
+                    distances[np.diag_indices_from(distances)] = np.inf
+                    self.assertGreaterEqual(float(distances.min()), np.sqrt(options["point_area_pt2"]) + result["options"]["point_gap_pt"] - 1e-7)
+                    self.assertEqual(fig.axes[0].get_ylim(), (0., 9.))
+                    core.plt.close(fig)
+
+    def test_explicit_lane_limits_and_infeasible_summary_geometry_stay_invalid_and_retryable(self):
+        body = "g,v\n" + "".join(f"{group},{base + delta}\n" for group, base in (("A", 2), ("B", 4)) for delta in (0, .005, .01, .1, .105, .11, .2, .205, .21))
+        spec = self.spec("distribution", {"group": "g", "value": "v"},
+                         options={"kind": "box", "point_layout": "beeswarm", "box_width": .3,
+                                  "point_category_offset": .35, "point_max_offset_mm": .03,
+                                  "point_gap_pt": .3, "point_area_pt2": 16, "y_limits": [0, 8]})
+        spec["layout"].update(width_mm=65, height_mm=60, auto_fit=False,
+                              margins={"left": .25, "right": .85, "bottom": .2, "top": .9})
+        for render in (False, True):
+            with self.subTest(render=render):
+                manifest, out = self.run_candidates(body, spec, name="locked-lane-" + str(render), count=1, render=render)
+                self.assertEqual(manifest["status"], "needs_revision")
+                record, result, geometry, directory = next(self.read_candidates(out, manifest))
+                self.assertIn(record["technical_review"]["status"], ("failed", "needs_revision"))
+                self.assertEqual(geometry["point_layout"]["status"], "needs_revision")
+                self.assertGreater(geometry["point_layout"]["spacing_violation_pairs"], 0)
+                self.assertEqual(geometry["source_to_artist"]["status"], "pass")
+                self.assertEqual(geometry["source_to_artist"]["observation_count"], 18)
+                for key, value in spec["options"].items(): self.assertEqual(result["options"][key], value)
+                self.assertEqual(result["layout"]["margins"], spec["layout"]["margins"])
+                self.assertEqual(geometry["canvas_mm"], [65., 60.])
+                self.assertEqual(record["visual_review"]["status"], "pending")
+                if render:
+                    self.assertEqual(json.loads((directory / "qa.json").read_text())["status"], "needs_revision")
+                    self.assertEqual(len(pd.read_csv(directory / "plotting-data.csv")), 18)
+                else:
+                    self.assertFalse((directory / "panel.png").exists())
+
+    def test_summary_proportion_floor_and_positive_gap_trial_preserve_actual_box_quantiles(self):
+        # Regression for the reviewed four-category 80 mm manuscript panel.
+        # The former solver passed spacing by making boxes thinner than dots.
+        deltas = [0, .65787, .64164, .05019, -.35801, -.03462, .72981, 1.13898, .80398, .18921, .07989, .68163]
+        groups = ["Control", "Low", "Medium", "High"]
+        body = "id,g,v\n" + "".join(f"{group}-{i:02d},{group},{2.3 + j * 1.3 + deltas[i]}\n" for j, group in enumerate(groups) for i in range(9 + j))
+        spec = self.spec("distribution", {"group": "g", "value": "v", "unit": "id"},
+                         order={"group": groups}, options={"kind": "box", "point_area_pt2": 12, "y_limits": [0, 10]},
+                         labels={"x": "Condition", "y": "Response (a.u.)"},
+                         statistics={"method": "welch", "groups": ["Control", "High"], "annotate": False})
+        spec["layout"].update(width_mm=80, height_mm=70, font="Arial")
+        manifest, out = self.run_candidates(body, spec, name="box-proportion", count=3)
+        self.assertEqual(manifest["status"], "visual_review_pending")
+        self.assertEqual(len(manifest["candidates"]), 3)
+        raw_coordinates, summaries, stats = [], [], []
+        for record, result, geometry, directory in self.read_candidates(out, manifest):
+            self.assertEqual(record["technical_review"]["status"], "pass")
+            plan = record["distribution_lane_planning"]
+            self.assertTrue(plan["summary_floor_met"])
+            self.assertEqual(plan["actual_gap_pt"], .2)
+            self.assertIn(".3 pt", plan["gap_reduction_reason"])
+            self.assertEqual(result["options"]["point_gap_pt"], .2)
+            self.assertEqual(result["statistics"], spec["statistics"])
+            self.assertEqual(geometry["canvas_mm"], [80., 70.])
+            self.assertEqual(result["layout"]["font"], "Arial")
+            self.assertEqual(geometry["typography"]["tick"], 8)
+            self.assertEqual(geometry["point_layout"]["spacing_violation_pairs"], 0)
+            self.assertEqual(geometry["raw_summary_categorical_envelope_crossings"], 0)
+            fig, data, _, _ = candidates._draw(out / "source.csv", result)
+            coordinates, quantiles = [], []
+            for index, group in enumerate(groups):
+                values = data.loc[data.g == group, "v"].to_numpy()
+                point = next(item["_artist"] for item in fig._easyviz_elements if item["role"] == "point-group" and item["label"] == group)
+                patch = next(item["_artist"] for item in fig._easyviz_elements if item["role"] == "distribution" and item["label"] == group)
+                vertices = patch.get_path().vertices
+                physical_width = np.ptp(patch.get_transform().transform(vertices)[:, 0]) * 72 / fig.dpi
+                outer_diameter = np.sqrt(point.get_sizes()[0]) + point.get_linewidths()[0]
+                self.assertGreaterEqual(physical_width + 1e-8, outer_diameter)
+                np.testing.assert_allclose([vertices[:, 1].min(), vertices[:, 1].max()], np.quantile(values, [.25, .75]))
+                medians = [line for line in fig.axes[0].lines if np.isclose(np.ptp(line.get_xdata()), result["options"]["box_width"]) and np.isclose(np.mean(line.get_xdata()), index) and np.isclose(np.ptp(line.get_ydata()), 0)]
+                self.assertEqual(len(medians), 1)
+                self.assertAlmostEqual(float(medians[0].get_ydata()[0]), float(np.median(values)))
+                np.testing.assert_array_equal(np.asarray(point.get_offsets())[:, 1], values)
+                np.testing.assert_array_equal(point.get_sizes(), [12])
+                coordinates.append(np.asarray(point.get_offsets()).copy())
+                quantiles.append(vertices.copy())
+            self.assertEqual(fig.axes[0].get_ylim(), (0., 10.))
+            raw_coordinates.append(coordinates); summaries.append(quantiles)
+            core.plt.close(fig)
+            stats.append(json.loads((directory / "stats.json").read_text()))
+        for alternative in (1, 2):
+            for first, other in zip(raw_coordinates[0], raw_coordinates[alternative]): np.testing.assert_array_equal(first, other)
+            for first, other in zip(summaries[0], summaries[alternative]): np.testing.assert_array_equal(first, other)
+            self.assertEqual(stats[0], stats[alternative])
+        # An explicitly adopted .3 pt gap cannot be silently reduced to fit.
+        locked = deepcopy(spec)
+        locked["options"].update(point_layout="beeswarm", point_gap_pt=.3)
+        rejected, rejected_out = self.run_candidates(body, locked, name="explicit-gap-floor", count=1)
+        self.assertEqual(rejected["status"], "needs_revision")
+        record, result, geometry, directory = next(self.read_candidates(rejected_out, rejected))
+        self.assertEqual(result["options"]["point_gap_pt"], .3)
+        self.assertIsNone(record["distribution_lane_planning"]["gap_reduction_reason"])
+        self.assertTrue(record["distribution_lane_planning"]["summary_floor_met"])
+        self.assertEqual(geometry["point_layout"]["status"], "needs_revision")
+        self.assertEqual(json.loads((directory / "qa.json").read_text())["status"], "needs_revision")
+
+    def test_unsupported_explicit_category_limits_are_rejected_instead_of_removed_or_rewritten(self):
+        for orientation, axis in (("vertical", "x"), ("horizontal", "y")):
+            with self.subTest(orientation=orientation):
+                spec = self.spec("distribution", {"group": "g", "value": "v"}, options={"orientation": orientation, axis + "_limits": [-.45, 1.45]})
+                source, path, out = self.root / f"cat-{axis}.csv", self.root / f"cat-{axis}.json", self.root / f"cat-{axis}"
+                source.write_text("g,v\nA,1\nA,2\nB,2\nB,3\n")
+                path.write_text(json.dumps(spec))
+                before = (source.read_bytes(), path.read_bytes())
+                with self.assertRaisesRegex(ValueError, "only on numeric"):
+                    candidates.create_candidates(source, path, out, new_draft=True)
+                self.assertEqual((source.read_bytes(), path.read_bytes()), before)
+                self.assertFalse(out.exists())
+
+    def test_replicate_summary_has_actual_filled_and_open_bars_with_identical_means_sd_and_points(self):
+        body = "c,u,v\nControl,01,1\nControl,02,2\nControl,03,3\nDrug,01,3\nDrug,02,4\nDrug,03,5\n"
+        spec = self.spec("replicate", {"condition": "c", "unit": "u", "value": "v"},
+                         options={"mode": "summary", "uncertainty": "sample_sd", "marker_area_pt2": 12, "y_limits": [0, 7]})
+        manifest, out = self.run_candidates(body, spec, count=3)
+        self.assertEqual(len(manifest["candidates"]), 2, "Count is not padded with different bar widths")
+        observed, summaries, stats = [], [], []
+        for record, result, geometry, directory in self.read_candidates(out, manifest):
+            self.assertEqual(record["technical_review"]["status"], "pass")
+            self.assertEqual(geometry["source_to_artist"]["status"], "pass")
+            fig, _, _, _ = candidates._draw(out / "source.csv", result)
+            observed.append([(patch.get_x(), patch.get_y(), patch.get_width(), patch.get_height(), patch.get_facecolor()[3]) for patch in fig.axes[0].patches])
+            self.assertEqual(len(fig.axes[0].collections[0].get_offsets()), 1)
+            core.plt.close(fig)
+            summaries.append(json.loads((directory / "summary-data.json").read_text()))
+            stats.append(json.loads((directory / "stats.json").read_text()))
+        self.assertTrue(all(row[-1] == 1 for row in observed[0]))
+        self.assertTrue(all(row[-1] == 0 for row in observed[1]))
+        self.assertEqual([row[:-1] for row in observed[0]], [row[:-1] for row in observed[1]])
+        self.assertEqual(*summaries)
+        self.assertEqual(*stats)
+
+    def test_heatmap_routes_have_actual_ramps_and_guide_organization_under_one_numeric_contract(self):
+        body = "r,c,v\n" + "".join(f"R{i},C{j},{i+j}\n" for i in range(8) for j in range(2))
+        spec = self.spec("heatmap", {"row": "r", "column": "c", "value": "v"},
+                         options={"color_limits": [-1, 10], "color_center": 1.5},
+                         order={"x": ["C1", "C0"], "y": [f"R{i}" for i in reversed(range(8))]})
+        manifest, out = self.run_candidates(body, spec, count=3)
+        self.assertEqual(len(manifest["candidates"]), 3)
+        norms, arrays, colors, guides = [], [], [], []
+        for record, result, geometry, directory in self.read_candidates(out, manifest):
+            self.assertEqual(record["technical_review"]["status"], "pass")
+            self.assertEqual(result["options"]["color_limits"], [-1, 10])
+            self.assertEqual(result["options"]["color_center"], 1.5)
+            fig, _, _, _ = candidates._draw(out / "source.csv", result)
+            image = fig.axes[0].images[0]
+            norms.append([image.norm.vmin, image.norm.vcenter, image.norm.vmax])
+            arrays.append(np.asarray(image.get_array()).copy())
+            colors.append(image.cmap(np.linspace(0, 1, 5)))
+            chosen = fig._easyviz_legend_layout.entries[0]["chosen_settings"]
+            guides.append((chosen["position"], chosen["orientation"]))
+            self.assertEqual(candidates._visual_facets(fig), geometry["visual_facets"])
+            self.assertEqual(geometry["guide_geometry"]["status"], "pass")
+            core.plt.close(fig)
+        self.assertEqual(norms, [[-1., 1.5, 10.]] * 3)
+        np.testing.assert_array_equal(arrays[0], arrays[1]); np.testing.assert_array_equal(arrays[0], arrays[2])
+        self.assertFalse(np.array_equal(colors[0], colors[1]))
+        np.testing.assert_array_equal(colors[0], colors[2])
+        self.assertEqual(guides[0], ("right", "vertical"))
+        self.assertEqual(guides[2], ("bottom", "horizontal"))
+
+    def test_scatter_palette_alternatives_are_real_and_explicit_decoding_prevents_count_inflation(self):
+        body = "x,y,g\n1,2,A\n2,3,A\n3,4,B\n4,5,B\n"
+        spec = self.spec("scatter", {"x": "x", "y": "y", "group": "g"},
+                         options={"point_area_pt2": 19, "point_style": "filled", "x_limits": [0, 5], "y_limits": [0, 6]})
+        manifest, out = self.run_candidates(body, spec, count=3)
+        self.assertEqual(len(manifest["candidates"]), 2, "Two decoding choices survive an explicit filled-glyph lock")
+        paints, coordinates = [], []
+        for record, result, geometry, directory in self.read_candidates(out, manifest):
+            fig, _, _, _ = candidates._draw(out / "source.csv", result)
+            points = [entry["_artist"] for entry in fig._easyviz_elements if entry["role"] == "point-group"]
+            paints.append([point.get_facecolors().copy() for point in points])
+            coordinates.append([point.get_offsets().copy() for point in points])
+            self.assertTrue(all(np.array_equal(point.get_sizes(), [19]) for point in points))
+            self.assertEqual(geometry["numeric_limits"], {"x": [0., 5.], "y": [0., 6.]})
+            core.plt.close(fig)
+        self.assertTrue(any(not np.array_equal(a, b) for a, b in zip(*paints)))
+        for a, b in zip(*coordinates): np.testing.assert_array_equal(a, b)
+        adopted = deepcopy(spec)
+        adopted.update(colors={"A": "#004488", "B": "#AA3377"}, line_roles={"reference": {"line_width_pt": 1.2, "color": "#667788"}})
+        adopted["layout"].update(auto_fit=False, margins={"left": .2, "right": .8, "bottom": .2, "top": .9})
+        locked, locked_out = self.run_candidates(body, adopted, name="locked-decoding", count=3)
+        self.assertEqual(len(locked["candidates"]), 1)
+        _, result, _, _ = next(self.read_candidates(locked_out, locked))
+        self.assertEqual(result["colors"], adopted["colors"])
+        for key, value in adopted["line_roles"]["reference"].items():
+            self.assertEqual(result["line_roles"]["reference"][key], value)
+        self.assertEqual(result["layout"]["margins"], adopted["layout"]["margins"])
+
+    def test_default_crisp_seed_keeps_explicit_values_but_can_compare_unassigned_color_roles(self):
+        draft_loader = importlib.util.spec_from_file_location("easyviz_choice_draft_tests", SCRIPT.with_name("draft_spec.py"))
+        draft_spec = importlib.util.module_from_spec(draft_loader)
+        draft_loader.loader.exec_module(draft_spec)
+        data, path = self.root / "draft.csv", self.root / "draft.json"
+        data.write_text("g,v\nA,1\nA,2\nA,3\nB,2\nB,3\nB,4\n")
+        adopted = draft_spec.draft(data, "distribution", ["group=g", "value=v"], path,
+                                   panel_size_mm=[120, 90], font="DejaVu Sans")
+        manifest = candidates.create_candidates(data, path, self.root / "crisp-choice", new_draft=True, count=3)
+        self.assertEqual(len(manifest["candidates"]), 2)
+        paints = []
+        for record, result, geometry, directory in self.read_candidates(self.root / "crisp-choice", manifest):
+            for key, value in adopted["options"].items(): self.assertEqual(result["options"][key], value)
+            for role, properties in adopted["line_roles"].items():
+                for key, value in properties.items(): self.assertEqual(result["line_roles"][role][key], value)
+            paints.append(geometry["visual_facets"]["painted_mark_roles"])
+        self.assertNotEqual(*paints)
+        self.assertEqual(manifest["features"]["reading_task_source"], "chart_family_hint_only")
+        self.assertIn("not the complete", manifest["design_space"]["scope"])
 
     def test_profile_drift_after_planning_uses_only_original_adopted_snapshot(self):
         profile = {"version": 1, "layout": {"font": "DejaVu Sans", "font_size_pt": 9, "line_width_pt": .6, "dpi": 100}, "panels": {"main": {"width_mm": 120, "height_mm": 90}}, "colors": {"A": "#0066A6", "B": "#CC5500"}}

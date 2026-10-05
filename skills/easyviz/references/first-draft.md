@@ -6,33 +6,37 @@ first finished result. Reproduce retains its adopted reference and settings.
 Routine corrections need review of the affected result, not compulsory
 alternative designs.
 
-## Choose a scene and render
+## Choose a design route and render
 
 Establish the reading task, fields, units, independent observations and supported
 summaries. Consequential unknowns may limit a statistical layer while descriptive
 plotting proceeds. Fill cosmetic defaults from the project or task; the user
 need not approve a palette or choose a renderer.
 
-Open an applicable image from the [scenario design cards](design-cards.md).
-Choose by category/series count, mark density, matrix shape and guide needs,
-then inspect its mechanism and limits. A card's data or biological names do
-not become assumptions about the user's table.
+Decide reading task, organization and visual roles separately using
+[Create design paths](design-space.md). Then open relevant
+[card mechanisms](design-cards.md), checking their feature conditions and limits.
+A card's whole palette/layout is not a mandatory solution, and its data or
+biological names do not become assumptions about the user's table.
 
-For supported prepared contracts, generate actual alternatives:
+For supported prepared contracts, the helper can render limited proposals:
 
 ```sh
 python /absolute/path/to/easyviz/scripts/create_candidates.py --describe-contract
 python /absolute/path/to/easyviz/scripts/create_candidates.py \
   --data /absolute/path/to/project/prepared.csv \
   --spec /absolute/path/to/project/new-draft.json \
-  --out /absolute/path/to/project/create-attempt-01 --new-draft --count 2
+  --out /absolute/path/to/project/create-attempt-01 --new-draft --count 1
 ```
 
 `--new-draft` explicitly declares a new eligible draft; use a fresh output
 directory. The helper supports its stated distribution, complete heatmap, fixed-size
 scatter and focused replicate contracts. Use a suitable focused recipe or custom
-code when those contracts do not fit, with the same image review below. Record
-the concrete reason, such as an unsupported layer or an accepted manual layout.
+code when contracts or available design routes do not fit, with the same image
+review below. This includes a supported family whose proposals miss the chosen
+role/organization. Record the concrete reason, not a generic desire for variety.
+Encode chosen roles in supported spec options when necessary; a first candidate
+index or `--count 1` does not mean the helper chose the best design for the task.
 Refine an accepted panel with its original spec/script; declaring it new would
 misstate eligibility. Focused replicate candidates require explicit mode and
 uncertainty, and use their own layout/font contract rather than core profiles.
@@ -42,15 +46,25 @@ remain authoritative. Only omitted dimensions and design options are eligible
 for scene suggestions. When using [First panel](quick-start.md) to seed the
 spec, choose `--style-mode legacy` so automatically inserted crisp treatments
 do not lock the new candidates to that treatment. Write user/project choices
-explicitly; preserve accepted sizes during later refinements.
+explicitly; preserve accepted sizes during later refinements. If an existing
+key's provenance is uncertain, do not guess that it was inserted by a helper
+and remove it. Only known new seeds leave design choices deliberately omitted.
 
 The default requests two rendered candidates, with fewer if explicit choices
-lock the design; `--count 1` is appropriate when the
+lock or duplicate routes; fewer than the requested count is normal.
+`--count 1` is appropriate when the
 adopted style is clear, and three can resolve a meaningful design uncertainty.
 The helper saves source snapshots, candidate specs/exports and `manifest.json`
-with changes, rationale, eligible cards and limited technical review. It ensures
-a PNG is rendered for inspection. `--no-render` produces proposals, not visual
+with per-candidate `route_id`, `visual_role`, `changed_paths`,
+`changed_facets_vs_candidate_01`, eligible cards and limited technical review;
+`design_space.excluded_routes` records exclusion reasons. It ensures a PNG
+is rendered for inspection. `--no-render` produces proposals, not visual
 evidence. Neither the manifest nor technical QA chooses an aesthetic winner.
+Inspect the proposals' actual differences and locks. Small width/fill/gap
+changes can fix a specific defect but do not exhaust the design space; if they
+miss the task, actively design an adapted spec or focused/custom solution.
+Do not render extra outputs just to fill a quota or change scientific methods,
+data selection, explicit settings or category identity for variety.
 
 ## Inspect, correct and record
 
@@ -68,6 +82,17 @@ Rebalance categorical spacing, summary thickness and `point_category_offset`
 inside the adopted canvas, then check group association and point/summary
 crossings in the new image. Preserve explicit marker area, fonts, canvas and
 every source row; never jitter the numeric axis or relabel failed QA as passed.
+
+For eligible omitted beeswarm geometry, the helper uses actual point outer
+diameter, summary envelopes and available category pitch in at most three
+bounded numerical stages: compact lane, available categorical region within
+the same canvas, then adjust omitted summary width if necessary. Its body
+cannot become narrower than the actual point outer diameter and must retain
+the interior/stroke floor. Only when that floor needs it, the third stage may
+try the omitted default positive gap once at 0.2 pt instead of 0.3 pt. Explicit
+geometry and gap remain fixed; `manifest.candidates[].distribution_lane_planning`
+records trials. Infeasible packing remains invalid, and numerical fit does
+not replace actual image review.
 
 Use [Visual review](visual-review.md) and an independent
 [Figure Reviewer](../../easyviz-figure-reviewer/SKILL.md) when available. Supply

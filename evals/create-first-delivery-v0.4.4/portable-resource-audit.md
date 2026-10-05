@@ -27,8 +27,10 @@ satisfy a portable link. The copy-boundary regression checks both rewritten
 destinations while preserving original development README bytes. These tests
 are included in the complete **526-test passing suite**.
 
-After rebuilding the final 848-file plugin, both full structure validation and
+At the initial release-preparation commit `23da3ca`, the 848-file plugin's full structure validation and
 the explicit resource scan passed with **307 direct local Markdown targets**.
-The final [build identity](../release-qa/v0.4.4/build.json) and
-[extracted runtime check](../release-qa/v0.4.4/package-check.log) identify the
-actual tested artifact. No render/image source was modified by this repair.
+The retained [build identity](../release-qa/v0.4.4/build-before-choice-space.json) and
+[extracted runtime check](../release-qa/v0.4.4/package-check-before-choice-space.log)
+identify that initial tested artifact. Later design changes and the final package
+are recorded separately in [release QA](../release-qa/v0.4.4/README.md).
+No render/image source was modified by the portable-link repair.

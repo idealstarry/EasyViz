@@ -1,0 +1,662 @@
+{
+  "version": "0.2.2",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/coordinates/data.csv",
+    "sha256": "25ad74efba848ddc6e4b7de9d5eb8ce1a667fcc672662d1241ab71a50acde1af",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/coordinates/spec.json",
+    "sha256": "7414f3898cc1733ee623842152ce3e45ad006bbb8f9cabd2fa14a1119b40d3b4",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "scatter",
+    "input_rows": 36,
+    "reading_task_source": "chart_family_hint_only",
+    "reading_task_scope": "Not the user's adopted objective; the calling Agent must establish the actual reading task and scientific contract before invoking this limited helper.",
+    "task": "read fixed-size observations on two supplied numeric axes",
+    "category_order": {
+      "group": [
+        "Class A",
+        "Class B",
+        "Class C"
+      ]
+    },
+    "label_max_characters": {
+      "group": 7
+    },
+    "duplicate_coordinate_rows": 0,
+    "group_count": 3
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      11.796473524305556,
+      22.85221137152778,
+      66.20352647569445,
+      44.115913628472235
+    ],
+    "canvas_mm": [
+      80.0,
+      70.0
+    ],
+    "numeric_limits": {
+      "x": [
+        0.0,
+        9.0
+      ],
+      "y": [
+        0.0,
+        10.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "point-group",
+          "label": "Class A",
+          "face": [
+            [
+              0.14509804,
+              0.50588235,
+              0.7254902,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.14509804,
+              0.50588235,
+              0.7254902,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Class B",
+          "face": [
+            [
+              0.8745098,
+              0.60392157,
+              0.23529412,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.8745098,
+              0.60392157,
+              0.23529412,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Class C",
+          "face": [
+            [
+              0.10196078,
+              0.65490196,
+              0.50588235,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.10196078,
+              0.65490196,
+              0.50588235,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "continuous_decoding": [],
+      "guide_organization": [
+        {
+          "kind": "categorical",
+          "position": "bottom",
+          "ncol": 1
+        }
+      ]
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [
+        {
+          "kind": "categorical",
+          "chosen_settings": {
+            "key_width_mm": 1.5,
+            "key_height_mm": 1.5,
+            "handletext_gap_mm": 0.7,
+            "row_gap_mm": 0.6,
+            "column_gap_mm": 2.0,
+            "borderpad_mm": 0.2,
+            "gap_mm": 2.0,
+            "canvas_padding_mm": 1.0,
+            "position": "bottom",
+            "ncol": 1,
+            "loc": "upper center",
+            "anchor_mm": [
+              44.89823676215278,
+              11.573053385416667
+            ],
+            "font_size_pt": 8.0,
+            "effective_key_width_mm": 1.5,
+            "effective_key_height_mm": 1.5
+          },
+          "bbox_mm": [
+            38.59761176215278,
+            2.000000000000003,
+            12.601250000000004,
+            9.573053385416666
+          ],
+          "plot_bbox_mm": [
+            11.796473524305556,
+            22.85221137152778,
+            66.20352647569445,
+            44.115913628472235
+          ],
+          "canvas_mm": [
+            80.0,
+            70.0
+          ],
+          "area_fraction_of_plot": 0.04130358106559529,
+          "width_fraction_of_plot": 0.19034106898559774,
+          "height_fraction_of_plot": 0.216997736146583,
+          "area_fraction_of_canvas": 0.021541506959461037,
+          "reserved_band_fraction": null,
+          "reserved_band_mm": null,
+          "available_region_fraction": 0.14627465444901802,
+          "available_region_mm": [
+            1.0,
+            1.0,
+            78.0,
+            10.573053385416669
+          ],
+          "key_bboxes_mm": [
+            [
+              38.797611762152776,
+              9.437337573450858,
+              1.5000000000000018,
+              1.5000000000000007
+            ],
+            [
+              38.797611762152776,
+              6.179653111645302,
+              1.5000000000000018,
+              1.4999999999999996
+            ],
+            [
+              38.797611762152776,
+              2.921968649839746,
+              1.5000000000000018,
+              1.4999999999999996
+            ]
+          ],
+          "issues": [],
+          "warnings": [],
+          "text_overlaps": [],
+          "attempts": [
+            {
+              "position": "bottom",
+              "ncol": 1,
+              "length_mm": null,
+              "bbox_mm": [
+                38.59761176215278,
+                2.000000000000003,
+                12.601250000000004,
+                9.573053385416666
+              ],
+              "issues": []
+            },
+            {
+              "position": "bottom",
+              "ncol": 2,
+              "length_mm": null,
+              "bbox_mm": [
+                31.57636176215278,
+                5.257684461805558,
+                26.643749999999997,
+                6.3153689236111115
+              ],
+              "issues": []
+            },
+            {
+              "position": "bottom",
+              "ncol": 3,
+              "length_mm": null,
+              "bbox_mm": [
+                24.633246527777775,
+                8.515368923611113,
+                40.52998046875001,
+                3.057684461805557
+              ],
+              "issues": []
+            }
+          ]
+        }
+      ],
+      "combined": {
+        "guide_count": 1,
+        "occupied_envelope_union_area_mm2": 120.6324389729818,
+        "sum_envelope_area_mm2": 120.6324389729818,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.041303581065595306,
+        "area_fraction_of_canvas": 0.021541506959461037,
+        "enclosing_bbox_mm": [
+          38.59761176215278,
+          2.000000000000003,
+          12.601250000000004,
+          9.573053385416666
+        ],
+        "max_individual_width_mm": 12.601250000000004,
+        "max_individual_height_mm": 9.573053385416666,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "source_to_artist": {
+      "status": "pass",
+      "numeric_coordinates_preserved": true,
+      "point_area_preserved": true,
+      "observation_count": 36
+    },
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "route_id": "scatter-decoding-1",
+      "visual_role": "Fixed observations with capacity-matched categorical small-mark decoding",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "point-group",
+            "label": "Class A",
+            "face": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Class B",
+            "face": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Class C",
+            "face": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": [
+          {
+            "kind": "categorical",
+            "position": "bottom",
+            "ncol": 1
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Fixed observations with capacity-matched categorical small-mark decoding. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-bright",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Exact RGB pixels from embedded PDF legend swatches, selected and reordered. Original author-script constants unknown.",
+          "note": "Amber and orange are closer; retain direct labels or other redundant distinctions."
+        }
+      },
+      "route_id": "scatter-decoding-2",
+      "visual_role": "Fixed observations with capacity-matched categorical small-mark decoding",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "point-group",
+            "label": "Class A",
+            "face": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Class B",
+            "face": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Class C",
+            "face": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": [
+          {
+            "kind": "categorical",
+            "position": "bottom",
+            "ncol": 1
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Fixed observations with capacity-matched categorical small-mark decoding. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-02/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-03",
+      "spec": "candidate-03/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_edge_width_pt",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "route_id": "scatter-hollow",
+      "visual_role": "Fixed-coordinate observations with an open glyph treatment",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "point-group",
+            "label": "Class A",
+            "face": [],
+            "edge": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Class B",
+            "face": [],
+            "edge": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Class C",
+            "face": [],
+            "edge": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": [
+          {
+            "kind": "categorical",
+            "position": "bottom",
+            "ncol": 1
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Fixed-coordinate observations with an open glyph treatment. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-03/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-03/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "scatter-decoding-1",
+      "scatter-decoding-2",
+      "scatter-hollow"
+    ],
+    "excluded_routes": [],
+    "requested_count": 3,
+    "returned_count": 3,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

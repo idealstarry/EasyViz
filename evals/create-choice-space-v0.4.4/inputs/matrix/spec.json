@@ -1,0 +1,52 @@
+{
+  "chart": "heatmap",
+  "fields": {
+    "row": "row",
+    "column": "column",
+    "value": "value"
+  },
+  "options": {
+    "color_limits": [
+      0,
+      50
+    ],
+    "annotate_values": true,
+    "value_format": ".0f",
+    "cell_border_width_pt": 0.3,
+    "cell_border_color": "#FFFFFF",
+    "x_rotation": 0
+  },
+  "order": {
+    "y": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6"
+    ],
+    "x": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Measurement",
+    "color": "Supplied value (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

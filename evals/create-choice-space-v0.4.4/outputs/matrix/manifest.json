@@ -1,0 +1,1189 @@
+{
+  "version": "0.2.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/matrix/data.csv",
+    "sha256": "fb05a42090f1fe5f7e2e6748ec5e3a8a80ded15a3e8c80be943b0c8bb175b7e3",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/matrix/spec.json",
+    "sha256": "f03f184b147e0b91ecb0cea947cba541aba6b54bb823f0b7d5099b44145d76be",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "heatmap",
+    "input_rows": 24,
+    "reading_task_source": "chart_family_hint_only",
+    "reading_task_scope": "Not the user's adopted objective; the calling Agent must establish the actual reading task and scientific contract before invoking this limited helper.",
+    "task": "read a complete supplied quantitative matrix",
+    "category_order": {
+      "row": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "column": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ]
+    },
+    "label_max_characters": {
+      "row": 2,
+      "column": 2
+    },
+    "matrix_rows": 6,
+    "matrix_columns": 4,
+    "narrow_matrix": true
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      12.549157986111112,
+      11.238092447916667,
+      65.45084201388889,
+      45.940473090277784
+    ],
+    "canvas_mm": [
+      80.0,
+      70.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.5,
+        3.5
+      ],
+      "y": [
+        5.5,
+        -0.5
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "grid-line",
+          "label": "Heatmap cell boundaries",
+          "face": [],
+          "edge": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "continuous_decoding": [
+        {
+          "rgba_samples": [
+            [
+              0.82745098,
+              0.90196078,
+              0.94509804,
+              1.0
+            ],
+            [
+              0.65814687,
+              0.80352172,
+              0.88998078,
+              1.0
+            ],
+            [
+              0.48495194,
+              0.70119185,
+              0.83486351,
+              1.0
+            ],
+            [
+              0.31561707,
+              0.60276817,
+              0.77974625,
+              1.0
+            ],
+            [
+              0.14509804,
+              0.50588235,
+              0.7254902,
+              1.0
+            ]
+          ],
+          "norm": "Normalize",
+          "limits": [
+            0.0,
+            50.0
+          ],
+          "center": null
+        }
+      ],
+      "guide_organization": [
+        {
+          "kind": "colorbar",
+          "position": "top",
+          "orientation": "horizontal"
+        }
+      ]
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [
+        {
+          "kind": "colorbar",
+          "chosen_settings": {
+            "key_width_mm": 1.5,
+            "key_height_mm": 1.5,
+            "handletext_gap_mm": 0.7,
+            "row_gap_mm": 0.6,
+            "column_gap_mm": 2.0,
+            "borderpad_mm": 0.2,
+            "gap_mm": 2.0,
+            "canvas_padding_mm": 1.0,
+            "position": "top",
+            "orientation": "horizontal",
+            "rect_mm": [
+              33.820681640625004,
+              59.178565538194455,
+              22.90779470486111,
+              1.9999999999999964
+            ],
+            "length_mm": 22.907794704861107,
+            "thickness_mm": 1.9999999999999962,
+            "ticks": [
+              0.0,
+              25.0,
+              50.0
+            ],
+            "font_size_pt": 8.0
+          },
+          "bbox_mm": [
+            32.17770399305556,
+            59.178565538194455,
+            26.19375,
+            8.821434461805547
+          ],
+          "plot_bbox_mm": [
+            12.549157986111112,
+            11.238092447916667,
+            65.45084201388889,
+            45.940473090277784
+          ],
+          "canvas_mm": [
+            80.0,
+            70.0
+          ],
+          "area_fraction_of_plot": 0.0768468709927894,
+          "width_fraction_of_plot": 0.40020493539932755,
+          "height_fraction_of_plot": 0.19201879885891715,
+          "area_fraction_of_canvas": 0.041261865881056965,
+          "reserved_band_fraction": null,
+          "reserved_band_mm": null,
+          "available_region_fraction": 0.3016250205067376,
+          "available_region_mm": [
+            1.0,
+            59.178565538194455,
+            78.0,
+            9.821434461805554
+          ],
+          "key_bboxes_mm": [],
+          "issues": [],
+          "warnings": [],
+          "text_overlaps": [],
+          "mapped_range": [
+            0.0,
+            50.0
+          ],
+          "attempts": [
+            {
+              "position": "top",
+              "ncol": null,
+              "length_mm": 22.90779470486111,
+              "bbox_mm": [
+                32.17770399305556,
+                59.178565538194455,
+                26.19375,
+                8.821434461805547
+              ],
+              "issues": []
+            },
+            {
+              "position": "top",
+              "ncol": null,
+              "length_mm": 24.0,
+              "bbox_mm": [
+                32.17770399305556,
+                59.178565538194455,
+                26.684374999999996,
+                8.821434461805547
+              ],
+              "issues": []
+            },
+            {
+              "position": "top",
+              "ncol": null,
+              "length_mm": 28.0,
+              "bbox_mm": [
+                30.480828993055557,
+                59.178565538194455,
+                30.381249999999994,
+                8.821434461805547
+              ],
+              "issues": []
+            }
+          ]
+        }
+      ],
+      "combined": {
+        "guide_count": 1,
+        "occupied_envelope_union_area_mm2": 231.06644893391902,
+        "sum_envelope_area_mm2": 231.06644893391902,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.07684687099278943,
+        "area_fraction_of_canvas": 0.041261865881056965,
+        "enclosing_bbox_mm": [
+          32.17770399305556,
+          59.178565538194455,
+          26.19375,
+          8.821434461805547
+        ],
+        "max_individual_width_mm": 26.19375,
+        "max_individual_height_mm": 8.821434461805545,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "source_to_artist": {
+      "status": "pass",
+      "matrix_values_preserved": true,
+      "color_limits": [
+        0.0,
+        50.0
+      ]
+    },
+    "cell_dimensions_mm": [
+      16.362710503472222,
+      7.656745515046297
+    ],
+    "cell_annotations": {
+      "status": "pass",
+      "registered_count": 24,
+      "checked_count": 24,
+      "padding_mm": 0.2,
+      "issues": [],
+      "overflow_count": 0,
+      "overlap_pair_count": 0,
+      "minimum_sufficient_cell_dimensions_mm": {
+        "width": 3.5749999999999997,
+        "height": 3.0576844618055574
+      },
+      "cells": [
+        {
+          "row": 0,
+          "column": 0,
+          "text": "7",
+          "text_bbox_mm": [
+            19.936763237847224,
+            52.02135054976853,
+            1.5875,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            12.549157986111112,
+            49.52182002314816,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 1.9874999999999998,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 0,
+          "column": 1,
+          "text": "16",
+          "text_bbox_mm": [
+            35.50572374131945,
+            52.02135054976853,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            28.911868489583334,
+            49.52182002314816,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 0,
+          "column": 2,
+          "text": "25",
+          "text_bbox_mm": [
+            51.868434244791665,
+            52.02135054976853,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            45.274578993055556,
+            49.52182002314816,
+            16.362710503472215,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 0,
+          "column": 3,
+          "text": "34",
+          "text_bbox_mm": [
+            68.23114474826389,
+            52.02135054976853,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            61.63728949652777,
+            49.52182002314816,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 1,
+          "column": 0,
+          "text": "20",
+          "text_bbox_mm": [
+            19.143013237847224,
+            44.364605034722224,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            12.549157986111112,
+            41.86507450810186,
+            16.362710503472226,
+            7.65674551504629
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "text": "29",
+          "text_bbox_mm": [
+            35.50572374131945,
+            44.364605034722224,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            28.911868489583334,
+            41.86507450810186,
+            16.362710503472226,
+            7.65674551504629
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 1,
+          "column": 2,
+          "text": "38",
+          "text_bbox_mm": [
+            51.868434244791665,
+            44.364605034722224,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            45.274578993055556,
+            41.86507450810186,
+            16.362710503472215,
+            7.65674551504629
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 1,
+          "column": 3,
+          "text": "47",
+          "text_bbox_mm": [
+            68.23114474826389,
+            44.364605034722224,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            61.63728949652777,
+            41.86507450810186,
+            16.362710503472226,
+            7.65674551504629
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "text": "33",
+          "text_bbox_mm": [
+            19.143013237847224,
+            36.707859519675935,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            12.549157986111112,
+            34.20832899305556,
+            16.362710503472226,
+            7.656745515046303
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "text": "42",
+          "text_bbox_mm": [
+            35.50572374131945,
+            36.707859519675935,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            28.911868489583334,
+            34.20832899305556,
+            16.362710503472226,
+            7.656745515046303
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "text": "0",
+          "text_bbox_mm": [
+            52.66218424479166,
+            36.707859519675935,
+            1.5875,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            45.274578993055556,
+            34.20832899305556,
+            16.362710503472215,
+            7.656745515046303
+          ],
+          "required_cell_width_mm": 1.9874999999999998,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 2,
+          "column": 3,
+          "text": "9",
+          "text_bbox_mm": [
+            69.02489474826389,
+            36.707859519675935,
+            1.5875,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            61.63728949652777,
+            34.20832899305556,
+            16.362710503472226,
+            7.656745515046303
+          ],
+          "required_cell_width_mm": 1.9874999999999998,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 3,
+          "column": 0,
+          "text": "46",
+          "text_bbox_mm": [
+            19.143013237847224,
+            29.05111400462964,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            12.549157986111112,
+            26.551583478009267,
+            16.362710503472226,
+            7.656745515046294
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 3,
+          "column": 1,
+          "text": "4",
+          "text_bbox_mm": [
+            36.299473741319446,
+            29.05111400462964,
+            1.5875,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            28.911868489583334,
+            26.551583478009267,
+            16.362710503472226,
+            7.656745515046294
+          ],
+          "required_cell_width_mm": 1.9874999999999998,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 3,
+          "column": 2,
+          "text": "13",
+          "text_bbox_mm": [
+            51.868434244791665,
+            29.05111400462964,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            45.274578993055556,
+            26.551583478009267,
+            16.362710503472215,
+            7.656745515046294
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 3,
+          "column": 3,
+          "text": "22",
+          "text_bbox_mm": [
+            68.23114474826389,
+            29.05111400462964,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            61.63728949652777,
+            26.551583478009267,
+            16.362710503472226,
+            7.656745515046294
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 4,
+          "column": 0,
+          "text": "8",
+          "text_bbox_mm": [
+            19.936763237847224,
+            21.39436848958334,
+            1.5875,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            12.549157986111112,
+            18.894837962962967,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 1.9874999999999998,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 4,
+          "column": 1,
+          "text": "17",
+          "text_bbox_mm": [
+            35.50572374131945,
+            21.39436848958334,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            28.911868489583334,
+            18.894837962962967,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 4,
+          "column": 2,
+          "text": "26",
+          "text_bbox_mm": [
+            51.868434244791665,
+            21.39436848958334,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            45.274578993055556,
+            18.894837962962967,
+            16.362710503472215,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 4,
+          "column": 3,
+          "text": "35",
+          "text_bbox_mm": [
+            68.23114474826389,
+            21.39436848958334,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            61.63728949652777,
+            18.894837962962967,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "text": "21",
+          "text_bbox_mm": [
+            19.143013237847224,
+            13.73762297453704,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            12.549157986111112,
+            11.238092447916669,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 5,
+          "column": 1,
+          "text": "30",
+          "text_bbox_mm": [
+            35.50572374131945,
+            13.73762297453704,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            28.911868489583334,
+            11.238092447916669,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 5,
+          "column": 2,
+          "text": "39",
+          "text_bbox_mm": [
+            51.868434244791665,
+            13.73762297453704,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            45.274578993055556,
+            11.238092447916669,
+            16.362710503472215,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        },
+        {
+          "row": 5,
+          "column": 3,
+          "text": "48",
+          "text_bbox_mm": [
+            68.23114474826389,
+            13.73762297453704,
+            3.175,
+            2.6576844618055575
+          ],
+          "cell_bbox_mm": [
+            61.63728949652777,
+            11.238092447916669,
+            16.362710503472226,
+            7.656745515046299
+          ],
+          "required_cell_width_mm": 3.5749999999999997,
+          "required_cell_height_mm": 3.0576844618055574
+        }
+      ],
+      "note": "Rendered text envelopes must fit their cells with the configured padding. Cell dimensions are a measured fit requirement, not a publication standard. No figure settings or data are changed."
+    },
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/colormap",
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/cell_aspect"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/colormap"
+        ],
+        "colormap": {
+          "name": "notch2-blue",
+          "origin": "suggested",
+          "type": "sequential",
+          "source": "EasyViz interpolation from Cruz Tleugabulova et al. Figure 2b I2 blue",
+          "source_id": "notch2-2024",
+          "adaptation": "White mixed with #2581B9 at 20%,40%,60%,80%,100% endpoint weight in sRGB. The stronger light endpoint supports low-value borderless marks; it is not an author colormap."
+        },
+        "continuous_semantics": {
+          "bounds": [
+            0,
+            50
+          ],
+          "center": null,
+          "note": "A suggested ramp requires already adopted numeric bounds. A diverging suggestion additionally requires an already adopted center; neither is inferred from signs or the data."
+        }
+      },
+      "route_id": "matrix-ramp-1",
+      "visual_role": "Supplied matrix with the adopted normalization and an eligible quantitative ramp",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "grid-line",
+            "label": "Heatmap cell boundaries",
+            "face": [],
+            "edge": [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [
+          {
+            "rgba_samples": [
+              [
+                0.82745098,
+                0.90196078,
+                0.94509804,
+                1.0
+              ],
+              [
+                0.65814687,
+                0.80352172,
+                0.88998078,
+                1.0
+              ],
+              [
+                0.48495194,
+                0.70119185,
+                0.83486351,
+                1.0
+              ],
+              [
+                0.31561707,
+                0.60276817,
+                0.77974625,
+                1.0
+              ],
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "norm": "Normalize",
+            "limits": [
+              0.0,
+              50.0
+            ],
+            "center": null
+          }
+        ],
+        "guide_organization": [
+          {
+            "kind": "colorbar",
+            "position": "right",
+            "orientation": "vertical"
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Supplied matrix with the adopted normalization and an eligible quantitative ramp. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/colormap",
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/cell_aspect"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/colormap"
+        ],
+        "colormap": {
+          "name": "notch2-teal",
+          "origin": "suggested",
+          "type": "sequential",
+          "source": "EasyViz interpolation from Cruz Tleugabulova et al. Figure 2b I4 teal",
+          "source_id": "notch2-2024",
+          "adaptation": "Mix white with observed #1AA781 at 4%,25%,50%,75%,100% endpoint weight in sRGB; not an author colormap."
+        },
+        "continuous_semantics": {
+          "bounds": [
+            0,
+            50
+          ],
+          "center": null,
+          "note": "A suggested ramp requires already adopted numeric bounds. A diverging suggestion additionally requires an already adopted center; neither is inferred from signs or the data."
+        }
+      },
+      "route_id": "matrix-ramp-2",
+      "visual_role": "Supplied matrix with the adopted normalization and an eligible quantitative ramp",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "grid-line",
+            "label": "Heatmap cell boundaries",
+            "face": [],
+            "edge": [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [
+          {
+            "rgba_samples": [
+              [
+                0.96470588,
+                0.98431373,
+                0.98039216,
+                1.0
+              ],
+              [
+                0.77557862,
+                0.91338716,
+                0.87793925,
+                1.0
+              ],
+              [
+                0.54726644,
+                0.82677432,
+                0.75195694,
+                1.0
+              ],
+              [
+                0.32286044,
+                0.74016148,
+                0.62602076,
+                1.0
+              ],
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ],
+            "norm": "Normalize",
+            "limits": [
+              0.0,
+              50.0
+            ],
+            "center": null
+          }
+        ],
+        "guide_organization": [
+          {
+            "kind": "colorbar",
+            "position": "right",
+            "orientation": "vertical"
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [
+        "continuous_decoding"
+      ],
+      "reason": "Supplied matrix with the adopted normalization and an eligible quantitative ramp. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-02/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-03",
+      "spec": "candidate-03/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/colormap",
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/legends",
+        "/line_roles",
+        "/options/cell_aspect"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/colormap"
+        ],
+        "colormap": {
+          "name": "notch2-blue",
+          "origin": "suggested",
+          "type": "sequential",
+          "source": "EasyViz interpolation from Cruz Tleugabulova et al. Figure 2b I2 blue",
+          "source_id": "notch2-2024",
+          "adaptation": "White mixed with #2581B9 at 20%,40%,60%,80%,100% endpoint weight in sRGB. The stronger light endpoint supports low-value borderless marks; it is not an author colormap."
+        },
+        "continuous_semantics": {
+          "bounds": [
+            0,
+            50
+          ],
+          "center": null,
+          "note": "A suggested ramp requires already adopted numeric bounds. A diverging suggestion additionally requires an already adopted center; neither is inferred from signs or the data."
+        }
+      },
+      "route_id": "matrix-bottom-guide",
+      "visual_role": "Same matrix/ramp with a horizontal magnitude guide below the data",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "grid-line",
+            "label": "Heatmap cell boundaries",
+            "face": [],
+            "edge": [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [
+          {
+            "rgba_samples": [
+              [
+                0.82745098,
+                0.90196078,
+                0.94509804,
+                1.0
+              ],
+              [
+                0.65814687,
+                0.80352172,
+                0.88998078,
+                1.0
+              ],
+              [
+                0.48495194,
+                0.70119185,
+                0.83486351,
+                1.0
+              ],
+              [
+                0.31561707,
+                0.60276817,
+                0.77974625,
+                1.0
+              ],
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "norm": "Normalize",
+            "limits": [
+              0.0,
+              50.0
+            ],
+            "center": null
+          }
+        ],
+        "guide_organization": [
+          {
+            "kind": "colorbar",
+            "position": "bottom",
+            "orientation": "horizontal"
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [
+        "guide_organization"
+      ],
+      "reason": "Same matrix/ramp with a horizontal magnitude guide below the data. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-03/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-03/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "matrix-ramp-1",
+      "matrix-ramp-2",
+      "matrix-bottom-guide"
+    ],
+    "excluded_routes": [],
+    "requested_count": 3,
+    "returned_count": 3,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

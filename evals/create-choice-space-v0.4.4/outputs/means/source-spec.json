@@ -1,0 +1,40 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "condition",
+    "unit": "unit",
+    "value": "value"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "marker_area_pt2": 12,
+    "y_limits": [
+      0,
+      18
+    ]
+  },
+  "order": {
+    "condition": [
+      "Control",
+      "Dose A",
+      "Dose B"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 80,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 160
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ]
+}

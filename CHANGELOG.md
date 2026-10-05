@@ -3,7 +3,10 @@
 ## 0.4.4 — 2026-10-05
 
 - First finished Create delivery now includes actual image inspection, concrete internal corrections within three visual passes, and a current-file review record. Routine edits retain their adopted workflow.
-- New scene-informed candidates use mapped data features and measured artists to propose eligible category spacing, matrix proportions and mark treatments. Explicit sizes, fonts, colors, geometry and scientific methods remain locked; failed layouts retain their findings.
+- Create chooses a reading task, organization and visual roles before using a card or recipe. Conditional design paths explain when to emphasize summaries, observations, direct category labels or matrix patterns; examples are starting materials rather than the only allowed solution.
+- New scene-informed candidates use measured artists to distinguish actual mark/color/guide proposals. Width or margin changes alone no longer count as another design. Explicit sizes, fonts, colors, geometry and scientific methods remain locked; constrained inputs may produce fewer candidates.
+- Distribution candidates plan physical lanes within the adopted canvas. Omitted summary widths retain a point-diameter floor; only an omitted default gap may receive one bounded positive-gap adjustment. Explicit geometry remains authoritative, and unresolved spacing stays invalid.
+- The shorter README shows seven distinct chart families once each and links to the full palette and case documentation. Public release downloads contain the plugin ZIP.
 - Five original synthetic design cards pair actual exports with specific failure examples, applicability limits, source anchors, editable specs and separate captions. Their comparisons teach design mechanisms rather than measure Skill effectiveness.
 - A review companion binds image attestations to source/specification/caption/export hashes, checks available physical and technical evidence, and rejects stale or incomplete records. It does not perform vision or certify aesthetic superiority.
 - Workbench writers share a bounded process lock; late versions are rejected, ordinary request/history failures roll back, and restored settings bind their actual frozen inputs. Current QA is checked again before request/accept publication.

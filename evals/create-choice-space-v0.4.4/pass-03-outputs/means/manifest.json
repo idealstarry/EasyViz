@@ -1,0 +1,1047 @@
+{
+  "version": "0.2.2",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/means/data.csv",
+    "sha256": "f712f4d5476927a653c2867eb79250d2f61e31cc059117a220fd28d2c4436a07",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-choice-space-v0.4.4/inputs/means/spec.json",
+    "sha256": "fb2de6566e61be253fd4a66444cc99f3383511c4aa4dca68429f556e8a4d66bc",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "replicate",
+    "input_rows": 12,
+    "reading_task_source": "chart_family_hint_only",
+    "reading_task_scope": "Not the user's adopted objective; the calling Agent must establish the actual reading task and scientific contract before invoking this limited helper.",
+    "task": "read adopted component/condition means with raw replicates and supplied uncertainty semantics",
+    "category_order": {
+      "condition": [
+        "Control",
+        "Dose A",
+        "Dose B"
+      ]
+    },
+    "label_max_characters": {
+      "condition": 7
+    },
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "category_count": 3,
+    "component_count": 0
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      11.754305555555556,
+      11.280260416666668,
+      66.24569444444444,
+      55.68786458333334
+    ],
+    "canvas_mm": [
+      80.0,
+      70.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.55,
+        2.55
+      ],
+      "y": [
+        0.0,
+        18.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "summary-box",
+          "label": "Control",
+          "face": [
+            0.79215686,
+            0.79215686,
+            0.79215686,
+            1.0
+          ],
+          "edge": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Control · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-box",
+          "label": "Dose A",
+          "face": [
+            0.79215686,
+            0.79215686,
+            0.79215686,
+            1.0
+          ],
+          "edge": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Dose A · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-box",
+          "label": "Dose B",
+          "face": [
+            0.79215686,
+            0.79215686,
+            0.79215686,
+            1.0
+          ],
+          "edge": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "Dose B · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Control · R1",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Control · R2",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Control · R3",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Control · R4",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose A · R1",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose A · R2",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose A · R3",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose A · R4",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose B · R1",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose B · R2",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose B · R3",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "Dose B · R4",
+          "face": [
+            [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          ],
+          "edge": []
+        }
+      ],
+      "continuous_decoding": [],
+      "guide_organization": []
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [],
+      "combined": {
+        "guide_count": 0,
+        "occupied_envelope_union_area_mm2": 0.0,
+        "sum_envelope_area_mm2": 0.0,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.0,
+        "area_fraction_of_canvas": 0.0,
+        "enclosing_bbox_mm": null,
+        "max_individual_width_mm": 0.0,
+        "max_individual_height_mm": 0.0,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "source_to_artist": {
+      "status": "pass",
+      "source_rows": 12,
+      "raw_points": 12,
+      "component_values_normalized": false,
+      "ratios_derived": false,
+      "sample_size_independence_inferred": false,
+      "issues": []
+    },
+    "replicate_mark_geometry": {
+      "status": "pass",
+      "issues": [],
+      "intentional_baseline_contacts": [],
+      "grouped_separation": {
+        "status": "unchecked",
+        "note": "No positive component_gap adopted; legacy bar placement is retained."
+      }
+    },
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "replicate-neutral-compact"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/options/bar_color",
+        "/options/bar_style",
+        "/options/bar_width",
+        "/options/point_color"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#333333",
+          "bar": "#CACACA",
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/bar_color",
+          "/options/point_color"
+        ]
+      },
+      "route_id": "replicate-filled",
+      "visual_role": "Adopted means/uncertainty with filled supplied bars and raw observations",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "summary-box",
+            "label": "Control",
+            "face": [
+              0.79215686,
+              0.79215686,
+              0.79215686,
+              1.0
+            ],
+            "edge": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Control · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "Dose A",
+            "face": [
+              0.79215686,
+              0.79215686,
+              0.79215686,
+              1.0
+            ],
+            "edge": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Dose A · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "Dose B",
+            "face": [
+              0.79215686,
+              0.79215686,
+              0.79215686,
+              1.0
+            ],
+            "edge": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Dose B · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R1",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R2",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R3",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R4",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R1",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R2",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R3",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R4",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R1",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R2",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R3",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R4",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Adopted means/uncertainty with filled supplied bars and raw observations. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [
+        "replicate-neutral-compact"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/options/bar_color",
+        "/options/bar_edge_color",
+        "/options/bar_edge_width_pt",
+        "/options/bar_style",
+        "/options/bar_width",
+        "/options/point_color"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#333333",
+          "bar": "#CACACA",
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/bar_color",
+          "/options/bar_edge_color",
+          "/options/point_color"
+        ]
+      },
+      "route_id": "replicate-outline",
+      "visual_role": "Adopted means/uncertainty with outline supplied bars and raw observations",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "summary-box",
+            "label": "Control",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Control · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "Dose A",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Dose A · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "Dose B",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "Dose B · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R1",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R2",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R3",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Control · R4",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R1",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R2",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R3",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose A · R4",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R1",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R2",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R3",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "Dose B · R4",
+            "face": [
+              [
+                0.2,
+                0.2,
+                0.2,
+                1.0
+              ]
+            ],
+            "edge": []
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [
+        "painted_mark_roles"
+      ],
+      "reason": "Adopted means/uncertainty with outline supplied bars and raw observations. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-02/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "replicate-filled",
+      "replicate-outline"
+    ],
+    "excluded_routes": [],
+    "requested_count": 3,
+    "returned_count": 2,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}
