@@ -1,0 +1,37 @@
+{
+  "track": "create",
+  "reference_image_adopted": false,
+  "author_plotting_code_used": false,
+  "licence": "CC-BY-4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source": {
+    "article": "https://www.nature.com/articles/s41467-024-47429-8",
+    "doi": "10.1038/s41467-024-47429-8",
+    "prepared_source_path": "examples/create/urschel-ecdf/source-data.csv",
+    "prepared_source_sha256": "8127bdebb4588c5ae07ca3a7c8e9bb90a507f9467c162ea3802b7baf116bc3eb",
+    "value_definition": "Serum IgG BAU/ml before/after vaccination in 127 paired participants",
+    "selection": "All 127 pairs. Exact positive source numeric strings reshaped to one row per participant; source infection classification retained.",
+    "licence_evidence": "Existing Urschel provenance records CC BY 4.0, 127 paired subjects, 254 supplied measurements."
+  },
+  "prepared_csv_sha256": "05291c4494ab29fe95da3da5679631bb1456956628d883709289215a28c12eee",
+  "main_rows": 127,
+  "candidate_changes": [
+    "Bright blue/coral identity follows the supplied groups",
+    "Opaque fixed-size observations",
+    "Clear dark axes; no unsupported fitted line"
+  ],
+  "comparison_preserved": [
+    "source CSV bytes",
+    "scientific encodings and summaries",
+    "numeric axes/normalization",
+    "110 \u00d7 88 mm canvas",
+    "8 pt Arial",
+    "labels and guide content"
+  ],
+  "transfer_probe": {
+    "description": "Rename numeric/unit fields and remove the optional group mapping using the complete 63-person no-prior-infection source stratum.",
+    "rows": 63,
+    "synthetic": false,
+    "not_a_fresh_biological_analysis": true
+  }
+}

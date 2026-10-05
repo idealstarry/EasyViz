@@ -25,6 +25,11 @@ accepted outputs intact. Quote a field assignment containing spaces, such as
 column names are supported; visible text still requires an appropriate font.
 Use the [chart library](chart-library.md) for the roles of other families.
 
+The default `--style-mode crisp` shares its new-task starting values with
+distribution previews: opaque observations, narrow hollow boxes and editable
+line roles. Explicit settings remain authoritative. Use `--style-mode legacy`
+for earlier omitted-option fallbacks; saved core specs are not restyled.
+
 The draft contains the chart, explicit fields, measured layout, supplied
 preferences and editable [stroke roles](create-style.md). Data curves and
 summaries start stronger than axes, supplied reference lines and optional grids.

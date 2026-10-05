@@ -69,6 +69,17 @@ def validate_plugin(plugin: Path) -> dict:
                 "skills/easyviz/assets/palettes/palettes.json",
                 "skills/easyviz/assets/fixtures/heatmap/data.csv",
                 "skills/easyviz/assets/fixtures/heatmap/spec.json"]
+    version = re.fullmatch(r"(\d+)\.(\d+)\.(\d+)", manifest["version"])
+    if version and tuple(map(int, version.groups())) >= (0, 4, 3):
+        required.extend(["skills/easyviz/scripts/create_style.py",
+                         "skills/easyviz/scripts/panel_readability.py",
+                         "skills/easyviz/assets/cases/basic-panels/plot.py",
+                         "skills/easyviz/assets/cases/basic-panels/validate.py",
+                         "skills/easyviz/assets/cases/basic-panels/manifest.json",
+                         "skills/easyviz/assets/cases/basic-panels/README.md"])
+        for case in ("replicate-bars", "paired-scatter", "cohort-box", "cohort-violin", "depot-heatmap"):
+            required.extend(f"skills/easyviz/assets/cases/basic-panels/{case}/{name}"
+                            for name in ("source-data.csv", "candidate-spec.json", "caption.md", "provenance.json"))
     for name in SKILLS:
         entry = plugin / "skills" / name / "SKILL.md"
         required.append(str(entry.relative_to(plugin)))
@@ -271,9 +282,20 @@ def main() -> int:
                 raise RuntimeError("Extracted Yayon aligned case failed: " + run.stdout + run.stderr)
             if json.loads((isolated / "yayon-output/qa.json").read_text()).get("status") != "pass":
                 raise ValueError("Extracted Yayon case has incomplete source/export QA")
+            basic = skill / "assets/cases/basic-panels"
+            if basic.is_dir():
+                output = isolated / "basic-output"
+                for command in ([sys.executable, str(basic / "plot.py"), "--tools", str(skill / "scripts"),
+                                 "--font", "DejaVu Sans", "--out", str(output)],
+                                [sys.executable, str(basic / "validate.py"), "--tools", str(skill / "scripts"),
+                                 "--candidate-only", "--font", "DejaVu Sans", "--outputs", str(output),
+                                 "--out", str(isolated / "basic-validation.json")]):
+                    checked = subprocess.run(command, cwd=isolated, env=env, capture_output=True, text=True)
+                    if checked.returncode:
+                        raise RuntimeError("Extracted basic panels failed: " + checked.stdout + checked.stderr)
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews and seven Source Data case wrappers"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers and basic panels when present"}, indent=2))
     return 0
 
 

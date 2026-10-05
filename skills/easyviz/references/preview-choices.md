@@ -13,6 +13,11 @@ from confirmed source context and explicit unknowns; the user need not write
 JSON or choose a renderer. Use the output manifest and actual images to explain
 what each alternative helps the reader compare.
 
+This is a choice between basic single plots. Improve their mark contrast,
+summary boundaries and spacing before proposing a composite view. A violin is
+useful only when density shape serves the question; it is not an automatic
+upgrade over a box or ECDF.
+
 ```sh
 python /absolute/path/to/easyviz/scripts/preview_choices.py --describe-contract
 python /absolute/path/to/easyviz/scripts/preview_choices.py \
@@ -24,8 +29,9 @@ python /absolute/path/to/easyviz/scripts/preview_choices.py \
 Resolve the selected Python runtime and all paths before execution. Keep
 accepted/evaluation outputs intact: the helper requires a fresh directory and
 rejects an existing directory or symlink. It is portable outside this repo when
-copied beside `ecdf_plot.py`, `render.py`, `legend_layout.py`, `auto_layout.py`,
-`figure_profile.py`, `annotation_review.py` and `figure_elements.py`; it uses
+copied beside `create_style.py`, `ecdf_plot.py`, `render.py`, `legend_layout.py`,
+`auto_layout.py`, `figure_profile.py`, `annotation_review.py`,
+`panel_readability.py` and `figure_elements.py`; it uses
 the same dependencies as the renderer and requires no palette catalog for
 explicit colors.
 
@@ -33,6 +39,7 @@ explicit colors.
 
 ```json
 {
+  "style_mode": "crisp",
   "row_kind": "observations",
   "fields": {"value": "reading", "group": "condition", "unit": "observation_id"},
   "design": {
@@ -133,10 +140,23 @@ the legacy default is 0.5. A starting 0.18 reduces oversized summary areas in
 sparse layouts without changing their numeric quartiles. Inspect final physical
 thickness and point-summary crossings. It is not applied to optional violins.
 
-Use explicit opaque marks and a clear summary boundary for the crisp treatment
-above; select a filled or other treatment after final-size inspection when
-crowding calls for it. Omitted style options retain the original filled points,
-.22-alpha summary fill and .65 observation alpha for existing requests.
+The default `style_mode=crisp` shares `create_style.py` with new Create drafts:
+omitted cosmetics use filled points at alpha 1, outline boxes of width 0.18,
+and the starting `line_roles` in [Create colors and strokes](create-style.md).
+Use `style_mode=legacy` to replay a pre-0.4.3 request's omitted style options:
+filled boxes at .22 fill alpha, point alpha .65 and box width .5. Explicit
+options and category colors take precedence in either mode; mode changes no
+source row, value, summary or study design.
+
+An optional top-level `line_roles` object supplies core data/summary/reference/
+axis/grid styling. It affects box/violin boundaries and axes as documented;
+for ECDF, data width controls the curve, axis controls axes, and grid controls
+an already-enabled grid. Explicit `options.curve_line_width_pt` takes precedence
+over ECDF data width. ECDF category colors and solid step lines remain intact;
+summary/reference roles add no curve or threshold. An explicit layout stroke
+width retains the existing global-width fallback; per-role overrides still win.
+
+Select another treatment after final-size inspection when useful.
 `point_alpha` affects only raw points and must satisfy finite `0 < alpha <= 1`;
 it does not change values, point size or group identity. ECDFs and summary
 strokes keep their own settings. See [Create colors and strokes](create-style.md)
@@ -145,7 +165,7 @@ for role-based decisions rather than universally thinning/fading marks.
 ## Deliverables and verification
 
 The root `manifest.json` records each reading task, definition, limitation and
-relative file path/hash, the complete field/design declaration, the original
+relative file path/hash, actual `style_mode`, the complete field/design declaration, the original
 source/request paths, and byte hashes for both copied inputs. The source
 snapshot `source.csv` is byte-identical to the original; `observation-trace.csv`
 retains every literal source field plus one-based source-row IDs and exact

@@ -29,15 +29,17 @@ def _load(name, filename):
 
 
 ecdf = _load("easyviz_preview_ecdf", "ecdf_plot.py")
+create_style = _load("easyviz_preview_create_style", "create_style.py")
 core = ecdf.core
 require, SpecError = core.require, core.SpecError
-VERSION = "0.1.0"
-HELPERS = ("ecdf_plot.py", *ecdf.HELPERS)
+VERSION = "0.2.0"
+HELPERS = ("create_style.py", "ecdf_plot.py", *ecdf.HELPERS)
 CONTRACT = {
     "version": VERSION,
     "command": "preview_choices.py --data prepared.csv --request request.json --out NEW_DIRECTORY",
     "scope": "Descriptive raw-observation distributions; two real previews, or three with an explicitly requested meaningful violin.",
     "request": {
+        "style_mode": "crisp (new-request default) | legacy (replay pre-0.4.3 preview fallbacks)",
         "row_kind": "observations (required; summaries and technical replicates rejected)",
         "fields": {"value": "required numeric column", "group": "required literal category column", "unit": "optional literal one-observation-per-unit ID"},
         "design": {"structure": "unknown|independent", "confirmed": False, "unit_definition": "required scientific definition or explicit unknown row-level definition"},
@@ -46,11 +48,13 @@ CONTRACT = {
         "order": {"group": "optional complete category order; otherwise first appearance"},
         "layout": {"width_mm": 88, "height_mm": 70, "font": "Arial", "font_size_pt": 8, "line_width_pt": .6, "dpi": 300},
         "typography": {"axis": "optional pt", "tick": "optional pt", "legend": "optional pt"},
+        "line_roles": deepcopy(create_style.LINE_ROLES),
         "labels": {"value": "optional measurement name without invented units", "group": "optional group label"},
         "formats": ["png", "pdf", "svg"],
-        "options": {"value_scale": "linear|log", "value_limits": "optional complete ascending bounds", "point_layout": "jitter|beeswarm", "point_alpha": "finite 0 < alpha <= 1; legacy default 0.65, raw observations only", "point_style": "filled|hollow; legacy default filled", "point_edge_width_pt": "positive finite number; requires hollow", "box_style": "filled|outline; box candidate only", "box_width": "finite 0 < width <= 1; category spacing units; legacy default 0.5", "include_violin": False},
+        "options": {"value_scale": "linear|log", "value_limits": "optional complete ascending bounds", "point_layout": "jitter|beeswarm", "point_alpha": "finite 0 < alpha <= 1; crisp default 1, legacy 0.65; raw observations only", "point_style": "filled|hollow; default filled", "point_edge_width_pt": "positive finite number; requires hollow", "box_style": "filled|outline; crisp outline, legacy filled; box candidate only", "box_width": "finite 0 < width <= 1; category spacing units; crisp 0.18, legacy 0.5", "curve_line_width_pt": "positive finite number; ECDF only; explicit value overrides data role", "include_violin": False},
     },
     "choices": ["box-points: median/IQR/1.5-IQR whiskers and every raw observation", "ecdf: count(value <= x)/group row count, unsmoothed full tie jumps", "violin-points: optional Gaussian KDE, Scott bandwidth, all points; at least 5 distinct values in every group"],
+    "style_resolution": ["Crisp starting values are adjustable design decisions, not journal standards or a selected aesthetic winner.", "Explicit observation/box options and category colors remain unchanged. An explicit layout.line_width_pt retains global-width fallbacks; explicit per-role widths still win.", "ECDF uses data-role width unless curve_line_width_pt is explicit; curves and legend keys retain category colors and solid empirical steps. Axis and enabled supporting grids accept their corresponding roles. Roles do not add new layers.", "Legacy mode retains pre-0.4.3 preview fallbacks only for omitted settings. Saved core specifications are never automatically upgraded."],
     "invariants": ["Same byte-identical source snapshot, rows, literal IDs, dimensions, actual font, font sizes, category colors and value axis limits.", "No silent exclusion, transformation, aggregation, pairing, confidence interval or hypothesis test.", "Unknown units or independence permit clearly labeled descriptive previews only.", "Repeated unit IDs across groups and explicit paired/repeated designs require prepared complete paired data and paired_plot.py; these marginal choices do not encode pairing.", "Fresh output directory; failed QA remains marked invalid. PNG is required for inspection. Inspect all actual exports before choosing; no winner is selected."],
     "outputs": ["manifest.json", "qa.json", "request.json", "source.csv", "observation-trace.csv", "visual-review.md", "per-choice spec.json, caption.md, panel exports, plotting-data.csv, stats.json, settings.json, qa.json; ECDF cumulative-data.csv"],
 }
@@ -94,7 +98,13 @@ def _read_source(raw):
 
 def prepare_request(raw, request):
     """Validate explicit semantics and preserve every source row before writing."""
-    _object(request, {"row_kind", "fields", "design", "measurement_units", "colors", "order", "layout", "typography", "labels", "formats", "options"}, "request")
+    _object(request, {"row_kind", "fields", "design", "measurement_units", "colors", "order", "layout", "typography", "labels", "formats", "options", "style_mode", "line_roles"}, "request")
+    mode = request.get("style_mode", "crisp")
+    require(mode in create_style.STYLE_MODES, "style_mode must be crisp or legacy")
+    try:
+        core.figure_profile.validate_line_roles(request.get("line_roles", {}))
+    except core.figure_profile.ConfigurationError as exc:
+        raise SpecError(str(exc)) from None
     require(request.get("row_kind") == "observations", "row_kind must explicitly be observations; prepare summaries or technical replicates upstream without silently aggregating them")
     fields = request.get("fields", {})
     _object(fields, {"group", "value", "unit"}, "fields")
@@ -141,10 +151,10 @@ def prepare_request(raw, request):
         ids = [row[ui] for row in rows]
         require(len(ids) == len(set(ids)), "Unit IDs repeated across groups require an explicit paired/repeated design and complete paired_plot.py input; pairing cannot be inferred or discarded")
     options = request.get("options", {})
-    _object(options, {"value_scale", "value_limits", "point_layout", "point_alpha", "point_style", "point_edge_width_pt", "box_style", "box_width", "include_violin"}, "options")
+    _object(options, {"value_scale", "value_limits", "point_layout", "point_alpha", "point_style", "point_edge_width_pt", "box_style", "box_width", "curve_line_width_pt", "include_violin"}, "options")
     require(options.get("value_scale", "linear") in ("linear", "log"), "value_scale must be linear or log")
     require(options.get("point_layout", "jitter") in ("jitter", "beeswarm"), "point_layout must be jitter or beeswarm")
-    point_alpha = _number(options.get("point_alpha", .65), "point_alpha", positive=True)
+    point_alpha = _number(options.get("point_alpha", 1 if mode == "crisp" else .65), "point_alpha", positive=True)
     require(point_alpha <= 1, "point_alpha must be greater than zero and at most one")
     require(isinstance(options.get("include_violin", False), bool), "include_violin must be an explicit boolean")
     scale = options.get("value_scale", "linear")
@@ -178,6 +188,8 @@ def prepare_request(raw, request):
     formats = request.get("formats", ["png", "pdf", "svg"])
     require(isinstance(formats, list) and all(isinstance(v, str) for v in formats) and "png" in formats and len(formats) == len(set(formats)) and set(formats) <= {"png", "pdf", "svg", "tiff"}, "formats must include png and contain only unique png/pdf/svg/tiff names")
     common = {"fields": deepcopy(fields), "colors": deepcopy(colors), "order": {"group": list(groups)}, "layout": layout, "typography": deepcopy(typography), "formats": list(formats)}
+    if "line_roles" in request:
+        common["line_roles"] = deepcopy(request["line_roles"])
     # Core validation also resolves font availability and shared positive sizes.
     core.setup(common)
     measurement = labels.get("value", fields["value"])
@@ -186,7 +198,14 @@ def prepare_request(raw, request):
     for name in ("point_style", "point_edge_width_pt", "box_style", "box_width"):
         if name in options:
             distribution["options"][name] = options[name]
-    empirical = {**deepcopy(common), "chart": "ecdf", "labels": {"x": measurement, "y": "Cumulative fraction"}, "options": {"x_scale": scale, "x_limits": list(bounds), "curve_line_width_pt": .8}, "legends": {"categorical": {"position": "bottom"}}}
+    empirical = {**deepcopy(common), "chart": "ecdf", "labels": {"x": measurement, "y": "Cumulative fraction"}, "options": {"x_scale": scale, "x_limits": list(bounds)}, "legends": {"categorical": {"position": "bottom"}}}
+    if "curve_line_width_pt" in options:
+        empirical["options"]["curve_line_width_pt"] = options["curve_line_width_pt"]
+    elif mode == "legacy" and "data" not in request.get("line_roles", {}):
+        empirical["options"]["curve_line_width_pt"] = .8
+    explicit_width = "line_width_pt" in request.get("layout", {})
+    distribution = create_style.apply_defaults(distribution, mode=mode, layout_stroke_explicit=explicit_width)
+    empirical = create_style.apply_defaults(empirical, mode=mode, layout_stroke_explicit=explicit_width)
     core.validate_spec(distribution)
     ecdf.validate_spec(empirical)
     specs = [("box-points", distribution), ("ecdf", empirical)]
@@ -207,6 +226,7 @@ def audit_distribution_artists(raw, spec, fig):
     from matplotlib.collections import PathCollection
     points = [p for p in fig.axes[0].collections if isinstance(p, PathCollection)]
     issues, counts, actual_facecolors, actual_edgecolors = [], {}, {}, {}
+    box_widths, box_thickness_mm, box_strokes = {}, {}, {}
     numeric_values_unchanged = True
     intended_alpha = spec["options"]["alpha"]
     hollow = spec["options"].get("point_style") == "hollow"
@@ -240,11 +260,22 @@ def audit_distribution_artists(raw, spec, fig):
                 issues.append(f"actual box quartiles differ for {group}")
             if spec["options"].get("box_style") == "outline" and (len(patches) <= index or patches[index].get_facecolor()[3] != 0):
                 issues.append(f"actual outline box has a fill for {group}")
+            if len(patches) > index:
+                vertices = patches[index].get_path().vertices
+                box_widths[group] = float(core.np.ptp(vertices[:, 1]))
+                pixels = fig.axes[0].transData.transform(vertices)
+                box_thickness_mm[group] = float(core.np.ptp(pixels[:, 1]) / fig.dpi * 25.4)
+                box_strokes[group] = float(patches[index].get_linewidth())
+                if not core.np.isclose(box_widths[group], spec["options"].get("box_width", .5)):
+                    issues.append(f"actual box category width differs for {group}")
+                intended_stroke = core.line_style(spec, "summary", linewidth=spec["layout"].get("line_width_pt", .6))["linewidth"]
+                if not core.np.isclose(box_strokes[group], intended_stroke):
+                    issues.append(f"actual box summary stroke differs for {group}")
             half_width = spec["options"].get("box_width", .5) / 2
             median = [line for line in fig.axes[0].lines if len(line.get_xdata()) == 2 and core.np.allclose(line.get_xdata(), [quartiles[1], quartiles[1]]) and core.np.allclose(line.get_ydata(), [index - half_width, index + half_width])]
             if len(median) != 1:
                 issues.append(f"actual median differs for {group}")
-    return {"status": "pass" if not issues else "needs_revision", "source_rows": len(rows), "audited_observations": sum(counts.values()), "group_counts": counts, "intended_point_alpha": intended_alpha, "point_style": spec["options"].get("point_style", "filled"), "actual_point_facecolors": actual_facecolors, "actual_point_edgecolors": actual_edgecolors, "numeric_values_unchanged": numeric_values_unchanged, "tests_performed": False, "experimental_independence_inferred": False, "issues": issues}
+    return {"status": "pass" if not issues else "needs_revision", "source_rows": len(rows), "audited_observations": sum(counts.values()), "group_counts": counts, "intended_point_alpha": intended_alpha, "point_style": spec["options"].get("point_style", "filled"), "actual_point_facecolors": actual_facecolors, "actual_point_edgecolors": actual_edgecolors, "actual_box_widths_category_units": box_widths, "actual_box_thickness_mm": box_thickness_mm, "actual_box_summary_linewidths_pt": box_strokes, "actual_axis_linewidths_pt": {name: float(spine.get_linewidth()) for name, spine in fig.axes[0].spines.items() if spine.get_visible()}, "numeric_values_unchanged": numeric_values_unchanged, "tests_performed": False, "experimental_independence_inferred": False, "issues": issues}
 
 
 def _render_distribution(source, raw, spec, out, spec_path):
@@ -267,9 +298,11 @@ def _render_distribution(source, raw, spec, out, spec_path):
             fig._easyviz_data_file, fig._easyviz_spec_file = source.resolve(), spec_path.resolve()
             fig._easyviz_source_script, fig._easyviz_track = Path(__file__).resolve(), "create"
             exports = core.export(fig, out, spec, layout)
+            readability = core.panel_readability.measure(fig)
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             passed = not clipped and not overlaps and not missing and audit["status"] == legends["status"] == "pass" and (not fitted or fitted["status"] == "pass") and point_layout["status"] != "needs_revision"
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "input_sha256": _hash(source), "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "exports": exports, "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "legend_layout": legends, "auto_layout": fitted, "point_layout": point_layout, "visual_review_required": True}
+            qa["readability"] = readability
             settings = {**deepcopy(spec), "layout": layout, "typography": typography, "resolved_colors": colors, "input_file": str(source.resolve()), "input_sha256": _hash(source), "spec_file": str(spec_path.resolve()), "spec_file_sha256": _hash(spec_path), "track": "create", "renderer": {"version": VERSION, "sha256": _hash(Path(__file__)), "helper_sha256": {name: _hash(Path(__file__).with_name(name)) for name in HELPERS}}, "point_layout": point_layout, "axis": {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim()))}, "runtime": {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}}
             headers, rows = _read_source(raw)
             data["_easyviz_source_row"] = range(1, len(rows) + 1)
@@ -297,7 +330,7 @@ def _description(choice):
     return ("Explore broad distribution shape while retaining all measurements", "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin's width is independently normalized. Every observation is also a point.", ["Density shape depends on smoothing bandwidth and can imply unsupported modes.", "Violin widths are not sample counts or confidence intervals.", "Five distinct values is a conservative eligibility guard, not scientific validation of a density estimate."])
 
 
-def _caption(choice, request, rows, source_hash):
+def _caption(choice, request, rows, source_hash, spec):
     task, definition, _ = _description(choice)
     fields = request["fields"]
     unit = request["design"]["unit_definition"]
@@ -306,10 +339,10 @@ def _caption(choice, request, rows, source_hash):
     if choice != "ecdf":
         policy = request.get("options", {}).get("point_layout", "jitter")
         text += " Categorical point offsets are deterministic jitter and carry no numerical meaning; points may overlap at the final size." if policy == "jitter" else " Beeswarm offsets affect only category position; measurement values are unchanged."
-        text += f" Raw points use opacity {request.get('options', {}).get('point_alpha', .65):g}; this display setting changes neither measurement values nor category color assignments."
-        if request.get("options", {}).get("point_style") == "hollow":
+        text += f" Raw points use opacity {spec['options']['alpha']:g}; this display setting changes neither measurement values nor category color assignments."
+        if spec["options"].get("point_style") == "hollow":
             text += " Fixed-size hollow observations have no face fill and category-colored edges; the edge extent is included in physical packing checks."
-        if choice == "box-points" and request.get("options", {}).get("box_style") == "outline":
+        if choice == "box-points" and spec["options"].get("box_style") == "outline":
             text += " The box interior is unfilled; its outline and median retain the source quartiles."
     if request["design"]["structure"] == "unknown" or not request["design"]["confirmed"]:
         text += " Experimental independence is unconfirmed; group row counts are descriptive observations and are not established independent sample sizes."
@@ -340,6 +373,7 @@ def preview(data_path, request_path, out):
     out.parent.mkdir(parents=True, exist_ok=True)
     out.mkdir()  # Atomic fresh-directory claim, including a competing writer.
     manifest = {"version": VERSION, "status": "in_progress", "valid_outputs": False, "track": "create", "source_binding": {"original_path": str(data_path), "snapshot": "source.csv", "sha256": source_hash, "rows": len(rows)}, "request_binding": {"original_path": str(request_path), "snapshot": "request.json", "sha256": request_hash}, "fields": deepcopy(request["fields"]), "design": deepcopy(request["design"]), "measurement_units": request["measurement_units"], "shared_settings": {key: deepcopy(specs[0][1][key]) for key in ("layout", "typography", "colors", "order", "formats")}, "value_axis": {"scale": specs[0][1]["options"]["x_scale"], "limits": specs[0][1]["options"]["x_limits"]}, "choices": [], "selection": {"chosen_choice": None, "automatic_winner": False}, "visual_review_required": True, "helper_sha256": {name: _hash(Path(__file__).with_name(name)) for name in ("preview_choices.py", *HELPERS)}}
+    manifest["style_mode"] = request.get("style_mode", "crisp")
     _json(out / "manifest.json", manifest)
     _json(out / "qa.json", {"status": "in_progress", "valid_outputs": False})
     source = out / "source.csv"
@@ -367,7 +401,7 @@ def preview(data_path, request_path, out):
             record = {"id": choice, "reading_task": task, "definition": definition, "limitations": limitations, "spec": f"{choice}/spec.json", "caption": f"{choice}/caption.md", "status": "in_progress"}
             manifest["choices"].append(record)
             _json(out / "manifest.json", manifest)
-            (directory / "caption.md").write_text(_caption(choice, request, rows, source_hash), encoding="utf-8")
+            (directory / "caption.md").write_text(_caption(choice, request, rows, source_hash, spec), encoding="utf-8")
             _json(directory / "qa.json", {"status": "in_progress", "valid_outputs": False})
             qa = ecdf.render(source, spec, directory, spec_path=spec_path) if choice == "ecdf" else _render_distribution(source, raw, spec, directory, spec_path)
             record.update(status=qa["status"], valid_outputs=qa["valid_outputs"], files=_bindings(directory, out))

@@ -73,6 +73,107 @@ class ReplicatePlotTests(unittest.TestCase):
         self.assertTrue(all(bar["bottom"] == 0 for bar in artists["bars"]))
         self.assertEqual(replicate.audit_source_artists(source, spec, fig)["status"], "pass")
 
+    def test_optional_bar_boundaries_preserve_summary_grouped_and_stacked_quantities(self):
+        source = self.source()
+        for mode in ("summary", "grouped", "stacked"):
+            with self.subTest(mode=mode):
+                spec = deepcopy(self.spec)
+                spec["options"].update(mode=mode)
+                if mode == "summary":
+                    spec["fields"].pop("component")
+                    spec["colors"] = {"NA": "#29ACF3", "null": "#FF797C"}
+                    path = self.source("arm,person,amount\nNA,001,0\nNA,002,10\nnull,001,-2\nnull,002,4\n")
+                else:
+                    path = self.source()
+                before = path.read_bytes()
+                _, legacy, _ = self.draw(path, spec)
+                expected = legacy._easyviz_replicate_artists
+                self.assertTrue(all(bar["artist"].get_linewidth() == 0 and bar["artist"].get_edgecolor()[3] == 0 for bar in expected["bars"]))
+                spec["options"].update(bar_style="outline", bar_edge_width_pt=.65)
+                _, outlined, colors = self.draw(path, spec)
+                actual = outlined._easyviz_replicate_artists
+                self.assertEqual([(p["source_rows"], p["value"]) for p in actual["points"]], [(p["source_rows"], p["value"]) for p in expected["points"]])
+                for left, right in zip(expected["bars"], actual["bars"]):
+                    a, b = left["artist"], right["artist"]
+                    self.assertEqual((a.get_x(), a.get_y(), a.get_width(), a.get_height()), (b.get_x(), b.get_y(), b.get_width(), b.get_height()))
+                    self.assertEqual(b.get_facecolor()[3], 0)
+                    self.assertEqual(b.get_linewidth(), .65)
+                    key = right["component"] if right["component"] is not None else right["condition"]
+                    self.assertEqual(b.get_edgecolor(), replicate.core.mcolors.to_rgba(colors[key]))
+                self.assertEqual([(i["mean"], i["sample_sd"]) for i in actual["intervals"]], [(i["mean"], i["sample_sd"]) for i in expected["intervals"]])
+                self.assertEqual(replicate.audit_source_artists(path, spec, outlined)["status"], "pass")
+                if mode != "summary":
+                    handles = outlined._easyviz_legend_layout.entries[0]["artist"].legend_handles
+                    self.assertEqual([h.get_facecolor()[3] for h in handles], [0, 0])
+                    self.assertEqual([h.get_edgecolor() for h in handles], [replicate.core.mcolors.to_rgba(colors[c]) for c in ("X", "Y")])
+                    handles[0].set_facecolor("green")
+                    self.assertIn("bar_legend_boundary_mismatch", {i["code"] for i in replicate.audit_source_artists(path, spec, outlined)["issues"]})
+                actual["bars"][0]["artist"].set_linewidth(0)
+                self.assertIn("bar_boundary_mismatch", {i["code"] for i in replicate.audit_source_artists(path, spec, outlined)["issues"]})
+                self.assertEqual(path.read_bytes(), before)
+
+    def test_filled_bar_optional_edge_and_invalid_outline_options(self):
+        spec = deepcopy(self.spec)
+        spec["options"].update(bar_edge_width_pt=.4, bar_edge_color="#444444")
+        _, fig, colors = self.draw(self.source(), spec)
+        for record in fig._easyviz_replicate_artists["bars"]:
+            patch = record["artist"]
+            self.assertEqual(patch.get_facecolor(), replicate.core.mcolors.to_rgba(colors[record["component"]]))
+            self.assertEqual(patch.get_edgecolor(), replicate.core.mcolors.to_rgba("#444444"))
+            self.assertEqual(patch.get_linewidth(), .4)
+        self.assertEqual(replicate.audit_source_artists(self.source(), spec, fig)["status"], "pass")
+        for options in ({"bar_style": "outline", "bar_edge_width_pt": 0}, {"bar_style": "outline", "bar_edge_width_pt": True},
+                        {"bar_style": "outline", "bar_edge_color": "none"}, {"bar_style": "fuzzy"},
+                        {"bar_edge_width_pt": -1}, {"bar_edge_width_pt": float("nan")}, {"bar_edge_color": "#111111"}):
+            invalid = deepcopy(self.spec)
+            invalid["options"].update(options)
+            with self.subTest(options=options), self.assertRaises(replicate.SpecError):
+                replicate.validate_spec(invalid)
+        states = deepcopy(self.spec)
+        states["fields"].pop("component")
+        states["fields"]["state"] = "state"
+        states["options"].update(mode="summary", bar_style="outline", state_hatches={"declared": "/"})
+        with self.assertRaisesRegex(replicate.SpecError, "mapped states"):
+            replicate.validate_spec(states)
+
+    def test_outline_zero_axis_baseline_is_intentional_but_other_stroke_clipping_fails(self):
+        spec = deepcopy(self.spec)
+        spec["fields"].pop("component")
+        spec.pop("colors")
+        spec["options"].update(mode="summary", bar_style="outline", bar_edge_width_pt=.65, y_limits=[0, 15])
+        source = self.source("arm,person,amount\nA,1,1\nA,2,2\nA,3,3\nB,1,5\nB,2,6\nB,3,7\n")
+        qa = replicate.render(source, spec, self.root / "zero-baseline")
+        self.assertEqual(qa["status"], "pass")
+        self.assertEqual(len(qa["mark_geometry"]["intentional_baseline_contacts"]), 2)
+        settings = json.loads((self.root / "zero-baseline/settings.json").read_text())
+        self.assertEqual(settings["options"]["y_limits"], [0, 15])
+        _, fig, _ = self.draw(source, spec)
+        ax = fig.axes[0]
+        ax.set_ylim(0, 6)
+        fig.canvas.draw()
+        self.assertIn("bar_boundary_clipped", {issue["code"] for issue in replicate._canvas_checks(fig)[1]["issues"]}, "An outlined top edge at the upper limit remains clipped")
+        ax.set_ylim(1, 15)
+        fig.canvas.draw()
+        geometry = replicate._canvas_checks(fig)[1]
+        self.assertEqual(geometry["intentional_baseline_contacts"], [])
+        self.assertIn("bar_boundary_clipped", {issue["code"] for issue in geometry["issues"]}, "A nonzero lower limit cannot excuse a hidden bar baseline")
+
+    def test_stacked_outline_keeps_zero_components_and_unit_total_endpoints(self):
+        spec = deepcopy(self.spec)
+        spec["options"].update(bar_style="outline", y_limits=[0, 15])
+        source = self.source("arm,person,part,amount\nA,01,X,0\nA,01,Y,3\nA,02,X,0\nA,02,Y,5\n")
+        before = source.read_bytes()
+        qa = replicate.render(source, spec, self.root / "zero-components")
+        self.assertEqual(qa["status"], "pass")
+        _, fig, _ = self.draw(source, spec)
+        artists = fig._easyviz_replicate_artists
+        self.assertEqual([bar["artist"].get_height() for bar in artists["bars"]], [0, 4])
+        self.assertEqual([bar["artist"].get_y() for bar in artists["bars"]], [0, 0])
+        self.assertEqual([point["value"] for point in artists["points"]], [3, 5])
+        replicate.np.testing.assert_allclose(artists["intervals"][0]["artist"].get_segments()[0][:, 1], [4 - 2 ** .5, 4 + 2 ** .5])
+        self.assertEqual(replicate.audit_source_artists(source, spec, fig)["status"], "pass")
+        self.assertEqual(source.read_bytes(), before)
+
     def test_supplied_ratio_and_declared_states_are_preserved(self):
         source = self.source("arm,person,amount,state,numerator,denominator\nA,01,.01,weak,900,1\nA,02,.02,weak,800,1\nB,01,4,good,1,900\nB,02,8,good,1,800\n")
         spec = deepcopy(self.spec)
@@ -181,7 +282,7 @@ class ReplicatePlotTests(unittest.TestCase):
     def test_copied_runtime_works_outside_checkout(self):
         runtime, out = self.root / "runtime", self.root / "portable"
         runtime.mkdir()
-        for name in ("replicate_plot.py", "render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py"):
+        for name in ("replicate_plot.py", "render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py"):
             shutil.copy2(SCRIPT.with_name(name), runtime / name)
         spec_path = self.root / "spec.json"
         spec_path.write_text(json.dumps(self.spec))

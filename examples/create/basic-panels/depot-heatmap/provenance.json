@@ -1,0 +1,44 @@
+{
+  "track": "create",
+  "reference_image_adopted": false,
+  "author_plotting_code_used": false,
+  "licence": "CC-BY-4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source": {
+    "article": "https://www.nature.com/articles/s41467-023-36983-2",
+    "doi": "10.1038/s41467-023-36983-2",
+    "data_release": "https://data.mendeley.com/datasets/y3pxvr4xbf/2",
+    "prepared_source_path": "examples/create/cell-atlas-dotplot/source-data.csv",
+    "prepared_source_sha256": "6fd2268a8c9db407912dd33769391e26704898badbe67f7164cc02feb02d0538",
+    "source_table": "Figure_2f.txt, all 48 rows",
+    "value_definition": "Author-supplied within-depot percentages, 100 × source subtype n / total myeloid n within each depot",
+    "selection": "All 16 myeloid subtypes × 3 depots. Display labels transcribed from existing annotations derived from Fig2d.",
+    "denominators": {
+      "sc": 11470,
+      "om": 8563,
+      "pvat": 2506
+    },
+    "licence_evidence": "Existing cell-atlas provenance records Massier paper and Source Data release CC BY 4.0."
+  },
+  "prepared_csv_sha256": "30e7007dc27f6aa504385bcc6c5197f7d2cebd49287e8221657aebd701b10f85",
+  "main_rows": 48,
+  "candidate_changes": [
+    "Single sky-blue sequential scale for nonnegative magnitude",
+    "Clear dark data-region boundary",
+    "No extra marginal or marker-code layers"
+  ],
+  "comparison_preserved": [
+    "source CSV bytes",
+    "scientific encodings and summaries",
+    "numeric axes/normalization",
+    "110 × 88 mm canvas",
+    "8 pt Arial",
+    "labels and guide content"
+  ],
+  "transfer_probe": {
+    "description": "Rename row/column/value fields and switch to the true supplied object counts on the same full 16×3 matrix; use a separately justified 0–2700 count scale.",
+    "rows": 48,
+    "synthetic": false,
+    "not_a_fresh_biological_analysis": true
+  }
+}

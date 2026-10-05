@@ -30,7 +30,7 @@ REQUIRED = {"unit", "condition", "value"}
 FIELDS = REQUIRED | {"block"}
 OPTIONS = {"y_scale", "y_limits", "y_ticks", "quantile_method", "point_layout", "point_spread", "point_area_pt2", "point_alpha", "point_edge_color", "point_edge_width_pt", "point_color", "connect_pairs", "pair_alpha", "pair_line_width_pt", "summary_color", "summary_width", "summary_cap_width", "summary_line_width_pt", "block_gap", "grid", "seed"}
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "palette", "legends"}
-HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")
+HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py")
 SCHEMA = {
     "chart": "paired", "fields": {"unit": "participant ID", "condition": "time point or repeated condition", "value": "raw numerical measurement", "block": "optional mutually exclusive group"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
@@ -395,12 +395,14 @@ def render(data_path, spec, out, *, spec_path=None):
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
+            readability = core.panel_readability.measure(fig)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"
                 audit["issues"].append({"code": "source_changed_during_render"})
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             passed = not clipped and not overlap and not missing and all(record["status"] == "pass" for record in (audit, legends, geometry)) and (not fitted or fitted["status"] == "pass")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": sum(len(r["source_rows"]) for r in fig._easyviz_paired_artists), "input_sha256": input_hash, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "visual_review_required": True, "note": "Automated geometry and source checks do not establish aesthetic quality or statistical appropriateness; inspect the actual panel."}
+            qa["readability"] = readability
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["pdf", "png"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"y_scale": fig.axes[0].get_yscale(), "y_limits": list(map(float, fig.axes[0].get_ylim())), "condition_order": audit["conditions"]}

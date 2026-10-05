@@ -22,9 +22,9 @@ _loader.loader.exec_module(core)
 plt, np, pd, require, SpecError = core.plt, core.np, core.pd, core.require, core.SpecError
 VERSION = "0.1.0"
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "palette", "legends"}
-OPTIONS = {"mode", "uncertainty", "bar_width", "marker_area_pt2", "point_color", "bar_color", "x_rotation", "y_limits", "y_ticks", "grid", "state_hatches"}
+OPTIONS = {"mode", "uncertainty", "bar_width", "bar_style", "bar_edge_width_pt", "bar_edge_color", "marker_area_pt2", "point_color", "bar_color", "x_rotation", "y_limits", "y_ticks", "grid", "state_hatches"}
 SCHEMA = {"chart": "replicate", "fields": {"condition": "condition column", "unit": "replicate identifier", "value": "supplied numeric value", "component": "required for stacked/grouped only", "state": "optional summary-only declared category"},
-          "options": {"mode": "stacked|grouped|summary", "uncertainty": "sample_sd|none", "bar_width": .6, "marker_area_pt2": 7, "x_rotation": 0, "y_limits": "optional [low, high] containing all values and SD intervals", "y_ticks": "optional ordered numeric list", "state_hatches": "required complete state-to-hatch map when state is mapped"},
+          "options": {"mode": "stacked|grouped|summary", "uncertainty": "sample_sd|none", "bar_width": .6, "bar_style": "filled (legacy default)|outline; all three modes", "bar_edge_width_pt": "outline default 0.55 pt and must be >0; filled default 0 and may be >=0", "bar_edge_color": "optional visible color; defaults to the mapped bar color when edge width is positive", "marker_area_pt2": 7, "x_rotation": 0, "y_limits": "optional [low, high] containing all values and SD intervals", "y_ticks": "optional ordered numeric list", "state_hatches": "required complete state-to-hatch map when state is mapped; outline bars do not support states"},
           "layout": {"width_mm": 130, "height_mm": 90, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
           "semantics": ["Stacked segments are component means. Points and SD describe per-unit TOTALS, not shifted component observations.", "Grouped bars summarize each component independently; points retain its raw values.", "Summary bars use only the supplied values; a precomputed ratio is never replaced by a ratio of means.", "SD is sample SD (ddof=1), not SEM or a confidence interval. None draws no interval.", "Every condition-unit must have every component exactly once; missing components are rejected, never filled.", "Unit identifiers do not establish biological independence or cross-condition pairing.", "Declared states are retained and decoded using explicit hatches; state labels do not infer significance.", "No normalization, hypothesis tests, titles, or narrative annotations."]}
 
@@ -55,13 +55,19 @@ def validate_spec(spec):
     require(("component" in fields) == (mode != "summary"), "fields.component is required only for stacked/grouped modes")
     require("state" not in fields or mode == "summary", "fields.state is supported only for summary bars")
     require(options.get("uncertainty", "sample_sd") in ("sample_sd", "none"), "uncertainty must be sample_sd or none")
+    style = options.get("bar_style", "filled")
+    require(isinstance(style, str) and style in ("filled", "outline"), "bar_style must be filled or outline")
+    edge_width = _number(options.get("bar_edge_width_pt", .55 if style == "outline" else 0), "bar_edge_width_pt", positive=style == "outline")
+    require(edge_width >= 0, "bar_edge_width_pt must be nonnegative")
+    require("bar_edge_color" not in options or edge_width > 0, "bar_edge_color requires a positive bar_edge_width_pt or bar_style='outline'")
+    require(style != "outline" or "state" not in fields, "outline bars do not support mapped states/hatches; use filled bars to retain declared states")
     require(isinstance(options.get("grid", False), bool), "grid must be a boolean")
     width = _number(options.get("bar_width", .6), "bar_width", positive=True)
     require(width <= .85, "bar_width must be <= 0.85 condition spacing")
     _number(options.get("marker_area_pt2", 7), "marker_area_pt2", positive=True)
     rotation = _number(options.get("x_rotation", 0), "x_rotation")
     require(0 <= rotation <= 90, "x_rotation must be between 0 and 90 degrees")
-    for name in ("point_color", "bar_color"):
+    for name in ("point_color", "bar_color", "bar_edge_color"):
         if name in options:
             require(core.mcolors.is_color_like(options[name]) and core.mcolors.to_rgba(options[name])[3] > 0, f"{name} must be a visible color")
     if "y_limits" in options:
@@ -174,7 +180,20 @@ class _StateLegend(core.legend_layout.LegendLayout):
         entry = super()._categorical_or_size(request, cfg, position, ncol)
         for handle, hatch in zip(entry["artist"].legend_handles, request.get("hatches", [])):
             handle.set_hatch(hatch)
+        for handle, style in zip(entry["artist"].legend_handles, request.get("bar_styles", [])):
+            handle.set_facecolor(style["facecolor"])
+            handle.set_edgecolor(style["edgecolor"])
+            handle.set_linewidth(style["linewidth"])
         return entry
+
+
+def _bar_style(options, color, hatch=""):
+    """Explicit outlines are optional; omission retains the legacy patch style."""
+    outline = options.get("bar_style", "filled") == "outline"
+    width = options.get("bar_edge_width_pt", .55 if outline else 0)
+    return {"facecolor": "none" if outline else color,
+            "edgecolor": options.get("bar_edge_color", color) if width > 0 else ("#666666" if hatch else "none"),
+            "linewidth": width}
 
 
 def draw(data, spec, layout, typography):
@@ -198,8 +217,12 @@ def draw(data, spec, layout, typography):
             bottom = bases[condition] if mode == "stacked" else 0.
             state = summary.get("state")
             hatch = options.get("state_hatches", {}).get(state, "")
-            patch = ax.bar(x, summary["mean"], bottom=bottom, width=individual_width, color=colors[component if component is not None else condition], edgecolor="#666666" if hatch else "none", linewidth=0, hatch=hatch, zorder=2)[0]
+            patch = ax.bar(x, summary["mean"], bottom=bottom, width=individual_width, **_bar_style(options, colors[component if component is not None else condition], hatch), hatch=hatch, zorder=2)[0]
             patch.set_gid(f"easyviz-bar-{len(bars) + 1}")
+            core.figure_elements.register(fig, patch, "component" if mode == "stacked" else "summary-box", f"{condition} · {component}" if component is not None else str(condition),
+                                          source_keys=[{"condition": condition, "component": component}],
+                                          spec_paths=["/options/bar_style", "/options/bar_edge_width_pt", "/options/bar_edge_color"],
+                                          editable={"linewidth": "/options/bar_edge_width_pt", "edgecolor": "/options/bar_edge_color"})
             bars.append({**summary, "artist": patch, "x": x, "bottom": bottom, "width": individual_width})
             if mode == "stacked":
                 bases[condition] += summary["mean"]
@@ -207,6 +230,7 @@ def draw(data, spec, layout, typography):
             low, high = summary["mean"] - summary["sample_sd"], summary["mean"] + summary["sample_sd"]
             interval = ax.vlines(x, low, high, color="#444444", linewidth=layout["line_width_pt"], zorder=3)
             interval.set_gid(f"easyviz-sd-{len(intervals) + 1}")
+            core.figure_elements.register(fig, interval, "summary-line", f"{condition} · sample SD", source_keys=[{"condition": condition, "component": component}])
             intervals.append({**summary, "artist": interval, "x": x, "lower": low, "upper": high})
     for observation in observations:
         c, component = observation["condition"], observation["component"]
@@ -215,6 +239,8 @@ def draw(data, spec, layout, typography):
         x = positions[c] + offsets.get(component, 0.) + float(spread[units.index(observation["unit"])])
         point = ax.scatter([x], [observation["value"]], s=core.circle_size_parameter(options.get("marker_area_pt2", 7)), marker="o", color=options.get("point_color", "#333333"), edgecolors="none", linewidths=0, zorder=4)
         point.set_gid(f"easyviz-observation-{len(points) + 1}")
+        core.figure_elements.register(fig, point, "point-group", f"{c} · {observation['unit']}", source_keys=[{"source_rows": observation["source_rows"]}],
+                                      spec_paths=["/options/point_color", "/options/marker_area_pt2"], editable={"color": "/options/point_color"})
         points.append({**observation, "artist": point, "x": x})
     minimum = min([0.] + [v["value"] for v in observations] + [v["lower"] for v in intervals])
     maximum = max([0.] + [v["value"] for v in observations] + [v["upper"] for v in intervals])
@@ -236,10 +262,14 @@ def draw(data, spec, layout, typography):
         ax.grid(axis="y", color="#E6E6E6", linewidth=.4, zorder=0)
     if components:
         manager.add_categorical(components, [colors[c] for c in components], shape="patch")
+        if options.get("bar_style") == "outline" or options.get("bar_edge_width_pt", 0) > 0:
+            manager.requests[-1]["bar_styles"] = [_bar_style(options, colors[c]) for c in components]
     if "state" in f:
         states = core.ordered(data, f["state"], spec, "state")
         manager.add_categorical([labels.get("states", {}).get(state, state) for state in states], [options.get("bar_color", "#C5C5C5")] * len(states), shape="patch", edgecolor="#666666", linewidth_pt=0)
         manager.requests[-1]["hatches"] = [options["state_hatches"][state] for state in states]
+        if options.get("bar_edge_width_pt", 0) > 0:
+            manager.requests[-1]["bar_styles"] = [_bar_style(options, options.get("bar_color", "#C5C5C5"), options["state_hatches"][state]) for state in states]
     if layout.get("auto_fit", False):
         fig._easyviz_auto_layout = core.auto_layout.fit(fig, ax, manager, core.check_tick_label_overlap)
         layout["margins"] = fig._easyviz_auto_layout["margins"]
@@ -295,9 +325,22 @@ def audit_source_artists(data_path, spec, fig):
             issues.append({"code": "bar_mean_or_base_mismatch", "condition": record["condition"], "component": record["component"]})
         if patch.get_hatch() != options.get("state_hatches", {}).get(exp["state"], ""):
             issues.append({"code": "declared_state_mismatch", "condition": record["condition"]})
-        expected_color = core.mcolors.to_rgba(colors[record["component"] if record["component"] is not None else record["condition"]])
+        style = _bar_style(options, colors[record["component"] if record["component"] is not None else record["condition"]], options.get("state_hatches", {}).get(exp["state"], ""))
+        expected_color = core.mcolors.to_rgba(style["facecolor"])
         if not np.allclose(patch.get_facecolor(), expected_color):
             issues.append({"code": "bar_color_mismatch", "condition": record["condition"]})
+        if not np.allclose(patch.get_edgecolor(), core.mcolors.to_rgba(style["edgecolor"])) or not math.isclose(patch.get_linewidth(), style["linewidth"], abs_tol=1e-12):
+            issues.append({"code": "bar_boundary_mismatch", "condition": record["condition"]})
+    for entry in fig._easyviz_legend_layout.entries:
+        styles = entry["request"].get("bar_styles", [])
+        handles = entry["artist"].legend_handles
+        if styles and len(handles) != len(styles):
+            issues.append({"code": "bar_legend_boundary_mismatch"})
+        for handle, style in zip(handles, styles):
+            if (not np.allclose(handle.get_facecolor(), core.mcolors.to_rgba(style["facecolor"]))
+                    or not np.allclose(handle.get_edgecolor(), core.mcolors.to_rgba(style["edgecolor"]))
+                    or not math.isclose(handle.get_linewidth(), style["linewidth"], abs_tol=1e-12)):
+                issues.append({"code": "bar_legend_boundary_mismatch"})
     expected_intervals = len(conditions) * (len(components) if mode == "grouped" else 1) if options.get("uncertainty", "sample_sd") == "sample_sd" else 0
     if len(artists["intervals"]) != expected_intervals:
         issues.append({"code": "sd_interval_count_mismatch"})
@@ -340,7 +383,7 @@ def audit_source_artists(data_path, spec, fig):
 
 
 def _canvas_checks(fig):
-    painter, clipped, marks = fig.canvas.get_renderer(), [], []
+    painter, clipped, marks, baseline_contacts = fig.canvas.get_renderer(), [], [], []
     skipped = set()
     for ax in fig.axes:
         for axis in (ax.xaxis, ax.yaxis):
@@ -356,6 +399,22 @@ def _canvas_checks(fig):
             clipped.append(artist.get_text())
     ax = fig.axes[0]
     box = ax.get_window_extent(painter)
+    for record in fig._easyviz_replicate_artists["bars"]:
+        patch = record["artist"]
+        if patch.get_linewidth() <= 0 or patch.get_edgecolor()[3] <= 0:
+            continue
+        bounds = patch.get_path().get_extents(patch.get_transform())
+        half = patch.get_linewidth() * fig.dpi / 144
+        # A nonnegative bar deliberately starts on a zero-valued lower axis.
+        # The axis clips only the lower half of that coincident baseline stroke;
+        # requiring negative limits would obscure the intended zero baseline.
+        on_zero_baseline = patch.get_y() == 0 and patch.get_height() >= 0 and ax.get_ylim()[0] == 0
+        lower_half = 0 if on_zero_baseline else half
+        if on_zero_baseline:
+            baseline_contacts.append({"condition": record["condition"], "component": record["component"],
+                                      "baseline_value": 0., "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."})
+        if bounds.x0 - half < box.x0 - .1 or bounds.x1 + half > box.x1 + .1 or bounds.y0 - lower_half < box.y0 - .1 or bounds.y1 + half > box.y1 + .1:
+            marks.append({"code": "bar_boundary_clipped", "condition": record["condition"], "component": record["component"]})
     for record in fig._easyviz_replicate_artists["points"]:
         point = record["artist"]
         center = point.get_offset_transform().transform(point.get_offsets())[0]
@@ -369,7 +428,7 @@ def _canvas_checks(fig):
         # vlines use butt caps: linewidth expands horizontally, not beyond ends.
         if endpoints[:, 0].min() - half < box.x0 - .1 or endpoints[:, 0].max() + half > box.x1 + .1 or endpoints[:, 1].min() < box.y0 - .1 or endpoints[:, 1].max() > box.y1 + .1:
             marks.append({"code": "sample_sd_stroke_clipped", "condition": record["condition"]})
-    return clipped, {"status": "pass" if not marks else "needs_revision", "issues": marks}
+    return clipped, {"status": "pass" if not marks else "needs_revision", "issues": marks, "intentional_baseline_contacts": baseline_contacts}
 
 
 def render(data_path, spec, out, *, spec_path=None):
@@ -402,8 +461,9 @@ def render(data_path, spec, out, *, spec_path=None):
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             passed = not clipped and not overlap and not missing and all(item["status"] == "pass" for item in (audit, geometry, legends)) and (not fitted or fitted["status"] == "pass")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "input_sha256": digest, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "auto_layout": fitted, "visual_review_required": True}
+            qa["readability"] = core.panel_readability.measure(fig)
             settings = deepcopy(resolved)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")}})
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=digest, supplied_spec=deepcopy(spec), auto_layout=fitted, legend_layout=legends, renderer={"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py")}})
             if spec_path is not None:
                 settings["spec_file_sha256"] = hashlib.sha256(Path(spec_path).read_bytes()).hexdigest()
             data.to_csv(out / "plotting-data.csv", index=False)

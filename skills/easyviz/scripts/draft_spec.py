@@ -7,7 +7,6 @@ with render.py, then inspect the actual exports before delivering a panel.
 from __future__ import annotations
 
 import argparse
-from copy import deepcopy
 import importlib.util
 import json
 import os
@@ -19,6 +18,9 @@ import tempfile
 _loader = importlib.util.spec_from_file_location("easyviz_draft_renderer", Path(__file__).with_name("render.py"))
 renderer = importlib.util.module_from_spec(_loader)
 _loader.loader.exec_module(renderer)
+_style_loader = importlib.util.spec_from_file_location("easyviz_draft_create_style", Path(__file__).with_name("create_style.py"))
+create_style = importlib.util.module_from_spec(_style_loader)
+_style_loader.loader.exec_module(create_style)
 
 
 def parse_fields(assignments):
@@ -58,7 +60,7 @@ def _write_new_json(path, spec):
 
 
 def draft(data_path, chart, assignments, out, *, normalization=None,
-          panel_size_mm=None, font=None, profile=None, panel=None):
+          panel_size_mm=None, font=None, profile=None, panel=None, style_mode="crisp"):
     """Validate explicit mappings and create a new, editable draft specification."""
     data_path, out = Path(data_path), Path(out)
     renderer.require(out.resolve() != data_path.resolve(), "The output specification cannot replace the source data")
@@ -69,14 +71,6 @@ def draft(data_path, chart, assignments, out, *, normalization=None,
     renderer.require(chart == "composition" or normalization is None, "--normalization is only supported for composition")
 
     spec = {"chart": chart, "fields": parse_fields(assignments), "layout": {"auto_fit": True}}
-    if profile is None:
-        # New create drafts adopt an editable starting hierarchy. Existing specs
-        # and shared profiles retain their accepted stroke settings.
-        spec["line_roles"] = deepcopy(renderer.SCHEMA["line_roles"])
-        if chart == "scatter":
-            spec["options"] = {"alpha": 1, "point_style": "filled"}
-        elif chart == "distribution":
-            spec["options"] = {"alpha": 1, "point_style": "filled", "box_style": "outline", "box_width": .18}
     if chart == "composition":
         renderer.require(normalization in ("none", "sample_sum", "denominator"), "Composition requires --normalization none, sample_sum, or denominator")
         spec["options"] = {"normalization": normalization}
@@ -89,6 +83,8 @@ def draft(data_path, chart, assignments, out, *, normalization=None,
         # Absolute reference remains valid when the draft is saved elsewhere or
         # rendered from another working directory. Keep the shared provenance.
         spec.update(profile=str(Path(profile).resolve()), panel=panel)
+
+    spec = create_style.apply_defaults(spec, mode=style_mode)
 
     resolved, _ = renderer.resolve_spec(spec, spec_path=out)
     renderer.prepare(data_path, resolved)
@@ -118,10 +114,13 @@ def main():
     parser.add_argument("--font", help="Requested font; normal renderer font and glyph checks still apply")
     parser.add_argument("--profile", type=Path, help="Existing shared figure-profile JSON; requires --panel")
     parser.add_argument("--panel", help="Named dimensions from the shared profile; requires --profile")
+    parser.add_argument("--style-mode", choices=create_style.STYLE_MODES, default="crisp",
+                        help="Editable starting style for a new unprofiled draft; legacy keeps renderer fallbacks. Accepted profiles retain their existing styling.")
     args = parser.parse_args()
     try:
         spec = draft(args.data, args.chart, args.field, args.out, normalization=args.normalization,
-                     panel_size_mm=args.panel_size_mm, font=args.font, profile=args.profile, panel=args.panel)
+                     panel_size_mm=args.panel_size_mm, font=args.font, profile=args.profile, panel=args.panel,
+                     style_mode=args.style_mode)
     except (ValueError, OSError, ImportError) as exc:
         parser.exit(2, f"EasyViz: {exc}\n")
     print(json.dumps({"status": "draft", "specification": str(args.out), "chart": spec["chart"],

@@ -24,12 +24,13 @@ plt, np, pd = core.plt, core.np, core.pd
 SpecError, require, write_json = core.SpecError, core.require, core.write_json
 
 VERSION = "0.1.0"
-SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "legends"}
+SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "legends", "line_roles"}
 OPTIONS = {"x_scale", "x_limits", "x_ticks", "x_tick_format", "curve_line_width_pt", "grid"}
-HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")
+HELPERS = ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py")
 SCHEMA = {
     "chart": "ecdf", "fields": {"value": "raw numeric observation", "group": "optional category", "unit": "optional observation identifier"},
     "layout": {"width_mm": 88, "height_mm": 70, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
+    "line_roles": "Optional core roles: data width supplies curves unless curve_line_width_pt is explicit; axis width/color and grid width/color/style apply. Category colors always decode groups. Other roles create no new layer.",
     "options": {"x_scale": "linear|log", "x_limits": ["minimum", "maximum"], "x_ticks": "optional strictly ascending positions", "x_tick_format": "plain|power10 (power10 requires log scale and exact powers of ten)", "curve_line_width_pt": .8, "grid": False},
     "order": {"group": ["every observed group exactly once"]},
     "colors": {"each group, or all for ungrouped inputs": "explicit color"},
@@ -53,6 +54,10 @@ def _number(value, name, *, positive=False):
 
 def validate_spec(spec):
     _object(spec, SPEC_KEYS, "spec")
+    try:
+        core.figure_profile.validate_line_roles(spec.get("line_roles", {}))
+    except core.figure_profile.ConfigurationError as exc:
+        raise SpecError(str(exc)) from None
     require(spec.get("chart", "ecdf") == "ecdf", "chart must be ecdf")
     fields = spec.get("fields", {})
     _object(fields, {"value", "group", "unit"}, "fields")
@@ -63,7 +68,7 @@ def validate_spec(spec):
     _object(options, OPTIONS, "options")
     require(options.get("x_scale", "linear") in ("linear", "log"), "x_scale must be linear or log")
     require(isinstance(options.get("grid", False), bool), "grid must be a boolean")
-    _number(options.get("curve_line_width_pt", .8), "curve_line_width_pt", positive=True)
+    _number(curve_width(spec), "curve_line_width_pt", positive=True)
     if "x_limits" in options:
         limits = options["x_limits"]
         require(isinstance(limits, list) and len(limits) == 2, "x_limits must contain two finite numbers")
@@ -109,6 +114,12 @@ def validate_spec(spec):
         core.figure_profile.validate_typography(spec.get("typography", {}))
     except core.figure_profile.ConfigurationError as exc:
         raise SpecError(str(exc)) from None
+
+
+def curve_width(spec):
+    """Explicit curve width wins; absent roles retain the legacy 0.8 pt width."""
+    return spec.get("options", {}).get("curve_line_width_pt",
+                                      spec.get("line_roles", {}).get("data", {}).get("line_width_pt", .8))
 
 
 def prepare(data_path, spec):
@@ -213,7 +224,7 @@ def draw(data, spec, layout, typography):
     f, options = spec["fields"], spec.get("options", {})
     summary, limits = cumulative_data(data, spec), _limits(data, spec)
     groups = list(dict.fromkeys(summary["group"]))
-    colors, width = core.palette_colors(spec, groups), options.get("curve_line_width_pt", .8)
+    colors, width = core.palette_colors(spec, groups), curve_width(spec)
     fig, ax = plt.subplots(figsize=(layout["width_mm"] / 25.4, layout["height_mm"] / 25.4), dpi=layout["dpi"])
     fig.subplots_adjust(**layout["margins"])
     legend_config = deepcopy(spec.get("legends", {}))
@@ -232,8 +243,21 @@ def draw(data, spec, layout, typography):
         line.set_gid(f"easyviz-ecdf-curve-{group_index}")
         artists.append({"group": group, "line": line})
     ax.set_axisbelow(True)
+    axis_style = spec.get("line_roles", {}).get("axis", {})
+    if axis_style:
+        for spine in ax.spines.values():
+            if "line_width_pt" in axis_style:
+                spine.set_linewidth(axis_style["line_width_pt"])
+            if "color" in axis_style:
+                spine.set_edgecolor(axis_style["color"])
+        tick_style = {}
+        if "line_width_pt" in axis_style:
+            tick_style["width"] = axis_style["line_width_pt"]
+        if "color" in axis_style:
+            tick_style["color"] = axis_style["color"]
+        ax.tick_params(axis="both", which="both", **tick_style)
     if options.get("grid", False):
-        ax.grid(axis="y", color="#e5e5e5", linewidth=.4, zorder=0)
+        ax.grid(axis="y", **core.line_style(spec, "grid", color="#e5e5e5", linewidth=.4), zorder=0)
     ax.set_xscale(options.get("x_scale", "linear"))
     ax.set_xlim(*limits)
     if "x_ticks" in options:
@@ -288,7 +312,7 @@ def audit_source_artists(data_path, spec, fig):
         actual = line.get_path().vertices
         if line.get_drawstyle() != "steps-post" or line.get_path().should_simplify or actual.shape != (len(vertices), 2) or not np.allclose(actual, vertices, rtol=1e-12, atol=1e-12):
             issues.append({"code": "empirical_step_coordinates_changed", "group": group})
-        if not np.allclose(core.mcolors.to_rgba(line.get_color()), core.mcolors.to_rgba(spec["colors"][group])) or not math.isclose(line.get_linewidth(), options.get("curve_line_width_pt", .8), abs_tol=1e-12) or line.get_linestyle() != "-" or line.get_marker() not in ("None", "none", "", " ") or line.get_alpha() not in (None, 1):
+        if not np.allclose(core.mcolors.to_rgba(line.get_color()), core.mcolors.to_rgba(spec["colors"][group])) or not math.isclose(line.get_linewidth(), curve_width(spec), abs_tol=1e-12) or line.get_linestyle() != "-" or line.get_marker() not in ("None", "none", "", " ") or line.get_alpha() not in (None, 1):
             issues.append({"code": "curve_style_changed", "group": group})
         if any(value < low or value > high for value in values):
             issues.append({"code": "axis_limits_hide_observations", "group": group})
@@ -307,7 +331,7 @@ def audit_source_artists(data_path, spec, fig):
     if "group" in f:
         keys = [h for entry in manager.entries for h in entry["artist"].legend_handles]
         labels = [t.get_text() for entry in manager.entries for t in entry["artist"].get_texts()]
-        if labels != groups or len(keys) != len(groups) or any(not np.allclose(core.mcolors.to_rgba(handle.get_color()), core.mcolors.to_rgba(spec["colors"][group])) or handle.get_linewidth() != options.get("curve_line_width_pt", .8) or handle.get_linestyle() != "-" or handle.get_marker() not in ("None", "none", "", " ") for group, handle in zip(groups, keys)):
+        if labels != groups or len(keys) != len(groups) or any(not np.allclose(core.mcolors.to_rgba(handle.get_color()), core.mcolors.to_rgba(spec["colors"][group])) or handle.get_linewidth() != curve_width(spec) or handle.get_linestyle() != "-" or handle.get_marker() not in ("None", "none", "", " ") for group, handle in zip(groups, keys)):
             issues.append({"code": "curve_legend_mapping_changed"})
     return {"status": "pass" if not issues else "needs_revision", "source_rows": len(raw), "audited_observations": sum(v["observations"] for v in counts.values()), "groups": counts, "ties_retained": True, "smoothing_applied": False, "experimental_independence_inferred": False, "issues": issues}
 
@@ -355,16 +379,18 @@ def render(data_path, spec, out, *, spec_path=None):
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
+            readability = core.panel_readability.measure(fig)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"
                 audit["issues"].append({"code": "source_changed_during_render"})
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             passed = not clipped and not overlap and not missing and audit["status"] == legends["status"] == "pass" and (not fitted or fitted["status"] == "pass")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "input_sha256": input_hash, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "legend_layout": legends, "exports": exports, "visual_review_required": True}
+            qa["readability"] = readability
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim())), "y_limits": list(map(float, fig.axes[0].get_ylim())), "explicit_x_ticks": resolved.get("options", {}).get("x_ticks"), "x_tick_format": resolved.get("options", {}).get("x_tick_format", "plain"), "x_tick_labels": [t.get_text() for t in fig.axes[0].get_xticklabels()]}
-            settings["curve_policy"] = {"method": "count(value <= x) / observation_count", "drawstyle": "steps-post", "ties": "full jump count", "line_width_pt": resolved.get("options", {}).get("curve_line_width_pt", .8), "horizontal_tails": "display extension to x limits", "fraction_range": [0, 1], "vertical_display_padding": .02, "markers": "none", "path_simplification": False}
+            settings["curve_policy"] = {"method": "count(value <= x) / observation_count", "drawstyle": "steps-post", "ties": "full jump count", "line_width_pt": curve_width(resolved), "horizontal_tails": "display extension to x limits", "fraction_range": [0, 1], "vertical_display_padding": .02, "markers": "none", "path_simplification": False}
             settings["renderer"] = {"version": VERSION, "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in HELPERS}}
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "Pillow", "pypdf")}}
             if spec_path is not None:

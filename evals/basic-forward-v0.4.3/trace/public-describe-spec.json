@@ -1,0 +1,392 @@
+{
+  "chart": [
+    "heatmap",
+    "composition",
+    "dotplot",
+    "scatter",
+    "distribution"
+  ],
+  "fields_by_chart": {
+    "heatmap": [
+      "row",
+      "column",
+      "value"
+    ],
+    "composition": [
+      "sample",
+      "category",
+      "value"
+    ],
+    "dotplot": [
+      "x",
+      "y",
+      "size",
+      "color"
+    ],
+    "scatter": [
+      "x",
+      "y"
+    ],
+    "distribution": [
+      "group",
+      "value"
+    ]
+  },
+  "focused_recipes": {
+    "paired": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/paired_plot.py",
+      "required_roles": [
+        "unit",
+        "condition",
+        "value"
+      ],
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/paired-plot.md"
+    },
+    "replicate": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+      "required_roles": [
+        "condition",
+        "unit",
+        "value"
+      ],
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/replicate-plot.md",
+      "conditional_roles": {
+        "component": "Required for stacked/grouped modes; rejected for summary mode."
+      }
+    },
+    "ecdf": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/ecdf_plot.py",
+      "required_roles": [
+        "value"
+      ],
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/ecdf-plot.md"
+    },
+    "interval": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/interval_plot.py",
+      "required_roles": [
+        "label",
+        "estimate",
+        "lower",
+        "upper"
+      ],
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/interval-plot.md"
+    },
+    "timecourse": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/timecourse_plot.py",
+      "required_roles": [
+        "x",
+        "estimate"
+      ],
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/timecourse-plot.md",
+      "conditional_roles": {
+        "sd": "Required for uncertainty.kind=sd; supplied nonnegative SD, no inference from mean-only rows.",
+        "lower,upper": "Required for uncertainty.kind=supplied_bounds; explicit lower/upper meanings must be declared."
+      }
+    },
+    "annotated_matrix": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotated_matrix.py",
+      "required_roles": [
+        "row",
+        "column",
+        "value"
+      ],
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/annotated-matrix.md"
+    }
+  },
+  "workflow_tools": {
+    "inspect_data": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/inspect_data.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/data-exploration.md",
+      "tracks": [
+        "create",
+        "reproduce"
+      ],
+      "purpose": "Inventory files in either track; propose descriptive reading tasks only in create. Use --inventory-only for reproduce."
+    },
+    "analyze": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/analyze.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/statistical-analysis.md",
+      "tracks": [
+        "create"
+      ],
+      "purpose": "Execute a declared analysis plan and retain design, effects, exclusions and multiplicity."
+    },
+    "reference_packet": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/reference_packet.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/reference-to-code.md",
+      "tracks": [
+        "reproduce"
+      ],
+      "purpose": "Stage reference and user data; turn explicit image readings into an unresolved implementation plan."
+    },
+    "audit_reproduction": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/audit_reproduction.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/complex-reproduction.md",
+      "tracks": [
+        "reproduce"
+      ],
+      "purpose": "Check adopted layer coverage, source/output bindings and supplied numeric evidence; visual and scientific review remain separate."
+    },
+    "figure_workbench": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/figure-workbench.md",
+      "tracks": [
+        "create",
+        "reproduce"
+      ],
+      "purpose": "Collect SVG element/region instructions for an Agent to edit plotting code and rerender."
+    },
+    "preview_choices": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/preview_choices.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/preview-choices.md",
+      "tracks": [
+        "create"
+      ],
+      "purpose": "Render same-source descriptive candidates with fixed dimensions, typography and scales; choose by the reading task after image review."
+    },
+    "apply_figure_requests": {
+      "script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/apply_figure_requests.py",
+      "doc": "/Users/starry/Desktop/EasyViz/skills/easyviz/references/apply-figure-requests.md",
+      "tracks": [
+        "create",
+        "reproduce"
+      ],
+      "purpose": "Prepare verified cosmetic spec edits, record Agent rerenders, and restore accepted source/export snapshots into fresh attempts."
+    }
+  },
+  "track": "Optional CLI --track create|reproduce records the caller's adopted track; it is not a plot-spec key or a chart classifier.",
+  "optional_fields": {
+    "scatter": [
+      "group",
+      "size",
+      "unit"
+    ],
+    "distribution": [
+      "unit"
+    ],
+    "composition": [
+      "denominator"
+    ],
+    "dotplot": [
+      "state"
+    ]
+  },
+  "figure_profile": {
+    "profile": "path/to/figure-profile.json",
+    "panel": "named panel",
+    "continuous_scale": "optional named shared continuous scale",
+    "size_scale": "optional named shared area scale for dotplot or scatter with fields.size"
+  },
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    }
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8,
+    "title": 9,
+    "panel": 9
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png",
+    "tiff"
+  ],
+  "seed": 0,
+  "colors": {
+    "category label": "#0072B2"
+  },
+  "palette": "somerville-bright",
+  "colormap": "somerville-sky, another registered preset/Matplotlib colormap, or hex colors",
+  "order": {
+    "x": [],
+    "y": [],
+    "group": [],
+    "sample": [],
+    "category": []
+  },
+  "labels": {
+    "x": "",
+    "y": "",
+    "color": "",
+    "size": "",
+    "title": "",
+    "panel": ""
+  },
+  "legends": {
+    "categorical": {
+      "position": "auto",
+      "key_width_mm": 1.5,
+      "key_height_mm": 1.5,
+      "handletext_gap_mm": 0.7,
+      "row_gap_mm": 0.6,
+      "column_gap_mm": 2
+    },
+    "size": {
+      "position": "auto"
+    },
+    "colorbar": {
+      "position": "auto",
+      "thickness_mm": 2
+    }
+  },
+  "legend_semantics": [
+    "Size marker areas are immutable; key dimensions/markerscale are not accepted for size legends.",
+    "Colorbar default length is 18-28 mm, guided by plot side; labels/range are measured.",
+    "Manual categorical/size settings: position=manual, anchor_mm=[x,y], loc, ncol. Manual colorbar settings: position=manual, rect_mm=[x,y,w,h], orientation. Coordinates start at canvas lower left."
+  ],
+  "shared_options": [
+    "grid",
+    "x_limits",
+    "x_rotation",
+    "x_scale",
+    "y_limits",
+    "y_scale"
+  ],
+  "chart_options": {
+    "heatmap": [
+      "annotate_values",
+      "cell_aspect",
+      "color_center",
+      "color_limits",
+      "value_format"
+    ],
+    "composition": [
+      "bar_width",
+      "missing_categories",
+      "normalization",
+      "percent_axis"
+    ],
+    "dotplot": [
+      "color_center",
+      "color_limits",
+      "max_area_pt2",
+      "missing_cells",
+      "size_legend",
+      "size_max",
+      "small_positive_area_pt2",
+      "state_markers"
+    ],
+    "scatter": [
+      "alpha",
+      "max_area_pt2",
+      "point_area_pt2",
+      "point_color",
+      "point_edge_width_pt",
+      "point_style",
+      "reference_lines",
+      "regression",
+      "regression_color",
+      "size_legend",
+      "size_max"
+    ],
+    "distribution": [
+      "alpha",
+      "box_style",
+      "box_width",
+      "kind",
+      "orientation",
+      "point_area_pt2",
+      "point_edge_width_pt",
+      "point_gap_pt",
+      "point_layout",
+      "point_max_offset_mm",
+      "point_style",
+      "violin_fill_alpha",
+      "violin_inner",
+      "violin_inner_width",
+      "violin_median_visible"
+    ]
+  },
+  "scatter_reference_lines": {
+    "x": [
+      -1,
+      1
+    ],
+    "y": [
+      1.3
+    ]
+  },
+  "observation_style": {
+    "point_style": "filled (legacy default) or hollow; hollow is limited to fixed scatter/distribution marks",
+    "point_edge_width_pt": "Positive finite JSON number; requires hollow; default 0.45 pt",
+    "alpha": "Explicit opacity is preserved; new unprofiled create drafts use 1",
+    "meaning": "Hollow observations retain the same Matplotlib s and coordinates, have no face fill and use their group/point color for edges. Group legend keys match. Hollow and edge options are rejected with scatter fields.size because quantitative circle fill area must remain filled."
+  },
+  "distribution_box_style": {
+    "box_style": "filled (legacy default) or outline; requires kind=box",
+    "meaning": "Outline boxes have no face fill, keeping observations visible beneath the summary boundary."
+  },
+  "distribution_box_width": "Optional finite 0 < box_width <= 1, in category-center spacing units; legacy default 0.5. New drafts use 0.18; inspect the actual physical thickness after layout.",
+  "distribution_violin_style": {
+    "violin_fill_alpha": "Optional JSON number in [0, 1], controlling only the KDE face; explicit values keep the outline opaque. Omission preserves the legacy artist opacity.",
+    "violin_inner": "none (legacy default)|box; requires kind=violin",
+    "violin_inner_width": "Optional 0 < width <= 0.7 category-center units, requires violin_inner=box; default 0.12",
+    "violin_median_visible": "Optional boolean, requires violin_inner=box; default true",
+    "meaning": "The optional hollow inner box spans raw-observation Q1 to Q3, with an optional median line and no whiskers. These summaries are independent of the KDE's separately normalized width; neither width encodes sample count."
+  },
+  "distribution_point_layout": {
+    "point_layout": "jitter (default) or beeswarm",
+    "point_max_offset_mm": 4,
+    "point_gap_pt": 0.3,
+    "meaning": "Beeswarm moves only the categorical coordinate after final layout; preserves values, rows, marker size and canvas. Unresolved mark overlaps fail QA and remain in exported data."
+  },
+  "statistics": {
+    "method": "none; pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)",
+    "groups": [
+      "A",
+      "B"
+    ],
+    "unit": "pairing ID column (mandatory for wilcoxon)",
+    "annotate": false
+  },
+  "semantics": [
+    "Margins are subplot bounds in 0..1, not padding widths.",
+    "layout.auto_fit=true measures labels and guides within the unchanged canvas; do not combine it with margins or manual guide coordinates. It is a technical fit, not aesthetic certification.",
+    "orders must include every category exactly once.",
+    "dotplot and mapped scatter max_area_pt2 denote true circle geometric fill area, excluding stroke; area=size/size_max*max_area_pt2 and Matplotlib s=4/pi*area. Zero means zero area.",
+    "Legacy point_area_pt2 for fixed scatter/distribution marks is the Matplotlib s parameter (squared diameter), not geometric circle fill area; settings record both quantities.",
+    "Scatter size options require fields.size and cannot be combined with point_area_pt2.",
+    "Scatter options.reference_lines draws supplied numeric positions only; it does not compute classes or significance.",
+    "composition normalization is mandatory; sample_sum uses only supplied categories.",
+    "denominator values repeat for all categories within a sample; incomplete composition remains below 1.",
+    "No test is run unless requested; default distributions are descriptive boxplots and all observations.",
+    "SVG preserves editable text and references the font; PDF embeds the selected font."
+  ]
+}

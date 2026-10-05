@@ -1,0 +1,77 @@
+{
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "seed": 417,
+  "chart": "heatmap",
+  "fields": {
+    "row": "subtype_label",
+    "column": "depot_label",
+    "value": "percent"
+  },
+  "order": {
+    "x": [
+      "Subcutaneous",
+      "Omental",
+      "Perivascular"
+    ],
+    "y": [
+      "myC00 M2",
+      "myC01 M2",
+      "myC04 M2",
+      "myC07 M2",
+      "myC08 M2",
+      "myC09 M2",
+      "myC11 M2",
+      "myC12 M2",
+      "myC13 M2",
+      "myC02 LAM",
+      "myC06 M1/M2-like",
+      "myC10 MMe",
+      "myC15 Mox",
+      "myC05 Non-classical Mo",
+      "myC14 Classical Mo",
+      "myC03 DC2"
+    ]
+  },
+  "labels": {
+    "x": "Adipose depot",
+    "y": "Myeloid subtype",
+    "color": "Within-depot share (%)"
+  },
+  "options": {
+    "color_limits": [
+      0,
+      40
+    ],
+    "cell_aspect": "auto",
+    "x_rotation": 0,
+    "annotate_values": false
+  },
+  "legends": {
+    "colorbar": {
+      "position": "right",
+      "orientation": "vertical",
+      "length_mm": 30,
+      "thickness_mm": 2,
+      "ticks": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ]
+    }
+  }
+}

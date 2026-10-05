@@ -1,0 +1,40 @@
+{
+  "status": "ready_with_notes",
+  "accepted_candidate": "attempt-01/",
+  "review_packet": {
+    "full_png": "attempt-01/panel.png",
+    "actual_pdf": "attempt-01/panel.pdf",
+    "whole_canvas_review_png": "qa/attempt-01/png-96dpi.png",
+    "whole_canvas_review_pdf_raster": "qa/attempt-01/pdf-96dpi.png",
+    "spec": "attempt-01-spec.json",
+    "caption": "caption.md",
+    "measurements": "qa/attempt-01/actual-checks.json"
+  },
+  "review_role": "Independent EasyViz Figure Reviewer, with implementing Agent and parent actual-image inspection recorded separately.",
+  "independent_report": "qa/review-pass-01.md",
+  "visual_review_passes": 1,
+  "actual_render_attempts": 1,
+  "visual_repairs": 0,
+  "first_actual_render_unchanged": true,
+  "critical_findings": [],
+  "major_findings": [],
+  "minor_findings": [],
+  "residual_notes": [
+    {"location": "Point/summary crossings", "evidence": "A few filled samples touch median/quartile/whisker lines; the independent reviewer found both observation symbols and summary extents readable at supplied proportions.", "action": "Retain the first actual render; no revision needed."},
+    {"location": "Physical viewing", "evidence": "Actual whole-canvas PNG/PDF-derived 96 dpi images were inspected and actual dimensions/fonts measured. Calibrated physical print inspection is unavailable.", "action": "Place the panel at the recorded 110 × 88 mm size in manuscript assembly."},
+    {"location": "Local workflow environment", "evidence": "Pre-existing project scientific Python was required; system and app bundled Python lacked Matplotlib before rendering.", "action": "Runnable command records the working environment. No install/build was performed."}
+  ],
+  "checks": {
+    "correct_independent_source_grain": "passed",
+    "all_33_units_preserved": "passed",
+    "independent_source_means_and_quartiles": "passed",
+    "actual_drawn_svg_summary_values": "passed",
+    "actual_110x88_mm_canvas_all_formats": "passed",
+    "actual_arial_8_pt_pdf_embedding": "passed",
+    "no_inferential_test_or_in_image_prose": "passed",
+    "first_render_hashes": "passed",
+    "actual_palette_strokes_labels_and_crossings": "passed by independent first-pass image review",
+    "calibrated_print_view": "not_checked"
+  },
+  "scope_limit": "This synthetic local usability result does not establish biological findings, aesthetic superiority, publication acceptance, arbitrary-data generalization, external-model behavior, or a with/without-skill effect."
+}

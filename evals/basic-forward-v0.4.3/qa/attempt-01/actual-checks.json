@@ -1,0 +1,165 @@
+{
+  "scope": "/Users/starry/Desktop/EasyViz/evals/basic-forward-v0.4.3/attempt-01",
+  "source_grain_and_points": {
+    "status": "passed",
+    "method": "Independent csv grouping by arm + ID, Python statistics.mean; direct saved-row comparison.",
+    "source_rows": 66,
+    "expected_units": 33,
+    "plotted_rows": 33,
+    "unit_set_exact": true,
+    "duplicate_unit_rows": 0,
+    "maximum_mean_absolute_error": 7.105427357601002e-15,
+    "counts_by_arm": {
+      "Vehicle": 9,
+      "Dose 1": 13,
+      "Dose 2": 11
+    },
+    "numeric_y_values_preserved": true
+  },
+  "descriptive_summaries": {
+    "status": "passed",
+    "method": "Python statistics.quantiles inclusive, independently recomputed from original reads.",
+    "maximum_difference_from_preparation_audit": 3.552713678800501e-15,
+    "values": {
+      "Vehicle": {
+        "n": 9,
+        "q1": 11.59745,
+        "median": 12.966899999999999,
+        "q3": 17.28865,
+        "whisker_low": 11.265450000000001,
+        "whisker_high": 21.32765
+      },
+      "Dose 1": {
+        "n": 13,
+        "q1": 22.86495,
+        "median": 25.2618,
+        "q3": 26.752000000000002,
+        "whisker_low": 20.7199,
+        "whisker_high": 30.3874
+      },
+      "Dose 2": {
+        "n": 11,
+        "q1": 27.578075,
+        "median": 29.43125,
+        "q3": 34.43665,
+        "whisker_low": 20.95895,
+        "whisker_high": 40.71955
+      }
+    }
+  },
+  "actual_drawn_summary_geometry": {
+    "status": "passed",
+    "tool": "Actual SVG box patch extrema, median segments and whisker-cap segments; invert documented physical axis mapping.",
+    "maximum_error_nmol_min": 8.887002067581307e-08,
+    "values": {
+      "Vehicle": {
+        "q1": 11.597449980644303,
+        "q3": 17.288650075539316,
+        "median": 12.966899992643363,
+        "whisker_low": 11.265450088870022,
+        "whisker_high": 21.327650061059842
+      },
+      "Dose 1": {
+        "q1": 22.8649500518044,
+        "q3": 26.752000038212156,
+        "median": 25.261799971121558,
+        "whisker_low": 20.719899966866677,
+        "whisker_high": 30.38740006674985
+      },
+      "Dose 2": {
+        "q1": 27.578075056902644,
+        "q3": 34.43665004394437,
+        "median": 29.43125006015691,
+        "whisker_low": 20.958949944079396,
+        "whisker_high": 40.71955003741931
+      }
+    }
+  },
+  "actual_export_dimensions": {
+    "status": "passed",
+    "tool": "PyMuPDF page.rect; XML SVG width/height; Pillow PNG size/info",
+    "pdf_mm": [
+      110.00000406901042,
+      88.00000110202365
+    ],
+    "svg_mm": [
+      110.00000013333332,
+      88.00000003611109
+    ],
+    "png_pixels": [
+      1299,
+      1039
+    ],
+    "png_dpi": [
+      299.9994,
+      299.9994
+    ]
+  },
+  "actual_typography": {
+    "status": "passed",
+    "tool": "PyMuPDF actual text spans and extract_font; SVG text style inspection",
+    "pdf_span_sizes_pt": [
+      8.0
+    ],
+    "pdf_span_fonts": [
+      "ArialMT"
+    ],
+    "pdf_embedded_fonts": [
+      {
+        "base_font": "EPASXM+ArialMT",
+        "type": "Type0",
+        "bytes": 23984
+      }
+    ],
+    "svg_font_styles": [
+      "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+      "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+    ],
+    "actual_font_record": "Arial",
+    "font_substituted": false
+  },
+  "panel_text": {
+    "status": "passed",
+    "svg_text": [
+      "Vehicle",
+      "Dose 1",
+      "Dose 2",
+      "Treatment arm",
+      "10",
+      "15",
+      "20",
+      "25",
+      "30",
+      "35",
+      "40",
+      "Activity (nmol/min)"
+    ],
+    "pdf_text": "Vehicle\nDose 1\nDose 2\nTreatment arm\n10\n15\n20\n25\n30\n35\n40\nActivity (nmol/min)\n"
+  },
+  "inference": {
+    "status": "passed",
+    "requested_method": "none",
+    "saved_stats": {
+      "method": "none",
+      "note": "Descriptive visualization; no inferential test requested.",
+      "box_definition": "Median; 25th and 75th percentiles; whiskers to observations within 1.5 IQR. Every observation is drawn as a point."
+    }
+  },
+  "first_render_freeze": {
+    "status": "passed",
+    "files_compared": 8
+  },
+  "inspection_rasters": [
+    "pdf-96dpi.png",
+    "png-96dpi.png",
+    "pdf-150dpi.png"
+  ],
+  "inspection_note": "96 dpi whole-canvas rasters model a nominal screen size; calibrated physical print viewing is unavailable. Actual mm/page and 8 pt font measurements accompany visual inspection.",
+  "visual_review": {
+    "record": "qa/review-pass-01.md",
+    "role": "independent",
+    "pass": 1,
+    "status": "ready_with_notes",
+    "critical_major_minor_failures": 0
+  }
+}

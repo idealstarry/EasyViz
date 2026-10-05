@@ -1,0 +1,39 @@
+{
+  "track": "create",
+  "reference_image_adopted": false,
+  "author_plotting_code_used": false,
+  "licence": "CC-BY-4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source": {
+    "article": "https://www.nature.com/articles/s41592-023-02162-w",
+    "doi": "10.1038/s41592-023-02162-w",
+    "prepared_source_path": "examples/no-author-code/truong-components/inputs/source-data.csv",
+    "prepared_source_sha256": "29dce5619e8788d86e0dd02396849dbc4f1dbfa5eb2faef5d2ac342c8fd10ab1",
+    "source_sheet": "Fig. 1b",
+    "source_rows": "4–8",
+    "value_definition": "Author-supplied HDR percentage; mean and sample SD across 3 biological replicates per condition",
+    "selection": "All five source drug conditions; no donor/Cas9 and NTC controls are explicitly outside this five-treatment display. All 15 selected HDR values are preserved.",
+    "licence_evidence": "Existing repository Truong provenance records CC BY 4.0 and 3 biological replicates per condition."
+  },
+  "prepared_csv_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+  "main_rows": 15,
+  "candidate_changes": [
+    "Single bright blue identity for the one outcome",
+    "Outlined summary bars and opaque same-hue observations",
+    "Separate clear summary interval and axis strokes"
+  ],
+  "comparison_preserved": [
+    "source CSV bytes",
+    "scientific encodings and summaries",
+    "numeric axes/normalization",
+    "110 × 88 mm canvas",
+    "8 pt Arial",
+    "labels and guide content"
+  ],
+  "transfer_probe": {
+    "description": "Switch to the source-supplied mutEJ percentage, rename all mapped fields, and show four instead of five drug conditions; the true numeric range expands to 0–55%.",
+    "rows": 12,
+    "synthetic": false,
+    "not_a_fresh_biological_analysis": true
+  }
+}

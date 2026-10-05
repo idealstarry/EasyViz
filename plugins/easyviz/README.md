@@ -1,6 +1,6 @@
 # EasyViz
 
-Create and reproduce scientific plots from user data. In create, start with a prepared data directory or a scientific question. In reproduce, use a reference image and your own data, including references without published Source Data or author code. Export individual panels at their final physical size.
+Create and reproduce scientific plots from user data. In create, start with a prepared data directory or a scientific question, choose a basic chart and refine its color, boundaries and proportions. In reproduce, use a reference image and your own data, including references without published Source Data or author code. Export individual panels at their final physical size.
 
 ## Skills
 
@@ -40,6 +40,8 @@ For directory exploration, use `inspect_data.py`; for an adopted analysis, use `
 Copy bundled case folders into your writable project before running or adapting them. The case scripts may write beside their inputs; the installed plugin should remain a reusable source.
 
 - [Chart inputs and settings](skills/easyviz/references/chart-library.md)
+- [Five basic Create panels with runnable Source Data](skills/easyviz/assets/cases/basic-panels/README.md)
+- [Create mark colors and line roles](skills/easyviz/references/create-style.md)
 - [Directory exploration](skills/easyviz/references/data-exploration.md)
 - [Planned analysis](skills/easyviz/references/statistical-analysis.md)
 - [Reference to code](skills/easyviz/references/reference-to-code.md)

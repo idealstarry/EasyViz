@@ -112,6 +112,23 @@ with tempfile.TemporaryDirectory(prefix='easyviz-package-') as temporary:
     selected = list(csv.DictReader((sandbox / 'recipe-output/plotting-data.csv').open()))
     assert {r['sender'] for r in selected} == set(ids)
     checks['annotated_heatmap_recipe'] = 'pass; separate synthetic 4×4 matrix, leading-zero IDs, constant binary annotation, negative values and automatic means'
+    basic = skill / 'assets/cases/basic-panels'
+    if basic.is_dir():
+        output = sandbox / 'basic-output'
+        run(basic / 'plot.py', '--tools', skill / 'scripts', '--out', output)
+        run(basic / 'validate.py', '--tools', skill / 'scripts', '--candidate-only',
+            '--outputs', output, '--out', sandbox / 'basic-validation.json')
+        for case in json.loads((basic / 'manifest.json').read_text())['cases']:
+            name = case['id']
+            bundled_out, actual_out = basic / name / 'output', output / name / 'output'
+            actual_qa = json.loads((actual_out / 'qa.json').read_text())
+            assert actual_qa['status'] == 'pass' and actual_qa['input_rows'] == case['rows']
+            assert actual_qa['readability']['advisory_only'] is True
+            with Image.open(bundled_out / 'panel.png') as bundled, Image.open(actual_out / 'panel.png') as actual:
+                assert bundled.size == actual.size
+                assert ImageChops.difference(bundled.convert('RGBA'), actual.convert('RGBA')).getbbox(alpha_only=False) is None, name
+            assert (bundled_out / 'plotting-data.csv').read_bytes() == (actual_out / 'plotting-data.csv').read_bytes(), name
+            checks['basic_' + name] = f"pass; {case['rows']} source rows, actual source/artist/export validation, identical reviewed PNG pixels and plotting CSV, advisory readability"
 report = {'status':'pass','archive':build['archive'],'archive_sha256':build['sha256'],
           'extracted_file_count':len(names),'checks':checks,
           'environment': {'python': platform.python_version(), 'platform': platform.system(),

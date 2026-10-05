@@ -1,0 +1,139 @@
+{
+  "scope": "/Users/starry/Desktop/EasyViz/evals/basic-forward-v0.4.3",
+  "trial_purpose": "Fresh local Agent basic Create workflow usability only; no external-model or with/without-skill effect claim.",
+  "data": {
+    "source": "inputs/assays.csv",
+    "design_notes": "inputs/study-notes.md",
+    "provenance": "inputs/provenance.json",
+    "original_source_archive": "data/source/",
+    "prepared_source": "data/specimen-means.csv",
+    "audit": "data/data-audit.json",
+    "experimental_unit_key": [
+      "arm",
+      "biospecimen_key"
+    ],
+    "source_rows": 66,
+    "independent_units": 33,
+    "technical_reads_per_unit": 2,
+    "transformation": "Arithmetic mean within arm + biospecimen_key; all rows and units retained.",
+    "tests": "none"
+  },
+  "public_docs_read": [
+    {
+      "path": "skills/easyviz/SKILL.md",
+      "purpose": "Create track, explicit unit preparation, fixed canvas, output rules"
+    },
+    {
+      "path": "skills/easyviz/references/create.md",
+      "purpose": "Choose simple box + all points for median, spread and observations"
+    },
+    {
+      "path": "skills/easyviz/references/quick-start.md",
+      "purpose": "Public draft_spec.py and render.py front door; explicit roles and auto-fit"
+    },
+    {
+      "path": "skills/easyviz/references/create-style.md",
+      "purpose": "Crisp observation/box geometry and editable line roles"
+    },
+    {
+      "path": "skills/easyviz/references/palettes.md",
+      "purpose": "Explicit stable three-arm color mapping and inspect actual palette"
+    },
+    {
+      "path": "skills/easyviz/assets/palettes/palettes.json",
+      "purpose": "Read exact first three somerville-bright hex colors"
+    },
+    {
+      "path": "skills/easyviz/assets/palettes/palette-swatches.png",
+      "purpose": "Actually inspect available catalog combinations"
+    },
+    {
+      "path": "skills/easyviz/references/panel-layout.md",
+      "purpose": "Arial 8 pt, explicit 110 × 88 mm canvas, independent export dimensions"
+    },
+    {
+      "path": "skills/easyviz/references/chart-library.md",
+      "purpose": "Only distribution input contract and supported specification/options sections"
+    },
+    {
+      "path": "skills/easyviz/references/collision-placement.md",
+      "purpose": "Physical beeswarm options and unchanged numeric values"
+    },
+    {
+      "path": "skills/easyviz/references/visual-review.md",
+      "purpose": "Actual images, separate numeric evidence, maximum three total passes"
+    },
+    {
+      "path": "skills/easyviz-figure-reviewer/SKILL.md",
+      "purpose": "Independent review packet and findings format"
+    }
+  ],
+  "tools_used": [
+    "exec_command: read specified inputs and public resources; run public CLI and local workflow/audit scripts",
+    "apply_patch: create runnable preparation/plotting wrapper and actual-output audit; save spec/caption/records",
+    "mcp__codex_app__load_workspace_dependencies: locate bundled Python; bundled environment did not contain matplotlib",
+    "public draft_spec.py --help and render.py --describe-spec: discover supported schema/options without implementation reads",
+    "public draft_spec.py: create validated distribution draft from explicit group/value/unit roles",
+    "public render.py: actual SVG/PDF/PNG and data/settings/QA export, --track create",
+    "view_image: palette card; actual full PNG; actual PNG/PDF whole-canvas 96 dpi review views",
+    "collaboration.spawn_agent: independent EasyViz Figure Reviewer for first actual candidate"
+  ],
+  "environment_preflight": [
+    {
+      "python": "python3",
+      "command": "public render.py --describe-spec",
+      "result": "failed before rendering: ModuleNotFoundError: matplotlib"
+    },
+    {
+      "python": "/Users/starry/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "commands": [
+        "public render.py --describe-spec",
+        "public draft_spec.py --help"
+      ],
+      "result": "failed before rendering: ModuleNotFoundError: matplotlib"
+    },
+    {
+      "python": "/Users/starry/Desktop/EasyViz/.venv/bin/python",
+      "source": "Parent supplied existing ready environment path after failures",
+      "result": "public schema/help/draft/render succeeded; no install or build"
+    },
+    {
+      "font": "Arial",
+      "actual_path": "/System/Library/Fonts/Supplemental/Arial.ttf",
+      "result": "available; actual PDF embeds ArialMT"
+    }
+  ],
+  "runtime_policy": "Only pre-existing environments used. No runtime/docs changes, installs, builds or Git operations by this trial. Matplotlib and XDG caches for the runnable workflow are scoped under this trial.",
+  "public_doc_inconsistency_at_read_time": {
+    "finding": "create.md recommended box/ECDF candidates for any eligible observation table; SKILL Execute conditioned previews on an unresolved reading task and technical observations require preparation.",
+    "resolution_for_trial": "Explicit comparison task; prepare technical means and adopt simplest documented box + all specimen points directly. No forced preview alternatives.",
+    "reported_early_to_parent": true,
+    "later_documentation_repair": "Parent reported narrowing create.md preview wording after the trial reading. This is separate from the frozen first actual render; the trial did not re-read changed docs or change runtime."
+  },
+  "execution": {
+    "script": "make_panel.py",
+    "first_command": "/Users/starry/Desktop/EasyViz/.venv/bin/python make_panel.py --attempt attempt-01",
+    "public_draft_record": "trace/attempt-01-draft-command.json",
+    "public_render_record": "trace/attempt-01-render-command.json",
+    "public_schema_record": "trace/public-describe-spec.json",
+    "first_actual_render": "attempt-01/",
+    "first_render_freeze": "attempt-01-freeze.json",
+    "pre_render_design_edits": "Explicit chart field mapping, arm order, palette, 110 × 88 mm, Arial 8 pt, full formats, axis labels, no tests, outline box + all opaque points, measured beeswarm.",
+    "render_attempts": 1,
+    "visual_repairs": 0,
+    "review_pass_limit": 3,
+    "first_actual_render_preserved": true
+  },
+  "verification": {
+    "script": "verify_panel.py",
+    "command": "/Users/starry/Desktop/EasyViz/.venv/bin/python verify_panel.py --attempt attempt-01",
+    "actual_record": "qa/attempt-01/actual-checks.json",
+    "methods": "Independent source means and quantiles; saved SVG summary geometry; actual PDF page and text/font embedding; actual SVG page/text; PNG pixels/dpi; frozen output hashes.",
+    "visual_scope": "Whole actual PNG plus PDF-derived and PNG-derived 96 dpi views at the declared canvas proportions. Display calibration and physical print viewing are unavailable.",
+    "independent_review_record": "qa/review-pass-01.md",
+    "review_passes": 1,
+    "final_status": "ready_with_notes",
+    "final_issues": "qa/issues-final.json"
+  },
+  "prohibited_context_not_read": "No other gallery case, eval result, implementation source/guidance, or external-model response was read."
+}

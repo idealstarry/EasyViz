@@ -1,0 +1,39 @@
+{
+  "track": "create",
+  "reference_image_adopted": false,
+  "author_plotting_code_used": false,
+  "licence": "CC-BY-4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source": {
+    "article": "https://www.nature.com/articles/s41467-023-36983-2",
+    "doi": "10.1038/s41467-023-36983-2",
+    "data_release": "https://data.mendeley.com/datasets/y3pxvr4xbf/2",
+    "prepared_source_path": "examples/no-author-code/massier-bmi-violin/inputs/source-data.csv",
+    "prepared_source_sha256": "7b74fb379e3ad6101a7ec81a641e1bc11c20e0812170d3f1857d72d3e0d41172",
+    "value_definition": "Participant BMI, kg/m²",
+    "selection": "All complete rows in Krieg, Petrus, Kerr: 23 + 29 + 77 = 129, zero missing selected values. Selection is an explicit gallery subset, not evidence-based exclusion.",
+    "excluded_context": "Full source has 864 records, 858 observed BMI and six missing BMI; no claim that the selected subset represents every cohort.",
+    "licence_evidence": "Existing case attribution and Source Data record identify Massier DOI and Mendeley release under CC BY 4.0."
+  },
+  "prepared_csv_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+  "main_rows": 129,
+  "candidate_changes": [
+    "Bright blue/coral/jade cohort colors",
+    "Opaque raw points; unfilled box or crisp violin boundaries",
+    "Declared summary strokes independent of data outlines"
+  ],
+  "comparison_preserved": [
+    "source CSV bytes",
+    "scientific encodings and summaries",
+    "numeric axes/normalization",
+    "110 × 88 mm canvas",
+    "8 pt Arial",
+    "labels and guide content"
+  ],
+  "transfer_probe": {
+    "description": "Add the complete 56-person Arner, E cohort (185 total), rename all field mappings, and preserve the 15–60 kg/m² numeric scale.",
+    "rows": 185,
+    "synthetic": false,
+    "not_a_fresh_biological_analysis": true
+  }
+}

@@ -27,6 +27,20 @@ python3 -m venv .venv
 
 ## Workflow helpers
 
+Create starts with a basic single plot. `create_style.py` fills missing cosmetic
+choices in new unprofiled drafts and previews; explicit overrides take
+precedence. `crisp` is the default and `legacy` is available for earlier preview
+fallbacks. Saved renderer specifications are not rewritten. Run the five
+[basic-panel cases](../examples/create/basic-panels/README.md) before accepting
+changes to observation boundaries, box widths, bar outlines or violin summaries.
+
+Core and focused renderers write advisory `qa.readability` measurements from
+`panel_readability.measure(fig)`. Custom code may call it after final layout.
+It records actual physical mark spans, effective contrast against a uniform
+background, stroke widths and legend bounds without modifying artists or QA
+pass/fail. Thresholds are configurable review cues; inspect actual images for
+occlusion, heatmap semantics, text and color accessibility.
+
 Keep two tracks. In create, [inspect_data.py](../skills/easyviz/references/data-exploration.md) inventories prepared CSV/TSV/XLSX data and proposes concrete reading tasks; [analyze.py](../skills/easyviz/references/statistical-analysis.md) executes an adopted descriptive or inferential plan separately from drawing. Preserve literal IDs, source values, experimental-unit declarations, exclusions, effect direction and comparison families. Unknown design supports descriptive previews, not inferred independent sample counts.
 
 In reproduce, stage the supplied reference and user tables with [reference_packet.py](../skills/easyviz/references/reference-to-code.md), obtain a fresh image reading, adopt each layer and map it to code. Implement unfamiliar geometry explicitly. A paper's Source Data or author code is not an entry requirement; published Source Data cases provide auditable learning and numerical validation evidence.
@@ -133,4 +147,4 @@ For each release, set the manifest version before building and record the archiv
 
 The historical initial release evidence is under `evals/release-qa/`; it identifies its original 0.1.0 archive. Later releases must identify their own archive and applicable checks. GitHub release publication and public plugin-directory submission are separate from building or local installation.
 
-The [0.4.2 QA record](../evals/release-qa/v0.4.2/README.md) records this version's checks and archive identity. Do not carry an earlier archive's checksum or successful CI status forward to a new build.
+The [0.4.3 QA record](../evals/release-qa/v0.4.3/README.md) records this version's checks and archive identity. Do not carry an earlier archive's checksum or successful CI status forward to a new build.

@@ -21,4 +21,12 @@ Original EasyViz implementation and documentation are licensed under the [MIT Li
 
 No author plotting scripts are bundled in the portable plugin. Independently written implementations do not establish equivalence with a paper's unpublished statistical choices or post-export editing.
 
+The `basic-panels` create collection reuses compact, attributed data from the
+Massier, Urschel and Truong cases above under CC BY 4.0. It introduces new
+single-panel designs rather than new studies or reproduced published panels.
+Each case records prepared-source hashes, mappings and extraction references.
+The Massier BMI and depot proportions, Urschel participant pairs and Truong
+drug-treatment HDR replicates retain their source semantics. No full workbook
+or article PDF is included in this collection.
+
 The paired-myeloid case derives tidy data from Massier source workbook `Figure_8d_8e.xlsx`, preserving worksheet, row, and source-column references. It uses all 16 supplied myeloid score columns for 15 Petrus and 37 Kerr participants, computes follow-up-minus-baseline differences and descriptive summaries, and uses published Figure 2d subtype descriptions. The five-year transfer uses the same study's Kerr records. Source scores retain their supplied units and normalization; they are not reinterpreted as measured cell counts or proportions. The case's provenance records the source and prepared-data hashes and the time-point mapping; no author plotting code was used.

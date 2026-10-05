@@ -454,6 +454,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
             overlap, oblique = core.check_tick_label_overlap(fig, fig.canvas.get_renderer())
             legend = fig._easyviz_legend_layout.validate()
             exports = core.export(fig, out, resolved, layout)
+            readability = core.panel_readability.measure(fig)
             unchanged = hashlib.sha256(data_path.read_bytes()).hexdigest() == input_hash
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             fitted = getattr(fig, "_easyviz_auto_layout", None)
@@ -464,12 +465,13 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
                   "source_to_artist_audit": audit, "clipped_text": clipped, "overlapping_tick_labels": overlap,
                   "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "legend_layout": legend,
                   "auto_layout": fitted, "exports": exports, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "visual_review_required": True}
+            qa["readability"] = readability
             qa["rendered_text"] = _font_evidence(fig)
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, input_file=str(data_path.resolve()), input_sha256=input_hash,
                             supplied_spec=deepcopy(spec), renderer={"version": VERSION, "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                             "helper_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-                                              for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")
+                                              for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py")
                                               if Path(__file__).with_name(name).is_file()}},
                             runtime={"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "Pillow", "pypdf")}},
                             axis_by_series=axis_mapping(data, spec), auto_layout=fitted,

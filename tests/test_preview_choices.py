@@ -134,10 +134,10 @@ class PreviewChoicesTests(unittest.TestCase):
                 self.assertIn("Experimental independence is unconfirmed", (directory / "caption.md").read_text())
                 self.assertFalse(self.read(directory / "stats.json")["tests_performed"])
                 if choice["id"] != "ecdf":
-                    self.assertEqual(settings["options"]["alpha"], .65)
-                    self.assertEqual(qa_child["source_to_artist_audit"]["intended_point_alpha"], .65)
+                    self.assertEqual(settings["options"]["alpha"], 1)
+                    self.assertEqual(qa_child["source_to_artist_audit"]["intended_point_alpha"], 1)
                     for color in qa_child["source_to_artist_audit"]["actual_point_facecolors"].values():
-                        self.assertTrue(all(rgba[3] == .65 for rgba in color))
+                        self.assertTrue(all(rgba[3] == 1 for rgba in color))
                 for file in choice["files"]:
                     self.assertEqual(file["sha256"], hashlib.sha256((out / file["path"]).read_bytes()).hexdigest())
         cumulative = self.rows(out / "ecdf/cumulative-data.csv")
@@ -162,6 +162,9 @@ class PreviewChoicesTests(unittest.TestCase):
             ({"row_kind": "summaries"}, "row_kind"),
             ({"row_kind": "technical_replicates"}, "technical replicates"),
             ({"statistics": {"method": "welch"}}, "Unknown request"),
+            ({"style_mode": "soft"}, "style_mode"),
+            ({"line_roles": {"axis": {"line_width_pt": True}}}, "line_roles.axis.line_width_pt"),
+            ({"line_roles": {"unknown": {"color": "red"}}}, "line_roles"),
             ({"design": {"structure": "paired", "confirmed": True, "unit_definition": "participant"}}, "paired_plot"),
             ({"measurement_units": ""}, "measurement_units"),
             ({"options": {"value_limits": [2, 10]}}, "every observation"),
@@ -230,6 +233,7 @@ class PreviewChoicesTests(unittest.TestCase):
 
     def test_point_alpha_applies_only_to_raw_marks_and_rejects_invalid_values(self):
         request = deepcopy(self.request)
+        request["style_mode"] = "legacy"
         request["options"] = {"include_violin": True}
         _, _, default = preview.prepare_request(self.source.read_bytes(), request)
         request["options"]["point_alpha"] = 1
@@ -269,7 +273,7 @@ class PreviewChoicesTests(unittest.TestCase):
             fig, colors = original_draw(*args)
             from matplotlib.collections import PathCollection
             points = next(p for p in fig.axes[0].collections if isinstance(p, PathCollection))
-            points.set_alpha(1)
+            points.set_alpha(.65)
             return fig, colors
 
         with patch.object(core, "draw", side_effect=bad_alpha):
@@ -280,7 +284,95 @@ class PreviewChoicesTests(unittest.TestCase):
         audit = qa["source_to_artist_audit"]
         self.assertTrue(audit["numeric_values_unchanged"])
         self.assertIn("actual observation alpha differs", " ".join(audit["issues"]))
-        self.assertEqual(audit["intended_point_alpha"], .65)
+        self.assertEqual(audit["intended_point_alpha"], 1)
+
+    def test_crisp_new_choices_share_draft_strokes_and_preserve_source_geometry(self):
+        self.request["options"] = {"include_violin": True, "value_limits": [0, 15]}
+        request_before = deepcopy(self.request)
+        _, _, specs = preview.prepare_request(self.source.read_bytes(), self.request)
+        for choice, spec in specs:
+            with self.subTest(choice=choice):
+                layout, typography, rc = core.setup(spec)
+                with core.plt.rc_context(rc):
+                    if choice == "ecdf":
+                        data = preview.ecdf.prepare(self.source, spec)
+                        fig, colors, _ = preview.ecdf.draw(data, spec, layout, typography)
+                        self.assertTrue(all(line.get_linewidth() == .85 for line in fig.axes[0].lines))
+                        self.assertEqual(preview.ecdf.audit_source_artists(self.source, spec, fig)["status"], "pass")
+                    else:
+                        data = core.prepare(self.source, spec)
+                        fig, colors = core.draw(data, spec, layout, typography, core.statistics(data, spec))
+                        fig.canvas.draw()
+                        audit = preview.audit_distribution_artists(self.source.read_bytes(), spec, fig)
+                        self.assertEqual(audit["status"], "pass")
+                        self.assertTrue(audit["numeric_values_unchanged"])
+                        self.assertEqual(audit["audited_observations"], 12)
+                        self.assertTrue(all(rgba[3] == 1 for values in audit["actual_point_facecolors"].values() for rgba in values))
+                        if choice == "box-points":
+                            self.assertTrue(all(box.get_facecolor()[3] == 0 for box in fig.axes[0].patches))
+                            self.assertTrue(all(abs(width - .18) < 1e-12 for width in audit["actual_box_widths_category_units"].values()))
+                            self.assertTrue(all(width == .75 for width in audit["actual_box_summary_linewidths_pt"].values()))
+                            self.assertTrue(all(value > 0 for value in audit["actual_box_thickness_mm"].values()))
+                    self.assertEqual(colors, self.request["colors"])
+                    self.assertEqual(tuple(fig.axes[0].get_xlim()), (0, 15))
+                    self.assertEqual(fig.axes[0].spines["bottom"].get_linewidth(), .55)
+                    self.assertEqual(core.mcolors.to_hex(fig.axes[0].spines["bottom"].get_edgecolor()), "#222222")
+                    core.plt.close(fig)
+        self.assertEqual(self.request, request_before)
+
+    def test_explicit_styles_global_width_and_role_overrides_reach_actual_artists(self):
+        self.request["layout"]["line_width_pt"] = .92
+        self.request["options"] = {"point_alpha": .4, "point_style": "hollow", "point_edge_width_pt": .6,
+                                   "box_style": "filled", "box_width": .32, "curve_line_width_pt": 1.12}
+        self.request["line_roles"] = {"summary": {"line_width_pt": 1.05, "color": "#A013C7"},
+                                      "data": {"line_width_pt": 1.2, "color": "black"},
+                                      "axis": {"color": "#345678"}}
+        _, _, specs = preview.prepare_request(self.source.read_bytes(), self.request)
+        for choice, spec in specs:
+            layout, typography, rc = core.setup(spec)
+            with core.plt.rc_context(rc):
+                if choice == "ecdf":
+                    data = preview.ecdf.prepare(self.source, spec)
+                    fig, colors, _ = preview.ecdf.draw(data, spec, layout, typography)
+                    self.assertTrue(all(line.get_linewidth() == 1.12 for line in fig.axes[0].lines))
+                    self.assertEqual([core.mcolors.to_hex(line.get_color()) for line in fig.axes[0].lines],
+                                     [core.mcolors.to_hex(color) for color in self.request["colors"].values()])
+                    self.assertEqual(preview.ecdf.audit_source_artists(self.source, spec, fig)["status"], "pass")
+                else:
+                    data = core.prepare(self.source, spec)
+                    fig, colors = core.draw(data, spec, layout, typography, core.statistics(data, spec))
+                    fig.canvas.draw()
+                    audit = preview.audit_distribution_artists(self.source.read_bytes(), spec, fig)
+                    self.assertEqual(audit["status"], "pass")
+                    self.assertTrue(audit["numeric_values_unchanged"])
+                    self.assertTrue(all(not color for color in audit["actual_point_facecolors"].values()))
+                    self.assertTrue(all(abs(width - .32) < 1e-12 for width in audit["actual_box_widths_category_units"].values()))
+                    self.assertTrue(all(box.get_facecolor()[3] == .22 and box.get_linewidth() == 1.05 for box in fig.axes[0].patches))
+                self.assertEqual(fig.axes[0].spines["bottom"].get_linewidth(), .92)
+                self.assertEqual(core.mcolors.to_hex(fig.axes[0].spines["bottom"].get_edgecolor()), "#345678")
+                core.plt.close(fig)
+
+    def test_explicit_legacy_replay_keeps_old_box_points_and_curve_fallbacks(self):
+        self.request["style_mode"] = "legacy"
+        _, _, specs = preview.prepare_request(self.source.read_bytes(), self.request)
+        for choice, spec in specs:
+            self.assertNotIn("line_roles", spec)
+            layout, typography, rc = core.setup(spec)
+            with core.plt.rc_context(rc):
+                if choice == "ecdf":
+                    fig, _, _ = preview.ecdf.draw(preview.ecdf.prepare(self.source, spec), spec, layout, typography)
+                    self.assertTrue(all(line.get_linewidth() == .8 for line in fig.axes[0].lines))
+                else:
+                    data = core.prepare(self.source, spec)
+                    fig, _ = core.draw(data, spec, layout, typography, core.statistics(data, spec))
+                    fig.canvas.draw()
+                    audit = preview.audit_distribution_artists(self.source.read_bytes(), spec, fig)
+                    self.assertEqual(audit["status"], "pass")
+                    self.assertEqual(audit["intended_point_alpha"], .65)
+                    self.assertTrue(all(abs(width - .5) < 1e-12 for width in audit["actual_box_widths_category_units"].values()))
+                    self.assertTrue(all(box.get_facecolor()[3] == .22 for box in fig.axes[0].patches))
+                self.assertEqual(fig.axes[0].spines["bottom"].get_linewidth(), .6)
+                core.plt.close(fig)
 
     def test_source_mutation_after_render_cannot_claim_a_passing_set(self):
         original_render = preview._render_distribution

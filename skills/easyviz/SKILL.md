@@ -1,6 +1,6 @@
 ---
 name: easyviz
-description: Create or reproduce scientific plots from bioinformatics source data, with supporting statistics, configurable palettes, and individual panels at final manuscript dimensions. Use for reference-image reproduction, chart selection, additional layers, typography, and scientific figure export.
+description: Create or reproduce scientific plots from bioinformatics source data, with supporting statistics, configurable palettes, and individual panels at final manuscript dimensions. Use for chart selection, reference-image reproduction, mark styling, typography, and scientific figure export.
 ---
 
 # EasyViz
@@ -50,13 +50,13 @@ Read the resources needed for the current chart rather than loading the whole li
 | [Panel layout](references/panel-layout.md) | Final dimensions, font roles, export behavior, and assembly constraints. |
 | [Legend layout](references/legend-layout.md) | Proportionate legend keys, measured placement, and data-to-legend hierarchy while preserving typography. |
 | [Palettes](references/palettes.md) | Palette selection and consistent category-to-color mappings. |
-| [Create colors and strokes](references/create-style.md) | Choose crisp observation/summary treatments and meaningful color scales; avoid fading all layers or leaving oversized empty bands. |
+| [Create colors and strokes](references/create-style.md) | Give basic single plots deliberate colors, mark boundaries, line roles and proportions; use the shared new-task defaults as adjustable starting values. |
 | [Literature design mechanisms](references/literature-style.md) | Transfer specific color, boundary and packing decisions from PROGENy, scWAT and Vanneste figures, with source anchors and applicability limits. |
 | [Figure profile](references/figure-profile.md) | Share typography, category colors, continuous scales and named panel sizes across a manuscript figure. |
 | [Dot data states](references/dot-states.md) | Distinguish measured zero, unmeasured and unsupplied cells while preserving exact dot area. |
 | [Design decisions](references/design-decisions.md) | Reference-informed choices about grouping, alignment, visual priority, and competing layouts. |
 | [Chart library](references/chart-library.md) | Supported chart recipes, input contracts, reusable scripts, and examples. |
-| [Worked cases](references/examples.md) | Rich create panels and reviewed image-data reconstructions with scripts and provenance. |
+| [Worked cases](references/examples.md) | Runnable panels and reviewed image-data reconstructions with explicit input contracts, scripts and provenance. |
 | [Literature Source Data](references/literature-source-data.md) | Select auditable paper panels, retain source semantics, and extract reusable implementations with bounded transfer checks. |
 | [Time courses](references/timecourse-plot.md) | Supplied estimates with SD or explicit interval bands, irregular x grids and explicitly labelled single/dual axes. |
 | [Supplied intervals](references/interval-plot.md) | Plot estimates and asymmetric intervals with explicit log/reference/fill semantics; no sample-size requirement or model fitting. |
@@ -70,10 +70,10 @@ Read the resources needed for the current chart rather than loading the whole li
 ## Execute
 
 1. Inspect the data and user requirements. Fill missing cosmetic preferences from recorded project settings or the shared defaults; clarify only consequential ambiguity.
-2. Follow the chosen track to produce an adopted plotting specification. In reproduce, obtain an independent image reading before selecting implementation templates.
+2. Follow the chosen track to produce an adopted plotting specification. In create, start with the simplest chart that answers the reading task; additional tracks, summaries or annotations need a stated purpose. In reproduce, obtain an independent image reading before selecting implementation templates.
 3. Establish physical width and height, text sizes, font availability, palette, mark-outline policy, and formats. Reuse the figure's shared profile when one exists; save stable category-color assignments and named panel sizes when starting a related panel set. A category disappearing or changing order must not change its color. Resolve configuration conflicts and unknown fields before rendering. Evaluate all palettes together on the actual panel. Defaults are adjustable EasyViz starting values, not journal standards.
 4. Select an implementation after checking its input contract and supported layers. For a basic create panel, use [First panel](references/quick-start.md) to generate a validated spec from explicit fields and render it with measured layout. Examples demonstrate specific reusable contracts, not arbitrary-data support. Copy bundled cases into the user's writable project before running or adapting them. Reuse, adapt, or write a script according to the real data; report unsupported requirements explicitly without silently substituting a chart or dropping data.
-5. Render the full canvas. In create, when the reading task is undecided and observations support the contract, use [actual preview choices](references/preview-choices.md); inspect at least two images with the same source, value scale, dimensions and typography, and select by the user's comparison. Repeated or technical observations need their declared design rather than marginal previews alone. Check exported dimensions and inspect crowding, clipping, missing glyphs, labels, and visual hierarchy. For overlapping raw distribution circles, consider [physical point placement](references/collision-placement.md) before changing the agreed marker size; unresolved crowding needs an explicit layout decision. Assess the complete legend footprint and reserved space relative to the data region; no overlap alone is insufficient. Follow [Legend layout](references/legend-layout.md) and the bounded correction process in [Visual review](references/visual-review.md).
+5. Render the full canvas. In create, use [actual preview choices](references/preview-choices.md) when an eligible observation table has an unresolved reading task; compare equal-size outputs before selecting. Repeated or technical observations need their declared design. Inspect the complete palette, visible line roles, point/summary crossings, category spacing and legend footprint at final size, as well as clipping and glyphs. For crowded raw distributions, consider [physical point placement](references/collision-placement.md) before changing agreed marker sizes; unresolved packing needs a layout decision. Follow [Legend layout](references/legend-layout.md) and the bounded correction process in [Visual review](references/visual-review.md).
 6. Deliver the individual panels, a separate `caption.md`, runnable plotting script, actual settings, traceable plotting data or input references, and review findings. Include computed statistics when used.
 
 ## Output rules

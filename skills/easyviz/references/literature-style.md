@@ -6,6 +6,11 @@ in specific figures, not a single Nature style. Keep the two tracks: a new
 arrangement with literature-inspired mark treatment is **create**; an adopted
 reference layout/style is **reproduce**.
 
+Apply the mark, color and spacing mechanism to a basic single plot first. The
+number of tracks or annotations in a paper is not a quality target. Borrow a
+composite arrangement only when its extra layer answers the current reading
+task and has supplied data with a declared meaning.
+
 The actual PDF pages and detail crops were visually inspected. Source anchors
 use one-based PDF pages. Images establish appearance; captions and the user's
 data establish statistical meaning. Do not copy the papers' tests, significance
@@ -16,10 +21,10 @@ marks, transformations, cell labels or filtering into a new dataset.
 | Reading problem | Observed mechanism and source | Adaptation to consider | Boundary |
 | --- | --- | --- | --- |
 | Samples disappear into a pale fill | scWAT Fig. 2c,i,j (p. 4): hollow blue/coral bars plus small same-hue observations. Vanneste Fig. 2e–h (p. 4): colored open circles over hollow bars. | Opaque observation marks; open summaries leave the raw layer readable. Match hollow/filled legend symbols to actual marks. | A hollow glyph is a fixed-size observation symbol. It cannot silently replace a circle whose filled area encodes a number. Bars still need an adopted summary and uncertainty definition. |
-| Two cohorts make an indistinct cloud | Vanneste Fig. 5d (p. 7): repeated aligned plot boxes, shared labels and deliberate class blocks. | Compare aligned facets with shared numeric scales and row order; pack points only along the categorical direction. | Faceting reduces each plot's available width. Check mark capacity at final size and retain every source observation. |
+| Two cohorts make an indistinct cloud | Vanneste Fig. 5d (p. 7): repeated aligned plot boxes, shared labels and deliberate class blocks. | Compare neighboring group lanes or aligned facets with shared numeric scales and row order; pack points only along the categorical direction. | Faceting reduces each plot's available width. Check mark capacity at final size, retain every observation and do not erase pairing that the question needs. |
 | Distribution shape looks washed out | PROGENy Fig. 4c (p. 6): closed violin boundary, inner rectangular box and median stroke are separately visible. | Give the shape and its summary explicit outlines; use color for identity rather than fading the whole layer. | Do not infer KDE bandwidth, sample size or interval meaning from an image. A plain box/points view may be more appropriate. |
 | A dense point field overwhelms its summary | Vanneste Fig. 5d (p. 7): smooth curves are wider than tiny green points, with a visible white edge separating layers. | Allocate stroke to the summary locally; a narrow contrasting under-stroke can separate a declared curve from points. | A fitted curve requires an adopted method. Adding a smooth line for appearance alone is not justified. |
-| Signed matrix values blur together | scWAT Fig. 2b (p. 4), Vanneste Fig. 4d (p. 6): cold/neutral/warm expression fields; PROGENy Fig. 2b,c (p. 4) uses green/yellow/red fields. | Choose a reviewed multihue scale; a meaningful zero can anchor a diverging scale and a labeled zero tick. Make category strips distinct from the numeric color scale. | Signed normalization and endpoints must be explicit. A nonnegative magnitude can use a multihue sequential scale; it does not acquire a neutral threshold just because diverging colors are attractive. |
+| Matrix values are difficult to compare | scWAT Fig. 2b (p. 4), Vanneste Fig. 4d (p. 6): cold/neutral/warm expression fields; PROGENy Fig. 2b,c (p. 4) uses green/yellow/red fields. | Begin with a reviewed sequential scale for magnitude. Consider multiple hues or a diverging alternative only when they improve the intended reading; a meaningful center needs its own labeled tick. | The papers' expression colors do not define a universal heatmap. Both positive and negative values may fit one sequential scale. A neutral threshold, normalization or unequal color slopes requires scientific justification and an explicit record. |
 | Repeated bars look sparse or disconnected | scWAT Fig. 3g,m (p. 5): tight within-category bars, wider category gaps, compact keys. | Use repeated geometry, consistent gaps and shared decoding. Reserve only the space needed by data and annotations. | Retain units and actual experimental grouping. Density is not a reason to invent annotations or enlarge bars independently of values. |
 | Two grouping variables become a long legend | scWAT Fig. 3g (p. 5): hue/edge and open/filled interiors distinguish separate variables; Fig. 5b,c (p. 9) uses hatching. | Use a second decoded visual channel when both groupings matter. | Do not introduce shape, hatch or stroke differences without a meaning; quantify their legend footprint. |
 
@@ -43,8 +48,10 @@ marks, transformations, cell labels or filtering into a new dataset.
 
 State the intended lookup or comparison, then select a mechanism above. Record
 the actual category mapping, mark treatment, summary meaning, scale and physical
-layout. Render the real data; check complete-panel balance and inspect marks at
-final size. Compare a baseline and candidate with equal dimensions, font and
+layout. For a basic chart, check the color combination, role of each stroke,
+point/summary crossings, category gaps and guide space before adding a layer.
+Render the real data; check complete-panel balance and inspect marks at final
+size. Compare a baseline and candidate with equal dimensions, font and
 numeric scales. Where a normalization change is intentional, disclose it
 separately from a cosmetic comparison.
 

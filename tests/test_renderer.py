@@ -300,6 +300,89 @@ class RendererTests(unittest.TestCase):
         self.assertEqual(list(a["_easyviz_jitter_position"]), list(b["_easyviz_jitter_position"]))
         self.assertEqual(list(a["v"]), [1, 2, 3, 2, 4, 9])
 
+    def test_optional_violin_faces_and_inner_quartiles_use_raw_values_in_both_orientations(self):
+        source = self.csv("g,v\nA,0\nA,1\nA,2\nA,4\nA,9\nB,1\nB,5\nB,6\n")
+        original = source.read_bytes()
+        for orientation in ("vertical", "horizontal"):
+            spec = {"chart": "distribution", "fields": {"group": "g", "value": "v"},
+                    "colors": {"A": "#29ACF3", "B": "#FF797C"},
+                    "layout": {"font": "DejaVu Sans"},
+                    "line_roles": {"data": {"line_width_pt": .85}, "summary": {"line_width_pt": .7}},
+                    "options": {"kind": "violin", "orientation": orientation, "violin_fill_alpha": .16,
+                                "violin_inner": "box", "violin_inner_width": .14, "alpha": 1}}
+            data = renderer.prepare(source, spec)
+            layout, typography, rc = renderer.setup(spec)
+            result = {"method": "none"}
+            with renderer.plt.rc_context(rc):
+                fig, colors = renderer.draw(data, spec, layout, typography, result)
+                ax = fig.axes[0]
+                bodies = [e["_artist"] for e in fig._easyviz_elements if e["role"] == "distribution"]
+                self.assertEqual(len(bodies), 2)
+                for body, group in zip(bodies, ("A", "B")):
+                    self.assertIsNone(body.get_alpha())
+                    self.assertEqual(tuple(body.get_facecolors()[0]), renderer.mcolors.to_rgba(colors[group], .16))
+                    self.assertEqual(tuple(body.get_edgecolors()[0]), renderer.mcolors.to_rgba(colors[group]))
+                    self.assertEqual(body.get_linewidths()[0], .85)
+                summaries = [e for e in fig._easyviz_elements if e["role"] == "summary-line"]
+                self.assertEqual(len(summaries), 4)
+                for i, (q1, median, q3) in enumerate(((1., 2., 4.), (3., 5., 5.5))):
+                    rect = summaries[2 * i]["_artist"]
+                    line = summaries[2 * i + 1]["_artist"]
+                    self.assertEqual(rect.get_facecolor()[3], 0)
+                    self.assertEqual(rect.get_linewidth(), .7)
+                    self.assertEqual(line.get_linewidth(), .7)
+                    if orientation == "vertical":
+                        renderer.np.testing.assert_allclose([rect.get_x(), rect.get_y(), rect.get_width(), rect.get_height()], [i - .07, q1, .14, q3 - q1])
+                        renderer.np.testing.assert_allclose(line.get_xdata(), [i - .07, i + .07])
+                        renderer.np.testing.assert_allclose(line.get_ydata(), [median, median])
+                    else:
+                        renderer.np.testing.assert_allclose([rect.get_x(), rect.get_y(), rect.get_width(), rect.get_height()], [q1, i - .07, q3 - q1, .14])
+                        renderer.np.testing.assert_allclose(line.get_xdata(), [median, median])
+                        renderer.np.testing.assert_allclose(line.get_ydata(), [i - .07, i + .07])
+                    self.assertEqual(result["violin_inner_summaries"][i]["q1"], q1)
+                    self.assertEqual(result["violin_inner_summaries"][i]["median"], median)
+                    self.assertEqual(result["violin_inner_summaries"][i]["q3"], q3)
+                observations = [e["_artist"] for e in fig._easyviz_elements if e["role"] == "point-group"]
+                self.assertEqual(sum(len(p.get_offsets()) for p in observations), 8)
+                numeric_axis = 1 if orientation == "vertical" else 0
+                self.assertEqual([float(v) for p in observations for v in p.get_offsets()[:, numeric_axis]], [0, 1, 2, 4, 9, 1, 5, 6])
+                self.assertNotIn("pvalue", result)
+                self.assertIn("independently normalized", result["violin_definition"])
+                renderer.plt.close(fig)
+        self.assertEqual(source.read_bytes(), original)
+
+    def test_violin_legacy_style_and_explicit_median_visibility(self):
+        source = self.csv("g,v\nA,1\nA,2\nA,4\nA,9\n")
+        base = {"chart": "distribution", "fields": {"group": "g", "value": "v"},
+                "layout": {"font": "DejaVu Sans"}, "options": {"kind": "violin"}}
+        for options in ({"kind": "violin"}, {"kind": "violin", "violin_inner": "none"},
+                        {"kind": "violin", "violin_inner": "box", "violin_median_visible": False}):
+            spec = {**base, "options": options}
+            data = renderer.prepare(source, spec)
+            layout, typography, rc = renderer.setup(spec)
+            with renderer.plt.rc_context(rc):
+                result = {}
+                fig, _ = renderer.draw(data, spec, layout, typography, result)
+                body = next(e["_artist"] for e in fig._easyviz_elements if e["role"] == "distribution")
+                self.assertEqual(body.get_alpha(), .3, "Omitted face styling retains the legacy Matplotlib collection opacity")
+                summaries = [e for e in fig._easyviz_elements if e["role"] == "summary-line"]
+                self.assertEqual(len(summaries), 1 if options.get("violin_inner") == "box" else 0)
+                if summaries:
+                    self.assertFalse(result["violin_inner_summaries"][0]["median_line_visible"])
+                renderer.plt.close(fig)
+
+    def test_violin_specific_style_validation_rejects_silent_unsupported_options(self):
+        base = {"chart": "distribution", "fields": {"group": "g", "value": "v"}, "options": {"kind": "violin"}}
+        invalid = [{"violin_fill_alpha": True}, {"violin_fill_alpha": "0.2"}, {"violin_fill_alpha": -.1},
+                   {"violin_fill_alpha": 1.1}, {"violin_fill_alpha": float("nan")}, {"violin_inner": "quartile"},
+                   {"violin_inner_width": .2}, {"violin_inner": "box", "violin_inner_width": 0},
+                   {"violin_inner": "box", "violin_inner_width": .71}, {"violin_inner": "box", "violin_inner_width": True},
+                   {"violin_median_visible": True}, {"violin_inner": "box", "violin_median_visible": 1},
+                   {"kind": "box", "violin_fill_alpha": .2}, {"kind": "box", "violin_inner": "none"}]
+        for options in invalid:
+            with self.subTest(options=options), self.assertRaises(renderer.SpecError):
+                renderer.validate_spec({**base, "options": {**base["options"], **options}})
+
     def test_rejects_hidden_values_unknown_options_and_clipped_labels(self):
         data = self.csv("x,y\n1,2\n2,3\n3,4\n")
         spec = deepcopy(self.base)

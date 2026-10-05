@@ -6,6 +6,13 @@ Create can begin with a [data directory and figure recommendations](../skills/ea
 
 ## Create showcases
 
+Begin with [five basic single panels](create/basic-panels/README.md): replicate
+bars, a paired-coordinate scatter, box/points, violin/points and a simple
+heatmap. They use existing attributed Source Data at 110 × 88 mm and 8 pt,
+with separate captions, explicit style settings, numerical/export verification,
+legacy-spec comparisons and bounded changed-input probes. Composite examples
+below are available when the reading task needs their extra layers.
+
 | Case | Design and data | Final size | Implementation |
 | --- | --- | --- | --- |
 | [Paired myeloid remodeling](create/paired-myeloid-remodeling/README.md) | Three designs for the same 832 paired score changes: 52 participants, 16 subtypes, two cohorts | Each panel 180 × 125 mm; 8 pt | New script using published source scores and semantic annotations; no author code |
@@ -14,7 +21,7 @@ Create can begin with a [data directory and figure recommendations](../skills/ea
 | [Empirical distributions](create/urschel-ecdf/README.md) | All 254 before/after measurements from 127 participants, complete unsmoothed ECDFs on a log x-axis | 105 × 85 mm; 8 pt | New create view of Urschel Source Data using the generic ECDF recipe; source pairing is documented but not encoded in this view |
 | [Replicate components and ratios](no-author-code/truong-components/README.md) | All 84 selected Nature Methods values; stacked means/raw totals/total SD, grouped components/raw values/SD, and supplied ratios with explicit control states | Stacked/ratio: each 150 × 100 mm; grouped: 175 × 100 mm; 8 pt | Reference-informed create adaptations of Figure 1b using the generic replicate recipe; separate panels replace dual axes |
 
-The paired case's [independent comparison](../evals/design-value/paired-comparison.md) has no overall winner. The ledger modestly helps distribution comparison; the participant matrix retains correspondence across subtypes; the baseline preserves more space for individual-value precision. Its unedited script also renders 592 five-year changes from the same study's Kerr cohort. This transfer changes time point and cohort selection, not source schema or study. The [comparison preview](create/paired-myeloid-remodeling/comparison.png) is documentation; all scientific panels are exported individually.
+The paired case's [independent comparison](../evals/design-value/paired-comparison.md) has no overall winner. The ledger modestly helps distribution comparison; the participant matrix retains correspondence across subtypes; the baseline preserves more space for individual-value precision. Its unedited script also renders 592 five-year changes from the same study's Kerr cohort. This transfer changes time point and cohort selection, not source schema or study. The [comparison preview](create/paired-myeloid-remodeling/output/comparison.png) is documentation; all scientific panels are exported individually.
 
 ## Synthetic workflow transfer
 

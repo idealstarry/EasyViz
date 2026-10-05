@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.3 — 2026-10-05
+
+- Create begins with a basic single chart. Specific literature mechanisms guide color, boundaries, spacing and line hierarchy; additional layers need an explicit reading purpose.
+- Shared crisp starting values for new core drafts and distribution previews: opaque observations, narrow hollow boxes and editable line roles. Explicit overrides and saved core specifications retain their adopted settings; legacy preview replay is explicit.
+- Optional outlined replicate bars with independently checked edge/fill/guide settings. Optional violin face opacity and hollow raw-value quartile/median summaries, separate from the KDE and its width normalization.
+- Advisory measurements of actual point dimensions/contrast, line widths and legend bounds at the final size. These reports do not alter marks or certify aesthetics, scientific design, color accessibility or arbitrary geometry.
+- Five portable basic Create cases from existing Nature/Nature Methods Source Data: bars, paired-coordinate scatter, box, violin and simple heatmap. Matched legacy specifications, final-size export checks, independent image review and a bounded changed-input probe accompany each case.
+
+See [release QA](evals/release-qa/v0.4.3/README.md) and [basic-panel evidence](evals/basic-panels-v0.4.3/README.md).
+
 ## 0.4.2 — 2026-10-03
 
 - Reusable annotated matrices with keyed row/column metadata, explicit missing states, declared mean/sum marginals and supplied trees. Actual source/artist and transformed-alignment checks cover custom compound layers.

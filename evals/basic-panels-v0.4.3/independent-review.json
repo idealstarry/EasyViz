@@ -1,0 +1,103 @@
+{
+  "review_date": "2026-10-05",
+  "review_type": "independent visual audit",
+  "scope": "Five supplied Create candidates, matched first-render baselines, and five specified transfer outputs. Numerical correctness, generalization, causal model advantage, and publication acceptance are not established by this audit.",
+  "status": "ready_with_notes",
+  "status_scope": "Visual readiness of the supplied candidates and transfer examples at the adopted dimensions; external scientific checks remain outside this review.",
+  "urgent_findings": [],
+  "critical_count": 0,
+  "major_count": 0,
+  "minor_count": 0,
+  "independent_visual_review_passes": 1,
+  "rerender_requested": false,
+  "adopted_requirements": {
+    "canvas_mm": [110, 88],
+    "font": "Arial",
+    "body_font_pt": 8,
+    "style": "Crisp visible marks and axes; bright restrained colors; simple scientific charts; no in-panel narrative.",
+    "outline_policy": "Explicit candidate specifications adopt outline bars and boxes and outlined violin geometry. Filled raw points and scatter legend dots are borderless. These adopted semantic outlines are not incidental library defaults."
+  },
+  "image_inspection": {
+    "opened_count": 30,
+    "per_case": ["first-render/panel.png", "output/panel.png", "transfer/output/panel.png", "first-render/pdf-preview-96dpi.png", "output/pdf-preview-96dpi.png", "transfer/output/pdf-preview-96dpi.png"],
+    "root": "examples/create/basic-panels",
+    "evidence": "Each of the 15 PNG panels and each of the 15 PDF-derived previews was opened individually. The PDF previews are 96 dpi size proxies; monitor scaling and physical print were not checked."
+  },
+  "panels": [
+    {
+      "id": "replicate-bars",
+      "reading_task": "Compare treatment means, visible SD intervals, and the three raw observations per treatment.",
+      "status": "ready",
+      "preference": "candidate",
+      "preference_evidence": "The unfilled blue bars reduce the large gray mass while keeping the same mean-height comparison. Blue observations and dark SD intervals are easier to separate from the empty interiors. Category order, labels, and visible value positions are retained. This is a scoped visual preference, not a claim that outlined bars always outperform filled bars.",
+      "axes_density_space": "Zero baseline, four y ticks, and wrapped treatment labels read cleanly in the 96 dpi preview. Five conditions fit with clear gaps; no clipping or label collision is visible.",
+      "palette_hierarchy": "One bright blue denotes all treatments without inventing category differences. Dark intervals remain visible above the white interiors. Outline bars are intentionally adopted.",
+      "visible_conflicts": [],
+      "transfer": {"status": "ready_with_notes", "evidence": "The four-condition mutEJ panel preserves readable labels and intervals over a larger range. The larger intervals remain distinct from the points; no geometry or spacing conflict is visible.", "caption_status": "not_checked", "caption_reason": "A separate transfer caption was not supplied; the main caption describes HDR under five treatments."}
+    },
+    {
+      "id": "paired-scatter",
+      "reading_task": "Read each participant's paired before/after coordinates on logarithmic axes and distinguish the prior-infection groups.",
+      "status": "ready_with_notes",
+      "preference": "no_clear_preference",
+      "preference_evidence": "Both versions retain the same positions, point size, compact top legend, logarithmic ticks, and broad group pattern. Candidate blue/coral marks are clean and distinct, but the baseline cyan/orange marks are also readable. The visible color change and opacity change do not produce a decisive lookup advantage.",
+      "axes_density_space": "Both axis names and BAU/ml units fit. The modest top legend has substantial clearance and occupies about 44.5 by 3.0 mm versus a 95.1 by 69.2 mm data region in the supplied measurement. Data remains primary.",
+      "palette_hierarchy": "Borderless solid marks and matching legend dots are consistent. Both groups are distinguishable on the white background in this inspection; formal color-vision testing was not performed.",
+      "visible_conflicts": ["Nearby points still touch or overlap in the middle and upper-right clusters in both versions. This limits individual point counting, not the paired-coordinate reading task, and does not justify altering scientific coordinates."],
+      "transfer": {"status": "ready_with_notes", "evidence": "The single-group transfer has clean blue points and gains plot height from omitting an unnecessary categorical legend. Log ticks and axis text remain readable.", "caption_status": "not_checked", "caption_reason": "A separate transfer caption was not supplied; the main caption describes all 127 participants and two groups rather than this 63-participant subset."}
+    },
+    {
+      "id": "cohort-box",
+      "reading_task": "Compare cohort median, IQR, and whiskers while retaining the shape and density of individual BMI observations.",
+      "status": "ready",
+      "preference": "candidate",
+      "preference_evidence": "The narrower unfilled boxes reveal the individual observations more clearly. Beeswarm rows visibly separate the dense Kerr observations around BMI 44–46 and the lower values, while median and whisker structure remains legible. The baseline's broader tinted boxes make summary areas more prominent; the candidate better balances summary and raw-observation reading for the adopted task.",
+      "axes_density_space": "The unchanged BMI range and category order preserve comparison. Eight-point labels and all y ticks fit; the three cohorts remain well separated. Median segments are short but visible at the 96 dpi preview.",
+      "palette_hierarchy": "Blue, coral, and green points and outline boxes match by cohort; dark median and whisker lines are distinct. No hazy field covers the data.",
+      "visible_conflicts": [],
+      "transfer": {"status": "ready_with_notes", "evidence": "A fourth purple cohort fits without crowding category labels or joining adjacent point clouds. Medians and IQR outlines remain readable; the densely packed low Arner, E observations retain visible rows.", "caption_status": "not_checked", "caption_reason": "A separate transfer caption was not supplied; the main caption describes three cohorts and 129 observations rather than four cohorts and 185 observations."}
+    },
+    {
+      "id": "cohort-violin",
+      "reading_task": "Compare density shapes and raw BMI observations, with explicit Q1/median/Q3 summaries in the adopted candidate.",
+      "status": "ready_with_notes",
+      "preference": "candidate",
+      "preference_evidence": "Bright outlines establish density boundaries while the light interiors preserve point contrast. The added inner boxes make quartiles and medians directly readable. The candidate also separates dense raw observations into beeswarm rows. This preference partly reflects added statistical-summary content; it is not evidence that a purely cosmetic styling change caused improvement.",
+      "axes_density_space": "Three broad density silhouettes remain separate. Inner boxes, dark medians, and solid observations can be distinguished at the 96 dpi preview. The y-axis range and labels match the box example.",
+      "palette_hierarchy": "The intentionally light fill sits behind crisp saturated outlines and solid points. The candidate does not look blurred or washed out despite the low fill opacity.",
+      "visible_conflicts": [],
+      "transfer": {"status": "ready_with_notes", "evidence": "Four density silhouettes, raw observations, and quartile boxes still fit with clear category gaps. The purple fourth cohort is distinguishable and its lower dense observations do not merge with the adjacent cohort.", "caption_status": "not_checked", "caption_reason": "A separate transfer caption was not supplied; the main caption describes three cohorts and 129 observations."}
+    },
+    {
+      "id": "depot-heatmap",
+      "reading_task": "Compare within-depot subtype shares across the three adipose depots using one nonnegative sequential scale and fixed subtype order.",
+      "status": "ready",
+      "preference": "candidate",
+      "preference_evidence": "The candidate blue scale makes the low-to-middle cell differences more visible than the baseline's very pale low range. The same high cells remain easy to locate, including myC01 M2 in Perivascular. This preference is specific to these supplied nonnegative values; it does not establish one palette for future datasets.",
+      "axes_density_space": "All 16 row names and three horizontal column names are readable in the 96 dpi preview. The wide label margin is justified by the longest subtype names. The 56.9 by 73.8 mm data region stays primary relative to the 9.8 by 32.6 mm complete colorbar envelope in the supplied measurement. A 30 by 2 mm physical colorbar and five labeled ticks provide clear scale lookup.",
+      "palette_hierarchy": "One smooth light-to-blue sequential scale avoids unrelated category colors. Cell boundaries are unambiguous without a distracting grid. Similar near-zero cells remain close in tone, consistent with an overview without numerical cell annotations.",
+      "visible_conflicts": [],
+      "transfer": {"status": "ready_with_notes", "evidence": "The count transfer explicitly changes the colorbar label to Source objects and ticks to 0, 900, 1800, and 2700. Row and column labels remain clear; the wider tick labels leave sufficient clearance. Percentage and count panels should be read on their own labeled scales.", "caption_status": "not_checked", "caption_reason": "A separate transfer caption was not supplied; the main caption describes within-depot percentages rather than source object counts."}
+    }
+  ],
+  "findings": [
+    {"severity": "note", "location": "paired-scatter/output/panel.png; middle and upper-right clusters", "evidence": "Some neighbors touch or overlap in both baseline and candidate.", "requirement": "Faithful paired coordinates and readable group pattern; no requirement to count every point from the picture.", "action": "Retain the scientific coordinates and existing separate caption count. No plot revision is required for the current reading task."},
+    {"severity": "note", "location": "cohort-violin candidate-versus-baseline comparison", "evidence": "Q1/median/Q3 inner boxes are added only in the candidate.", "requirement": "Separate content changes from purely cosmetic claims.", "action": "Describe the added summaries as an intentional information-layer change when reporting the preference; do not attribute this gain solely to color or opacity."},
+    {"severity": "note", "location": "All five transfer directories", "evidence": "No transfer/caption.md is present; each supplied main caption describes the original candidate dataset or measure.", "requirement": "Separate captions must describe the delivered variant when it is used as a standalone manuscript panel.", "action": "If these transfer examples are delivered independently, supply variant-specific captions outside the images. This does not block the present visual evaluation examples."},
+    {"severity": "note", "location": "Audit scope", "evidence": "Images support visible mapping and design judgments; supplied QA reports do not independently prove source values, statistical summaries, or model advantage.", "requirement": "Keep conclusions limited to inspected evidence.", "action": "Keep this visual result separate from independent numerical verification and avoid general model, causal, or journal-acceptance claims."}
+  ],
+  "external_checks": [
+    {"check": "PDF page dimensions", "status": "passed", "evidence_origin": "independently inspected file metadata", "evidence": "All 15 PDFs contain MediaBox [0, 0, 311.811023622, 249.4488188976] pt, equivalent to 110 by 88 mm."},
+    {"check": "PNG pixel dimensions", "status": "passed", "evidence_origin": "independently inspected PNG headers", "evidence": "All 15 PNGs are 1299 by 1039 pixels, consistent with rounded 300 dpi output at the adopted dimensions. Supplied QA additionally records approximately 300 dpi."},
+    {"check": "PDF font embedding", "status": "passed", "evidence_origin": "independently inspected file metadata", "evidence": "All 15 PDFs reference subset ArialMT BaseFont resources and contain FontFile2 resources."},
+    {"check": "Eight-point typography", "status": "passed", "evidence_origin": "supplied settings records plus visual inspection", "evidence": "All 15 settings records identify actual_font Arial, no substitution, and 8 pt axis/tick/legend/annotation typography. Content-stream font sizes were not independently remeasured; screen appearance alone is not proof of exact type size."},
+    {"check": "Automated clipping and horizontal/vertical tick-label overlap", "status": "passed", "evidence_origin": "supplied QA plus independent image inspection", "evidence": "All 15 QA records report empty clipped_text, overlapping_tick_labels, and missing_glyphs arrays. Independent image inspection found no important text clipping, missing glyph, or label collision."},
+    {"check": "Original candidate captions", "status": "passed", "evidence_origin": "directly read supplied caption.md files", "evidence": "Each of the five candidate captions describes mappings, source attribution, and relevant method limits separately from the panel; violin inner-box semantics are explicitly explained."},
+    {"check": "Transfer captions", "status": "not_checked", "evidence_origin": "file inventory", "evidence": "Separate transfer captions were not supplied. Main candidate captions are not automatically transferable to changed subsets or measures.", "required_for_present_visual_evaluation": false},
+    {"check": "Source numerical correctness, SD, percentiles, KDE, percentages, and participant counts", "status": "not_checked", "evidence_origin": "review scope", "evidence": "No independent source-data or statistical recalculation was performed. Supplied count/geometry/readability reports were treated as records, not independently verified calculations.", "required_for_present_visual_evaluation": false},
+    {"check": "Source citation validity and licensing", "status": "not_checked", "evidence_origin": "review scope", "evidence": "Caption source statements were inspected for placement and scope, not verified against external sources.", "required_for_present_visual_evaluation": false},
+    {"check": "Color-vision accessibility and physical print", "status": "not_checked", "evidence_origin": "review scope", "evidence": "Normal-color visual inspection and 96 dpi PDF previews were used; no formal color-vision simulation or physical print was inspected.", "required_for_present_visual_evaluation": false}
+  ],
+  "unresolved_items": ["Variant-specific transfer captions if transfer outputs become standalone manuscript deliverables.", "Independent scientific/numerical verification remains separate from this visual audit."],
+  "next_corrections": "No mandatory visual rerender is supported by this inspection. Preserve the adopted canvas and fonts. Keep the scatter result as no_clear_preference and qualify the violin comparison as a content-plus-style change."
+}

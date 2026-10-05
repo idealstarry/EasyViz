@@ -12,7 +12,7 @@ ASSETS = ROOT / 'skills/easyviz/assets'
 GENERATED_CASES = (
     'massier-bmi-violin', 'massier-integration-radar', 'cell-atlas-dotplot',
     'paired-effects', 'paired-myeloid-remodeling', 'xiang-bubble-volcano',
-    'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma',
+    'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma', 'basic-panels',
 )
 
 
@@ -143,7 +143,15 @@ def sync():
                     or file.suffix == '.pyc'):
                 continue
             copy_file(file, target / relative)
-    print('Synced eleven CC BY cases, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
+    source = ROOT / 'examples/create/basic-panels'
+    target = ASSETS / 'cases/basic-panels'
+    curated = json.loads((ROOT / 'evals/basic-panels-v0.4.3/portable-files.json').read_text())
+    for name in curated['files']:
+        relative = Path(name)
+        if relative.is_absolute() or '..' in relative.parts or not (source / relative).is_file():
+            raise ValueError(f'Invalid basic-panel curated input: {name}')
+        copy_file(source / relative, target / relative)
+    print('Synced twelve CC BY case collections, one synthetic forest case, and the annotated-heatmap recipe (without its restricted dataset).')
 
 
 if __name__ == '__main__':

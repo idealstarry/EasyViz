@@ -1,0 +1,59 @@
+{
+  "source_rows": 66,
+  "independent_specimens": 33,
+  "source_key": [
+    "arm",
+    "biospecimen_key",
+    "readout_repeat"
+  ],
+  "experimental_unit": [
+    "arm",
+    "biospecimen_key"
+  ],
+  "transformation": "Arithmetic mean of the two technical reads within each arm + biospecimen_key.",
+  "design": "Independent specimens; arms are unpaired.",
+  "excluded_rows": 0,
+  "missing_values": 0,
+  "units": "nmol/min",
+  "inferential_tests": "none",
+  "summary_convention": "Linear-interpolated quartiles; median; whiskers at observed extrema within 1.5 IQR.",
+  "descriptive_summaries": {
+    "Vehicle": {
+      "n": 9,
+      "minimum": 11.26545,
+      "q1": 11.59745,
+      "median": 12.9669,
+      "q3": 17.28865,
+      "maximum": 21.32765,
+      "whisker_low": 11.26545,
+      "whisker_high": 21.32765
+    },
+    "Dose 1": {
+      "n": 13,
+      "minimum": 20.7199,
+      "q1": 22.86495,
+      "median": 25.2618,
+      "q3": 26.752,
+      "maximum": 30.3874,
+      "whisker_low": 20.7199,
+      "whisker_high": 30.3874
+    },
+    "Dose 2": {
+      "n": 11,
+      "minimum": 20.95895,
+      "q1": 27.578075,
+      "median": 29.43125,
+      "q3": 34.43665,
+      "maximum": 40.71955,
+      "whisker_low": 20.95895,
+      "whisker_high": 40.71955
+    }
+  },
+  "source_sha256": {
+    "assays.csv": "0468a3f30f023bb2e111663998f8e99d9c5cf2bc97a324161cd23ed0a204e7ba",
+    "study-notes.md": "21cb2419dd2f577b5bf6635d2b1949c5d264ac50eccfbd0bae8ecf40e1ae4943",
+    "provenance.json": "bc931bbea8dbda393e0d52a15e84570770ef70f9304d54d3fbbc643ee1b7525d"
+  },
+  "prepared_sha256": "816725f7d6b365ba6c1a7404556e86cf3df997aa2015568914b4e8144ba77fd0",
+  "actual_font_path_preflight": "/System/Library/Fonts/Supplemental/Arial.ttf"
+}

@@ -12,7 +12,7 @@ EasyViz helps an Agent turn prepared source data into clear scientific figures. 
 
 | Track | Input | Approach |
 | --- | --- | --- |
-| **Create** | A data directory or prepared tables, with an optional chart type or scientific question | Inspect the data, recommend useful views, and use an adopted analysis plan when summaries or comparisons are needed. |
+| **Create** | A data directory or prepared tables, with an optional chart type or scientific question | Start with a clear basic chart; refine colors, boundaries and proportions. Use an adopted analysis plan when summaries or comparisons are needed. |
 | **Reproduce** | A reference image and your source data | Read the visual structure independently, implement it from your data, and check the result. New plotting code can cover unfamiliar layers. |
 
 Palettes, proportions, dimensions and fonts are configurable. Each panel is exported separately for assembly at its recorded size. General statistics are supported; upstream bioinformatics analysis stays outside the Skill. Explanatory prose belongs in the accompanying caption.
@@ -42,6 +42,37 @@ definitions rather than treating every table as interchangeable.
 
 ## Examples
 
+**Create · basic panels**
+
+Start with the chart that answers the question. These five single panels use
+real Source Data, bright category colors, definite summary boundaries and
+readable axes at **110 × 88 mm with 8 pt text**. Every observation is retained.
+Open a panel to inspect its data, specification, separate caption and runnable code.
+
+| Replicate bars | Paired-coordinate scatter |
+| --- | --- |
+| <a href="examples/create/basic-panels/replicate-bars/"><img src="examples/create/basic-panels/replicate-bars/output/panel.png" alt="Outlined mean HDR bars with every biological replicate and sample SD" width="350"></a> | <a href="examples/create/basic-panels/paired-scatter/"><img src="examples/create/basic-panels/paired-scatter/output/panel.png" alt="Before versus after antibody concentrations with complete participant pairs" width="350"></a> |
+| Mean and sample SD, with all three biological replicates per treatment. | Both measurements of each participant on logarithmic axes; no fitted relationship is inferred. |
+
+| Box and observations | Violin and observations |
+| --- | --- |
+| <a href="examples/create/basic-panels/cohort-box/"><img src="examples/create/basic-panels/cohort-box/output/panel.png" alt="Cohort BMI distributions with narrow hollow boxes and all observations" width="350"></a> | <a href="examples/create/basic-panels/cohort-violin/"><img src="examples/create/basic-panels/cohort-violin/output/panel.png" alt="Cohort BMI densities with crisp outlines, raw points and explicit quartile summaries" width="350"></a> |
+| Hollow quartile boxes and visible medians alongside all 129 participant values. | Explicit KDE boundaries and raw-value quartiles; violin width does not encode sample count. |
+
+**Simple heatmap** · Within-depot subtype percentages use one linear blue scale
+from 0 to 40%, with subtle cell boundaries. The 48 values are descriptive cell
+composition, not independent participant replicates.
+
+<p align="center"><a href="examples/create/basic-panels/depot-heatmap/"><img src="examples/create/basic-panels/depot-heatmap/output/panel.png" alt="Simple sixteen-subtype by three-depot heatmap with an original-percent color scale" width="440"></a></p>
+
+[Basic-panel cases and bounded transfer checks](examples/create/basic-panels/README.md)
+record the reading tasks and design choices. Matched legacy-spec comparisons
+evaluate these settings on these datasets; they are not a with/without-Skill
+model experiment or a claim of journal acceptance.
+
+<details>
+<summary>Additional Create examples: aligned layers and supplied effects</summary>
+
 **Create · paired myeloid changes**
 
 All 832 paired changes use one shared score axis, with adjacent blue/coral participant tracks for each subtype. Outlined IQR boxes, dark median ticks and aligned fractions below zero make the cohort summaries directly comparable. The observed scWAT blue/coral pair is explicitly reassigned to the two cohorts.
@@ -67,6 +98,8 @@ Counts, within-depot proportions, and aligned totals for 16 myeloid subtypes acr
 Supplied estimates and asymmetric confidence intervals; synthetic data demonstrate custom geometry and field mapping.
 
 <p align="center"><a href="examples/create/paired-effects/"><img src="examples/create/paired-effects/panel.png" alt="Cohort effects and asymmetric confidence intervals" width="720"></a></p>
+
+</details>
 
 **Reproduce · integration comparison**
 

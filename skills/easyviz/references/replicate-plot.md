@@ -15,7 +15,7 @@ reset their working directory; a fresh output directory prevents overwriting
 an accepted attempt. Check renderer/input hashes in `settings.json` and copy
 installed cases into a writable project before use.
 
-Keep `render.py`, `legend_layout.py`, `auto_layout.py`, `figure_profile.py`, `annotation_review.py` and `figure_elements.py` beside the script. Preserve the skill's `assets/palettes` directory for named palettes, or provide complete explicit colors when copying the runtime alone.
+Keep `render.py`, `legend_layout.py`, `auto_layout.py`, `figure_profile.py`, `annotation_review.py`, `figure_elements.py` and `panel_readability.py` beside the script. Preserve the skill's `assets/palettes` directory for named palettes, or provide complete explicit colors when copying the runtime alone.
 
 ## Choose the quantity first
 
@@ -56,6 +56,21 @@ Stacked totals are computed within each unit before calculating SD. Adding compo
 `bar_width` is the total occupied fraction of one condition spacing (`0 < width <= 0.85`); grouped components share that width. Raw point offsets depend on sorted unit IDs, so reordering rows does not move observations. `marker_area_pt2` is geometric circle fill area; marks are filled and borderless. The circle's Matplotlib size is `4 / pi × area`.
 
 Optional `point_color`, `bar_color`, `grid`, `y_limits` and `y_ticks` provide explicit styling. Component colors map component names; optional summary colors map condition names. Conditions use their axis labels rather than a redundant color guide. A state guide decodes hatching. Explicit limits must contain every observation, bar baseline and SD endpoint; geometry QA also rejects clipped point glyphs. Do not reduce font sizes to force a crowded panel to fit.
+
+For outlined bars, set `bar_style: "outline"`, optionally
+`bar_edge_width_pt` and `bar_edge_color`. The interior is unfilled and raw
+observations, means, stacked bases and SD endpoints are unchanged. The edge
+color defaults to the original bar/category color. An explicitly bordered
+filled bar uses `bar_style: "filled"` with a positive `bar_edge_width_pt`.
+Omitted settings retain the earlier borderless filled treatment. Component
+legend keys match the selected treatment. These settings support all three
+modes; outline bars with state hatching are rejected because removing the fill
+would obscure the adopted state encoding. Different component colors should
+remain distinguishable when a common edge color is adopted.
+
+The [basic bar case](../assets/cases/basic-panels/README.md) demonstrates an
+outlined summary with biological observations and sample SD. This treatment
+is optional and does not define which summary or uncertainty is appropriate.
 
 ## Review and reuse
 

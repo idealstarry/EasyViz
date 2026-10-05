@@ -20,6 +20,7 @@ The core maps columns by declared roles instead of fixed biological names. This 
 
 | Evaluation | What it exercises | Evidence |
 | --- | --- | --- |
+| Basic Create panel refinements | Five existing Source Data inputs: mean/SD bars, paired-coordinate scatter, box, violin and simple heatmap; matched legacy specifications and changed fields/categories/ranges | [0.4.3 basic panels](../evals/basic-panels-v0.4.3/README.md): actual source/artist checks, export measurements and independent visual comparison; these are bounded design checks, not a new with/without-Skill model comparison |
 | Held-out create and reproduce workflows | New synthetic source schemas, missing follow-up visits, new reference-image categories, measured zeros versus unmeasured coordinates; actual independent output review | [Release QA](../evals/release-qa/README.md) |
 | Bounded transfer and stress cases | Larger matrices, long/crowded labels, sparse cells, explicit denominators, more categories, logarithmic axes, unbalanced groups and invalid units/values | [Current report](../evals/generalization/report.md), with the preserved [baseline](../evals/generalization/baseline-report.md) |
 | Legend geometry mechanics | Identical-input fit checks across category counts, long labels, canvas sizes, heatmaps, quantitative dot keys and explicit placement; no established aesthetic superiority | [Ten-case evaluation](../evals/legend-transfer/results.md), with later [design reassessment](../evals/design-value/critique.md) |
@@ -70,3 +71,20 @@ Inputs, actual commands, first attempts, refinements and their scope are in
 [workflow evidence](../evals/workflow-usability/v0.4.2/README.md).
 No MCP, external-model effectiveness comparison or fresh desktop plugin
 installation/discovery is claimed for this release.
+
+## v0.4.3 evidence
+
+Create now begins with a basic chart and shared crisp new-task settings. Explicit
+bar/violin treatments are optional; the source quantity, summary definition,
+scale and final dimensions remain adopted decisions. Five examples reuse
+existing attributed Source Data rather than adding five new studies. Their
+changed-input probes test documented contracts and are not held-out biological
+cohorts or estimates of model effectiveness. Violin comparisons also add a
+declared quartile/median layer, so that comparison is not purely cosmetic.
+
+Actual-artist readability reports provide measurable review cues. They do not
+check scientific design, accessibility, occlusion or arbitrary layers, and no
+warning changes a quantitative mark or establishes a publication standard.
+[Release QA](../evals/release-qa/v0.4.3/README.md) records saved-spec compatibility,
+extracted-package replay and this version's installation checks separately from
+visual preference.

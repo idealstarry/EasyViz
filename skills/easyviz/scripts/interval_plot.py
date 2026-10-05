@@ -32,7 +32,7 @@ FIELDS = REQUIRED | {"series", "color", "mark_state"}
 OPTIONS = {"x_scale", "x_limits", "x_ticks", "reference_value", "grid", "marker_area_pt2", "series_span", "series_layout", "cap_height", "mark_fill"}
 SPEC_KEYS = {"chart", "fields", "options", "layout", "typography", "formats", "order", "labels", "colors", "palette", "legends"}
 _HELPER_HASHES = {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-                  for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py")}
+                  for name in ("render.py", "legend_layout.py", "auto_layout.py", "figure_profile.py", "annotation_review.py", "figure_elements.py", "panel_readability.py")}
 SCHEMA = {
     "chart": "interval", "fields": {"label": "label", "estimate": "estimate", "lower": "lower", "upper": "upper", "series": "optional category", "color": "optional categorical color role", "mark_state": "optional filled/hollow input"},
     "layout": {"width_mm": 88, "height_mm": 88, "font": "Arial", "font_size_pt": 8, "dpi": 300, "auto_fit": True},
@@ -497,6 +497,7 @@ def render(data_path, spec, out, *, spec_path=None):
             fig._easyviz_source_script = Path(__file__).resolve()
             fig._easyviz_spec_file = Path(spec_path).resolve() if spec_path else None
             exports = core.export(fig, out, resolved, layout)
+            readability = core.panel_readability.measure(fig)
             if hashlib.sha256(data_path.read_bytes()).hexdigest() != input_hash:
                 audit["status"] = "needs_revision"
                 if not any(item["code"] == "source_changed_during_render" for item in audit["issues"]):
@@ -504,6 +505,7 @@ def render(data_path, spec, out, *, spec_path=None):
             missing = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             passed = not clipped and not overlap and not missing and all(item["status"] == "pass" for item in (audit, legends, geometry)) and (not fitted or fitted["status"] == "pass")
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(fig._easyviz_interval_artists), "input_sha256": input_hash, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "visual_review_required": True}
+            qa["readability"] = readability
             settings = deepcopy(resolved)
             settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["pdf", "png"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim())), "explicit_x_ticks": resolved.get("options", {}).get("x_ticks"), "reference_value": resolved.get("options", {}).get("reference_value"), "reference_drawn": "reference_value" in resolved.get("options", {})}

@@ -103,6 +103,43 @@ class EcdfPlotTests(unittest.TestCase):
             with self.subTest(message=message), self.assertRaisesRegex(ecdf.SpecError, message):
                 ecdf.prepare(path, spec)
 
+    def test_optional_line_roles_style_actual_curves_axes_and_grid_without_changing_steps(self):
+        source = self.csv("measurement\n1\n1\n2\n4\n")
+        original = source.read_bytes()
+        plain = deepcopy(self.base)
+        plain["options"] = {"x_limits": [0, 5], "grid": True}
+        _, baseline, _ = self.draw(source, plain)
+        expected_vertices = baseline._easyviz_ecdf_artists[0]["line"].get_path().vertices.copy()
+        styled = deepcopy(plain)
+        styled["line_roles"] = {"data": {"line_width_pt": 1.05, "color": "red", "linestyle": ":"},
+                                "axis": {"line_width_pt": .4, "color": "#345678"},
+                                "grid": {"line_width_pt": .2, "color": "#DDDDDD", "linestyle": ":"}}
+        for override, expected_width in ((None, 1.05), (.7, .7)):
+            with self.subTest(curve_width=override):
+                if override is not None:
+                    styled["options"]["curve_line_width_pt"] = override
+                data, fig, _ = self.draw(source, styled)
+                curve = fig._easyviz_ecdf_artists[0]["line"]
+                self.assertEqual(curve.get_linewidth(), expected_width)
+                self.assertEqual(ecdf.core.mcolors.to_hex(curve.get_color()), "#5278a8")
+                self.assertEqual(curve.get_linestyle(), "-")
+                self.assertTrue(ecdf.np.array_equal(curve.get_path().vertices, expected_vertices))
+                self.assertEqual(fig.axes[0].spines["bottom"].get_linewidth(), .4)
+                self.assertEqual(ecdf.core.mcolors.to_hex(fig.axes[0].spines["bottom"].get_edgecolor()), "#345678")
+                grid = [line for line in fig.axes[0].get_ygridlines() if line.get_visible()]
+                self.assertTrue(grid)
+                self.assertTrue(all(line.get_linewidth() == .2 and line.get_linestyle() == ":" for line in grid))
+                self.assertTrue(all(line.get_zorder() < curve.get_zorder() for line in grid))
+                self.assertEqual(ecdf.audit_source_artists(source, styled, fig)["status"], "pass")
+                self.assertEqual(data["measurement"].tolist(), [1., 1., 2., 4.])
+        self.assertEqual(source.read_bytes(), original)
+        for roles in ([], {"unknown": {"line_width_pt": .5}}, {"axis": {"line_width_pt": True}},
+                      {"data": {"line_width_pt": float("nan")}}, {"axis": {"linestyle": "--"}}):
+            invalid = deepcopy(self.base)
+            invalid["line_roles"] = roles
+            with self.subTest(roles=roles), self.assertRaises(ecdf.SpecError):
+                ecdf.prepare(source, invalid)
+
     def test_unknown_settings_bad_ticks_and_unused_roles_are_rejected(self):
         source = self.csv("measurement\n1\n2\n")
         changes = [("options", {"x_tikcs": [1, 2]}), ("options", {"x_ticks": [2, 1]}),

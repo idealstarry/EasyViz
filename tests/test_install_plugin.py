@@ -27,6 +27,8 @@ class InstallerTests(unittest.TestCase):
                  "skills/easyviz/scripts/legend_layout.py", "skills/easyviz/scripts/requirements.txt",
                  "skills/easyviz/scripts/auto_layout.py", "skills/easyviz/scripts/annotation_review.py",
                  "skills/easyviz/scripts/draft_spec.py",
+                 "skills/easyviz/scripts/create_style.py",
+                 "skills/easyviz/scripts/panel_readability.py",
                  "skills/easyviz/scripts/interval_plot.py",
                  "skills/easyviz/scripts/paired_plot.py",
                  "skills/easyviz/scripts/replicate_plot.py",
@@ -70,6 +72,11 @@ class InstallerTests(unittest.TestCase):
                  "skills/easyviz/assets/palettes/palettes.json",
                  "skills/easyviz/assets/fixtures/heatmap/data.csv",
                  "skills/easyviz/assets/fixtures/heatmap/spec.json"]
+        files += [f"skills/easyviz/assets/cases/basic-panels/{name}"
+                  for name in ("README.md", "plot.py", "validate.py", "manifest.json")]
+        files += [f"skills/easyviz/assets/cases/basic-panels/{case}/{name}"
+                  for case in ("replicate-bars", "paired-scatter", "cohort-box", "cohort-violin", "depot-heatmap")
+                  for name in ("source-data.csv", "candidate-spec.json", "caption.md", "provenance.json")]
         files += [f"skills/{name}/SKILL.md" for name in
                   ("easyviz", "easyviz-reference-reader", "easyviz-figure-reviewer")]
         for name in files:

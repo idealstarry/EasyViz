@@ -2,6 +2,12 @@
 
 Create an individual scientific panel from source data, a communication goal or chart type, optional additions, and export preferences. Reuse the same data, typography, palette, and physical-size rules as reproduce.
 
+Start with a basic single plot and make its colors, strokes and proportions
+work at the adopted size. A scatter, bar, box, violin or heatmap can be a complete
+result. Add aligned tracks or a second encoding only when the reader needs
+that comparison in the same panel; a literature-inspired appearance does not
+require a composite figure.
+
 If the user supplies a directory without a clear question or chart, start with
 [Data exploration](data-exploration.md). Inventory the tables, inspect actual
 values, and propose a few concrete reading tasks with field mappings and small
@@ -10,7 +16,7 @@ design. Ask only for scientific facts that change a proposed analysis; keep
 descriptive exploration moving while those facts remain unknown. The user need
 not choose a renderer or write a specification.
 
-For an eligible observation table, use [Actual preview choices](preview-choices.md)
+For an eligible observation table with an unresolved reading task, use [Actual preview choices](preview-choices.md)
 to show box + all points and an unsmoothed ECDF at the same final dimensions,
 fonts, colors and numeric scale. State which helps the proposed reading task,
 inspect the actual exports, and retain the user's choice. The manifest contains
@@ -31,6 +37,20 @@ Honor the user's requested chart when the data supports it. Otherwise use the [C
 | Show an existing embedding or analysis result | Supplied coordinates or results and their interpretation; upstream computation remains outside this skill. |
 
 Record the adopted chart type, field mappings, transformations, order, and requested layers. The compact specification in [Reference specification](reference-spec.md) can be used without a reference-observation section.
+
+### Basic chart choices
+
+| Starting chart | Use when | Resolve before styling |
+| --- | --- | --- |
+| Scatter | The relationship between two supplied variables is the task. | Point identity, units, scale and overlap; add a fitted curve only with an adopted model. A line joining unordered observations invents a relationship. |
+| Bar | An adopted estimate, count, total or composition is the quantity to compare. | What height summarizes, the zero baseline, denominator and uncertainty meaning. Do not turn raw measurements into means merely because bars look compact. |
+| Box with raw points | Median, spread and individual measurements matter. | Quartiles and whisker convention, independent unit or pairing, point capacity and summary crossings. Separate lanes or small facets can help without adding statistics. |
+| Violin | Density shape matters and the supplied observations support a useful estimate. | KDE method/bandwidth and width normalization. Small or repeated-value groups may be clearer as box/points; a wide violin is not automatically a larger sample. |
+| Simple heatmap | Readers compare values across a row/column matrix. | Identifier order, observed/missing states, shared numeric normalization and cell proportions. Metadata strips, marginals and trees are optional, separately justified layers. |
+
+These starting choices preserve the user’s chart preference when its meaning
+fits the data. ECDF, intervals, paired trajectories and other supported families
+remain available when they answer the reading task more directly.
 
 ### Design the comparison
 
@@ -72,26 +92,23 @@ Use [Panel layout](panel-layout.md) for physical dimensions and typography, and 
 
 Declare styling by mark role: fixed-size sample points may be opaque filled or hollow; bars or distribution summaries may use clear outlines; quantitative filled-area dots retain their exact fill-area contract. Match legend symbols to the chosen treatment. Avoid assuming that borderless, thinner or lower-alpha marks are always more refined. Inspect palette combinations together on the actual panel, including small marks and adjacent annotation tracks; a palette's appearance in a paper is not evidence that it suits this data or works with the other colors. Read [Literature design mechanisms](literature-style.md) when the user asks for crisp, compact paper-like figures.
 
-Before the first render, assign a color and stroke role to each layer: primary
-observations or estimates, supporting summaries, and guides. Use
-[Create colors and strokes](create-style.md) for an executable core-chart
-`line_roles` starting point, and equivalent explicit settings in custom recipes.
-Give the main comparison the strongest useful contrast. Supporting marginal
-bars, metadata strips, zero guides, grids and separators should earn their
-visual weight; do not let a saturated margin become the first thing the reader
-sees unless it is the scientific focus. Use a coordinated cold/warm pair for a
-two-group comparison when appropriate, rather than adding unrelated colors to
-every layer. Keep the source quantity's normalization and endpoints explicit.
+Before the first render, assign color and stroke roles to observations,
+adopted summaries and guides. Use [Create colors and strokes](create-style.md)
+for the shared new-task treatment and `line_roles`, or equivalent settings in a
+custom script. Compare all colors together, including legend keys and any
+continuous scale. Choose a coordinated pair for two groups when useful;
+additional categories need distinct colors that still form a coherent panel.
+The main evidence needs useful contrast. An auxiliary track should not become
+the visual focus merely because it is saturated or large.
 
-When overlapping cohorts become a cloud, compare aligned cohort facets with the
-same value scale and shared row order before reducing opacity. When a matrix
-contains signed deviations with a meaningful zero, explicitly compare a
-zero-centered cold/warm scale with its existing scale; record any changed
-normalization and show zero on the colorbar. For a nonnegative magnitude, a
-reviewed multihue sequential scale remains possible. A heatmap need not use one
-hue, and a preference for multiple hues does not justify arbitrary rainbow
-ordering. Keep all observations and the original numeric axis; density comes
-from alignment, usable plotting area and deliberate gaps, not added decoration.
+When cohorts overlap into an indistinct cloud, compare neighboring group lanes
+or aligned facets with the same numeric scale before fading every point. Use a
+sequential heatmap scale when the task is magnitude reading; values of both
+signs alone do not require a diverging palette. A scientifically meaningful
+center can justify a diverging alternative, with its center, endpoints and
+normalization recorded. Review a single-hue starting scale before adding more
+hues. Keep every observation and the original numeric axis; useful density
+comes from readable geometry, spacing and decoding.
 
 Use [Legend layout](legend-layout.md) to distinguish categorical keys, quantitative size keys, and continuous scales. Choose placement from measured key/text bounds and chart geometry; protect agreed fonts and quantitative area mappings. Inspect the legend's footprint and reserved space relative to the main plot, rather than accepting a large legend because it fits without overlap.
 
@@ -118,7 +135,11 @@ the affected formats. It is a shared editing tool, not another plotting track.
 
 ## 4. Render and refine
 
-Inspect an actual rendering at final-size proportions. Adjust label wrapping, tick density, legend placement, and margins to suit the data without automatically shrinking text. If the canvas cannot fit the content, use the shared procedure for selecting a larger panel or splitting the content.
+Inspect an actual rendering at final-size proportions. First check the whole
+palette, visible axes and mark edges, point/summary overlap, category spacing,
+and the plot-to-guide proportions. Adjust wrapping, ticks, guides and margins
+without automatically shrinking text. If the canvas cannot fit the content,
+use the shared procedure for choosing a larger panel or splitting the content.
 
 For a styling refinement, compare the accepted and candidate exports at the
 same dimensions. Check the main data, palest positive marks, interval endpoints,

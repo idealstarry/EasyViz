@@ -7,6 +7,11 @@ starting values, not journal rules or evidence of publication quality.
 Reproduce follows its adopted reference and user settings; do not insert a
 create style into an accepted reproduction.
 
+Refine the basic chart before composing extra tracks. A small palette, definite
+edges and well-sized data region can improve a single scatter or bar without
+adding a statistic, label or annotation. Use additional layers only to answer
+an adopted reading task.
+
 For a crisp literature-inspired design, read the specific mechanisms in
 [PROGENy, scWAT and Vanneste](literature-style.md). Avoid turning "light" into
 low-opacity data, pale structural lines and unused plotting space. Clean
@@ -16,7 +21,9 @@ boundaries, visible category identity and organized density can coexist.
 
 - Use a complete `colors` mapping or an explicit categorical `palette` for
   groups. Give the same group the same color across related panels and guides.
-  Two informative hues are often clearer than using every catalog color.
+  Two informative hues are often clearer than using every catalog color. Check
+  the whole combination, including adjacent fills and legend keys; vivid marks
+  can stay bright without turning every layer into a different saturated hue.
 - Use a sequential `colormap` for magnitude; it may span more than one hue.
   Its palest end must remain visible
   for borderless dots; compare `notch2-blue` on low-value dots when appropriate.
@@ -51,13 +58,13 @@ a background or metadata role; it should not mute every meaningful category.
 
 ## Crisp observation and summary options
 
-For a fixed-size core `distribution`, an explicit open treatment is:
+For a fixed-size core `distribution`, the crisp starting treatment is:
 
 ```json
 {
   "options": {
     "kind": "box", "box_style": "outline",
-    "point_style": "hollow", "point_edge_width_pt": 0.45,
+    "point_style": "filled",
     "alpha": 1, "point_layout": "beeswarm",
     "point_area_pt2": 9, "point_max_offset_mm": 4, "point_gap_pt": 0.3
   }
@@ -77,29 +84,61 @@ choose the summary from the data. Point size remains the existing squared
 diameter parameter, not circle fill area. Physical point placement includes
 the hollow stroke extent and reports unresolved crowding.
 
+Use a hollow alternative with `point_style="hollow"` and
+`point_edge_width_pt=0.45` when an unfilled glyph improves separation. Check
+summary crossings and the visible edge at final size before adopting it.
+
 For a sparse categorical layout, `box_width` controls box thickness in category
 spacing units (`0 < box_width <= 1`, original default 0.5). Inspect its physical
 size after layout; a two-group chart can turn 0.5 into an unnecessarily thick
 box. New drafts start at 0.18. This changes categorical thickness only; quartile
 endpoints, whisker values, median and raw observations stay unchanged.
 
-New drafts without an adopted profile use opaque filled observations and
-narrow outline boxes for distribution. Hollow points remain an explicit option,
-not a required aesthetic. Existing
-specifications keep their old fallbacks. These starting choices need image
-review. When an open mark cannot fit or is too weak at final size, compare a
-clear filled treatment or aligned facets before fading it. Any size/layout
-change must be explicit; packing must not jitter the numeric coordinate.
-When a whisker crosses a hollow observation, consider an opaque filled glyph
-or a separate summary lane; exposing the crossing is not automatically cleaner.
+The shared `scripts/create_style.py` supplies missing cosmetics for new
+unprofiled drafts and distribution previews. The default mode is `crisp`:
+opaque filled observations, narrow outline boxes and the role widths below.
+Explicit options and category colors remain adopted choices. Profile-based
+drafts retain the existing profile without receiving these new defaults.
 
-For many repeated categories, compare adjacent group tracks on one quantitative
-axis before using distant facets. Give raw observations and descriptive
-summaries separate lanes; a compact outlined IQR box and a distinct median can
-carry the main comparison when hundreds of raw points must remain small.
-Measure mark extents before assigning row room, and retain exact numeric
-positions when packing points vertically. This arrangement suits distribution
-comparison; it does not retain participant correspondence across categories.
+Use `draft_spec.py --style-mode legacy`, or `"style_mode": "legacy"` in a
+preview request, to retain the earlier omitted-option fallbacks. Saved renderer
+specifications keep their accepted behavior; opening one is not a style upgrade.
+An explicit `layout.line_width_pt` keeps the existing global-width fallback
+rather than receiving default role widths; explicit role widths still win.
+
+These choices need image review. If a hollow glyph is weak or exposes a whisker
+crossing, compare a filled glyph or separate summary lane. If packing fails,
+make an explicit size/layout decision; numeric positions must stay intact.
+
+For `kind="violin"`, an explicit `violin_fill_alpha` in `[0, 1]` changes only
+the KDE face and keeps its edge opaque. Omission preserves earlier behavior.
+`violin_inner="box"` adds a hollow raw-value Q1–Q3 summary, with an optional
+median controlled by `violin_median_visible` (default `true`). Its
+`violin_inner_width` is category spacing (`0 < width <= 0.7`, default `0.12`),
+independent of KDE density and sample count. This is an added statistical
+summary layer; adopt it deliberately and define it in the caption.
+
+The separate [replicate-bar recipe](replicate-plot.md) supports explicit
+`bar_style="outline"` or optional edges on filled bars. Its bar settings are
+not core `line_roles`. Compare fill and edge treatments with the actual raw
+layer rather than making every basic chart hollow.
+
+## Basic chart checks
+
+| Chart | Useful design decision | When to choose another treatment |
+| --- | --- | --- |
+| Scatter | Keep group identity visible in the actual point field; make any adopted fit distinct from points and reference guides. | Dense overlap may need hollow glyphs, modest transparency or facets. Compare actual density; do not fade a sparse cloud by habit. |
+| Bar | Set fill/edge treatment, bar thickness and category gaps together. Make an adopted interval visible against the bar and any raw points. | Open bars help when they reveal a raw layer; a filled bar can be clearer when height alone is the evidence. Styling does not define the summary or uncertainty. |
+| Box and points | Keep quartile boundaries and median legible; inspect point/whisker crossings and physical box thickness. | Separate the summary and raw layer into neighboring lanes or facets when marks mask each other. An outlined box is a starting choice, not a reason to shrink every point. |
+| Violin | Make the density boundary, any adopted box/median and raw points distinct. | Shape adds little for sparse or discrete groups; use box/points when KDE would suggest unsupported detail. |
+| Heatmap | Choose a justified scale and readable cell proportions. Subtle cell seams can identify large cells; keep the colorbar interpretable in original units. | Framing every tiny cell can overwhelm a dense matrix. A diverging map needs a declared center, not merely two signs or a desire for more colors. |
+
+Measure the space needed by category labels and legend keys, then give the rest
+to the data. Inspect within-group gaps, between-group gaps and outer margins
+separately. Reducing a legend should release usable plot space rather than
+leave its oversized empty band in place. For repeated categories, adjacent
+group lanes and aligned facets are alternatives; preserve unit correspondence
+when it is part of the question.
 
 ## Explicit line roles in core charts
 
@@ -120,7 +159,7 @@ The five-family core renderer accepts an optional `line_roles` object:
 | Role | Actual artists affected |
 | --- | --- |
 | `data` | Scatter regression stroke and violin outlines. |
-| `summary` | Box outlines, whiskers, caps and medians. |
+| `summary` | Box outlines, whiskers, caps and medians; explicit violin inner boxes and their optional median lines. |
 | `reference` | Supplied numeric scatter reference lines; their positions stay unchanged. |
 | `axis` | Data-axis spines and tick strokes; text colors and sizes stay unchanged. |
 | `grid` | Grid strokes only when `options.grid` is already `true`. |
@@ -140,30 +179,41 @@ always retain `colors`/`palette`; a role color controls the affected strokes.
 When summary color is absent, box edges keep category colors, medians keep
 their existing dark color, and whiskers/caps keep their prior library fallback.
 
-New drafts without a shared profile write the example starting hierarchy.
-Profile-based drafts preserve the adopted shared strokes. Focused recipes use
-their own declared curve, interval, paired-connector and summary options; do
-not add core `line_roles` to a focused spec unless that recipe documents it.
-Colorbar frames and legend keys retain their existing guide contract.
+The [distribution preview helper](preview-choices.md) writes the same starting
+hierarchy. Its ECDF uses `data.line_width_pt` for curves unless an explicit
+`curve_line_width_pt` is supplied, and supports the `axis` and `grid` roles.
+Category colors and solid empirical steps retain their meaning; other role
+settings add no ECDF layer. Other focused recipes use their documented curve,
+interval, connector and summary options. Do not add core `line_roles` to a
+focused spec unless supported. Colorbar frames and legend keys retain their
+existing guide contract.
 
 ## Review the result
 
-1. Check that the intended comparison is seen before auxiliary decoration.
+The [five runnable basic panels](../assets/cases/basic-panels/README.md) show
+these decisions on real data and preserve matched-spec comparison records in
+the development repository. Use their contracts and adjustable settings, not
+their biological names or scientific assumptions, on a new input.
+
+1. Check the complete palette and that the intended comparison is seen first.
    Use a grid only when it materially improves reading values; a pale grid can
    still create unwanted visual bands in a matrix or categorical panel.
 2. Check actual thin strokes, hollow interiors and the palest marks at final
    size. Strengthen the specific layer that disappears; avoid reducing all
    widths/opacity together. A dark thin axis can be clearer than a pale one.
-3. Keep line patterns legible and semantically consistent. A solid fitted curve,
+3. Check point/summary crossings, bar or box thickness, category gaps and the
+   complete legend footprint. Enlarged inspection alone can hide weak strokes
+   or an overlarge guide at the actual manuscript size.
+4. Keep line patterns legible and semantically consistent. A solid fitted curve,
    dashed reference and definite axes should remain distinct in export.
-4. Verify group-color consistency, intact source rows, statistics, dimensions
+5. Verify group-color consistency, intact source rows, statistics, dimensions
    and exports. Technical QA covers those checks only where supported; image
    inspection remains necessary for aesthetics and scientific readability.
 
-For a signed matrix, show the meaningful center on its guide and inspect
-negative, near-zero and positive regions separately. An asymmetric diverging
-normalization has different scale slopes on its two arms: record forward and
-inverse mapping instead of calling it one linear range. For a selected matrix,
+For a matrix, inspect the low, middle and high portions of the actual data.
+Show an adopted meaningful center on its guide when one exists. An asymmetric
+diverging normalization has different scale slopes on its two arms: record
+forward and inverse mapping instead of calling it one linear range. For a selected matrix,
 metadata and marginals must use the same identifier order and declare whether
 their summaries refer to the displayed subset or complete data.
 

@@ -223,6 +223,35 @@ class DraftSpecTests(unittest.TestCase):
                     draft_spec.draft(self.source, "scatter", ["x=x", "y=y"], path, **options)
                 self.assertFalse(path.exists())
 
+    def test_crisp_and_legacy_drafts_draw_expected_box_geometry_without_data_changes(self):
+        source = self.csv("box-source.csv", "g,v\nA,1\nA,2\nA,5\nB,3\nB,6\nB,8\n")
+        original = source.read_bytes()
+        for mode, alpha, width, stroke in (("crisp", 1, .18, .75), ("legacy", .85, .5, .6)):
+            with self.subTest(mode=mode):
+                spec = draft_spec.draft(source, "distribution", ["group=g", "value=v"],
+                                        self.root / f"{mode}-box.json", font="DejaVu Sans", style_mode=mode)
+                data = renderer.prepare(source, spec)
+                layout, typography, rc = renderer.setup(spec)
+                with renderer.plt.rc_context(rc):
+                    fig, _ = renderer.draw(data, spec, layout, typography, renderer.statistics(data, spec))
+                    self.assertEqual(len(data), 6)
+                    self.assertEqual(data["v"].tolist(), [1., 2., 5., 3., 6., 8.])
+                    from matplotlib.collections import PathCollection
+                    points = [artist for artist in fig.axes[0].collections if isinstance(artist, PathCollection)]
+                    self.assertTrue(all(artist.get_alpha() == alpha for artist in points))
+                    for box in fig.axes[0].patches:
+                        self.assertAlmostEqual(renderer.np.ptp(box.get_path().vertices[:, 0]), width)
+                        self.assertEqual(box.get_linewidth(), stroke)
+                        self.assertEqual(box.get_facecolor()[3], 0 if mode == "crisp" else .22)
+                    renderer.plt.close(fig)
+                self.assertEqual(source.read_bytes(), original)
+
+    def test_bad_style_mode_never_writes_a_draft(self):
+        path = self.root / "bad-style.json"
+        with self.assertRaisesRegex(ValueError, "style_mode"):
+            draft_spec.draft(self.source, "scatter", ["x=x", "y=y"], path, style_mode="unsupported")
+        self.assertFalse(path.exists())
+
     def test_cli_is_portable_and_rejects_invalid_arguments(self):
         portable = self.root / "portable"
         shutil.copytree(SCRIPT.parent, portable)
@@ -234,7 +263,8 @@ class DraftSpecTests(unittest.TestCase):
         self.assertEqual(json.loads(result.stdout)["status"], "draft")
         self.assertTrue(json.loads(path.read_text())["layout"]["auto_fit"])
         for extra in (["--spec", "other.json"], ["--normalization", "sample_sum"],
-                      ["--field", "x=y"], ["--panel-size-mm", "wide", "80"], ["--panel", "A"]):
+                      ["--field", "x=y"], ["--panel-size-mm", "wide", "80"], ["--panel", "A"],
+                      ["--style-mode", "soft"]):
             with self.subTest(extra=extra):
                 invalid = self.root / "cli-invalid.json"
                 arguments = base[:-1] + [invalid] + extra

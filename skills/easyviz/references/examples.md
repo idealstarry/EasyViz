@@ -4,7 +4,17 @@ Use these cases after resolving the user's data mappings and track. In reproduce
 
 For an undecided data directory, begin with [create exploration](data-exploration.md) and an [adopted analysis plan](statistical-analysis.md). For reproduce, the reference and user data are sufficient inputs; [new code](reference-to-code.md) can implement unfamiliar layers. Literature Source Data cases provide auditable learning evidence rather than a runtime prerequisite. Both tracks can save version-bound edit requests in the [figure workbench](figure-workbench.md), then rerender from the revised source.
 
-## Advanced create
+## Basic create
+
+[Five basic panels](../assets/cases/basic-panels/README.md) demonstrate replicate
+bars, paired-coordinate scatter, box/points, violin/points and a simple
+heatmap through the public tools at 110 × 88 mm and 8 pt. Each contains compact
+attributed source data, an explicit specification, a separate caption and
+PNG/PDF/SVG exports. Start here for a single reading task. Adapt mappings and
+scientific definitions explicitly; style choices do not establish a summary
+method or experimental unit.
+
+## Additional create layers
 
 | Resource | Reusable design | Data contract and limit |
 | --- | --- | --- |
