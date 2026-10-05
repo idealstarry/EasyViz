@@ -1,6 +1,6 @@
 # Palette selection
 
-Use the [literature color card](../assets/palettes/palette-swatches.png) to compare candidates, then inspect them on the actual panel. A publication source establishes provenance, not aesthetic suitability. Prefer coordinated lightness and saturation on white; avoid a dark low-value field or a muted gray-purple scheme as a habitual default. Preserve the user's chosen palette and existing group identities unless a recoloring is requested. In reproduce, use the adopted reference palette or the user's requested override.
+Use the [literature color card](../assets/palettes/palette-swatches.png) to compare candidates, then inspect them on the actual panel. A publication source establishes provenance, not aesthetic suitability. Choose lightness and saturation by mark area and reading task: pale summary areas with clear edges differ from tiny observations on white. A single quantity may use neutral marks; mixed categorical points need visible decoding. Preserve accepted palettes and group identities unless recoloring is requested. In reproduce, use the adopted reference palette or the user's requested override.
 
 The colors live in [palettes.json](../assets/palettes/palettes.json), and compatible combinations in [families.json](../assets/palettes/families.json). Record the preset and actual label-to-color mapping in output settings. A paper's biological labels do not transfer to new data when its colors are reused.
 
@@ -9,6 +9,8 @@ The colors live in [palettes.json](../assets/palettes/palettes.json), and compat
 | Preset | Meaning and preferred use | Provenance |
 | --- | --- | --- |
 | `scwat-blue-coral` | Clear blue/coral for two groups; inspect opaque filled or hollow observations and matching outlines. | Selected PDF vector colors from Huang et al. (2023), Fig. 2. Reassigning colors to new groups is an explicit choice. |
+| `scwat-blue-pink` | Candidate blue/pink pair for two-class scatter; inspect actual small points and overlap. | Selected vector fitted-line strokes from scWAT Fig. 2g, PDF p. 4. Reusing them as observation colors is an adaptation; source point paints vary. |
+| `progeny-summary` | Purple, mint, salmon and gray area colors for bounded distribution summaries, with eligible graphite contours and neutral raw points. | PROGENy Fig. 4c, PDF p. 6: selected purple/mint inner-summary fills and salmon/gray KDE-area fills. Reassigning all four to cohort IQR areas and adding neutral raw points are adaptations. Pale area colors are not automatically suitable for tiny glyphs. |
 | `scwat-blue-white-coral` | Blue–white–coral for signed deviations with a meaningful center. | New EasyViz interpolation from Fig. 2 categorical endpoints; not the author's Fig. 2b heatmap palette. |
 | `notch2-balanced` | Blue, amber, teal, pink. Selected by the user for the cell-atlas example; evaluate again for other contexts. | Four exact embedded legend colors selected from the same Figure 2b, including I2/I1/I4/M1. |
 | `notch2-blue` | Blue sequential scale with a visible light endpoint for borderless marks. | EasyViz 20–100% white-to-I2-blue interpolation; not an author gradient. |
@@ -19,13 +21,15 @@ The colors live in [palettes.json](../assets/palettes/palettes.json), and compat
 | `notch2-teal` | Light-to-jade for ordered values. | EasyViz interpolation from Fig. 2b's observed I4 teal. |
 | `somerville-blue-coral` | Blue–white–coral for signed deviations with an explicitly meaningful center. | New EasyViz gradient using Fig. 1B categorical endpoints. |
 
-Families are candidate combinations, not universal defaults. `notch2-balanced` pairs the selected four-category set with a blue scale; `somerville-fresh` and `notch2-fresh` remain alternatives. Check filled areas, small marks and legend keys together under the same outline policy. Do not combine all available hues in one panel or turn a categorical palette into a rainbow heatmap.
+Families are candidate combinations, not universal defaults. `notch2-balanced` pairs the selected four-category set with a blue scale; `somerville-fresh` and `notch2-fresh` remain alternatives. Judge areas, small marks, outlines and keys by their roles. A distribution can use category-colored areas with neutral raw points, while a two-class scatter needs point identity. Do not apply the same vivid trio to every example, combine all available hues, or turn a categorical palette into a rainbow heatmap.
 
 The core renderer's technical fallbacks are `somerville-bright` and `somerville-sky` when no explicit choices are supplied. They are not evidence of user approval or suitability; supply the selected palette explicitly. Always review actual marks, not just swatches.
 
 ## Source precision
 
 - [Huang et al., Nature Communications 2023](https://www.nature.com/articles/s41467-023-43021-8): the actual Figure 2 page was inspected. Blue/coral vector strokes and fills are `#55A0FB` / `#FF8080` after rounding PDF RGB to 8-bit HEX. The categorical pair is observed; the white-centered continuous ramp is an adaptation. Original author-code constants remain unknown. [Literature design mechanisms](literature-style.md) connects this pair to mark treatment and layout rather than treating hue alone as a design solution.
+- scWAT Fig. 2g's actual vector fitted-line strokes round to `#3795D3` / `#FF5FBD`; its blue observation fill/edge round to `#25A7E0` / `#3698D5`, while pink observations have multiple paint layers. `scwat-blue-pink` selects the line pair and does not claim a uniform author scatter palette.
+- [Schubert et al., Nature Communications 2018](https://www.nature.com/articles/s41467-017-02391-6): PROGENy Fig. 2d uses gray `#595959` bars. Fig. 4c supplies selected purple/mint inner-summary and salmon/gray KDE-area fills with neutral `#333333` boundaries; `progeny-summary` combines these observed roles into an adapted area palette. Values are rounded PDF vector RGB, not author-code constants or an original four-color IQR palette. The source's mutation/pathway encodings do not transfer to new labels.
 - [Somerville et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-52687-7): rendered figures were inspected and flat PDF vector-fill RGB values were converted to 8-bit HEX. The six-color selection spans two panels; it is an EasyViz selection, not an author-provided palette product.
 - [Cruz Tleugabulova et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-53700-9): RGB values were extracted from uniform embedded legend swatches and checked against the actual rendered figure. These values are exact for those PDF pixels; pre-publication author constants remain unknown.
 
@@ -33,7 +37,7 @@ The core renderer's technical fallbacks are `somerville-bright` and `somerville-
 
 ## Mapping and readability
 
-Categorical colors must not cycle when capacity is exceeded. Supply an explicitly reviewed larger mapping, use redundant encodings, or arrange separate panels. Keep group-color assignments stable across plots. If pale fills need outlines, apply one coherent outline policy to comparable marks and matching legend symbols, or choose stronger fills/direct labels; do not outline only one mark type by accident.
+Categorical colors must not cycle when capacity is exceeded. Supply an explicitly reviewed larger mapping, use redundant encodings, or arrange separate panels. Keep group-color assignments stable across related box/violin views as well as other panels. If pale areas need outlines, use deliberate role settings and matching legend symbols. Neutral point overrides are valid when categorical position/labels and summary colors still decode identity; a colored point key must not imply those neutral observations carry hue.
 
 For a panel set, save the complete category-to-color mapping in a [shared figure profile](figure-profile.md). A palette name assigns colors from the current panel's categories; if a group is absent or the order changes, its position in that palette can change. A profile's explicit mapping retains category identity. Omit local `palette` when using shared `colors`; conflicting explicit colors fail instead of overriding the map. New categories must be added to the shared mapping.
 

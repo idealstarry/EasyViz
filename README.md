@@ -55,49 +55,48 @@ aliases and the different ranges, with a global-scale grouped alternative.
 
 **Create · basic panels**
 
-Start with the chart that answers the question. These five single panels use
-real Source Data, bright category colors, definite summary boundaries and
-readable axes at **110 × 88 mm with 8 pt text**. Every observation is retained.
-Open a panel to inspect its data, specification, separate caption and runnable code.
+Choose colors for the comparison and the mark size. These real Source Data
+panels retain every observation at **110 × 88 mm with 8 pt text**. A small
+observation, a quartile area and a one-series bar need different color decisions.
 
-| Replicate bars | Paired-coordinate scatter |
-| --- | --- |
-| <a href="examples/create/basic-panels/replicate-bars/"><img src="examples/create/basic-panels/replicate-bars/output/panel.png" alt="Outlined mean HDR bars with every biological replicate and sample SD" width="350"></a> | <a href="examples/create/basic-panels/paired-scatter/"><img src="examples/create/basic-panels/paired-scatter/output/panel.png" alt="Before versus after antibody concentrations with complete participant pairs" width="350"></a> |
-| Mean and sample SD, with all three biological replicates per treatment. | Both measurements of each participant on logarithmic axes; no fitted relationship is inferred. |
+**Cohort distributions** use pastel quartile areas with graphite boundaries and
+raw points. **Before/after relationships** use a blue/pink pair to distinguish
+the two supplied infection classes. Their [case files](examples/create/basic-panels/README.md)
+record the source, decisions, captions and runnable code.
 
-**Box and observations** · Hollow quartile boxes and clear median/whisker
-lines sit beside all 129 participant values. A separate raw-point lane keeps
-observations from covering the summaries; their BMI coordinates stay exact.
-
-<p align="center"><a href="examples/create/basic-panels/cohort-box/"><img src="examples/create/basic-panels/cohort-box/output/panel.png" alt="Cohort BMI quartile boxes and all observations in neighboring lanes" width="520"></a></p>
+<p align="center"><a href="examples/create/basic-panels/cohort-box/"><img src="examples/create/basic-panels/cohort-box/output/panel.png" alt="Pastel cohort quartile areas with graphite boundaries and all raw BMI observations" width="350"></a> <a href="examples/create/basic-panels/paired-scatter/"><img src="examples/create/basic-panels/paired-scatter/output/panel.png" alt="All participant before-after coordinates with a literature-informed blue and pink categorical pair" width="350"></a></p>
 
 **Simple heatmap** · Within-depot subtype percentages use one linear blue scale
-from 0 to 40%, with a compact data region, clear cell seams and 48 source-derived
-numeric labels. SC, OM and PV identify the three depots; the caption gives their
-full names. These values describe cell composition, not independent participant
-replicates.
+from 0 to 40%, with clear cell seams and 48 source-derived numeric labels.
+SC, OM and PV identify the three depots; the caption gives their full names.
+These values describe cell composition, not independent participant replicates.
 
-<p align="center"><a href="examples/create/basic-panels/depot-heatmap/"><img src="examples/create/basic-panels/depot-heatmap/output/panel.png" alt="Compact sixteen-subtype by three-depot heatmap with values and an original-percent color scale" width="520"></a></p>
+<p align="center"><a href="examples/create/basic-panels/depot-heatmap/"><img src="examples/create/basic-panels/depot-heatmap/output/panel.png" alt="Compact sixteen-subtype by three-depot heatmap with values and original-percent color scale" width="440"></a></p>
 
 <details>
-<summary>Alternative distribution view: estimated density and quartiles</summary>
+<summary>Two further basic views: single-outcome bars and estimated density</summary>
 
-The violin uses the same observations as the box example. Thin neutral density
-contours, colored quartile summaries and neighboring raw points have distinct
-roles. The density adds a different reading task; it is an alternative view,
-rather than a separate dataset. Violin width does not encode sample count.
+**Single-outcome bars** · Graphite open means, all three biological replicates
+per treatment and sample SD. Axis labels already distinguish the treatments;
+this single quantity needs no categorical color cycle. The separate narrow
+repair-outcome panels above use the same source measurements.
 
-<p align="center"><a href="examples/create/basic-panels/cohort-violin/"><img src="examples/create/basic-panels/cohort-violin/output/panel.png" alt="Narrow BMI density contours, quartiles and neighboring raw-point lanes" width="520"></a></p>
+<p align="center"><a href="examples/create/basic-panels/replicate-bars/"><img src="examples/create/basic-panels/replicate-bars/output/panel.png" alt="Neutral open HDR means with graphite raw replicates and sample SD" width="440"></a></p>
+
+**Estimated density** · The companion violin uses the same BMI observations and
+category mapping as the box view. White density bodies, graphite contours and
+raw points frame colored inner quartile areas. Width does not encode sample count.
+
+<p align="center"><a href="examples/create/basic-panels/cohort-violin/"><img src="examples/create/basic-panels/cohort-violin/output/panel.png" alt="White BMI density contours with pastel inner quartile areas and graphite raw observations" width="440"></a></p>
 
 </details>
 
-[Basic-panel cases and bounded transfer checks](examples/create/basic-panels/README.md)
-record the reading tasks and design choices. The [same-version refinement
-review](evals/create-refinement-v0.4.3/README.md) compares the three redesigned
-panels with their actual published v0.4.3 predecessors and examines literature
-design mechanisms. Earlier omitted-option comparisons remain historical
-evidence; neither comparison establishes a with/without-Skill model advantage
-or journal acceptance.
+[Basic cases and bounded transfer checks](examples/create/basic-panels/README.md)
+retain the actual data and scientific definitions. The [color-role refinement](evals/create-palette-refinement-v0.4.3/README.md)
+compares real rendered candidates with their actual predecessors and the
+observed literature mechanisms. The earlier [geometry refinement](evals/create-refinement-v0.4.3/README.md)
+remains recorded separately. Neither establishes a model-wide advantage or
+journal acceptance.
 
 <details>
 <summary>Additional Create examples: aligned layers and supplied effects</summary>
@@ -176,6 +175,8 @@ names, HEX values and sources are selectable text.
 
 | Palette | Color preview |
 | --- | --- |
+| **Violet · mint · salmon · gray for summary areas**<br>`progeny-summary` · categorical<br>[Schubert 2018 · Fig. 4c](https://www.nature.com/articles/s41467-017-02391-6) · use dark boundaries and readable observation marks | <img src="docs/assets/palettes/progeny-summary.png" alt="Selected observed area fills: violet, mint, salmon and gray" width="440" height="28"><br>`#8787DE` `#BFE8C5` `#FF9695` `#CACACA` |
+| **Blue · pink for observations**<br>`scwat-blue-pink` · categorical<br>[Huang 2023 · Fig. 2g](https://www.nature.com/articles/s41467-023-43021-8) · observed curve colors, reassigned to raw-point groups | <img src="docs/assets/palettes/scwat-blue-pink.png" alt="Selected observed blue and pink vector stroke colors" width="440" height="28"><br>`#3795D3` `#FF5FBD` |
 | **Clear blue · coral**<br>`scwat-blue-coral` · categorical<br>[Huang 2023 · Fig. 2](https://www.nature.com/articles/s41467-023-43021-8) | <img src="docs/assets/palettes/scwat-blue-coral.png" alt="Two observed categorical colors: clear blue and coral" width="440" height="28"><br>`#55A0FB` `#FF8080` |
 | **Clear blue · white · coral**<br>`scwat-blue-white-coral` · diverging<br>Adapted · [Huang 2023 · Fig. 2](https://www.nature.com/articles/s41467-023-43021-8) | <img src="docs/assets/palettes/scwat-blue-white-coral.png" alt="Adapted diverging blue-white-coral ramp" width="440" height="28"><br>low `#55A0FB` → center `#FFFFFF` → high `#FF8080` |
 | **Blue · amber · teal · pink**<br>`notch2-balanced` · categorical<br>[Cruz Tleugabulova 2024 · Fig. 2b](https://www.nature.com/articles/s41467-024-53700-9) | <img src="docs/assets/palettes/notch2-balanced.png" alt="Four categorical colors: blue, amber, teal and pink" width="440" height="28"><br>`#2581B9` `#DF9A3C` `#1AA781` `#CC86B9` |

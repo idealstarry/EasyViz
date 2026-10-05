@@ -1,0 +1,224 @@
+{
+  "status": "pass",
+  "scope": "Fresh ZIP extraction, every candidate and source transfer, same environment and Arial font, compared with reviewed source-checkout exports.",
+  "checks": 19,
+  "runs": [
+    {
+      "case": "replicate-bars",
+      "run": "candidate",
+      "status": "pass",
+      "input_rows": 15,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "replicate-bars",
+      "run": "transfer",
+      "status": "pass",
+      "input_rows": 12,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "paired-scatter",
+      "run": "candidate",
+      "status": "pass",
+      "input_rows": 127,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "paired-scatter",
+      "run": "transfer",
+      "status": "pass",
+      "input_rows": 63,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "cohort-box",
+      "run": "candidate",
+      "status": "pass",
+      "input_rows": 129,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "cohort-box",
+      "run": "transfer",
+      "status": "pass",
+      "input_rows": 185,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "cohort-violin",
+      "run": "candidate",
+      "status": "pass",
+      "input_rows": 129,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "cohort-violin",
+      "run": "transfer",
+      "status": "pass",
+      "input_rows": 185,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "depot-heatmap",
+      "run": "candidate",
+      "status": "pass",
+      "input_rows": 48,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "depot-heatmap",
+      "run": "transfer",
+      "status": "pass",
+      "input_rows": 48,
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "grouped-output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "panels/hdr/output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "panels/both/output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "panels/mutej/output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "transfer/output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "transfer/grouped-output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "transfer/panels/hdr/output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    },
+    {
+      "case": "repair-outcomes",
+      "run": "transfer/panels/mutej/output",
+      "status": "pass",
+      "byte_identical": {
+        "panel.png": true,
+        "panel.pdf": true,
+        "panel.svg": true,
+        "plotting-data.csv": true
+      }
+    }
+  ]
+}

@@ -1,3 +1,7 @@
 Participant BMI distributions in three explicitly selected source cohorts from Massier et al., Nature Communications (2023), Fig. 8a (DOI 10.1038/s41467-023-36983-2; source release https://data.mendeley.com/datasets/y3pxvr4xbf/2, CC BY 4.0). All available observations in Krieg (23), Petrus (29), and Kerr (77) are shown; none of these 129 selected rows has a missing BMI. The other five source cohorts are outside this three-cohort display. Boxes show the median, linearly interpolated 25th/75th percentiles, and whiskers to the most extreme observation within 1.5 IQR; all outlying raw values remain drawn as points. Category-direction beeswarm placement preserves exact BMI coordinates. The cohorts are observational; no pairing, adjusted comparison, or new hypothesis test is inferred.
 
 Raw observations occupy an adjacent right-hand beeswarm lane rather than the box and whisker centers, keeping the sample distribution and summary endpoints separately readable. This categorical offset carries no numerical or additional-group meaning.
+
+Categorical colors are an explicit adaptation of selected PROGENy Fig. 4c PDF area fills: Krieg violet, Petrus mint and Kerr salmon; the four-cohort probe adds Arner, E gray. They identify cohort positions, not mutation/pathway meanings from that paper. Graphite observations occupy the established neighboring lane.
+
+The sampled source regions include inner summaries and colored density/pathway areas; applying all selected colors to cohort IQR regions is an EasyViz adaptation.

@@ -114,7 +114,7 @@ CHART_OPTIONS = {
     "composition": {"normalization", "missing_categories", "bar_width", "percent_axis"},
     "dotplot": {"color_limits", "color_center", "size_max", "max_area_pt2", "size_legend", "missing_cells", "state_markers", "small_positive_area_pt2"},
     "scatter": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "point_color", "regression", "regression_color", "size_max", "max_area_pt2", "size_legend", "reference_lines"},
-    "distribution": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "kind", "box_style", "box_width", "violin_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_median_visible", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt", "point_category_offset"},
+    "distribution": {"point_area_pt2", "alpha", "point_style", "point_edge_width_pt", "point_color", "kind", "box_style", "box_width", "box_fill_alpha", "violin_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_inner_fill_alpha", "violin_median_visible", "orientation", "point_layout", "point_max_offset_mm", "point_gap_pt", "point_category_offset"},
 }
 SCHEMA = {
     "chart": list(REQUIRED), "fields_by_chart": REQUIRED,
@@ -137,9 +137,10 @@ SCHEMA = {
     "chart_options": {k: sorted(v) for k, v in CHART_OPTIONS.items()},
     "scatter_reference_lines": {"x": [-1, 1], "y": [1.3]},
     "observation_style": {"point_style": "filled (legacy default) or hollow; hollow is limited to fixed scatter/distribution marks", "point_edge_width_pt": "Positive finite JSON number; requires hollow; default 0.45 pt", "alpha": "Explicit opacity is preserved; new unprofiled create drafts use 1", "meaning": "Hollow observations retain the same Matplotlib s and coordinates, have no face fill and use their group/point color for edges. Group legend keys match. Hollow and edge options are rejected with scatter fields.size because quantitative circle fill area must remain filled."},
-    "distribution_box_style": {"box_style": "filled (legacy default) or outline; requires kind=box", "meaning": "Outline boxes have no face fill, keeping observations visible beneath the summary boundary."},
+    "distribution_box_style": {"box_style": "filled (legacy default) or outline; requires kind=box", "box_fill_alpha": "Optional finite JSON number in [0, 1], kind=box only; default 0.22. Filled boxes use the category color at this face opacity; outline boxes remain unfilled.", "meaning": "Summary face color is independent of the raw-point override and an explicitly adopted summary edge color. Outline boxes have no face fill."},
     "distribution_box_width": "Optional finite 0 < box_width <= 1, in category-center spacing units; legacy default 0.5. New drafts use 0.18; inspect the actual physical thickness after layout.",
-    "distribution_violin_style": {"violin_fill_alpha": "Optional JSON number in [0, 1], controlling only the KDE face; explicit values keep the outline opaque. Omission preserves the legacy artist opacity.", "violin_inner": "none (legacy default)|box; requires kind=violin", "violin_inner_width": "Optional 0 < width <= 0.7 category-center units, requires violin_inner=box; default 0.12", "violin_median_visible": "Optional boolean, requires violin_inner=box; default true", "meaning": "The optional hollow inner box spans raw-observation Q1 to Q3, with an optional median line and no whiskers. These summaries are independent of the KDE's separately normalized width; neither width encodes sample count."},
+    "distribution_violin_style": {"violin_fill_alpha": "Optional JSON number in [0, 1], controlling only the KDE face; explicit values keep the outline opaque. Omission preserves the legacy artist opacity.", "violin_inner": "none (legacy default)|box; requires kind=violin", "violin_inner_width": "Optional 0 < width <= 0.7 category-center units, requires violin_inner=box; default 0.12", "violin_inner_fill_alpha": "Optional finite JSON number in [0, 1], requires kind=violin and violin_inner=box; default 0 retains the hollow box. Positive values fill the raw-value IQR box with the category color, independently of point and contour colors.", "violin_median_visible": "Optional boolean, requires violin_inner=box; default true", "meaning": "The optional inner box spans raw-observation Q1 to Q3, with an optional median line and no whiskers. Its optional categorical fill does not encode a further statistic. These summaries are independent of the KDE's separately normalized width; neither width encodes sample count."},
+    "distribution_color_roles": {"point_color": "Optional visible color string overriding every raw observation's group color; omitted keeps group-colored points. It affects filled faces or hollow edges only, retaining the adopted alpha, size, placement, values and summaries.", "meaning": "Category colors can identify summary areas while explicitly adopted neutral colors identify raw observations and contour strokes. This is an optional panel choice, not a new Create default."},
     "distribution_point_layout": {"point_layout": "jitter (default) or beeswarm", "point_max_offset_mm": 4, "point_gap_pt": .3, "meaning": "Beeswarm moves only the categorical coordinate after final layout; preserves values, rows, marker size and canvas. Unresolved mark overlaps fail QA and remain in exported data."},
     "distribution_layer_geometry": {"point_category_offset": "Optional finite JSON number in [-0.4, 0.4], default 0; shifts the raw layer in category-spacing units, not measurement units. Positive is right for vertical plots; orientation/reversed axes determine physical direction. Packing spread is measured around the shifted anchor; point envelopes must stay in the original category lane.", "violin_width": "Optional finite 0 < width <= 1, default 0.7; changes categorical silhouette width only. Scott bandwidth, numeric evaluation values and density normalization are unchanged."},
     "heatmap_cell_geometry": {"cell_border_width_pt": "Optional finite nonnegative JSON number, default 0; draws editable vector internal seams exactly at half-integer cell boundaries.", "cell_border_color": "Optional valid color string, default white.", "column_labels": "Optional complete mapping from actual column keys to distinct nonempty display strings. Source keys, order and numeric values stay unchanged; define abbreviations in the caption."},
@@ -199,6 +200,15 @@ def validate_spec(spec):
             number(width, "options.point_edge_width_pt")
     if spec.get("chart") == "distribution":
         options = spec.get("options", {})
+        if "point_color" in options:
+            color = options["point_color"]
+            require(isinstance(color, str) and mcolors.is_color_like(color) and mcolors.to_rgba(color)[3] > 0,
+                    "options.point_color must be a visible color string")
+        if "box_fill_alpha" in options:
+            require(options.get("kind", "box") == "box", "options.box_fill_alpha requires kind='box'")
+            alpha = options["box_fill_alpha"]
+            require(isinstance(alpha, (int, float)) and not isinstance(alpha, bool) and math.isfinite(alpha) and 0 <= alpha <= 1,
+                    "options.box_fill_alpha must be a finite JSON number in [0, 1]")
         if "box_width" in options:
             require(options.get("kind", "box") == "box", "options.box_width requires kind='box'")
             width = options["box_width"]
@@ -209,7 +219,7 @@ def validate_spec(spec):
             require(isinstance(options["box_style"], str) and options["box_style"] in ("filled", "outline"),
                     "options.box_style must be filled or outline")
             require(options.get("kind", "box") == "box", "options.box_style requires kind='box'")
-        violin_options = {"violin_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_median_visible"} & set(options)
+        violin_options = {"violin_width", "violin_fill_alpha", "violin_inner", "violin_inner_width", "violin_inner_fill_alpha", "violin_median_visible"} & set(options)
         if violin_options:
             require(options.get("kind", "box") == "violin", "violin styling options require kind='violin'")
         if "violin_width" in options:
@@ -234,6 +244,11 @@ def validate_spec(spec):
             require(isinstance(width, (int, float)) and not isinstance(width, bool), "options.violin_inner_width must be a finite JSON number in (0, 0.7]")
             number(width, "options.violin_inner_width")
             require(width <= .7, "options.violin_inner_width must be in (0, 0.7]")
+        if "violin_inner_fill_alpha" in options:
+            require(options.get("violin_inner", "none") == "box", "options.violin_inner_fill_alpha requires violin_inner='box'")
+            alpha = options["violin_inner_fill_alpha"]
+            require(isinstance(alpha, (int, float)) and not isinstance(alpha, bool) and math.isfinite(alpha) and 0 <= alpha <= 1,
+                    "options.violin_inner_fill_alpha must be a finite JSON number in [0, 1]")
         if "violin_median_visible" in options:
             require(options.get("violin_inner", "none") == "box", "options.violin_median_visible requires violin_inner='box'")
             require(isinstance(options["violin_median_visible"], bool), "options.violin_median_visible must be a boolean")
@@ -1005,7 +1020,7 @@ def draw(data, spec, layout, typography, result):
             bodies = violins["bodies"]
             result["violin_definition"] = "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin width independently normalized. Every observation is drawn as a point."
         for body, group in zip(bodies, groups):
-            fill_alpha = options.get("violin_fill_alpha", .22) if kind == "violin" else .22
+            fill_alpha = options.get("violin_fill_alpha", .22) if kind == "violin" else options.get("box_fill_alpha", .22)
             if kind == "violin" and "violin_fill_alpha" in options:
                 # Matplotlib initially assigns collection alpha=.3. Clear that
                 # override only for explicitly requested face/edge separation.
@@ -1018,12 +1033,24 @@ def draw(data, spec, layout, typography, result):
             if "linestyle" in stroke:
                 body.set_linestyle(stroke["linestyle"])
             width_path = line_width_path(spec, stroke_role)
-            paths = [figure_elements.pointer("colors", group), width_path]
-            edits = {"color": figure_elements.pointer("colors", group), "linewidth": width_path}
+            category_color_path = figure_elements.pointer("colors", group)
+            paths = [category_color_path, width_path]
+            edits = {"color": category_color_path, "linewidth": width_path}
+            has_visible_face = options.get("box_style") != "outline" and fill_alpha > 0
+            if has_visible_face:
+                edits["facecolor"] = category_color_path
             if "color" in spec.get("line_roles", {}).get(stroke_role, {}):
                 edge_path = figure_elements.pointer("line_roles", stroke_role, "color")
                 paths.append(edge_path)
                 edits["edgecolor"] = edge_path
+                if not has_visible_face:
+                    edits["color"] = edge_path
+            else:
+                edits["edgecolor"] = category_color_path
+            if kind == "box" and "box_fill_alpha" in options:
+                paths.append("/options/box_fill_alpha")
+                if options.get("box_style") != "outline":
+                    edits["fill_alpha"] = "/options/box_fill_alpha"
             if kind == "violin" and "violin_fill_alpha" in options:
                 paths.append("/options/violin_fill_alpha")
                 edits["fill_alpha"] = "/options/violin_fill_alpha"
@@ -1035,8 +1062,11 @@ def draw(data, spec, layout, typography, result):
         if kind == "violin" and options.get("violin_inner", "none") == "box":
             from matplotlib.patches import Rectangle
             inner_width = options.get("violin_inner_width", .12)
+            inner_fill_alpha = options.get("violin_inner_fill_alpha", 0)
             median_visible = options.get("violin_median_visible", True)
             result["violin_inner_definition"] = "Hollow raw-value Q1/Q3 box with an optional median line; NumPy linear quantiles; no whiskers. Fixed categorical width independent of KDE density and sample count."
+            if inner_fill_alpha > 0:
+                result["violin_inner_definition"] = "Category-filled raw-value Q1/Q3 box with an optional median line; NumPy linear quantiles; no whiskers. Fixed categorical width independent of KDE density and sample count."
             result["violin_inner_summaries"] = []
             for i, (sample, group) in enumerate(zip(samples, groups)):
                 q1, median, q3 = map(float, np.quantile(sample, [.25, .5, .75], method="linear"))
@@ -1046,7 +1076,8 @@ def draw(data, spec, layout, typography, result):
                 rect = Rectangle((lower, q1) if orientation == "vertical" else (q1, lower),
                                  inner_width if orientation == "vertical" else q3 - q1,
                                  q3 - q1 if orientation == "vertical" else inner_width,
-                                 facecolor="none", edgecolor=box_stroke["color"], linewidth=box_stroke["linewidth"],
+                                 facecolor="none" if inner_fill_alpha == 0 else mcolors.to_rgba(resolved_colors[group], inner_fill_alpha),
+                                 edgecolor=box_stroke["color"], linewidth=box_stroke["linewidth"],
                                  linestyle=box_stroke.get("linestyle", "-"), zorder=4)
                 ax.add_patch(rect)
                 summaries = [(rect, "Q1–Q3", "iqr")]
@@ -1057,10 +1088,28 @@ def draw(data, spec, layout, typography, result):
                     summaries.append((line, "Median", "median"))
                 width_path = line_width_path(spec, "summary")
                 for artist, label, part in summaries:
+                    paths = [width_path, "/options/violin_inner_width"]
+                    edits = {"linewidth": width_path}
+                    summary_color_path = figure_elements.pointer("line_roles", "summary", "color") if "color" in spec.get("line_roles", {}).get("summary", {}) else None
+                    if part == "iqr":
+                        category_color_path = figure_elements.pointer("colors", group)
+                        edge_color_path = summary_color_path or category_color_path
+                        paths.append(edge_color_path)
+                        edits.update(color=category_color_path if inner_fill_alpha > 0 else edge_color_path,
+                                     edgecolor=edge_color_path)
+                        if inner_fill_alpha > 0:
+                            if category_color_path not in paths:
+                                paths.append(category_color_path)
+                            edits["facecolor"] = category_color_path
+                        if "violin_inner_fill_alpha" in options:
+                            paths.append("/options/violin_inner_fill_alpha")
+                            edits["fill_alpha"] = "/options/violin_inner_fill_alpha"
+                    elif summary_color_path is not None:
+                        paths.append(summary_color_path)
+                        edits["color"] = summary_color_path
                     figure_elements.register(fig, artist, "summary-line", f"{group} · {label}", key=["violin-inner", group, part],
                                              source_keys=[{"group": group}],
-                                             spec_paths=[width_path, "/options/violin_inner_width"],
-                                             editable={"linewidth": width_path})
+                                             spec_paths=paths, editable=edits)
                 result["violin_inner_summaries"].append({"group": group, "n_observations": len(sample),
                                                        "q1": q1, "median": median, "q3": q3,
                                                        "categorical_width": inner_width, "median_line_visible": median_visible})
@@ -1070,13 +1119,14 @@ def draw(data, spec, layout, typography, result):
             positions += options.get("point_category_offset", 0)
             rows = data.index[data[f["group"]].astype(str) == group].to_numpy()
             data.loc[rows, "_easyviz_jitter_position"] = positions
-            points = ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, marker="o", s=options.get("point_area_pt2", 9), **observation_style(options, resolved_colors[group]), zorder=3)
+            points = ax.scatter(positions if orientation == "vertical" else sample, sample if orientation == "vertical" else positions, marker="o", s=options.get("point_area_pt2", 9), **observation_style(options, options.get("point_color", resolved_colors[group])), zorder=3)
             distribution_points.append((i, group, sample, rows, points))
+            point_color_path = "/options/point_color" if "point_color" in options else figure_elements.pointer("colors", group)
             figure_elements.register(fig, points, "point-group", group, key=["distribution", group],
                                      source_keys=[{"group": group}],
-                                     spec_paths=[figure_elements.pointer("colors", group), "/options/alpha"]
+                                     spec_paths=[point_color_path, "/options/alpha"]
                                                 + (["/options/point_category_offset"] if "point_category_offset" in options else []),
-                                     editable={"color": figure_elements.pointer("colors", group), "alpha": "/options/alpha"})
+                                     editable={"color": point_color_path, "alpha": "/options/alpha"})
         if orientation == "vertical":
             ax.set_xticks(range(len(groups)), groups, rotation=options.get("x_rotation", 0))
             ax.set_xlim(-.6, len(groups) - .4)

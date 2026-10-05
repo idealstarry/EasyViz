@@ -8,17 +8,17 @@
   },
   "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
   "version": {
-    "figure_sha256": "71fa2be3595e28de13fccf11880cdd89d31494c7260c1d9a192706ab314dbda6",
-    "spec_sha256": "3d055d6a03d5dbcb3d2351f1cddb057c076c4292bdff26f63335cdb0d53b42f7",
+    "figure_sha256": "9bf48fe75ca5d00e50a8fa82128cae29c3badac934e57491dd5cb31d024efe71",
+    "spec_sha256": "159a4ca1ba7194945d4f626395dbcf8935ba5a78b366b2b472866337aa6ab5a1",
     "input_sha256": "a1e077b14da39e0f851f335207a2851ca81f3c6f9a189015e7161d3972f1d500",
-    "source_script_sha256": "64db2976b99bcbb7341a74620e03de68b971f41652bf97134eff89300b546976",
-    "resolved_colors_sha256": "e46b476148de79b52a52f57fef91a577a9b80dd1963d43aee6c7d6c674a12429"
+    "source_script_sha256": "ce99d6c3925e20c63181336eb85cfa679a4b103863fa190fc33188a4b47e2676",
+    "resolved_colors_sha256": "e3bacec14e7ec8cf134be4995688f37cd311bf57cf4861e07f8d494c12f4b8d1"
   },
   "input": {
     "data_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/source-data.csv",
     "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/spec.json",
     "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
-    "supplied_spec_sha256": "9e7a3328260909772d3ef0ef41fd16d1d60b9d48f910d345feba1f45bc103fc0"
+    "supplied_spec_sha256": "08f10b65c79c7d3197092334d8f69d54b1e293d2e6ca5541723fc303db828f2b"
   },
   "elements": [
     {
@@ -38,7 +38,7 @@
         "/options/violin_width"
       ],
       "editable": {
-        "color": "/colors/Krieg",
+        "color": "/line_roles/data/color",
         "linewidth": "/line_roles/data/line_width_pt",
         "edgecolor": "/line_roles/data/color",
         "fill_alpha": "/options/violin_fill_alpha"
@@ -67,7 +67,7 @@
         "/options/violin_width"
       ],
       "editable": {
-        "color": "/colors/Petrus",
+        "color": "/line_roles/data/color",
         "linewidth": "/line_roles/data/line_width_pt",
         "edgecolor": "/line_roles/data/color",
         "fill_alpha": "/options/violin_fill_alpha"
@@ -96,7 +96,7 @@
         "/options/violin_width"
       ],
       "editable": {
-        "color": "/colors/Kerr",
+        "color": "/line_roles/data/color",
         "linewidth": "/line_roles/data/line_width_pt",
         "edgecolor": "/line_roles/data/color",
         "fill_alpha": "/options/violin_fill_alpha"
@@ -125,7 +125,7 @@
         "/options/violin_width"
       ],
       "editable": {
-        "color": "/colors/Arner, E",
+        "color": "/line_roles/data/color",
         "linewidth": "/line_roles/data/line_width_pt",
         "edgecolor": "/line_roles/data/color",
         "fill_alpha": "/options/violin_fill_alpha"
@@ -148,10 +148,17 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color",
+        "/colors/Krieg",
+        "/options/violin_inner_fill_alpha"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/colors/Krieg",
+        "edgecolor": "/line_roles/summary/color",
+        "facecolor": "/colors/Krieg",
+        "fill_alpha": "/options/violin_inner_fill_alpha"
       },
       "bbox_mm": [
         31.051428571428577,
@@ -171,10 +178,12 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/line_roles/summary/color"
       },
       "bbox_mm": [
         31.051428571428577,
@@ -194,10 +203,17 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color",
+        "/colors/Petrus",
+        "/options/violin_inner_fill_alpha"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/colors/Petrus",
+        "edgecolor": "/line_roles/summary/color",
+        "facecolor": "/colors/Petrus",
+        "fill_alpha": "/options/violin_inner_fill_alpha"
       },
       "bbox_mm": [
         47.81333333333333,
@@ -217,10 +233,12 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/line_roles/summary/color"
       },
       "bbox_mm": [
         47.81333333333333,
@@ -240,10 +258,17 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color",
+        "/colors/Kerr",
+        "/options/violin_inner_fill_alpha"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/colors/Kerr",
+        "edgecolor": "/line_roles/summary/color",
+        "facecolor": "/colors/Kerr",
+        "fill_alpha": "/options/violin_inner_fill_alpha"
       },
       "bbox_mm": [
         64.57523809523808,
@@ -263,10 +288,12 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/line_roles/summary/color"
       },
       "bbox_mm": [
         64.57523809523808,
@@ -286,10 +313,17 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color",
+        "/colors/Arner, E",
+        "/options/violin_inner_fill_alpha"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/colors/Arner, E",
+        "edgecolor": "/line_roles/summary/color",
+        "facecolor": "/colors/Arner, E",
+        "fill_alpha": "/options/violin_inner_fill_alpha"
       },
       "bbox_mm": [
         81.33714285714285,
@@ -309,10 +343,12 @@
       ],
       "spec_paths": [
         "/line_roles/summary/line_width_pt",
-        "/options/violin_inner_width"
+        "/options/violin_inner_width",
+        "/line_roles/summary/color"
       ],
       "editable": {
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "color": "/line_roles/summary/color"
       },
       "bbox_mm": [
         81.33714285714285,
@@ -331,12 +367,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Krieg",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Krieg",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -350,12 +386,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Petrus",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Petrus",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -369,12 +405,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Kerr",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Kerr",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -388,12 +424,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Arner, E",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Arner, E",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },

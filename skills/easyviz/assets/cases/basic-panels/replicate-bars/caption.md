@@ -1,1 +1,3 @@
 Author-supplied HDR percentages under five drug conditions from Truong et al., Nature Methods (2024), Fig. 1b (DOI 10.1038/s41592-023-02162-w; CC BY 4.0). Bars show arithmetic means; vertical intervals show sample SD (ddof = 1), and points show all three biological replicates per condition. The no donor/Cas9 and NTC rows are outside this declared treatment subset. No normalization, inferred cross-condition pairing, new test, or significance mark is used. Condition names are wrapped for display only.
+
+Open summaries, raw repeats and intervals use graphite; treatment identity is supplied by axis position and labels. This single-outcome display does not require a separate categorical hue.

@@ -1,0 +1,209 @@
+{
+  "layout": {
+    "width_mm": 110.0,
+    "height_mm": 88.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.10524677241161616,
+      "right": 0.9818181818181817,
+      "bottom": 0.16673226404671718,
+      "top": 0.9655985514322918
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "replicate",
+  "fields": {
+    "condition": "display_condition",
+    "unit": "unit",
+    "value": "HDR_percent"
+  },
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU-7441\n(1 µM)",
+      "KU-0060548\n(0.25 µM)",
+      "L755507\n(5 µM)",
+      "SCR7 pyrazine\n(1 µM)"
+    ]
+  },
+  "labels": {
+    "x": "Treatment",
+    "y": "HDR (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "y_limits": [
+      0,
+      15
+    ],
+    "y_ticks": [
+      0,
+      5,
+      10,
+      15
+    ],
+    "bar_width": 0.5,
+    "marker_area_pt2": 7,
+    "bar_color": "#CACACA",
+    "point_color": "#333333",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.7,
+    "bar_edge_color": "#333333"
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "DMSO": "#CACACA",
+    "NU-7441\n(1 µM)": "#CACACA",
+    "KU-0060548\n(0.25 µM)": "#CACACA",
+    "L755507\n(5 µM)": "#CACACA",
+    "SCR7 pyrazine\n(1 µM)": "#CACACA"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/source-data.csv",
+  "input_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+  "supplied_spec": {
+    "layout": {
+      "width_mm": 110,
+      "height_mm": 88,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "line_width_pt": 0.6,
+      "auto_fit": true
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "chart": "replicate",
+    "fields": {
+      "condition": "display_condition",
+      "unit": "unit",
+      "value": "HDR_percent"
+    },
+    "order": {
+      "condition": [
+        "DMSO",
+        "NU-7441\n(1 µM)",
+        "KU-0060548\n(0.25 µM)",
+        "L755507\n(5 µM)",
+        "SCR7 pyrazine\n(1 µM)"
+      ]
+    },
+    "labels": {
+      "x": "Treatment",
+      "y": "HDR (%)"
+    },
+    "options": {
+      "mode": "summary",
+      "uncertainty": "sample_sd",
+      "y_limits": [
+        0,
+        15
+      ],
+      "y_ticks": [
+        0,
+        5,
+        10,
+        15
+      ],
+      "bar_width": 0.5,
+      "marker_area_pt2": 7,
+      "bar_color": "#CACACA",
+      "point_color": "#333333",
+      "bar_style": "outline",
+      "bar_edge_width_pt": 0.7,
+      "bar_edge_color": "#333333"
+    }
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.10524677241161616,
+      "right": 0.9818181818181817,
+      "bottom": 0.16673226404671718,
+      "top": 0.9655985514322918
+    },
+    "data_region_mm": [
+      11.57714496527778,
+      14.67243923611111,
+      96.42285503472223,
+      70.30023328993056
+    ],
+    "data_area_fraction": 0.7002633474609637,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.7002633474609637
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+    "helper_sha256": {
+      "render.py": "64db2976b99bcbb7341a74620e03de68b971f41652bf97134eff89300b546976",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "e34d6e7c5e720782671e356b960c4f6052d26ed3fa3b0f868dbbf004e4b03f48",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    }
+  },
+  "spec_file_sha256": "b0175f8e0db491f273559ec96025391b78566738b8b233006ac8bbc51324fdb5"
+}

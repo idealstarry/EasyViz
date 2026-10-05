@@ -12,10 +12,10 @@ quality gain. No fitted trend, hypothesis test or significance mark is added.
 
 | Basic type | Data and reading task | Declared design choice |
 | --- | --- | --- |
-| [Replicate bars](replicate-bars/output/panel.png) | Fifteen author-supplied HDR percentages: five treatments, three biological replicates each. Read treatment means alongside all observations and sample SD. | One bright blue outcome, outline bars, same-hue opaque points, independently readable dark SD. |
-| [Paired scatter](paired-scatter/output/panel.png) | Both IgG measurements from all 127 paired participants. Compare before/after values and the source prior-infection groups. | Clear blue/coral fixed-size points, log display axes, compact group keys; no invented fit or threshold. |
-| [Cohort boxes](cohort-box/output/panel.png) | All 129 BMI values in three explicitly selected cohorts. Read median, IQR, whiskers and every raw value. | Clear open boxes and median/whiskers beside a same-color raw-point lane; categorical shifts preserve every BMI coordinate. |
-| [Cohort violins](cohort-violin/output/panel.png) | The same 129 BMI values. Read the estimated distribution shape together with raw observations and quartiles. | Narrow, thin neutral KDE contours; colored Q1–Q3 boxes, dark medians and neighboring raw points. This is an alternative distribution view. |
+| [Replicate bars](replicate-bars/output/panel.png) | Fifteen author-supplied HDR percentages: five treatments, three biological replicates each. Read treatment means alongside all observations and sample SD. | Neutral open bars, graphite observations and visible SD; treatment labels carry category identity. |
+| [Paired scatter](paired-scatter/output/panel.png) | Both IgG measurements from all 127 paired participants. Compare before/after values and the source prior-infection groups. | Observed scWAT 2g blue/pink stroke colors adapted to fixed-size groups, log display axes and compact keys; no invented fit or threshold. |
+| [Cohort boxes](cohort-box/output/panel.png) | All 129 BMI values in three explicitly selected cohorts. Read median, IQR, whiskers and every raw value. | Pastel quartile areas and graphite box/median/whisker boundaries beside neutral raw observations; categorical shifts preserve every BMI coordinate. |
+| [Cohort violins](cohort-violin/output/panel.png) | The same 129 BMI values. Read the estimated distribution shape together with raw observations and quartiles. | Narrow white KDE bodies, graphite contours/observations and filled colored Q1–Q3 areas. This is an alternative distribution view. |
 | [Depot heatmap](depot-heatmap/output/panel.png) | All 48 source myeloid subtype/depot percentages. Read individual shares and their pattern on one 0–40% scale. | Compact cells, vector seams, full-precision colors and rounded value labels; short column headers are defined in the caption. |
 
 ![Replicate bars](replicate-bars/output/panel.png)
@@ -100,8 +100,10 @@ against specific mechanisms visible in scWAT and PROGENy, rather than treating
 a palette change or a software check as aesthetic proof. The complete
 [refinement record](https://github.com/idealstarry/EasyViz/tree/main/evals/create-refinement-v0.4.3)
 retains the actual predecessor images and scoped numerical/export checks.
-Scatter and bars retain their existing reviewed designs; no new improvement
-is claimed for them. These cases do not establish physical print quality,
+A subsequent [color-role refinement](https://github.com/idealstarry/EasyViz/tree/main/evals/create-palette-refinement-v0.4.3)
+compares all four recolored basic families with the actual main candidates,
+retaining the scientifically justified heatmap scale. The literature-informed
+choices apply to these reading tasks; they are not a mandatory gallery palette. These cases do not establish physical print quality,
 color-vision accessibility, a causal model advantage or publication acceptance.
 
 ## Source attribution

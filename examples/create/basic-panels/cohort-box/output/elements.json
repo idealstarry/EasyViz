@@ -8,17 +8,17 @@
   },
   "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
   "version": {
-    "figure_sha256": "a88fa8f950ba306e16d224671860cacdf58e69e33612d4a0c0bdfb9318c18602",
-    "spec_sha256": "3b38983b8d36c25ae8dba94efc59421527c25596cf56cfdff7c46e66dd74554d",
+    "figure_sha256": "42832b6f8390810752c021390f57fe229342897795d3f803b1cbf9cb4aba9a69",
+    "spec_sha256": "36e4e693c046f82e53d74f7a6d4f43655b75f47dcd5bcb52bccd85f70162dd77",
     "input_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
-    "source_script_sha256": "64db2976b99bcbb7341a74620e03de68b971f41652bf97134eff89300b546976",
-    "resolved_colors_sha256": "fcd4312b4ff77d6b4b7624eeec973607ed794a64ebc5bbc5119270fa98c91ee8"
+    "source_script_sha256": "ce99d6c3925e20c63181336eb85cfa679a4b103863fa190fc33188a4b47e2676",
+    "resolved_colors_sha256": "103196dd64ab23a72ed7cc72ff6d7f1881d583f938fb9d153190790cc5a9f3c7"
   },
   "input": {
     "data_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/source-data.csv",
     "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/candidate-spec.json",
     "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
-    "supplied_spec_sha256": "fabfa87e70ce1d5b9c904e6a953324c5ee680f103163f6f60fe5b427c3a0132b"
+    "supplied_spec_sha256": "e955e46ff4ef16750cfe09e3a64c5f54afc676adb85e5417a49b6300dc4c5511"
   },
   "elements": [
     {
@@ -32,11 +32,16 @@
       ],
       "spec_paths": [
         "/colors/Krieg",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Krieg",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Krieg",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         32.56,
@@ -56,11 +61,16 @@
       ],
       "spec_paths": [
         "/colors/Petrus",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Petrus",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Petrus",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         54.56,
@@ -80,11 +90,16 @@
       ],
       "spec_paths": [
         "/colors/Kerr",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Kerr",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Kerr",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         76.56,
@@ -103,12 +118,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Krieg",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Krieg",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -122,12 +137,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Petrus",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Petrus",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -141,12 +156,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Kerr",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Kerr",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },

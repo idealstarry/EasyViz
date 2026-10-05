@@ -22,11 +22,22 @@ boundaries, visible category identity and organized density can coexist.
 
 ## Color decisions
 
-- Use a complete `colors` mapping or an explicit categorical `palette` for
-  groups. Give the same group the same color across related panels and guides.
-  Two informative hues are often clearer than using every catalog color. Check
-  the whole combination, including adjacent fills and legend keys; vivid marks
-  can stay bright without turning every layer into a different saturated hue.
+Choose which marks need categorical color before selecting hues. Use a complete
+`colors` mapping or explicit `palette`, and keep its category assignments stable
+across related panels. Raw observations and summary areas can have different
+color roles when category positions still decode identity; guides must explain
+the actual colored layer.
+
+| Reading task and mark area | Candidate treatment | Check before adopting |
+| --- | --- | --- |
+| One quantity across x-labeled categories | Neutral filled or open bars, definite intervals and observations. PROGENy Fig. 2d and scWAT Fig. 3j use neutral marks. | Labels already identify categories; color each only if it communicates another adopted meaning. Gray must remain visible on white. |
+| Two classes mixed in a scatter field | Distinguishable categorical hues on the actual small points, such as the eligible `scwat-blue-pink` pair. | Both classes remain recognizable in sparse and crowded regions; pale area colors may fail as tiny glyphs. Do not add a fit just because its source example has one. |
+| Categories separated by distribution lanes | Category color on bounded box/inner-summary areas, graphite contours and optionally neutral observations; `progeny-summary` is one eligible area palette. | Position/labels and area color still identify groups, the median remains visible, and point keys do not falsely imply colored observations. Use the same map in related box/violin views. |
+
+- Inspect the whole combination, including adjacent fills and legend keys. A
+  useful bright pair in one scatter need not color a single-series bar or every
+  boundary of a distribution. Neutral marks are an eligible data treatment,
+  not solely a background or metadata role.
 - Use a sequential `colormap` for magnitude; it may span more than one hue.
   Its palest end must remain visible
   for borderless dots; compare `notch2-blue` on low-value dots when appropriate.
@@ -45,19 +56,13 @@ boundaries, visible category identity and organized density can coexist.
   Match legend symbols. A stroke does not establish a new categorical mapping;
   a quantitative filled-area circle must not become a hollow ring implicitly.
 
-For example, a two-group panel can adopt the observed scWAT blue/coral pair:
-
-```json
-{"colors": {"Discovery": "#55A0FB", "Replication": "#FF8080"}}
-```
-
-The PDF vector colors are observed; assigning them to these group labels is an
-EasyViz design choice. It is not a required default. Compare the pair with the
-actual density, background and guide keys. Preserve
-supplied values, marker areas, limits and agreed font sizes while refining
-contrast. The [palette catalog](palettes.md) records color provenance; adoption
-on one panel does not establish suitability on another. Neutral gray can serve
-a background or metadata role; it should not mute every meaningful category.
+The [palette catalog](palettes.md) records role eligibility and provenance.
+Assigning a paper's colors to new labels or mark types is a design adaptation,
+not a required default. Preserve values, marker areas, numeric scales and agreed
+fonts when comparing treatments.
+`progeny-summary` mixes observed inner-summary and KDE-area fills; applying
+all four to cohort box/IQR areas is an adaptation, not that paper's original
+four-group summary encoding.
 
 ## Crisp observation and summary options
 
@@ -75,8 +80,9 @@ For a fixed-size core `distribution`, the crisp starting treatment is:
 ```
 
 `point_style` accepts `filled` or `hollow`; the edge width is a positive finite
-number used only for hollow points. The hollow edge follows the actual group
-color. A fixed-size `scatter` can use the same observation treatment. Scatter
+number used only for hollow points. By default, the hollow edge follows the
+group color; a distribution's explicit `point_color` follows its adopted raw
+role instead. A fixed-size `scatter` can use the same filled/hollow treatment. Scatter
 with `fields.size` rejects hollow marks/edge-width overrides because its circle
 fill area is quantitative. Dot-matrix area encoding is unchanged.
 
@@ -86,6 +92,16 @@ sample symbol does not mean an outline bar summarizes those samples correctly;
 choose the summary from the data. Point size remains the existing squared
 diameter parameter, not circle fill area. Physical point placement includes
 the hollow stroke extent and reports unresolved crowding.
+
+For core distributions, explicit `point_color` overrides raw-observation color
+only; omission keeps the category colors. Use neutral points when categorical
+position and colored summary areas already decode group identity. This does not
+override scatter or dot-matrix color semantics. `box_fill_alpha` in `[0, 1]`
+controls the face of `kind="box"` with `box_style="filled"` (default `0.22`);
+the box edge and summary remain definite. Changing fill strength is independent
+of raw-point opacity; an outline box has no face to tint. Observed pastel colors
+are already light: an explicit `box_fill_alpha=1` can preserve their visible
+area color rather than whitening it again. Compare the actual face on white.
 
 Use a hollow alternative with `point_style="hollow"` and
 `point_edge_width_pt=0.45` when an unfilled glyph improves separation. Check
@@ -131,6 +147,11 @@ median controlled by `violin_median_visible` (default `true`). Its
 `violin_inner_width` is category spacing (`0 < width <= 0.7`, default `0.12`),
 independent of KDE density and sample count. This is an added statistical
 summary layer; adopt it deliberately and define it in the caption.
+An explicit `violin_inner_fill_alpha` in `[0, 1]` tints that inner box with the
+category color; it requires `violin_inner="box"` and defaults to `0` (open).
+This changes only its face, not quartiles, median, KDE or the observation layer.
+An explicit `violin_inner_fill_alpha=1` is a candidate for an already-pale
+summary palette; it does not require an opaque outer violin body.
 `violin_width` adjusts displayed categorical width (`0 < width <= 1`, default
 `0.7`); it does not alter KDE bandwidth or observed values. A narrow contour,
 visible inner summary and optional neighboring raw lane can reduce competing
@@ -230,6 +251,14 @@ The [runnable basic panels](../assets/cases/basic-panels/README.md) show
 these decisions on real data and preserve matched-spec comparison records in
 the development repository. Use their contracts and adjustable settings, not
 their biological names or scientific assumptions, on a new input.
+
+For an unresolved palette refinement, render two or three materially different
+whole-panel candidates: the accepted treatment, a task-suitable area/point
+alternative, and another justified option only if useful. Keep source rows,
+statistics, numeric scales, canvas and fonts equal. Compare category decoding,
+primary evidence, small-point contrast, adjacent areas and guide keys at final
+size. Record the preference and tradeoff; neither brighter nor more neutral
+automatically wins. Routine edits need no compulsory candidate set.
 
 1. Check the complete palette and that the intended comparison is seen first.
    Use a grid only when it materially improves reading values; a pale grid can

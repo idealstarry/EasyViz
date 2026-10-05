@@ -1,10 +1,10 @@
 # Literature design mechanisms for Create
 
 Use this reference for a crisp, compact scientific panel when the user has no
-adopted reproduction layout. These are transferable design decisions observed
-in specific figures, not a single Nature style. Keep the two tracks: a new
-arrangement with literature-inspired mark treatment is **create**; an adopted
-reference layout/style is **reproduce**.
+adopted reproduction layout. Create can use these observed mechanisms without
+a user-supplied reference at runtime; they are not a single Nature style.
+Keep the two tracks: a new arrangement with literature-inspired treatment is
+**create**; adopting a supplied reference's layout/style is **reproduce**.
 
 Apply the mark, color and spacing mechanism to a basic single plot first. The
 number of tracks or annotations in a paper is not a quality target. Borrow a
@@ -25,9 +25,11 @@ marks, transformations, cell labels or filtering into a new dataset.
 
 | Reading problem | Observed mechanism and source | Adaptation to consider | Boundary |
 | --- | --- | --- | --- |
+| A single quantity has unnecessary categorical colors | PROGENy Fig. 2d (p. 4): uniform gray bars. scWAT Fig. 3j (p. 5): deep-gray open control bar/observations beside a colored comparison. | When x labels already decode categories, compare neutral bars/points with the accepted colored design. | A neutral treatment is optional; multiple series need another visible decoding channel. Do not remove a supplied comparison group to simplify the panel. |
+| Two classes need identity in a small-point field | scWAT Fig. 2g (p. 4): blue and pink observations with matching fitted-line strokes, unlike the blue/coral bars on the same page. | Compare a distinct pair on the actual small points; color requirements differ from large summary areas. | The fitted line requires an adopted model. A source's pair can inspire a new scatter without copying its analysis or all mark colors. |
 | Samples disappear into a pale fill | scWAT Fig. 2c,i,j (p. 4): hollow blue/coral bars, small same-hue observations and readable interval strokes. Vanneste Fig. 2e–h (p. 4): colored open circles over hollow bars. | Set bar, point and interval geometry together: small observations remain distinct, open summaries leave the raw layer visible, and intervals survive at the bar top. | Borrowing blue/coral alone does not reproduce this hierarchy. Bars need an adopted summary and uncertainty definition; a hollow glyph cannot replace quantitative filled-area circles. |
 | Two cohorts make an indistinct cloud | Vanneste Fig. 5d (p. 7): repeated aligned plot boxes, shared labels and deliberate class blocks. | Compare neighboring group lanes or aligned facets with shared numeric scales and row order; pack points only along the categorical direction. | Faceting reduces each plot's available width. Check mark capacity at final size, retain every observation and do not erase pairing that the question needs. |
-| Distribution layers compete | PROGENy Fig. 4c (p. 6): a fine closed violin contour surrounds a more prominent rectangular summary and median, in compact repeated groups. | For summary-first reading, give the inner box more emphasis than the contour. Choose displayed violin width and group gaps together; a raw-point overlay is another explicit layer, not a requirement inherited from this figure. | Do not infer KDE bandwidth, sample size or interval meaning from an image, or alter bandwidth to copy its silhouette. A box/points view may serve the task without density estimation. |
+| Distribution layers compete | PROGENy Fig. 4c (p. 6): fine neutral violin boundaries, categorical fills on summary/body areas, clear inner boxes and medians in compact groups. | For summary-first reading, compare categorical areas with neutral contours/raw points. Give the inner box more emphasis than the contour; choose displayed width and group gaps together. | Neutral raw points are a proposed adaptation, not an observed PROGENy layer. Do not infer KDE bandwidth or interval meaning, change bandwidth for silhouette, or inherit the paper's mutation/pathway categories. |
 | A dense point field overwhelms its summary | Vanneste Fig. 5d (p. 7): smooth curves are wider than tiny green points, with a visible white edge separating layers. | Allocate stroke to the summary locally; a narrow contrasting under-stroke can separate a declared curve from points. | A fitted curve requires an adopted method. Adding a smooth line for appearance alone is not justified. |
 | Matrix values are difficult to compare | scWAT Fig. 2b (p. 4): a tall narrow expression matrix uses its few columns as compact reading units. PROGENy Fig. 2b,c (p. 4) and Vanneste Fig. 4d (p. 6) use different cell densities and color fields. | Set data-region aspect from matrix shape and label needs before choosing colors. Begin with a reviewed sequential scale for magnitude; use subordinate seams for large cells and a readable guide. | Square cells are not compulsory. Do not stretch a few columns solely to fill width, infer a universal heatmap palette, or introduce an unmotivated neutral threshold. Preserve normalization, ordering and all values. |
 | Repeated bars look sparse or disconnected | scWAT Fig. 3g,m (p. 5): tight within-category bars, wider category gaps, compact keys. | Retain relevant supplied outcomes/groupings and repeat their geometry and series order consistently. Show supported observations and uncertainty; use one shared decoding guide. | Retain units and actual experimental grouping. Small data remain a small comparison; density is not a reason to invent annotations, extra outcomes or enlarged marks. |
@@ -35,17 +37,33 @@ marks, transformations, cell labels or filtering into a new dataset.
 
 ## Color and stroke observations
 
-- scWAT Fig. 2 uses PDF vector blue **`#55A0FB`** and coral **`#FF8080`**
-  in strokes and filled marks. These values are rounded from inspected PDF RGB,
-  not recovered author-code constants. `scwat-blue-coral` offers the pair;
-  its assignment to new cohort labels is an explicit design choice.
+- PROGENy Fig. 2d uses uniform gray **`#595959`** bars. In Fig. 4c, selected
+  purple **`#8787DE`** and mint **`#BFE8C5`** fills occur in inner mutation
+  summaries; selected salmon **`#FF9695`** and gray **`#CACACA`** occur in
+  KDE/pathway-stratum areas. Boundaries are neutral **`#333333`**.
+  `progeny-summary` selects observed area colors from these different roles;
+  it is not a recovered four-color inner-box palette. Reassigning all four to
+  new cohort IQR areas and adding graphite raw points are adaptations, without
+  inheriting the source's mutation/pathway meaning.
+- scWAT Fig. 2c,i,j uses vector blue **`#55A0FB`** and coral **`#FF8080`**.
+  Fig. 2g instead has blue/pink fitted-line strokes **`#3795D3`** / **`#FF5FBD`**;
+  its point fills/edges are not uniformly those two colors. `scwat-blue-pink`
+  selects the line strokes; applying the pair to all new scatter observations
+  is an adaptation. These HEX values round observed PDF RGB, not author code.
+- Vanneste Fig. 3e,g (p. 5) uses black/white/gray compositions with definite
+  black outlines; Fig. 3g gray fill is **`#9E9E9E`**. The source demonstrates
+  neutral data marks, not a requirement to remove informative hues from every
+  categorical panel.
 - Vanneste Fig. 2e–h uses saturated blue/red observation edges. Black axes and
   comparison strokes remain clear. A guide can be dark and thin; all supporting
   strokes do not need to be pale or weaker than every data stroke.
 - The source figures mix hollow/filled marks, vivid/pale fills and narrow/wide
-  strokes by role. PROGENy's light contour and stronger inner summary differ
-  from a point-first plot. Low alpha may support a density face or uncertainty
-  band, but should not erase the primary evidence or its definite boundary.
+  strokes by role. Large light-colored areas can remain legible with boundaries,
+  while the same pale color may disappear as a tiny point. PROGENy's fine
+  contour and stronger inner summary differ from a point-first plot. Low alpha
+  may support a density face or uncertainty band, but should not erase the
+  primary evidence or its definite boundary. Already-pale observed fills do not
+  require an additional low-opacity treatment.
 - PROGENy separates small discrete cells with white boundaries; Vanneste's
   large cell-level heatmaps avoid framing every tiny cell. The separator policy
   depends on cell size, not a universal no-grid rule.

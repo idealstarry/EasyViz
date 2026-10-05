@@ -50,16 +50,19 @@
     "point_layout": "beeswarm",
     "point_max_offset_mm": 2.5,
     "point_gap_pt": 0.12,
-    "box_style": "outline",
+    "box_style": "filled",
     "box_width": 0.24,
-    "point_category_offset": 0.28
+    "point_category_offset": 0.28,
+    "point_color": "#333333",
+    "box_fill_alpha": 1
   },
   "line_roles": {
     "data": {
       "line_width_pt": 0.85
     },
     "summary": {
-      "line_width_pt": 0.65
+      "line_width_pt": 0.65,
+      "color": "#333333"
     },
     "reference": {
       "line_width_pt": 0.45,
@@ -77,9 +80,9 @@
     }
   },
   "colors": {
-    "Krieg": "#55A0FB",
-    "Petrus": "#FF8080",
-    "Kerr": "#35CBA6"
+    "Krieg": "#8787DE",
+    "Petrus": "#BFE8C5",
+    "Kerr": "#FF9695"
   },
   "typography": {
     "axis": 8.0,
@@ -90,15 +93,15 @@
     "panel": 9.0
   },
   "resolved_colors": {
-    "Krieg": "#55A0FB",
-    "Petrus": "#FF8080",
-    "Kerr": "#35CBA6"
+    "Krieg": "#8787DE",
+    "Petrus": "#BFE8C5",
+    "Kerr": "#FF9695"
   },
   "input_file": "source-data.csv",
   "input_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
   "renderer": {
     "version": "0.4.3",
-    "sha256": "64db2976b99bcbb7341a74620e03de68b971f41652bf97134eff89300b546976",
+    "sha256": "ce99d6c3925e20c63181336eb85cfa679a4b103863fa190fc33188a4b47e2676",
     "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
     "profile_helper_sha256": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
     "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",

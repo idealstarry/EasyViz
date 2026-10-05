@@ -1,0 +1,973 @@
+{
+  "schema_version": 1,
+  "easyviz_version": "0.4.3",
+  "purpose": "Read-only source observations supporting task-specific Create color roles; not a model-performance or publication-quality evaluation.",
+  "sources": [
+    {
+      "source_id": "progeny",
+      "filename": "PROGENy.pdf",
+      "pdf_sha256": "6b07ca9a113c56175eb00c1aff59442481f0ab07de248d7cf5442ec906e2a1f1",
+      "doi": "10.1038/s41467-017-02391-6",
+      "page_count": 11,
+      "visually_inspected_pdf_pages_1based": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "full_article_bundled": false
+    },
+    {
+      "source_id": "scwat",
+      "filename": "scWAT.pdf",
+      "pdf_sha256": "19e80f74d97a96a02a240eafa5ef2a2fb625132d7eeb703f0495fc8c36050c94",
+      "doi": "10.1038/s41467-023-43021-8",
+      "page_count": 19,
+      "visually_inspected_pdf_pages_1based": [
+        4,
+        5,
+        9
+      ],
+      "full_article_bundled": false
+    },
+    {
+      "source_id": "vanneste",
+      "filename": "Vanneste et al., Nat. Immun., 2023.pdf",
+      "pdf_sha256": "469ee78e3b965b5b5e4934fc463c552d1585ac1fde5fb003c68951df53c20a03",
+      "doi": "10.1038/s41590-023-01468-3",
+      "page_count": 37,
+      "visually_inspected_pdf_pages_1based": [
+        2,
+        4,
+        5
+      ],
+      "full_article_bundled": false
+    }
+  ],
+  "extraction": {
+    "library": "PyMuPDF",
+    "library_version": "1.28.2",
+    "method": "Page.get_drawings(); selected drawing records checked against actual rendered PDF figure pages and a scWAT Fig.3j detail crop.",
+    "bbox_convention": "[x0,y0,x1,y1] in PDF page points, origin at top left in PyMuPDF page coordinates.",
+    "drawing_indices": "0-based indices from Page.get_drawings() for the recorded PDF SHA; not author object IDs.",
+    "hex_conversion": "round(component * 255) from observed PDF RGB paint values; original floats retained.",
+    "screen_sampling": "No screen-derived HEX is used as a vector constant or preset endpoint. Initial rendered approximations were superseded by the source fitted-line vector strokes.",
+    "limits": "Selected paths document observable paints and geometry, not author code, statistical methods, completeness of every figure path, accessibility or suitability on a new input."
+  },
+  "observations": [
+    {
+      "source_id": "progeny",
+      "pdf_page_1based": 4,
+      "figure": "2d",
+      "page_size_pt": [
+        595.2760009765625,
+        782.3619995117188
+      ],
+      "evidence_type": "observed_pdf_vector_and_rendered_appearance",
+      "appearance_observation": "One series uses uniform gray horizontal bars; x labels decode the values and y labels the pathways.",
+      "vector_examples": [
+        {
+          "drawing_index_0based": 134,
+          "observable_role": "gray filled data bar",
+          "bbox_pt": [
+            181.63400268554688,
+            597.6751098632812,
+            187.99679565429688,
+            604.0579833984375
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.34900999069213867,
+              0.34900999069213867,
+              0.34900999069213867
+            ],
+            "rounded_rgb_8bit": [
+              89,
+              89,
+              89
+            ],
+            "rounded_hex": "#595959"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 138,
+          "observable_role": "another gray filled data bar",
+          "bbox_pt": [
+            181.63400268554688,
+            569.302001953125,
+            200.67401123046875,
+            575.6849975585938
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.34900999069213867,
+              0.34900999069213867,
+              0.34900999069213867
+            ],
+            "rounded_rgb_8bit": [
+              89,
+              89,
+              89
+            ],
+            "rounded_hex": "#595959"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 144,
+          "observable_role": "another gray filled data bar",
+          "bbox_pt": [
+            181.63400268554688,
+            526.7479858398438,
+            210.45700073242188,
+            533.1279907226562
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.34900999069213867,
+              0.34900999069213867,
+              0.34900999069213867
+            ],
+            "rounded_rgb_8bit": [
+              89,
+              89,
+              89
+            ],
+            "rounded_hex": "#595959"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        }
+      ],
+      "proposed_adaptation": "A single quantity across labeled categories can use neutral bars. Adding raw-point/uncertainty overlays requires supplied observations and a declared summary; they are not layers observed here.",
+      "author_code_constants": "unknown"
+    },
+    {
+      "source_id": "progeny",
+      "pdf_page_1based": 6,
+      "figure": "4c",
+      "page_size_pt": [
+        595.2760009765625,
+        782.3619995117188
+      ],
+      "evidence_type": "observed_pdf_vector_and_rendered_appearance",
+      "appearance_observation": "Distribution boundaries are neutral; selected colored summary/body areas have distinct roles, and inner boxes/median strokes remain visible. The source uses mutation/pathway strata and contains additional colors beyond the selected four.",
+      "vector_examples": [
+        {
+          "drawing_index_0based": 45,
+          "observable_role": "white violin body with neutral contour",
+          "bbox_pt": [
+            167.43800354003906,
+            235.30099487304688,
+            177.6009979248047,
+            278.5090026855469
+          ],
+          "paint_type": "fs",
+          "path_item_count": 39,
+          "stroke_width_pt": 0.30000001192092896,
+          "stroke": {
+            "rgb_0_1": [
+              0.20000000298023224,
+              0.20000000298023224,
+              0.20000000298023224
+            ],
+            "rounded_rgb_8bit": [
+              51,
+              51,
+              51
+            ],
+            "rounded_hex": "#333333"
+          },
+          "fill": {
+            "rgb_0_1": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rounded_rgb_8bit": [
+              255,
+              255,
+              255
+            ],
+            "rounded_hex": "#FFFFFF"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 48,
+          "observable_role": "salmon violin body with neutral contour",
+          "bbox_pt": [
+            210.14199829101562,
+            243.11000061035156,
+            224.1580047607422,
+            278.5090026855469
+          ],
+          "paint_type": "fs",
+          "path_item_count": 27,
+          "stroke_width_pt": 0.30000001192092896,
+          "stroke": {
+            "rgb_0_1": [
+              0.20000000298023224,
+              0.20000000298023224,
+              0.20000000298023224
+            ],
+            "rounded_rgb_8bit": [
+              51,
+              51,
+              51
+            ],
+            "rounded_hex": "#333333"
+          },
+          "fill": {
+            "rgb_0_1": [
+              1.0,
+              0.5882400274276733,
+              0.584309995174408
+            ],
+            "rounded_rgb_8bit": [
+              255,
+              150,
+              149
+            ],
+            "rounded_hex": "#FF9695"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 49,
+          "observable_role": "gray violin body with neutral contour",
+          "bbox_pt": [
+            224.6820068359375,
+            243.74700927734375,
+            239.5030059814453,
+            277.2340087890625
+          ],
+          "paint_type": "fs",
+          "path_item_count": 23,
+          "stroke_width_pt": 0.30000001192092896,
+          "stroke": {
+            "rgb_0_1": [
+              0.20000000298023224,
+              0.20000000298023224,
+              0.20000000298023224
+            ],
+            "rounded_rgb_8bit": [
+              51,
+              51,
+              51
+            ],
+            "rounded_hex": "#333333"
+          },
+          "fill": {
+            "rgb_0_1": [
+              0.7921500205993652,
+              0.7921500205993652,
+              0.7921500205993652
+            ],
+            "rounded_rgb_8bit": [
+              202,
+              202,
+              202
+            ],
+            "rounded_hex": "#CACACA"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 60,
+          "observable_role": "mint inner rectangular summary fill",
+          "bbox_pt": [
+            184.56100463867188,
+            247.87396240234375,
+            190.14060974121094,
+            258.9749755859375
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.749019980430603,
+              0.9097999930381775,
+              0.7725499868392944
+            ],
+            "rounded_rgb_8bit": [
+              191,
+              232,
+              197
+            ],
+            "rounded_hex": "#BFE8C5"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 65,
+          "observable_role": "purple inner rectangular summary fill",
+          "bbox_pt": [
+            199.4409942626953,
+            255.43798828125,
+            205.02349853515625,
+            270.83599853515625
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.5294100046157837,
+              0.5294100046157837,
+              0.8705899715423584
+            ],
+            "rounded_rgb_8bit": [
+              135,
+              135,
+              222
+            ],
+            "rounded_hex": "#8787DE"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 55,
+          "observable_role": "white inner rectangular summary fill",
+          "bbox_pt": [
+            169.677001953125,
+            249.2950439453125,
+            175.25660705566406,
+            263.43902587890625
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rounded_rgb_8bit": [
+              255,
+              255,
+              255
+            ],
+            "rounded_hex": "#FFFFFF"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 56,
+          "observable_role": "neutral inner-box outline",
+          "bbox_pt": [
+            169.677001953125,
+            249.29498291015625,
+            175.25660705566406,
+            263.43896484375
+          ],
+          "paint_type": "s",
+          "path_item_count": 1,
+          "stroke_width_pt": 0.30000001192092896,
+          "stroke": {
+            "rgb_0_1": [
+              0.20000000298023224,
+              0.20000000298023224,
+              0.20000000298023224
+            ],
+            "rounded_rgb_8bit": [
+              51,
+              51,
+              51
+            ],
+            "rounded_hex": "#333333"
+          },
+          "fill": null,
+          "stroke_opacity": 1.0,
+          "fill_opacity": null
+        },
+        {
+          "drawing_index_0based": 57,
+          "observable_role": "neutral median stroke",
+          "bbox_pt": [
+            169.677001953125,
+            255.32501220703125,
+            175.2570037841797,
+            255.32501220703125
+          ],
+          "paint_type": "s",
+          "path_item_count": 1,
+          "stroke_width_pt": 0.5,
+          "stroke": {
+            "rgb_0_1": [
+              0.20000000298023224,
+              0.20000000298023224,
+              0.20000000298023224
+            ],
+            "rounded_rgb_8bit": [
+              51,
+              51,
+              51
+            ],
+            "rounded_hex": "#333333"
+          },
+          "fill": null,
+          "stroke_opacity": 1.0,
+          "fill_opacity": null
+        }
+      ],
+      "proposed_adaptation": "The four area fills form an eligible category palette for new bounded areas. Assigning them to new cohorts or adding neutral raw points is a design adaptation; raw points are not an observed layer in this panel.",
+      "author_code_constants": "unknown"
+    },
+    {
+      "source_id": "scwat",
+      "pdf_page_1based": 4,
+      "figure": "2g",
+      "page_size_pt": [
+        595.2760009765625,
+        790.8660278320312
+      ],
+      "evidence_type": "observed_pdf_vector_and_rendered_appearance",
+      "appearance_observation": "The plot visibly uses blue and pink groups. Fitted-line strokes and small observation paints are not a single uniform color pair. Some pink observations include coincident paint layers.",
+      "vector_examples": [
+        {
+          "drawing_index_0based": 2397,
+          "observable_role": "blue observation with distinct fill and edge",
+          "bbox_pt": [
+            471.0400085449219,
+            382.6540222167969,
+            471.61700439453125,
+            383.5740051269531
+          ],
+          "paint_type": "fs",
+          "path_item_count": 4,
+          "stroke_width_pt": 0.8690000176429749,
+          "stroke": {
+            "rgb_0_1": [
+              0.21176999807357788,
+              0.5960800051689148,
+              0.8352900147438049
+            ],
+            "rounded_rgb_8bit": [
+              54,
+              152,
+              213
+            ],
+            "rounded_hex": "#3698D5"
+          },
+          "fill": {
+            "rgb_0_1": [
+              0.14509999752044678,
+              0.6549000144004822,
+              0.8784300088882446
+            ],
+            "rounded_rgb_8bit": [
+              37,
+              167,
+              224
+            ],
+            "rounded_hex": "#25A7E0"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 2410,
+          "observable_role": "underlying paint at one pink observation location; not the final appearance alone",
+          "bbox_pt": [
+            477.864990234375,
+            347.8890075683594,
+            478.4429931640625,
+            348.8080139160156
+          ],
+          "paint_type": "f",
+          "path_item_count": 4,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.901960015296936,
+              0.6235299706459045,
+              0.0
+            ],
+            "rounded_rgb_8bit": [
+              230,
+              159,
+              0
+            ],
+            "rounded_hex": "#E69F00"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 2411,
+          "observable_role": "overlaid pink observation at the same approximate location",
+          "bbox_pt": [
+            477.8699951171875,
+            347.8360290527344,
+            478.4469909667969,
+            348.7560119628906
+          ],
+          "paint_type": "fs",
+          "path_item_count": 4,
+          "stroke_width_pt": 0.8690000176429749,
+          "stroke": {
+            "rgb_0_1": [
+              0.9137300252914429,
+              0.32940998673439026,
+              0.5568600296974182
+            ],
+            "rounded_rgb_8bit": [
+              233,
+              84,
+              142
+            ],
+            "rounded_hex": "#E9548E"
+          },
+          "fill": {
+            "rgb_0_1": [
+              0.9294099807739258,
+              0.4823499917984009,
+              0.647059977054596
+            ],
+            "rounded_rgb_8bit": [
+              237,
+              123,
+              165
+            ],
+            "rounded_hex": "#ED7BA5"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 2413,
+          "observable_role": "another pink observation paint",
+          "bbox_pt": [
+            500.04998779296875,
+            311.4690246582031,
+            500.6269836425781,
+            312.3880310058594
+          ],
+          "paint_type": "fs",
+          "path_item_count": 4,
+          "stroke_width_pt": 0.8690000176429749,
+          "stroke": {
+            "rgb_0_1": [
+              0.9176499843597412,
+              0.3647100031375885,
+              0.5176500082015991
+            ],
+            "rounded_rgb_8bit": [
+              234,
+              93,
+              132
+            ],
+            "rounded_hex": "#EA5D84"
+          },
+          "fill": {
+            "rgb_0_1": [
+              0.8941199779510498,
+              0.31373000144958496,
+              0.5921599864959717
+            ],
+            "rounded_rgb_8bit": [
+              228,
+              80,
+              151
+            ],
+            "rounded_hex": "#E45097"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 2424,
+          "observable_role": "blue fitted-line stroke",
+          "bbox_pt": [
+            399.6570129394531,
+            370.7160339355469,
+            471.33001708984375,
+            376.6540222167969
+          ],
+          "paint_type": "fs",
+          "path_item_count": 3,
+          "stroke_width_pt": 0.8690000176429749,
+          "stroke": {
+            "rgb_0_1": [
+              0.2156900018453598,
+              0.584309995174408,
+              0.8274499773979187
+            ],
+            "rounded_rgb_8bit": [
+              55,
+              149,
+              211
+            ],
+            "rounded_hex": "#3795D3"
+          },
+          "fill": {
+            "rgb_0_1": [
+              0.03921600058674812,
+              0.8235300183296204,
+              1.0
+            ],
+            "rounded_rgb_8bit": [
+              10,
+              210,
+              255
+            ],
+            "rounded_hex": "#0AD2FF"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 2425,
+          "observable_role": "pink fitted-line stroke",
+          "bbox_pt": [
+            442.3190002441406,
+            319.9110412597656,
+            500.3399963378906,
+            352.2500305175781
+          ],
+          "paint_type": "fs",
+          "path_item_count": 3,
+          "stroke_width_pt": 0.8690000176429749,
+          "stroke": {
+            "rgb_0_1": [
+              1.0,
+              0.37255001068115234,
+              0.7411800026893616
+            ],
+            "rounded_rgb_8bit": [
+              255,
+              95,
+              189
+            ],
+            "rounded_hex": "#FF5FBD"
+          },
+          "fill": {
+            "rgb_0_1": [
+              1.0,
+              0.45489999651908875,
+              0.7294099926948547
+            ],
+            "rounded_rgb_8bit": [
+              255,
+              116,
+              186
+            ],
+            "rounded_hex": "#FF74BA"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        }
+      ],
+      "proposed_adaptation": "scwat-blue-pink selects the two fitted-line stroke RGB values, then explicitly adapts them to all fixed-size observations in a new scatter. It does not claim exact recovery of every source point paint or authorize a fitted model.",
+      "author_code_constants": "unknown"
+    },
+    {
+      "source_id": "scwat",
+      "pdf_page_1based": 5,
+      "figure": "3j",
+      "page_size_pt": [
+        595.2760009765625,
+        790.8660278320312
+      ],
+      "evidence_type": "observed_pdf_vector_and_rendered_appearance",
+      "appearance_observation": "The control data bar and observations are deep gray (#606060), next to brown/gold data; the control legend key is black, so the source is not uniformly black across every role.",
+      "vector_examples": [
+        {
+          "drawing_index_0based": 1967,
+          "observable_role": "deep-gray open data bar",
+          "bbox_pt": [
+            463.1130065917969,
+            433.8580322265625,
+            476.02801513671875,
+            440.08001708984375
+          ],
+          "paint_type": "s",
+          "path_item_count": 3,
+          "stroke_width_pt": 0.6330000162124634,
+          "stroke": {
+            "rgb_0_1": [
+              0.37646999955177307,
+              0.37646999955177307,
+              0.37646999955177307
+            ],
+            "rounded_rgb_8bit": [
+              96,
+              96,
+              96
+            ],
+            "rounded_hex": "#606060"
+          },
+          "fill": null,
+          "stroke_opacity": 1.0,
+          "fill_opacity": null
+        },
+        {
+          "drawing_index_0based": 1977,
+          "observable_role": "deep-gray raw observation",
+          "bbox_pt": [
+            471.46099853515625,
+            428.81903076171875,
+            473.35101318359375,
+            430.7080383300781
+          ],
+          "paint_type": "fs",
+          "path_item_count": 4,
+          "stroke_width_pt": 0.10499999672174454,
+          "stroke": {
+            "rgb_0_1": [
+              0.37646999955177307,
+              0.37646999955177307,
+              0.37646999955177307
+            ],
+            "rounded_rgb_8bit": [
+              96,
+              96,
+              96
+            ],
+            "rounded_hex": "#606060"
+          },
+          "fill": {
+            "rgb_0_1": [
+              0.37646999955177307,
+              0.37646999955177307,
+              0.37646999955177307
+            ],
+            "rounded_rgb_8bit": [
+              96,
+              96,
+              96
+            ],
+            "rounded_hex": "#606060"
+          },
+          "stroke_opacity": 1.0,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 1969,
+          "observable_role": "brown/gold open comparison data bar",
+          "bbox_pt": [
+            482.4859924316406,
+            391.72900390625,
+            495.4010009765625,
+            440.08001708984375
+          ],
+          "paint_type": "s",
+          "path_item_count": 3,
+          "stroke_width_pt": 0.6330000162124634,
+          "stroke": {
+            "rgb_0_1": [
+              0.5803899765014648,
+              0.39215999841690063,
+              0.12156999856233597
+            ],
+            "rounded_rgb_8bit": [
+              148,
+              100,
+              31
+            ],
+            "rounded_hex": "#94641F"
+          },
+          "fill": null,
+          "stroke_opacity": 1.0,
+          "fill_opacity": null
+        },
+        {
+          "drawing_index_0based": 1988,
+          "observable_role": "brown/gold raw observation fill",
+          "bbox_pt": [
+            487.99798583984375,
+            379.7590026855469,
+            489.88800048828125,
+            381.6490173339844
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.5803899765014648,
+              0.39215999841690063,
+              0.12156999856233597
+            ],
+            "rounded_rgb_8bit": [
+              148,
+              100,
+              31
+            ],
+            "rounded_hex": "#94641F"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        }
+      ],
+      "proposed_adaptation": "Neutral single-series bars and observations can transfer this role relationship without inheriting the original groups or adopting a universal gray default.",
+      "author_code_constants": "unknown"
+    },
+    {
+      "source_id": "vanneste",
+      "pdf_page_1based": 5,
+      "figure": "3e,g",
+      "page_size_pt": [
+        595.2760009765625,
+        790.8660278320312
+      ],
+      "evidence_type": "observed_pdf_vector_and_rendered_appearance",
+      "appearance_observation": "Compositions use black, white and gray categories with definite outlines. Figure 3g contains #9E9E9E gray data areas, not only a gray legend key.",
+      "vector_examples": [
+        {
+          "drawing_index_0based": 1904,
+          "observable_role": "gray composition data area in Fig.3g",
+          "bbox_pt": [
+            316.23699951171875,
+            489.8580322265625,
+            322.7099914550781,
+            519.5670166015625
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.6209201216697693,
+              0.6210269331932068,
+              0.6209201216697693
+            ],
+            "rounded_rgb_8bit": [
+              158,
+              158,
+              158
+            ],
+            "rounded_hex": "#9E9E9E"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 1919,
+          "observable_role": "white composition data area in Fig.3g",
+          "bbox_pt": [
+            316.23699951171875,
+            519.9130249023438,
+            322.7099914550781,
+            530.780029296875
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rounded_rgb_8bit": [
+              255,
+              255,
+              255
+            ],
+            "rounded_hex": "#FFFFFF"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 1570,
+          "observable_role": "black categorical legend key in Fig.3g",
+          "bbox_pt": [
+            412.1619873046875,
+            491.56103515625,
+            417.625,
+            497.02203369140625
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rounded_rgb_8bit": [
+              0,
+              0,
+              0
+            ],
+            "rounded_hex": "#000000"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        },
+        {
+          "drawing_index_0based": 1573,
+          "observable_role": "gray categorical legend key in Fig.3g",
+          "bbox_pt": [
+            412.16400146484375,
+            510.0680236816406,
+            417.625,
+            515.529052734375
+          ],
+          "paint_type": "f",
+          "path_item_count": 1,
+          "stroke_width_pt": null,
+          "stroke": null,
+          "fill": {
+            "rgb_0_1": [
+              0.6209201216697693,
+              0.6210269331932068,
+              0.6209201216697693
+            ],
+            "rounded_rgb_8bit": [
+              158,
+              158,
+              158
+            ],
+            "rounded_hex": "#9E9E9E"
+          },
+          "stroke_opacity": null,
+          "fill_opacity": 1.0
+        }
+      ],
+      "proposed_adaptation": "Neutral marks are eligible for decoded grouped data. This does not imply deleting informative hue from a mixed scatter or inheriting the source composition denominator.",
+      "author_code_constants": "unknown"
+    }
+  ],
+  "design_rules": {
+    "create_reference_requirement": "Create may use learned mechanisms/palettes without a runtime reference; Reproduce adopts a supplied reference.",
+    "palette_scope": "No single literature palette or universal bright/neutral default.",
+    "mark_area": "Pastel bounded fills and tiny observations have different contrast needs on white.",
+    "comparison": "Assess 2-3 justified complete panel treatments with identical data, statistics, numeric scales, canvas and fonts when a consequential palette choice remains unresolved."
+  }
+}

@@ -17,7 +17,7 @@ Ask the reviewer to open the images before making findings. Do not prime it with
 | Readability | Label collisions, truncation, missing glyphs, crowded marks, legend spacing, and annotation legibility. |
 | Legend proportions | Assess complete key/text bounds and reserved legend space against the primary data region using [Legend layout](legend-layout.md). Judge data prominence, not just lack of overlap. Preserve agreed fonts and exact quantitative-size mapping; treat proportional warnings as adjustable heuristics. |
 | Panel text and caption | Preserve axes/units, ticks, legends, colorbars, and essential data annotations. By default, extra titles, subtitles, standalone overview counts, and explanatory footnotes belong outside the image. Check explanatory prose, definitions, methods, source attribution, and caveats in separate `caption.md`, with figure/panel identifiers only when known. |
-| Palette | Inspect the complete combination of category colors, continuous scales, backgrounds and guide keys. Check identity in small marks and adjacent fills; literature provenance alone does not establish a coherent or distinguishable palette. |
+| Palette roles | Inspect category colors, continuous scales, neutral marks and keys together. Ask which layer decodes identity: x labels, small scatter points or bounded summary areas. A light area color can fail as a tiny point; neutral observations can work in clear category lanes. Literature provenance or repeated use across a gallery does not establish suitability. |
 | Strokes and boundaries | Inspect visible data, summary, reference, axis and grid roles at final size; check adopted fills/outlines and matching legend symbols. Purposeful exceptions can differ by mark role. Check thin interval endpoints, box medians and heatmap seams rather than approving enlarged appearance alone. |
 | Geometry | Inspect point/summary crossings, physical bar/box/violin thickness, within- and between-category gaps, matrix cell aspect and plot-to-guide proportions. Ask whether spare width creates blank categorical bands or stretched cells. Keep aspect constraints and every source observation. |
 | Final-size export | Independent page/pixel measurements, preserved canvas boundaries, actual font records, matching format dimensions. These require measurements, not a visual guess. |
@@ -36,6 +36,10 @@ white matrix seams are not treated as faint data strokes. Custom scripts can
 use `panel_readability.measure(fig)` before export for the same limited evidence.
 
 Review palette combinations together in the actual panel, including contrasts between continuous maps, category colors, annotation tracks, and the background. Do not approve a combination solely because it comes from literature, or request the same combination for every dataset. Flag incidental outline mismatches within comparable mark roles or their legends. Fixed-size observations, distribution boundaries, quantitative filled-area dots and binary metadata may need different purposeful treatments. Check hollow-point/whisker crossings, overly thick boxes, washed-out observations and oversized empty bands. Reproduce follows its adopted policy; neither borderless nor hollow marks automatically improve Create.
+For category-colored summary areas with neutral observations, verify that
+position/labels still associate every point with its group, contours and medians
+are readable, and the guide describes the colored summary rather than implying
+colored raw points. Related box/violin views should retain category assignments.
 
 For create, identify which layer attracts attention first and compare it with
 the adopted reading task. In box/points, check whether the median and quartile
@@ -60,6 +64,11 @@ For both tracks, flag an added in-image title unless it was explicitly requested
 ## Compare a claimed improvement
 
 A candidate can satisfy numerical, export, and collision checks yet be visually inferior to the baseline. For a claimed refinement, inspect both actual exports at the same physical size. Compare the intended reading task: visibility of the important pattern, grouping and order, association of related layers, lookup effort, contrast, and use of space. Return a preference of `baseline`, `candidate`, or `no_clear_preference`, with concrete visible reasons. Retaining the baseline is a valid outcome. Smaller bounds, fewer ticks, more layers, and more passing tests do not establish improvement.
+For an unresolved palette refinement, compare two or three task-suitable
+complete treatments rather than swatches alone. The alternatives may assign
+color to different mark roles; the data/statistics and numeric scales stay
+fixed. Record decoding and hierarchy tradeoffs instead of treating more neutral
+or more vivid as an automatic gain.
 
 Keep requirement failures separate from preferences. An incorrect mapping or clipped required label needs correction; a preference for spacing or guide position can remain provisional. If the baseline cannot be inspected, record comparative preference as `not_checked` and make no improvement claim. This comparison supports substantive refinement; routine edits do not require competing designs.
 

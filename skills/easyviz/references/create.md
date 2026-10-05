@@ -8,6 +8,9 @@ the relevant groups, quantities and supported summaries clearly. A basic
 family can include real grouped comparisons; it does not require restricting
 the data to a single outcome. Make colors, strokes and proportions work at the
 adopted size. Add another track or encoding when that reading task needs it.
+Use the bundled [literature mechanisms](literature-style.md) and
+[palette roles](palettes.md) without requiring a runtime reference. If the user
+asks to adopt a supplied figure's layout/style, follow Reproduce instead.
 
 If the user supplies a directory without a clear question or chart, start with
 [Data exploration](data-exploration.md). Inventory the tables, inspect actual
@@ -124,8 +127,12 @@ Before the first render, assign color and stroke roles to observations,
 adopted summaries and guides. Use [Create colors and strokes](create-style.md)
 for the shared new-task treatment and `line_roles`, or equivalent settings in a
 custom script. Compare all colors together, including legend keys and any
-continuous scale. Choose a coordinated pair for two groups when useful;
-additional categories need distinct colors that still form a coherent panel.
+continuous scale. A single quantity across labeled categories may use neutral
+marks; two classes intermingled in a scatter need visible point decoding.
+Distributions may place categorical color on summary areas with graphite
+boundaries and neutral raw points. Choose colors for their actual mark area;
+light area fills do not necessarily survive as tiny glyphs on white. Keep the
+same category mapping across related box/violin views.
 The main evidence needs useful contrast. An auxiliary track should not become
 the visual focus merely because it is saturated or large.
 
@@ -184,6 +191,11 @@ into one README row may hide good individual figures. Present a complete
 representative panel with readable labels, and keep alternatives accessible on
 the case page; do not alter manuscript font sizes to compensate for a small
 web preview.
+When color roles are unresolved, compare two or three whole-panel treatments
+supported by the task, such as accepted category-colored marks versus colored
+summary areas with neutral observations. Keep all data, statistics, scales,
+fonts and dimensions fixed; report the visible preference and tradeoff.
+No bright, hollow or neutral treatment is a universal winner.
 
 Follow [Visual review](visual-review.md) with the same typography, readability, and correction standard used in reproduce. A reviewer assesses create outputs against the adopted specification without needing a reference image. For integrated panels, also verify that tracks and marginals align with the correct rows or columns, size and color legends explain their distinct quantities, and annotations remain readable without obscuring data. Check that narrative material is in the separate caption and no unrequested title/header has been added. Independently recompute displayed summaries and denominators from the recorded input scope. Numerical checks and visual review are separate evidence: a clean image does not prove calculations correct, and a successful export does not prove labels readable.
 

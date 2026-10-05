@@ -8,17 +8,17 @@
   },
   "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
   "version": {
-    "figure_sha256": "ca65603d9cdd3af7587ba377850c13aeae0b7a31c9bcfac8d9e191f613c86bb2",
-    "spec_sha256": "db8fef21f2df535653143d560c91555e26c2df1098ade521a40be0cfd6270afa",
+    "figure_sha256": "3f7a0120052f687e69848ee95b3ecad2ada7d22b53b7df317c09887484c58b29",
+    "spec_sha256": "d00177ad73c8a438801bd8b3cad105de0206625d8f226e7fe08667f7a467f9b0",
     "input_sha256": "a1e077b14da39e0f851f335207a2851ca81f3c6f9a189015e7161d3972f1d500",
-    "source_script_sha256": "64db2976b99bcbb7341a74620e03de68b971f41652bf97134eff89300b546976",
-    "resolved_colors_sha256": "e46b476148de79b52a52f57fef91a577a9b80dd1963d43aee6c7d6c674a12429"
+    "source_script_sha256": "ce99d6c3925e20c63181336eb85cfa679a4b103863fa190fc33188a4b47e2676",
+    "resolved_colors_sha256": "e3bacec14e7ec8cf134be4995688f37cd311bf57cf4861e07f8d494c12f4b8d1"
   },
   "input": {
     "data_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/source-data.csv",
     "spec_file": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/spec.json",
     "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
-    "supplied_spec_sha256": "52e306c15b2302ab02aea6584aa09dbf27727296a1ea9281f77bfe06d8783a88"
+    "supplied_spec_sha256": "3e0a1dab0ba5c0c986906b0a371de152995f450328d68a68fd5ab9bf71b301e1"
   },
   "elements": [
     {
@@ -32,11 +32,16 @@
       ],
       "spec_paths": [
         "/colors/Krieg",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Krieg",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Krieg",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         30.380952380952383,
@@ -56,11 +61,16 @@
       ],
       "spec_paths": [
         "/colors/Petrus",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Petrus",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Petrus",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         47.142857142857146,
@@ -80,11 +90,16 @@
       ],
       "spec_paths": [
         "/colors/Kerr",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Kerr",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Kerr",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         63.9047619047619,
@@ -104,11 +119,16 @@
       ],
       "spec_paths": [
         "/colors/Arner, E",
-        "/line_roles/summary/line_width_pt"
+        "/line_roles/summary/line_width_pt",
+        "/line_roles/summary/color",
+        "/options/box_fill_alpha"
       ],
       "editable": {
         "color": "/colors/Arner, E",
-        "linewidth": "/line_roles/summary/line_width_pt"
+        "linewidth": "/line_roles/summary/line_width_pt",
+        "facecolor": "/colors/Arner, E",
+        "edgecolor": "/line_roles/summary/color",
+        "fill_alpha": "/options/box_fill_alpha"
       },
       "bbox_mm": [
         80.66666666666666,
@@ -127,12 +147,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Krieg",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Krieg",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -146,12 +166,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Petrus",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Petrus",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -165,12 +185,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Kerr",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Kerr",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },
@@ -184,12 +204,12 @@
         }
       ],
       "spec_paths": [
-        "/colors/Arner, E",
+        "/options/point_color",
         "/options/alpha",
         "/options/point_category_offset"
       ],
       "editable": {
-        "color": "/colors/Arner, E",
+        "color": "/options/point_color",
         "alpha": "/options/alpha"
       }
     },

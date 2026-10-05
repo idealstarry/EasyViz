@@ -2,6 +2,8 @@
 
 ## 0.4.3 — 2026-10-05
 
+- Refine Create color roles from observed literature mechanisms: neutral single-series bars, separately selected two-class scatter colors, and pastel summary areas with graphite observations/contours. Add explicit distribution face-opacity and point-color settings without changing saved-spec defaults.
+
 - Same-version refinement: individual 60 × 62 mm repair-outcome bars and unscaled vector previews; a grouped-bar gap option measures actual stroke clearance and rejects touching edges. The original published tag and release ZIP remain unchanged.
 
 - Same-version Create refinement: neighboring summary/raw-point lanes, adjustable violin widths, compact annotated heatmaps with vector cell seams and explicit display-label mappings. Source values, KDE definitions, scales, fonts and canvas sizes remain recorded. The [refinement review](evals/create-refinement-v0.4.3/README.md) uses the published candidates as its comparison, separately from the original release's omitted-option baseline.

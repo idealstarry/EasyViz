@@ -1,0 +1,473 @@
+.....................................................................................................................................................................................EEEEEEEEEEEEEEEEEEEEEEEEEE........................................................................................................................................................................................................................................
+======================================================================
+ERROR: test_active_svg_content_is_removed_from_preview_but_download_stays_exact (test_figure_workbench.FigureWorkbenchTests.test_active_svg_content_is_removed_from_preview_but_download_stays_exact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_agent_queue_update_also_blocks_stale_single_save_and_undo (test_figure_workbench.FigureWorkbenchTests.test_agent_queue_update_also_blocks_stale_single_save_and_undo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_agent_queue_update_during_batch_validation_is_never_overwritten (test_figure_workbench.FigureWorkbenchTests.test_agent_queue_update_during_batch_validation_is_never_overwritten)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_batch_accepts_one_hundred_requests_without_single_body_limit (test_figure_workbench.FigureWorkbenchTests.test_batch_accepts_one_hundred_requests_without_single_body_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_batch_atomic_replace_failure_keeps_previous_ledger_and_cleans_temporary (test_figure_workbench.FigureWorkbenchTests.test_batch_atomic_replace_failure_keeps_previous_ledger_and_cleans_temporary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_batch_detects_export_or_source_change_during_validation_before_writing (test_figure_workbench.FigureWorkbenchTests.test_batch_detects_export_or_source_change_during_validation_before_writing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_batch_ledger_size_failure_does_not_publish_unreadable_results (test_figure_workbench.FigureWorkbenchTests.test_batch_ledger_size_failure_does_not_publish_unreadable_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_batch_requires_full_version_for_top_and_every_child (test_figure_workbench.FigureWorkbenchTests.test_batch_requires_full_version_for_top_and_every_child)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_batch_saves_independent_numbered_requests_with_one_ledger_write (test_figure_workbench.FigureWorkbenchTests.test_batch_saves_independent_numbered_requests_with_one_ledger_write)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_bulk_selection_expands_real_category_source_and_spec_identities (test_figure_workbench.FigureWorkbenchTests.test_bulk_selection_expands_real_category_source_and_spec_identities)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_existing_source_changes_block_requests_even_when_svg_is_unchanged (test_figure_workbench.FigureWorkbenchTests.test_existing_source_changes_block_requests_even_when_svg_is_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_history_statuses_are_preserved_and_undo_cannot_cancel_applied_records (test_figure_workbench.FigureWorkbenchTests.test_history_statuses_are_preserved_and_undo_cannot_cancel_applied_records)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_http_state_and_original_exports_keep_physical_geometry_and_sources (test_figure_workbench.FigureWorkbenchTests.test_http_state_and_original_exports_keep_physical_geometry_and_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_invalid_batch_is_atomic_for_new_and_existing_ledgers (test_figure_workbench.FigureWorkbenchTests.test_invalid_batch_is_atomic_for_new_and_existing_ledgers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_invalid_manifest_falls_back_and_json_nonfinite_values_are_rejected (test_figure_workbench.FigureWorkbenchTests.test_invalid_manifest_falls_back_and_json_nonfinite_values_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_logo_url_changes_with_artwork_and_serves_current_svg (test_figure_workbench.FigureWorkbenchTests.test_logo_url_changes_with_artwork_and_serves_current_svg)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_malformed_panel_metadata_falls_back_to_actual_svg (test_figure_workbench.FigureWorkbenchTests.test_malformed_panel_metadata_falls_back_to_actual_svg)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_number_anchor_validation_undo_reservation_and_version_scope (test_figure_workbench.FigureWorkbenchTests.test_number_anchor_validation_undo_reservation_and_version_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_path_traversal_unknown_properties_and_command_fields_are_rejected (test_figure_workbench.FigureWorkbenchTests.test_path_traversal_unknown_properties_and_command_fields_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_previous_attempt_preview_is_fixed_sanitized_and_version_bound (test_figure_workbench.FigureWorkbenchTests.test_previous_attempt_preview_is_fixed_sanitized_and_version_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_regions_work_without_map_and_mm_bounds_are_enforced (test_figure_workbench.FigureWorkbenchTests.test_regions_work_without_map_and_mm_bounds_are_enforced)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_remote_origins_dns_rebinding_and_missing_session_are_rejected (test_figure_workbench.FigureWorkbenchTests.test_remote_origins_dns_rebinding_and_missing_session_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_safe_symbol_and_marker_definitions_keep_their_referenced_geometry (test_figure_workbench.FigureWorkbenchTests.test_safe_symbol_and_marker_definitions_keep_their_referenced_geometry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_semantic_request_saves_binding_and_undo_without_changing_exports (test_figure_workbench.FigureWorkbenchTests.test_semantic_request_saves_binding_and_undo_without_changing_exports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_stale_export_or_map_cannot_receive_semantic_edits (test_figure_workbench.FigureWorkbenchTests.test_stale_export_or_map_cannot_receive_semantic_edits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_stale_map_cannot_supply_dimensions_or_input_provenance (test_figure_workbench.FigureWorkbenchTests.test_stale_map_cannot_supply_dimensions_or_input_provenance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_figure_workbench.py", line 41, in setUp
+    self.server = workbench.create_server(self.root)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_workbench.py", line 575, in create_server
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/Users/starry/miniconda3/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/starry/miniconda3/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+----------------------------------------------------------------------
+Ran 439 tests in 176.251s
+
+FAILED (errors=26)

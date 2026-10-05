@@ -1,0 +1,80 @@
+{
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "seed": 417,
+  "chart": "scatter",
+  "fields": {
+    "x": "igg_before_bau_ml",
+    "y": "igg_after_bau_ml",
+    "group": "infection_group",
+    "unit": "participant_id"
+  },
+  "order": {
+    "group": [
+      "No prior infection",
+      "Prior infection"
+    ]
+  },
+  "labels": {
+    "x": "IgG before vaccination (BAU/ml)",
+    "y": "IgG after vaccination (BAU/ml)"
+  },
+  "options": {
+    "x_scale": "log",
+    "y_scale": "log",
+    "x_limits": [
+      50,
+      7000
+    ],
+    "y_limits": [
+      500,
+      50000
+    ],
+    "point_area_pt2": 12,
+    "alpha": 1
+  },
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 2
+    }
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "colors": {
+    "No prior infection": "#55A0FB",
+    "Prior infection": "#FF8080"
+  }
+}

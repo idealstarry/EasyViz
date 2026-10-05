@@ -1,0 +1,1692 @@
+{
+  "schema_version": 1,
+  "review": "independent bounded color-role review",
+  "version": "0.4.3",
+  "status": "ready_with_notes",
+  "pass_count": 1,
+  "max_passes": 3,
+  "scope": "Five basic structures/five known-source transfer probes. Independent color/layer review, not runtime reproduction score, novice/model benchmark or CNS acceptance claim.",
+  "baseline": {
+    "origin": "Actual published main candidates before this color revision",
+    "commit": "900dc34dc14f580016c686f696021318a1b6c839",
+    "manifest": "evals/create-palette-refinement-v0.4.3/before/manifest.json",
+    "distinction": "validation baseline records are baseline-spec demonstration outputs, not frozen adopted candidates. Actual published-before violin already has quartile/median layer."
+  },
+  "history": [
+    {
+      "pass": 1,
+      "visual_judgment_sent_before_reading_validation": true,
+      "status": "ready_with_notes",
+      "initial_minor_findings": [
+        "CR-01",
+        "CR-02"
+      ],
+      "major_visual_defects_found": false,
+      "caption_corrections_verified_within_round": true,
+      "final_export_hashes_unchanged_after_caption_corrections": true,
+      "implementations_read": false,
+      "other_review_reports_read": false
+    }
+  ],
+  "preferences": [
+    {
+      "case": "replicate-bars",
+      "preference": "candidate",
+      "strength": "modest",
+      "reason": "Graphite open boundaries and raw dots are crisper on white at nominal final size; five x positions already identify treatments. The optional neutral-filled variant adds broad gray mass without improving this 15-point task.",
+      "remaining_gap": "Unchanged sparse 110 x 88 mm geometry remains broader than many small scWAT subpanels; color changes cannot establish literature-level proportion."
+    },
+    {
+      "case": "paired-scatter",
+      "preference": "candidate",
+      "strength": "mild, task-specific aesthetic preference",
+      "reason": "Blue and pink remain bright and distinct in this actual 127-point cloud, without obscuring black axis text. Difference from published blue/coral is modest.",
+      "remaining_gap": "Blue/terra also decodes; no universal blue/pink superiority, color-vision accessibility, or grayscale distinction is verified."
+    },
+    {
+      "case": "cohort-box",
+      "preference": "candidate",
+      "strength": "clearer layer hierarchy",
+      "reason": "Limited violet/mint/salmon IQR areas anchor summaries; graphite medians, whiskers and opaque raw lanes separate observations from categorical color. No inter-category touching or value clipping is visible.",
+      "remaining_gap": "Raw lanes are all graphite and associate by proximity/x position. Tiny marks at 96 dpi cannot all be independently counted reliably."
+    },
+    {
+      "case": "cohort-violin",
+      "preference": "candidate",
+      "strength": "clearer layer hierarchy",
+      "reason": "White KDE bodies with 0.5 pt graphite contours and colored IQR regions have sharper boundaries than former tinted bodies/colored raw lanes. Density, quartiles and medians remain distinct.",
+      "remaining_gap": "Flat trimmed endpoints remain legitimate but less tapered than some paper examples. Raw distribution dots remain small at nominal preview size."
+    },
+    {
+      "case": "depot-heatmap",
+      "preference": "no_clear_preference",
+      "strength": "unchanged exact PNG",
+      "reason": "Published-before and current main PNG hashes are identical. Sequential positive blue, 48 values, seams and aliases remain readable; there is no palette improvement.",
+      "remaining_gap": "Fixed narrow matrix and label-heavy geometry are inherited; no new color evidence."
+    }
+  ],
+  "literature_color_roles": [
+    {
+      "reference": "scWAT Fig.2g, PDF p4",
+      "observed": "Blue/pink fitted lines, matching points and legend distinguish YT-FF/YT-AKO. Line colors are not universally prescribed raw-point colors.",
+      "adapted": "Current scatter maps supplied vector-line hues #3795D3/#FF5FBD to infection-class raw points, with no fit or source-paper biological identity inferred.",
+      "verification_limit": "Visible page/role interpretation checked; exact PDF vector hex extraction supplied and not independently repeated."
+    },
+    {
+      "reference": "scWAT Fig.3j, PDF p5",
+      "observed": "White/open bars with black or ochre contours, small raw points/squares, dark axes and error lines; color separates two actual conditions.",
+      "adapted": "Single-outcome bars use graphite open contours/points because x positions encode treatments. A role-informed choice, not exact replication of a two-condition paper panel.",
+      "verification_limit": "Page 5 freshly rendered from local scWAT.pdf and actually inspected."
+    },
+    {
+      "reference": "PROGENy Fig.4c, PDF p6",
+      "observed": "Neutral violin contours plus inner summaries. Violet/mint encode mutation-status summaries; salmon/yellow/gray also appear in pathway-quartile KDE areas. Multiple layer/color roles coexist.",
+      "adapted": "Cohort colors are confined to IQR areas; raw points and contours are graphite, violin bodies white. Salmon is reassigned from a KDE-area source role to IQR area. Biological meanings/layout not transferred.",
+      "verification_limit": "Visible region roles/caption inspected; exact hex samples supplied, not independently extracted."
+    }
+  ],
+  "findings": [
+    {
+      "id": "CR-01",
+      "severity": "minor",
+      "status": "resolved",
+      "location": "examples/create/basic-panels/cohort-violin/transfer/caption.md",
+      "initial_issue": "Inner boxes called open although actual Q1-Q3 regions are filled.",
+      "verified_resolution": "Actual caption now says Inner filled boxes, retaining quartile definition.",
+      "required_new_visual_pass": false
+    },
+    {
+      "id": "CR-02",
+      "severity": "minor",
+      "status": "resolved",
+      "location": "All four main/transfer box/violin captions",
+      "initial_issue": "All three sampled hues were described as PDF summary fills, whereas PROGENy salmon is observed in density/pathway areas.",
+      "verified_resolution": "Captions now say selected PDF area fills; explicitly include inner summaries and colored density/pathway areas and label application to cohort IQR regions as an EasyViz adaptation.",
+      "required_new_visual_pass": false
+    }
+  ],
+  "residual_notes": [
+    "Neutral open bars suit this single-quantity task, not a universal publication palette.",
+    "Small dense raw marks read as distributions; individual countability of all 129/185 observations at 96 dpi is not proven. Higher contrast cannot guarantee no missing/overlapped marks.",
+    "Fixed geometry, numeric scales, point sizes and category lanes are unchanged; no proportion refinement is claimed.",
+    "Blue/pink is acceptable in this actual cloud. Applying it to larger filled regions/many categories is untested.",
+    "Color-vision simulations, grayscale proofing and print reproduction were not performed.",
+    "Different-data paper panels are design references, not skill/model causal evidence or publication-grade proof."
+  ],
+  "spec_differences_from_actual_published_before": [
+    {
+      "case": "replicate-bars",
+      "field": ".options.bar_color",
+      "before": "#55A0FB",
+      "after": "#CACACA"
+    },
+    {
+      "case": "replicate-bars",
+      "field": ".options.bar_edge_color",
+      "before": "#55A0FB",
+      "after": "#333333"
+    },
+    {
+      "case": "replicate-bars",
+      "field": ".options.point_color",
+      "before": "#55A0FB",
+      "after": "#333333"
+    },
+    {
+      "case": "paired-scatter",
+      "field": ".colors.No prior infection",
+      "before": "#55A0FB",
+      "after": "#3795D3"
+    },
+    {
+      "case": "paired-scatter",
+      "field": ".colors.Prior infection",
+      "before": "#FF8080",
+      "after": "#FF5FBD"
+    },
+    {
+      "case": "cohort-box",
+      "field": ".colors.Kerr",
+      "before": "#35CBA6",
+      "after": "#FF9695"
+    },
+    {
+      "case": "cohort-box",
+      "field": ".colors.Krieg",
+      "before": "#55A0FB",
+      "after": "#8787DE"
+    },
+    {
+      "case": "cohort-box",
+      "field": ".colors.Petrus",
+      "before": "#FF8080",
+      "after": "#BFE8C5"
+    },
+    {
+      "case": "cohort-box",
+      "field": ".line_roles.summary.color",
+      "before": "<absent>",
+      "after": "#333333"
+    },
+    {
+      "case": "cohort-box",
+      "field": ".options.box_fill_alpha",
+      "before": "<absent>",
+      "after": 1
+    },
+    {
+      "case": "cohort-box",
+      "field": ".options.box_style",
+      "before": "outline",
+      "after": "filled"
+    },
+    {
+      "case": "cohort-box",
+      "field": ".options.point_color",
+      "before": "<absent>",
+      "after": "#333333"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".colors.Kerr",
+      "before": "#35CBA6",
+      "after": "#FF9695"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".colors.Krieg",
+      "before": "#55A0FB",
+      "after": "#8787DE"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".colors.Petrus",
+      "before": "#FF8080",
+      "after": "#BFE8C5"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".line_roles.data.color",
+      "before": "#666666",
+      "after": "#333333"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".line_roles.data.line_width_pt",
+      "before": 0.4,
+      "after": 0.5
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".line_roles.summary.color",
+      "before": "<absent>",
+      "after": "#333333"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".options.point_color",
+      "before": "<absent>",
+      "after": "#333333"
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".options.violin_fill_alpha",
+      "before": 0.12,
+      "after": 0
+    },
+    {
+      "case": "cohort-violin",
+      "field": ".options.violin_inner_fill_alpha",
+      "before": "<absent>",
+      "after": 1
+    }
+  ],
+  "actually_viewed_images": [
+    {
+      "case": "replicate-bars",
+      "role": "published_before",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/replicate-bars/panel.png",
+      "sha256": "fcfa1dbb4052e1e50a0aeb6c7d2fff520fca68eef7c50dd803537e6c56a72db6",
+      "actually_opened": true
+    },
+    {
+      "case": "replicate-bars",
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/output/panel.png",
+      "sha256": "481eeb1204622d5b93e8002d47da1f1afeec4f681f1c04f41ff1b6c19674e795",
+      "actually_opened": true
+    },
+    {
+      "case": "replicate-bars",
+      "role": "transfer",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/output/panel.png",
+      "sha256": "195ad3615ed5a1da9d8a6b0307c587f879cbc712aec24259cef353fffd139997",
+      "actually_opened": true
+    },
+    {
+      "case": "replicate-bars",
+      "role": "candidate_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/output/pdf-preview-96dpi.png",
+      "sha256": "a2e300b757be4a8900198c88bcd1963f00d57e4aaae52915152f1b4fa1393094",
+      "actually_opened": true
+    },
+    {
+      "case": "replicate-bars",
+      "role": "transfer_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/output/pdf-preview-96dpi.png",
+      "sha256": "362b118b21a5187426acc41fd149071a0372d38547057a2624ee4ced55586e25",
+      "actually_opened": true
+    },
+    {
+      "case": "paired-scatter",
+      "role": "published_before",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/paired-scatter/panel.png",
+      "sha256": "cadd414a166e7b52c74549f6cf1042085bd6207df51967440d4fcb33a9660fe4",
+      "actually_opened": true
+    },
+    {
+      "case": "paired-scatter",
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/output/panel.png",
+      "sha256": "a46daffb11cb85f0292726c31a25ca7d328cc9a6f557c546bbc44fd4eab38ffd",
+      "actually_opened": true
+    },
+    {
+      "case": "paired-scatter",
+      "role": "transfer",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/output/panel.png",
+      "sha256": "cc5554d6a0fc9a965fe0745caf77f85a5aad4df13b5aef53b92bdc0ac09227bf",
+      "actually_opened": true
+    },
+    {
+      "case": "paired-scatter",
+      "role": "candidate_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/output/pdf-preview-96dpi.png",
+      "sha256": "1905b91148883bff09b2c00c234d9ad6dd0e8505e8e206d1307ac1bd701bf6c7",
+      "actually_opened": true
+    },
+    {
+      "case": "paired-scatter",
+      "role": "transfer_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/output/pdf-preview-96dpi.png",
+      "sha256": "73fa8cd2c138a4a2e7f711b42c39689dc323471e1f59f3c2fb134e7ec79b8a9d",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-box",
+      "role": "published_before",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/cohort-box/panel.png",
+      "sha256": "78c1706cdff33fbaeeb56a5891063b5346ae44ba777971aa31d1b826a8d46793",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-box",
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/output/panel.png",
+      "sha256": "1f085d971055b877816f812487ad9b682b1ee275099ed6cc78ff1f5434c57be1",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-box",
+      "role": "transfer",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/output/panel.png",
+      "sha256": "54cc0e8044d3e106aae6b0a79ec33d18d796981b104874e63b207d685aed929d",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-box",
+      "role": "candidate_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/output/pdf-preview-96dpi.png",
+      "sha256": "a1ed5cf9f0a3b49da16791351dccc14e4dd928bf5578eba46f7384d3dce81df1",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-box",
+      "role": "transfer_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/output/pdf-preview-96dpi.png",
+      "sha256": "07d9c3803dfccde5f446094280cc48a57d646f3f923fa76e8b93979161898e54",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-violin",
+      "role": "published_before",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/cohort-violin/panel.png",
+      "sha256": "935046169e6fdec3388bd2de87868b4aa96b1f6625424f954a7f0c3ddc52cffc",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-violin",
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/output/panel.png",
+      "sha256": "70a45b6510c142f8a1d990b50ff24c571ca6dc81a792b64ad0c3bd504f71f8cc",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-violin",
+      "role": "transfer",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/output/panel.png",
+      "sha256": "e25595fd76856ad229d6f70e9d512372a75771786534d2dd47874caa55781025",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-violin",
+      "role": "candidate_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/output/pdf-preview-96dpi.png",
+      "sha256": "0ac63a3cb2b34d5c64f4e8998dc9a7067bd39e0e651e393f695a0e24852f7454",
+      "actually_opened": true
+    },
+    {
+      "case": "cohort-violin",
+      "role": "transfer_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/output/pdf-preview-96dpi.png",
+      "sha256": "b532a33c955bd9101f3c991650d3c31ba6af470d5c9e66bab3bae209eaab87a6",
+      "actually_opened": true
+    },
+    {
+      "case": "depot-heatmap",
+      "role": "published_before",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/depot-heatmap/panel.png",
+      "sha256": "a1b5d60a4da4d30f04fc77aec6a7c40733676fddb9aac01dfdeaa582007a551f",
+      "actually_opened": true
+    },
+    {
+      "case": "depot-heatmap",
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/output/panel.png",
+      "sha256": "a1b5d60a4da4d30f04fc77aec6a7c40733676fddb9aac01dfdeaa582007a551f",
+      "actually_opened": true
+    },
+    {
+      "case": "depot-heatmap",
+      "role": "transfer",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/output/panel.png",
+      "sha256": "bca9bcee63778df763b0bc5d589530ffb9170e489dec841b90954575fd6df0f7",
+      "actually_opened": true
+    },
+    {
+      "case": "depot-heatmap",
+      "role": "candidate_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/output/pdf-preview-96dpi.png",
+      "sha256": "4d1714d63ec388059ea050106ca03a4f7d4936f473147386abf482efbf894b18",
+      "actually_opened": true
+    },
+    {
+      "case": "depot-heatmap",
+      "role": "transfer_pdf_96dpi",
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/output/pdf-preview-96dpi.png",
+      "sha256": "9124ff25ef2574f3b48bb4dec6e65221039515739a904fb8779f00159210e9e5",
+      "actually_opened": true
+    },
+    {
+      "case": "neutral-open",
+      "role": "optional_whole_panel_candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/candidates/neutral-open/output/panel.png",
+      "sha256": "481eeb1204622d5b93e8002d47da1f1afeec4f681f1c04f41ff1b6c19674e795",
+      "actually_opened": true,
+      "viewed_at_temporary_path": "/tmp/easyviz-color-candidates/neutral-open/output/panel.png",
+      "persistent_copy_sha256": "481eeb1204622d5b93e8002d47da1f1afeec4f681f1c04f41ff1b6c19674e795",
+      "persistent_copy_byte_identical": true
+    },
+    {
+      "case": "neutral-filled",
+      "role": "optional_whole_panel_candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/candidates/neutral-filled/output/panel.png",
+      "sha256": "358fb22a5ff49260e5a6b4cec54432bb708ae9c4ea44429620507963ec461b87",
+      "actually_opened": true,
+      "viewed_at_temporary_path": "/tmp/easyviz-color-candidates/neutral-filled/output/panel.png",
+      "persistent_copy_sha256": "358fb22a5ff49260e5a6b4cec54432bb708ae9c4ea44429620507963ec461b87",
+      "persistent_copy_byte_identical": true
+    },
+    {
+      "case": "scatter-blue-pink",
+      "role": "optional_whole_panel_candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/candidates/scatter-blue-pink/output/panel.png",
+      "sha256": "a46daffb11cb85f0292726c31a25ca7d328cc9a6f557c546bbc44fd4eab38ffd",
+      "actually_opened": true,
+      "viewed_at_temporary_path": "/tmp/easyviz-color-candidates/scatter-blue-pink/output/panel.png",
+      "persistent_copy_sha256": "a46daffb11cb85f0292726c31a25ca7d328cc9a6f557c546bbc44fd4eab38ffd",
+      "persistent_copy_byte_identical": true
+    },
+    {
+      "case": "scatter-blue-terra",
+      "role": "optional_whole_panel_candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/candidates/scatter-blue-terra/output/panel.png",
+      "sha256": "d358a029205ebf76f55edb413fc74d4d1d95c60a661111bb2a252803ada7bfe4",
+      "actually_opened": true,
+      "viewed_at_temporary_path": "/tmp/easyviz-color-candidates/scatter-blue-terra/output/panel.png",
+      "persistent_copy_sha256": "d358a029205ebf76f55edb413fc74d4d1d95c60a661111bb2a252803ada7bfe4",
+      "persistent_copy_byte_identical": true
+    },
+    {
+      "case": "scWAT",
+      "role": "literature_reference",
+      "pdf_page_1_based": 4,
+      "path": "/tmp/easyviz-create-review-scwat.png",
+      "sha256": "6cac2969cac4a75df0762ccd36a4c788bd48d8296b21df43b5f57bb4e8bc4c54",
+      "actually_opened": true
+    },
+    {
+      "case": "scWAT",
+      "role": "literature_reference",
+      "pdf_page_1_based": 5,
+      "path": "/tmp/easyviz-color-review-scwat-p5.png",
+      "sha256": "e575cd66dbc958f5bf336ff9837280c93646e6a0dbc50d2ba66ff38f86344f9e",
+      "actually_opened": true
+    },
+    {
+      "case": "PROGENy",
+      "role": "literature_reference",
+      "pdf_page_1_based": 6,
+      "path": "/tmp/easyviz-create-review-progeny.png",
+      "sha256": "39ebacd979d201ecb7f6ed5d35ab68caf6a343efe4882880d4d4664b6a9cb335",
+      "actually_opened": true
+    }
+  ],
+  "read_artifacts": [
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/replicate-bars/candidate-spec.json",
+      "sha256": "1be98ca95ea90566c8e2c77818f25a75ebf2fa2d696652b82a75c4846fba5bd1"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/candidate-spec.json",
+      "sha256": "55c23374e6564e8d77a54d7f323d1396a63d20ec1bd87e104f2f741b63516551"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/spec.json",
+      "sha256": "a452d4a6bc641be4593f8609471e0b7574849f8f9518fb170106590233e02794"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/caption.md",
+      "sha256": "5c18d770c0208267ec49f2a9eed8b04691e32c4e022d5e58d380cad016646d67"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/caption.md",
+      "sha256": "2064be591abc5592a22b3e1a0031c2688c5075ef77de885cbd2cbd1c8f7a6f68"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/paired-scatter/candidate-spec.json",
+      "sha256": "7cebd912f7a82272abafd37d6ff9c39bdbe05679e2287e236a8d6be90dd704f4"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/candidate-spec.json",
+      "sha256": "b478a995e88b19071dab9c92bcd5ab07cc2ef5f56165ca2a6d27bf98af7e5215"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/spec.json",
+      "sha256": "c0efa8aa1d03b2d3be1d25be31d6e09089143b346b9b20c3ddcfbe80be13e93b"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/caption.md",
+      "sha256": "1859277e7f0bcc5b2b08557b04e279571acdc46d44e2ee01da2dc0c9b5e69666"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/caption.md",
+      "sha256": "9f9e2dbedd133d5f310b5921a1fc31e88792843f9db0f3b558de1b8cf9669e05"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/cohort-box/candidate-spec.json",
+      "sha256": "fabfa87e70ce1d5b9c904e6a953324c5ee680f103163f6f60fe5b427c3a0132b"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/candidate-spec.json",
+      "sha256": "e955e46ff4ef16750cfe09e3a64c5f54afc676adb85e5417a49b6300dc4c5511"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/spec.json",
+      "sha256": "3e0a1dab0ba5c0c986906b0a371de152995f450328d68a68fd5ab9bf71b301e1"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/caption.md",
+      "sha256": "81e254e10d52c5578e0cffc1d1fa42c46d067b1b61e28522f9b3e9146df3a735"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/caption.md",
+      "sha256": "a04bf5ab9799974c06e789b35f23752f0d5ed7bbd785a1f50e4ee074daf8ca73"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/cohort-violin/candidate-spec.json",
+      "sha256": "75633bff9007d3b424bd4befb8ba066222e12df0fe375b0128010605450ecc58"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/candidate-spec.json",
+      "sha256": "cd7180b61da3299fd4c412cc48ef2c3f6ed2ded9c933cb993484e16d705ee6dd"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/spec.json",
+      "sha256": "08f10b65c79c7d3197092334d8f69d54b1e293d2e6ca5541723fc303db828f2b"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/caption.md",
+      "sha256": "21f8f7cf52106802854b927aa192f4efc10454eeda61594c4b41d1b3777b1ed1"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/caption.md",
+      "sha256": "6c976ce3a3f1844a6cc9796ae7840cdd5bcae54bd6534bfca75ba6d1adb037bb"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/depot-heatmap/candidate-spec.json",
+      "sha256": "eee55929b2329f78d785b5282665a8c19267bd900d79cfbbc850bc266a3bd784"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/candidate-spec.json",
+      "sha256": "eee55929b2329f78d785b5282665a8c19267bd900d79cfbbc850bc266a3bd784"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/spec.json",
+      "sha256": "bd63e70f9e403c68797ed7bd2f1a5286423e79b632455410119eec6298e7f8c0"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/caption.md",
+      "sha256": "1b3495f671b1c70ec87e90af1083cc27abaabc9977a93b18ab4befb7cb40ec4e"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/caption.md",
+      "sha256": "14e9d5df51a24138970df5f0c29a90c7f9346a9dd60d3d6ae272b857da93a4aa"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz-figure-reviewer/SKILL.md",
+      "sha256": "ed5ac1f7c3b53784d0bbc457f55e7632237c069b19cd2667d7e1004e20a2ba1f"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/before/manifest.json",
+      "sha256": "374a4c1b1417a3fcf9c14a4b958bcb7f0ca511896cc68ba9b6013c3131dc374a"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/validation.json",
+      "sha256": "1b8f0d8590052ac2205ad907787bc660b93f0b71c8917c5731bf4178f8e79589"
+    }
+  ],
+  "independent_final_export_checks": {
+    "exports": [
+      {
+        "case": "replicate-bars",
+        "run": "candidate",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "a324024f268d83fbeba624ee79c433167495f5fc74cf9e2a09a3fca8f4cf0a2d",
+          "svg": "bb12b6ab07ca55f589350a345afca4421d397f15b736689dff9ac0edd5a21b7f",
+          "png": "481eeb1204622d5b93e8002d47da1f1afeec4f681f1c04f41ff1b6c19674e795"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            15,
+            "ttf",
+            "Type0",
+            "DDVZBT+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 15,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/output/pdf-preview-96dpi.png",
+        "preview_sha256": "a2e300b757be4a8900198c88bcd1963f00d57e4aaae52915152f1b4fa1393094",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDDVZBT+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "replicate-bars",
+        "run": "transfer",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "158e68e43ac954dad6d0d2522277627de1fc1708df309280cdf2f166497998da",
+          "svg": "293ce55287f4b46fb0cb6ad225ad101bcf82084f562ff8819fb52eda04b9d30c",
+          "png": "195ad3615ed5a1da9d8a6b0307c587f879cbc712aec24259cef353fffd139997"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            15,
+            "ttf",
+            "Type0",
+            "DIQAQV+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 15,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/replicate-bars/transfer/output/pdf-preview-96dpi.png",
+        "preview_sha256": "362b118b21a5187426acc41fd149071a0372d38547057a2624ee4ced55586e25",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDIQAQV+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "paired-scatter",
+        "run": "candidate",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "0770fbaeb2b6c7f15a9c4a8433bd07f0c2c08251aed71cfea9ba1ddf952f486c",
+          "svg": "a31d207a953de34244ff1b48bb28163326ce2b992d7e838a992e9ad45a710e4a",
+          "png": "a46daffb11cb85f0292726c31a25ca7d328cc9a6f557c546bbc44fd4eab38ffd"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          5.6,
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            17,
+            "ttf",
+            "Type0",
+            "DIAHUU+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 8,
+        "svg_text_styles": [
+          "",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: start"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/output/pdf-preview-96dpi.png",
+        "preview_sha256": "1905b91148883bff09b2c00c234d9ad6dd0e8505e8e206d1307ac1bd701bf6c7",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDIAHUU+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "paired-scatter",
+        "run": "transfer",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "0183d8e44be4457d61f029962bd401a2b9cd135a1fe7e5ce5c737e123cffd4b9",
+          "svg": "b3ba11939671a6b37d82bd88ebaf1e0b71b9fc00fa2816a7fa8ab2c8165dde48",
+          "png": "cc5554d6a0fc9a965fe0745caf77f85a5aad4df13b5aef53b92bdc0ac09227bf"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          5.6,
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            16,
+            "ttf",
+            "Type0",
+            "EAFDEY+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 6,
+        "svg_text_styles": [
+          "",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/paired-scatter/transfer/output/pdf-preview-96dpi.png",
+        "preview_sha256": "73fa8cd2c138a4a2e7f711b42c39689dc323471e1f59f3c2fb134e7ec79b8a9d",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nEAFDEY+ArialMT                       CID TrueType      Identity-H       yes yes yes     16  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "cohort-box",
+        "run": "candidate",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "877a5e0d167e01fd5d9d089eb1f9c8df32c1dd1ab918a1c3e1113868bda84b93",
+          "svg": "42832b6f8390810752c021390f57fe229342897795d3f803b1cbf9cb4aba9a69",
+          "png": "1f085d971055b877816f812487ad9b682b1ee275099ed6cc78ff1f5434c57be1"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            18,
+            "ttf",
+            "Type0",
+            "DROBYH+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 15,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/output/pdf-preview-96dpi.png",
+        "preview_sha256": "a1ed5cf9f0a3b49da16791351dccc14e4dd928bf5578eba46f7384d3dce81df1",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDROBYH+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "cohort-box",
+        "run": "transfer",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "2aad28e587d74687501184121d5a545506ec57329128f369aa3a649f6afd0a8b",
+          "svg": "3f7a0120052f687e69848ee95b3ecad2ada7d22b53b7df317c09887484c58b29",
+          "png": "54cc0e8044d3e106aae6b0a79ec33d18d796981b104874e63b207d685aed929d"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            19,
+            "ttf",
+            "Type0",
+            "CHCIXY+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 16,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-box/transfer/output/pdf-preview-96dpi.png",
+        "preview_sha256": "07d9c3803dfccde5f446094280cc48a57d646f3f923fa76e8b93979161898e54",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCHCIXY+ArialMT                       CID TrueType      Identity-H       yes yes yes     19  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "cohort-violin",
+        "run": "candidate",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "b1ca97f5df3aa65a4e0136d78bc70490728cda3e41ee27917914d725f87dc05e",
+          "svg": "e683340f585d522f58b5b5c175e84dc5eb7ed4cf7579ae19af8a394f65881270",
+          "png": "70a45b6510c142f8a1d990b50ff24c571ca6dc81a792b64ad0c3bd504f71f8cc"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            18,
+            "ttf",
+            "Type0",
+            "DROBYH+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 15,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/output/pdf-preview-96dpi.png",
+        "preview_sha256": "0ac63a3cb2b34d5c64f4e8998dc9a7067bd39e0e651e393f695a0e24852f7454",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDROBYH+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "cohort-violin",
+        "run": "transfer",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "c0b8f4c7eec510a03b42f87a2b8114f4034ec635b117c52ac62c7893665b6b67",
+          "svg": "9bf48fe75ca5d00e50a8fa82128cae29c3badac934e57491dd5cb31d024efe71",
+          "png": "e25595fd76856ad229d6f70e9d512372a75771786534d2dd47874caa55781025"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            19,
+            "ttf",
+            "Type0",
+            "CHCIXY+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 16,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/cohort-violin/transfer/output/pdf-preview-96dpi.png",
+        "preview_sha256": "b532a33c955bd9101f3c991650d3c31ba6af470d5c9e66bab3bae209eaab87a6",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCHCIXY+ArialMT                       CID TrueType      Identity-H       yes yes yes     19  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "depot-heatmap",
+        "run": "candidate",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "fa5f0349c7b10f8cbb429cdf44b52b02bd24be9a4b9c1b15c63f7f035637ea4c",
+          "svg": "6154d5b809b7bffe28044e1ab74e1435d3414d3c772a6a50cd38ad4be61f3e29",
+          "png": "a1b5d60a4da4d30f04fc77aec6a7c40733676fddb9aac01dfdeaa582007a551f"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            17,
+            "ttf",
+            "Type0",
+            "FGOOFW+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 74,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: start"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/output/pdf-preview-96dpi.png",
+        "preview_sha256": "4d1714d63ec388059ea050106ca03a4f7d4936f473147386abf482efbf894b18",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nFGOOFW+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "final_recheck_unchanged": true
+      },
+      {
+        "case": "depot-heatmap",
+        "run": "transfer",
+        "paths": {
+          "pdf": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/output/panel.pdf",
+          "svg": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/output/panel.svg",
+          "png": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/output/panel.png"
+        },
+        "actual_sha256": {
+          "pdf": "dc1b7266de4faa2ad06862e3876aaca456fcd22277e3a24e6cedcaf070513a36",
+          "svg": "26fbed685fc6a9325f64f8309403d1a2c48a8bee1536f61c476efdbe1a48a3f8",
+          "png": "bca9bcee63778df763b0bc5d589530ffb9170e489dec841b90954575fd6df0f7"
+        },
+        "all_3_match_validation": true,
+        "pdf_pages": 1,
+        "pdf_mm": [
+          110.0000040690104,
+          88.00000110202366
+        ],
+        "pdf_fonts": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdf_resource_fonts": [
+          [
+            17,
+            "ttf",
+            "Type0",
+            "ZWLJAQ+ArialMT",
+            "F1",
+            "Identity-H",
+            0
+          ]
+        ],
+        "svg_dimensions": {
+          "width": "311.811024pt",
+          "height": "249.448819pt",
+          "viewBox": "0 0 311.811024 249.448819"
+        },
+        "svg_text_nodes": 73,
+        "svg_text_styles": [
+          "font-size: 8px; font-family: 'Arial'; text-anchor: end",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: middle",
+          "font-size: 8px; font-family: 'Arial'; text-anchor: start"
+        ],
+        "png_pixels": [
+          1299,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_path": "/Users/starry/Desktop/EasyViz/examples/create/basic-panels/depot-heatmap/transfer/output/pdf-preview-96dpi.png",
+        "preview_sha256": "9124ff25ef2574f3b48bb4dec6e65221039515739a904fb8779f00159210e9e5",
+        "preview_pixels": [
+          416,
+          333
+        ],
+        "pdffonts_output": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nZWLJAQ+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "final_recheck_unchanged": true
+      }
+    ],
+    "before_manifest_checks": [
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/replicate-bars/candidate-spec.json",
+        "actual_sha256": "1be98ca95ea90566c8e2c77818f25a75ebf2fa2d696652b82a75c4846fba5bd1",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/replicate-bars/panel.png",
+        "actual_sha256": "fcfa1dbb4052e1e50a0aeb6c7d2fff520fca68eef7c50dd803537e6c56a72db6",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/paired-scatter/candidate-spec.json",
+        "actual_sha256": "7cebd912f7a82272abafd37d6ff9c39bdbe05679e2287e236a8d6be90dd704f4",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/paired-scatter/panel.png",
+        "actual_sha256": "cadd414a166e7b52c74549f6cf1042085bd6207df51967440d4fcb33a9660fe4",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/cohort-box/candidate-spec.json",
+        "actual_sha256": "fabfa87e70ce1d5b9c904e6a953324c5ee680f103163f6f60fe5b427c3a0132b",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/cohort-box/panel.png",
+        "actual_sha256": "78c1706cdff33fbaeeb56a5891063b5346ae44ba777971aa31d1b826a8d46793",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/cohort-violin/candidate-spec.json",
+        "actual_sha256": "75633bff9007d3b424bd4befb8ba066222e12df0fe375b0128010605450ecc58",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/cohort-violin/panel.png",
+        "actual_sha256": "935046169e6fdec3388bd2de87868b4aa96b1f6625424f954a7f0c3ddc52cffc",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/depot-heatmap/candidate-spec.json",
+        "actual_sha256": "eee55929b2329f78d785b5282665a8c19267bd900d79cfbbc850bc266a3bd784",
+        "matches_manifest": true
+      },
+      {
+        "path": "evals/create-palette-refinement-v0.4.3/before/depot-heatmap/panel.png",
+        "actual_sha256": "a1b5d60a4da4d30f04fc77aec6a7c40733676fddb9aac01dfdeaa582007a551f",
+        "matches_manifest": true
+      }
+    ],
+    "validation_sha256": "1b8f0d8590052ac2205ad907787bc660b93f0b71c8917c5731bf4178f8e79589"
+  },
+  "supplied_numeric_evidence": {
+    "file": "evals/create-palette-refinement-v0.4.3/validation.json",
+    "status": "pass",
+    "runs": 15,
+    "records": [
+      {
+        "case": "replicate-bars",
+        "run": "baseline",
+        "status": "pass",
+        "input_rows": 15,
+        "input_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+        "artist_checks": {
+          "source_to_artist_audit": {
+            "status": "pass",
+            "source_rows": 15,
+            "raw_points": 15,
+            "component_values_normalized": false,
+            "ratios_derived": false,
+            "sample_size_independence_inferred": false,
+            "issues": []
+          },
+          "summary_check": "Independent Python mean and sample stdev"
+        },
+        "readability_status": null,
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "replicate-bars",
+        "run": "candidate",
+        "status": "pass",
+        "input_rows": 15,
+        "input_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+        "artist_checks": {
+          "source_to_artist_audit": {
+            "status": "pass",
+            "source_rows": 15,
+            "raw_points": 15,
+            "component_values_normalized": false,
+            "ratios_derived": false,
+            "sample_size_independence_inferred": false,
+            "issues": []
+          },
+          "summary_check": "Independent Python mean and sample stdev"
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "replicate-bars",
+        "run": "transfer",
+        "status": "pass",
+        "input_rows": 12,
+        "input_sha256": "af544ba1a391981f9c60019570ed37eca7ba93bcd36e0bc65f0729d777554e11",
+        "artist_checks": {
+          "source_to_artist_audit": {
+            "status": "pass",
+            "source_rows": 12,
+            "raw_points": 12,
+            "component_values_normalized": false,
+            "ratios_derived": false,
+            "sample_size_independence_inferred": false,
+            "issues": []
+          },
+          "summary_check": "Independent Python mean and sample stdev"
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "paired-scatter",
+        "run": "baseline",
+        "status": "pass",
+        "input_rows": 127,
+        "input_sha256": "05291c4494ab29fe95da3da5679631bb1456956628d883709289215a28c12eee",
+        "artist_checks": {
+          "raw_paired_points": 127,
+          "numeric_coordinates_unchanged": true,
+          "unsupported_fit_or_test_added": false
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "paired-scatter",
+        "run": "candidate",
+        "status": "pass",
+        "input_rows": 127,
+        "input_sha256": "05291c4494ab29fe95da3da5679631bb1456956628d883709289215a28c12eee",
+        "artist_checks": {
+          "raw_paired_points": 127,
+          "numeric_coordinates_unchanged": true,
+          "unsupported_fit_or_test_added": false
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "paired-scatter",
+        "run": "transfer",
+        "status": "pass",
+        "input_rows": 63,
+        "input_sha256": "e86da27f236ec01d40ce430e016e78017e44361095d08725678bcf1fd15a2716",
+        "artist_checks": {
+          "raw_paired_points": 63,
+          "numeric_coordinates_unchanged": true,
+          "unsupported_fit_or_test_added": false
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "cohort-box",
+        "run": "baseline",
+        "status": "pass",
+        "input_rows": 129,
+        "input_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+        "artist_checks": {
+          "raw_numeric_coordinates_unchanged": true,
+          "source_observations": 129,
+          "independent_inclusive_quartiles": [
+            {
+              "group": "Krieg",
+              "observations": 23,
+              "q1": 43.370000000000005,
+              "median": 47.21,
+              "q3": 51.33
+            },
+            {
+              "group": "Petrus",
+              "observations": 29,
+              "q1": 24.7,
+              "median": 34.8,
+              "q3": 40.0
+            },
+            {
+              "group": "Kerr",
+              "observations": 77,
+              "q1": 30.346,
+              "median": 38.9,
+              "q3": 44.1
+            }
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "cohort-box",
+        "run": "candidate",
+        "status": "pass",
+        "input_rows": 129,
+        "input_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+        "artist_checks": {
+          "raw_numeric_coordinates_unchanged": true,
+          "source_observations": 129,
+          "independent_inclusive_quartiles": [
+            {
+              "group": "Krieg",
+              "observations": 23,
+              "q1": 43.370000000000005,
+              "median": 47.21,
+              "q3": 51.33
+            },
+            {
+              "group": "Petrus",
+              "observations": 29,
+              "q1": 24.7,
+              "median": 34.8,
+              "q3": 40.0
+            },
+            {
+              "group": "Kerr",
+              "observations": 77,
+              "q1": 30.346,
+              "median": 38.9,
+              "q3": 44.1
+            }
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "cohort-box",
+        "run": "transfer",
+        "status": "pass",
+        "input_rows": 185,
+        "input_sha256": "a1e077b14da39e0f851f335207a2851ca81f3c6f9a189015e7161d3972f1d500",
+        "artist_checks": {
+          "raw_numeric_coordinates_unchanged": true,
+          "source_observations": 185,
+          "independent_inclusive_quartiles": [
+            {
+              "group": "Krieg",
+              "observations": 23,
+              "q1": 43.370000000000005,
+              "median": 47.21,
+              "q3": 51.33
+            },
+            {
+              "group": "Petrus",
+              "observations": 29,
+              "q1": 24.7,
+              "median": 34.8,
+              "q3": 40.0
+            },
+            {
+              "group": "Kerr",
+              "observations": 77,
+              "q1": 30.346,
+              "median": 38.9,
+              "q3": 44.1
+            },
+            {
+              "group": "Arner, E",
+              "observations": 56,
+              "q1": 24.23,
+              "median": 31.1,
+              "q3": 41.425
+            }
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "cohort-violin",
+        "run": "baseline",
+        "status": "pass",
+        "input_rows": 129,
+        "input_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+        "artist_checks": {
+          "raw_numeric_coordinates_unchanged": true,
+          "source_observations": 129,
+          "independent_inclusive_quartiles": [
+            {
+              "group": "Krieg",
+              "observations": 23,
+              "q1": 43.370000000000005,
+              "median": 47.21,
+              "q3": 51.33
+            },
+            {
+              "group": "Petrus",
+              "observations": 29,
+              "q1": 24.7,
+              "median": 34.8,
+              "q3": 40.0
+            },
+            {
+              "group": "Kerr",
+              "observations": 77,
+              "q1": 30.346,
+              "median": 38.9,
+              "q3": 44.1
+            }
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "cohort-violin",
+        "run": "candidate",
+        "status": "pass",
+        "input_rows": 129,
+        "input_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+        "artist_checks": {
+          "raw_numeric_coordinates_unchanged": true,
+          "source_observations": 129,
+          "independent_inclusive_quartiles": [
+            {
+              "group": "Krieg",
+              "observations": 23,
+              "q1": 43.370000000000005,
+              "median": 47.21,
+              "q3": 51.33
+            },
+            {
+              "group": "Petrus",
+              "observations": 29,
+              "q1": 24.7,
+              "median": 34.8,
+              "q3": 40.0
+            },
+            {
+              "group": "Kerr",
+              "observations": 77,
+              "q1": 30.346,
+              "median": 38.9,
+              "q3": 44.1
+            }
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "cohort-violin",
+        "run": "transfer",
+        "status": "pass",
+        "input_rows": 185,
+        "input_sha256": "a1e077b14da39e0f851f335207a2851ca81f3c6f9a189015e7161d3972f1d500",
+        "artist_checks": {
+          "raw_numeric_coordinates_unchanged": true,
+          "source_observations": 185,
+          "independent_inclusive_quartiles": [
+            {
+              "group": "Krieg",
+              "observations": 23,
+              "q1": 43.370000000000005,
+              "median": 47.21,
+              "q3": 51.33
+            },
+            {
+              "group": "Petrus",
+              "observations": 29,
+              "q1": 24.7,
+              "median": 34.8,
+              "q3": 40.0
+            },
+            {
+              "group": "Kerr",
+              "observations": 77,
+              "q1": 30.346,
+              "median": 38.9,
+              "q3": 44.1
+            },
+            {
+              "group": "Arner, E",
+              "observations": 56,
+              "q1": 24.23,
+              "median": 31.1,
+              "q3": 41.425
+            }
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "depot-heatmap",
+        "run": "baseline",
+        "status": "pass",
+        "input_rows": 48,
+        "input_sha256": "30e7007dc27f6aa504385bcc6c5197f7d2cebd49287e8221657aebd701b10f85",
+        "artist_checks": {
+          "matrix_cells": 48,
+          "matrix_order_and_values_unchanged": true,
+          "global_color_limits": [
+            0,
+            40
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "depot-heatmap",
+        "run": "candidate",
+        "status": "pass",
+        "input_rows": 48,
+        "input_sha256": "30e7007dc27f6aa504385bcc6c5197f7d2cebd49287e8221657aebd701b10f85",
+        "artist_checks": {
+          "matrix_cells": 48,
+          "matrix_order_and_values_unchanged": true,
+          "global_color_limits": [
+            0,
+            40
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      },
+      {
+        "case": "depot-heatmap",
+        "run": "transfer",
+        "status": "pass",
+        "input_rows": 48,
+        "input_sha256": "304791df8745197804e64c67260fb5fa63ba9f65afb888f43adf0a7c6de16e0b",
+        "artist_checks": {
+          "matrix_cells": 48,
+          "matrix_order_and_values_unchanged": true,
+          "global_color_limits": [
+            0,
+            2700
+          ]
+        },
+        "readability_status": "no_advisory_flags",
+        "numerics_independently_recomputed_by_reviewer": false
+      }
+    ],
+    "independent_reviewer_scope": "Means/SD/quartiles/source-to-artist coordinates/matrix values are supplied validation read after visual judgment; not independently recomputed by reviewer. Actual dimensions/fonts/text/pixel metadata and all 30 final export hashes independently checked."
+  },
+  "persistent_candidate_manifest": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-palette-refinement-v0.4.3/candidates/manifest.json",
+    "sha256": "033dfb082b1e879f907bdc762acc8dfa3563061da583647d1eccf99b5a8a6516",
+    "all_four_reviewed_png_copies_identical": true
+  }
+}

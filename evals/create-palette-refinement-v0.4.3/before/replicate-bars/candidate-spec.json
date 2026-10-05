@@ -1,0 +1,56 @@
+{
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "line_width_pt": 0.6,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "replicate",
+  "fields": {
+    "condition": "display_condition",
+    "unit": "unit",
+    "value": "HDR_percent"
+  },
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU-7441\n(1 µM)",
+      "KU-0060548\n(0.25 µM)",
+      "L755507\n(5 µM)",
+      "SCR7 pyrazine\n(1 µM)"
+    ]
+  },
+  "labels": {
+    "x": "Treatment",
+    "y": "HDR (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "y_limits": [
+      0,
+      15
+    ],
+    "y_ticks": [
+      0,
+      5,
+      10,
+      15
+    ],
+    "bar_width": 0.5,
+    "marker_area_pt2": 7,
+    "bar_color": "#55A0FB",
+    "point_color": "#55A0FB",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.7,
+    "bar_edge_color": "#55A0FB"
+  }
+}
