@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.4 — 2026-10-05
+
+- First finished Create delivery now includes actual image inspection, concrete internal corrections within three visual passes, and a current-file review record. Routine edits retain their adopted workflow.
+- New scene-informed candidates use mapped data features and measured artists to propose eligible category spacing, matrix proportions and mark treatments. Explicit sizes, fonts, colors, geometry and scientific methods remain locked; failed layouts retain their findings.
+- Five original synthetic design cards pair actual exports with specific failure examples, applicability limits, source anchors, editable specs and separate captions. Their comparisons teach design mechanisms rather than measure Skill effectiveness.
+- A review companion binds image attestations to source/specification/caption/export hashes, checks available physical and technical evidence, and rejects stale or incomplete records. It does not perform vision or certify aesthetic superiority.
+- Workbench writers share a bounded process lock; late versions are rejected, ordinary request/history failures roll back, and restored settings bind their actual frozen inputs. Current QA is checked again before request/accept publication.
+- Installation and build checks reject unsafe source/output links and archive path aliases, preserve the previous same-version cache on failure, and protect cooperating catalog updates. ZIP extraction has explicit resource budgets.
+- New-data first-delivery checks and extracted-package runs are recorded in [0.4.4 validation](evals/create-first-delivery-v0.4.4/README.md) and [release QA](evals/release-qa/v0.4.4/README.md).
+
 ## 0.4.3 — 2026-10-05
 
 - Refine Create color roles from observed literature mechanisms: neutral single-series bars, separately selected two-class scatter colors, and pastel summary areas with graphite observations/contours. Add explicit distribution face-opacity and point-color settings without changing saved-spec defaults.

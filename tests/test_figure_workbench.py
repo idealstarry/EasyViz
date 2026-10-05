@@ -8,7 +8,9 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
+import textwrap
 import threading
 import unittest
 from unittest.mock import patch
@@ -326,6 +328,103 @@ class FigureWorkbenchTests(unittest.TestCase):
                 self.assertIn("Saved requests changed",result["error"])
                 self.assertEqual(writer.call_count,0)
                 self.assertEqual((self.root/"requests.json").read_bytes(),agent_bytes)
+
+    def test_independent_instance_save_in_last_publication_window_is_preserved(self):
+        other = workbench.FigureWorkbench(self.root)
+        publish = self.server.app.write_ledger
+        saved = []
+        def publish_after_other_instance(ledger, **guards):
+            saved.append(other.change(self.change(annotation_number=2))["request"])
+            return publish(ledger, **guards)
+        with patch.object(self.server.app, "write_ledger", side_effect=publish_after_other_instance):
+            code, result = self.data("POST", "/api/requests/batch", {
+                "version": self.version, "requests": [self.change(annotation_number=1)]})
+        self.assertEqual(code, 409, result)
+        self.assertIn("Saved requests changed", result["error"])
+        self.assertEqual([item["id"] for item in other.ledger()["requests"]], [saved[0]["id"]])
+        self.assertEqual(self.data("POST", "/api/requests", self.change(annotation_number=1))[0], 200)
+        self.assertEqual([item["annotation_number"] for item in other.ledger()["requests"]], [2, 1])
+        for name, raw in self.initial.items():
+            self.assertEqual((self.root / name).read_bytes(), raw)
+
+    def lock_process(self, *, publish=False):
+        script = textwrap.dedent('''
+            import json, sys
+            sys.path.insert(0, sys.argv[1])
+            from figure_workbench import FigureWorkbench, ledger_file_lock
+            app = FigureWorkbench(sys.argv[2])
+            with ledger_file_lock(app.root):
+                print("locked", flush=True)
+                sys.stdin.readline()
+                if sys.argv[3] == "publish":
+                    state = app.state()
+                    _, ledger = app.ledger_snapshot()
+                    item = app.prepare_request({"version": state["version"], "element_id": "data-group-a",
+                        "instruction": "Keep this independently saved opinion.", "annotation_number": 5}, state, set())
+                    ledger["requests"].append(item)
+                    app._replace_ledger_bytes(app.ledger_serialized(ledger))
+                    print(item["id"], flush=True)
+        ''')
+        child = subprocess.Popen([sys.executable, "-c", script, str(SCRIPT.parent), str(self.root),
+                                  "publish" if publish else "hold"],
+                                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        self.addCleanup(self.stop_process, child)
+        self.assertEqual(child.stdout.readline().strip(), "locked")
+        return child
+
+    @staticmethod
+    def stop_process(child):
+        if child.poll() is None:
+            child.kill()
+        child.communicate(timeout=5)
+
+    def test_process_lock_wait_rechecks_bytes_before_publishing_and_dead_owner_releases(self):
+        child = self.lock_process(publish=True)
+        with self.assertRaisesRegex(workbench.WorkbenchError, "busy"):
+            with workbench.ledger_file_lock(self.root, timeout=.05):
+                self.fail("An independent live process owns the lock")
+        entering = threading.Event()
+        errors = []
+        publish = self.server.app.write_ledger
+        def waiting_publish(ledger, **guards):
+            entering.set()
+            return publish(ledger, **guards)
+        def save():
+            try:
+                self.server.app.change(self.change(annotation_number=1))
+            except Exception as exc:
+                errors.append(exc)
+        with patch.object(self.server.app, "write_ledger", side_effect=waiting_publish):
+            writer = threading.Thread(target=save)
+            writer.start()
+            self.assertTrue(entering.wait(2))
+            self.assertTrue(writer.is_alive(), "Second writer must wait for the actual OS lock")
+            child.stdin.write("release\n")
+            child.stdin.flush()
+            saved_id = child.stdout.readline().strip()
+            child.wait(timeout=5)
+            writer.join(timeout=5)
+        self.assertFalse(writer.is_alive())
+        self.assertEqual(len(errors), 1)
+        self.assertIsInstance(errors[0], workbench.WorkbenchError)
+        self.assertIn("Saved requests changed", str(errors[0]))
+        self.assertEqual([item["id"] for item in self.server.app.ledger()["requests"]], [saved_id])
+        abandoned = self.lock_process()
+        abandoned.kill()
+        abandoned.wait(timeout=5)
+        self.assertTrue((self.root / ".requests.lock").exists())
+        self.server.app.change(self.change(annotation_number=1))
+        self.assertEqual([item["annotation_number"] for item in self.server.app.ledger()["requests"]], [5, 1])
+
+    def test_lock_symlink_cannot_redirect_request_writes(self):
+        outside = self.root / "unchanged-lock-target"
+        outside.write_bytes(b"immutable")
+        (self.root / ".requests.lock").symlink_to(outside)
+        code, result = self.data("POST", "/api/requests", self.change(annotation_number=1))
+        self.assertEqual(code, 400, result)
+        self.assertIn("regular local file", result["error"])
+        self.assertEqual(outside.read_bytes(), b"immutable")
+        self.assertFalse((self.root / "requests.json").exists())
 
     def test_regions_work_without_map_and_mm_bounds_are_enforced(self):
         (self.root/"elements.json").unlink()

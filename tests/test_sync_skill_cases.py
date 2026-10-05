@@ -57,6 +57,27 @@ class SyncSkillCasesTests(unittest.TestCase):
                  for p in source.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
         self.assertEqual(before, after)
 
+    def test_portable_readme_links_are_relocated_without_changing_development_examples(self):
+        cases = [('create', 'urschel-ecdf', '../../no-author-code/urschel-paired/README.md',
+                  '../urschel-paired/README.md'),
+                 ('no-author-code', 'massier-bmi-violin', 'first-render/panel.png',
+                  'https://github.com/idealstarry/EasyViz/blob/main/'
+                  'examples/no-author-code/massier-bmi-violin/first-render/panel.png')]
+        for track, case, old_link, new_link in cases:
+            with self.subTest(case=case):
+                source = sync_cases.ROOT / 'examples' / track / case / 'README.md'
+                before = source.read_bytes()
+                target = self.assets / 'cases' / case / 'README.md'
+                sync_cases.copy_file(source, target)
+                self.assertIn(f']({new_link})', target.read_text())
+                self.assertNotIn(f']({old_link})', target.read_text())
+                self.assertEqual(source.read_bytes(), before)
+        # The two destination rewrites must not alter a different portable file.
+        source = sync_cases.ROOT / 'examples/create/urschel-ecdf/README.md'
+        target = self.assets / 'cases/another-case/README.md'
+        sync_cases.copy_file(source, target)
+        self.assertEqual(target.read_bytes(), source.read_bytes())
+
     def test_case_directory_symlink_is_rejected_before_any_target_is_cleared(self):
         outside = self.root / 'outside'
         outside.mkdir()

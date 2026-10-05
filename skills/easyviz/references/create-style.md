@@ -7,6 +7,11 @@ starting values, not journal rules or evidence of publication quality.
 Reproduce follows its adopted reference and user settings; do not insert a
 create style into an accepted reproduction.
 
+For a new panel, use the visual [scenario cards](design-cards.md) and
+[First reviewed delivery](first-draft.md) to make eligible geometry and color-role
+choices on the actual data. The shared defaults below are a starting treatment;
+inspect and correct the first exports before presenting them as finished.
+
 Refine the basic chart before composing extra tracks. Decide whether readers
 should see observations, a summary or density shape first, then set their
 relative size, contrast and placement. A shared palette or line width cannot
@@ -131,7 +136,16 @@ rather than receiving default role widths; explicit role widths still win.
 
 These choices need image review. If a hollow glyph is weak or exposes a whisker
 crossing, compare a filled glyph or separate summary lane. If packing fails,
-make an explicit size/layout decision; numeric positions must stay intact.
+read the actual lane bounds, outer mark diameter and unresolved pairs in
+`point_layout` before editing. For hollow circles the outer diameter is
+`sqrt(point_area_pt2) + point_edge_width_pt`, in points. Widen allowed
+categorical displacement only where adjacent groups and axes have clearance;
+Beeswarm's `point_max_offset_mm` is a ceiling, not additional physical lane space.
+Rebalance category spacing, summary thickness and the raw lane within the
+adopted canvas, then rerender and check summary crossings and category identity.
+Preserve explicit marker area, fonts, canvas and all rows; keep numeric values
+unshifted. Failed packing remains failed QA. Within the three-pass visual
+budget, report any unresolved capacity limit rather than force a cosmetic pass.
 
 For a distribution, `point_category_offset` moves the raw-point lane along
 the categorical direction (`-0.4` to `0.4` category spacing, default `0`).
@@ -259,6 +273,9 @@ statistics, numeric scales, canvas and fonts equal. Compare category decoding,
 primary evidence, small-point contrast, adjacent areas and guide keys at final
 size. Record the preference and tradeoff; neither brighter nor more neutral
 automatically wins. Routine edits need no compulsory candidate set.
+For a supported new draft, [First reviewed delivery](first-draft.md) automates
+eligible candidate construction; custom code remains appropriate outside its
+contract. Actual image inspection still makes the selection.
 
 1. Check the complete palette and that the intended comparison is seen first.
    Use a grid only when it materially improves reading values; a pale grid can

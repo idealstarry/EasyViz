@@ -35,6 +35,13 @@ occlusion or missing layers. Real zero-area marks are retained, and intentional
 white matrix seams are not treated as faint data strokes. Custom scripts can
 use `panel_readability.measure(fig)` before export for the same limited evidence.
 
+Inspect the full outer radius of circles near fixed axis boundaries; an in-range
+center can still have a cut-off mark even when technical QA passes. Preserve
+measured coordinates and adopted limits. A custom implementation may draw the
+complete in-range edge symbol into an existing blank margin, while retaining
+the intended exclusion of centers outside the range. Recheck the exported
+symbols, axes and canvas; do not infer this repair from the center alone.
+
 Review palette combinations together in the actual panel, including contrasts between continuous maps, category colors, annotation tracks, and the background. Do not approve a combination solely because it comes from literature, or request the same combination for every dataset. Flag incidental outline mismatches within comparable mark roles or their legends. Fixed-size observations, distribution boundaries, quantitative filled-area dots and binary metadata may need different purposeful treatments. Check hollow-point/whisker crossings, overly thick boxes, washed-out observations and oversized empty bands. Reproduce follows its adopted policy; neither borderless nor hollow marks automatically improve Create.
 For category-colored summary areas with neutral observations, verify that
 position/labels still associate every point with its group, contours and medians
@@ -114,5 +121,18 @@ Save the review packet identity, reviewer role (independent or self-review), pas
 A successful renderer invocation or schema validation is not a visual review. Deliver only claims supported by the saved checks, including the limitations of self-review or unavailable inspection. Record the candidate and input scope reviewed; a passed case does not establish arbitrary-data or unsupported-chart generalization.
 
 `ready` records satisfaction of the checked requirements. It does not establish aesthetic superiority over the baseline or publication acceptance. Save any comparative preference and its reasons separately from that status.
+
+For the first finished Create delivery, use the version-bound packet and check
+in [First reviewed delivery](first-draft.md). Record only the current images
+actually opened and measurements/checks actually performed. The helper verifies
+record completeness and current artifact/source hashes; it cannot verify image
+opening, independent judgment or aesthetic quality. A changed export needs
+inspection and a review of that new version. Pending, stale or required-unchecked
+records cannot justify readiness.
+
+Evaluate first-output quality on held-out tasks, freezing the first finished
+delivery before human aesthetic feedback. Keep internal candidate/review passes
+in the evidence. Known showcase improvement and renderer tests answer narrower
+questions than success on an unseen data directory.
 
 If the correction changes reusable library styling, verify the affected related chart families and representative category counts, label lengths, and panel sizes. Report the coverage actually checked; do not restrict the evidence to one showcase or change unrelated families merely to make them look alike.

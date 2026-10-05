@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "track": "create",
+  "purpose": "Original synthetic teaching comparisons; inspect images and applicability before choosing a new-data treatment. These intentionally flawed comparisons are not a skill-effectiveness evaluation.",
+  "cards": [
+    {
+      "id": "replicate-neutral-compact",
+      "chart": "replicate",
+      "applies_when": [
+        "One measured quantity across a few x-labeled treatments",
+        "An adopted mean and sample-SD definition with all raw units"
+      ],
+      "good_image": "replicate-neutral-compact/good/panel.png",
+      "failure_image": "replicate-neutral-compact/failure/panel.png",
+      "final_size_preview": "replicate-neutral-compact/good/preview-96dpi.png",
+      "data": "replicate-neutral-compact/data.csv",
+      "good_spec": "replicate-neutral-compact/good-spec.json",
+      "failure_spec": "replicate-neutral-compact/failure-spec.json",
+      "caption": "replicate-neutral-compact/caption.md",
+      "mechanism": "Compact open summaries leave definite intervals and raw observations visible; x positions decode the single quantity.",
+      "avoid": "Broad filled summaries dominate the sparse replicate layer; choosing a bar width is a geometry decision as well as a hue decision.",
+      "source_anchors": [
+        "PROGENy Fig.2d PDF p4: neutral single-series bars",
+        "scWAT Fig.3j PDF p5: bounded open bars and raw marks"
+      ],
+      "synthetic": true,
+      "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+      "rendered": [
+        {
+          "variant": "good",
+          "technical_status": "pass",
+          "png_sha256": "d474087d18355028ab44bffedc056341095cbcee9cd052796312ba3f56dfb115"
+        },
+        {
+          "variant": "failure",
+          "technical_status": "pass",
+          "png_sha256": "647205f6ebd7b3cc67f1c195315cfd353ddb0c9ea64368d1d1ae155915363133"
+        }
+      ],
+      "geometry_notes": [
+        "Adopted canvas: 60 × 62 mm; declared data region: 43.80 × 47.12 mm from the fixed margins.",
+        "Four categorical summaries use bar width 0.36 category-spacing units, leaving room for intervals and raw marks."
+      ]
+    },
+    {
+      "id": "distribution-summary-lane",
+      "chart": "distribution",
+      "applies_when": [
+        "A few categorical distributions with raw observations",
+        "The median and interval are central to the reading task"
+      ],
+      "good_image": "distribution-summary-lane/good/panel.png",
+      "failure_image": "distribution-summary-lane/failure/panel.png",
+      "final_size_preview": "distribution-summary-lane/good/preview-96dpi.png",
+      "data": "distribution-summary-lane/data.csv",
+      "good_spec": "distribution-summary-lane/good-spec.json",
+      "failure_spec": "distribution-summary-lane/failure-spec.json",
+      "caption": "distribution-summary-lane/caption.md",
+      "mechanism": "Adjacent category-associated raw lanes keep box/median/whisker boundaries uninterrupted; area color and graphite strokes have different roles.",
+      "avoid": "Centering the raw layer on the summary creates competing dots, median and whisker strokes; broad summaries add mass.",
+      "source_anchors": [
+        "PROGENy Fig.4c PDF p6: neutral boundaries and colored summary/body areas",
+        "Separate raw lanes are an EasyViz adaptation, not a source statistical method"
+      ],
+      "synthetic": true,
+      "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+      "rendered": [
+        {
+          "variant": "good",
+          "technical_status": "pass",
+          "png_sha256": "7dccd5e08e18adf8bba01e31f40ea4b0f302d7ce0edd92e77b4c3da8bf9a9072"
+        },
+        {
+          "variant": "failure",
+          "technical_status": "pass",
+          "png_sha256": "f162afa5768f52de3e7cac76c322c73cbff3fca5c9573cf042d19ad4ccbf2697"
+        }
+      ],
+      "geometry_notes": [
+        "Adopted canvas: 66 × 68 mm; declared data region: 48.18 × 51.68 mm from the fixed margins.",
+        "Three category centers use box width 0.24 category-spacing units. Raw lanes are shifted by 0.28 category-spacing units, with a maximum packing spread of 2.8 mm around each shifted anchor."
+      ]
+    },
+    {
+      "id": "violin-summary-hierarchy",
+      "chart": "distribution",
+      "applies_when": [
+        "A distribution-shape question where KDE is scientifically adopted",
+        "Inner quartiles must remain distinguishable from estimated density"
+      ],
+      "good_image": "violin-summary-hierarchy/good/panel.png",
+      "failure_image": "violin-summary-hierarchy/failure/panel.png",
+      "final_size_preview": "violin-summary-hierarchy/good/preview-96dpi.png",
+      "data": "violin-summary-hierarchy/data.csv",
+      "good_spec": "violin-summary-hierarchy/good-spec.json",
+      "failure_spec": "violin-summary-hierarchy/failure-spec.json",
+      "caption": "violin-summary-hierarchy/caption.md",
+      "mechanism": "A subordinate white KDE body and fine contour frame a stronger colored quartile area; raw points occupy an associated side lane.",
+      "avoid": "Equally strong colored density boundary, tinted body and central raw layer compete with the quartile summary.",
+      "source_anchors": [
+        "PROGENy Fig.4c PDF p6: separate contour, inner summaries and area roles"
+      ],
+      "synthetic": true,
+      "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+      "rendered": [
+        {
+          "variant": "good",
+          "technical_status": "pass",
+          "png_sha256": "24c7c6988b36b9c87ad27b168bbd11ff4d520f5f697e5bad8a5f56d5b4ab066e"
+        },
+        {
+          "variant": "failure",
+          "technical_status": "pass",
+          "png_sha256": "d74c1e7ff5d3660daf5edec95fe1333cd9303308c34433907c9d41d1a57709f4"
+        }
+      ],
+      "geometry_notes": [
+        "Adopted canvas: 66 × 68 mm; declared data region: 48.18 × 51.68 mm from the fixed margins.",
+        "Three category centers use violin width 0.24 and inner-box width 0.16 category-spacing units. Raw lanes are shifted by 0.28 category-spacing units, with a maximum packing spread of 2.8 mm around each shifted anchor."
+      ]
+    },
+    {
+      "id": "heatmap-tall-narrow",
+      "chart": "heatmap",
+      "applies_when": [
+        "A matrix with many more rows than columns",
+        "Linear magnitude lookup with adopted fixed numeric bounds"
+      ],
+      "good_image": "heatmap-tall-narrow/good/panel.png",
+      "failure_image": "heatmap-tall-narrow/failure/panel.png",
+      "final_size_preview": "heatmap-tall-narrow/good/preview-96dpi.png",
+      "data": "heatmap-tall-narrow/data.csv",
+      "good_spec": "heatmap-tall-narrow/good-spec.json",
+      "failure_spec": "heatmap-tall-narrow/failure-spec.json",
+      "caption": "heatmap-tall-narrow/caption.md",
+      "mechanism": "Matrix shape and labels set data-region geometry; visible subordinate seams separate large cells without changing the scale.",
+      "avoid": "Stretching a three-column matrix into wide ribbons weakens local reading; disappearing cell seams make nearby pale values merge.",
+      "source_anchors": [
+        "scWAT Fig.2b PDF p4: compact narrow matrix",
+        "The blue ramp and seams are declared EasyViz adaptations"
+      ],
+      "synthetic": true,
+      "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+      "rendered": [
+        {
+          "variant": "good",
+          "technical_status": "pass",
+          "png_sha256": "e6f66eb1b7b26bb2efecce4743384666de95775e287b33728d1c1a93703d6ab3"
+        },
+        {
+          "variant": "failure",
+          "technical_status": "pass",
+          "png_sha256": "97d03b99da4bc499761df293dc340268a859ce6d3bbe135c6c77680a107451a3"
+        }
+      ],
+      "geometry_notes": [
+        "Adopted canvas: 88 × 88 mm; declared data region: 28.16 × 67.76 mm from the fixed margins.",
+        "The fixed margins allocate a tall, narrow data region to twelve rows and three columns; automatic cell aspect follows that region. A vertical colorbar uses the space reserved on the right."
+      ]
+    },
+    {
+      "id": "scatter-small-mark-color",
+      "chart": "scatter",
+      "applies_when": [
+        "Two classes mixed in the same fixed-size point field",
+        "Group identity must be decoded from small marks"
+      ],
+      "good_image": "scatter-small-mark-color/good/panel.png",
+      "failure_image": "scatter-small-mark-color/failure/panel.png",
+      "final_size_preview": "scatter-small-mark-color/good/preview-96dpi.png",
+      "data": "scatter-small-mark-color/data.csv",
+      "good_spec": "scatter-small-mark-color/good-spec.json",
+      "failure_spec": "scatter-small-mark-color/failure-spec.json",
+      "caption": "scatter-small-mark-color/caption.md",
+      "mechanism": "Small categorical points need visible whole-panel distinction; pale bounded-area colors need not work on tiny borderless marks.",
+      "avoid": "Pale low-contrast colors fail as small marks on white even though they can be eligible for larger bounded areas.",
+      "source_anchors": [
+        "scWAT Fig.2g PDF p4: blue/pink fitted-line colors adapted here to raw-class marks"
+      ],
+      "synthetic": true,
+      "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+      "rendered": [
+        {
+          "variant": "good",
+          "technical_status": "pass",
+          "png_sha256": "fcd2b9ad07db8afa1aa60545203e4df13bbe113078e9acb78d4880f20f8bea91"
+        },
+        {
+          "variant": "failure",
+          "technical_status": "pass",
+          "png_sha256": "b428439ca79e78f3f109cc41b5786d2d998bbcdc5b3eb64af0ff3e40eff183d1"
+        }
+      ],
+      "geometry_notes": [
+        "Adopted canvas: 75 × 70 mm; declared data region: 54.75 × 44.80 mm from the fixed margins.",
+        "Two classes share the same coordinate field and mark area; the upper margin reserves space for the two-key categorical legend."
+      ]
+    }
+  ]
+}

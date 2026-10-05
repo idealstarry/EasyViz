@@ -35,6 +35,12 @@ The core supports heatmaps, composition bars, dot plots, scatter plots, and box/
 
 For directory exploration, use `inspect_data.py`; for an adopted analysis, use `analyze.py`. `reference_packet.py` stages reproduce inputs and a layer implementation plan. `figure_workbench.py --figure-dir /absolute/path/to/attempt --port 0` opens a local page where the user selects SVG elements or regions and saves instructions. The Agent reads those requests, edits the plotting code/specification, and rerenders SVG, PDF and PNG together. These helpers serve the same two tracks.
 
+For new Create drafts, `create_candidates.py` proposes a few actual views
+from chart/data features while retaining explicit user settings. The Agent
+opens relevant design cards and the new exports, corrects visible findings
+and uses `create_review.py` to record a review bound to the current files.
+The tools neither select an aesthetic winner nor certify publication quality.
+
 ## Resources
 
 Copy bundled case folders into your writable project before running or adapting them. The case scripts may write beside their inputs; the installed plugin should remain a reusable source.
@@ -43,6 +49,8 @@ Copy bundled case folders into your writable project before running or adapting 
 - [Five basic Create panels with runnable Source Data](skills/easyviz/assets/cases/basic-panels/README.md)
 - [Narrow repair-outcome bar panels and a grouped alternative](skills/easyviz/assets/cases/repair-outcomes/README.md)
 - [Create mark colors and line roles](skills/easyviz/references/create-style.md)
+- [First reviewed Create delivery](skills/easyviz/references/first-draft.md)
+- [Visual scenario design cards](skills/easyviz/references/design-cards.md)
 - [Directory exploration](skills/easyviz/references/data-exploration.md)
 - [Planned analysis](skills/easyviz/references/statistical-analysis.md)
 - [Reference to code](skills/easyviz/references/reference-to-code.md)

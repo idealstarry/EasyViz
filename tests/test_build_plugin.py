@@ -1,0 +1,262 @@
+"""Build output must stay within owned destinations and preserve user files."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from unittest import mock
+import zipfile
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+import build_plugin
+
+
+class BuildPluginTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix='easyviz-build-test-')
+        self.addCleanup(self.temporary.cleanup)
+        self.base = Path(self.temporary.name).resolve()
+        self.root = self.base / 'repository'
+        self.root.mkdir()
+        self.dist = self.root / 'dist'
+        self.manifest = self.root / 'plugins/easyviz/.codex-plugin/plugin.json'
+        resources = {
+            'plugins/easyviz/.codex-plugin/plugin.json': json.dumps({'name': 'easyviz', 'version': '1.0.0'}),
+            'plugins/easyviz/assets/logo.svg': '<svg/>\n',
+            'plugins/easyviz/README.md': 'Portable EasyViz\n',
+            'skills/easyviz/SKILL.md': 'Scientific figures\n',
+            'skills/easyviz/scripts/render.py': 'print("figure")\n',
+            'skills/easyviz/scripts/__pycache__/render.pyc': 'generated cache',
+            'LICENSE': 'License\n',
+            'THIRD_PARTY_NOTICES.md': 'Attribution\n',
+        }
+        for name, content in resources.items():
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content)
+        for patch in (mock.patch.object(build_plugin, 'ROOT', self.root),
+                      mock.patch.object(build_plugin, 'DIST', self.dist)):
+            patch.start()
+            self.addCleanup(patch.stop)
+        patch = mock.patch.object(build_plugin, 'sync')
+        self.sync = patch.start()
+        self.addCleanup(patch.stop)
+
+    def external_marker(self, name='outside'):
+        outside = self.base / name
+        marker = outside / 'easyviz/keep.bin'
+        marker.parent.mkdir(parents=True)
+        marker.write_bytes(b'external files must stay untouched')
+        return outside, marker
+
+    def assert_rejected_without_sync(self, dist=None, pattern='symlink build path'):
+        with self.assertRaisesRegex(ValueError, pattern):
+            build_plugin.build(dist)
+        self.sync.assert_not_called()
+
+    def test_dist_symlink_preserves_external_directory_before_deletion(self):
+        outside, marker = self.external_marker()
+        self.dist.symlink_to(outside, target_is_directory=True)
+        self.assert_rejected_without_sync()
+        self.assertTrue(self.dist.is_symlink())
+        self.assertEqual(marker.read_bytes(), b'external files must stay untouched')
+        self.assertEqual(list(outside.iterdir()), [outside / 'easyviz'])
+
+    def test_repository_ancestor_symlink_is_rejected(self):
+        outside, marker = self.external_marker()
+        link = self.root / 'generated'
+        link.symlink_to(outside, target_is_directory=True)
+        self.assert_rejected_without_sync(link / 'nested/dist')
+        self.assertEqual(marker.read_bytes(), b'external files must stay untouched')
+        self.assertFalse((outside / 'nested').exists())
+
+    def test_build_directory_symlink_is_rejected(self):
+        outside, marker = self.external_marker()
+        self.dist.mkdir()
+        target = self.dist / 'easyviz'
+        target.symlink_to(outside / 'easyviz', target_is_directory=True)
+        self.assert_rejected_without_sync()
+        self.assertTrue(target.is_symlink())
+        self.assertEqual(marker.read_bytes(), b'external files must stay untouched')
+
+    def test_dangling_dist_and_output_symlinks_are_rejected(self):
+        for relative in ('dist', 'dist/easyviz', 'dist/easyviz-1.0.0.zip', 'dist/build.json'):
+            with self.subTest(path=relative):
+                link = self.root / relative
+                link.parent.mkdir(parents=True, exist_ok=True)
+                link.symlink_to(self.base / 'missing')
+                try:
+                    self.assert_rejected_without_sync()
+                    self.assertTrue(link.is_symlink())
+                    self.assertFalse((self.base / 'missing').exists())
+                finally:
+                    link.unlink()
+
+    def test_archive_and_summary_symlinks_preserve_external_files_and_previous_build(self):
+        build_plugin.build()
+        self.sync.reset_mock()
+        previous = self.dist / 'easyviz/previous.txt'
+        previous.write_bytes(b'previous build stays intact')
+        outside = self.base / 'outside.bin'
+        outside.write_bytes(b'unrelated external bytes')
+        for name in ('easyviz-1.0.0.zip', 'build.json'):
+            with self.subTest(path=name):
+                output = self.dist / name
+                original = output.read_bytes()
+                output.unlink()
+                output.symlink_to(outside)
+                try:
+                    self.assert_rejected_without_sync()
+                    self.assertEqual(outside.read_bytes(), b'unrelated external bytes')
+                    self.assertEqual(previous.read_bytes(), b'previous build stays intact')
+                finally:
+                    output.unlink()
+                    output.write_bytes(original)
+
+    def test_unidentified_existing_easyviz_directory_is_preserved(self):
+        marker = self.dist / 'easyviz/keep.txt'
+        marker.parent.mkdir(parents=True)
+        marker.write_bytes(b'user directory')
+        self.assert_rejected_without_sync(pattern='not identified as EasyViz')
+        self.assertEqual(marker.read_bytes(), b'user directory')
+
+    def test_parent_traversal_is_rejected(self):
+        self.assert_rejected_without_sync(self.dist / '..' / 'outside', pattern='parent traversal')
+        self.assertFalse((self.root / 'outside').exists())
+
+    def test_unlisted_source_file_and_directory_links_preserve_previous_build(self):
+        build_plugin.build()
+        self.sync.reset_mock()
+        previous = self.dist / 'easyviz/previous.txt'
+        previous.write_bytes(b'previous build stays intact')
+        archive = self.dist / 'easyviz-1.0.0.zip'
+        original_archive = archive.read_bytes()
+        outside, marker = self.external_marker()
+        links = ((self.root / 'skills/easyviz/private.txt', marker),
+                 (self.root / 'plugins/easyviz/assets/private-directory', marker.parent),
+                 (self.root / 'plugins/easyviz/.codex-plugin/private.txt', marker))
+        for link, destination in links:
+            with self.subTest(path=link):
+                link.symlink_to(destination, target_is_directory=destination.is_dir())
+                try:
+                    self.assert_rejected_without_sync(pattern='Symlink or special')
+                    self.assertEqual(previous.read_bytes(), b'previous build stays intact')
+                    self.assertEqual(archive.read_bytes(), original_archive)
+                    self.assertEqual(marker.read_bytes(), b'external files must stay untouched')
+                finally:
+                    link.unlink()
+
+    def test_source_ancestor_and_document_links_are_rejected(self):
+        outside = self.base / 'external-document.txt'
+        outside.write_bytes(b'private external document')
+        for path in (self.root / 'plugins/easyviz/README.md', self.root / 'LICENSE',
+                     self.root / 'THIRD_PARTY_NOTICES.md'):
+            with self.subTest(path=path):
+                content = path.read_bytes()
+                path.unlink()
+                path.symlink_to(outside)
+                try:
+                    self.assert_rejected_without_sync(pattern='Symlink or special')
+                    self.assertEqual(outside.read_bytes(), b'private external document')
+                    self.assertFalse(self.dist.exists())
+                finally:
+                    path.unlink()
+                    path.write_bytes(content)
+        plugins = self.root / 'plugins'
+        external_plugins = self.base / 'external-plugins'
+        plugins.rename(external_plugins)
+        plugins.symlink_to(external_plugins, target_is_directory=True)
+        self.assert_rejected_without_sync(pattern='Symlink or special')
+        self.assertFalse(self.dist.exists())
+
+    def test_special_source_resource_is_rejected_before_sync(self):
+        fifo = self.root / 'skills/easyviz/private.pipe'
+        os.mkfifo(fifo)
+        self.assert_rejected_without_sync(pattern='Symlink or special')
+        self.assertFalse(self.dist.exists())
+
+    def test_link_introduced_by_sync_preserves_previous_build(self):
+        build_plugin.build()
+        self.sync.reset_mock()
+        previous = self.dist / 'easyviz/previous.txt'
+        previous.write_bytes(b'previous build stays intact')
+        archive = self.dist / 'easyviz-1.0.0.zip'
+        original_archive = archive.read_bytes()
+        outside, marker = self.external_marker()
+        link = self.root / 'skills/easyviz/generated-private.txt'
+        self.sync.side_effect = lambda: link.symlink_to(marker)
+        with self.assertRaisesRegex(ValueError, 'Symlink or special'):
+            build_plugin.build()
+        self.sync.assert_called_once()
+        self.assertEqual(previous.read_bytes(), b'previous build stays intact')
+        self.assertEqual(archive.read_bytes(), original_archive)
+        self.assertEqual(marker.read_bytes(), b'external files must stay untouched')
+
+    def test_build_destinations_overlapping_source_trees_are_rejected(self):
+        before = {path.relative_to(self.root): path.read_bytes()
+                  for path in self.root.rglob('*') if path.is_file()}
+        for dist in (self.root / 'plugins', self.root / 'plugins/easyviz/output', self.root / 'skills/output'):
+            with self.subTest(dist=dist):
+                self.assert_rejected_without_sync(dist, pattern='overlaps the source tree')
+        after = {path.relative_to(self.root): path.read_bytes()
+                 for path in self.root.rglob('*') if path.is_file()}
+        self.assertEqual(after, before)
+
+    def test_external_ancestor_alias_into_source_is_rejected_before_recursive_copy(self):
+        before = {path.relative_to(self.root): path.read_bytes()
+                  for path in self.root.rglob('*') if path.is_file()}
+        alias = self.base / 'outside-source-alias'
+        alias.symlink_to(self.root / 'skills', target_is_directory=True)
+        self.assert_rejected_without_sync(alias / 'generated-build', pattern='overlaps the source tree')
+        self.assertFalse((self.root / 'skills/generated-build').exists())
+        after = {path.relative_to(self.root): path.read_bytes()
+                 for path in self.root.rglob('*') if path.is_file()}
+        self.assertEqual(after, before)
+
+    def test_default_build_is_valid_repeatable_and_preserves_unrelated_files(self):
+        self.dist.mkdir()
+        sibling = self.dist / 'unrelated.txt'
+        sibling.write_bytes(b'keep sibling')
+        summary = build_plugin.build()
+        archive = self.dist / summary['archive']
+        first = archive.read_bytes()
+        self.assertEqual(summary, json.loads((self.dist / 'build.json').read_text()))
+        self.assertEqual(summary['sha256'], hashlib.sha256(first).hexdigest())
+        with zipfile.ZipFile(archive) as package:
+            self.assertIsNone(package.testzip())
+            self.assertIn('easyviz/.codex-plugin/plugin.json', package.namelist())
+            self.assertIn('easyviz/skills/easyviz/scripts/render.py', package.namelist())
+            self.assertFalse(any('__pycache__' in name for name in package.namelist()))
+            self.assertTrue(all(info.date_time == (1980, 1, 1, 0, 0, 0) for info in package.infolist()))
+            self.assertEqual(len(package.infolist()), summary['files'])
+        stale = self.dist / 'easyviz/stale.txt'
+        stale.write_bytes(b'old generated resource')
+        self.assertEqual(build_plugin.build(), summary)
+        self.assertEqual(archive.read_bytes(), first)
+        self.assertFalse(stale.exists())
+        self.assertEqual(sibling.read_bytes(), b'keep sibling')
+        self.assertEqual((self.root / 'LICENSE').read_text(), 'License\n')
+
+    def test_explicit_external_output_is_supported_and_preserves_unrelated_files(self):
+        dist = self.base / 'custom-output/nested/dist'
+        unrelated = self.base / 'custom-output/keep.txt'
+        unrelated.parent.mkdir()
+        unrelated.write_bytes(b'custom output neighbour')
+        summary = build_plugin.build(dist)
+        self.assertTrue((dist / summary['archive']).is_file())
+        self.assertTrue((dist / 'easyviz/skills/easyviz/SKILL.md').is_file())
+        self.assertEqual(unrelated.read_bytes(), b'custom output neighbour')
+        self.assertFalse(self.dist.exists())
+
+    def test_explicit_external_output_symlink_is_rejected(self):
+        outside, marker = self.external_marker()
+        dist = self.base / 'custom-output'
+        dist.symlink_to(outside, target_is_directory=True)
+        self.assert_rejected_without_sync(dist)
+        self.assertEqual(marker.read_bytes(), b'external files must stay untouched')
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -23,6 +23,17 @@ Create panels use [literature design mechanisms](skills/easyviz/references/liter
 
 For a first panel, the Agent can [generate a validated specification](skills/easyviz/references/quick-start.md) from explicit column meanings and use measured layout to fit labels and legends inside the requested canvas. Dense heatmap value labels are checked against their cells. These helpers reduce repeated configuration work; actual image review still determines readability and balance.
 
+For the **first finished Create result**, the Agent opens an applicable
+[visual design card](skills/easyviz/references/design-cards.md), renders
+scene-based proposals when useful, inspects the actual images and corrects
+visible defects before delivery. The [first-delivery workflow](skills/easyviz/references/first-draft.md)
+binds that review to the current exports. Existing dimensions, fonts, category
+assignments and scientific definitions stay authoritative; technical checks
+alone do not establish visual quality.
+
+The [new-data validation and code audit](evals/create-first-delivery-v0.4.4/README.md)
+retain actual first-render failures, internal repairs and independent reviews.
+
 A directory is enough to begin [create exploration](skills/easyviz/references/data-exploration.md): the Agent inventories CSV, TSV or XLSX tables and proposes a few concrete figures. [Planned analysis](skills/easyviz/references/statistical-analysis.md) records experimental units, comparisons, effects, supported intervals and any multiplicity adjustment separately from styling. Reproduce starts from the reference and your data; the paper need not publish Source Data or author code. [Reference to code](skills/easyviz/references/reference-to-code.md) supports an explicit implementation when a recipe does not fit.
 
 Choose a view for the question the reader needs to answer:
@@ -41,6 +52,16 @@ contracts and reusable scripts. Specialized views preserve their scientific
 definitions rather than treating every table as interchangeable.
 
 ## Examples
+
+**Create · visual design cards**
+
+Five original synthetic teaching pairs show specific failures and fixes:
+bar proportions, point/summary separation, density contour hierarchy, matrix
+shape and small-mark color. Open the [cards and applicability guide](skills/easyviz/references/design-cards.md)
+to inspect both views, their specifications and captions. These are design
+lessons, not a comparison proving the Skill's effectiveness.
+
+<p align="center"><a href="skills/easyviz/assets/design-cards/distribution-summary-lane/"><img src="skills/easyviz/assets/design-cards/distribution-summary-lane/good/panel.png" alt="Synthetic distribution card with pastel quartiles, graphite boundaries and adjacent raw-point lanes" width="310"></a> <a href="skills/easyviz/assets/design-cards/heatmap-tall-narrow/"><img src="skills/easyviz/assets/design-cards/heatmap-tall-narrow/good/panel.png" alt="Synthetic tall matrix card with compact cell proportions and an adopted linear magnitude scale" width="310"></a></p>
 
 **Create · individual repair-outcome panels**
 
@@ -205,7 +226,12 @@ Retain all data, inspect the rendered figure, and export PDF, SVG and PNG.
 Save the figure caption in a separate file.
 ```
 
-The Agent follows the [first-panel workflow](skills/easyviz/references/quick-start.md); the user need not write plotting code or JSON. Specify the scientific meaning of ambiguous columns, proportions and independent samples when needed. The Python resources are portable to local coding Agents; installation and skill discovery depend on the client.
+The Agent follows the [first-reviewed-delivery workflow](skills/easyviz/references/first-draft.md),
+including a suitable renderer and actual image review; the user need not write
+plotting code, JSON or a review record. Specify the scientific meaning of
+ambiguous columns, proportions and independent samples when needed. The Python
+resources are portable to local coding Agents; installation and skill discovery
+depend on the client.
 
 ```text
 Use $easyviz to plot my source data as a dot plot.

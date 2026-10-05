@@ -12,15 +12,82 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+import unicodedata
+from urllib.parse import unquote, urlsplit
 
 
 SKILLS = ("easyviz", "easyviz-reference-reader", "easyviz-figure-reviewer")
+CREATE_DESIGN_CARDS = ("replicate-neutral-compact", "distribution-summary-lane", "violin-summary-hierarchy",
+                       "heatmap-tall-narrow", "scatter-small-mark-color")
+MAX_ZIP_ENTRIES = 10000
+MAX_ZIP_MEMBER_BYTES = 64 * 1024 * 1024
+MAX_ZIP_TOTAL_BYTES = 256 * 1024 * 1024
+
+
+def version_at_least(value: str, target: tuple[int, int, int]) -> bool:
+    match = re.fullmatch(r"(\d+)\.(\d+)\.(\d+)", value)
+    return bool(match and tuple(map(int, match.groups())) >= target)
+
+
+def validate_resource_tree(plugin: Path) -> None:
+    """Portable packages contain only owned regular files and directories."""
+    if plugin.is_symlink() or not plugin.is_dir():
+        raise ValueError("Plugin source must be a regular directory")
+    for path in plugin.rglob("*"):
+        if path.is_symlink() or not (path.is_file() or path.is_dir()):
+            raise ValueError(f"Symlink or special package resource: {path.relative_to(plugin)}")
+
+
+def markdown_destinations(text: str) -> list[str]:
+    """Read direct Markdown links/images, excluding literal code examples."""
+    prose = []
+    fence = None
+    for line in text.splitlines(keepends=True):
+        marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+        if fence is not None:
+            if (marker and marker[1][0] == fence[0] and len(marker[1]) >= fence[1]
+                    and not marker[2].strip()):
+                fence = None
+            continue
+        if marker:
+            fence = (marker[1][0], len(marker[1]))
+            continue
+        prose.append(line)
+    text = re.sub(r"(?s)<!--.*?-->", "", "".join(prose))
+    text = re.sub(r"(`+)(?!`)(.*?)\1(?!`)", "", text, flags=re.S)
+    label = r"(?:\\.|[^\]\\])*"
+    destination = r"(?:<(?P<angle>[^<>\n]+)>|(?P<bare>(?:\\.|[^()\s\\]|\((?:\\.|[^()\\])*\))+))"
+    title = r'''(?:\s+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\([^()]*\)))?'''
+    inline = re.compile(r"(?<!\\)\[" + label + r"\]\(\s*" + destination + title + r"\s*\)")
+    targets = [match["angle"] or match["bare"] for match in inline.finditer(text)]
+    # Backslash-escaped Markdown punctuation is part of the resource filename.
+    return [re.sub(r"\\([!\"#$%&'()*+,\-./:;<=>?@\[\]^_`{|}~\\])", r"\1", target)
+            for target in targets]
+
+
+def validate_markdown_resources(plugin: Path) -> int:
+    """Resolve local Markdown resources inside the portable package only."""
+    root = plugin.resolve()
+    checked = 0
+    for entry in sorted(plugin.rglob("*.md")):
+        for target in markdown_destinations(entry.read_text()):
+            url = urlsplit(target)
+            if url.scheme or url.netloc or not url.path:
+                continue
+            destination = (entry.parent / unquote(url.path)).resolve()
+            if not destination.is_relative_to(root) or not destination.exists():
+                raise ValueError(f"Broken Markdown resource: {entry.relative_to(plugin)}: {target}")
+            checked += 1
+    return checked
 
 
 def validate_plugin(plugin: Path) -> dict:
+    validate_resource_tree(plugin)
     manifest = json.loads((plugin / ".codex-plugin/plugin.json").read_text())
-    if manifest.get("name") != "easyviz" or not isinstance(manifest.get("version"), str):
-        raise ValueError("Expected an EasyViz manifest with a version")
+    if (not isinstance(manifest, dict) or manifest.get("name") != "easyviz"
+            or not isinstance(manifest.get("version"), str)
+            or not re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"])):
+        raise ValueError("Expected an EasyViz manifest with a numeric major.minor.patch version")
     required = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md",
                 "skills/easyviz/scripts/render.py", "skills/easyviz/scripts/figure_profile.py",
                 "skills/easyviz/scripts/legend_layout.py", "skills/easyviz/scripts/requirements.txt",
@@ -69,8 +136,7 @@ def validate_plugin(plugin: Path) -> dict:
                 "skills/easyviz/assets/palettes/palettes.json",
                 "skills/easyviz/assets/fixtures/heatmap/data.csv",
                 "skills/easyviz/assets/fixtures/heatmap/spec.json"]
-    version = re.fullmatch(r"(\d+)\.(\d+)\.(\d+)", manifest["version"])
-    if version and tuple(map(int, version.groups())) >= (0, 4, 3):
+    if version_at_least(manifest["version"], (0, 4, 3)):
         required.extend(["skills/easyviz/scripts/create_style.py",
                          "skills/easyviz/scripts/panel_readability.py",
                          "skills/easyviz/assets/cases/basic-panels/plot.py",
@@ -80,17 +146,19 @@ def validate_plugin(plugin: Path) -> dict:
         for case in ("replicate-bars", "paired-scatter", "cohort-box", "cohort-violin", "depot-heatmap"):
             required.extend(f"skills/easyviz/assets/cases/basic-panels/{case}/{name}"
                             for name in ("source-data.csv", "candidate-spec.json", "caption.md", "provenance.json"))
+    if version_at_least(manifest["version"], (0, 4, 4)):
+        required.extend(["skills/easyviz/scripts/create_candidates.py", "skills/easyviz/scripts/create_review.py",
+                         "skills/easyviz/references/first-draft.md", "skills/easyviz/references/design-cards.md",
+                         "skills/easyviz/assets/design-cards/index.json"])
+        for card in CREATE_DESIGN_CARDS:
+            required.extend(f"skills/easyviz/assets/design-cards/{card}/{name}" for name in
+                            ("card.json", "data.csv", "good-spec.json", "failure-spec.json", "caption.md",
+                             "good/panel.png", "failure/panel.png", "good/preview-96dpi.png", "failure/preview-96dpi.png"))
     for name in SKILLS:
         entry = plugin / "skills" / name / "SKILL.md"
         required.append(str(entry.relative_to(plugin)))
         if not entry.is_file():
             raise ValueError(f"Missing skill: {name}")
-        for target in re.findall(r"\[[^\]]*\]\(([^\s)]+)\)", entry.read_text()):
-            if "://" in target or target.startswith("#"):
-                continue
-            destination = (entry.parent / target.split("#", 1)[0]).resolve()
-            if not destination.is_relative_to(plugin.resolve()) or not destination.exists():
-                raise ValueError(f"Broken skill resource: {name}: {target}")
     grouped = plugin / "skills/easyviz/assets/cases/repair-outcomes"
     if grouped.exists():
         required.extend(f"skills/easyviz/assets/cases/repair-outcomes/{name}" for name in
@@ -107,24 +175,79 @@ def validate_plugin(plugin: Path) -> dict:
         path = (plugin / name).resolve()
         if not path.is_relative_to(plugin.resolve()) or not path.is_file():
             raise ValueError(f"Missing or external package resource: {name}")
+    if version_at_least(manifest["version"], (0, 4, 4)):
+        cards_root = plugin / "skills/easyviz/assets/design-cards"
+        index = json.loads((cards_root / "index.json").read_text())
+        cards = index.get("cards", [])
+        if (index.get("schema_version") != 1 or index.get("track") != "create"
+                or not isinstance(cards, list) or not all(isinstance(card, dict) for card in cards)):
+            raise ValueError("Create design-card index is invalid")
+        ids = [card.get("id") for card in cards]
+        if not all(isinstance(identity, str) for identity in ids) or len(ids) != len(set(ids)) or not set(CREATE_DESIGN_CARDS) <= set(ids):
+            raise ValueError("Create design-card index must retain the five bundled scenarios without duplicate IDs")
+        for card in cards:
+            rendered = {item["variant"]: item for item in card.get("rendered", [])}
+            for variant, field in (("good", "good_image"), ("failure", "failure_image")):
+                relative = card.get(field)
+                if not isinstance(relative, str):
+                    raise ValueError("Design card needs full good/failure PNG paths")
+                image = (cards_root / relative).resolve()
+                if not image.is_relative_to(cards_root.resolve()) or image.name != "panel.png" or not image.is_file():
+                    raise ValueError("Design-card image must be a bundled full panel.png")
+                raw = image.read_bytes()
+                if not raw.startswith(b"\x89PNG\r\n\x1a\n") or len(raw) < 33:
+                    raise ValueError("Design-card panel is not a PNG")
+                if hashlib.sha256(raw).hexdigest() != rendered.get(variant, {}).get("png_sha256"):
+                    raise ValueError("Design-card image hash differs from its recorded index")
+    validate_markdown_resources(plugin)
     return manifest
 
 
 def extract_package(archive: Path, destination: Path) -> int:
     with zipfile.ZipFile(archive) as package:
-        names = package.namelist()
-        if len(names) != len(set(names)):
-            raise ValueError("Duplicate ZIP entries")
-        for info in package.infolist():
+        entries = package.infolist()
+        if len(entries) > MAX_ZIP_ENTRIES:
+            raise ValueError("ZIP entry count exceeds the package budget")
+        paths = {}
+        total_bytes = 0
+        for info in entries:
             path = PurePosixPath(info.filename)
+            mode = stat.S_IFMT(info.external_attr >> 16)
             if (not path.parts or path.parts[0] != "easyviz" or path.is_absolute()
                     or ".." in path.parts or "\\" in info.filename
-                    or stat.S_ISLNK(info.external_attr >> 16)):
+                    or mode not in (0, stat.S_IFREG, stat.S_IFDIR)
+                    or (len(path.parts) == 1 and not info.is_dir())):
                 raise ValueError(f"Unsafe or unexpected ZIP entry: {info.filename}")
             if any(p in (".venv", "__pycache__", ".git") for p in path.parts):
                 raise ValueError(f"Development files in ZIP: {info.filename}")
+            canonical = path.as_posix()
+            key = unicodedata.normalize("NFC", canonical).casefold()
+            if key in paths:
+                raise ValueError(f"Duplicate normalized ZIP entry: {canonical}")
+            paths[key] = (canonical, info.is_dir())
+            if info.file_size > MAX_ZIP_MEMBER_BYTES:
+                raise ValueError(f"ZIP member exceeds the package budget: {canonical}")
+            total_bytes += info.file_size
+            if total_bytes > MAX_ZIP_TOTAL_BYTES:
+                raise ValueError("ZIP expanded size exceeds the package budget")
+        for name, is_directory in paths.values():
+            path = PurePosixPath(name)
+            if any(paths.get(unicodedata.normalize("NFC", parent.as_posix()).casefold(), (None, True))[1] is False
+                   for parent in path.parents):
+                raise ValueError(f"Conflicting file/directory ZIP paths: {name}")
+            # Existing extraction paths must not redirect a safe archive outside
+            # its selected destination. Preflight every entry before any writes.
+            parents = (destination, *(destination / str(parent) for parent in reversed(path.parents)))
+            for candidate in (*parents, destination / name):
+                if candidate.is_symlink():
+                    raise ValueError(f"Symlink extraction path: {candidate}")
+            if any(candidate.exists() and not candidate.is_dir() for candidate in parents):
+                raise ValueError(f"Conflicting existing extraction parent: {name}")
+            target = destination / name
+            if target.exists() and target.is_dir() != is_directory:
+                raise ValueError(f"Conflicting existing extraction path: {name}")
         package.extractall(destination)
-    return len(names)
+    return len(entries)
 
 
 def main() -> int:
@@ -174,7 +297,11 @@ def main() -> int:
                 if not isinstance(json.loads(described.stdout), dict):
                     raise ValueError("Focused recipe specification must be a JSON object")
             workflows = json.loads(discovery.stdout).get("workflow_tools", {})
-            if set(workflows) != {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench", "preview_choices", "apply_figure_requests"}:
+            expected_workflows = {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench", "preview_choices", "apply_figure_requests"}
+            new_create_workflow = version_at_least(manifest["version"], (0, 4, 4))
+            if new_create_workflow:
+                expected_workflows.update(("create_candidates", "create_review"))
+            if set(workflows) != expected_workflows:
                 raise ValueError("Extracted workflow discovery is incomplete")
             for route in workflows.values():
                 if not all(Path(route[key]).is_relative_to(skill) and Path(route[key]).is_file()
@@ -184,6 +311,46 @@ def main() -> int:
                                            cwd=isolated, env=env, capture_output=True, text=True)
                 if described.returncode:
                     raise RuntimeError(described.stdout + described.stderr)
+            if new_create_workflow:
+                for name in ("create_candidates", "create_review"):
+                    described = subprocess.run([sys.executable, workflows[name]["script"], "--describe-spec"],
+                                               cwd=isolated, env=env, capture_output=True, text=True)
+                    if described.returncode or json.loads(described.stdout).get("track") != "create":
+                        raise ValueError(f"Extracted {name} has no valid Create specification")
+                candidate_spec = {"chart": spec["chart"], "fields": spec["fields"], "labels": spec.get("labels", {}),
+                                  "options": spec.get("options", {}), "colormap": spec["colormap"], "seed": spec.get("seed", 0),
+                                  "layout": {"font": "DejaVu Sans", "font_size_pt": 8, "line_width_pt": .6, "dpi": 120},
+                                  "formats": ["pdf", "svg", "png"]}
+                candidate_spec_path = isolated / "new-create-spec.json"
+                candidate_spec_path.write_text(json.dumps(candidate_spec))
+                candidate_output = isolated / "create-candidates"
+                run = subprocess.run([sys.executable, workflows["create_candidates"]["script"],
+                                      "--data", str(fixture / "data.csv"), "--spec", str(candidate_spec_path),
+                                      "--out", str(candidate_output), "--new-draft", "--count", "1"],
+                                     cwd=isolated, env=env, capture_output=True, text=True)
+                if run.returncode:
+                    raise RuntimeError("Extracted Create candidates failed: " + run.stdout + run.stderr)
+                candidate_manifest = json.loads((candidate_output / "manifest.json").read_text())
+                if candidate_manifest.get("status") != "visual_review_pending" or candidate_manifest.get("aesthetic_winner") is not None:
+                    raise ValueError("Extracted Create candidates must await actual image review")
+                candidate = candidate_output / candidate_manifest["candidates"][0]["id"]
+                if not (candidate / "panel.png").is_file() or json.loads((candidate / "qa.json").read_text()).get("status") != "pass":
+                    raise ValueError("Extracted Create candidate must have actual technically checked exports")
+                caption = isolated / "create-caption.md"
+                caption.write_text("Matrix cells show supplied scores for the source features and samples.\n")
+                review_output = isolated / "create-review"
+                staged = subprocess.run([sys.executable, workflows["create_review"]["script"], "stage",
+                                         "--figure-dir", str(candidate), "--reading-task", "Read supplied scores across features and samples.",
+                                         "--caption", str(caption), "--out", str(review_output)],
+                                        cwd=isolated, env=env, capture_output=True, text=True)
+                if staged.returncode or json.loads(staged.stdout).get("gate_status") != "pending":
+                    raise ValueError("Extracted Create review must stage a pending record")
+                checked = subprocess.run([sys.executable, workflows["create_review"]["script"], "check",
+                                          "--packet", str(review_output / "packet.json")],
+                                         cwd=isolated, env=env, capture_output=True, text=True)
+                report = json.loads(checked.stdout)
+                if checked.returncode != 1 or report.get("gate_status") != "blocked" or report.get("readiness") != "not_reviewed":
+                    raise ValueError("Extracted Create review cannot pass without actual image-opening attestations")
             result = subprocess.run([sys.executable, str(skill / "scripts/render.py"),
                                      "--data", str(fixture / "data.csv"), "--spec", str(spec_path),
                                      "--out", str(isolated / "output")],
@@ -314,7 +481,7 @@ def main() -> int:
                         raise RuntimeError("Extracted grouped comparison failed: " + checked.stdout + checked.stderr)
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+"}, indent=2))
     return 0
 
 

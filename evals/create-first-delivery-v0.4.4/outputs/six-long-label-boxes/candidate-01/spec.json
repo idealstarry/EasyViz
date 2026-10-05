@@ -1,0 +1,84 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value",
+    "unit": "unit"
+  },
+  "layout": {
+    "width_mm": 100,
+    "height_mm": 80,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.1157714496527778,
+      "right": 0.9800000000000002,
+      "bottom": 0.26667495846943756,
+      "top": 0.9621584065755209
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "order": {
+    "group": [
+      "Baseline",
+      "Early response",
+      "Mid response",
+      "Late response",
+      "Recovery",
+      "Persistent"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Response (a.u.)"
+  },
+  "options": {
+    "alpha": 1,
+    "point_style": "filled",
+    "box_style": "outline",
+    "box_width": 0.16,
+    "kind": "box",
+    "y_limits": [
+      0,
+      30
+    ],
+    "point_area_pt2": 9,
+    "x_rotation": 35,
+    "point_color": "#454545",
+    "point_layout": "beeswarm",
+    "point_gap_pt": 0.3,
+    "point_max_offset_mm": 1.3,
+    "box_fill_alpha": 1,
+    "point_category_offset": 0.29
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75,
+      "color": "#333333"
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "palette": "okabe-ito"
+}

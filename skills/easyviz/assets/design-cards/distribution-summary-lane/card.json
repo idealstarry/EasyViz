@@ -1,0 +1,39 @@
+{
+  "id": "distribution-summary-lane",
+  "chart": "distribution",
+  "applies_when": [
+    "A few categorical distributions with raw observations",
+    "The median and interval are central to the reading task"
+  ],
+  "good_image": "distribution-summary-lane/good/panel.png",
+  "failure_image": "distribution-summary-lane/failure/panel.png",
+  "final_size_preview": "distribution-summary-lane/good/preview-96dpi.png",
+  "data": "distribution-summary-lane/data.csv",
+  "good_spec": "distribution-summary-lane/good-spec.json",
+  "failure_spec": "distribution-summary-lane/failure-spec.json",
+  "caption": "distribution-summary-lane/caption.md",
+  "mechanism": "Adjacent category-associated raw lanes keep box/median/whisker boundaries uninterrupted; area color and graphite strokes have different roles.",
+  "avoid": "Centering the raw layer on the summary creates competing dots, median and whisker strokes; broad summaries add mass.",
+  "source_anchors": [
+    "PROGENy Fig.4c PDF p6: neutral boundaries and colored summary/body areas",
+    "Separate raw lanes are an EasyViz adaptation, not a source statistical method"
+  ],
+  "synthetic": true,
+  "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+  "rendered": [
+    {
+      "variant": "good",
+      "technical_status": "pass",
+      "png_sha256": "7dccd5e08e18adf8bba01e31f40ea4b0f302d7ce0edd92e77b4c3da8bf9a9072"
+    },
+    {
+      "variant": "failure",
+      "technical_status": "pass",
+      "png_sha256": "f162afa5768f52de3e7cac76c322c73cbff3fca5c9573cf042d19ad4ccbf2697"
+    }
+  ],
+  "geometry_notes": [
+    "Adopted canvas: 66 × 68 mm; declared data region: 48.18 × 51.68 mm from the fixed margins.",
+    "Three category centers use box width 0.24 category-spacing units. Raw lanes are shifted by 0.28 category-spacing units, with a maximum packing spread of 2.8 mm around each shifted anchor."
+  ]
+}

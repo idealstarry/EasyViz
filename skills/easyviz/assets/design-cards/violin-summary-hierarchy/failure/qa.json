@@ -1,0 +1,631 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 66,
+  "plotted_input_rows": 66,
+  "input_sha256": "93769ddc61b54ae43b75386450c7ae9df9e60e85fda3a0aa9617588257e74411",
+  "width_mm": 66.0,
+  "height_mm": 68.0,
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "exports": {
+    "svg": {
+      "width_mm": 65.99999993888888,
+      "height_mm": 68.00000017222222,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+      "sha256": "e9630e024e1e0d4a3fbf0048c517a81b44686aaad141cc8f8db283fff640bbb3"
+    },
+    "pdf": {
+      "width_mm": 65.99999999999,
+      "height_mm": 67.9999999999961,
+      "sha256": "487c05ff710cb13a821afe1626d27e1c2e4fc9a4d506c59e7648994be15b0232"
+    },
+    "png": {
+      "pixels": [
+        780,
+        803
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "sha256": "d74c1e7ff5d3660daf5edec95fe1333cd9303308c34433907c9d41d1a57709f4"
+    }
+  },
+  "visual_review_required": true,
+  "note": "Automated checks cover canvas boundaries, same-axis horizontal/vertical tick-label overlap and heatmap cell annotations. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review.",
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "cell_annotations": {
+    "status": "pass",
+    "registered_count": 0,
+    "checked_count": 0,
+    "padding_mm": 0.2,
+    "issues": [],
+    "overflow_count": 0,
+    "overlap_pair_count": 0,
+    "minimum_sufficient_cell_dimensions_mm": {
+      "width": 0.0,
+      "height": 0.0
+    },
+    "cells": [],
+    "note": "Rendered text envelopes must fit their cells with the configured padding. Cell dimensions are a measured fit requirement, not a publication standard. No figure settings or data are changed."
+  },
+  "readability": {
+    "schema_version": 1,
+    "status": "no_advisory_flags",
+    "advisory_only": true,
+    "thresholds": {
+      "small_point_span_mm": 0.35,
+      "low_contrast_ratio": 2.0,
+      "thin_stroke_pt": 0.25,
+      "large_legend_canvas_fraction": 0.25
+    },
+    "totals": {
+      "point_artists": 3,
+      "stroke_artists": 23,
+      "legend_artists": 0,
+      "finite_marks": 66,
+      "zero_size_parameters": 0,
+      "small_visible_marks": 0,
+      "low_contrast_small_marks": 0,
+      "thin_data_stroke_artists": 0
+    },
+    "stroke_roles": {
+      "distribution": {
+        "artist_count": 3,
+        "width_pt_range": [
+          1.3,
+          1.3
+        ]
+      },
+      "summary-line": {
+        "artist_count": 6,
+        "width_pt_range": [
+          0.7,
+          0.7
+        ]
+      },
+      "axis-line": {
+        "artist_count": 2,
+        "width_pt_range": [
+          0.55,
+          0.55
+        ]
+      },
+      "axis-tick": {
+        "artist_count": 12,
+        "width_pt_range": [
+          0.55,
+          0.55
+        ]
+      }
+    },
+    "artists": [
+      {
+        "id": "easyviz-distribution-4581196ec4291fef",
+        "role": "distribution",
+        "label": "A",
+        "artist_type": "FillBetweenPolyCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            1.3,
+            1.3
+          ]
+        }
+      },
+      {
+        "id": "easyviz-distribution-347e2f025c8f2539",
+        "role": "distribution",
+        "label": "B",
+        "artist_type": "FillBetweenPolyCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            1.3,
+            1.3
+          ]
+        }
+      },
+      {
+        "id": "easyviz-distribution-fc43fa6bc2e6dffc",
+        "role": "distribution",
+        "label": "C",
+        "artist_type": "FillBetweenPolyCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            1.3,
+            1.3
+          ]
+        }
+      },
+      {
+        "id": "easyviz-summary-line-7a65705b7246835b",
+        "role": "summary-line",
+        "label": "A · Q1–Q3",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-summary-line-e986df9b655776fa",
+        "role": "summary-line",
+        "label": "A · Median",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-summary-line-d8b685ab33c404d1",
+        "role": "summary-line",
+        "label": "B · Q1–Q3",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-summary-line-930515d51bb58c06",
+        "role": "summary-line",
+        "label": "B · Median",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-summary-line-baa590272dda9f4b",
+        "role": "summary-line",
+        "label": "C · Q1–Q3",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-summary-line-a3fedbbd42323d32",
+        "role": "summary-line",
+        "label": "C · Median",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-point-group-885bc1ab4021ea69",
+        "role": "point-group",
+        "label": "A",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 16,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 16,
+          "visible_positive_count": 16,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            9.0,
+            9.0
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "positive_outer_span_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-point-group-c2084dae7813a52b",
+        "role": "point-group",
+        "label": "B",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 22,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 22,
+          "visible_positive_count": 22,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            9.0,
+            9.0
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "positive_outer_span_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-point-group-f2c47db667e32a2e",
+        "role": "point-group",
+        "label": "C",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 28,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 28,
+          "visible_positive_count": 28,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            9.0,
+            9.0
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "positive_outer_span_mm_range": [
+            1.0583333333333331,
+            1.0583333333333331
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-axis-line-a25b05ec84419760",
+        "role": "axis-line",
+        "label": "Y axis line · left",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-583586e852f58ad3",
+        "role": "axis-line",
+        "label": "X axis line · bottom",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+        "role": "axis-tick",
+        "label": "X major tick · 0 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-d2f9de54ec255438",
+        "role": "axis-tick",
+        "label": "X major tick · 1 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-a369cdb522813c9c",
+        "role": "axis-tick",
+        "label": "X major tick · 2 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e1c294e3379762a",
+        "role": "axis-tick",
+        "label": "Y major tick · 0 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-360df2707819d0cd",
+        "role": "axis-tick",
+        "label": "Y major tick · 2.5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-23f8ddcc854605f8",
+        "role": "axis-tick",
+        "label": "Y major tick · 5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-d313fe2f07ab548d",
+        "role": "axis-tick",
+        "label": "Y major tick · 7.5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-63bf692f9cee0146",
+        "role": "axis-tick",
+        "label": "Y major tick · 10 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-bdb5c06a8c195487",
+        "role": "axis-tick",
+        "label": "Y major tick · 12.5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-5422336878fea5a9",
+        "role": "axis-tick",
+        "label": "Y major tick · 15 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-135aec6b1298abf0",
+        "role": "axis-tick",
+        "label": "Y major tick · 17.5 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-3a52d5e291e51e71",
+        "role": "axis-tick",
+        "label": "Y major tick · 20 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.55,
+            0.55
+          ]
+        }
+      }
+    ],
+    "artist_count": 26,
+    "artists_omitted_from_detail": 0,
+    "warnings": [],
+    "warning_count": 0,
+    "warnings_omitted_from_detail": 0,
+    "layout_evidence": {
+      "point_layout": {
+        "status": "pass",
+        "note": "Existing layout evidence is recorded separately in core QA; readability does not rerun or replace it."
+      }
+    },
+    "scope": "Actual visible artist settings after draw; finite unmasked locations are counted without clipping/occlusion inference. PathCollection sizes are Matplotlib size parameters, not universal fill areas; marker path geometry supplies physical bounding spans. Zero size parameters are preserved separately. Contrast is actual face/edge RGBA composited once over a uniform axes/figure background.",
+    "not_checked": [
+      "Scientific or statistical validity",
+      "Reference fidelity and missing layers",
+      "Color-vision accessibility or between-category color distinction",
+      "Nonuniform backgrounds, image contrast, mark occlusion or point/label overlap",
+      "Heatmap value normalization, bar fill design, text readability and arbitrary patches",
+      "Line2D markevery marker selection"
+    ],
+    "policy": "Thresholds are configurable review cues. They do not change artist properties, data, quantitative marker areas, exports, or core QA pass/fail."
+  },
+  "point_layout": {
+    "status": "pass",
+    "overlapping_circle_pairs": 0,
+    "spacing_violation_pairs": 0,
+    "minimum_center_distance_pt": 3.0999999999999717,
+    "sample_overlapping_pairs": [],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "vertical",
+    "seed": 440,
+    "categorical_axis": "x",
+    "quantitative_axis": "y",
+    "numeric_values_changed": false,
+    "input_rows": 66,
+    "placed_rows": 66,
+    "diameter_pt": 3.0,
+    "gap_pt": 0.1,
+    "requested_max_offset_mm": 2.8,
+    "point_category_offset": 0.0,
+    "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "A",
+        "rows": 16,
+        "category_spacing_pt": 42.67913385826772,
+        "available_max_offset_mm": 2.8,
+        "actual_max_offset_mm": 1.5980991863805787,
+        "category_anchor_offset": 0.0,
+        "actual_total_offset_mm": 1.5980991863805787,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 1436216456
+      },
+      {
+        "group": "B",
+        "rows": 22,
+        "category_spacing_pt": 42.67913385826772,
+        "available_max_offset_mm": 2.8,
+        "actual_max_offset_mm": 1.122594637876026,
+        "category_anchor_offset": 0.0,
+        "actual_total_offset_mm": 1.122594637876026,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 3749606045
+      },
+      {
+        "group": "C",
+        "rows": 28,
+        "category_spacing_pt": 42.67913385826773,
+        "available_max_offset_mm": 2.8,
+        "actual_max_offset_mm": 1.8643493008334249,
+        "category_anchor_offset": 0.0,
+        "actual_total_offset_mm": 1.8643493008334249,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 1797505677
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  }
+}

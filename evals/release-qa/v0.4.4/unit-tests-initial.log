@@ -1,0 +1,135 @@
+.........................................................................................................................................................................................................................................................................................................EEE..EEEE.E....................................................................................................................................................................
+======================================================================
+ERROR: test_cache_file_set_mismatch_is_rejected (test_install_plugin.InstallerTests.test_cache_file_set_mismatch_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 164, in test_cache_file_set_mismatch_is_rejected
+    self.install()
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_cli_failure_restores_exact_catalog_and_previous_source (test_install_plugin.InstallerTests.test_cli_failure_restores_exact_catalog_and_previous_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 228, in test_cli_failure_restores_exact_catalog_and_previous_source
+    self.install()
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_generated_cache_artifacts_do_not_invalidate_package_content (test_install_plugin.InstallerTests.test_generated_cache_artifacts_do_not_invalidate_package_content)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 185, in test_generated_cache_artifacts_do_not_invalidate_package_content
+    result = self.install()
+             ^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_older_easyviz_source_can_be_upgraded_with_new_runtime_resources (test_install_plugin.InstallerTests.test_older_easyviz_source_can_be_upgraded_with_new_runtime_resources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 216, in test_older_easyviz_source_can_be_upgraded_with_new_runtime_resources
+    result = self.install()
+             ^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_repeat_install_preserves_catalog_metadata_and_other_plugins (test_install_plugin.InstallerTests.test_repeat_install_preserves_catalog_metadata_and_other_plugins)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 122, in test_repeat_install_preserves_catalog_metadata_and_other_plugins
+    self.install()
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_same_version_stale_cache_fails_instead_of_claiming_installation (test_install_plugin.InstallerTests.test_same_version_stale_cache_fails_instead_of_claiming_installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 144, in test_same_version_stale_cache_fails_instead_of_claiming_installation
+    self.install()
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_staging_failure_does_not_remove_existing_source (test_install_plugin.InstallerTests.test_staging_failure_does_not_remove_existing_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 238, in test_staging_failure_does_not_remove_existing_source
+    self.install()
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+======================================================================
+ERROR: test_update_refreshes_the_actual_cached_manifest (test_install_plugin.InstallerTests.test_update_refreshes_the_actual_cached_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 134, in test_update_refreshes_the_actual_cached_manifest
+    self.install()
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 118, in install
+    return install_plugin.install(self.source, self.home, self.codex_home, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/install_plugin.py", line 105, in install
+    manifest = validate_plugin(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/scripts/check_package.py", line 123, in validate_plugin
+    raise ValueError(f"Missing or external package resource: {name}")
+ValueError: Missing or external package resource: skills/easyviz/scripts/create_candidates.py
+
+----------------------------------------------------------------------
+Ran 472 tests in 222.056s
+
+FAILED (errors=8)

@@ -1,0 +1,581 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent_visual_reviewer",
+  "review_type": "internal correction after first-render failures",
+  "date": "2026-10-05T11:44:09.185041+00:00",
+  "formal_pass_count": 2,
+  "maximum_formal_passes": 3,
+  "status": "ready_with_notes",
+  "scope": "Three task-specific repaired candidates only. The frozen first-render report remains unchanged. These repairs followed observed failures and are not new unseen engine successes, publication acceptance, model effectiveness, or a skill/no-skill comparison.",
+  "skill": "skills/easyviz-figure-reviewer/SKILL.md",
+  "first_render_report": "evals/create-first-delivery-v0.4.4/first-render-visual-review.json",
+  "first_render_report_sha256": "83d324c726dfb9ac546ada1f3ef09c52961a464df1ab21bd9cb6d73ebf6a62bf",
+  "inspection_method": "Actually opened all three full PNGs and all three supplied nominal 96dpi PDF previews in separate small batches. Reopened all three round-1 selected previews for direct comparison. The full round-1 candidates were opened during the preserved first formal review. Visual judgment was sent before reading QA or export checks. Did not read or edit the custom drawing wrapper or shared engine.",
+  "viewed_files": [
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/panel.png",
+      "kind": "current candidate full PNG",
+      "sha256": "792aafc9c5c4fd878ee6096e2c2fc27ce6bb3ed8bb2353f6be36f74e372c54a5"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/preview-96dpi.png",
+      "kind": "current nominal 96dpi PDF preview",
+      "sha256": "b3722524e6a8760bf2615d737c1e97c9537292a7f235f4e4c77334cfce07fe49"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-01/preview-96dpi.png",
+      "kind": "round-1 preview reopened in this pass",
+      "sha256": "a264a0ae31b11c83b99c1fbe7759b615b92a5786f8330ff79737229968bc8475"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/panel.png",
+      "kind": "current candidate full PNG",
+      "sha256": "2923adb36a0689f859454e8290af689698f5130edbd3abcd9cd73b7bc7f0ce63"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/preview-96dpi.png",
+      "kind": "current nominal 96dpi PDF preview",
+      "sha256": "9b1687b47c3446e9aff6b8484213529cc13dbc78db0054360ec7efbbef518eec"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-02/preview-96dpi.png",
+      "kind": "round-1 preview reopened in this pass",
+      "sha256": "bfa0c6ab4985e76df5233cf8e647de0bd7fd94a7d4f713f381872a2dd3652855"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/panel.png",
+      "kind": "current candidate full PNG",
+      "sha256": "1f65d5c9d86bc81849257b2696a750eecd7d4f5f4638e4ff6d7d202fb6b61332"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/preview-96dpi.png",
+      "kind": "current nominal 96dpi PDF preview",
+      "sha256": "6e7bf603207ddda2bddab50ef715fd86cc902747d697e2472c78a7860f518753"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-01/preview-96dpi.png",
+      "kind": "round-1 preview reopened in this pass",
+      "sha256": "29e384b7dd884e061876f3ba551d09ea6265b49908aa8979c839f483edb81bd4"
+    }
+  ],
+  "read_artifacts": [
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/spec.json",
+      "sha256": "8fb4ac34c757218540aa9733d63e6f9a12c6017e3a5cf5151beed9c9ee567fc8"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/caption.md",
+      "sha256": "15602b95a65f4adc42d9542e0b6f7714fdfcd2631da7ca130f843ac2b04835dc"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/correction.json",
+      "sha256": "c0cec3b41e14da2bcbe85b8bbac1783b740fc22041526d1bcc94c07fd963aef0"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/qa.json",
+      "sha256": "7916475ceda9455a8eebf2d63a04b2808bea6babecc8c22da66940966c5a9de1"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/settings.json",
+      "sha256": "4e8bd709bb3f57a25907d40dac39696c8d2a6c7cdedb123a2db2490a5d9627e8"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/spec.json",
+      "sha256": "5946e34f4d438919ed69f5275e74a6ca89e1489f8f277056ef12317ff94cdfca"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/caption.md",
+      "sha256": "be64239cca453a0615a2b0643127ac8ff5e4414f95b2fd39f7ec81a209e11509"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/correction.json",
+      "sha256": "18396a629c611e2cc25c571d8c4ef57232177f6faf43c5fa6abb168d0fbb7895"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/qa.json",
+      "sha256": "049b912e0286ae69c0327a8cb49190efc5384185cdd5d19d7fc9dc8ea67bda4b"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/settings.json",
+      "sha256": "387bdd653cfe310dc1c1edccb5ea7c4c1be84a08c1507b520995fa0d02e464aa"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/spec.json",
+      "sha256": "7fa9d8b3d0bf657890ebaaa2d709a21a94f8c45105815a10ede4f136c26a75c9"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/caption.md",
+      "sha256": "db8378a59824bb8d2de97472ed5b0c0e2ae83ac126ebbbad1dd91eade1d4fd5d"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/correction.json",
+      "sha256": "bb78edf3d57872d0f4ace48f12551e414698c3a38c803b08182bb9d446d7bf92"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/qa.json",
+      "sha256": "84eb17684e56defba9817664088aaccad87cbc9a056afa2e4c775894e6e3d69a"
+    },
+    {
+      "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/settings.json",
+      "sha256": "9e30653c458b3ef616366abf856755499953ac02fe0e919ba075ffc443691baf"
+    }
+  ],
+  "comparison_classification": "Same frozen source data and reading tasks; fixes to layout, packing, summary position, density body thickness/fill, legend and mark clipping after seeing original defects. Both alternatives originate from the same engine; the first-render candidates are actual automatic proposals, not accepted publication outputs or no-skill baselines.",
+  "cases": [
+    {
+      "case": "six-long-label-boxes",
+      "candidate_directory": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes",
+      "preference": "candidate",
+      "status": "ready_with_notes",
+      "canvas_mm": [
+        100,
+        80
+      ],
+      "baseline": "candidate-01",
+      "visible_reasons": [
+        "Six open boxes, medians and whiskers can be read without raw points crossing them. Raw lanes occupy their own neighboring space.",
+        "The category labels remain complete at their adopted 35-degree angle; each box/point pair belongs clearly to its corresponding tick. Adjacent pairs do not merge.",
+        "Compared with the actual first-render candidate, individual dots are less merged and the six distributions remain easy to compare. The larger dot-lane footprint uses the existing canvas without shrinking fonts or marks."
+      ],
+      "intentional_changes": [
+        "Summary position shifted left by -0.32 categorical units, raw anchor +0.1; box width 0.14 and point packing allowance 4.5 mm, per saved artifacts.",
+        "Dark points and open summaries are used consistently. Fixed numeric y coordinates, 9 pt2 point area, y 0-30, 100x80mm and Arial 8pt remain."
+      ],
+      "residual_limit": "Packed clusters remain small at nominal 96dpi. The panel supports distribution comparison; fast exact counting of all 153 dots is not established."
+    },
+    {
+      "case": "dense-unequal-violins",
+      "candidate_directory": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins",
+      "preference": "candidate",
+      "status": "ready_with_notes",
+      "canvas_mm": [
+        90,
+        78
+      ],
+      "baseline": "candidate-02",
+      "visible_reasons": [
+        "Raw rings are separated from all three density contours and internal quartile summaries. The previously competing layers can now be read independently.",
+        "Reference, Exposed and Recovered pairs have useful gaps; a lane remains nearer to its own summary than the next one. The x-axis labels associate each pair without an added in-image explanation.",
+        "The graphite medians and IQR boundaries are stronger than the fine contours; filled density hues distinguish the three summaries while raw observations share a neutral stroke."
+      ],
+      "intentional_changes": [
+        "Summary/density centers shifted left by -0.33 categorical units, raw anchor +0.1; 7 mm packing allowance and violin width 0.16, inner width 0.1, with full body fills as recorded in the adopted spec.",
+        "The source values, y 0-24, 9 pt2 point area, 0.45pt hollow edge, 90x78mm and Arial 8pt remain. KDE range/normalization is adopted from the supplied caption; reviewer did not recompute KDE."
+      ],
+      "residual_limit": "The 115-observation Exposed lane is still dense at nominal 96dpi, although circle envelopes and summary layers no longer visibly intersect. Its independently normalized density width does not encode sample count."
+    },
+    {
+      "case": "three-class-scatter",
+      "candidate_directory": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter",
+      "preference": "candidate",
+      "status": "ready_with_notes",
+      "canvas_mm": [
+        88,
+        78
+      ],
+      "baseline": "candidate-01",
+      "visible_reasons": [
+        "All previously cropped boundary circles are complete; marker centers and axis ranges remain fixed. Existing outer canvas margin accommodates the radius extending beyond the axis rectangle.",
+        "The one-line legend reads easily above the data and uses less vertical height than the original three-row guide. The data remains visually primary.",
+        "Blue, amber and teal remain distinguishable on this white panel at nominal 96dpi, with the adopted 12 pt2 points."
+      ],
+      "intentional_changes": [
+        "Actual point clipping removed, one-line three-column categorical legend; locked x 0-12 and y -4-15 remain.",
+        "All 135 source coordinates preserved; no measured-axis jitter and no statistical test inferred."
+      ],
+      "residual_limit": "Several genuinely nearby coordinates still overlap, especially Class C near x=12 and other local clusters. This scatter supports reading the coordinate pattern, not guaranteed exact per-point counting."
+    }
+  ],
+  "findings": [
+    {
+      "id": "IP2-N1",
+      "severity": "note",
+      "location": "Dense unequal violins: Exposed lane at nominal 96dpi",
+      "evidence": "115 hollow circles occupy a relatively compact lane; individual circles are visible, but an exact manual count remains difficult. Supplied QA minimum center distance is 3.55pt for a 3.45pt outer diameter, leaving a 0.1pt nominal gap that may rasterize narrowly.",
+      "requirement": "Preserve all observations and fixed marker area/canvas/font; do not equate technical nonoverlap with quick human counting.",
+      "action": "Accept for distribution/shape comparison with this limit stated. A future task specifically requiring rapid exact counting should explicitly adopt a different representation or physical size, not silently shrink points."
+    },
+    {
+      "id": "IP2-N2",
+      "severity": "note",
+      "location": "Dense unequal violins: width interpretation",
+      "evidence": "Slender colored density bodies have independently normalized width, as adopted in the caption. The unequal observation counts are apparent mainly from raw lanes rather than body width.",
+      "requirement": "Do not imply count-proportional density width or inferential differences.",
+      "action": "Keep the separate caption definition; do not label the wider swarm or colored body as statistical significance."
+    },
+    {
+      "id": "IP2-N3",
+      "severity": "note",
+      "location": "Three-class scatter: genuinely close coordinates and axis-adjacent circles",
+      "evidence": "Several points overlap locally, including green points near the upper-right edge. Complete circles may overlap the left axis line because centers remain inside the original range. Actual source/SVG coordinate checks confirm preservation.",
+      "requirement": "Retain measured x/y and fixed limits; complete marker geometry does not make all close points independently countable.",
+      "action": "Accept for the coordinate-pattern task. Keep measured-axis jitter and automatic range expansion absent. State that exact per-point counting and color-vision print accessibility were not verified."
+    }
+  ],
+  "external_checks": {
+    "supplied_numerical_checks": [
+      {
+        "case": "six-long-label-boxes",
+        "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/six-long-label-boxes/qa.json",
+        "status": "pass",
+        "input_rows": 153,
+        "plotted_input_rows": 153,
+        "circle_packing": {
+          "status": "pass",
+          "overlapping_circle_pairs": 0,
+          "spacing_violation_pairs": 0,
+          "minimum_center_distance_pt": 3.0999999999999166,
+          "diameter_pt": 3.0,
+          "gap_pt": 0.1,
+          "categorical_boundary_rows": []
+        },
+        "fallback_counts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "statistical_claim_scope": "Source-to-artist retention and packing evidence inspected as supplied, not independently rerun."
+      },
+      {
+        "case": "dense-unequal-violins",
+        "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/qa.json",
+        "status": "pass",
+        "input_rows": 235,
+        "plotted_input_rows": 235,
+        "circle_packing": {
+          "status": "pass",
+          "overlapping_circle_pairs": 0,
+          "spacing_violation_pairs": 0,
+          "minimum_center_distance_pt": 3.5499999999999576,
+          "diameter_pt": 3.45,
+          "gap_pt": 0.1,
+          "categorical_boundary_rows": []
+        },
+        "fallback_counts": [
+          0,
+          0,
+          0
+        ],
+        "statistical_claim_scope": "Source-to-artist retention and packing evidence inspected as supplied, not independently rerun."
+      },
+      {
+        "case": "three-class-scatter",
+        "path": "evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/qa.json",
+        "status": "pass",
+        "input_rows": 135,
+        "plotted_input_rows": 135,
+        "circle_packing": {},
+        "fallback_counts": [],
+        "statistical_claim_scope": "Source-to-artist retention and packing evidence inspected as supplied, not independently rerun."
+      }
+    ],
+    "independently_measured": [
+      {
+        "task": "six-long-label-boxes",
+        "expected_canvas_mm": [
+          100,
+          80
+        ],
+        "pdf_canvas_mm": [
+          100.00000076293945,
+          79.99999953375922
+        ],
+        "pdf_text_fonts_and_sizes": [
+          [
+            "ArialMT",
+            8.0
+          ]
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nHHMXYK+ArialMT                       CID TrueType      Identity-H       yes yes yes     21  0",
+        "svg_canvas_mm": [
+          100.00000002499999,
+          80.00000016111112
+        ],
+        "svg_text_count": 15,
+        "png_pixels": [
+          1181,
+          945
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          378,
+          303
+        ],
+        "actual_hashes": {
+          "panel.png": "792aafc9c5c4fd878ee6096e2c2fc27ce6bb3ed8bb2353f6be36f74e372c54a5",
+          "panel.pdf": "b2c917c2571cc1963635a7e14a872cb6bdbd5b7eef6602bfd56f11edacb07a4a",
+          "panel.svg": "9003f45feee9acc99ae60e25b9fe9320564070f99b14a1a0b053b9cc0d9dc969",
+          "preview-96dpi.png": "b3722524e6a8760bf2615d737c1e97c9537292a7f235f4e4c77334cfce07fe49",
+          "spec.json": "8fb4ac34c757218540aa9733d63e6f9a12c6017e3a5cf5151beed9c9ee567fc8",
+          "caption.md": "15602b95a65f4adc42d9542e0b6f7714fdfcd2631da7ca130f843ac2b04835dc",
+          "data.csv": "4400a86487347e900bd76c30a0cd675601e36bedfa70bbc907e80507b726b3cc",
+          "plotting-data.csv": "7d449271e6eb57392fe7e9e8e128c1eddb0f01828bdf646167faf2602b1cf1f1",
+          "settings.json": "4e8bd709bb3f57a25907d40dac39696c8d2a6c7cdedb123a2db2490a5d9627e8",
+          "correction.json": "c0cec3b41e14da2bcbe85b8bbac1783b740fc22041526d1bcc94c07fd963aef0"
+        },
+        "qa_export_hash_matches": true,
+        "source_csv_identical_to_round1": true,
+        "actual_point_coordinate_checks": [
+          {
+            "group": "Baseline",
+            "source_count": 18,
+            "svg_uses": 18,
+            "max_quantitative_y_error_pt": 6.74039753789657e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Early response",
+            "source_count": 21,
+            "svg_uses": 21,
+            "max_quantitative_y_error_pt": 6.082039902821634e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Mid response",
+            "source_count": 24,
+            "svg_uses": 24,
+            "max_quantitative_y_error_pt": 6.131648575546933e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Late response",
+            "source_count": 27,
+            "svg_uses": 27,
+            "max_quantitative_y_error_pt": 6.500955151977905e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Recovery",
+            "source_count": 30,
+            "svg_uses": 30,
+            "max_quantitative_y_error_pt": 6.257839970658097e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Persistent",
+            "source_count": 33,
+            "svg_uses": 33,
+            "max_quantitative_y_error_pt": 5.832136622530015e-07,
+            "all_counts_match": true
+          }
+        ],
+        "round1_image_hashes": {
+          "panel.png": "ee6e02cc97089049eb81593feaac1efdf58303c684be2e37df040a067a67c329",
+          "preview-96dpi.png": "a264a0ae31b11c83b99c1fbe7759b615b92a5786f8330ff79737229968bc8475"
+        }
+      },
+      {
+        "task": "dense-unequal-violins",
+        "expected_canvas_mm": [
+          90,
+          78
+        ],
+        "pdf_canvas_mm": [
+          89.99999745686848,
+          77.9999977959527
+        ],
+        "pdf_text_fonts_and_sizes": [
+          [
+            "ArialMT",
+            8.0
+          ]
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCWMXZJ+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_canvas_mm": [
+          89.99999991666667,
+          77.99999992777778
+        ],
+        "svg_text_count": 10,
+        "png_pixels": [
+          1063,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          341,
+          295
+        ],
+        "actual_hashes": {
+          "panel.png": "2923adb36a0689f859454e8290af689698f5130edbd3abcd9cd73b7bc7f0ce63",
+          "panel.pdf": "afdaf137bb7458d3cbd93f502626c8c70adcf9cc47dc0f950f3310d7e9830c0a",
+          "panel.svg": "d0bb965c353bb145343fd240b6070034080ce5b1c877ef1b15ee2076c958874f",
+          "preview-96dpi.png": "9b1687b47c3446e9aff6b8484213529cc13dbc78db0054360ec7efbbef518eec",
+          "spec.json": "5946e34f4d438919ed69f5275e74a6ca89e1489f8f277056ef12317ff94cdfca",
+          "caption.md": "be64239cca453a0615a2b0643127ac8ff5e4414f95b2fd39f7ec81a209e11509",
+          "data.csv": "7599941bd1e52db7df7ce29674d09250ac117105ffa453ecf60670503d57db9a",
+          "plotting-data.csv": "e32295b92c91e96114594f74a0cbfa8309a73e175ca1ab546527edada0384de5",
+          "settings.json": "387bdd653cfe310dc1c1edccb5ea7c4c1be84a08c1507b520995fa0d02e464aa",
+          "correction.json": "18396a629c611e2cc25c571d8c4ef57232177f6faf43c5fa6abb168d0fbb7895"
+        },
+        "qa_export_hash_matches": true,
+        "source_csv_identical_to_round1": true,
+        "actual_point_coordinate_checks": [
+          {
+            "group": "Reference",
+            "source_count": 75,
+            "svg_uses": 75,
+            "max_quantitative_y_error_pt": 5.870181922773554e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Exposed",
+            "source_count": 115,
+            "svg_uses": 115,
+            "max_quantitative_y_error_pt": 5.704352474822372e-07,
+            "all_counts_match": true
+          },
+          {
+            "group": "Recovered",
+            "source_count": 45,
+            "svg_uses": 45,
+            "max_quantitative_y_error_pt": 5.928663711074478e-07,
+            "all_counts_match": true
+          }
+        ],
+        "round1_image_hashes": {
+          "panel.png": "a2f8c334c7737b9bffdbc39e8337a66fa6f9219d981d8e7ce2675579c6bb76b3",
+          "preview-96dpi.png": "bfa0c6ab4985e76df5233cf8e647de0bd7fd94a7d4f713f381872a2dd3652855"
+        }
+      },
+      {
+        "task": "three-class-scatter",
+        "expected_canvas_mm": [
+          88,
+          78
+        ],
+        "pdf_canvas_mm": [
+          88.00000110202366,
+          77.9999977959527
+        ],
+        "pdf_text_fonts_and_sizes": [
+          [
+            "ArialMT",
+            8.0
+          ]
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDEKRQS+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_canvas_mm": [
+          88.0000000361111,
+          77.99999992777778
+        ],
+        "svg_text_count": 20,
+        "png_pixels": [
+          1039,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          333,
+          295
+        ],
+        "actual_hashes": {
+          "panel.png": "1f65d5c9d86bc81849257b2696a750eecd7d4f5f4638e4ff6d7d202fb6b61332",
+          "panel.pdf": "f4ce679fc0910260274f9764675998bb42171fc60858c1b3051c55bce2358e25",
+          "panel.svg": "223c2ed977ebf8d488a3908f4e95bf8ec88e96059f12967bd61906bfff6c3723",
+          "preview-96dpi.png": "6e7bf603207ddda2bddab50ef715fd86cc902747d697e2472c78a7860f518753",
+          "spec.json": "7fa9d8b3d0bf657890ebaaa2d709a21a94f8c45105815a10ede4f136c26a75c9",
+          "caption.md": "db8378a59824bb8d2de97472ed5b0c0e2ae83ac126ebbbad1dd91eade1d4fd5d",
+          "data.csv": "6c2ddf015221f9b508c662dc71be9e95f9bdaf0b3beec0d3d5b06056a329632d",
+          "plotting-data.csv": "89634d992537d4ef00750f10091fd4abc1ac26f17b7252a8be3449b61a36be60",
+          "settings.json": "9e30653c458b3ef616366abf856755499953ac02fe0e919ba075ffc443691baf",
+          "correction.json": "bb78edf3d57872d0f4ace48f12551e414698c3a38c803b08182bb9d446d7bf92"
+        },
+        "qa_export_hash_matches": true,
+        "source_csv_identical_to_round1": true,
+        "actual_point_coordinate_checks": [
+          {
+            "group": "Class A",
+            "source_count": 45,
+            "svg_uses": 45,
+            "max_quantitative_y_error_pt": 5.904880424623116e-07,
+            "all_counts_match": true,
+            "max_x_error_pt": 4.577074719236407e-07,
+            "clip_attrs_in_group": []
+          },
+          {
+            "group": "Class B",
+            "source_count": 45,
+            "svg_uses": 45,
+            "max_quantitative_y_error_pt": 5.516403547289883e-07,
+            "all_counts_match": true,
+            "max_x_error_pt": 5.63140417852992e-07,
+            "clip_attrs_in_group": []
+          },
+          {
+            "group": "Class C",
+            "source_count": 45,
+            "svg_uses": 45,
+            "max_quantitative_y_error_pt": 5.797175219868222e-07,
+            "all_counts_match": true,
+            "max_x_error_pt": 5.629195527490083e-07,
+            "clip_attrs_in_group": []
+          }
+        ],
+        "round1_image_hashes": {
+          "panel.png": "f4f542454f5f4fb1bbac56efc34c37097437ddf8c460c0514485ac8459988744",
+          "preview-96dpi.png": "29e384b7dd884e061876f3ba551d09ea6265b49908aa8979c839f483edb81bd4"
+        },
+        "source_ranges": {
+          "x": [
+            0.05218685377450738,
+            11.953665279208401
+          ],
+          "y": [
+            0.5617675017593422,
+            10.893295453893618
+          ]
+        }
+      }
+    ],
+    "not_recomputed": [
+      "Quartile and Tukey whisker calculations",
+      "KDE values, bandwidth and support",
+      "Circle-pair packing and gap counts",
+      "Mean/SD or inferential statistics"
+    ],
+    "not_assessed": [
+      "Color-vision accessibility or print proofs",
+      "Actual human/model effectiveness",
+      "Publication acceptance"
+    ]
+  },
+  "resolved_first_pass_findings": [
+    {
+      "id": "FR-01",
+      "case": "six-long-label-boxes",
+      "status": "resolved",
+      "evidence": "Original narrow point lanes had visibly merged observations. Enlarged lanes now show separate dots; left-shifted open summaries remain clear and separate in both full and 96dpi views. Supplied packing QA reports zero overlap/gap violations and no fallback."
+    },
+    {
+      "id": "FR-02",
+      "case": "dense-unequal-violins",
+      "status": "resolved",
+      "evidence": "The enlarged raw lanes now show separate hollow marker envelopes; supplied packing QA reports zero overlap/gap violations and no fallback."
+    },
+    {
+      "id": "FR-03",
+      "case": "dense-unequal-violins",
+      "status": "resolved",
+      "evidence": "Slender, left-shifted density bodies and inner summaries no longer intersect the raw observation lanes in the actual two viewed exports. Category association remains clear."
+    },
+    {
+      "id": "FR-04",
+      "case": "three-class-scatter",
+      "status": "resolved",
+      "evidence": "Previously cropped left/right circles are complete in current views. Actual SVG point groups have no clipping attributes; all 135 actual SVG centers match frozen source x/y to less than 1e-6 pt, retaining locked axis limits."
+    }
+  ],
+  "final_conclusion": "All three selected internal pass-2 repairs are ready_with_notes for their adopted tasks. Actual visual separations and full boundary markers resolve the first-render major/minor defects. Export dimensions, Arial 8pt embedded PDF text, retained SVG text, input identity and actual SVG quantitative point coordinates were independently checked. Remaining notes do not establish CNS quality or general model/skill effectiveness. The unchanged first-render report still records failures of the frozen automatic proposals."
+}

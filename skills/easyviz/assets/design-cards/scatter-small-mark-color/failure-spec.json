@@ -1,0 +1,82 @@
+{
+  "chart": "scatter",
+  "layout": {
+    "width_mm": 75,
+    "height_mm": 70,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.21,
+      "right": 0.94,
+      "bottom": 0.18,
+      "top": 0.82
+    }
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.5,
+      "color": "#333333"
+    },
+    "summary": {
+      "line_width_pt": 0.7,
+      "color": "#333333"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "reference": {
+      "line_width_pt": 0.4,
+      "color": "#777777"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8"
+    }
+  },
+  "seed": 440,
+  "fields": {
+    "x": "x",
+    "y": "y",
+    "group": "group"
+  },
+  "order": {
+    "group": [
+      "A",
+      "B"
+    ]
+  },
+  "labels": {
+    "x": "Measurement1 (a.u.)",
+    "y": "Measurement2 (a.u.)"
+  },
+  "colors": {
+    "A": "#BFE8C5",
+    "B": "#E1ECF5"
+  },
+  "options": {
+    "point_area_pt2": 12,
+    "alpha": 1,
+    "x_limits": [
+      0,
+      10
+    ],
+    "y_limits": [
+      -5,
+      15
+    ]
+  },
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 2
+    }
+  }
+}

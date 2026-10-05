@@ -68,6 +68,18 @@ def copy_file(source, target):
         target.write_text(json.dumps(portable_metadata(json.loads(source.read_text())), indent=2) + '\n')
     else:
         shutil.copy2(source, target)
+        # Development examples retain their own relative links. The portable
+        # case layout has no track folders or development-only render history.
+        readme_links = {
+            ASSETS / 'cases/urschel-ecdf/README.md':
+                ('../../no-author-code/urschel-paired/README.md', '../urschel-paired/README.md'),
+            ASSETS / 'cases/massier-bmi-violin/README.md':
+                ('first-render/panel.png', 'https://github.com/idealstarry/EasyViz/blob/main/'
+                 'examples/no-author-code/massier-bmi-violin/first-render/panel.png'),
+        }
+        if target in readme_links:
+            before, after = readme_links[target]
+            target.write_text(target.read_text().replace(f']({before})', f']({after})'))
 
 
 def sync():

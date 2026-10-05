@@ -50,7 +50,7 @@ class SpecError(ValueError):
     """The requested panel cannot faithfully represent the supplied input."""
 
 
-VERSION = "0.4.3"
+VERSION = "0.4.4"
 
 
 REQUIRED = {
@@ -104,6 +104,10 @@ WORKFLOW_TOOLS = {
          "Render same-source descriptive candidates with fixed dimensions, typography and scales; choose by the reading task after image review."),
         ("apply_figure_requests", "apply-figure-requests.md", ["create", "reproduce"],
          "Prepare verified cosmetic spec edits, record Agent rerenders, and restore accepted source/export snapshots into fresh attempts."),
+        ("create_candidates", "first-draft.md", ["create"],
+         "Render bounded scene proposals for an explicitly new draft while preserving scientific mappings, source data and locked settings; inspect actual exports before choosing."),
+        ("create_review", "first-draft.md", ["create"],
+         "Stage and validate a hash-bound pre-delivery review attestation with actual export/source evidence. A recorded attestation cannot prove image inspection or aesthetic quality."),
     )
 }
 OPTIONAL_FIELDS = {"scatter": {"group", "unit", "size"}, "distribution": {"unit"}, "composition": {"denominator"}, "dotplot": {"state"}}
@@ -1271,6 +1275,10 @@ def export(fig, out, spec, layout):
                 root = ET.parse(path).getroot()
                 dims = [float(root.attrib[k].removesuffix("pt")) / 72 * 25.4 for k in ("width", "height")]
                 sizes[extension] = {"width_mm": dims[0], "height_mm": dims[1], "text_preserved": True, "font_embedding": "SVG references the recorded font; install it on the assembly system."}
+        # Bind these measurements to the exact bytes independently measured
+        # above. Review helpers can reject an export replaced before staging
+        # without pretending old page/pixel metadata describes the new file.
+        sizes[extension]["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
     figure_elements.write(fig, out, spec, layout)
     return sizes
 

@@ -1,0 +1,89 @@
+{
+  "chart": "heatmap",
+  "fields": {
+    "row": "row",
+    "column": "column",
+    "value": "value"
+  },
+  "layout": {
+    "width_mm": 128,
+    "height_mm": 78,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.23421571180555548,
+      "right": 0.8165750868055555,
+      "bottom": 0.41972105229478274,
+      "top": 0.7137723343460647
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "order": {
+    "y": [
+      "Feature 1",
+      "Feature 2",
+      "Feature 3",
+      "Feature 4"
+    ],
+    "x": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13"
+    ]
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Feature",
+    "color": "Value (a.u.)"
+  },
+  "options": {
+    "color_limits": [
+      0,
+      12
+    ],
+    "annotate_values": true,
+    "value_format": ".1f",
+    "x_rotation": 90,
+    "cell_aspect": "auto",
+    "cell_border_width_pt": 0
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "colormap": "notch2-blue"
+}

@@ -1,0 +1,173 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "condition",
+    "unit": "unit",
+    "value": "value"
+  },
+  "layout": {
+    "width_mm": 60.0,
+    "height_mm": 62.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.22500954137731471,
+      "right": 0.9600095413773148,
+      "bottom": 0.1802860383064516,
+      "top": 0.9677419354838711
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "order": {
+    "condition": [
+      "Vehicle",
+      "STM2457"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Relative m6A (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "y_limits": [
+      0,
+      140
+    ],
+    "y_ticks": [
+      0,
+      50,
+      100
+    ],
+    "marker_area_pt2": 7,
+    "bar_style": "outline",
+    "bar_color": "#CACACA",
+    "bar_edge_color": "#333333",
+    "bar_edge_width_pt": 0.7,
+    "point_color": "#333333",
+    "bar_width": 0.45
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Vehicle": "#CACACA",
+    "STM2457": "#CACACA"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/source.csv",
+  "input_sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+  "supplied_spec": {
+    "chart": "replicate",
+    "fields": {
+      "condition": "condition",
+      "unit": "unit",
+      "value": "value"
+    },
+    "layout": {
+      "width_mm": 60,
+      "height_mm": 62,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": false,
+      "margins": {
+        "left": 0.22500954137731471,
+        "right": 0.9600095413773148,
+        "bottom": 0.1802860383064516,
+        "top": 0.9677419354838711
+      }
+    },
+    "formats": [
+      "png",
+      "pdf",
+      "svg"
+    ],
+    "order": {
+      "condition": [
+        "Vehicle",
+        "STM2457"
+      ]
+    },
+    "labels": {
+      "x": "Condition",
+      "y": "Relative m6A (%)"
+    },
+    "options": {
+      "mode": "summary",
+      "uncertainty": "sample_sd",
+      "y_limits": [
+        0,
+        140
+      ],
+      "y_ticks": [
+        0,
+        50,
+        100
+      ],
+      "marker_area_pt2": 7,
+      "bar_style": "outline",
+      "bar_color": "#CACACA",
+      "bar_edge_color": "#333333",
+      "bar_edge_width_pt": 0.7,
+      "point_color": "#333333",
+      "bar_width": 0.45
+    }
+  },
+  "auto_layout": null,
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+    "helper_sha256": {
+      "render.py": "1d6926d4b88c08d4865b53c3224907262bb19b0fa4a7ed5b77cf2d56bbb38b89",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "e34d6e7c5e720782671e356b960c4f6052d26ed3fa3b0f868dbbf004e4b03f48",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    }
+  },
+  "spec_file_sha256": "bb6828f720926aab2f0a7e42fb95eae1373968d8c39aa217a080e8aa88829215"
+}

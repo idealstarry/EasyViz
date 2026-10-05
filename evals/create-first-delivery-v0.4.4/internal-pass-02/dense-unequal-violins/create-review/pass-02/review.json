@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "902c801e4b3500e61804285f3d2e969c76c8f67c27952f2dc505e5bcd5304357",
+  "pass_number": 2,
+  "reviewer": {
+    "role": "independent",
+    "identity": "refinement_visual_review; transcription from the retained actual-image review"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/internal-pass-02/dense-unequal-violins/panel.png",
+      "sha256": "2923adb36a0689f859454e8290af689698f5130edbd3abcd9cd73b7bc7f0ce63",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "view_image in independent Agent review; full PNG and actual nominal 96dpi PDF preview",
+      "size_basis": "Recorded 90.0 × 78.0 mm canvas; actual nominal 96dpi PDF preview was opened."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Original columns, keys, values and all rows match invariants.json; the reviewed spec/caption retain the adopted methods and limits. The source values, y 0-24, 9 pt2 point area, 0.45pt hollow edge, 90x78mm and Arial 8pt remain. KDE range/normalization is adopted from the supplied caption; reviewer did not recompute KDE."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "Raw rings are separated from all three density contours and internal quartile summaries. The previously competing layers can now be read independently. Reference, Exposed and Recovered pairs have useful gaps; a lane remains nearer to its own summary than the next one. The x-axis labels associate each pair without an added in-image explanation. The graphite medians and IQR boundaries are stronger than the fine contours; filled density hues distinguish the three summaries while raw observations share a neutral stroke."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Raw rings are separated from all three density contours and internal quartile summaries. The previously competing layers can now be read independently. Reference, Exposed and Recovered pairs have useful gaps; a lane remains nearer to its own summary than the next one. The x-axis labels associate each pair without an added in-image explanation. The graphite medians and IQR boundaries are stronger than the fine contours; filled density hues distinguish the three summaries while raw observations share a neutral stroke."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "Raw rings are separated from all three density contours and internal quartile summaries. The previously competing layers can now be read independently. Reference, Exposed and Recovered pairs have useful gaps; a lane remains nearer to its own summary than the next one. The x-axis labels associate each pair without an added in-image explanation. The graphite medians and IQR boundaries are stronger than the fine contours; filled density hues distinguish the three summaries while raw observations share a neutral stroke. Fixed canvas 90.0 × 78.0 mm and Arial 8 pt; physical exports independently checked."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Raw rings are separated from all three density contours and internal quartile summaries. The previously competing layers can now be read independently. Reference, Exposed and Recovered pairs have useful gaps; a lane remains nearer to its own summary than the next one. The x-axis labels associate each pair without an added in-image explanation. The graphite medians and IQR boundaries are stronger than the fine contours; filled density hues distinguish the three summaries while raw observations share a neutral stroke. Palette judgment is scoped to these actual marks and reading task; no accessibility or journal-quality claim."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "The actual axes, labels, legends/color scale and separate caption were opened and read in the retained review. Raw rings are separated from all three density contours and internal quartile summaries. The previously competing layers can now be read independently. Reference, Exposed and Recovered pairs have useful gaps; a lane remains nearer to its own summary than the next one. The x-axis labels associate each pair without an added in-image explanation. The graphite medians and IQR boundaries are stronger than the fine contours; filled density hues distinguish the three summaries while raw observations share a neutral stroke."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: export_dimensions; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: typography; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: source_provenance; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: technical_qa; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: caption; physical exports/font also independently checked in the retained review."
+    }
+  ],
+  "findings": [
+    {
+      "id": "FR-02",
+      "severity": "major",
+      "state": "resolved",
+      "location": "dense-unequal-violins, both candidates: raw-ring packing",
+      "evidence": "Exposed and Reference have crowded overlapping rings at full view and 96 dpi. Supplied audit has 36 overlapping-circle pairs, 37 spacing violations and 37 fallback rows per candidate. A .1183 pt minimum center distance is much less than the 3.45 pt outer ring diameter.",
+      "requirement": "Actual mark spacing must support an honest raw-observation layer at fixed 9 pt2, not just source-to-artist retention.",
+      "action": "Increase categorical packing allowance with verified group-boundary clearance, retaining data/quantitative axes/font/point area. Reinspect actual marks after numerical spacing passes; passing packing alone does not resolve summary intersections. Do not alter KDE bandwidth, numeric values or sample sizes to mimic a desired silhouette."
+    },
+    {
+      "id": "FR-03",
+      "severity": "major",
+      "state": "resolved",
+      "location": "dense-unequal-violins, both candidates: contour/summary/raw layering",
+      "evidence": "Centered hollow points compete with KDE contours and colored IQR rectangles; numerous rings cross contour lines and some ring portions are hidden or interrupted by the summary layer. The white-body candidate does not cleanly separate these layers; merely tinting/widening candidate02 is insufficient.",
+      "requirement": "Estimated density, raw observations and quartile summary must be distinguishable; hollow marks do not automatically ensure that.",
+      "action": "Arrange a physically viable category-associated side lane plus narrower KDE contour, or otherwise reserve an actual separate summary position. Verify contour-to-mark and median/IQR visibility on the final image; no data/test/scale changes."
+    },
+    {
+      "id": "LIMIT-dense-unequal-violins",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Whole panel and nominal-size preview",
+      "evidence": "The 115-observation Exposed lane is still dense at nominal 96dpi, although circle envelopes and summary layers no longer visibly intersect. Its independently normalized density width does not encode sample count.",
+      "requirement": "Report the actual reading and validation boundary without altering explicit constraints.",
+      "action": "Keep this limitation visible in the evaluation; preserve all observations and adopted meanings."
+    }
+  ],
+  "corrections": [
+    {
+      "finding_id": "FR-02",
+      "candidate_sha256": "2923adb36a0689f859454e8290af689698f5130edbd3abcd9cd73b7bc7f0ce63",
+      "action": "Summary/density centers shifted left by -0.33 categorical units, raw anchor +0.1; 7 mm packing allowance and violin width 0.16, inner width 0.1, with full body fills as recorded in the adopted spec. The source values, y 0-24, 9 pt2 point area, 0.45pt hollow edge, 90x78mm and Arial 8pt remain. KDE range/normalization is adopted from the supplied caption; reviewer did not recompute KDE.",
+      "evidence": "The enlarged raw lanes now show separate hollow marker envelopes; supplied packing QA reports zero overlap/gap violations and no fallback."
+    },
+    {
+      "finding_id": "FR-03",
+      "candidate_sha256": "2923adb36a0689f859454e8290af689698f5130edbd3abcd9cd73b7bc7f0ce63",
+      "action": "Summary/density centers shifted left by -0.33 categorical units, raw anchor +0.1; 7 mm packing allowance and violin width 0.16, inner width 0.1, with full body fills as recorded in the adopted spec. The source values, y 0-24, 9 pt2 point area, 0.45pt hollow edge, 90x78mm and Arial 8pt remain. KDE range/normalization is adopted from the supplied caption; reviewer did not recompute KDE.",
+      "evidence": "Slender, left-shifted density bodies and inner summaries no longer intersect the raw observation lanes in the actual two viewed exports. Category association remains clear."
+    }
+  ],
+  "residual_issues": [
+    "LIMIT-dense-unequal-violins"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": "Candidate comparison and internal repair history remain in the separate independent reports; this packet binds readiness only."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance.",
+  "independent_report": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/internal-pass-02-visual-review.json",
+    "sha256": "373a6c7ee5cfa0d009c235344e9ba42277e55ced282221063c8087dd9fe09a66"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "group",
+    "value": "value",
+    "unit": "unit"
+  },
+  "layout": {
+    "width_mm": 90,
+    "height_mm": 78,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "order": {
+    "group": [
+      "Reference",
+      "Exposed",
+      "Recovered"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Response (a.u.)"
+  },
+  "options": {
+    "kind": "violin",
+    "violin_inner": "box",
+    "y_limits": [
+      0,
+      24
+    ],
+    "point_area_pt2": 9
+  }
+}

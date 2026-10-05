@@ -1,0 +1,777 @@
+{
+  "schema_version": 1,
+  "review": "Independent original design-card visual review",
+  "version": "0.4.4",
+  "status": "needs_revision",
+  "pass_count": 1,
+  "max_passes": 3,
+  "scope": "Five original deterministic synthetic same-source teaching comparisons. The failure variants are intentionally flawed demonstrations, not effectiveness baselines, accepted before candidates or evidence of novice/model/CNS performance.",
+  "comparison_mapping": {
+    "candidate": "good view",
+    "baseline": "intententionally flawed failure teaching view"
+  },
+  "history": [
+    {
+      "pass": 1,
+      "status": "needs_revision",
+      "major_open": [
+        "DC-01"
+      ],
+      "minor_open": [
+        "DC-02"
+      ],
+      "actually_opened_images": 20
+    }
+  ],
+  "assessments": [
+    {
+      "card": "replicate-neutral-compact",
+      "status": "ready_with_notes",
+      "mechanism_validity": "valid in this selected teaching task",
+      "preference": "candidate",
+      "evidence": "Compact graphite open means leave three raw observations and SD readable; failure broad gray fills occupy much more mass. Four narrow bar positions and 60 x 62 mm ratio suit the four short labels.",
+      "limits": "Both designs remain statistically readable. Neither filled bars in general nor a neutral universal palette is disqualified; width and fill changed together."
+    },
+    {
+      "card": "distribution-summary-lane",
+      "status": "ready_with_notes",
+      "mechanism_validity": "valid in this selected task",
+      "preference": "candidate",
+      "evidence": "Good narrow colored IQR boxes and dark whiskers/median have adjacent raw lanes. Failure points touch and compete with median/box/whisker marks. At 96 dpi the recommended side lanes remain associated by proximity to A/B/C.",
+      "limits": "Side-lane placement is an adaptation, not a source statistic. Individual countability of all 66 points was not proven from the raster."
+    },
+    {
+      "card": "violin-summary-hierarchy",
+      "status": "needs_revision",
+      "mechanism_validity": "partly valid; contour/summary contrast works but side-lane separation fails",
+      "preference": "candidate",
+      "evidence": "White body and dark fine contour are less competitive than thick colored failure contours; filled quartiles stay readable. However recommended raw dots intersect the right contour in all three groups, so the good card itself fails its layer-separation claim.",
+      "limits": "Flat range-trimmed KDE ends remain a legitimate estimation choice; different visual taper is not a reason to change scientific support."
+    },
+    {
+      "card": "heatmap-tall-narrow",
+      "status": "ready_with_notes",
+      "mechanism_validity": "valid in this selected task",
+      "preference": "candidate",
+      "evidence": "Three-column matrix is more compact, and seams distinguish pale adjacent cells; values, C1/C2/C3 and F01–F12 are legible at 96 dpi. The linear positive blue ramp and 0/50/100 legend align with the adopted quantity.",
+      "limits": "Shape, seam and margin changes occur together; no universal cell aspect or automatic heatmap beauty claim follows."
+    },
+    {
+      "card": "scatter-small-mark-color",
+      "status": "ready_with_notes",
+      "mechanism_validity": "valid for these marks/background",
+      "preference": "candidate",
+      "evidence": "Blue/pink A/B marks are readily distinguishable in actual mixed cloud and 96 dpi preview; pale failure marks have weaker white-background distinction. Legend is compact and data remains primary.",
+      "limits": "Color-vision/grayscale checks not performed. Measurement1/2 labels could be spaced as Measurement 1/2, but are readable and no mapping error is visible."
+    }
+  ],
+  "findings": [
+    {
+      "id": "DC-01",
+      "severity": "major",
+      "location": "skills/easyviz/assets/design-cards/violin-summary-hierarchy/good/panel.png and good-spec.json",
+      "evidence": "Raw dots straddle/intersect the right KDE contours in groups A/B/C, prominently near upper B and central C. This is visible in both full PNG and 96 dpi preview. Adopted violin width .64 and lane offset .28 place the lane in the contour envelope.",
+      "requirement": "A side lane and subordinate contour must remain distinguishable; the teaching card claims separation of KDE, quartiles and observations.",
+      "action": "Narrow the KDE body and/or move the lane outward with sufficient actual dot-to-contour clearance. Retain all values, 8 pt font, 66 x 68 mm canvas and point size; confirm lane remains associated with its category and fits before the next category. Inspect new full/96 dpi images.",
+      "status": "open"
+    },
+    {
+      "id": "DC-02",
+      "severity": "minor",
+      "location": "Design-card captions, especially violin-summary-hierarchy/caption.md, heatmap-tall-narrow/caption.md, scatter-small-mark-color/caption.md",
+      "evidence": "Missing word/number spaces: and100, linear0–100, All68; distribution caption has Tukey1.5IQR.",
+      "requirement": "Reusable teaching prose should be readable and accurate without formatting artifacts.",
+      "action": "Use and 100; linear 0–100; All 68; Tukey 1.5 × IQR.",
+      "status": "open"
+    },
+    {
+      "id": "DC-03",
+      "severity": "note",
+      "location": "distribution-summary-lane and violin-summary-hierarchy good axes",
+      "evidence": "Tick labels repeat unnecessary .0 at 8 pt on compact 66 mm cards. No clipping or value ambiguity is visible.",
+      "requirement": "Compact figure text should retain useful precision without unnecessary ink.",
+      "action": "Optional: use integer display labels at these exact tick values, retaining the adopted numeric scale.",
+      "status": "residual_note"
+    }
+  ],
+  "viewed_files": [
+    {
+      "card": "replicate-neutral-compact",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/good/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "d474087d18355028ab44bffedc056341095cbcee9cd052796312ba3f56dfb115"
+    },
+    {
+      "card": "replicate-neutral-compact",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/good/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "c70a0474da2a44968df370bacf430aa3e2bc52e164cb0a6f5237bc9ca4ab035d"
+    },
+    {
+      "card": "replicate-neutral-compact",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/failure/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "647205f6ebd7b3cc67f1c195315cfd353ddb0c9ea64368d1d1ae155915363133"
+    },
+    {
+      "card": "replicate-neutral-compact",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/failure/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "8250ac4a6421c267544f0f634e071750948fde5c24d10343b109d1d3a5377e4a"
+    },
+    {
+      "card": "distribution-summary-lane",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/good/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "7dccd5e08e18adf8bba01e31f40ea4b0f302d7ce0edd92e77b4c3da8bf9a9072"
+    },
+    {
+      "card": "distribution-summary-lane",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/good/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "d6531c900c537f8633515687cd2b5482ce2c62b9eae472d71c1bbf9c4f718997"
+    },
+    {
+      "card": "distribution-summary-lane",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/failure/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "f162afa5768f52de3e7cac76c322c73cbff3fca5c9573cf042d19ad4ccbf2697"
+    },
+    {
+      "card": "distribution-summary-lane",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/failure/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "52be8d502adad9723f47def995def3c0502c98a7c2d55dfebcb0447378f9c6bb"
+    },
+    {
+      "card": "violin-summary-hierarchy",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/good/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "6b5c301fbc78d5327e67bd38a7fd912b44aecfabc5086d3228ebb8dba6b9d1d9"
+    },
+    {
+      "card": "violin-summary-hierarchy",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/good/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "b20d4f5749014120c0e64e58a4a37a8857b9d1bd541c6bf6873f2650ebbec637"
+    },
+    {
+      "card": "violin-summary-hierarchy",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/failure/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "d74c1e7ff5d3660daf5edec95fe1333cd9303308c34433907c9d41d1a57709f4"
+    },
+    {
+      "card": "violin-summary-hierarchy",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/failure/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "f6fcd0443cab6f81c598f8611e3549bfb0708a3b0641d7c668ff30c195056fc8"
+    },
+    {
+      "card": "heatmap-tall-narrow",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/good/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "e6f66eb1b7b26bb2efecce4743384666de95775e287b33728d1c1a93703d6ab3"
+    },
+    {
+      "card": "heatmap-tall-narrow",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/good/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "4b31c75c5809860ecf40e8f3fc4de7560ba09c5a37ae0a9161e978312e2e14c2"
+    },
+    {
+      "card": "heatmap-tall-narrow",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/failure/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "97d03b99da4bc499761df293dc340268a859ce6d3bbe135c6c77680a107451a3"
+    },
+    {
+      "card": "heatmap-tall-narrow",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/failure/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "71d7c6913e949ef1c131c0acdd3582314cec9b12659c41c4f81e30569f95336b"
+    },
+    {
+      "card": "scatter-small-mark-color",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/good/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "fcd2b9ad07db8afa1aa60545203e4df13bbe113078e9acb78d4880f20f8bea91"
+    },
+    {
+      "card": "scatter-small-mark-color",
+      "variant": "good",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/good/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "90d0d8f1ae2c68de2a13ad96e77111ec6cab352c46ce81ca2a184c3dcafd0d52"
+    },
+    {
+      "card": "scatter-small-mark-color",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/failure/panel.png",
+      "kind": "full_png",
+      "actually_opened": true,
+      "sha256": "b428439ca79e78f3f109cc41b5786d2d998bbcdc5b3eb64af0ff3e40eff183d1"
+    },
+    {
+      "card": "scatter-small-mark-color",
+      "variant": "failure",
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/failure/preview-96dpi.png",
+      "kind": "nominal_96dpi_pdf_preview",
+      "actually_opened": true,
+      "sha256": "144ae3f136e0bd3ca53f9db49575b128694b3e4383f635cace14c19120ef5fd2"
+    }
+  ],
+  "read_specs_captions_data": [
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/good-spec.json",
+      "sha256": "e898f8f10cdc09502b9b7e6df31a85f6b3266b1fb4a297af3423f2f583f6ee24"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/failure-spec.json",
+      "sha256": "54af9efbd26eadb2a8552fbc72ea567a3dbbccb543a96a000788e85fad37d071"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/caption.md",
+      "sha256": "5b1f3c785aaa5c2fa48c02c4806f3a3e001b2d93bd664bc21daf53d032fa9a97"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/replicate-neutral-compact/data.csv",
+      "sha256": "e8dba0224b67131567fe5508eb79fbda866194958c89540aba51d9683deaeb9b"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/good-spec.json",
+      "sha256": "0d186b65bc729fdd7b1bc35656114d0561b70223b00beda57dd9b88f477701e5"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/failure-spec.json",
+      "sha256": "3a1d2d7a3bb479f65750ac71e12521c4583588f7f2c6dc5db264c138887642ca"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/caption.md",
+      "sha256": "7b522e321f1adcde7837c3a7ea3beb86cebfecb322ec855bfcbd6cef9b186517"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/distribution-summary-lane/data.csv",
+      "sha256": "93769ddc61b54ae43b75386450c7ae9df9e60e85fda3a0aa9617588257e74411"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/good-spec.json",
+      "sha256": "8dfa42d5158a06081b7d87ae6575473a1ac9afa464436ebc34ae6030dcbd2d70"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/failure-spec.json",
+      "sha256": "44f3defb3701e176b3646ebc800a600ed54a336b32c1369e9b480247fad489c3"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/caption.md",
+      "sha256": "5196f8c601b0880b3fd331ced735414a0b73a5d87caa9724ff5b3f776ded20f0"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/violin-summary-hierarchy/data.csv",
+      "sha256": "93769ddc61b54ae43b75386450c7ae9df9e60e85fda3a0aa9617588257e74411"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/good-spec.json",
+      "sha256": "6008d58a91def92c7340b6df1d2b36ed0ab23cc6e8ff5a02bca445d8e2ef819c"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/failure-spec.json",
+      "sha256": "67f8e4eafad0af9691d8c5e8992dcfb6041e78d4239cc0d4c18eec3b237c62af"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/caption.md",
+      "sha256": "9b760514a3d389b0720dca42547fafe440c83a6fce1059a966c6b11809cacaea"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/heatmap-tall-narrow/data.csv",
+      "sha256": "3d9f03fd333da521ea6da020a02d5860b0620d2b17293efc0db2a0be3ac0a079"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/good-spec.json",
+      "sha256": "2164390ae10440c2e6051d6c7478e07f49e8cbf8783e2e02bb834d7099c8eb13"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/failure-spec.json",
+      "sha256": "5ff599ebba45b554444e4fdc6dc11819c08d8bc3341e0409b14cb22b98247831"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/caption.md",
+      "sha256": "49cb3f80893254a58a37461dd2bf291b1562058661ca8aa10cb08d7a4c2fbfa5"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/assets/design-cards/scatter-small-mark-color/data.csv",
+      "sha256": "fdb36ae3511b16d544fbad112356be18558f9ca6b84cca52842dfbdb2e8b8e8b"
+    }
+  ],
+  "export_checks": {
+    "status": "passed",
+    "independently_measured": [
+      {
+        "card": "replicate-neutral-compact",
+        "variant": "good",
+        "source_rows": 12,
+        "spec_size_mm": [
+          60,
+          62
+        ],
+        "actual_pdf_mm": [
+          59.99999830457899,
+          62.000000042385516
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCWHCYH+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0",
+        "svg_width": "170.07874pt",
+        "svg_height": "175.748031pt",
+        "svg_text_nodes": 10,
+        "png_pixels": [
+          709,
+          732
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          227,
+          235
+        ],
+        "sha256": {
+          "png": "d474087d18355028ab44bffedc056341095cbcee9cd052796312ba3f56dfb115",
+          "pdf": "7f3f8db202c01a03bbc6a625f9099908e6ad038ca2ba5efba96d241766e8fc2e",
+          "svg": "4f192a90b13ddda608b4a7f7acdde565ee4b973965adfaae5bd93c66b1e57cc7"
+        },
+        "preview_sha256": "c70a0474da2a44968df370bacf430aa3e2bc52e164cb0a6f5237bc9ca4ab035d",
+        "png_matches_index": true
+      },
+      {
+        "card": "replicate-neutral-compact",
+        "variant": "failure",
+        "source_rows": 12,
+        "spec_size_mm": [
+          60,
+          62
+        ],
+        "actual_pdf_mm": [
+          59.99999830457899,
+          62.000000042385516
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCWHCYH+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0",
+        "svg_width": "170.07874pt",
+        "svg_height": "175.748031pt",
+        "svg_text_nodes": 10,
+        "png_pixels": [
+          709,
+          732
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          227,
+          235
+        ],
+        "sha256": {
+          "png": "647205f6ebd7b3cc67f1c195315cfd353ddb0c9ea64368d1d1ae155915363133",
+          "pdf": "6aa82c0e89349117d220b0a2cdd5afceda61a8ff62454cf5f87ec823b5c2f510",
+          "svg": "27be8e324234f4b1231b88fd2da10f0bc244d47459e664ff44f9018dd3a38ca3"
+        },
+        "preview_sha256": "8250ac4a6421c267544f0f634e071750948fde5c24d10343b109d1d3a5377e4a",
+        "png_matches_index": true
+      },
+      {
+        "card": "distribution-summary-lane",
+        "variant": "good",
+        "source_rows": 66,
+        "spec_size_mm": [
+          66,
+          68
+        ],
+        "actual_pdf_mm": [
+          65.99999813503689,
+          67.99999987284342
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nQWNGRR+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "187.086614pt",
+        "svg_height": "192.755906pt",
+        "svg_text_nodes": 14,
+        "png_pixels": [
+          780,
+          803
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          250,
+          258
+        ],
+        "sha256": {
+          "png": "7dccd5e08e18adf8bba01e31f40ea4b0f302d7ce0edd92e77b4c3da8bf9a9072",
+          "pdf": "a2d83240a391840d123e9961138a396f32daa2479516161fca386b4b6661ab41",
+          "svg": "5ebbf5c18bab2e06ee33c26e3d040636549f416f4289c66a535c2f5e341cb1d5"
+        },
+        "preview_sha256": "d6531c900c537f8633515687cd2b5482ce2c62b9eae472d71c1bbf9c4f718997",
+        "png_matches_index": true
+      },
+      {
+        "card": "distribution-summary-lane",
+        "variant": "failure",
+        "source_rows": 66,
+        "spec_size_mm": [
+          66,
+          68
+        ],
+        "actual_pdf_mm": [
+          65.99999813503689,
+          67.99999987284342
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nQWNGRR+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "187.086614pt",
+        "svg_height": "192.755906pt",
+        "svg_text_nodes": 14,
+        "png_pixels": [
+          780,
+          803
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          250,
+          258
+        ],
+        "sha256": {
+          "png": "f162afa5768f52de3e7cac76c322c73cbff3fca5c9573cf042d19ad4ccbf2697",
+          "pdf": "dd2299307513890a8f1c32f238913761fd632a4ab910ea86fe271f4cededb72f",
+          "svg": "5314fe9f0329ce626ae2edadae266a8ba49c91b74cf2e233460e4c2a381f9e69"
+        },
+        "preview_sha256": "52be8d502adad9723f47def995def3c0502c98a7c2d55dfebcb0447378f9c6bb",
+        "png_matches_index": true
+      },
+      {
+        "card": "violin-summary-hierarchy",
+        "variant": "good",
+        "source_rows": 66,
+        "spec_size_mm": [
+          66,
+          68
+        ],
+        "actual_pdf_mm": [
+          65.99999813503689,
+          67.99999987284342
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nQWNGRR+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "187.086614pt",
+        "svg_height": "192.755906pt",
+        "svg_text_nodes": 14,
+        "png_pixels": [
+          780,
+          803
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          250,
+          258
+        ],
+        "sha256": {
+          "png": "6b5c301fbc78d5327e67bd38a7fd912b44aecfabc5086d3228ebb8dba6b9d1d9",
+          "pdf": "c66e874bacd3f5715ecda2f05c208d841d0699440ab9f230ff289342668b3e9a",
+          "svg": "6c56ae6e52ea39606fbb54ee731dd9c9f62dd929f23f6862482b569383698b5b"
+        },
+        "preview_sha256": "b20d4f5749014120c0e64e58a4a37a8857b9d1bd541c6bf6873f2650ebbec637",
+        "png_matches_index": true
+      },
+      {
+        "card": "violin-summary-hierarchy",
+        "variant": "failure",
+        "source_rows": 66,
+        "spec_size_mm": [
+          66,
+          68
+        ],
+        "actual_pdf_mm": [
+          65.99999813503689,
+          67.99999987284342
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nQWNGRR+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "187.086614pt",
+        "svg_height": "192.755906pt",
+        "svg_text_nodes": 14,
+        "png_pixels": [
+          780,
+          803
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          250,
+          258
+        ],
+        "sha256": {
+          "png": "d74c1e7ff5d3660daf5edec95fe1333cd9303308c34433907c9d41d1a57709f4",
+          "pdf": "487c05ff710cb13a821afe1626d27e1c2e4fc9a4d506c59e7648994be15b0232",
+          "svg": "e9630e024e1e0d4a3fbf0048c517a81b44686aaad141cc8f8db283fff640bbb3"
+        },
+        "preview_sha256": "f6fcd0443cab6f81c598f8611e3549bfb0708a3b0641d7c668ff30c195056fc8",
+        "png_matches_index": true
+      },
+      {
+        "card": "heatmap-tall-narrow",
+        "variant": "good",
+        "source_rows": 36,
+        "spec_size_mm": [
+          88,
+          88
+        ],
+        "actual_pdf_mm": [
+          88.00000110202366,
+          88.00000110202366
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nSJFKCK+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "svg_width": "249.448819pt",
+        "svg_height": "249.448819pt",
+        "svg_text_nodes": 57,
+        "png_pixels": [
+          1039,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          333,
+          333
+        ],
+        "sha256": {
+          "png": "e6f66eb1b7b26bb2efecce4743384666de95775e287b33728d1c1a93703d6ab3",
+          "pdf": "c05ab8d7ef3e81f521e67a5a7896a4bd36ddb0506a82f6db2495c66205e58e12",
+          "svg": "4fdeeaddbf023749c71d785e93c2ffd7386f6124bf702ee00b9e734f04228444"
+        },
+        "preview_sha256": "4b31c75c5809860ecf40e8f3fc4de7560ba09c5a37ae0a9161e978312e2e14c2",
+        "png_matches_index": true
+      },
+      {
+        "card": "heatmap-tall-narrow",
+        "variant": "failure",
+        "source_rows": 36,
+        "spec_size_mm": [
+          88,
+          88
+        ],
+        "actual_pdf_mm": [
+          88.00000110202366,
+          88.00000110202366
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nSJFKCK+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "svg_width": "249.448819pt",
+        "svg_height": "249.448819pt",
+        "svg_text_nodes": 57,
+        "png_pixels": [
+          1039,
+          1039
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          333,
+          333
+        ],
+        "sha256": {
+          "png": "97d03b99da4bc499761df293dc340268a859ce6d3bbe135c6c77680a107451a3",
+          "pdf": "4e0bbd92e706afd19cc264dbc0265f0abbdf265e255b9848ba2e492cf552c3ba",
+          "svg": "863e522fa37ba9cdda3fd5ba104597a274baab80ee88a4429bf76c7cc3e1a0e4"
+        },
+        "preview_sha256": "71d7c6913e949ef1c131c0acdd3582314cec9b12659c41c4f81e30569f95336b",
+        "png_matches_index": true
+      },
+      {
+        "card": "scatter-small-mark-color",
+        "variant": "good",
+        "source_rows": 68,
+        "spec_size_mm": [
+          75,
+          70
+        ],
+        "actual_pdf_mm": [
+          74.99999788072374,
+          70.00000161064996
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDDCDUR+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "svg_width": "212.598425pt",
+        "svg_height": "198.425197pt",
+        "svg_text_nodes": 15,
+        "png_pixels": [
+          886,
+          827
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          284,
+          265
+        ],
+        "sha256": {
+          "png": "fcd2b9ad07db8afa1aa60545203e4df13bbe113078e9acb78d4880f20f8bea91",
+          "pdf": "30a04e163e889895360cf03a20d814e064391c5c63cb0ab4d9fbf1553b7aeb98",
+          "svg": "5d68324a3ce95e081472cf6f0a5bf89c160b4b581515fb081efe016b9ffb0504"
+        },
+        "preview_sha256": "90d0d8f1ae2c68de2a13ad96e77111ec6cab352c46ce81ca2a184c3dcafd0d52",
+        "png_matches_index": true
+      },
+      {
+        "card": "scatter-small-mark-color",
+        "variant": "failure",
+        "source_rows": 68,
+        "spec_size_mm": [
+          75,
+          70
+        ],
+        "actual_pdf_mm": [
+          74.99999788072374,
+          70.00000161064996
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDDCDUR+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "svg_width": "212.598425pt",
+        "svg_height": "198.425197pt",
+        "svg_text_nodes": 15,
+        "png_pixels": [
+          886,
+          827
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          284,
+          265
+        ],
+        "sha256": {
+          "png": "b428439ca79e78f3f109cc41b5786d2d998bbcdc5b3eb64af0ff3e40eff183d1",
+          "pdf": "3416417c84033bddeb0619d9384cd17adf3f271765635edd9804d83b99c08bc5",
+          "svg": "548027d6c89f687dadc06155d7b5af5010d29cd3cabc94861b98d9a3ee426041"
+        },
+        "preview_sha256": "144ae3f136e0bd3ca53f9db49575b128694b3e4383f635cace14c19120ef5fd2",
+        "png_matches_index": true
+      }
+    ],
+    "summary": "All ten actual PDF dimensions match specs, ordinary text is ArialMT 8 pt and embedded; SVG text retained; PNG index hashes match and 300 dpi metadata recorded. Nominal preview pixel sizes correspond to canvas at 96 dpi.",
+    "independent_statistics_recomputation": "not_checked",
+    "independent_source_to_artist_completeness": "not_checked",
+    "supplied_technical_status": "Index declares pass for all ten variants; declaration is not treated as aesthetic evidence."
+  },
+  "residual_notes": [
+    "The intentionally flawed contrasts illustrate chosen mechanisms; comparisons change multiple style/geometry parameters and are not controlled estimates of individual aesthetic effects.",
+    "Known synthetic labels are short; real long labels or many-category tasks remain untested.",
+    "Source anchors are mechanism attribution supplied in index, not a verified pixel reproduction or source-paper test transfer. Literature page inspection from previous color review is not rerun for this teaching-card review.",
+    "Actual fixed fonts/canvases checked; image zoom alone is not used as print-size proof.",
+    "Publication acceptance, general agent effectiveness and unsupported statistics are not claimed."
+  ]
+}

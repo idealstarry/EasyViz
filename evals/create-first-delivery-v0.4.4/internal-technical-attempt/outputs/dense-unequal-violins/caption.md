@@ -1,0 +1,1 @@
+Read estimated shape and raw observations in three unequal synthetic distributions. Scott Gaussian KDE, 100 evaluation points, trimming to observed range and independent width normalization are adopted; inner quartiles summarize raw values. All points remain; no test or inference.

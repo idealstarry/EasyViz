@@ -1,0 +1,56 @@
+{
+  "rendered": false,
+  "checks": [
+    {
+      "id": "replicate-neutral-compact",
+      "rows": 12,
+      "csv_sha256": "e8dba0224b67131567fe5508eb79fbda866194958c89540aba51d9683deaeb9b",
+      "specs_equal_except_explicit_geometry": true,
+      "intentional_good_geometry_changes": []
+    },
+    {
+      "id": "distribution-summary-lane",
+      "rows": 66,
+      "csv_sha256": "93769ddc61b54ae43b75386450c7ae9df9e60e85fda3a0aa9617588257e74411",
+      "specs_equal_except_explicit_geometry": true,
+      "intentional_good_geometry_changes": []
+    },
+    {
+      "id": "violin-summary-hierarchy",
+      "rows": 66,
+      "csv_sha256": "93769ddc61b54ae43b75386450c7ae9df9e60e85fda3a0aa9617588257e74411",
+      "specs_equal_except_explicit_geometry": true,
+      "intentional_good_geometry_changes": [
+        {
+          "option": "violin_width",
+          "before": 0.64,
+          "after": 0.44
+        },
+        {
+          "option": "point_category_offset",
+          "before": 0.28,
+          "after": 0.38
+        },
+        {
+          "option": "point_max_offset_mm",
+          "before": 2.8,
+          "after": 1.3
+        }
+      ]
+    },
+    {
+      "id": "heatmap-tall-narrow",
+      "rows": 36,
+      "csv_sha256": "3d9f03fd333da521ea6da020a02d5860b0620d2b17293efc0db2a0be3ac0a079",
+      "specs_equal_except_explicit_geometry": true,
+      "intentional_good_geometry_changes": []
+    },
+    {
+      "id": "scatter-small-mark-color",
+      "rows": 68,
+      "csv_sha256": "fdb36ae3511b16d544fbad112356be18558f9ca6b84cca52842dfbdb2e8b8e8b",
+      "specs_equal_except_explicit_geometry": true,
+      "intentional_good_geometry_changes": []
+    }
+  ]
+}

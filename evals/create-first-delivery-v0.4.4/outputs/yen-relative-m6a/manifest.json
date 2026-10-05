@@ -1,0 +1,195 @@
+{
+  "version": "0.1.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/yen-relative-m6a/data.csv",
+    "sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/yen-relative-m6a/spec.json",
+    "sha256": "c1ae05621e46922b9faab4d6734262f9ea70d167ce86f1a20ac64cd418e32d4b",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "replicate",
+    "input_rows": 6,
+    "task": "read adopted component/condition means with raw replicates and supplied uncertainty semantics",
+    "category_order": {
+      "condition": [
+        "Vehicle",
+        "STM2457"
+      ]
+    },
+    "label_max_characters": {
+      "condition": 7
+    },
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "category_count": 2,
+    "component_count": 0
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      13.10114496527778,
+      11.177734375,
+      44.89885503472221,
+      48.82226562500002
+    ],
+    "canvas_mm": [
+      60.0,
+      62.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.55,
+        1.55
+      ],
+      "y": [
+        0.0,
+        140.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [],
+    "source_to_artist": {
+      "status": "pass",
+      "source_rows": 6,
+      "raw_points": 6,
+      "component_values_normalized": false,
+      "ratios_derived": false,
+      "sample_size_independence_inferred": false,
+      "issues": []
+    },
+    "replicate_mark_geometry": {
+      "status": "pass",
+      "issues": [],
+      "intentional_baseline_contacts": [
+        {
+          "condition": "Vehicle",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        },
+        {
+          "condition": "STM2457",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        }
+      ],
+      "grouped_separation": {
+        "status": "unchecked",
+        "note": "No positive component_gap adopted; legacy bar placement is retained."
+      }
+    },
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "replicate-neutral-compact"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/options/bar_color",
+        "/options/bar_edge_color",
+        "/options/bar_edge_width_pt",
+        "/options/bar_style",
+        "/options/bar_width",
+        "/options/point_color"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Neutral distribution observations/strokes and single-quantity bars are EasyViz adaptations; fixed scatter colors identify small marks. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#333333",
+          "bar": "#CACACA",
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/bar_color",
+          "/options/bar_edge_color",
+          "/options/point_color"
+        ]
+      },
+      "reason": "Measured text/guide fit with component spacing and summary/raw visibility at the adopted descriptive method; proposal 1. Explicit choices remain locked.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [
+        "replicate-neutral-compact"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/options/bar_color",
+        "/options/bar_edge_color",
+        "/options/bar_edge_width_pt",
+        "/options/bar_style",
+        "/options/bar_width",
+        "/options/point_color"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Neutral distribution observations/strokes and single-quantity bars are EasyViz adaptations; fixed scatter colors identify small marks. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#333333",
+          "bar": "#CACACA",
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/bar_color",
+          "/options/bar_edge_color",
+          "/options/point_color"
+        ]
+      },
+      "reason": "Measured text/guide fit with component spacing and summary/raw visibility at the adopted descriptive method; proposal 2. Explicit choices remain locked.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-02/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

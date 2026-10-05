@@ -1,0 +1,44 @@
+{
+  "chart": "replicate",
+  "fields": {
+    "condition": "condition",
+    "unit": "unit",
+    "value": "value"
+  },
+  "layout": {
+    "width_mm": 60,
+    "height_mm": 62,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "order": {
+    "condition": [
+      "Vehicle",
+      "STM2457"
+    ]
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Relative m6A (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "y_limits": [
+      0,
+      140
+    ],
+    "y_ticks": [
+      0,
+      50,
+      100
+    ],
+    "marker_area_pt2": 7
+  }
+}

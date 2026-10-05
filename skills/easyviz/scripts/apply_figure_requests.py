@@ -11,11 +11,12 @@ import copy
 import json
 from pathlib import Path
 import re
+import shutil
 import sys
 import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from figure_workbench import FigureWorkbench, WorkbenchError, safe_json, sha256, timestamp
+from figure_workbench import FigureWorkbench, WorkbenchError, locked_ledgers, safe_json, sha256, timestamp
 
 MAX_SNAPSHOT_BYTES = 32 * 1024 * 1024
 ELEMENT_FIELDS = ("id", "role", "label", "source_keys", "spec_paths", "editable")
@@ -60,8 +61,44 @@ def verified_attempt(figure_dir, *, require_sources=True):
     return app, state
 
 
+def passing_qa(raw, label):
+    qa = safe_json(raw or b"{}")
+    if not isinstance(qa, dict) or qa.get("status") != "pass" or ("valid_outputs" in qa and qa["valid_outputs"] is not True):
+        raise WorkbenchError(f"A passing {label} qa.json is required")
+    return qa
+
+
+def verify_declared_exports(qa, read_export):
+    # Legacy QA without export hashes remains compatible; only existing hash
+    # claims can prove that measured exports match these actual file bytes.
+    exports = qa.get("exports", {})
+    if not isinstance(exports, dict):
+        raise WorkbenchError("QA exports must be an object")
+    for extension, record in exports.items():
+        if not isinstance(record, dict) or "sha256" not in record:
+            continue
+        if extension not in {"svg", "pdf", "png", "tiff"}:
+            raise WorkbenchError("QA contains an unsupported export hash")
+        expected = record["sha256"]
+        raw = read_export(f"panel.{extension}")
+        if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected) or raw is None or sha256(raw) != expected:
+            raise WorkbenchError(f"QA export hash does not match actual panel.{extension} bytes")
+
+
+def verify_qa_binding(app, expected_bytes, action):
+    # Figure/source version fields do not change when a renderer first marks
+    # its exports in_progress. Bind the actual QA bytes used for this commit.
+    current = app.read_file("qa.json")
+    if current != expected_bytes:
+        raise WorkbenchError(f"QA changed while {action}; retry after the attempt passes QA again")
+    qa = passing_qa(current, "current")
+    verify_declared_exports(qa, lambda name: read_regular(app.root / name))
+    if app.read_file("qa.json") != expected_bytes:
+        raise WorkbenchError(f"QA changed while {action}; retry after the attempt passes QA again")
+
+
 def selected_requests(app, state, request_ids=None):
-    ledger = app.ledger()
+    previous_bytes, ledger = app.ledger_snapshot()
     requests = ledger["requests"]
     if request_ids:
         if len(set(request_ids)) != len(request_ids):
@@ -78,7 +115,7 @@ def selected_requests(app, state, request_ids=None):
             raise WorkbenchError("Only pending requests bound to the current figure version may be processed")
         if item.get("input", {}) != state["input"]:
             raise WorkbenchError("Request input provenance differs from the current element map")
-    return ledger, selected
+    return ledger, selected, previous_bytes
 
 
 def pointer_parts(path):
@@ -181,7 +218,7 @@ def set_pointer(spec, path, value):
 
 def prepare_requests(figure_dir, out, request_ids=None, *, render=False):
     app, state = verified_attempt(figure_dir)
-    ledger, requests = selected_requests(app, state, request_ids)
+    ledger, requests, original_bytes = selected_requests(app, state, request_ids)
     original_ledger = copy.deepcopy(ledger)
     spec = safe_json(read_regular(state["input"]["spec_file"]))
     if not isinstance(spec, dict):
@@ -247,23 +284,22 @@ def prepare_requests(figure_dir, out, request_ids=None, *, render=False):
         ledger["updated_at"] = timestamp()
         if app.ledger() != original_ledger:
             raise WorkbenchError("Request queue changed while preparing; the new plan is preserved, but history was not overwritten")
-        app.write_ledger(ledger)
+        app.write_ledger(ledger, expected_bytes=original_bytes, expected_version=state["version"])
     return plan
 
 
 def record_requests(figure_dir, target_dir, request_ids, *, changed_files, validation, superseded_ids=None):
     app, state = verified_attempt(figure_dir, require_sources=False)
     target_app, target = verified_attempt(target_dir)
-    ledger, requests = selected_requests(app, state, request_ids)
+    ledger, requests, original_bytes = selected_requests(app, state, request_ids)
     original_ledger = copy.deepcopy(ledger)
-    target_ledger = target_app.ledger()
+    target_bytes, target_ledger = target_app.ledger_snapshot()
     if target_app.root == app.root or app.root in target_app.root.parents:
         raise WorkbenchError("Applied results must be a separate fresh attempt")
     if state["version"].get("input_sha256") != target["version"].get("input_sha256"):
         raise WorkbenchError("Cosmetic request history requires unchanged source data")
-    qa = safe_json(target_app.read_file("qa.json") or b"{}")
-    if not isinstance(qa, dict) or qa.get("status") != "pass":
-        raise WorkbenchError("A passing target qa.json is required before recording application")
+    qa_bytes = target_app.read_file("qa.json")
+    passing_qa(qa_bytes, "target")
     if not isinstance(validation, str) or not validation.strip() or len(validation) > 8000:
         raise WorkbenchError("Describe validation of the fresh target attempt")
     if not changed_files or not all(isinstance(name, str) and name and not Path(name).is_absolute() and ".." not in Path(name).parts and (target_app.root / name).is_file() and not (target_app.root / name).is_symlink() and (target_app.root / name).resolve().is_relative_to(target_app.root) for name in changed_files):
@@ -271,9 +307,9 @@ def record_requests(figure_dir, target_dir, request_ids, *, changed_files, valid
     superseded = set(superseded_ids or [])
     if not superseded <= {item["id"] for item in requests}:
         raise WorkbenchError("Superseded IDs must be among the processed requests")
-    event = {"id": str(uuid.uuid4()), "action": "applied", "at": timestamp(), "from_version": state["version"], "target_attempt": str(target_app.root), "target_version": target["version"], "request_ids": [item["id"] for item in requests], "changed_files": changed_files, "validation": validation.strip()}
+    event = {"id": str(uuid.uuid4()), "action": "applied", "at": timestamp(), "from_version": state["version"], "target_attempt": str(target_app.root), "target_version": target["version"], "target_qa_sha256": sha256(qa_bytes), "request_ids": [item["id"] for item in requests], "changed_files": changed_files, "validation": validation.strip()}
     for item in requests:
-        item.update(status="superseded" if item["id"] in superseded else "applied", applied_at=event["at"], result={key: event[key] for key in ("target_attempt", "target_version", "changed_files", "validation")})
+        item.update(status="superseded" if item["id"] in superseded else "applied", applied_at=event["at"], result={key: event[key] for key in ("target_attempt", "target_version", "target_qa_sha256", "changed_files", "validation")})
         if item["id"] in superseded:
             item["superseded_by"] = [request["id"] for request in requests if request["id"] not in superseded]
     if app.state()["version"] != state["version"] or target_app.state()["version"] != target["version"] or target_app.state()["source_current"] is not True:
@@ -287,15 +323,37 @@ def record_requests(figure_dir, target_dir, request_ids, *, changed_files, valid
     merged["requests"].extend(copy.deepcopy(item) for item in target_ledger["requests"] if not isinstance(item, dict) or item.get("id") not in source_ids)
     history_ids = {item.get("id") for item in merged.get("history", []) if isinstance(item, dict) and item.get("id")}
     merged["history"].extend(copy.deepcopy(item) for item in target_ledger.get("history", []) if not item.get("id") or item["id"] not in history_ids)
-    app.write_ledger(ledger)
-    target_app.write_ledger(merged)
+    source_serialized, target_serialized = app.ledger_serialized(ledger), target_app.ledger_serialized(merged)
+    with locked_ledgers(app.root, target_app.root):
+        if app.ledger_bytes() != original_bytes or target_app.ledger_bytes() != target_bytes:
+            raise WorkbenchError("Request queue changed while recording; retry without overwriting newer requests")
+        if app.state()["version"] != state["version"] or target_app.state()["version"] != target["version"] or target_app.state()["source_current"] is not True:
+            raise WorkbenchError("Figure or target source changed while recording application")
+        try:
+            verify_qa_binding(target_app, qa_bytes, "recording application")
+            app._replace_ledger_bytes(source_serialized)
+            verify_qa_binding(target_app, qa_bytes, "recording application")
+            target_app._replace_ledger_bytes(target_serialized)
+            verify_qa_binding(target_app, qa_bytes, "recording application")
+        except Exception as exc:
+            failures = []
+            for owner, before in ((app, original_bytes), (target_app, target_bytes)):
+                try:
+                    if owner.ledger_bytes() != before:
+                        owner._replace_ledger_bytes(before)
+                except (OSError, WorkbenchError) as rollback:
+                    failures.append(f"{owner.root.name}: {rollback}")
+            if failures:
+                raise WorkbenchError("Recording failed and request history recovery is incomplete: " + "; ".join(failures)) from exc
+            raise
     return event
 
 
 def accept_attempt(figure_dir, *, validation):
     app, state = verified_attempt(figure_dir)
-    qa = safe_json(app.read_file("qa.json") or b"{}")
-    if not isinstance(qa, dict) or qa.get("status") != "pass" or not isinstance(validation, str) or not validation.strip():
+    qa_bytes = app.read_file("qa.json")
+    passing_qa(qa_bytes, "accepted attempt")
+    if not isinstance(validation, str) or not validation.strip():
         raise WorkbenchError("Accept requires passing QA and a description of visual validation")
     spec = safe_json(read_regular(state["input"]["spec_file"]))
     settings = safe_json(app.read_file("settings.json") or b"{}")
@@ -305,21 +363,55 @@ def accept_attempt(figure_dir, *, validation):
     if snapshot.exists() or snapshot.is_symlink():
         raise WorkbenchError("This attempt already has an accepted snapshot; preserve it")
     files = {name: read_regular(app.root / name) for name in SNAPSHOT_FILES if (app.root / name).exists()}
+    captured_qa = passing_qa(files.get("qa.json"), "captured snapshot")
+    if files.get("qa.json") != qa_bytes:
+        raise WorkbenchError("QA changed while capturing the accepted snapshot; retry after the attempt passes QA again")
+    verify_declared_exports(captured_qa, files.get)
     provenance = {}
     for field, name in (("spec_file", "plot-spec.json"), ("source_script", "plot-source.py"), ("data_file", "source-data.csv")):
         files[name] = read_regular(state["input"][field])
         provenance[field] = name
     if app.state()["version"] != state["version"] or app.state()["source_current"] is not True:
         raise WorkbenchError("Figure or source changed while accepting the attempt")
-    snapshot.mkdir()
-    for name, data in files.items():
-        (snapshot / name).write_bytes(data)
-    acceptance = {"schema_version": 1, "accepted_at": timestamp(), "version": state["version"], "input": state["input"], "provenance": provenance, "files": {name: sha256(data) for name, data in files.items()}, "validation": validation.strip()}
-    write_json(snapshot / "acceptance.json", acceptance)
-    ledger = app.ledger()
-    ledger.setdefault("history", []).append({"id": str(uuid.uuid4()), "action": "accepted", "at": acceptance["accepted_at"], "target_attempt": str(app.root), "version": state["version"], "validation": validation.strip()})
-    ledger["updated_at"] = timestamp()
-    app.write_ledger(ledger)
+    acceptance = {"schema_version": 1, "accepted_at": timestamp(), "version": state["version"], "qa_sha256": sha256(qa_bytes), "input": state["input"], "provenance": provenance, "files": {name: sha256(data) for name, data in files.items()}, "validation": validation.strip()}
+    with locked_ledgers(app.root):
+        if snapshot.exists() or snapshot.is_symlink():
+            raise WorkbenchError("This attempt already has an accepted snapshot; preserve it")
+        if app.state()["version"] != state["version"] or app.state()["source_current"] is not True:
+            raise WorkbenchError("Figure or source changed while accepting the attempt")
+        verify_qa_binding(app, qa_bytes, "accepting the attempt")
+        previous_bytes, ledger = app.ledger_snapshot()
+        ledger.setdefault("history", []).append({"id": str(uuid.uuid4()), "action": "accepted", "at": acceptance["accepted_at"], "target_attempt": str(app.root), "version": state["version"], "qa_sha256": acceptance["qa_sha256"], "validation": validation.strip()})
+        ledger["updated_at"] = timestamp()
+        serialized = app.ledger_serialized(ledger)
+        snapshot.mkdir()
+        try:
+            for name, data in files.items():
+                (snapshot / name).write_bytes(data)
+            write_json(snapshot / "acceptance.json", acceptance)
+            snapshot_qa = read_regular(snapshot / "qa.json")
+            written_qa = passing_qa(snapshot_qa, "written snapshot")
+            if snapshot_qa != qa_bytes:
+                raise WorkbenchError("Accepted snapshot QA bytes changed before publication")
+            verify_declared_exports(written_qa, lambda name: read_regular(snapshot / name))
+            verify_qa_binding(app, qa_bytes, "accepting the attempt")
+            app._replace_ledger_bytes(serialized)
+            verify_qa_binding(app, qa_bytes, "accepting the attempt")
+        except Exception as exc:
+            # A failed acceptance publication must be safely retryable.
+            failures = []
+            try:
+                if app.ledger_bytes() != previous_bytes:
+                    app._replace_ledger_bytes(previous_bytes)
+            except (OSError, WorkbenchError) as rollback:
+                failures.append(f"request history: {rollback}")
+            try:
+                shutil.rmtree(snapshot)
+            except OSError as rollback:
+                failures.append(f"snapshot: {rollback}")
+            if failures:
+                raise WorkbenchError("Acceptance failed and snapshot/history recovery is incomplete: " + "; ".join(failures)) from exc
+            raise
     return acceptance
 
 
@@ -356,6 +448,16 @@ def restore_attempt(figure_dir, out):
         (target / name).write_bytes(data)
     manifest["input"] = {**input_info, "data_file": str(target / "source-data.csv"), "source_script": str(target / "plot-source.py"), "spec_file": str(target / "plot-spec.json")}
     write_json(target / "elements.json", manifest)
+    if "settings.json" in files:
+        settings = safe_json(files["settings.json"])
+        if isinstance(settings, dict):
+            bindings = manifest["input"]
+            if isinstance(settings.get("input"), dict):
+                settings["input"].update({field: bindings[field] for field in ("data_file", "source_script", "spec_file")})
+            for key, role in (("input_file", "data_file"), ("source_script", "source_script"), ("spec_file", "spec_file")):
+                if key in settings:
+                    settings[key] = bindings[role] if Path(str(settings[key])).is_absolute() else Path(bindings[role]).name
+            write_json(target / "settings.json", settings)
     target_app, restored = verified_attempt(target)
     event = {"id": str(uuid.uuid4()), "action": "restored", "at": timestamp(), "accepted_attempt": str(app.root), "target_attempt": str(target), "target_version": restored["version"], "validation": acceptance.get("validation", ""), "note": "Source/spec/input and matching accepted exports were restored together. No author script was executed."}
     ledger = copy.deepcopy(app.ledger())
@@ -364,7 +466,12 @@ def restore_attempt(figure_dir, out):
             item.update(status="superseded", superseded_at=event["at"], superseded_by_restore=event["id"])
     ledger.setdefault("history", []).append(event)
     ledger.update(version=restored["version"], updated_at=timestamp())
-    target_app.write_ledger(ledger)
+    target_bytes, target_ledger = target_app.ledger_snapshot()
+    source_ids = {item.get("id") for item in ledger["requests"] if isinstance(item, dict)}
+    ledger["requests"].extend(copy.deepcopy(item) for item in target_ledger["requests"] if not isinstance(item, dict) or item.get("id") not in source_ids)
+    history_ids = {item.get("id") for item in ledger.get("history", []) if isinstance(item, dict) and item.get("id")}
+    ledger["history"].extend(copy.deepcopy(item) for item in target_ledger.get("history", []) if not item.get("id") or item["id"] not in history_ids)
+    target_app.write_ledger(ledger, expected_bytes=target_bytes, expected_version=restored["version"])
     write_json(target / "restoration.json", event)
     return event
 

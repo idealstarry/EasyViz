@@ -1,0 +1,1 @@
+Read a complete four-by-thirteen synthetic magnitude matrix. All 52 cells, identifiers and row order remain; one adopted linear 0–12 scale, no center or normalization. Decimal display labels do not round colors.

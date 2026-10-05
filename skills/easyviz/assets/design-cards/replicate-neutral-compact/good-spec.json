@@ -1,0 +1,60 @@
+{
+  "chart": "replicate",
+  "layout": {
+    "width_mm": 60,
+    "height_mm": 62,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.21,
+      "right": 0.94,
+      "bottom": 0.18,
+      "top": 0.94
+    }
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "fields": {
+    "condition": "treatment",
+    "unit": "unit",
+    "value": "response"
+  },
+  "labels": {
+    "x": "Treatment",
+    "y": "Response (a.u.)"
+  },
+  "order": {
+    "condition": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "y_limits": [
+      0,
+      15
+    ],
+    "y_ticks": [
+      0,
+      5,
+      10,
+      15
+    ],
+    "bar_style": "outline",
+    "bar_width": 0.36,
+    "bar_color": "#CACACA",
+    "bar_edge_color": "#333333",
+    "bar_edge_width_pt": 0.7,
+    "point_color": "#333333",
+    "marker_area_pt2": 7
+  }
+}

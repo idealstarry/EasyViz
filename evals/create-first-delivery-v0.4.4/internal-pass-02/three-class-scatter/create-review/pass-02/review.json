@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "f2359c3abff78175367577c58494e248e5000e5d2171283899012381d121dc66",
+  "pass_number": 2,
+  "reviewer": {
+    "role": "independent",
+    "identity": "refinement_visual_review; transcription from the retained actual-image review"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/internal-pass-02/three-class-scatter/panel.png",
+      "sha256": "1f65d5c9d86bc81849257b2696a750eecd7d4f5f4638e4ff6d7d202fb6b61332",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "view_image in independent Agent review; full PNG and actual nominal 96dpi PDF preview",
+      "size_basis": "Recorded 88.0 × 78.0 mm canvas; actual nominal 96dpi PDF preview was opened."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Original columns, keys, values and all rows match invariants.json; the reviewed spec/caption retain the adopted methods and limits. All 135 source coordinates preserved; no measured-axis jitter and no statistical test inferred."
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "All previously cropped boundary circles are complete; marker centers and axis ranges remain fixed. Existing outer canvas margin accommodates the radius extending beyond the axis rectangle. The one-line legend reads easily above the data and uses less vertical height than the original three-row guide. The data remains visually primary. Blue, amber and teal remain distinguishable on this white panel at nominal 96dpi, with the adopted 12 pt2 points."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "All previously cropped boundary circles are complete; marker centers and axis ranges remain fixed. Existing outer canvas margin accommodates the radius extending beyond the axis rectangle. The one-line legend reads easily above the data and uses less vertical height than the original three-row guide. The data remains visually primary. Blue, amber and teal remain distinguishable on this white panel at nominal 96dpi, with the adopted 12 pt2 points."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "All previously cropped boundary circles are complete; marker centers and axis ranges remain fixed. Existing outer canvas margin accommodates the radius extending beyond the axis rectangle. The one-line legend reads easily above the data and uses less vertical height than the original three-row guide. The data remains visually primary. Blue, amber and teal remain distinguishable on this white panel at nominal 96dpi, with the adopted 12 pt2 points. Fixed canvas 88.0 × 78.0 mm and Arial 8 pt; physical exports independently checked."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "All previously cropped boundary circles are complete; marker centers and axis ranges remain fixed. Existing outer canvas margin accommodates the radius extending beyond the axis rectangle. The one-line legend reads easily above the data and uses less vertical height than the original three-row guide. The data remains visually primary. Blue, amber and teal remain distinguishable on this white panel at nominal 96dpi, with the adopted 12 pt2 points. Palette judgment is scoped to these actual marks and reading task; no accessibility or journal-quality claim."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "The actual axes, labels, legends/color scale and separate caption were opened and read in the retained review. All previously cropped boundary circles are complete; marker centers and axis ranges remain fixed. Existing outer canvas margin accommodates the radius extending beyond the axis rectangle. The one-line legend reads easily above the data and uses less vertical height than the original three-row guide. The data remains visually primary. Blue, amber and teal remain distinguishable on this white panel at nominal 96dpi, with the adopted 12 pt2 points."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: export_dimensions; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: typography; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: source_provenance; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: technical_qa; physical exports/font also independently checked in the retained review."
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "Acknowledged current packet measurement/source binding: caption; physical exports/font also independently checked in the retained review."
+    }
+  ],
+  "findings": [
+    {
+      "id": "FR-04",
+      "severity": "minor",
+      "state": "resolved",
+      "location": "three-class-scatter, both candidates: x-boundary point marks",
+      "evidence": "Green edge circles are visibly cut at right/left plot bounds. Source Class C x11.953665 is only .2723 mm from right boundary in the 70.5282 mm plot versus .6110 mm filled circle radius; actual SVG clips point groups to the data rectangle. Hollow edges extend to .6904 mm.",
+      "requirement": "Retain full fixed-size symbols without moving measured coordinates or changing locked 0–12 x limits.",
+      "action": "Allow the few boundary symbol strokes/fills to extend into existing canvas margin, for example a custom renderer with marker clip_on=False while axes limits and centers stay fixed; check complete symbol/canvas clearance in actual PNG/PDF/SVG. Do not expand locked x limits or jitter quantitative x."
+    },
+    {
+      "id": "LIMIT-three-class-scatter",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Whole panel and nominal-size preview",
+      "evidence": "Several genuinely nearby coordinates still overlap, especially Class C near x=12 and other local clusters. This scatter supports reading the coordinate pattern, not guaranteed exact per-point counting.",
+      "requirement": "Report the actual reading and validation boundary without altering explicit constraints.",
+      "action": "Keep this limitation visible in the evaluation; preserve all observations and adopted meanings."
+    }
+  ],
+  "corrections": [
+    {
+      "finding_id": "FR-04",
+      "candidate_sha256": "1f65d5c9d86bc81849257b2696a750eecd7d4f5f4638e4ff6d7d202fb6b61332",
+      "action": "Actual point clipping removed, one-line three-column categorical legend; locked x 0-12 and y -4-15 remain. All 135 source coordinates preserved; no measured-axis jitter and no statistical test inferred.",
+      "evidence": "Previously cropped left/right circles are complete in current views. Actual SVG point groups have no clipping attributes; all 135 actual SVG centers match frozen source x/y to less than 1e-6 pt, retaining locked axis limits."
+    }
+  ],
+  "residual_issues": [
+    "LIMIT-three-class-scatter"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": "Candidate comparison and internal repair history remain in the separate independent reports; this packet binds readiness only."
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance.",
+  "independent_report": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/internal-pass-02-visual-review.json",
+    "sha256": "373a6c7ee5cfa0d009c235344e9ba42277e55ced282221063c8087dd9fe09a66"
+  }
+}

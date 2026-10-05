@@ -1,0 +1,38 @@
+{
+  "id": "scatter-small-mark-color",
+  "chart": "scatter",
+  "applies_when": [
+    "Two classes mixed in the same fixed-size point field",
+    "Group identity must be decoded from small marks"
+  ],
+  "good_image": "scatter-small-mark-color/good/panel.png",
+  "failure_image": "scatter-small-mark-color/failure/panel.png",
+  "final_size_preview": "scatter-small-mark-color/good/preview-96dpi.png",
+  "data": "scatter-small-mark-color/data.csv",
+  "good_spec": "scatter-small-mark-color/good-spec.json",
+  "failure_spec": "scatter-small-mark-color/failure-spec.json",
+  "caption": "scatter-small-mark-color/caption.md",
+  "mechanism": "Small categorical points need visible whole-panel distinction; pale bounded-area colors need not work on tiny borderless marks.",
+  "avoid": "Pale low-contrast colors fail as small marks on white even though they can be eligible for larger bounded areas.",
+  "source_anchors": [
+    "scWAT Fig.2g PDF p4: blue/pink fitted-line colors adapted here to raw-class marks"
+  ],
+  "synthetic": true,
+  "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+  "rendered": [
+    {
+      "variant": "good",
+      "technical_status": "pass",
+      "png_sha256": "fcd2b9ad07db8afa1aa60545203e4df13bbe113078e9acb78d4880f20f8bea91"
+    },
+    {
+      "variant": "failure",
+      "technical_status": "pass",
+      "png_sha256": "b428439ca79e78f3f109cc41b5786d2d998bbcdc5b3eb64af0ff3e40eff183d1"
+    }
+  ],
+  "geometry_notes": [
+    "Adopted canvas: 75 × 70 mm; declared data region: 54.75 × 44.80 mm from the fixed margins.",
+    "Two classes share the same coordinate field and mark area; the upper margin reserves space for the two-key categorical legend."
+  ]
+}

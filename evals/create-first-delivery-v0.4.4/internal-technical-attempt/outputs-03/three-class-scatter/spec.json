@@ -1,0 +1,81 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "x",
+    "y": "y",
+    "group": "group",
+    "unit": "unit"
+  },
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 78,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.15849785945391417,
+      "right": 0.9599545454545455,
+      "bottom": 0.14330428685897434,
+      "top": 0.89
+    }
+  },
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "order": {
+    "group": [
+      "Class A",
+      "Class B",
+      "Class C"
+    ]
+  },
+  "labels": {
+    "x": "Measurement 1 (a.u.)",
+    "y": "Measurement 2 (a.u.)"
+  },
+  "options": {
+    "alpha": 1,
+    "point_style": "filled",
+    "x_limits": [
+      0,
+      12
+    ],
+    "y_limits": [
+      -4,
+      15
+    ],
+    "point_area_pt2": 12
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "palette": "notch2-balanced",
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 3
+    }
+  }
+}

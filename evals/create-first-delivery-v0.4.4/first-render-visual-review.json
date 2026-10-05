@@ -1,0 +1,1596 @@
+{
+  "schema_version": 1,
+  "review": "Independent first-render visual review",
+  "version": "0.4.4",
+  "status": "needs_revision",
+  "pass_count": 1,
+  "max_passes": 3,
+  "scope": "Five first-render tasks, each two generated proposals: four new synthetic reading tasks plus one real source-data teaching task. Not a no-skill benchmark, not a general model/CNS/new-user effectiveness claim. Frozen inputs and first-render engine are not modified by reviewer.",
+  "history": [
+    {
+      "pass": 1,
+      "status": "needs_revision",
+      "actually_opened_full_png": 10,
+      "actually_opened_nominal_96dpi_previews": 10,
+      "technical_failures_not_overridden": true
+    }
+  ],
+  "preferences": [
+    {
+      "task": "yen-relative-m6a",
+      "preferred_candidate": "candidate-02",
+      "preference_strength": "mild; either reads the task",
+      "status": "ready_with_notes",
+      "evidence": "Six graphite observations, means and SD remain readable; candidate02 uses a slightly wider data rectangle with similar physical bar thickness and clear treatment gap. It gives less left-side dead space without touching marks. Difference is modest.",
+      "limits": "Relative source-normalized percentage is not absolute methylation; no new normalization or paired test was independently inferred. No independent SD recomputation performed."
+    },
+    {
+      "task": "six-long-label-boxes",
+      "preferred_candidate": "no_clear_preference",
+      "status": "needs_revision",
+      "evidence": "Both narrow box widths keep summaries separate from right lanes, and 35-degree long labels fit visibly. Width-only differences do not repair the same point packing failure.",
+      "limits": "Neither candidate is a deliverable winner before raw-point spacing/layer repair; angled-label fit was checked visually, as automated QA marks it unchecked."
+    },
+    {
+      "task": "dense-unequal-violins",
+      "preferred_candidate": "candidate-02",
+      "preference_strength": "conditional aesthetic lean only",
+      "status": "needs_revision",
+      "evidence": "Larger data rectangle and lightly tinted body distinguish the KDE silhouette somewhat better from dark raw rings. Both retain serious packing and contour/summary competition, so this is not acceptance.",
+      "limits": "Unequal counts and independently normalized KDE widths are adopted. The preferred shape does not justify changing support, bandwidth or counts."
+    },
+    {
+      "task": "three-class-scatter",
+      "preferred_candidate": "candidate-01",
+      "status": "ready_with_notes",
+      "evidence": "Filled blue/amber/teal circles distinguish the actual mixed three-class cloud more decisively than tiny hollow outlines at 96 dpi. Three-line legend is compact relative to data.",
+      "limits": "Boundary symbol cutoff FR-04 needs correction; naturally close fixed quantitative coordinates are not spread or silently jittered. No color-vision/grayscale proof."
+    },
+    {
+      "task": "wide-annotated-matrix",
+      "preferred_candidate": "candidate-02",
+      "status": "ready_with_notes",
+      "evidence": "7 x 7 mm cells give more padding for 52 decimal labels than candidate01 5.734 mm cells. Fine white seams clarify adjacent cells; sequential magnitude color and 0/6/12 bar are consistent with adopted scale.",
+      "limits": "Fixed 0–12 values/order and 90-degree identifiers are retained. This is a readable known-source synthetic matrix, not proof of statistical or model quality."
+    }
+  ],
+  "findings": [
+    {
+      "id": "FR-01",
+      "severity": "major",
+      "location": "six-long-label-boxes, both candidates: adjacent raw lanes",
+      "evidence": "Raw dots visibly merge/overlap in multiple lanes, especially denser later groups. Supplied physical packing audit has 45 overlapping-circle pairs, 46 spacing violations and 33 fallback rows for each candidate; numeric retention alone is not visible separation.",
+      "requirement": "Adopted 9 pt2 points and all observations must remain readable without silently dropping units or claiming valid packing.",
+      "action": "Increase physically allowed categorical spread within group boundaries; consider a larger side-lane offset coordinated with narrow summaries. After any center-lane proposal, independently recheck median/whisker/point occlusion. Preserve 100 x 80 mm, 8 pt font, point area and 0–30 scale. If a readable arrangement cannot fit those constraints, record the blocker and seek an explicitly changed layout rather than reducing points/data.",
+      "status": "open"
+    },
+    {
+      "id": "FR-02",
+      "severity": "major",
+      "location": "dense-unequal-violins, both candidates: raw-ring packing",
+      "evidence": "Exposed and Reference have crowded overlapping rings at full view and 96 dpi. Supplied audit has 36 overlapping-circle pairs, 37 spacing violations and 37 fallback rows per candidate. A .1183 pt minimum center distance is much less than the 3.45 pt outer ring diameter.",
+      "requirement": "Actual mark spacing must support an honest raw-observation layer at fixed 9 pt2, not just source-to-artist retention.",
+      "action": "Increase categorical packing allowance with verified group-boundary clearance, retaining data/quantitative axes/font/point area. Reinspect actual marks after numerical spacing passes; passing packing alone does not resolve summary intersections. Do not alter KDE bandwidth, numeric values or sample sizes to mimic a desired silhouette.",
+      "status": "open"
+    },
+    {
+      "id": "FR-03",
+      "severity": "major",
+      "location": "dense-unequal-violins, both candidates: contour/summary/raw layering",
+      "evidence": "Centered hollow points compete with KDE contours and colored IQR rectangles; numerous rings cross contour lines and some ring portions are hidden or interrupted by the summary layer. The white-body candidate does not cleanly separate these layers; merely tinting/widening candidate02 is insufficient.",
+      "requirement": "Estimated density, raw observations and quartile summary must be distinguishable; hollow marks do not automatically ensure that.",
+      "action": "Arrange a physically viable category-associated side lane plus narrower KDE contour, or otherwise reserve an actual separate summary position. Verify contour-to-mark and median/IQR visibility on the final image; no data/test/scale changes.",
+      "status": "open"
+    },
+    {
+      "id": "FR-04",
+      "severity": "minor",
+      "location": "three-class-scatter, both candidates: x-boundary point marks",
+      "evidence": "Green edge circles are visibly cut at right/left plot bounds. Source Class C x11.953665 is only .2723 mm from right boundary in the 70.5282 mm plot versus .6110 mm filled circle radius; actual SVG clips point groups to the data rectangle. Hollow edges extend to .6904 mm.",
+      "requirement": "Retain full fixed-size symbols without moving measured coordinates or changing locked 0–12 x limits.",
+      "action": "Allow the few boundary symbol strokes/fills to extend into existing canvas margin, for example a custom renderer with marker clip_on=False while axes limits and centers stay fixed; check complete symbol/canvas clearance in actual PNG/PDF/SVG. Do not expand locked x limits or jitter quantitative x.",
+      "status": "open"
+    },
+    {
+      "id": "FR-05",
+      "severity": "note",
+      "location": "wide-annotated-matrix, both candidates: overall canvas proportion",
+      "evidence": "Correct shallow matrix geometry leaves substantial unused vertical canvas in the fixed 128 x 78 mm page. Values/cells are readable; stretching the four rows to fill height would alter cell proportion without new reading benefit.",
+      "requirement": "Fixed supplied canvas is preserved, while useful geometry should follow the 4 x 13 matrix and label sizes.",
+      "action": "Retain honest compact matrix; if a future user accepts a shorter canvas, separately propose that physical layout. Do not claim this first-render choice establishes publication-level proportion.",
+      "status": "residual_note"
+    }
+  ],
+  "viewed_files": [
+    {
+      "task": "dense-unequal-violins",
+      "candidate": "candidate-01",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-01/panel.png",
+      "sha256": "9daf1e3995253bdd4bac52b3a523be1dac6689d7cbda45752692956b17aa9efd",
+      "actually_opened": true
+    },
+    {
+      "task": "dense-unequal-violins",
+      "candidate": "candidate-01",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-01/preview-96dpi.png",
+      "sha256": "ae7bf3bb3cfbe7edeb26c1d573a52ec15b88c0ca28b263dc6b358911f1f3da12",
+      "actually_opened": true
+    },
+    {
+      "task": "dense-unequal-violins",
+      "candidate": "candidate-02",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-02/panel.png",
+      "sha256": "a2f8c334c7737b9bffdbc39e8337a66fa6f9219d981d8e7ce2675579c6bb76b3",
+      "actually_opened": true
+    },
+    {
+      "task": "dense-unequal-violins",
+      "candidate": "candidate-02",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-02/preview-96dpi.png",
+      "sha256": "bfa0c6ab4985e76df5233cf8e647de0bd7fd94a7d4f713f381872a2dd3652855",
+      "actually_opened": true
+    },
+    {
+      "task": "six-long-label-boxes",
+      "candidate": "candidate-01",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-01/panel.png",
+      "sha256": "ee6e02cc97089049eb81593feaac1efdf58303c684be2e37df040a067a67c329",
+      "actually_opened": true
+    },
+    {
+      "task": "six-long-label-boxes",
+      "candidate": "candidate-01",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-01/preview-96dpi.png",
+      "sha256": "a264a0ae31b11c83b99c1fbe7759b615b92a5786f8330ff79737229968bc8475",
+      "actually_opened": true
+    },
+    {
+      "task": "six-long-label-boxes",
+      "candidate": "candidate-02",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-02/panel.png",
+      "sha256": "41b2ea1fec3fe7a92568b0731451bc853c372c3a3aa02c01e64661f23026f441",
+      "actually_opened": true
+    },
+    {
+      "task": "six-long-label-boxes",
+      "candidate": "candidate-02",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-02/preview-96dpi.png",
+      "sha256": "604d86911b109d0effb6fb748984f7dacef39a424da8f2c595d2b28762dc0865",
+      "actually_opened": true
+    },
+    {
+      "task": "three-class-scatter",
+      "candidate": "candidate-01",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-01/panel.png",
+      "sha256": "f4f542454f5f4fb1bbac56efc34c37097437ddf8c460c0514485ac8459988744",
+      "actually_opened": true
+    },
+    {
+      "task": "three-class-scatter",
+      "candidate": "candidate-01",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-01/preview-96dpi.png",
+      "sha256": "29e384b7dd884e061876f3ba551d09ea6265b49908aa8979c839f483edb81bd4",
+      "actually_opened": true
+    },
+    {
+      "task": "three-class-scatter",
+      "candidate": "candidate-02",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-02/panel.png",
+      "sha256": "a5ced2f0a6ca7c6aee6c9ba658a1427419edc246e0492d78abe2056c195996b1",
+      "actually_opened": true
+    },
+    {
+      "task": "three-class-scatter",
+      "candidate": "candidate-02",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-02/preview-96dpi.png",
+      "sha256": "173863a1bef917e8e3bd9cb6f518ad731381ea6cfb48f7a3bae43f408c927559",
+      "actually_opened": true
+    },
+    {
+      "task": "wide-annotated-matrix",
+      "candidate": "candidate-01",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-01/panel.png",
+      "sha256": "e7342d90da2ad0d767a93377763f9977869f7e7e32a32520dd4fc98cc8c968ab",
+      "actually_opened": true
+    },
+    {
+      "task": "wide-annotated-matrix",
+      "candidate": "candidate-01",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-01/preview-96dpi.png",
+      "sha256": "8ab2fc0c97601be7a2070c9bd9a400265b11ca930d93102e49d0dd94221d7add",
+      "actually_opened": true
+    },
+    {
+      "task": "wide-annotated-matrix",
+      "candidate": "candidate-02",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-02/panel.png",
+      "sha256": "d39a15c42c32f5ee439721d6666031b18588f14a8d56bd47d73496c38bb3fa96",
+      "actually_opened": true
+    },
+    {
+      "task": "wide-annotated-matrix",
+      "candidate": "candidate-02",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-02/preview-96dpi.png",
+      "sha256": "c236cbbcfcf9c43c8783e4aaad82a9fe9857432a3f44fa0c2ef90ac3f56f69ef",
+      "actually_opened": true
+    },
+    {
+      "task": "yen-relative-m6a",
+      "candidate": "candidate-01",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-01/panel.png",
+      "sha256": "ab17add3b54db227a0e351cd40cc9af3d9e9a17d03ecd27cacbb7ea46f253979",
+      "actually_opened": true
+    },
+    {
+      "task": "yen-relative-m6a",
+      "candidate": "candidate-01",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-01/preview-96dpi.png",
+      "sha256": "c4e19cde2dbe005cd7c6070724daa3a718f3632d963ee4bc166ed8db89a7eccc",
+      "actually_opened": true
+    },
+    {
+      "task": "yen-relative-m6a",
+      "candidate": "candidate-02",
+      "kind": "full_png",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/panel.png",
+      "sha256": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203",
+      "actually_opened": true
+    },
+    {
+      "task": "yen-relative-m6a",
+      "candidate": "candidate-02",
+      "kind": "nominal_96dpi_pdf_preview",
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/preview-96dpi.png",
+      "sha256": "09bcefb5ede3e121ff0b6589131ed62e9b0755e599b2e56bbda53237ecc00d4a",
+      "actually_opened": true
+    }
+  ],
+  "read_artifacts": [
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-01/spec.json",
+      "sha256": "95b30c0541854c2d8fa82e2e4b76045b792b901c72248c5daf8adfc2ab137228"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-01/geometry-evidence.json",
+      "sha256": "7b6125abddc63082d65056ae2ed5732252d719d7f4a52b7b1ed6e671dc81bb04"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-01/qa.json",
+      "sha256": "4edf49a16351600e6246969367aee3d78cc73da9b228d585bc1e187667b40d25"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-02/spec.json",
+      "sha256": "3adee55a02f3f6c93db4a857276b16750ca11f9c513c7e59a92732f525407dd2"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-02/geometry-evidence.json",
+      "sha256": "3aa2666f226919f6a64c25c0b2f547bbfc27dc9028fd2f7fb100ff5b6dd21e5e"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/candidate-02/qa.json",
+      "sha256": "53aafae31e969e5b00d46d9d151e115973b18e20d1ec783c7b0513461a4e4d8a"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/source-spec.json",
+      "sha256": "0bd4c30e3df902025e512c7d8439282d3d7fe7c6e9b04cf7ca6c29cd63e69a0f"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/dense-unequal-violins/caption.md",
+      "sha256": "be64239cca453a0615a2b0643127ac8ff5e4414f95b2fd39f7ec81a209e11509"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/dense-unequal-violins/manifest.json",
+      "sha256": "bdede85ef5a3f9a70a3b8604b5c70d82f0b1032aea30e016725e68f6dfe03714"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-01/spec.json",
+      "sha256": "17b45fc6bebb43cc98fe43480cf934dd676cc2531bf6fa3aae3986a6772952d5"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-01/geometry-evidence.json",
+      "sha256": "3cf32b771234518988cb897a521abe49bc20765d780c7af9085a65d4131d5b4c"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-01/qa.json",
+      "sha256": "88ab29a95dac97b6c0bef729f221e2c75e81084cff2f896c27956c1a89b86df5"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-02/spec.json",
+      "sha256": "367e84a0b87ff8e6ec133fa36481e7ad07c412f6c91ed26403df4723390ccd50"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-02/geometry-evidence.json",
+      "sha256": "7c33a3b9a4b1b445cd7040e367b67f938b63f59a2d67438e2b25bb00421ed837"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/candidate-02/qa.json",
+      "sha256": "ec47c7bef9161725747f455f162e4ecc282400544ff2d1d132e16da6c57b876d"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/source-spec.json",
+      "sha256": "5a9f3903958f97ab7cf4a406b9ed3c18df309a12320ea000ea37a3ebcac090d1"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/six-long-label-boxes/caption.md",
+      "sha256": "15602b95a65f4adc42d9542e0b6f7714fdfcd2631da7ca130f843ac2b04835dc"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/six-long-label-boxes/manifest.json",
+      "sha256": "d679a0e9ebc27676b0686a884072dd03c24534355779e86cee31ebba6c0f51ef"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-01/spec.json",
+      "sha256": "360b7235584b79ca7103dace9122062fa0a652711320318e2b3c75cebb0d3250"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-01/geometry-evidence.json",
+      "sha256": "14cbd01b71fbd8aac71ffb6bfff6468302736c605800e496bc42cae725aa71b3"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-01/qa.json",
+      "sha256": "fc437a85f983ff86c87416e6a3b9d49f79020dc6c4896b348a46810076b2c1e8"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-02/spec.json",
+      "sha256": "6f56fc931e94da23a5d9e13e70e221500c6ccefae7f66cfeb8e868ca746e37da"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-02/geometry-evidence.json",
+      "sha256": "14cbd01b71fbd8aac71ffb6bfff6468302736c605800e496bc42cae725aa71b3"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/candidate-02/qa.json",
+      "sha256": "02ba86c4e8e2cabfa25a5496b95ce614ccd3ee2891acf0da97a9cc5d9f0b5a7f"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/source-spec.json",
+      "sha256": "00c5213341b7c570c633a38a767259e344da31f9ba90d6c1c6e8d2e5ca80f89a"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/three-class-scatter/caption.md",
+      "sha256": "db8378a59824bb8d2de97472ed5b0c0e2ae83ac126ebbbad1dd91eade1d4fd5d"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/three-class-scatter/manifest.json",
+      "sha256": "ad689cd760f33f9dcf069174fcbb37fefe3d3d512194d656032a790710947159"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-01/spec.json",
+      "sha256": "6b4939d5124363ed5c9bfd46283642e65a95bf5298bb3cc4bd59a9635d7a7890"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-01/geometry-evidence.json",
+      "sha256": "da77af1f5388e0d6855eb3dc16cca714ad2e0f2fb81f6ba768f92fc1efe8de32"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-01/qa.json",
+      "sha256": "8952429bd925828c3034065d8daaeb85c98aa708e3793d780229f6cb8d60f589"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-02/spec.json",
+      "sha256": "7e4f50052e758f285bf9ebb110967f0f732d9904ff306d678c4ad9e0e624af96"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-02/geometry-evidence.json",
+      "sha256": "42ccd7abf346ee67141c2b60ef27caba7bfb638ea9a7d7931966eb0b0b786726"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/candidate-02/qa.json",
+      "sha256": "e88c7b3c9f4aab4b47aaf7309b4083191ba06dac5ef7d332ac129f2fa0735e31"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/source-spec.json",
+      "sha256": "ffc4a81444a43611a4d315c19838232d577ada29b8c95e8e5d999a824e31ac5d"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/wide-annotated-matrix/caption.md",
+      "sha256": "e38659fbf9271f1e2af26ad3bf5e877119629b60d5488e71e211c9900df7b942"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/wide-annotated-matrix/manifest.json",
+      "sha256": "a8f132a2df82973caf6cb6a41abfb0f5d46050089a9093a196d468fb83b4db7d"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-01/spec.json",
+      "sha256": "7188a935e6a4ad2a2b6e059fc32b857550c25800728207e2ed7be234cfcef38b"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-01/geometry-evidence.json",
+      "sha256": "9bf0a4f5a5d983dd01843b48f835a84b7c0b0b5d3d5b6c791f8067aee36f3ffe"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-01/qa.json",
+      "sha256": "7ecdf72509b499b1348ea40d57ab9b24fa9522c6cd9accb5b8bc1aaa3b7deabd"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/spec.json",
+      "sha256": "bb6828f720926aab2f0a7e42fb95eae1373968d8c39aa217a080e8aa88829215"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/geometry-evidence.json",
+      "sha256": "2d5b684165010c1c07d2e1eb360dc633715e7cf2aeac6d9ff115ef5b7ce34e64"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/qa.json",
+      "sha256": "c93f1f78d29ae54cbc1beb92c8c75b35717772add9607307eb91d5c2fa7ab108"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/source-spec.json",
+      "sha256": "c1ae05621e46922b9faab4d6734262f9ea70d167ce86f1a20ac64cd418e32d4b"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/yen-relative-m6a/caption.md",
+      "sha256": "6221e7d88407baf4492e3b800203a04807f90c2352314fb94c6e94318b4f9fe4"
+    },
+    {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/manifest.json",
+      "sha256": "8e9aa8ac5b0c539223e9d83d6f6d6ebde3a49373f138c328ddba8b380b0d451e"
+    }
+  ],
+  "independent_export_checks": {
+    "status": "passed",
+    "records": [
+      {
+        "task": "dense-unequal-violins",
+        "variant": "candidate-01",
+        "actual_sha256": {
+          "png": "9daf1e3995253bdd4bac52b3a523be1dac6689d7cbda45752692956b17aa9efd",
+          "pdf": "24185cd4343dd5ed97c4aecc4c5be64163e08e3ea920e59822988f4b2f02c0bc",
+          "svg": "aa143bd62a86967344a360c095798ff342ac192a2d1db82176dfb422bc1fd1ff"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          89.99999745686848,
+          77.9999977959527
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCWMXZJ+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "255.11811pt",
+        "svg_height": "221.102362pt",
+        "svg_text_nodes": 10,
+        "png_pixels": [
+          1063,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          341,
+          295
+        ],
+        "preview_sha256": "ae7bf3bb3cfbe7edeb26c1d573a52ec15b88c0ca28b263dc6b358911f1f3da12"
+      },
+      {
+        "task": "dense-unequal-violins",
+        "variant": "candidate-02",
+        "actual_sha256": {
+          "png": "a2f8c334c7737b9bffdbc39e8337a66fa6f9219d981d8e7ce2675579c6bb76b3",
+          "pdf": "5b8d650a942dac8e91782e9ce4a4f1eeb147c6806efbf037f22ff2a1f6081eee",
+          "svg": "913a40fb32b4375e505ac89caaf0c29bc564ad105bdadceb7967102a7effd34a"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          89.99999745686848,
+          77.9999977959527
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nCWMXZJ+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "255.11811pt",
+        "svg_height": "221.102362pt",
+        "svg_text_nodes": 10,
+        "png_pixels": [
+          1063,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          341,
+          295
+        ],
+        "preview_sha256": "bfa0c6ab4985e76df5233cf8e647de0bd7fd94a7d4f713f381872a2dd3652855"
+      },
+      {
+        "task": "six-long-label-boxes",
+        "variant": "candidate-01",
+        "actual_sha256": {
+          "png": "ee6e02cc97089049eb81593feaac1efdf58303c684be2e37df040a067a67c329",
+          "pdf": "8f34e133e1007ac4926e85c4944998c2cbf5d84d4c3edffac9814b1582ef26a9",
+          "svg": "74d4aac0365503b71948761b360630fa5ced8e76c9e0dc5bdf7e007df014c4d5"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          100.00000076293945,
+          79.99999953375922
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nHHMXYK+ArialMT                       CID TrueType      Identity-H       yes yes yes     21  0",
+        "svg_width": "283.464567pt",
+        "svg_height": "226.771654pt",
+        "svg_text_nodes": 15,
+        "png_pixels": [
+          1181,
+          945
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          378,
+          303
+        ],
+        "preview_sha256": "a264a0ae31b11c83b99c1fbe7759b615b92a5786f8330ff79737229968bc8475"
+      },
+      {
+        "task": "six-long-label-boxes",
+        "variant": "candidate-02",
+        "actual_sha256": {
+          "png": "41b2ea1fec3fe7a92568b0731451bc853c372c3a3aa02c01e64661f23026f441",
+          "pdf": "0794c20d1655db5a02fdffc9b1cb4984d53aa1bd5444d5a11ed9d4f64506b6e5",
+          "svg": "e1eb0875551c65c923fa00df0da135098d85327ac630435531c834329e1bc0a2"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          100.00000076293945,
+          79.99999953375922
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nHHMXYK+ArialMT                       CID TrueType      Identity-H       yes yes yes     21  0",
+        "svg_width": "283.464567pt",
+        "svg_height": "226.771654pt",
+        "svg_text_nodes": 15,
+        "png_pixels": [
+          1181,
+          945
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          378,
+          303
+        ],
+        "preview_sha256": "604d86911b109d0effb6fb748984f7dacef39a424da8f2c595d2b28762dc0865"
+      },
+      {
+        "task": "three-class-scatter",
+        "variant": "candidate-01",
+        "actual_sha256": {
+          "png": "f4f542454f5f4fb1bbac56efc34c37097437ddf8c460c0514485ac8459988744",
+          "pdf": "0546b5505ff08ed32aecf2a9b55e4c6bad57756924a52d8ca5fe9c4695c3c092",
+          "svg": "8024c502b334107e21303f6943b84a81ff738772f4e1e76e61672eef1dace772"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          88.00000110202366,
+          77.9999977959527
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDEKRQS+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "249.448819pt",
+        "svg_height": "221.102362pt",
+        "svg_text_nodes": 20,
+        "png_pixels": [
+          1039,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          333,
+          295
+        ],
+        "preview_sha256": "29e384b7dd884e061876f3ba551d09ea6265b49908aa8979c839f483edb81bd4"
+      },
+      {
+        "task": "three-class-scatter",
+        "variant": "candidate-02",
+        "actual_sha256": {
+          "png": "a5ced2f0a6ca7c6aee6c9ba658a1427419edc246e0492d78abe2056c195996b1",
+          "pdf": "72d7b1e700219f77de752e09d7ae22aed4157e675451f5e022986db2bbdec0c1",
+          "svg": "07b3e64ff354eb6e0b3eb09b62d77ad41b354d449573ff51cb93bcce38af7cba"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          88.00000110202366,
+          77.9999977959527
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nDEKRQS+ArialMT                       CID TrueType      Identity-H       yes yes yes     18  0",
+        "svg_width": "249.448819pt",
+        "svg_height": "221.102362pt",
+        "svg_text_nodes": 20,
+        "png_pixels": [
+          1039,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          333,
+          295
+        ],
+        "preview_sha256": "173863a1bef917e8e3bd9cb6f518ad731381ea6cfb48f7a3bae43f408c927559"
+      },
+      {
+        "task": "wide-annotated-matrix",
+        "variant": "candidate-01",
+        "actual_sha256": {
+          "png": "e7342d90da2ad0d767a93377763f9977869f7e7e32a32520dd4fc98cc8c968ab",
+          "pdf": "146cfadf54970e86c3ed172de3844b3310b4e7e1b3c3ca2a60ec164d0743360d",
+          "svg": "a04137acaf9ac2b0796dce3df6820351a0bf801b96bbaa534bb4cff72ceec79d"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          128.0000035603841,
+          77.9999977959527
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGDTBZT+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "svg_width": "362.834646pt",
+        "svg_height": "221.102362pt",
+        "svg_text_nodes": 75,
+        "png_pixels": [
+          1512,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          484,
+          295
+        ],
+        "preview_sha256": "8ab2fc0c97601be7a2070c9bd9a400265b11ca930d93102e49d0dd94221d7add"
+      },
+      {
+        "task": "wide-annotated-matrix",
+        "variant": "candidate-02",
+        "actual_sha256": {
+          "png": "d39a15c42c32f5ee439721d6666031b18588f14a8d56bd47d73496c38bb3fa96",
+          "pdf": "cbe5cc6d8017015be70b0dd4bfcced64106913343c5a9d48986054dd04e72433",
+          "svg": "67a1ecab48f6ab0d6dc70647ac41359b26cc449d33b03f29fb1509d94fc223b2"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          128.0000035603841,
+          77.9999977959527
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nGDTBZT+ArialMT                       CID TrueType      Identity-H       yes yes yes     17  0",
+        "svg_width": "362.834646pt",
+        "svg_height": "221.102362pt",
+        "svg_text_nodes": 75,
+        "png_pixels": [
+          1512,
+          921
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          484,
+          295
+        ],
+        "preview_sha256": "c236cbbcfcf9c43c8783e4aaad82a9fe9857432a3f44fa0c2ef90ac3f56f69ef"
+      },
+      {
+        "task": "yen-relative-m6a",
+        "variant": "candidate-01",
+        "actual_sha256": {
+          "png": "ab17add3b54db227a0e351cd40cc9af3d9e9a17d03ecd27cacbb7ea46f253979",
+          "pdf": "d8071cf78bddc09a844fc4a3629d1dc9dd0ac39d1c1df864bd9e40f7d6fd8b75",
+          "svg": "2d64aec47532ed1373b084d70b0142210e6f1b8dd1ce6f682a7ccdac74202a4d"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          59.99999830457899,
+          62.000000042385516
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nHKFQLW+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0",
+        "svg_width": "170.07874pt",
+        "svg_height": "175.748031pt",
+        "svg_text_nodes": 7,
+        "png_pixels": [
+          709,
+          732
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          227,
+          235
+        ],
+        "preview_sha256": "c4e19cde2dbe005cd7c6070724daa3a718f3632d963ee4bc166ed8db89a7eccc"
+      },
+      {
+        "task": "yen-relative-m6a",
+        "variant": "candidate-02",
+        "actual_sha256": {
+          "png": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203",
+          "pdf": "02b1e1553b2bee1e71df4867c5777cf63f33f611fa9a356d1e96ce5effa214dd",
+          "svg": "a1515d9550674a267e1314ee20010c8e1e098ffad0ea63277ac258dd22b0a92b"
+        },
+        "all_3_match_renderer_qa": true,
+        "pdf_mm": [
+          59.99999830457899,
+          62.000000042385516
+        ],
+        "pdf_font_names": [
+          "ArialMT"
+        ],
+        "pdf_font_sizes_pt": [
+          8.0
+        ],
+        "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nHKFQLW+ArialMT                       CID TrueType      Identity-H       yes yes yes     15  0",
+        "svg_width": "170.07874pt",
+        "svg_height": "175.748031pt",
+        "svg_text_nodes": 7,
+        "png_pixels": [
+          709,
+          732
+        ],
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "preview_pixels": [
+          227,
+          235
+        ],
+        "preview_sha256": "09bcefb5ede3e121ff0b6589131ed62e9b0755e599b2e56bbda53237ecc00d4a"
+      }
+    ],
+    "scope": "All ten actual PDF/SVG/PNG dimensions, PDF ArialMT 8 pt/embedding, SVG text, PNG dpi and 30 export hashes independently checked; hashes match supplied renderer QA. This is export identity, not aesthetic pass."
+  },
+  "provided_numerical_geometry_evidence": {
+    "records": [
+      {
+        "task": "dense-unequal-violins",
+        "candidate": "candidate-01",
+        "qa_status": "needs_revision",
+        "valid_outputs": false,
+        "source_to_artist": {
+          "status": "pass",
+          "numeric_coordinates_preserved": true,
+          "point_area_preserved": true,
+          "observation_count": 235
+        },
+        "data_region_mm": [
+          17.3885724826389,
+          11.177734375,
+          64.8,
+          64.82226562500001
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.6,
+            2.6
+          ],
+          "y": [
+            0.0,
+            24.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": 20.249999999999996,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": "needs_revision",
+          "overlapping_circle_pairs": 36,
+          "spacing_violation_pairs": 37,
+          "minimum_center_distance_pt": 0.11832658073376846,
+          "diameter_pt": 3.45,
+          "gap_pt": 0.3,
+          "requested_max_offset_mm": 4.0,
+          "point_category_offset": 0.0
+        },
+        "fallback_rows": 37,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "dense-unequal-violins",
+        "candidate": "candidate-02",
+        "qa_status": "needs_revision",
+        "valid_outputs": false,
+        "source_to_artist": {
+          "status": "pass",
+          "numeric_coordinates_preserved": true,
+          "point_area_preserved": true,
+          "observation_count": 235
+        },
+        "data_region_mm": [
+          11.57714496527778,
+          11.177734375,
+          76.42285503472223,
+          64.82226562500001
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.6,
+            2.6
+          ],
+          "y": [
+            0.0,
+            24.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": 23.882142198350696,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": "needs_revision",
+          "overlapping_circle_pairs": 36,
+          "spacing_violation_pairs": 37,
+          "minimum_center_distance_pt": 0.11832658073376846,
+          "diameter_pt": 3.45,
+          "gap_pt": 0.3,
+          "requested_max_offset_mm": 4.0,
+          "point_category_offset": 0.0
+        },
+        "fallback_rows": 37,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "six-long-label-boxes",
+        "candidate": "candidate-01",
+        "qa_status": "needs_revision",
+        "valid_outputs": false,
+        "source_to_artist": {
+          "status": "pass",
+          "numeric_coordinates_preserved": true,
+          "point_area_preserved": true,
+          "observation_count": 153
+        },
+        "data_region_mm": [
+          11.57714496527778,
+          21.333996677555007,
+          86.42285503472223,
+          55.63867584848666
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.6,
+            5.6
+          ],
+          "y": [
+            0.0,
+            30.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": 13.939170166890685,
+        "summary_thickness_mm": 2.2302672267025097,
+        "packing": {
+          "status": "needs_revision",
+          "overlapping_circle_pairs": 45,
+          "spacing_violation_pairs": 46,
+          "minimum_center_distance_pt": 0.17670894284761432,
+          "diameter_pt": 3.0,
+          "gap_pt": 0.3,
+          "requested_max_offset_mm": 1.3,
+          "point_category_offset": 0.29
+        },
+        "fallback_rows": 33,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Baseline",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Early response",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Mid response",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Late response",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Recovery",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Persistent",
+            "rotation": 35.0
+          }
+        ],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "six-long-label-boxes",
+        "candidate": "candidate-02",
+        "qa_status": "needs_revision",
+        "valid_outputs": false,
+        "source_to_artist": {
+          "status": "pass",
+          "numeric_coordinates_preserved": true,
+          "point_area_preserved": true,
+          "observation_count": 153
+        },
+        "data_region_mm": [
+          11.57714496527778,
+          21.333996677555007,
+          86.42285503472223,
+          55.63867584848666
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.6,
+            5.6
+          ],
+          "y": [
+            0.0,
+            30.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": 13.939170166890685,
+        "summary_thickness_mm": 2.7878340333781373,
+        "packing": {
+          "status": "needs_revision",
+          "overlapping_circle_pairs": 45,
+          "spacing_violation_pairs": 46,
+          "minimum_center_distance_pt": 0.17670894284761432,
+          "diameter_pt": 3.0,
+          "gap_pt": 0.3,
+          "requested_max_offset_mm": 1.3,
+          "point_category_offset": 0.29
+        },
+        "fallback_rows": 33,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Baseline",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Early response",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Mid response",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Late response",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Recovery",
+            "rotation": 35.0
+          },
+          {
+            "axes": 0,
+            "axis": "x",
+            "text": "Persistent",
+            "rotation": 35.0
+          }
+        ],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "three-class-scatter",
+        "candidate": "candidate-01",
+        "qa_status": "pass",
+        "valid_outputs": true,
+        "source_to_artist": {
+          "status": "pass",
+          "numeric_coordinates_preserved": true,
+          "point_area_preserved": true,
+          "observation_count": 135
+        },
+        "data_region_mm": [
+          13.947811631944447,
+          11.177734375,
+          70.52818836805555,
+          52.24916992187502
+        ],
+        "numeric_limits": {
+          "x": [
+            0.0,
+            12.0
+          ],
+          "y": [
+            -4.0,
+            15.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": null,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": null,
+          "overlapping_circle_pairs": null,
+          "spacing_violation_pairs": null,
+          "minimum_center_distance_pt": null,
+          "diameter_pt": null,
+          "gap_pt": null,
+          "requested_max_offset_mm": null,
+          "point_category_offset": null
+        },
+        "fallback_rows": 0,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "three-class-scatter",
+        "candidate": "candidate-02",
+        "qa_status": "pass",
+        "valid_outputs": true,
+        "source_to_artist": {
+          "status": "pass",
+          "numeric_coordinates_preserved": true,
+          "point_area_preserved": true,
+          "observation_count": 135
+        },
+        "data_region_mm": [
+          13.947811631944447,
+          11.177734375,
+          70.52818836805555,
+          52.24916992187502
+        ],
+        "numeric_limits": {
+          "x": [
+            0.0,
+            12.0
+          ],
+          "y": [
+            -4.0,
+            15.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": null,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": null,
+          "overlapping_circle_pairs": null,
+          "spacing_violation_pairs": null,
+          "minimum_center_distance_pt": null,
+          "diameter_pt": null,
+          "gap_pt": null,
+          "requested_max_offset_mm": null,
+          "point_category_offset": null
+        },
+        "fallback_rows": 0,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "wide-annotated-matrix",
+        "candidate": "candidate-01",
+        "qa_status": "pass",
+        "valid_outputs": true,
+        "source_to_artist": {
+          "status": "pass",
+          "matrix_values_preserved": true,
+          "color_limits": [
+            0.0,
+            12.0
+          ]
+        },
+        "data_region_mm": [
+          29.9796111111111,
+          32.73824207899305,
+          74.54200000000002,
+          22.935999999999993
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.5,
+            12.5
+          ],
+          "y": [
+            3.5,
+            -0.5
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": null,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": null,
+          "overlapping_circle_pairs": null,
+          "spacing_violation_pairs": null,
+          "minimum_center_distance_pt": null,
+          "diameter_pt": null,
+          "gap_pt": null,
+          "requested_max_offset_mm": null,
+          "point_category_offset": null
+        },
+        "fallback_rows": 0,
+        "cell_fit": {
+          "status": "pass",
+          "overflow_count": 0,
+          "overlap_pair_count": 0,
+          "minimum_sufficient_cell_dimensions_mm": {
+            "width": 5.734,
+            "height": 3.0485894097222253
+          }
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "wide-annotated-matrix",
+        "candidate": "candidate-02",
+        "qa_status": "pass",
+        "valid_outputs": true,
+        "source_to_artist": {
+          "status": "pass",
+          "matrix_values_preserved": true,
+          "color_limits": [
+            0.0,
+            12.0
+          ]
+        },
+        "data_region_mm": [
+          21.750611111111105,
+          30.206242078993057,
+          90.99999999999999,
+          28.0
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.5,
+            12.5
+          ],
+          "y": [
+            3.5,
+            -0.5
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": null,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": null,
+          "overlapping_circle_pairs": null,
+          "spacing_violation_pairs": null,
+          "minimum_center_distance_pt": null,
+          "diameter_pt": null,
+          "gap_pt": null,
+          "requested_max_offset_mm": null,
+          "point_category_offset": null
+        },
+        "fallback_rows": 0,
+        "cell_fit": {
+          "status": "pass",
+          "overflow_count": 0,
+          "overlap_pair_count": 0,
+          "minimum_sufficient_cell_dimensions_mm": {
+            "width": 5.734,
+            "height": 3.0485894097222253
+          }
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "yen-relative-m6a",
+        "candidate": "candidate-01",
+        "qa_status": "pass",
+        "valid_outputs": true,
+        "source_to_artist": {
+          "status": "pass",
+          "source_rows": 6,
+          "raw_points": 6,
+          "component_values_normalized": false,
+          "ratios_derived": false,
+          "sample_size_independence_inferred": false,
+          "issues": []
+        },
+        "data_region_mm": [
+          16.650572482638882,
+          11.177734375000002,
+          37.80000000000001,
+          48.82226562500002
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.55,
+            1.55
+          ],
+          "y": [
+            0.0,
+            140.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": null,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": null,
+          "overlapping_circle_pairs": null,
+          "spacing_violation_pairs": null,
+          "minimum_center_distance_pt": null,
+          "diameter_pt": null,
+          "gap_pt": null,
+          "requested_max_offset_mm": null,
+          "point_category_offset": null
+        },
+        "fallback_rows": 0,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      },
+      {
+        "task": "yen-relative-m6a",
+        "candidate": "candidate-02",
+        "qa_status": "pass",
+        "valid_outputs": true,
+        "source_to_artist": {
+          "status": "pass",
+          "source_rows": 6,
+          "raw_points": 6,
+          "component_values_normalized": false,
+          "ratios_derived": false,
+          "sample_size_independence_inferred": false,
+          "issues": []
+        },
+        "data_region_mm": [
+          13.500572482638885,
+          11.177734375000002,
+          44.100000000000016,
+          48.82226562500002
+        ],
+        "numeric_limits": {
+          "x": [
+            -0.55,
+            1.55
+          ],
+          "y": [
+            0.0,
+            140.0
+          ]
+        },
+        "scales": {
+          "x": "linear",
+          "y": "linear"
+        },
+        "category_pitch_mm": null,
+        "summary_thickness_mm": null,
+        "packing": {
+          "status": null,
+          "overlapping_circle_pairs": null,
+          "spacing_violation_pairs": null,
+          "minimum_center_distance_pt": null,
+          "diameter_pt": null,
+          "gap_pt": null,
+          "requested_max_offset_mm": null,
+          "point_category_offset": null
+        },
+        "fallback_rows": 0,
+        "cell_fit": {
+          "status": null,
+          "overflow_count": null,
+          "overlap_pair_count": null,
+          "minimum_sufficient_cell_dimensions_mm": null
+        },
+        "clipped_text": [],
+        "oblique_tick_qa": [],
+        "independent_reviewer_rerun": false
+      }
+    ],
+    "scope": "Packing counts, quartiles/KDE/source-to-artist/value retention and cell text-fit assertions read as supplied evidence; not independently rerun. Reviewer visually inspected actual layering and angled labels."
+  },
+  "independent_scatter_boundary_check": [
+    {
+      "candidate": "candidate-01",
+      "actual_svg_circle_radius_pt": 1.732051,
+      "outer_radius_mm": 0.6110290348923538,
+      "locked_x_limits": [
+        0.0,
+        12.0
+      ],
+      "plot_width_mm": 70.52818836805555,
+      "actual_svg_clip_rects": [
+        [
+          {
+            "x": "39.537104",
+            "y": "41.309563",
+            "width": "199.922424",
+            "height": "148.107883"
+          }
+        ]
+      ],
+      "actual_svg_clipped_nodes": 3,
+      "source_boundary_mark_envelopes_crossing": [
+        {
+          "group": "Class A",
+          "source_x": 11.907234438424565,
+          "left_clearance_mm": 69.98297278465049,
+          "right_clearance_mm": 0.5452155834050615
+        },
+        {
+          "group": "Class C",
+          "source_x": 0.05218685377450738,
+          "left_clearance_mm": 0.3067203544453856,
+          "right_clearance_mm": 70.22146801361016
+        },
+        {
+          "group": "Class C",
+          "source_x": 11.953665279208401,
+          "left_clearance_mm": 70.25586304172462,
+          "right_clearance_mm": 0.27232532633092793
+        },
+        {
+          "group": "Class C",
+          "source_x": 11.923653518368136,
+          "left_clearance_mm": 70.07947344824136,
+          "right_clearance_mm": 0.4487149198142009
+        }
+      ],
+      "scope": "Source x parsed independently; actual SVG radius/clip rectangle inspected. Circle envelopes checked against locked range/data-region width, not a statistic recomputation."
+    },
+    {
+      "candidate": "candidate-02",
+      "actual_svg_circle_radius_pt": 1.732051,
+      "outer_radius_mm": 0.6904040348923539,
+      "locked_x_limits": [
+        0.0,
+        12.0
+      ],
+      "plot_width_mm": 70.52818836805555,
+      "actual_svg_clip_rects": [
+        [
+          {
+            "x": "39.537104",
+            "y": "41.309563",
+            "width": "199.922424",
+            "height": "148.107883"
+          }
+        ]
+      ],
+      "actual_svg_clipped_nodes": 135,
+      "source_boundary_mark_envelopes_crossing": [
+        {
+          "group": "Class A",
+          "source_x": 11.907234438424565,
+          "left_clearance_mm": 69.98297278465049,
+          "right_clearance_mm": 0.5452155834050615
+        },
+        {
+          "group": "Class C",
+          "source_x": 0.05218685377450738,
+          "left_clearance_mm": 0.3067203544453856,
+          "right_clearance_mm": 70.22146801361016
+        },
+        {
+          "group": "Class C",
+          "source_x": 11.953665279208401,
+          "left_clearance_mm": 70.25586304172462,
+          "right_clearance_mm": 0.27232532633092793
+        },
+        {
+          "group": "Class C",
+          "source_x": 11.923653518368136,
+          "left_clearance_mm": 70.07947344824136,
+          "right_clearance_mm": 0.4487149198142009
+        },
+        {
+          "group": "Class C",
+          "source_x": 0.10689974906647626,
+          "left_clearance_mm": 0.628287136554859,
+          "right_clearance_mm": 69.89990123150069
+        }
+      ],
+      "scope": "Source x parsed independently; actual SVG radius/clip rectangle inspected. Circle envelopes checked against locked range/data-region width, not a statistic recomputation."
+    }
+  ],
+  "source_snapshot_hash_checks": [
+    {
+      "task": "dense-unequal-violins",
+      "input_csv_hash_matches_snapshot": true,
+      "input_spec_hash_matches_snapshot": true
+    },
+    {
+      "task": "six-long-label-boxes",
+      "input_csv_hash_matches_snapshot": true,
+      "input_spec_hash_matches_snapshot": true
+    },
+    {
+      "task": "three-class-scatter",
+      "input_csv_hash_matches_snapshot": true,
+      "input_spec_hash_matches_snapshot": true
+    },
+    {
+      "task": "wide-annotated-matrix",
+      "input_csv_hash_matches_snapshot": true,
+      "input_spec_hash_matches_snapshot": true
+    },
+    {
+      "task": "yen-relative-m6a",
+      "input_csv_hash_matches_snapshot": true,
+      "input_spec_hash_matches_snapshot": true
+    }
+  ],
+  "residual_notes": [
+    "The two packing failures correctly remain needs_revision. More variants or software pass count do not make those first renders successful.",
+    "Integer tick formatting can reduce repeated .0 in scatter/distribution axes without changing scales; it is optional polish, not a required scientific fix.",
+    "No statistic, significance, pairing, dropped values, new numeric ranges or KDE scientific parameters are authorized as aesthetic repairs.",
+    "Independent source-page reproduction and new-agent generalization were not tested in this review."
+  ]
+}

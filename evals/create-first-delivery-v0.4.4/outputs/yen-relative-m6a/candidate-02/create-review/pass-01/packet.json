@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review_packet",
+  "policy_version": "0.4.4",
+  "pass_number": 1,
+  "reading_task": "Compare relative m6A after vehicle or STM2457 treatment",
+  "inputs": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02",
+    "caption": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/yen-relative-m6a/caption.md",
+    "baseline_dir": null,
+    "baseline_kind": null
+  },
+  "snapshot": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02",
+    "artifacts": {
+      "panel.png": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/panel.png",
+        "sha256": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203",
+        "bytes": 23788
+      },
+      "panel.pdf": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/panel.pdf",
+        "sha256": "02b1e1553b2bee1e71df4867c5777cf63f33f611fa9a356d1e96ce5effa214dd",
+        "bytes": 20097
+      },
+      "panel.svg": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/panel.svg",
+        "sha256": "a1515d9550674a267e1314ee20010c8e1e098ffad0ea63277ac258dd22b0a92b",
+        "bytes": 9668
+      },
+      "settings.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/settings.json",
+        "sha256": "e7da6f389132bdc824fad568ef6afed45b2d231fa5c6fb6844cb5e7fed737459",
+        "bytes": 4983
+      },
+      "elements.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/elements.json",
+        "sha256": "e1231b377fd8821f2d9573683e1d6a1f058f4e6e69dc563d61f7603364a2a04d",
+        "bytes": 12907
+      },
+      "qa.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/qa.json",
+        "sha256": "c93f1f78d29ae54cbc1beb92c8c75b35717772add9607307eb91d5c2fa7ab108",
+        "bytes": 16527
+      },
+      "stats.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/stats.json",
+        "sha256": "b0a0af971b2fa6e68decd12264ce621fef7a1583560eabee2a8d42d17e223524",
+        "bytes": 377
+      },
+      "plotting-data.csv": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/plotting-data.csv",
+        "sha256": "df627dc78e5ad296330f4cf91160e3a134e5e133037f85fcf3d417415da6156d",
+        "bytes": 290
+      },
+      "caption": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/yen-relative-m6a/caption.md",
+        "sha256": "6221e7d88407baf4492e3b800203a04807f90c2352314fb94c6e94318b4f9fe4",
+        "bytes": 552
+      }
+    },
+    "source_bindings": {
+      "data_file": [
+        {
+          "declared_by": "settings.json:input_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/source.csv",
+          "sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+          "expected_sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+          "status": "passed"
+        },
+        {
+          "declared_by": "elements.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/source.csv",
+          "sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+          "expected_sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+          "status": "passed"
+        }
+      ],
+      "source_script": [
+        {
+          "declared_by": "elements.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+          "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+          "expected_sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+          "status": "passed"
+        }
+      ],
+      "spec_file": [
+        {
+          "declared_by": "elements.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/spec.json",
+          "sha256": "bb6828f720926aab2f0a7e42fb95eae1373968d8c39aa217a080e8aa88829215",
+          "expected_sha256": "bb6828f720926aab2f0a7e42fb95eae1373968d8c39aa217a080e8aa88829215",
+          "status": "passed"
+        }
+      ],
+      "figure_profile": []
+    },
+    "panel": {
+      "width_mm": 60.0,
+      "height_mm": 62.0
+    },
+    "measured_checks": {
+      "export_dimensions": {
+        "status": "passed",
+        "evidence": {
+          "adopted_canvas_mm": {
+            "width_mm": 60.0,
+            "height_mm": 62.0
+          },
+          "actual_png": {
+            "pixels": [
+              709,
+              732
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          },
+          "qa_exports": {
+            "png": {
+              "pixels": [
+                709,
+                732
+              ],
+              "dpi": [
+                299.9994,
+                299.9994
+              ],
+              "sha256": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203"
+            },
+            "pdf": {
+              "width_mm": 60.00000000000694,
+              "height_mm": 62.00000000001305,
+              "sha256": "02b1e1553b2bee1e71df4867c5777cf63f33f611fa9a356d1e96ce5effa214dd"
+            },
+            "svg": {
+              "width_mm": 59.99999994444444,
+              "height_mm": 61.999999824999996,
+              "text_preserved": true,
+              "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+              "sha256": "a1515d9550674a267e1314ee20010c8e1e098ffad0ea63277ac258dd22b0a92b"
+            }
+          },
+          "format_bindings": {
+            "png": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203",
+              "actual_sha256": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203"
+            },
+            "pdf": {
+              "status": "passed",
+              "measurement_source": "hash_bound_qa",
+              "recorded_sha256": "02b1e1553b2bee1e71df4867c5777cf63f33f611fa9a356d1e96ce5effa214dd",
+              "actual_sha256": "02b1e1553b2bee1e71df4867c5777cf63f33f611fa9a356d1e96ce5effa214dd"
+            },
+            "svg": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "a1515d9550674a267e1314ee20010c8e1e098ffad0ea63277ac258dd22b0a92b",
+              "actual_sha256": "a1515d9550674a267e1314ee20010c8e1e098ffad0ea63277ac258dd22b0a92b"
+            }
+          },
+          "actual_svg": {
+            "width_mm": 59.99999994444444,
+            "height_mm": 61.999999824999996
+          }
+        }
+      },
+      "typography": {
+        "status": "passed",
+        "evidence": {
+          "actual_font": "Arial",
+          "font_substituted": false,
+          "sizes_pt": {
+            "axis": 8.0,
+            "tick": 8.0,
+            "legend": 8.0,
+            "annotation": 8.0,
+            "title": 9.0,
+            "panel": 9.0
+          },
+          "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+        }
+      },
+      "source_provenance": {
+        "status": "passed",
+        "evidence": {
+          "declared_sources": {
+            "data_file": [
+              {
+                "declared_by": "settings.json:input_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/source.csv",
+                "sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+                "expected_sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+                "status": "passed"
+              },
+              {
+                "declared_by": "elements.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/source.csv",
+                "sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+                "expected_sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+                "status": "passed"
+              }
+            ],
+            "source_script": [
+              {
+                "declared_by": "elements.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+                "sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+                "expected_sha256": "368019d761795e447c810a1f0f80f709f4dba79f591d78596402bafa969f8f74",
+                "status": "passed"
+              }
+            ],
+            "spec_file": [
+              {
+                "declared_by": "elements.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/spec.json",
+                "sha256": "bb6828f720926aab2f0a7e42fb95eae1373968d8c39aa217a080e8aa88829215",
+                "expected_sha256": "bb6828f720926aab2f0a7e42fb95eae1373968d8c39aa217a080e8aa88829215",
+                "status": "passed"
+              }
+            ],
+            "figure_profile": []
+          },
+          "saved_specification": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/settings.json",
+            "sha256": "e7da6f389132bdc824fad568ef6afed45b2d231fa5c6fb6844cb5e7fed737459",
+            "bytes": 4983
+          },
+          "resolved_spec_sha256": "eec2e102e524698782d098e17c85aa370ab8b455015cf990cf0f81a99a8b56f2",
+          "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+        }
+      },
+      "technical_qa": {
+        "status": "passed",
+        "evidence": {
+          "qa": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/qa.json",
+            "sha256": "c93f1f78d29ae54cbc1beb92c8c75b35717772add9607307eb91d5c2fa7ab108",
+            "bytes": 16527
+          },
+          "status": "pass",
+          "valid_outputs": true,
+          "input_rows": 6,
+          "plotted_input_rows": null,
+          "readability_advisory": "no_advisory_flags",
+          "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+        }
+      },
+      "caption": {
+        "status": "passed",
+        "evidence": {
+          "artifact": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/yen-relative-m6a/caption.md",
+            "sha256": "6221e7d88407baf4492e3b800203a04807f90c2352314fb94c6e94318b4f9fe4",
+            "bytes": 552
+          },
+          "scope": "Separate caption is present; its scientific wording is a review attestation."
+        }
+      }
+    },
+    "candidate_png": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/outputs/yen-relative-m6a/candidate-02/panel.png",
+      "sha256": "1f34c18a8edfd4293ff253f65eb72373ef39b98b1c3e06daed04e53fc00c7203",
+      "bytes": 23788
+    },
+    "baseline_png": null
+  },
+  "required_design_checks": [
+    "scientific_mapping",
+    "reading_priority",
+    "mark_hierarchy",
+    "geometry",
+    "palette_and_strokes",
+    "guides_and_text"
+  ],
+  "required_external_checks": [
+    "export_dimensions",
+    "typography",
+    "source_provenance",
+    "technical_qa",
+    "caption"
+  ],
+  "instructions": [
+    "Open the actual candidate PNG as a complete canvas before first user-visible delivery.",
+    "Consider the recorded physical size: inspect a nominal-size view if available, or honestly record a final-proportions view and its size basis. One actual opening may cover both views.",
+    "Record brief, concrete evidence for each design criterion; inspect the caption separately.",
+    "Acknowledge the saved measured evidence without inventing measurements. Required failed/not_checked items prevent readiness.",
+    "Correct critical/major failures before delivery; record corrections and residual minor/intentional differences. A clean first pass is valid.",
+    "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
+    "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."
+  ],
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

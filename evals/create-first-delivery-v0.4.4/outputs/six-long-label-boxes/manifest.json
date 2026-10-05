@@ -1,0 +1,507 @@
+{
+  "version": "0.1.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "needs_revision",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/six-long-label-boxes/data.csv",
+    "sha256": "4400a86487347e900bd76c30a0cd675601e36bedfa70bbc907e80507b726b3cc",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/six-long-label-boxes/spec.json",
+    "sha256": "5a9f3903958f97ab7cf4a406b9ed3c18df309a12320ea000ea37a3ebcac090d1",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "distribution",
+    "input_rows": 153,
+    "task": "compare raw distributions with the adopted summary",
+    "category_order": {
+      "group": [
+        "Baseline",
+        "Early response",
+        "Mid response",
+        "Late response",
+        "Recovery",
+        "Persistent"
+      ]
+    },
+    "label_max_characters": {
+      "group": 14
+    },
+    "kind": "box",
+    "orientation": "vertical",
+    "category_count": 6,
+    "inner_summary": "none",
+    "group_counts": {
+      "Baseline": 18,
+      "Early response": 21,
+      "Mid response": 24,
+      "Late response": 27,
+      "Recovery": 30,
+      "Persistent": 33
+    },
+    "maximum_tie_count": 1,
+    "dense_raw_layer": false
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      11.57714496527778,
+      21.333996677555007,
+      86.42285503472223,
+      55.63867584848666
+    ],
+    "canvas_mm": [
+      100.0,
+      80.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.6,
+        5.6
+      ],
+      "y": [
+        0.0,
+        30.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {
+      "x": [
+        "Baseline",
+        "Early response",
+        "Mid response",
+        "Late response",
+        "Recovery",
+        "Persistent"
+      ]
+    },
+    "issues": [
+      "point_layout"
+    ],
+    "source_to_artist": {
+      "status": "pass",
+      "numeric_coordinates_preserved": true,
+      "point_area_preserved": true,
+      "observation_count": 153
+    },
+    "point_layout": {
+      "status": "needs_revision",
+      "overlapping_circle_pairs": 45,
+      "spacing_violation_pairs": 46,
+      "minimum_center_distance_pt": 0.17670894284761432,
+      "sample_overlapping_pairs": [
+        {
+          "rows": [
+            16,
+            9
+          ],
+          "center_distance_pt": 2.6563203442953967
+        },
+        {
+          "rows": [
+            37,
+            26
+          ],
+          "center_distance_pt": 2.24384708535527
+        },
+        {
+          "rows": [
+            11,
+            2
+          ],
+          "center_distance_pt": 0.39825970393727234
+        },
+        {
+          "rows": [
+            29,
+            22
+          ],
+          "center_distance_pt": 0.6291697451799859
+        },
+        {
+          "rows": [
+            27,
+            32
+          ],
+          "center_distance_pt": 2.603207292650495
+        },
+        {
+          "rows": [
+            54,
+            51
+          ],
+          "center_distance_pt": 1.894193222867035
+        },
+        {
+          "rows": [
+            46,
+            58
+          ],
+          "center_distance_pt": 1.7998842026466157
+        },
+        {
+          "rows": [
+            46,
+            62
+          ],
+          "center_distance_pt": 1.5100083408440843
+        },
+        {
+          "rows": [
+            46,
+            60
+          ],
+          "center_distance_pt": 1.7775712955862888
+        },
+        {
+          "rows": [
+            63,
+            43
+          ],
+          "center_distance_pt": 2.055244929280684
+        },
+        {
+          "rows": [
+            55,
+            49
+          ],
+          "center_distance_pt": 0.9416899288428113
+        },
+        {
+          "rows": [
+            62,
+            60
+          ],
+          "center_distance_pt": 0.27024699629626525
+        },
+        {
+          "rows": [
+            71,
+            87
+          ],
+          "center_distance_pt": 2.5999242282697512
+        },
+        {
+          "rows": [
+            89,
+            87
+          ],
+          "center_distance_pt": 1.6780107185239466
+        },
+        {
+          "rows": [
+            74,
+            72
+          ],
+          "center_distance_pt": 1.034725145953173
+        },
+        {
+          "rows": [
+            87,
+            70
+          ],
+          "center_distance_pt": 2.9427146987153447
+        },
+        {
+          "rows": [
+            70,
+            78
+          ],
+          "center_distance_pt": 0.3902796231469055
+        },
+        {
+          "rows": [
+            80,
+            84
+          ],
+          "center_distance_pt": 1.4020690690315907
+        },
+        {
+          "rows": [
+            65,
+            69
+          ],
+          "center_distance_pt": 1.4808521183160572
+        },
+        {
+          "rows": [
+            85,
+            64
+          ],
+          "center_distance_pt": 1.2357374726830246
+        }
+      ],
+      "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+      "policy": "beeswarm",
+      "orientation": "vertical",
+      "seed": 0,
+      "categorical_axis": "x",
+      "quantitative_axis": "y",
+      "numeric_values_changed": false,
+      "input_rows": 153,
+      "placed_rows": 153,
+      "diameter_pt": 3.0,
+      "gap_pt": 0.3,
+      "requested_max_offset_mm": 1.3,
+      "point_category_offset": 0.29,
+      "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+      "categorical_boundary_rows": [],
+      "groups": [
+        {
+          "group": "Baseline",
+          "rows": 18,
+          "category_spacing_pt": 39.512608347091714,
+          "available_max_offset_mm": 1.3,
+          "actual_max_offset_mm": 1.1286269429689137,
+          "category_anchor_offset": 0.29,
+          "actual_total_offset_mm": 5.170986291367213,
+          "fallback_source_rows": [
+            16,
+            2
+          ],
+          "fallback_count": 2,
+          "packing_seed": 3432949751
+        },
+        {
+          "group": "Early response",
+          "rows": 21,
+          "category_spacing_pt": 39.512608347091714,
+          "available_max_offset_mm": 1.3,
+          "actual_max_offset_mm": 1.1624910728688294,
+          "category_anchor_offset": 0.29,
+          "actual_total_offset_mm": 5.204850421267128,
+          "fallback_source_rows": [
+            26,
+            22,
+            32
+          ],
+          "fallback_count": 3,
+          "packing_seed": 393578972
+        },
+        {
+          "group": "Mid response",
+          "rows": 24,
+          "category_spacing_pt": 39.51260834709166,
+          "available_max_offset_mm": 1.3,
+          "actual_max_offset_mm": 1.2593750000000001,
+          "category_anchor_offset": 0.29,
+          "actual_total_offset_mm": 5.189855721738352,
+          "fallback_source_rows": [
+            46,
+            49,
+            54,
+            62,
+            60,
+            43
+          ],
+          "fallback_count": 6,
+          "packing_seed": 2345806635
+        },
+        {
+          "group": "Late response",
+          "rows": 27,
+          "category_spacing_pt": 39.512608347091714,
+          "available_max_offset_mm": 1.3,
+          "actual_max_offset_mm": 1.2791223018095648,
+          "category_anchor_offset": 0.29,
+          "actual_total_offset_mm": 5.321481650207865,
+          "fallback_source_rows": [
+            87,
+            64,
+            71,
+            70,
+            78,
+            80,
+            65,
+            72
+          ],
+          "fallback_count": 8,
+          "packing_seed": 702729040
+        },
+        {
+          "group": "Recovery",
+          "rows": 30,
+          "category_spacing_pt": 39.512608347091714,
+          "available_max_offset_mm": 1.3,
+          "actual_max_offset_mm": 1.1983205936904975,
+          "category_anchor_offset": 0.29,
+          "actual_total_offset_mm": 5.240679942088797,
+          "fallback_source_rows": [
+            120,
+            118,
+            108,
+            93,
+            113
+          ],
+          "fallback_count": 5,
+          "packing_seed": 1224124629
+        },
+        {
+          "group": "Persistent",
+          "rows": 33,
+          "category_spacing_pt": 39.51260834709166,
+          "available_max_offset_mm": 1.3,
+          "actual_max_offset_mm": 1.2593750000000001,
+          "category_anchor_offset": 0.29,
+          "actual_total_offset_mm": 5.214223489991845,
+          "fallback_source_rows": [
+            152,
+            139,
+            143,
+            125,
+            136,
+            127,
+            131,
+            144,
+            129
+          ],
+          "fallback_count": 9,
+          "packing_seed": 4033328945
+        }
+      ],
+      "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+      "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+    },
+    "category_pitch_mm": 13.939170166890685,
+    "summary_thickness_mm": 2.2302672267025097,
+    "raw_summary_categorical_envelope_crossings": 0,
+    "summary_raw_separation_note": "Envelope crossings require visual inspection, particularly opaque points over box medians; violin contour width is a conservative envelope, not a density crossing test.",
+    "technical_measurement_status": "needs_revision"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/box_fill_alpha",
+        "/options/box_style",
+        "/options/box_width",
+        "/options/point_category_offset",
+        "/options/point_color",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Neutral distribution observations/strokes and single-quantity bars are EasyViz adaptations; fixed scatter colors identify small marks. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#454545",
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/point_color",
+          "/palette"
+        ],
+        "palette": {
+          "name": "okabe-ito",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Masataka Okabe and Kei Ito, Color Universal Design",
+          "note": "Order arranged for white-background plots. Use outlines for yellow; no guarantee for every adjacent pair."
+        },
+        "area_role": "Open neutral summaries use direct category labels for identity. Catalog category colors remain an unused fallback for unfilled bodies; no multicolor mixture is drawn."
+      },
+      "reason": "Measured text/guide fit with a compact category pitch and raw/summary hierarchy; proposal 1. Explicit choices remain locked.",
+      "technical_review": {
+        "status": "failed",
+        "qa_path": "candidate-01/qa.json",
+        "measured_issues": [
+          "point_layout"
+        ],
+        "renderer_status": "needs_revision",
+        "error": "Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 46 observation spacing conflicts, 0 observation marker boundary issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit."
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/box_fill_alpha",
+        "/options/box_style",
+        "/options/box_width",
+        "/options/point_category_offset",
+        "/options/point_color",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Neutral distribution observations/strokes and single-quantity bars are EasyViz adaptations; fixed scatter colors identify small marks. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#454545",
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/point_color",
+          "/palette"
+        ],
+        "palette": {
+          "name": "okabe-ito",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Masataka Okabe and Kei Ito, Color Universal Design",
+          "note": "Order arranged for white-background plots. Use outlines for yellow; no guarantee for every adjacent pair."
+        },
+        "area_role": "Open neutral summaries use direct category labels for identity. Catalog category colors remain an unused fallback for unfilled bodies; no multicolor mixture is drawn."
+      },
+      "reason": "Measured text/guide fit with a compact category pitch and raw/summary hierarchy; proposal 2. Explicit choices remain locked.",
+      "technical_review": {
+        "status": "failed",
+        "qa_path": "candidate-02/qa.json",
+        "measured_issues": [
+          "point_layout"
+        ],
+        "renderer_status": "needs_revision",
+        "error": "Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 46 observation spacing conflicts, 0 observation marker boundary issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit."
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

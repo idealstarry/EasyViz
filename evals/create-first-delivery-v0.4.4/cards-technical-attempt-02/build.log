@@ -1,0 +1,18 @@
+replicate-neutral-compact ['pass', 'pass']
+distribution-summary-lane ['pass', 'pass']
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/scripts/generate_design_cards.py", line 543, in <module>
+    main()
+  File "/Users/starry/Desktop/EasyViz/scripts/generate_design_cards.py", line 523, in main
+    save(**definition, core=core, replicate=replicate)
+  File "/Users/starry/Desktop/EasyViz/scripts/generate_design_cards.py", line 153, in save
+    qa = renderer.render(data_path, adopted, folder / name, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 1422, in render
+    return _render(data_path, resolved, out, profile_record, spec_path=spec_path, track=track)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 1407, in _render
+    require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {point_issues} observation spacing conflicts, {point_boundary_issues} observation marker boundary issues, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit.")
+  File "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py", line 158, in require
+    raise SpecError(message)
+card_render.SpecError: Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 0 cell annotation issues, 56 observation spacing conflicts, 0 observation marker boundary issues, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly enlarge the categorical lane/canvas or split a panel that cannot fit.

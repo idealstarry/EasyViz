@@ -1,0 +1,38 @@
+{
+  "id": "violin-summary-hierarchy",
+  "chart": "distribution",
+  "applies_when": [
+    "A distribution-shape question where KDE is scientifically adopted",
+    "Inner quartiles must remain distinguishable from estimated density"
+  ],
+  "good_image": "violin-summary-hierarchy/good/panel.png",
+  "failure_image": "violin-summary-hierarchy/failure/panel.png",
+  "final_size_preview": "violin-summary-hierarchy/good/preview-96dpi.png",
+  "data": "violin-summary-hierarchy/data.csv",
+  "good_spec": "violin-summary-hierarchy/good-spec.json",
+  "failure_spec": "violin-summary-hierarchy/failure-spec.json",
+  "caption": "violin-summary-hierarchy/caption.md",
+  "mechanism": "A subordinate white KDE body and fine contour frame a stronger colored quartile area; raw points occupy an associated side lane.",
+  "avoid": "Equally strong colored density boundary, tinted body and central raw layer compete with the quartile summary.",
+  "source_anchors": [
+    "PROGENy Fig.4c PDF p6: separate contour, inner summaries and area roles"
+  ],
+  "synthetic": true,
+  "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+  "rendered": [
+    {
+      "variant": "good",
+      "technical_status": "pass",
+      "png_sha256": "24c7c6988b36b9c87ad27b168bbd11ff4d520f5f697e5bad8a5f56d5b4ab066e"
+    },
+    {
+      "variant": "failure",
+      "technical_status": "pass",
+      "png_sha256": "d74c1e7ff5d3660daf5edec95fe1333cd9303308c34433907c9d41d1a57709f4"
+    }
+  ],
+  "geometry_notes": [
+    "Adopted canvas: 66 × 68 mm; declared data region: 48.18 × 51.68 mm from the fixed margins.",
+    "Three category centers use violin width 0.24 and inner-box width 0.16 category-spacing units. Raw lanes are shifted by 0.28 category-spacing units, with a maximum packing spread of 2.8 mm around each shifted anchor."
+  ]
+}

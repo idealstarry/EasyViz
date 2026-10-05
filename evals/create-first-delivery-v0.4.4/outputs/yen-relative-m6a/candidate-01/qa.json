@@ -1,0 +1,537 @@
+{
+  "status": "pass",
+  "valid_outputs": true,
+  "input_rows": 6,
+  "input_sha256": "e1820b67f12f9c7b2dc297c7c859bcd1bd9fb645c7f5e50193fb9d6f83feb9d9",
+  "width_mm": 60.0,
+  "height_mm": 62.0,
+  "clipped_text": [],
+  "overlapping_tick_labels": [],
+  "unchecked_oblique_tick_labels": [],
+  "missing_glyphs": [],
+  "source_to_artist_audit": {
+    "status": "pass",
+    "source_rows": 6,
+    "raw_points": 6,
+    "component_values_normalized": false,
+    "ratios_derived": false,
+    "sample_size_independence_inferred": false,
+    "issues": []
+  },
+  "mark_geometry": {
+    "status": "pass",
+    "issues": [],
+    "intentional_baseline_contacts": [
+      {
+        "condition": "Vehicle",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      },
+      {
+        "condition": "STM2457",
+        "component": null,
+        "baseline_value": 0.0,
+        "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+      }
+    ],
+    "grouped_separation": {
+      "status": "unchecked",
+      "note": "No positive component_gap adopted; legacy bar placement is retained."
+    }
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "exports": {
+    "png": {
+      "pixels": [
+        709,
+        732
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "sha256": "ab17add3b54db227a0e351cd40cc9af3d9e9a17d03ecd27cacbb7ea46f253979"
+    },
+    "pdf": {
+      "width_mm": 60.00000000000694,
+      "height_mm": 62.00000000001305,
+      "sha256": "d8071cf78bddc09a844fc4a3629d1dc9dd0ac39d1c1df864bd9e40f7d6fd8b75"
+    },
+    "svg": {
+      "width_mm": 59.99999994444444,
+      "height_mm": 61.999999824999996,
+      "text_preserved": true,
+      "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+      "sha256": "2d64aec47532ed1373b084d70b0142210e6f1b8dd1ce6f682a7ccdac74202a4d"
+    }
+  },
+  "auto_layout": null,
+  "visual_review_required": true,
+  "readability": {
+    "schema_version": 1,
+    "status": "no_advisory_flags",
+    "advisory_only": true,
+    "thresholds": {
+      "small_point_span_mm": 0.35,
+      "low_contrast_ratio": 2.0,
+      "thin_stroke_pt": 0.25,
+      "large_legend_canvas_fraction": 0.25
+    },
+    "totals": {
+      "point_artists": 6,
+      "stroke_artists": 11,
+      "legend_artists": 0,
+      "finite_marks": 6,
+      "zero_size_parameters": 0,
+      "small_visible_marks": 0,
+      "low_contrast_small_marks": 0,
+      "thin_data_stroke_artists": 0
+    },
+    "stroke_roles": {
+      "summary-box": {
+        "artist_count": 2,
+        "width_pt_range": [
+          0.7,
+          0.7
+        ]
+      },
+      "summary-line": {
+        "artist_count": 2,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "axis-line": {
+        "artist_count": 2,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      },
+      "axis-tick": {
+        "artist_count": 5,
+        "width_pt_range": [
+          0.6,
+          0.6
+        ]
+      }
+    },
+    "artists": [
+      {
+        "id": "easyviz-bar-1",
+        "role": "summary-box",
+        "label": "Vehicle",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-1",
+        "role": "summary-line",
+        "label": "Vehicle · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-bar-2",
+        "role": "summary-box",
+        "label": "STM2457",
+        "artist_type": "Rectangle",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.7,
+            0.7
+          ]
+        }
+      },
+      {
+        "id": "easyviz-sd-2",
+        "role": "summary-line",
+        "label": "STM2457 · sample SD",
+        "artist_type": "LineCollection",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-observation-1",
+        "role": "point-group",
+        "label": "Vehicle · Exp. 1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            8.91267681314614,
+            8.91267681314614
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_outer_span_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-2",
+        "role": "point-group",
+        "label": "Vehicle · Exp. 2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            8.91267681314614,
+            8.91267681314614
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_outer_span_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-3",
+        "role": "point-group",
+        "label": "Vehicle · Exp. 3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            8.91267681314614,
+            8.91267681314614
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_outer_span_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-4",
+        "role": "point-group",
+        "label": "STM2457 · Exp. 1",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            8.91267681314614,
+            8.91267681314614
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_outer_span_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-5",
+        "role": "point-group",
+        "label": "STM2457 · Exp. 2",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            8.91267681314614,
+            8.91267681314614
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_outer_span_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-observation-6",
+        "role": "point-group",
+        "label": "STM2457 · Exp. 3",
+        "artist_type": "PathCollection",
+        "mapping": "registered",
+        "points": {
+          "finite_mark_count": 1,
+          "masked_or_nonfinite_count": 0,
+          "zero_size_parameter_count": 0,
+          "positive_size_parameter_count": 1,
+          "visible_positive_count": 1,
+          "positive_without_visible_face_or_edge_count": 0,
+          "size_parameter_pt2_range": [
+            8.91267681314614,
+            8.91267681314614
+          ],
+          "positive_marker_bbox_width_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_marker_bbox_height_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "positive_outer_span_mm_range": [
+            1.0531865386432144,
+            1.0531865386432144
+          ],
+          "visible_component_contrast_ratio_range": [
+            12.63465434445799,
+            12.63465434445799
+          ],
+          "edge_width_pt_range": null,
+          "small_visible_count": 0,
+          "low_contrast_small_count": 0
+        }
+      },
+      {
+        "id": "easyviz-axis-line-a25b05ec84419760",
+        "role": "axis-line",
+        "label": "Y axis line · left",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-line-583586e852f58ad3",
+        "role": "axis-line",
+        "label": "X axis line · bottom",
+        "artist_type": "Spine",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+        "role": "axis-tick",
+        "label": "X major tick · 0 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-d2f9de54ec255438",
+        "role": "axis-tick",
+        "label": "X major tick · 1 · bottom",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-8e1c294e3379762a",
+        "role": "axis-tick",
+        "label": "Y major tick · 0 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-7173dfe7cd0e6657",
+        "role": "axis-tick",
+        "label": "Y major tick · 50 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      },
+      {
+        "id": "easyviz-axis-tick-49a3a58844515afb",
+        "role": "axis-tick",
+        "label": "Y major tick · 100 · left",
+        "artist_type": "Line2D",
+        "mapping": "registered",
+        "strokes": {
+          "positive_width_pt_range": [
+            0.6,
+            0.6
+          ]
+        }
+      }
+    ],
+    "artist_count": 17,
+    "artists_omitted_from_detail": 0,
+    "warnings": [],
+    "warning_count": 0,
+    "warnings_omitted_from_detail": 0,
+    "layout_evidence": {},
+    "scope": "Actual visible artist settings after draw; finite unmasked locations are counted without clipping/occlusion inference. PathCollection sizes are Matplotlib size parameters, not universal fill areas; marker path geometry supplies physical bounding spans. Zero size parameters are preserved separately. Contrast is actual face/edge RGBA composited once over a uniform axes/figure background.",
+    "not_checked": [
+      "Scientific or statistical validity",
+      "Reference fidelity and missing layers",
+      "Color-vision accessibility or between-category color distinction",
+      "Nonuniform backgrounds, image contrast, mark occlusion or point/label overlap",
+      "Heatmap value normalization, bar fill design, text readability and arbitrary patches",
+      "Line2D markevery marker selection"
+    ],
+    "policy": "Thresholds are configurable review cues. They do not change artist properties, data, quantitative marker areas, exports, or core QA pass/fail."
+  }
+}

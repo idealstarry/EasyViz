@@ -17,6 +17,7 @@ Inspect rendered scientific panels and produce evidence-based, actionable findin
 | Reference image | Required for a reproduction comparison; open it as well. Optional for create. |
 | Separate caption | Inspect `caption.md` for explanatory prose, definitions, methods, source attribution, caveats, and any known figure/panel identifiers. It remains separate from the image. |
 | Measurement/check record | Physical page or pixel dimensions, actual fonts, data/statistics checks, and export details when provided. |
+| Current Create review packet | When supplied, use its bound image/spec paths and record only inspection and checks actually performed. Hash validation establishes version identity, not that images were opened or the panel is aesthetically successful. |
 
 If an image or specification is missing, report the resulting limitation. Do not produce a pass from a filename, implementation report, or renderer success message. Do not seek author code or silently substitute an older candidate image.
 

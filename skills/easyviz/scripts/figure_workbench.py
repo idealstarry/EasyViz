@@ -7,15 +7,19 @@ The HTTP service is deliberately limited to a fixed set of local figure files.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager, ExitStack
 from datetime import datetime, timezone
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import math
+import os
 from pathlib import Path
 import re
 import secrets
+import stat
 import threading
+import time
 from urllib.parse import parse_qs, urlsplit
 import uuid
 import xml.etree.ElementTree as ET
@@ -30,12 +34,73 @@ FILES = {"panel.svg", "panel.pdf", "panel.png", "settings.json", "qa.json", "ele
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_REQUEST_BYTES = 64 * 1024
 MAX_BATCH_BYTES = 100 * MAX_REQUEST_BYTES
+LEDGER_LOCK_TIMEOUT = 5.
+_ANY_LEDGER = object()
 SVG_NS = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG_NS)
 
 
 class WorkbenchError(ValueError):
     """An invalid figure or edit request; safe to show to the local user."""
+
+
+@contextmanager
+def ledger_file_lock(root, *, timeout=None):
+    """Bounded OS lock shared by browser servers and CLI processes.
+
+    Kernel locks release on process exit, so an abandoned lock file is harmless.
+    Keep the inode: unlinking a live lock could let two writers hold different
+    files under the same name. No cached process-global locks are used.
+    """
+    timeout = LEDGER_LOCK_TIMEOUT if timeout is None else timeout
+    path = Path(root) / ".requests.lock"
+    if path.is_symlink():
+        raise WorkbenchError("Request lock must be a regular local file")
+    fd = os.open(path, os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0), 0o600)
+    acquired = False
+    try:
+        if not stat.S_ISREG(os.fstat(fd).st_mode) or os.fstat(fd).st_size > 1024:
+            raise WorkbenchError("Request lock must be a bounded regular local file")
+        if os.fstat(fd).st_size == 0:
+            os.write(fd, b"\0")
+        if os.name == "nt":
+            import msvcrt
+            def acquire():
+                os.lseek(fd, 0, os.SEEK_SET)
+                msvcrt.locking(fd, msvcrt.LK_NBLCK, 1)
+            def release():
+                os.lseek(fd, 0, os.SEEK_SET)
+                msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)
+        else:
+            import fcntl
+            def acquire():
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            def release():
+                fcntl.flock(fd, fcntl.LOCK_UN)
+        deadline = time.monotonic() + timeout
+        while True:
+            try:
+                acquire()
+                acquired = True
+                break
+            except (BlockingIOError, PermissionError):
+                if time.monotonic() >= deadline:
+                    raise WorkbenchError("Saved requests are busy. Retry after the other writer finishes.") from None
+                time.sleep(min(.025, max(0., deadline - time.monotonic())))
+        yield
+    finally:
+        if acquired:
+            release()
+        os.close(fd)
+
+
+@contextmanager
+def locked_ledgers(*roots):
+    # Stable ordering prevents deadlock when record touches two attempts.
+    with ExitStack() as stack:
+        for root in sorted({str(Path(root).resolve()) for root in roots}):
+            stack.enter_context(ledger_file_lock(root))
+        yield
 
 
 def sha256(data):
@@ -189,16 +254,19 @@ class FigureWorkbench:
             raise WorkbenchError("requests.json exceeds the workbench size limit")
         return path.read_bytes()
 
-    def ledger(self):
+    def ledger_snapshot(self):
         raw = self.ledger_bytes()
         if raw is None:
-            return {"schema_version": 1, "requests": []}
+            return raw, {"schema_version": 1, "requests": []}
         ledger = safe_json(raw)
         if not isinstance(ledger, dict) or ledger.get("schema_version") != 1 or not isinstance(ledger.get("requests"), list):
             raise WorkbenchError("requests.json uses an unsupported format")
         if "history" in ledger and (not isinstance(ledger["history"], list) or not all(isinstance(item, dict) for item in ledger["history"])):
             raise WorkbenchError("Request history must be a list of records")
-        return ledger
+        return raw, ledger
+
+    def ledger(self):
+        return self.ledger_snapshot()[1]
 
     def state(self):
         svg = self.read_file("panel.svg", required=True)
@@ -293,21 +361,41 @@ class FigureWorkbench:
             raise WorkbenchError("Region must be inside the full figure canvas")
         return values
 
-    def write_ledger(self, ledger):
+    def _replace_ledger_bytes(self, raw):
+        """Publish/rollback while the caller holds this attempt's file lock."""
         # Only this separate file changes. Figure exports and source data are read-only.
         path = self.root / "requests.json"
         if path.is_symlink():
             raise WorkbenchError("requests.json must be a regular local file")
-        serialized = json.dumps(ledger, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
-        if len(serialized.encode("utf-8")) > MAX_FILE_BYTES:
+        if raw is None:
+            path.unlink(missing_ok=True)
+            return
+        if len(raw) > MAX_FILE_BYTES:
             raise WorkbenchError("Request ledger exceeds the workbench size limit")
         temporary = self.root / f".requests-{uuid.uuid4().hex}.tmp"
         try:
-            temporary.write_text(serialized, encoding="utf-8")
+            with temporary.open("xb") as stream:
+                stream.write(raw)
+                stream.flush()
+                os.fsync(stream.fileno())
             temporary.replace(path)
         finally:
-            if temporary.exists():
-                temporary.unlink()
+            temporary.unlink(missing_ok=True)
+
+    def ledger_serialized(self, ledger):
+        serialized = json.dumps(ledger, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
+        if len(serialized.encode("utf-8")) > MAX_FILE_BYTES:
+            raise WorkbenchError("Request ledger exceeds the workbench size limit")
+        return serialized.encode("utf-8")
+
+    def write_ledger(self, ledger, *, expected_bytes=_ANY_LEDGER, expected_version=None):
+        serialized = self.ledger_serialized(ledger)
+        with ledger_file_lock(self.root):
+            if expected_version is not None:
+                self.current_state(expected_version)
+            if expected_bytes is not _ANY_LEDGER and self.ledger_bytes() != expected_bytes:
+                raise WorkbenchError("Saved requests changed while saving. Reload the workbench before retrying.")
+            self._replace_ledger_bytes(serialized)
 
     def validate_anchor(self, anchor, panel):
         if not isinstance(anchor, dict) or set(anchor) != {"x", "y"}:
@@ -422,7 +510,7 @@ class FigureWorkbench:
             raise WorkbenchError("Saved requests changed while saving. Reload the workbench before retrying.")
         ledger["requests"].extend(items)
         ledger.update(schema_version=1, version=state["version"], updated_at=timestamp())
-        self.write_ledger(ledger)
+        self.write_ledger(ledger, expected_bytes=previous_bytes, expected_version=state["version"])
 
     def change_batch(self, payload):
         if not isinstance(payload, dict) or set(payload) != {"version", "requests"}:
@@ -432,8 +520,7 @@ class FigureWorkbench:
             raise WorkbenchError("Batch requires 1 to 100 independent requests")
         with self.lock:
             state = self.current_state(payload["version"])
-            previous_bytes = self.ledger_bytes()
-            ledger = self.ledger()
+            previous_bytes, ledger = self.ledger_snapshot()
             used_numbers = self.annotation_numbers(ledger, state["version"])
             items = []
             for index, request in enumerate(requests, start=1):
@@ -451,8 +538,7 @@ class FigureWorkbench:
             raise WorkbenchError("Request contains unsupported fields")
         with self.lock:
             state = self.current_state(payload.get("version"))
-            previous_bytes = self.ledger_bytes()
-            ledger = self.ledger()
+            previous_bytes, ledger = self.ledger_snapshot()
             if undo:
                 request_id = payload.get("request_id")
                 item = next((item for item in ledger["requests"] if isinstance(item, dict) and item.get("id") == request_id), None)

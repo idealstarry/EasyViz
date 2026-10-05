@@ -1,5 +1,10 @@
 # First panel from prepared data
 
+This is the core specification/renderer path. For a new Create panel, use it
+within [First reviewed delivery](first-draft.md), which adds scenario cards,
+actual candidates and review of the current exports. A technically fitting
+renderer output is not automatically the first finished result.
+
 For the five core chart families, create a validated specification from explicit
 column roles instead of assembling the full schema. Choose the chart and field
 meanings from the scientific question; the helper does not infer them.
@@ -29,6 +34,11 @@ The default `--style-mode crisp` shares its new-task starting values with
 distribution previews: opaque observations, narrow hollow boxes and editable
 line roles. Explicit settings remain authoritative. Use `--style-mode legacy`
 for earlier omitted-option fallbacks; saved core specs are not restyled.
+
+When this spec will seed `create_candidates.py`, use `--style-mode legacy` so
+omitted cosmetics can receive scene choices rather than inserted crisp locks.
+Explicit user/project settings still win. Omit `--panel-size-mm` only when the
+new panel's dimensions are unspecified; a profile's named size is authoritative.
 
 The draft contains the chart, explicit fields, measured layout, supplied
 preferences and editable [stroke roles](create-style.md). Data curves and

@@ -11,6 +11,8 @@ import unittest
 SKILL = Path(__file__).resolve().parents[1] / "skills/easyviz"
 CORE = {"heatmap", "composition", "dotplot", "scatter", "distribution"}
 RECIPES = {"paired", "replicate", "ecdf", "interval", "timecourse", "annotated_matrix"}
+WORKFLOWS = {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench",
+             "preview_choices", "apply_figure_requests", "create_candidates", "create_review"}
 
 
 class RecipeDiscoveryTests(unittest.TestCase):
@@ -71,7 +73,7 @@ class RecipeDiscoveryTests(unittest.TestCase):
 
     def test_workflows_route_to_real_commands_with_only_two_tracks(self):
         routes = self.discovery()["workflow_tools"]
-        self.assertEqual(set(routes), {"inspect_data", "analyze", "reference_packet", "audit_reproduction", "figure_workbench", "preview_choices", "apply_figure_requests"})
+        self.assertEqual(set(routes), WORKFLOWS)
         for name, route in routes.items():
             with self.subTest(workflow=name):
                 self.assertTrue(Path(route["doc"]).is_file())
@@ -81,6 +83,11 @@ class RecipeDiscoveryTests(unittest.TestCase):
         self.assertEqual(routes["analyze"]["tracks"], ["create"])
         self.assertEqual(routes["reference_packet"]["tracks"], ["reproduce"])
         self.assertEqual(routes["audit_reproduction"]["tracks"], ["reproduce"])
+        for name in ("create_candidates", "create_review"):
+            self.assertEqual(routes[name]["tracks"], ["create"])
+            result = self.cli(routes[name]["script"], "--describe-spec")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads(result.stdout)["track"], "create")
 
     def test_core_rejects_recipe_specs_with_truthful_failed_qa_and_route(self):
         before = self.source.read_bytes()
@@ -119,7 +126,7 @@ class RecipeDiscoveryTests(unittest.TestCase):
         for chart in RECIPES:
             name = "annotated-matrix.md" if chart == "annotated_matrix" else f"{chart}-plot.md"
             shutil.copy2(SKILL / "references" / name, copied / "references" / name)
-        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "complex-reproduction.md", "figure-workbench.md", "preview-choices.md", "apply-figure-requests.md"):
+        for name in ("data-exploration.md", "statistical-analysis.md", "reference-to-code.md", "complex-reproduction.md", "figure-workbench.md", "preview-choices.md", "apply-figure-requests.md", "first-draft.md"):
             shutil.copy2(SKILL / "references" / name, copied / "references" / name)
         described = self.discovery(copied)
         for chart, route in described["focused_recipes"].items():
@@ -132,6 +139,10 @@ class RecipeDiscoveryTests(unittest.TestCase):
         result = self.cli(described["focused_recipes"]["interval"]["script"], "--describe-spec")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout)["chart"], "interval")
+        for name in ("create_candidates", "create_review"):
+            result = self.cli(described["workflow_tools"][name]["script"], "--describe-spec")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads(result.stdout)["track"], "create")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1 @@
+Compare six labeled synthetic distributions. All observations remain visible; raw-value quartiles and Tukey 1.5 IQR whiskers are descriptive. Unequal synthetic counts are not sample sizes from a study; no test.

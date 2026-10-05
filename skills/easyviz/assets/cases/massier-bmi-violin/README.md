@@ -6,7 +6,7 @@ Eight cohort BMI distributions, refreshed in the requested blue on a 160 × 100 
 
 White dots mark medians; white segments span the 25th–75th percentiles (linear interpolation). Violins show Gaussian KDEs with Scott bandwidth, trimmed to observed ranges and normalized to equal displayed area. Width does not encode sample size.
 
-The blue fill, borderless shapes, summary marks, and wider layout are a requested style adaptation. The [first render](first-render/panel.png) and [independent review](independent-review.md) remain historical evidence for the original reconstruction, not an assessment of this refresh.
+The blue fill, borderless shapes, summary marks, and wider layout are a requested style adaptation. The [first render](https://github.com/idealstarry/EasyViz/blob/main/examples/no-author-code/massier-bmi-violin/first-render/panel.png) and [independent review](independent-review.md) remain historical evidence for the original reconstruction, not an assessment of this refresh.
 
 ## Rerun
 

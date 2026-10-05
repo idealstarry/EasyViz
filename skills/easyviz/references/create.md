@@ -12,6 +12,12 @@ Use the bundled [literature mechanisms](literature-style.md) and
 [palette roles](palettes.md) without requiring a runtime reference. If the user
 asks to adopt a supplied figure's layout/style, follow Reproduce instead.
 
+For the first finished panel, follow [First reviewed delivery](first-draft.md):
+open applicable [scenario cards](design-cards.md), render eligible alternatives
+or justified focused/custom code, and correct actual image findings internally.
+Resolve cosmetic defaults autonomously; clarify missing scientific facts only
+when they change the adopted meaning or analysis.
+
 If the user supplies a directory without a clear question or chart, start with
 [Data exploration](data-exploration.md). Inventory the tables, inspect actual
 values, and propose a few concrete reading tasks with field mappings and small
@@ -156,10 +162,11 @@ Keep axis names and units, ticks, legends, colorbars, and essential data annotat
 ## 3. Select an implementation
 
 For a supported core chart, [First panel](quick-start.md) provides a short
-draft-to-render path using explicit column roles. New drafts measure text and
-guide space rather than requiring the Agent to guess margins. Keep scientific
-choices explicit and review the exported image; use the full specification for
-additional supported options.
+specification path using explicit column roles. Its measured text and guide
+fit are a technical starting point. Use that draft within
+[First reviewed delivery](first-draft.md) to select eligible scene treatments
+and inspect actual images. Explicit scientific and project choices stay fixed;
+use the full specification for additional supported options.
 
 Inspect the recipe's input contract and supported options in the chart library. Reuse the relevant script or write an implementation that preserves the adopted mappings and export settings. The core renderer supplies basic chart families; linked metadata tracks, aligned marginal plots, and specialized annotations can require a custom script. Use [Worked cases](examples.md) for implementation patterns and provenance, and synthetic fixtures only for small runnable API examples. Keep transformation and statistics steps inspectable rather than burying them in styling code.
 
@@ -200,5 +207,10 @@ No bright, hollow or neutral treatment is a universal winner.
 Follow [Visual review](visual-review.md) with the same typography, readability, and correction standard used in reproduce. A reviewer assesses create outputs against the adopted specification without needing a reference image. For integrated panels, also verify that tracks and marginals align with the correct rows or columns, size and color legends explain their distinct quantities, and annotations remain readable without obscuring data. Check that narrative material is in the separate caption and no unrequested title/header has been added. Independently recompute displayed summaries and denominators from the recorded input scope. Numerical checks and visual review are separate evidence: a clean image does not prove calculations correct, and a successful export does not prove labels readable.
 
 ## 5. Deliver
+
+Record review of the selected current exports using
+[First reviewed delivery](first-draft.md). A pending or stale record cannot
+support readiness. Only attest to images actually opened and checks actually
+performed; artifact hashes bind versions, not aesthetic quality.
 
 Provide the individual panel in the requested formats, a PNG preview when useful, separate `caption.md`, runnable script, actual settings, traceable plotting data, and calculated statistical results if applicable. Follow the journal-style caption guidance in [Panel layout](panel-layout.md); use figure/panel identifiers only when known. State meaningful unresolved limitations and the recorded placement dimensions. The user assembles panels at those dimensions.

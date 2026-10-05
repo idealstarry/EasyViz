@@ -1,0 +1,39 @@
+{
+  "id": "replicate-neutral-compact",
+  "chart": "replicate",
+  "applies_when": [
+    "One measured quantity across a few x-labeled treatments",
+    "An adopted mean and sample-SD definition with all raw units"
+  ],
+  "good_image": "replicate-neutral-compact/good/panel.png",
+  "failure_image": "replicate-neutral-compact/failure/panel.png",
+  "final_size_preview": "replicate-neutral-compact/good/preview-96dpi.png",
+  "data": "replicate-neutral-compact/data.csv",
+  "good_spec": "replicate-neutral-compact/good-spec.json",
+  "failure_spec": "replicate-neutral-compact/failure-spec.json",
+  "caption": "replicate-neutral-compact/caption.md",
+  "mechanism": "Compact open summaries leave definite intervals and raw observations visible; x positions decode the single quantity.",
+  "avoid": "Broad filled summaries dominate the sparse replicate layer; choosing a bar width is a geometry decision as well as a hue decision.",
+  "source_anchors": [
+    "PROGENy Fig.2d PDF p4: neutral single-series bars",
+    "scWAT Fig.3j PDF p5: bounded open bars and raw marks"
+  ],
+  "synthetic": true,
+  "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+  "rendered": [
+    {
+      "variant": "good",
+      "technical_status": "pass",
+      "png_sha256": "d474087d18355028ab44bffedc056341095cbcee9cd052796312ba3f56dfb115"
+    },
+    {
+      "variant": "failure",
+      "technical_status": "pass",
+      "png_sha256": "647205f6ebd7b3cc67f1c195315cfd353ddb0c9ea64368d1d1ae155915363133"
+    }
+  ],
+  "geometry_notes": [
+    "Adopted canvas: 60 × 62 mm; declared data region: 43.80 × 47.12 mm from the fixed margins.",
+    "Four categorical summaries use bar width 0.36 category-spacing units, leaving room for intervals and raw marks."
+  ]
+}

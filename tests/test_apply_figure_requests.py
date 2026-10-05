@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 SCRIPTS = Path(__file__).resolve().parents[1] / "skills/easyviz/scripts"
@@ -199,6 +200,174 @@ class ApplyRequestsTests(unittest.TestCase):
         self.assertIn("No author script was executed",event["note"])
         with self.assertRaises(helper.WorkbenchError): helper.restore_attempt(self.attempt,out)
 
+    def test_record_target_publication_failure_restores_both_ledgers_and_retry_keeps_requests(self):
+        item = self.request(annotation_number=1)
+        target = self.root / "attempt-02"
+        self.make_attempt(target, {**self.spec, "colors": {"A": "#AA11CC", "B": "#E47751"}},
+                          svg=SVG.replace(b"#2581B9", b"#AA11CC"))
+        other = helper.FigureWorkbench(target)
+        pending = other.change({"version": other.state()["version"], "element_id": "group-A",
+                                "instruction": "Keep this new attempt's own instruction.", "annotation_number": 2})["request"]
+        before = {owner.root: owner.ledger_bytes() for owner in (self.app, other)}
+        publish = helper.FigureWorkbench._replace_ledger_bytes
+        failed = False
+        def fail_after_target_replacement(owner, raw):
+            nonlocal failed
+            publish(owner, raw)
+            if owner.root == target and not failed:
+                failed = True
+                raise OSError("Injected target write failure after atomic replacement")
+        with patch.object(helper.FigureWorkbench, "_replace_ledger_bytes", new=fail_after_target_replacement):
+            with self.assertRaisesRegex(OSError, "Injected target write failure"):
+                helper.record_requests(self.attempt, target, [item["id"]], changed_files=["plot-spec.json"],
+                                       validation="Reviewed target exports at the adopted canvas.")
+        for owner in (self.app, other):
+            self.assertEqual(owner.ledger_bytes(), before[owner.root])
+        self.assertEqual(self.app.ledger()["requests"][0]["status"], "pending")
+        event = helper.record_requests(self.attempt, target, [item["id"]], changed_files=["plot-spec.json"],
+                                       validation="Reviewed target exports at the adopted canvas.")
+        self.assertEqual(self.app.ledger()["requests"][0]["status"], "applied")
+        self.assertEqual([record["id"] for record in other.ledger()["requests"]], [item["id"], pending["id"]])
+        for owner in (self.app, other):
+            self.assertEqual([entry["id"] for entry in owner.ledger()["history"]], [event["id"]])
+        self.assertEqual(list(self.attempt.glob(".requests-*.tmp")), [])
+        self.assertEqual(list(target.glob(".requests-*.tmp")), [])
+
+    def test_record_detects_target_request_saved_after_planning_before_commit(self):
+        item = self.request()
+        target = self.root / "attempt-02"
+        self.make_attempt(target, self.spec)
+        other = helper.FigureWorkbench(target)
+        serialize = helper.FigureWorkbench.ledger_serialized
+        saved = []
+        def save_new_target_request(owner, ledger):
+            if owner.root == target and not saved:
+                saved.append(None)
+                saved[0] = other.change({"version": other.state()["version"], "element_id": "group-A",
+                                         "instruction": "A new opinion saved in the publication window."})["request"]
+            return serialize(owner, ledger)
+        original = self.app.ledger_bytes()
+        with patch.object(helper.FigureWorkbench, "ledger_serialized", new=save_new_target_request):
+            with self.assertRaisesRegex(helper.WorkbenchError, "Request queue changed"):
+                helper.record_requests(self.attempt, target, [item["id"]], changed_files=["plot-spec.json"],
+                                       validation="Reviewed current target.")
+        self.assertEqual(self.app.ledger_bytes(), original)
+        self.assertEqual([record["id"] for record in other.ledger()["requests"]], [saved[0]["id"]])
+
+    def test_accept_publication_failure_is_retryable_and_retains_pending_instructions(self):
+        item = self.request(annotation_number=3)
+        original = self.app.ledger_bytes()
+        publish = helper.FigureWorkbench._replace_ledger_bytes
+        failed = False
+        def fail_after_acceptance_replacement(owner, raw):
+            nonlocal failed
+            publish(owner, raw)
+            if not failed:
+                failed = True
+                raise OSError("Injected disk failure after atomic replacement")
+        with patch.object(helper.FigureWorkbench, "_replace_ledger_bytes", new=fail_after_acceptance_replacement):
+            with self.assertRaisesRegex(OSError, "Injected disk failure"):
+                helper.accept_attempt(self.attempt, validation="Reviewed actual SVG and paired exports.")
+        self.assertFalse((self.attempt / "accepted-snapshot").exists())
+        self.assertEqual(self.app.ledger_bytes(), original)
+        helper.accept_attempt(self.attempt, validation="Reviewed actual SVG and paired exports.")
+        ledger = self.app.ledger()
+        self.assertEqual([record["id"] for record in ledger["requests"]], [item["id"]])
+        self.assertEqual(ledger["requests"][0]["status"], "pending")
+        self.assertEqual([entry["action"] for entry in ledger["history"]], ["accepted"])
+
+    def test_record_qa_bytes_changed_in_publication_windows_rejects_and_remains_retryable(self):
+        invalid_flags = {"invalid_false": False, "invalid_zero": 0, "invalid_null": None, "invalid_string": "false"}
+        for window in ("before_lock", "after_source", "after_target", "changed_passing_bytes", *invalid_flags):
+            with self.subTest(window=window):
+                source, target = self.root / ("source-" + window), self.root / ("target-" + window)
+                self.make_attempt(source, self.spec)
+                self.make_attempt(target, self.spec)
+                source_app, target_app = helper.FigureWorkbench(source), helper.FigureWorkbench(target)
+                item = source_app.change({"version": source_app.state()["version"], "element_id": "group-A",
+                                          "annotation_number": 1, "instruction": "Retain this pending opinion until valid target QA."})["request"]
+                target_item = target_app.change({"version": target_app.state()["version"], "element_id": "group-A",
+                                                 "annotation_number": 2, "instruction": "Retain the target's own pending opinion."})["request"]
+                before = {app.root: app.ledger_bytes() for app in (source_app, target_app)}
+                qa_path = target / "qa.json"
+                good_qa = qa_path.read_bytes()
+                fired = False
+                def invalidate():
+                    nonlocal fired
+                    fired = True
+                    changed = {"status": "pass", "valid_outputs": True, "note": "Different passing evidence"} if window == "changed_passing_bytes" else {"status": "needs_revision", "valid_outputs": False}
+                    qa_path.write_text(json.dumps(changed))
+                serialize, publish = helper.FigureWorkbench.ledger_serialized, helper.FigureWorkbench._replace_ledger_bytes
+                def serialize_with_invalidation(app, ledger):
+                    if app.root == target and not fired and window in ("before_lock", "changed_passing_bytes"):
+                        invalidate()
+                    return serialize(app, ledger)
+                def publish_with_invalidation(app, raw):
+                    publish(app, raw)
+                    if not fired and ((window == "after_source" and app.root == source) or (window == "after_target" and app.root == target)):
+                        invalidate()
+                if window in invalid_flags:
+                    qa_path.write_text(json.dumps({"status": "pass", "valid_outputs": invalid_flags[window]}))
+                with patch.object(helper.FigureWorkbench, "ledger_serialized", new=serialize_with_invalidation), patch.object(helper.FigureWorkbench, "_replace_ledger_bytes", new=publish_with_invalidation):
+                    with self.assertRaisesRegex(helper.WorkbenchError, "QA|qa"):
+                        helper.record_requests(source, target, [item["id"]], changed_files=["plot-spec.json"], validation="Target is valid only when its captured QA still passes.")
+                for app in (source_app, target_app):
+                    self.assertEqual(app.ledger_bytes(), before[app.root])
+                self.assertEqual(source_app.ledger()["requests"][0]["status"], "pending")
+                qa_path.write_bytes(good_qa)
+                event = helper.record_requests(source, target, [item["id"]], changed_files=["plot-spec.json"], validation="Fresh target QA rechecked.")
+                self.assertEqual(event["target_qa_sha256"], digest(good_qa))
+                self.assertEqual(source_app.ledger()["requests"][0]["result"]["target_qa_sha256"], digest(good_qa))
+                self.assertEqual([record["id"] for record in target_app.ledger()["requests"]], [item["id"], target_item["id"]])
+
+    def test_accept_actual_snapshot_qa_and_publication_bytes_must_still_pass(self):
+        invalid_flags = {"invalid_false": False, "invalid_zero": 0, "invalid_null": None, "invalid_string": "false"}
+        windows = ("before_capture", "after_captured_read", "changed_passing_bytes", "before_publication", "after_publication", "snapshot_corrupted", *invalid_flags)
+        for window in windows:
+            with self.subTest(window=window):
+                source = self.root / ("accept-" + window)
+                self.make_attempt(source, self.spec)
+                app = helper.FigureWorkbench(source)
+                app.change({"version": app.state()["version"], "element_id": "group-A", "annotation_number": 3,
+                            "instruction": "Retain the pending request if acceptance cannot publish."})
+                original = app.ledger_bytes()
+                qa_path, snapshot = source / "qa.json", source / "accepted-snapshot"
+                good_qa = qa_path.read_bytes()
+                fired = False
+                def invalidate(path=qa_path):
+                    nonlocal fired
+                    fired = True
+                    changed = {"status": "pass", "valid_outputs": True, "note": "Changed passing QA bytes"} if window == "changed_passing_bytes" else {"status": "in_progress", "valid_outputs": False}
+                    path.write_text(json.dumps(changed))
+                read, write, publish = helper.read_regular, helper.write_json, helper.FigureWorkbench._replace_ledger_bytes
+                def read_with_invalidation(path):
+                    raw = read(path)
+                    if not fired and ((window in ("before_capture", "changed_passing_bytes") and Path(path) == source / "plot-spec.json") or
+                                      (window == "after_captured_read" and Path(path) == qa_path)):
+                        invalidate()
+                    return raw
+                def write_with_invalidation(path, value):
+                    write(path, value)
+                    if not fired and Path(path) == snapshot / "acceptance.json" and window in ("before_publication", "snapshot_corrupted"):
+                        invalidate(snapshot / "qa.json" if window == "snapshot_corrupted" else qa_path)
+                def publish_with_invalidation(owner, raw):
+                    publish(owner, raw)
+                    if not fired and owner.root == source and window == "after_publication":
+                        invalidate()
+                if window in invalid_flags:
+                    qa_path.write_text(json.dumps({"status": "pass", "valid_outputs": invalid_flags[window]}))
+                with patch.object(helper, "read_regular", side_effect=read_with_invalidation), patch.object(helper, "write_json", side_effect=write_with_invalidation), patch.object(helper.FigureWorkbench, "_replace_ledger_bytes", new=publish_with_invalidation):
+                    with self.assertRaisesRegex(helper.WorkbenchError, "QA|qa"):
+                        helper.accept_attempt(source, validation="Acceptance requires actual captured and current passing QA.")
+                self.assertEqual(app.ledger_bytes(), original)
+                self.assertFalse(snapshot.exists())
+                qa_path.write_bytes(good_qa)
+                accepted = helper.accept_attempt(source, validation="Fresh passing QA and frozen exports verified.")
+                self.assertEqual(accepted["qa_sha256"], digest(good_qa))
+                self.assertEqual(accepted["files"]["qa.json"], digest(good_qa))
+                self.assertEqual((snapshot / "qa.json").read_bytes(), good_qa)
+                self.assertEqual([entry["action"] for entry in app.ledger()["history"]], ["accepted"])
+
     def test_snapshot_tampering_path_escape_and_symlink_restores_are_refused(self):
         helper.accept_attempt(self.attempt,validation="Visual review passed.")
         snapshot=self.attempt/"accepted-snapshot"
@@ -262,6 +431,102 @@ class ApplyRequestsTests(unittest.TestCase):
 
 
 class CoreRenderRequestTests(unittest.TestCase):
+    def test_real_replaced_pdf_and_tiff_cannot_reuse_passing_qa_hashes(self):
+        import render
+        with tempfile.TemporaryDirectory(prefix="easyviz-workbench-export-binding-") as folder:
+            root = Path(folder).resolve()
+            data = root / "input.csv"
+            data.write_text("x,y\n1,2\n2,3\n3,5\n4,4\n")
+            spec = {"chart": "scatter", "fields": {"x": "x", "y": "y"},
+                    "layout": {"width_mm": 120, "height_mm": 90, "dpi": 120, "font": "DejaVu Sans"},
+                    "options": {"point_area_pt2": 12}, "formats": ["svg", "pdf", "png", "tiff"]}
+            source, target = root / "source", root / "target"
+            for path, adopted in ((source, spec), (target, {**spec, "options": {"point_area_pt2": 25, "point_style": "hollow"}})):
+                path.mkdir()
+                spec_path = path / "plot-spec.json"
+                spec_path.write_text(json.dumps(adopted))
+                render.render(data, adopted, path, spec_path=spec_path, track="create")
+                self.assertEqual(json.loads((path / "qa.json").read_text())["status"], "pass")
+            source_app, target_app = helper.FigureWorkbench(source), helper.FigureWorkbench(target)
+            item = source_app.change({"version": source_app.state()["version"], "instruction": "Review this cosmetic alternative."})["request"]
+            source_before, target_before = source_app.ledger_bytes(), target_app.ledger_bytes()
+            qa_bytes = (target / "qa.json").read_bytes()
+            qa = json.loads(qa_bytes)
+            for extension in ("pdf", "tiff"):
+                with self.subTest(extension=extension):
+                    export = target / ("panel." + extension)
+                    original, replacement = export.read_bytes(), (source / export.name).read_bytes()
+                    self.assertEqual(qa["exports"][extension]["sha256"], digest(original))
+                    self.assertNotEqual(digest(original), digest(replacement))
+                    export.write_bytes(replacement)
+                    self.assertEqual((target / "qa.json").read_bytes(), qa_bytes)
+                    self.assertEqual(target_app.state()["version"], json.loads((target / "elements.json").read_text())["version"])
+                    with self.assertRaisesRegex(helper.WorkbenchError, "QA export hash"):
+                        helper.record_requests(source, target, [item["id"]], changed_files=["plot-spec.json"], validation="Old measurements cannot validate replaced exports.")
+                    with self.assertRaisesRegex(helper.WorkbenchError, "QA export hash"):
+                        helper.accept_attempt(target, validation="Old measurements cannot validate replaced exports.")
+                    self.assertEqual(source_app.ledger_bytes(), source_before)
+                    self.assertEqual(target_app.ledger_bytes(), target_before)
+                    self.assertFalse((target / "accepted-snapshot").exists())
+                    export.write_bytes(original)
+            write = helper.write_json
+            good_pdf = (target / "panel.pdf").read_bytes()
+            def replace_live_export_after_snapshot(path, value):
+                write(path, value)
+                if Path(path) == target / "accepted-snapshot" / "acceptance.json":
+                    (target / "panel.pdf").write_bytes((source / "panel.pdf").read_bytes())
+            with patch.object(helper, "write_json", side_effect=replace_live_export_after_snapshot):
+                with self.assertRaisesRegex(helper.WorkbenchError, "QA export hash"):
+                    helper.accept_attempt(target, validation="Captured bundle cannot certify changed current exports.")
+            self.assertEqual(target_app.ledger_bytes(), target_before)
+            self.assertFalse((target / "accepted-snapshot").exists())
+            (target / "panel.pdf").write_bytes(good_pdf)
+            event = helper.record_requests(source, target, [item["id"]], changed_files=["plot-spec.json"], validation="Matching actual export hashes rechecked.")
+            self.assertEqual(event["target_qa_sha256"], digest(qa_bytes))
+            accepted = helper.accept_attempt(target, validation="Matching actual export hashes rechecked.")
+            for extension in ("pdf", "tiff"):
+                self.assertEqual(accepted["files"]["panel." + extension], qa["exports"][extension]["sha256"])
+
+    def test_real_focused_restore_rebinds_every_settings_source_and_preserves_exports(self):
+        import replicate_plot
+        import create_review
+        with tempfile.TemporaryDirectory(prefix="easyviz-focused-restore-") as folder:
+            root = Path(folder).resolve()
+            data = root / "data.csv"
+            data.write_text("condition,unit,value\nA,one,2\nA,two,3\nA,three,4\nB,one,4\nB,two,5\nB,three,6\n")
+            spec = {"chart": "replicate", "fields": {"condition": "condition", "unit": "unit", "value": "value"},
+                    "options": {"mode": "summary", "uncertainty": "sample_sd"},
+                    "layout": {"width_mm": 120, "height_mm": 90, "font": "DejaVu Sans", "font_size_pt": 8},
+                    "formats": ["svg", "pdf", "png"]}
+            spec_path = root / "spec.json"
+            spec_path.write_text(json.dumps(spec))
+            initial = root / "attempt-01"
+            qa = replicate_plot.render(data, spec, initial, spec_path=spec_path)
+            self.assertEqual(qa["status"], "pass")
+            settings = json.loads((initial / "settings.json").read_text())
+            self.assertEqual(settings["input_file"], str(data))
+            expected_exports = {name: (initial / name).read_bytes() for name in
+                                ("panel.svg", "panel.pdf", "panel.png", "plotting-data.csv", "stats.json")}
+            helper.accept_attempt(initial, validation="Verified real fixed-canvas exports and adopted source bindings.")
+            data.write_text("condition,unit,value\nchanged,one,999\n")
+            spec_path.write_text('{"changed": true}')
+            restored = root / "restored"
+            helper.restore_attempt(initial, restored)
+            fresh_settings = json.loads((restored / "settings.json").read_text())
+            self.assertEqual(fresh_settings["input_file"], str(restored / "source-data.csv"))
+            expected_settings = copy.deepcopy(settings)
+            expected_settings["input_file"] = str(restored / "source-data.csv")
+            self.assertEqual(fresh_settings, expected_settings, "Only frozen provenance pointer changes")
+            for name, raw in expected_exports.items():
+                self.assertEqual((restored / name).read_bytes(), raw)
+            self.assertTrue(helper.FigureWorkbench(restored).state()["source_current"])
+            records = {name: json.loads((restored / name).read_text()) for name in ("settings.json", "elements.json", "qa.json")}
+            bindings = create_review.source_bindings(restored, records)
+            for role in ("data_file", "source_script", "spec_file"):
+                self.assertTrue(bindings[role], role)
+                self.assertTrue(all(entry["status"] == "passed" for entry in bindings[role]), bindings[role])
+                self.assertTrue(all(Path(entry["path"]).parent == restored for entry in bindings[role]), bindings[role])
+
     def test_reference_style_alias_prepares_valid_core_spec_and_rerenders_same_position(self):
         import render
         with tempfile.TemporaryDirectory(prefix="easyviz-reference-style-") as folder:

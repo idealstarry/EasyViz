@@ -1,0 +1,35 @@
+{
+  "method": "none",
+  "note": "Descriptive visualization; no inferential test requested.",
+  "violin_definition": "Gaussian KDE with Scott bandwidth, 100 evaluation points; each violin width independently normalized. Every observation is drawn as a point.",
+  "violin_inner_definition": "Category-filled raw-value Q1/Q3 box with an optional median line; NumPy linear quantiles; no whiskers. Fixed categorical width independent of KDE density and sample count.",
+  "violin_inner_summaries": [
+    {
+      "group": "A",
+      "n_observations": 16,
+      "q1": 7.44343454824376,
+      "median": 8.00278847235642,
+      "q3": 8.957059872702164,
+      "categorical_width": 0.16,
+      "median_line_visible": true
+    },
+    {
+      "group": "B",
+      "n_observations": 22,
+      "q1": 9.889778527053895,
+      "median": 11.828802965652626,
+      "q3": 13.484515927396757,
+      "categorical_width": 0.16,
+      "median_line_visible": true
+    },
+    {
+      "group": "C",
+      "n_observations": 28,
+      "q1": 8.851314006225534,
+      "median": 10.29003680630806,
+      "q3": 12.155824292139096,
+      "categorical_width": 0.16,
+      "median_line_visible": true
+    }
+  ]
+}

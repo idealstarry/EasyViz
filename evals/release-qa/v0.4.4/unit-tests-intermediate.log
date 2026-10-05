@@ -1,0 +1,17 @@
+...........................................................................................................................................................................................................................................................................................................................................F.................................................................................................................................................................................
+======================================================================
+FAIL: test_partial_cache_backup_failure_keeps_previous_cache_and_restores_source (test_install_plugin.InstallerTests.test_partial_cache_backup_failure_keeps_previous_cache_and_restores_source)
+----------------------------------------------------------------------
+FileNotFoundError: [Errno 2] No such file or directory: 'test-codex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_install_plugin.py", line 387, in test_partial_cache_backup_failure_keeps_previous_cache_and_restores_source
+    with mock.patch.object(install_plugin.shutil, "copytree", side_effect=interrupted_copy):
+AssertionError: "cache backup interrupted" does not match "[Errno 2] No such file or directory: 'test-codex'"
+
+----------------------------------------------------------------------
+Ran 509 tests in 225.438s
+
+FAILED (failures=1)

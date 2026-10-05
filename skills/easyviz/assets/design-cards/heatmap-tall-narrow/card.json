@@ -1,0 +1,39 @@
+{
+  "id": "heatmap-tall-narrow",
+  "chart": "heatmap",
+  "applies_when": [
+    "A matrix with many more rows than columns",
+    "Linear magnitude lookup with adopted fixed numeric bounds"
+  ],
+  "good_image": "heatmap-tall-narrow/good/panel.png",
+  "failure_image": "heatmap-tall-narrow/failure/panel.png",
+  "final_size_preview": "heatmap-tall-narrow/good/preview-96dpi.png",
+  "data": "heatmap-tall-narrow/data.csv",
+  "good_spec": "heatmap-tall-narrow/good-spec.json",
+  "failure_spec": "heatmap-tall-narrow/failure-spec.json",
+  "caption": "heatmap-tall-narrow/caption.md",
+  "mechanism": "Matrix shape and labels set data-region geometry; visible subordinate seams separate large cells without changing the scale.",
+  "avoid": "Stretching a three-column matrix into wide ribbons weakens local reading; disappearing cell seams make nearby pale values merge.",
+  "source_anchors": [
+    "scWAT Fig.2b PDF p4: compact narrow matrix",
+    "The blue ramp and seams are declared EasyViz adaptations"
+  ],
+  "synthetic": true,
+  "comparisons_are_intentional_teaching_not_effectiveness_evidence": true,
+  "rendered": [
+    {
+      "variant": "good",
+      "technical_status": "pass",
+      "png_sha256": "e6f66eb1b7b26bb2efecce4743384666de95775e287b33728d1c1a93703d6ab3"
+    },
+    {
+      "variant": "failure",
+      "technical_status": "pass",
+      "png_sha256": "97d03b99da4bc499761df293dc340268a859ce6d3bbe135c6c77680a107451a3"
+    }
+  ],
+  "geometry_notes": [
+    "Adopted canvas: 88 × 88 mm; declared data region: 28.16 × 67.76 mm from the fixed margins.",
+    "The fixed margins allocate a tall, narrow data region to twelve rows and three columns; automatic cell aspect follows that region. A vertical colorbar uses the space reserved on the right."
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "version": "0.1.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/three-class-scatter/data.csv",
+    "sha256": "6c2ddf015221f9b508c662dc71be9e95f9bdaf0b3beec0d3d5b06056a329632d",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/create-first-delivery-v0.4.4/inputs/three-class-scatter/spec.json",
+    "sha256": "00c5213341b7c570c633a38a767259e344da31f9ba90d6c1c6e8d2e5ca80f89a",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "scatter",
+    "input_rows": 135,
+    "task": "read fixed-size observations on two supplied numeric axes",
+    "category_order": {
+      "group": [
+        "Class A",
+        "Class B",
+        "Class C"
+      ]
+    },
+    "label_max_characters": {
+      "group": 7
+    },
+    "duplicate_coordinate_rows": 0,
+    "group_count": 3
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      13.947811631944447,
+      11.177734375,
+      70.52818836805555,
+      52.24916992187502
+    ],
+    "canvas_mm": [
+      88.0,
+      78.0
+    ],
+    "numeric_limits": {
+      "x": [
+        0.0,
+        12.0
+      ],
+      "y": [
+        -4.0,
+        15.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [],
+    "source_to_artist": {
+      "status": "pass",
+      "numeric_coordinates_preserved": true,
+      "point_area_preserved": true,
+      "observation_count": 135
+    },
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Neutral distribution observations/strokes and single-quantity bars are EasyViz adaptations; fixed scatter colors identify small marks. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "reason": "Measured text/guide fit with fixed-coordinate observation fill/outline alternatives; proposal 1. Explicit choices remain locked.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    },
+    {
+      "id": "candidate-02",
+      "spec": "candidate-02/spec.json",
+      "eligible_design_card_ids": [],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/point_edge_width_pt",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Neutral distribution observations/strokes and single-quantity bars are EasyViz adaptations; fixed scatter colors identify small marks. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "reason": "Measured text/guide fit with fixed-coordinate observation fill/outline alternatives; proposal 2. Explicit choices remain locked.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-02/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "geometry_evidence": "candidate-02/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}
