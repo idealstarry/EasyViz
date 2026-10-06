@@ -65,16 +65,27 @@
       "/Users/starry/.codex/plugins/easyviz.backup-20261006T052608Z-7b068c0e",
       "/Users/starry/.agents/plugins/marketplace.json.easyviz-backup-20261006T052608Z-7b068c0e"
     ],
-    "next_step": "Start a new chat; restart ChatGPT Desktop if its plugin list has not refreshed."
+    "next_step": "Start a new chat; restart ChatGPT Desktop if its plugin list has not refreshed.",
+    "verified_files": 947,
+    "stable_source_and_cache_identical_to_archive": true
   },
   "github_ci": {
-    "status": "pending_push"
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37418958189,
+    "url": "https://github.com/idealstarry/EasyViz/actions/runs/37418958189",
+    "source_commit": "63d1c76e0184c751c48c9a35e4d22cf3cbc72244",
+    "unit_tests": 723,
+    "unit_test_seconds": 566.742,
+    "archive_identical_to_local_build": true
   },
   "publication": {
-    "status": "qa_passed_pending_ci",
     "release_url": "https://github.com/idealstarry/EasyViz/releases/tag/v0.5.0",
     "assets": [
       "easyviz-0.5.0.zip"
-    ]
-  }
+    ],
+    "tag": "v0.5.0"
+  },
+  "implementation_commit": "63d1c76e0184c751c48c9a35e4d22cf3cbc72244",
+  "verification_scope": "The shipped runtime/package was verified at implementation_commit. The later QA-record update changes only this JSON and its README; packaged files, tests and scientific outputs are unchanged."
 }

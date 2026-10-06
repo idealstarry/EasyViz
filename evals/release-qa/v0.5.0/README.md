@@ -29,7 +29,7 @@ with a shared workbench and an optional MCP adapter.
 
 | Evidence | Result and scope |
 | --- | --- |
-| Full unit suite | 719 passed initially; 722 after Reproduce hardening; **723 passed on the final frozen sources**. CI is recorded in [release record](release.json); [final log](core-tests-release.log). |
+| Full unit suite | 719 passed initially; 722 after Reproduce hardening; **723 passed on the final frozen sources**. Linux CI also passed all 723 tests and built the identical ZIP; [CI](https://github.com/idealstarry/EasyViz/actions/runs/37418958189), [final local log](core-tests-release.log). |
 | Synthetic demonstrations | All seven rendered, including the repaired annotated-matrix driver; [log](demos.log). |
 | Existing source examples/showcases | Source numbers, physical sizes and embedded fonts passed; [historical cases](examples.log), [showcases](showcase.log). |
 | Changed-input engineering matrix | 21 cases: 8 successful outputs, 10 clear data rejections, 2 clear layout rejections, 1 explicit unsupported case; no open problem; [log](generalization.log). These are bounded contract tests. |
@@ -41,8 +41,10 @@ with a shared workbench and an optional MCP adapter.
 | Distribution | 947 files; 19,027,064-byte ZIP. Final resources and all 389 local targets in 170 Markdown files resolve. Scientific/pixel/SDK checks run against an earlier full-smoke ZIP; only JS and style prose changed afterwards. Exact member comparison identifies the carried-forward evidence; [package record](../../development-v0.5.0/package-audit/final-package-validation.json). |
 | Skill entry points/dependencies | All three skill validators passed. Python 3.12.2, 46 compatible development/optional packages. The ordinary workbench and help do not require the optional SDK. |
 
-Archive identity, local installation, final test count and GitHub CI are recorded
-in `release.json`. The ZIP is the release asset; no separate checksum download
+Archive identity, verified local installation, final test count and GitHub CI
+are recorded in [release.json](release.json). The implementation commit is
+`63d1c76e0184c751c48c9a35e4d22cf3cbc72244`; the subsequent QA-record update
+changes only this README and its JSON, leaving every packaged file unchanged. The ZIP is the release asset; no separate checksum download
 is published. Internal content bindings keep source, request and export
 identities verifiable.
 
