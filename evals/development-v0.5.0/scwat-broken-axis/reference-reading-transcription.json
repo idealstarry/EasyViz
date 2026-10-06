@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "reader": {
+    "agent_id": "implementing-Agent transcription of /root/v050_scwat_reader report",
+    "independence": "main-agent",
+    "image_viewed": true,
+    "limitations": [
+      "The independent reader inspected only this reference and caption before implementation. This JSON is a later implementing-Agent transcription of that reading, not another independent or blind reading.",
+      "Immutable original reading: reference-reading.md, SHA-256 94e7303893c1d6a64b8f3c4b4c3339e6560d91284c124005c122dc92e83dae6a.",
+      "The implementing Agent had prior familiarity with the paper; this case is a workflow exercise, not a held-out benchmark.",
+      "Raster geometry does not establish the original physical canvas or exact typeface."
+    ]
+  },
+  "reference": {
+    "sha256": "652a50b3fb121c2914ba79a06d765d84124afcd22c4b1d2b1bb3b292881382ad",
+    "region": "Complete supplied Fig. 2c crop, 824 × 532 raster pixels"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "property": "layers.bars",
+      "description": "Six gene categories, two side-by-side open bars per gene. A narrow visible gap separates the two bars; tall red Elovl3 side outlines continue across the physical axis gap.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E2",
+      "property": "layers.points",
+      "description": "Round filled points, matching group colors, overlay the bars with small horizontal offsets; some points overlap.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E3",
+      "property": "coordinates.segments",
+      "description": "Shared categorical x axis and two visibly separated linear numeric y-axis segments. Printed lower ticks 0, 5, 10, 15; upper ticks 40, 50, 60, 70, 80. Upper pixels per unit are about one third lower; spine ends use horizontal terminal strokes.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E4",
+      "property": "coordinates.exact-segment-limits",
+      "description": "Extrapolated upper lower bound is near 35 and lower segment ends near 15.",
+      "state": "inferred",
+      "source": "reference",
+      "uncertainty": "What are the exact unprinted segment bounds? Raster extrapolation supports only approximate bounds."
+    },
+    {
+      "id": "E5",
+      "property": "encoding.group-colors",
+      "description": "YT-FF is the blue left bar and YT-AKO is salmon-red right bar in every category. Bars, whiskers and points share group colors; dominant raster colors approximate #549FFA / #FF7F7F.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E6",
+      "property": "statistics.summary",
+      "description": "Caption states mean ± SEM and n = 5 mice per group.",
+      "state": "observed",
+      "source": "caption-1",
+      "uncertainty": ""
+    },
+    {
+      "id": "E7",
+      "property": "layers.comparison",
+      "description": "Short black lines and stars above first five genes: **, ***, *, ***, ***; no line/stars visible for Prdm16. No bracket uprights are visible.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E8",
+      "property": "statistics.test",
+      "description": "Caption states two-tailed unpaired Student t-test, star thresholds P < .05/.01/.001, and exact P values in Source Data.",
+      "state": "observed",
+      "source": "caption-1",
+      "uncertainty": ""
+    },
+    {
+      "id": "E9",
+      "property": "statistics.exact-reported-p",
+      "description": "Exact P values were not accessed by the independent reader.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "What are the source-reported P values or classes for the displayed comparisons?"
+    },
+    {
+      "id": "E10",
+      "property": "statistics.point-meaning",
+      "description": "Dots plausibly represent individual mice; caption n = 5 and visible groups are consistent.",
+      "state": "inferred",
+      "source": "caption-1",
+      "uncertainty": "Does each dot correspond to one biological mouse observation rather than a technical measurement?"
+    },
+    {
+      "id": "E11",
+      "property": "statistics.cross-gene-pairing",
+      "description": "Mouse correspondence across genes is unknown.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "Are observation identities shared across genes? Horizontal offsets cannot establish pairing."
+    },
+    {
+      "id": "E12",
+      "property": "data.normalization",
+      "description": "Relative expression normalization formula/calibrator is not supplied.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "What normalization and calibrator produced relative-expression values?"
+    },
+    {
+      "id": "E13",
+      "property": "geometry.physical-canvas",
+      "description": "Original physical canvas size is not recovered from raster pixels.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "What final manuscript dimensions should be adopted?"
+    },
+    {
+      "id": "E14",
+      "property": "typography.font-and-point-sizes",
+      "description": "Sans-serif text; tick glyphs smaller than primary labels, but original typeface/point sizes unknown.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "What exact font and final point sizes should be adopted?"
+    },
+    {
+      "id": "E15",
+      "property": "layers.sem-extent",
+      "description": "Upward whiskers with caps are visible. Full lower SEM caps are not visibly separated from bar interiors; the crop alone does not establish the complete interval drawing.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E16",
+      "property": "geometry.plot-and-spacing",
+      "description": "Combined plot envelope about 498 × 332 px; two almost equal segment heights; 23–24 px physical gap; outline bars about 29–30 px wide with pair gaps about 5–7 px.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E17",
+      "property": "guides.legend",
+      "description": "Upper-right categorical legend with two outline rectangular keys and YT-FF/YT-AKO labels; complete footprint extends right of plotted baseline.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E18",
+      "property": "text.panel-letter",
+      "description": "Panel letter c at upper-left; no in-panel narrative title or footnote.",
+      "state": "observed",
+      "source": "reference",
+      "uncertainty": ""
+    },
+    {
+      "id": "E19",
+      "property": "statistics.multiplicity",
+      "description": "Multiplicity handling is not stated in inspected evidence.",
+      "state": "unknown",
+      "source": null,
+      "uncertainty": "Were author P values adjusted for multiple comparisons?"
+    }
+  ],
+  "layers": [
+    {
+      "id": "bars",
+      "evidence_ids": [
+        "E1",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E12",
+        "E13",
+        "E16"
+      ],
+      "description": "Open mean bars with continuous tall-bar edges across an axis gap",
+      "required_data_meanings": [
+        "gene",
+        "genotype",
+        "relative-expression measurement",
+        "mean definition"
+      ]
+    },
+    {
+      "id": "points",
+      "evidence_ids": [
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E10",
+        "E11",
+        "E12",
+        "E13"
+      ],
+      "description": "All round observation marks, within-bar display offsets",
+      "required_data_meanings": [
+        "gene",
+        "genotype",
+        "relative-expression measurement",
+        "independent observation identity"
+      ]
+    },
+    {
+      "id": "sem",
+      "evidence_ids": [
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E15"
+      ],
+      "description": "Group-colored mean ± SEM whiskers",
+      "required_data_meanings": [
+        "gene",
+        "genotype",
+        "independent observations",
+        "SEM definition"
+      ]
+    },
+    {
+      "id": "comparison",
+      "evidence_ids": [
+        "E7",
+        "E8",
+        "E9",
+        "E19"
+      ],
+      "description": "Author comparison classes and short line guides",
+      "required_data_meanings": [
+        "gene",
+        "reported P value or class",
+        "test meaning"
+      ]
+    },
+    {
+      "id": "axes",
+      "evidence_ids": [
+        "E3",
+        "E4",
+        "E13",
+        "E14",
+        "E16"
+      ],
+      "description": "Two numeric segments and one shared category frame",
+      "required_data_meanings": []
+    },
+    {
+      "id": "legend",
+      "evidence_ids": [
+        "E5",
+        "E14",
+        "E17"
+      ],
+      "description": "Two outline categorical genotype keys",
+      "required_data_meanings": []
+    },
+    {
+      "id": "panel-letter",
+      "evidence_ids": [
+        "E18"
+      ],
+      "description": "Panel letter c",
+      "required_data_meanings": []
+    }
+  ]
+}

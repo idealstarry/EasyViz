@@ -34,7 +34,8 @@ from PIL import Image, ImageDraw, ImageFont
 from marker_geometry import collection_fill_areas_pt2
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "evals" / "legend-transfer"
+DEFAULT_OUT = ROOT / "evals" / "legend-transfer"
+OUT = DEFAULT_OUT
 PALETTE = ["#2581B9", "#DF9A3C", "#1AA781", "#D76F3B", "#007F7F", "#A37FFF", "#29ACF3", "#E47751"]
 LONG = ["Activated T cells", "Memory B cells", "Inflammatory monocytes", "Dendritic cell precursors",
         "Cytotoxic lymphocytes", "Vascular endothelial cells", "Stromal progenitor cells", "Tissue resident macrophages"]
@@ -281,7 +282,9 @@ def inspect_size_exports(destination, geometry, spec):
         definitions = {item.attrib["id"]: item for item in root.iter() if "id" in item.attrib}
         extents = []
         for group in root.iter(ns + "g"):
-            if not group.attrib.get("id", "").startswith("legend_"):
+            # Registered guides have stable semantic IDs; unregistered and
+            # historical Matplotlib exports retain their default legend IDs.
+            if not group.attrib.get("id", "").startswith(("legend_", "easyviz-legend-")):
                 continue
             for collection in group.iter(ns + "g"):
                 if not collection.attrib.get("id", "").startswith("PathCollection_"):
@@ -523,13 +526,17 @@ def report(manifest, results):
 
 
 def main():
+    global OUT
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--generate-only", action="store_true")
     parser.add_argument("--only", nargs="*", help="Optional exact case IDs; reports include these cases only")
     parser.add_argument("--skip-before", action="store_true", help="Reuse saved before measurements rather than rerun unchanged baseline")
     parser.add_argument("--renderer", type=Path, default=ROOT / "skills/easyviz/scripts/render.py")
-    parser.add_argument("--baseline", type=Path, default=OUT / "baseline/skills/easyviz/scripts/render.py")
+    parser.add_argument("--baseline", type=Path, default=DEFAULT_OUT / "baseline/skills/easyviz/scripts/render.py")
+    parser.add_argument("--out", type=Path, default=DEFAULT_OUT,
+                        help="Write generated fixtures and evidence here; the historical baseline remains unchanged")
     args = parser.parse_args()
+    OUT = args.out.expanduser().resolve()
     manifest = generate()
     if args.generate_only:
         print(json.dumps({"generated_cases": len(manifest["cases"]), "out": str(OUT)})); return

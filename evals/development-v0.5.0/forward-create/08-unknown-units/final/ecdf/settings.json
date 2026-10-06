@@ -1,0 +1,394 @@
+{
+  "fields": {
+    "group": "condition",
+    "value": "value"
+  },
+  "colors": {
+    "Control": "#445C87",
+    "Treated": "#AD5F49"
+  },
+  "order": {
+    "group": [
+      "Control",
+      "Treated"
+    ]
+  },
+  "layout": {
+    "width_mm": 74.0,
+    "height_mm": 66.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.1873397968280781,
+      "right": 0.9729729729729727,
+      "bottom": 0.29507444234006736,
+      "top": 0.9670541049223187
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "ecdf",
+  "labels": {
+    "x": "Value (units unknown)",
+    "y": "Cumulative fraction"
+  },
+  "options": {
+    "x_scale": "linear",
+    "x_limits": [
+      1.8,
+      3.6
+    ]
+  },
+  "legends": {
+    "categorical": {
+      "position": "bottom"
+    }
+  },
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "resolved_colors": {
+    "Control": "#445C87",
+    "Treated": "#AD5F49"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/source.csv",
+  "input_sha256": "7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d",
+  "supplied_spec": {
+    "fields": {
+      "group": "condition",
+      "value": "value"
+    },
+    "colors": {
+      "Control": "#445C87",
+      "Treated": "#AD5F49"
+    },
+    "order": {
+      "group": [
+        "Control",
+        "Treated"
+      ]
+    },
+    "layout": {
+      "width_mm": 74,
+      "height_mm": 66,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "line_width_pt": 0.6,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "typography": {},
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "chart": "ecdf",
+    "labels": {
+      "x": "Value (units unknown)",
+      "y": "Cumulative fraction"
+    },
+    "options": {
+      "x_scale": "linear",
+      "x_limits": [
+        1.8,
+        3.6
+      ]
+    },
+    "legends": {
+      "categorical": {
+        "position": "bottom"
+      }
+    },
+    "line_roles": {
+      "data": {
+        "line_width_pt": 0.85
+      },
+      "summary": {
+        "line_width_pt": 0.75
+      },
+      "reference": {
+        "line_width_pt": 0.45,
+        "color": "#747474",
+        "linestyle": "--"
+      },
+      "axis": {
+        "line_width_pt": 0.55,
+        "color": "#222222"
+      },
+      "grid": {
+        "line_width_pt": 0.3,
+        "color": "#E8E8E8",
+        "linestyle": "-"
+      }
+    }
+  },
+  "spec_sha256": "341c4394585507d407ce16139cc50ce8564ff50f27b3dde3ceab51fc9ef3d8cd",
+  "axis": {
+    "x_scale": "linear",
+    "x_limits": [
+      1.8,
+      3.6
+    ],
+    "y_limits": [
+      -0.02,
+      1.02
+    ],
+    "explicit_x_ticks": null,
+    "x_tick_format": "plain",
+    "x_tick_labels": [
+      "1.5",
+      "2.0",
+      "2.5",
+      "3.0",
+      "3.5",
+      "4.0"
+    ]
+  },
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/source.csv",
+      "sha256": "7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d"
+    }
+  },
+  "curve_policy": {
+    "method": "count(value <= x) / observation_count",
+    "drawstyle": "steps-post",
+    "ties": "full jump count",
+    "line_width_pt": 0.85,
+    "horizontal_tails": "display extension to x limits",
+    "fraction_range": [
+      0,
+      1
+    ],
+    "vertical_display_padding": 0.02,
+    "markers": "none",
+    "path_simplification": false
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "94b313f3374be7f87aab0b88bdbec418af915ad5dc9a6bd82c3ec9c394890607",
+    "helper_sha256": {
+      "render.py": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+      "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "spec_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/ecdf/spec.json",
+  "spec_file_sha256": "4fef8ec59d6bbeb393c390a8a7fc42e1a21b90f1ecdc2ec2a237eacbb353ee90",
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.1873397968280781,
+      "right": 0.9729729729729727,
+      "bottom": 0.29507444234006736,
+      "top": 0.9670541049223187
+    },
+    "data_region_mm": [
+      13.86314496527778,
+      19.474913194444447,
+      58.1368550347222,
+      44.350657730428594
+    ],
+    "data_area_fraction": 0.5279295166192687,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 8.297178819444447,
+          "top": 0.0
+        },
+        "issues": [],
+        "data_area_fraction": 0.5279295166192687
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 6.0,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "bottom",
+          "ncol": 1,
+          "loc": "upper center",
+          "anchor_mm": [
+            42.931572482638884,
+            8.297178819444447
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 6.0,
+          "effective_key_height_mm": 1.7998611111111111,
+          "key_shape": "line",
+          "curve_line_width_pt": 0.85
+        },
+        "bbox_mm": [
+          34.69249435763888,
+          2.0000000000000013,
+          16.47815625,
+          6.297178819444446
+        ],
+        "plot_bbox_mm": [
+          13.86314496527778,
+          19.474913194444447,
+          58.1368550347222,
+          44.350657730428594
+        ],
+        "canvas_mm": [
+          74.0,
+          66.0
+        ],
+        "area_fraction_of_plot": 0.04024417633402516,
+        "width_fraction_of_plot": 0.2834373520920324,
+        "height_fraction_of_plot": 0.14198614274719104,
+        "area_fraction_of_canvas": 0.021246088558762515,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.19750002609169703,
+        "available_region_mm": [
+          1.0,
+          1.0,
+          72.0,
+          7.297178819444447
+        ],
+        "key_bboxes_mm": [
+          [
+            34.742563802083325,
+            6.839826221955132,
+            6.2998611111111105,
+            0.2998611111111103
+          ],
+          [
+            34.742563802083325,
+            3.591236812232908,
+            6.2998611111111105,
+            0.2998611111111115
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "bottom",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              34.69249435763888,
+              2.0000000000000013,
+              16.47815625,
+              6.297178819444446
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              25.897494357638884,
+              5.248589409722224,
+              34.068156249999994,
+              3.048589409722223
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 103.76589652099614,
+      "sum_envelope_area_mm2": 103.76589652099614,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.04024417633402516,
+      "area_fraction_of_canvas": 0.021246088558762515,
+      "enclosing_bbox_mm": [
+        34.69249435763888,
+        2.0000000000000013,
+        16.47815625,
+        6.297178819444446
+      ],
+      "max_individual_width_mm": 16.47815625,
+      "max_individual_height_mm": 6.297178819444445,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "resolved_legends": {
+    "categorical": {
+      "position": "bottom",
+      "key_width_mm": 6.0
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "purpose": "Show how individual IgG measurements change from before to after vaccination, with prior-infection classes decoded. Preserve the literal participant pairing. Use a paired change view, not an unrelated association scatter.",
+  "reading_burden": {
+    "source_rows": 127,
+    "groups": {
+      "Prior infection": 64,
+      "No prior infection": 63
+    }
+  },
+  "adopted_canvas_mm": [
+    100,
+    86
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "observations",
+  "organization": "repeated_groups",
+  "mechanism": "literal within-person connectors in class blocks",
+  "expected_benefit": "Two class blocks keep before/after directions and literal connectors readable; saturated blue/pink dots and matching keys distinguish classes. The log axis and original units are explicit.",
+  "observed_tradeoff": "Dense connector regions necessarily overlap; every pair and both endpoints remain present, and the black median/IQR guide remains readable.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

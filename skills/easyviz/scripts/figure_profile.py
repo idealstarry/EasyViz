@@ -225,7 +225,11 @@ def validate_spec(spec, required_fields, optional_fields, chart_options, shared_
     if "seed" in spec:
         _require(isinstance(spec["seed"], int) and not isinstance(spec["seed"], bool) and spec["seed"] >= 0, "seed must be a nonnegative integer")
     statistics = spec.get("statistics", {})
-    _keys(statistics, {"method", "groups", "unit", "annotate"}, "statistics")
+    _keys(statistics, {"method", "groups", "unit", "annotate", "analysis"}, "statistics")
+    if "analysis" in statistics:
+        _require(not ({"method", "groups", "unit"} & set(statistics)),
+                 "statistics.analysis cannot be combined with legacy method, groups or unit; the adopted analysis supplies them")
+        _require(isinstance(statistics["analysis"], dict), "statistics.analysis must be an adopted-analysis binding object")
     for key in ("method", "unit"):
         if key in statistics:
             _string(statistics[key], f"statistics.{key}")

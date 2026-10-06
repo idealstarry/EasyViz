@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "175d40f373ffd59cea434e652dc4ed1b267f481884d5eac00eb040c8471760cc",
+  "pass_number": 3,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "Fresh forward Create agent"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/final/panel.png",
+      "sha256": "7000d003ccc87cabf864a648fdfd209383273cb9e746f30092ef9e6a2e30ea70",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image via functions.exec; actual current final PNG opened, full canvas at saved final proportions",
+      "size_basis": "Complete canvas viewed at its saved 90 × 76 mm aspect ratio; no nominal print-size display is claimed."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Actual values/identities retained by source assertions; adopted fields: {\"group\": \"cohort_name\", \"value\": \"body_mass_index\", \"unit\": \"person_key\"}"
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "The initial valid panel visibly prioritizes larger opaque colored participant dots, while fine open grey summaries are subordinate; all three cohort lanes are clearly associated with their labels."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "The initial valid panel visibly prioritizes larger opaque colored participant dots, while fine open grey summaries are subordinate; all three cohort lanes are clearly associated with their labels."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "A few Kerr points touch the supporting upper-box edge. The wider-offset revision created 16 unresolved point pairs and the third attempt retained one spacing conflict; both were rejected. Original valid image retained with this minor contact explicitly accepted."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Actual marks and keys opened together; no added in-image title or prose. Category-colored marks, neutral supporting strokes and sequential magnitude scales follow the adopted roles."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Scientific axis labels, units and summaries remain unchanged. Current caption retains BMI/participant/summary semantics and categorical packing; implementation-attempt history was removed and remains in review-history.json."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 90.0, \"height_mm\": 76.0}, \"actual_png\": {\"pixels\": [1063, 898], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"pdf\": {\"width_mm\": 89.99999999999278, \"height_mm\": 75.99999999998528, \"sha256\": \"ec7ba1477d5a76c3d2b97049e28c5cdec0e233b9c2476bfb22f246bd90ce2f6f\"}, \"svg\": {\"width_mm\": 89.99999991666667, \"height_mm\": 76.00000004722222, \"text_preserved\": true, \"font_embedding\": \"SVG references the recorded font; install it on the assembly system.\", \"sha256\": \"3ada1bdb92b1ed5896a161f2fb0f306113f07aec617806c5a47900f1b4d94e78\"}, \"png\": {\"pixels\": [1063, 898], \"dpi\": [299.9994, 299.9994], \"sha256\": \"7000d003ccc87cabf864a648fdfd209383273cb9e746f30092ef9e6a2e30ea70\"}}, \"format_bindings\": {\"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"ec7ba1477d5a76c3d2b97049e28c5cdec0e233b9c2476bfb22f246bd90ce2f6f\", \"actual_sha256\": \"ec7ba1477d5a76c3d2b97049e28c5cdec0e233b9c2476bfb22f246bd90ce2f6f\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"3ada1bdb92b1ed5896a161f2fb0f306113f07aec617806c5a47900f1b4d94e78\", \"actual_sha256\": \"3ada1bdb92b1ed5896a161f2fb0f306113f07aec617806c5a47900f1b4d94e78\"}, \"png\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"7000d003ccc87cabf864a648fdfd209383273cb9e746f30092ef9e6a2e30ea70\", \"actual_sha256\": \"7000d003ccc87cabf864a648fdfd209383273cb9e746f30092ef9e6a2e30ea70\"}}, \"actual_svg\": {\"width_mm\": 89.99999991666665, \"height_mm\": 76.00000004722222}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8.0, \"tick\": 8.0, \"legend\": 8.0, \"annotation\": 8.0, \"title\": 9.0, \"panel\": 9.0}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:source_bindings:data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/04-observation-leading/measurements.csv\", \"sha256\": \"81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136\", \"expected_sha256\": \"81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/04-observation-leading/measurements.csv\", \"sha256\": \"81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136\", \"expected_sha256\": \"81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"settings.json:source_bindings:source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py\", \"sha256\": \"464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339\", \"expected_sha256\": \"464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py\", \"sha256\": \"464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339\", \"expected_sha256\": \"464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"settings.json:source_bindings:spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/spec.json\", \"sha256\": \"bf29fbc10af921894f04f992565a6764bd50a1654908368ff2baa31a967535a5\", \"expected_sha256\": \"bf29fbc10af921894f04f992565a6764bd50a1654908368ff2baa31a967535a5\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/spec.json\", \"sha256\": \"bf29fbc10af921894f04f992565a6764bd50a1654908368ff2baa31a967535a5\", \"expected_sha256\": \"bf29fbc10af921894f04f992565a6764bd50a1654908368ff2baa31a967535a5\", \"status\": \"passed\"}], \"figure_profile\": [], \"auxiliary_inputs:helper:legend_layout.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:legend_layout.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py\", \"sha256\": \"239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0\", \"expected_sha256\": \"239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:legend_layout.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py\", \"sha256\": \"239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0\", \"expected_sha256\": \"239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0\", \"status\": \"passed\"}], \"auxiliary_inputs:helper:figure_profile.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:figure_profile.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py\", \"sha256\": \"b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9\", \"expected_sha256\": \"b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:figure_profile.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py\", \"sha256\": \"b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9\", \"expected_sha256\": \"b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9\", \"status\": \"passed\"}], \"auxiliary_inputs:helper:auto_layout.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:auto_layout.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py\", \"sha256\": \"e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417\", \"expected_sha256\": \"e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:auto_layout.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py\", \"sha256\": \"e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417\", \"expected_sha256\": \"e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417\", \"status\": \"passed\"}], \"auxiliary_inputs:helper:annotation_review.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:annotation_review.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py\", \"sha256\": \"e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e\", \"expected_sha256\": \"e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:annotation_review.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py\", \"sha256\": \"e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e\", \"expected_sha256\": \"e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e\", \"status\": \"passed\"}], \"auxiliary_inputs:helper:figure_elements.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:figure_elements.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py\", \"sha256\": \"99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062\", \"expected_sha256\": \"99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:figure_elements.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py\", \"sha256\": \"99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062\", \"expected_sha256\": \"99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062\", \"status\": \"passed\"}], \"auxiliary_inputs:helper:panel_readability.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:panel_readability.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py\", \"sha256\": \"10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1\", \"expected_sha256\": \"10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:panel_readability.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py\", \"sha256\": \"10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1\", \"expected_sha256\": \"10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1\", \"status\": \"passed\"}], \"auxiliary_inputs:helper:observation_clipping.py\": [{\"declared_by\": \"settings.json:source_bindings:helper:observation_clipping.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py\", \"sha256\": \"bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4\", \"expected_sha256\": \"bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.auxiliary_inputs:helper:observation_clipping.py\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py\", \"sha256\": \"bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4\", \"expected_sha256\": \"bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4\", \"status\": \"passed\"}]}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/final/settings.json\", \"sha256\": \"2b83ecd6e29d8026e48a9ee28795ab050f66dd33f5404204ee0aa6ca2c131241\", \"bytes\": 18116}, \"resolved_spec_sha256\": \"011fb5b0186e27c52197cf9b2e23d98084016b778cfe9a14763125db58a9338b\", \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\", \"captured_source\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/final/source-data.csv\", \"sha256\": \"81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136\", \"bytes\": 3438}}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/final/qa.json\", \"sha256\": \"7741e837accbb971e1e147eaed4458c71ebb3cd03fd7c31d62d331d3fa2666d1\", \"bytes\": 31120}, \"status\": \"pass\", \"valid_outputs\": true, \"input_rows\": 129, \"plotted_input_rows\": 129, \"readability_advisory\": \"no_advisory_flags\", \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/04-observation-leading/final/caption.md\", \"sha256\": \"8071695ff14ef92810dc80531fa9f17d61b19c5b5c00a58751a73a98777891b4\", \"bytes\": 535}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "note1",
+      "severity": "minor",
+      "state": "accepted",
+      "location": "Panel-level reading and geometry",
+      "evidence": "A few Kerr points touch the supporting upper-box edge. The wider-offset revision created 16 unresolved point pairs and the third attempt retained one spacing conflict; both were rejected. Original valid image retained with this minor contact explicitly accepted.",
+      "requirement": "Retain every supplied value, fixed canvas and agreed typography; disclose observed tradeoffs.",
+      "action": "Keep the selected valid version and preserve rejected/earlier attempts."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "note1"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": ""
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

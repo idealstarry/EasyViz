@@ -1,0 +1,565 @@
+{
+  "layout": {
+    "width_mm": 100.0,
+    "height_mm": 86.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.12931811631944445,
+      "right": 0.9800000000000001,
+      "bottom": 0.08276783551356588,
+      "top": 0.9180396580264859
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "paired",
+  "fields": {
+    "unit": "person_id",
+    "condition": "visit",
+    "value": "igg",
+    "block": "infection_group"
+  },
+  "order": {
+    "condition": [
+      "Before",
+      "After"
+    ],
+    "block": [
+      "No prior infection",
+      "Prior infection"
+    ]
+  },
+  "colors": {
+    "No prior infection": "#347AAF",
+    "Prior infection": "#C05B76"
+  },
+  "labels": {
+    "y": "IgG (BAU/ml, log scale)"
+  },
+  "legends": {
+    "categorical": {
+      "position": "top",
+      "ncol": 2
+    }
+  },
+  "options": {
+    "y_scale": "log",
+    "y_limits": [
+      40,
+      50000
+    ],
+    "y_ticks": [
+      100,
+      1000,
+      10000
+    ],
+    "quantile_method": "linear",
+    "point_layout": "jitter",
+    "point_spread": 0.36,
+    "point_area_pt2": 4,
+    "point_alpha": 1,
+    "connect_pairs": true,
+    "pair_alpha": 0.42,
+    "pair_line_width_pt": 0.32,
+    "summary_color": "#222222",
+    "summary_width": 0.42,
+    "summary_cap_width": 0.15,
+    "summary_line_width_pt": 0.8,
+    "block_gap": 0.65,
+    "seed": 42,
+    "grid": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "No prior infection": "#347AAF",
+    "Prior infection": "#C05B76"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/prepared.csv",
+  "input_sha256": "aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3",
+  "supplied_spec": {
+    "layout": {
+      "width_mm": 100,
+      "height_mm": 86,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "chart": "paired",
+    "fields": {
+      "unit": "person_id",
+      "condition": "visit",
+      "value": "igg",
+      "block": "infection_group"
+    },
+    "order": {
+      "condition": [
+        "Before",
+        "After"
+      ],
+      "block": [
+        "No prior infection",
+        "Prior infection"
+      ]
+    },
+    "colors": {
+      "No prior infection": "#347AAF",
+      "Prior infection": "#C05B76"
+    },
+    "labels": {
+      "y": "IgG (BAU/ml, log scale)"
+    },
+    "legends": {
+      "categorical": {
+        "position": "top",
+        "ncol": 2
+      }
+    },
+    "options": {
+      "y_scale": "log",
+      "y_limits": [
+        40,
+        50000
+      ],
+      "y_ticks": [
+        100,
+        1000,
+        10000
+      ],
+      "quantile_method": "linear",
+      "point_layout": "jitter",
+      "point_spread": 0.36,
+      "point_area_pt2": 4,
+      "point_alpha": 1,
+      "connect_pairs": true,
+      "pair_alpha": 0.42,
+      "pair_line_width_pt": 0.32,
+      "summary_color": "#222222",
+      "summary_width": 0.42,
+      "summary_cap_width": 0.15,
+      "summary_line_width_pt": 0.8,
+      "block_gap": 0.65,
+      "seed": 42,
+      "grid": false
+    }
+  },
+  "spec_sha256": "ef3907c53b12b689935365dbd7c7a98463045ffb2d321e0bb1ba981e71c70402",
+  "axis": {
+    "y_scale": "log",
+    "y_limits": [
+      40.0,
+      50000.0
+    ],
+    "condition_order": [
+      "Before",
+      "After"
+    ]
+  },
+  "summary_policy": {
+    "method": "median_iqr",
+    "scale": "raw measurements",
+    "quantile_method": "linear",
+    "interval_meaning": "interquartile range of observations, not a confidence interval",
+    "tests_performed": false
+  },
+  "mark_policy": {
+    "geometric_circle_area_pt2": 4,
+    "matplotlib_s": 5.092958178940651,
+    "diameter_pt": 2.256758334191025,
+    "placement": "jitter",
+    "placement_measured_after_layout": true,
+    "connect_pairs": true,
+    "jitter_shared_within_unit": true,
+    "outline_width_pt": 0
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "07a283b0dda9cecf97f924dd7f7a0655a15c18f6f542c11ee9480f57e728c36b",
+    "path_simplification": false,
+    "connector_representation": "one exact two-point segment per adjacent condition and unit",
+    "helper_sha256": {
+      "render.py": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+      "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "observation_clipping": {
+    "status": "pass",
+    "by_format": {
+      "pdf": {
+        "status": "pass",
+        "checked_observations": 254,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-f09926248d47738a",
+            "label": "No prior infection · Before",
+            "observations": 63,
+            "checked_observations": 63,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-2f2dbf7595f9508c",
+            "label": "No prior infection · After",
+            "observations": 63,
+            "checked_observations": 63,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-28aa974f41aae500",
+            "label": "Prior infection · Before",
+            "observations": 64,
+            "checked_observations": 64,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-b81f0d958b691f89",
+            "label": "Prior infection · After",
+            "observations": 64,
+            "checked_observations": 64,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          100.0,
+          86.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "svg": {
+        "status": "pass",
+        "checked_observations": 254,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-f09926248d47738a",
+            "label": "No prior infection · Before",
+            "observations": 63,
+            "checked_observations": 63,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-2f2dbf7595f9508c",
+            "label": "No prior infection · After",
+            "observations": 63,
+            "checked_observations": 63,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-28aa974f41aae500",
+            "label": "Prior infection · Before",
+            "observations": 64,
+            "checked_observations": 64,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-b81f0d958b691f89",
+            "label": "Prior infection · After",
+            "observations": 64,
+            "checked_observations": 64,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          100.0,
+          86.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "png": {
+        "status": "pass",
+        "checked_observations": 254,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-f09926248d47738a",
+            "label": "No prior infection · Before",
+            "observations": 63,
+            "checked_observations": 63,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-2f2dbf7595f9508c",
+            "label": "No prior infection · After",
+            "observations": 63,
+            "checked_observations": 63,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-28aa974f41aae500",
+            "label": "Prior infection · Before",
+            "observations": 64,
+            "checked_observations": 64,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-b81f0d958b691f89",
+            "label": "Prior infection · After",
+            "observations": 64,
+            "checked_observations": 64,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.65,
+                4.3
+              ],
+              "y_limits": [
+                40.0,
+                50000.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "log"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          99.99133333333333,
+          86.02133333333333
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      }
+    },
+    "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+  },
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/prepared.csv",
+      "sha256": "aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3"
+    }
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  },
+  "spec_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/spec.json",
+  "spec_file_sha256": "d1a7ad460c46c7a0b35c2fa086c808677dd4f205775eede69e4e74fb30a52bd0",
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.12931811631944445,
+      "right": 0.9800000000000001,
+      "bottom": 0.08276783551356588,
+      "top": 0.9180396580264859
+    },
+    "data_region_mm": [
+      12.931811631944447,
+      7.118033854166667,
+      85.06818836805556,
+      71.83337673611112
+    ],
+    "data_area_fraction": 0.7105506073605815,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 0.0,
+          "bottom": 0.0,
+          "top": 5.048589409722209
+        },
+        "issues": [],
+        "data_area_fraction": 0.7105506073605815
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  }
+}

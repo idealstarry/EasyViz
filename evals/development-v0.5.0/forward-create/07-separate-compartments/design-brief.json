@@ -1,0 +1,22 @@
+{
+  "purpose": "Compare the terminal cross-sectional Ccl2 time responses for the supplied groups in lung and serum. Produce two aligned individual panels with separate units, every observation and source-consistent means/SEMs.",
+  "reading_burden": {
+    "source_rows": 88,
+    "groups": {
+      "Control": 45,
+      "IM-DTR": 43
+    }
+  },
+  "adopted_canvas_mm": [
+    82,
+    65
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "summary",
+  "organization": "aligned_facets",
+  "mechanism": "exact-time mean/SEM anchors, separate compartment units, terminal raw observations",
+  "expected_benefit": "Lung and serum occupy identical physical data rectangles with identical time ticks and class decoding; separate unit labels and numeric ranges are explicit. Distinct open/filled mean markers help near-coincident group means.",
+  "observed_tradeoff": "The first serum scale was excessively empty. Pass 2 uses 0–420; pass 3 extends its lower display bound to −10 to keep the lowest positive circle complete. All concentrations remain positive. Compact raw columns can overlap in near-equal observations; no source row is dropped or connected across times.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

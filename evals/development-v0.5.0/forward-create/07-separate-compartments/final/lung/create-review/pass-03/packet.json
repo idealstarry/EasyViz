@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review_packet",
+  "policy_version": "0.4.4",
+  "pass_number": 3,
+  "reading_task": "Compare the terminal cross-sectional Ccl2 time responses for the supplied groups in lung and serum. Produce two aligned individual panels with separate units, every observation and source-consistent means/SEMs.",
+  "inputs": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung",
+    "caption": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/caption.md",
+    "baseline_dir": null,
+    "baseline_kind": null
+  },
+  "snapshot": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung",
+    "artifacts": {
+      "panel.png": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/panel.png",
+        "sha256": "e2f8c69f7e38faa6a5b72c89dd7fe53cedcc3f49bc804908ab6d90d91dedbcf5",
+        "bytes": 58612
+      },
+      "panel.pdf": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/panel.pdf",
+        "sha256": "62e384af8fd77091d2734e5e65071cda618316e783f504cf62092d1ffdf2d907",
+        "bytes": 22014
+      },
+      "panel.svg": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/panel.svg",
+        "sha256": "c789ba56150994d1c84925497724b9e661d0ba291eee67327f38e34788990ef7",
+        "bytes": 20013
+      },
+      "settings.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/settings.json",
+        "sha256": "0c51ff236d25f5ab6b320587666f43f1ec6d02b800dfde19ed89252cdbd68512",
+        "bytes": 2447
+      },
+      "elements.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/elements.json",
+        "sha256": "18080823fc1d7294c9e424b5d855f0a9ecffe5269979af2ccad9004e1aca95f6",
+        "bytes": 13782
+      },
+      "qa.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/qa.json",
+        "sha256": "7c5ac151613ca18a3c4071116b01b9ca4ae931abb5ecd19f429209a7f92ada51",
+        "bytes": 25960
+      },
+      "stats.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/stats.json",
+        "sha256": "941ab7ed1cc036afc504f24621d6979e3dd273eb0e40e7d563328e9e994833a3",
+        "bytes": 2141
+      },
+      "plotting-data.csv": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/plotting-data.csv",
+        "sha256": "29c8732eb2da92f8972ca74ad0007c1bd2064099230c9028e1db659fcbfb2080",
+        "bytes": 3105
+      },
+      "caption": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/caption.md",
+        "sha256": "210d5653291249a23b83cb556c645655b8b071550400653efa89574a5e6ef986",
+        "bytes": 897
+      }
+    },
+    "source_bindings": {
+      "data_file": [
+        {
+          "declared_by": "settings.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/07-separate-compartments/measurements.csv",
+          "sha256": "85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a",
+          "expected_sha256": "85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a",
+          "status": "passed"
+        }
+      ],
+      "source_script": [
+        {
+          "declared_by": "settings.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/revision-03/lung/plot-source.py",
+          "sha256": "08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63",
+          "expected_sha256": "08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63",
+          "status": "passed"
+        }
+      ],
+      "spec_file": [
+        {
+          "declared_by": "settings.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/spec.json",
+          "sha256": "66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd",
+          "expected_sha256": "66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd",
+          "status": "passed"
+        }
+      ],
+      "figure_profile": []
+    },
+    "panel": {
+      "width_mm": 82.0,
+      "height_mm": 65.0
+    },
+    "measured_checks": {
+      "export_dimensions": {
+        "status": "passed",
+        "evidence": {
+          "adopted_canvas_mm": {
+            "width_mm": 82.0,
+            "height_mm": 65.0
+          },
+          "actual_png": {
+            "pixels": [
+              969,
+              768
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          },
+          "qa_exports": {
+            "pdf": {
+              "width_mm": 82.00000000000361,
+              "height_mm": 64.99999999998694,
+              "sha256": "62e384af8fd77091d2734e5e65071cda618316e783f504cf62092d1ffdf2d907"
+            },
+            "svg": {
+              "width_mm": 82.00000004166665,
+              "height_mm": 65.000000175,
+              "text_preserved": true,
+              "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+              "sha256": "c789ba56150994d1c84925497724b9e661d0ba291eee67327f38e34788990ef7"
+            },
+            "png": {
+              "pixels": [
+                969,
+                768
+              ],
+              "dpi": [
+                299.9994,
+                299.9994
+              ],
+              "sha256": "e2f8c69f7e38faa6a5b72c89dd7fe53cedcc3f49bc804908ab6d90d91dedbcf5"
+            }
+          },
+          "format_bindings": {
+            "pdf": {
+              "status": "passed",
+              "measurement_source": "hash_bound_qa",
+              "recorded_sha256": "62e384af8fd77091d2734e5e65071cda618316e783f504cf62092d1ffdf2d907",
+              "actual_sha256": "62e384af8fd77091d2734e5e65071cda618316e783f504cf62092d1ffdf2d907"
+            },
+            "svg": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "c789ba56150994d1c84925497724b9e661d0ba291eee67327f38e34788990ef7",
+              "actual_sha256": "c789ba56150994d1c84925497724b9e661d0ba291eee67327f38e34788990ef7"
+            },
+            "png": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "e2f8c69f7e38faa6a5b72c89dd7fe53cedcc3f49bc804908ab6d90d91dedbcf5",
+              "actual_sha256": "e2f8c69f7e38faa6a5b72c89dd7fe53cedcc3f49bc804908ab6d90d91dedbcf5"
+            }
+          },
+          "actual_svg": {
+            "width_mm": 82.00000004166665,
+            "height_mm": 65.000000175
+          }
+        }
+      },
+      "typography": {
+        "status": "passed",
+        "evidence": {
+          "actual_font": "Arial",
+          "font_substituted": false,
+          "sizes_pt": {
+            "axis": 8.0,
+            "tick": 8.0,
+            "legend": 8.0,
+            "annotation": 8.0,
+            "title": 9.0,
+            "panel": 9.0
+          },
+          "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+        }
+      },
+      "source_provenance": {
+        "status": "passed",
+        "evidence": {
+          "declared_sources": {
+            "data_file": [
+              {
+                "declared_by": "settings.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/07-separate-compartments/measurements.csv",
+                "sha256": "85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a",
+                "expected_sha256": "85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a",
+                "status": "passed"
+              }
+            ],
+            "source_script": [
+              {
+                "declared_by": "settings.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/revision-03/lung/plot-source.py",
+                "sha256": "08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63",
+                "expected_sha256": "08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63",
+                "status": "passed"
+              }
+            ],
+            "spec_file": [
+              {
+                "declared_by": "settings.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/spec.json",
+                "sha256": "66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd",
+                "expected_sha256": "66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd",
+                "status": "passed"
+              }
+            ],
+            "figure_profile": []
+          },
+          "saved_specification": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/settings.json",
+            "sha256": "0c51ff236d25f5ab6b320587666f43f1ec6d02b800dfde19ed89252cdbd68512",
+            "bytes": 2447
+          },
+          "resolved_spec_sha256": "38b4f9d4a7995469f23279faeba986dd5feb28524b89275bce91ee85d8c29aeb",
+          "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+        }
+      },
+      "technical_qa": {
+        "status": "passed",
+        "evidence": {
+          "qa": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/qa.json",
+            "sha256": "7c5ac151613ca18a3c4071116b01b9ca4ae931abb5ecd19f429209a7f92ada51",
+            "bytes": 25960
+          },
+          "status": "pass",
+          "valid_outputs": true,
+          "input_rows": 88,
+          "plotted_input_rows": 37,
+          "readability_advisory": "no_advisory_flags",
+          "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+        }
+      },
+      "caption": {
+        "status": "passed",
+        "evidence": {
+          "artifact": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/caption.md",
+            "sha256": "210d5653291249a23b83cb556c645655b8b071550400653efa89574a5e6ef986",
+            "bytes": 897
+          },
+          "scope": "Separate caption is present; its scientific wording is a review attestation."
+        }
+      }
+    },
+    "candidate_png": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/lung/panel.png",
+      "sha256": "e2f8c69f7e38faa6a5b72c89dd7fe53cedcc3f49bc804908ab6d90d91dedbcf5",
+      "bytes": 58612
+    },
+    "baseline_png": null
+  },
+  "required_design_checks": [
+    "scientific_mapping",
+    "reading_priority",
+    "mark_hierarchy",
+    "geometry",
+    "palette_and_strokes",
+    "guides_and_text"
+  ],
+  "required_external_checks": [
+    "export_dimensions",
+    "typography",
+    "source_provenance",
+    "technical_qa",
+    "caption"
+  ],
+  "instructions": [
+    "Open the actual candidate PNG as a complete canvas before first user-visible delivery.",
+    "Consider the recorded physical size: inspect a nominal-size view if available, or honestly record a final-proportions view and its size basis. One actual opening may cover both views.",
+    "Record brief, concrete evidence for each design criterion; inspect the caption separately.",
+    "Acknowledge the saved measured evidence without inventing measurements. Required failed/not_checked items prevent readiness.",
+    "Correct critical/major failures before delivery; record corrections and residual minor/intentional differences. A clean first pass is valid.",
+    "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
+    "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."
+  ],
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

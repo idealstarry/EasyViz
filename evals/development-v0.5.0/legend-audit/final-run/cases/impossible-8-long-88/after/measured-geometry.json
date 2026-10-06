@@ -1,0 +1,1061 @@
+{
+  "renderer_path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+  "renderer_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+  "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+  "renderer_status": "needs_revision",
+  "error": "SpecError: Canvas QA needs revision: 9 clipped text elements, 0 tick-label overlaps, 2 legend issues, 0 cell annotation issues, 0 observation spacing conflicts, 0 observation marker boundary issues, 0 clipped observation envelopes, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly revise the adopted range/layout or split a panel that cannot fit.",
+  "source_sha256": "ca2a2e3e1350a6e327338749ccf0a4d9d129f1bf7b79d8c9fa68aa7f3623c4d1",
+  "source_values_preserved": true,
+  "geometry": {
+    "canvas_mm": [
+      88.0,
+      31.999999999999996
+    ],
+    "plot_bbox_mm": [
+      16.72,
+      7.36,
+      51.04,
+      20.8
+    ],
+    "decorated_plot_bbox_mm": [
+      6.380855,
+      -1.817734,
+      63.246112,
+      29.977734
+    ],
+    "plot_bbox_note": "plot_bbox_mm is the data rectangle; decorated_plot_bbox_mm additionally includes axes/ticks/axis labels but excludes the legend.",
+    "axis_text_bboxes_mm": [
+      {
+        "role": "x label",
+        "text": "Score X",
+        "bbox_mm": [
+          37.287,
+          -1.817734,
+          9.906,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "0.5",
+        "bbox_mm": [
+          20.177623,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "1.0",
+        "bbox_mm": [
+          35.390738,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "1.5",
+        "bbox_mm": [
+          50.603852,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "x tick",
+        "text": "2.0",
+        "bbox_mm": [
+          65.816967,
+          2.241966,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "y label",
+        "text": "Score Y",
+        "bbox_mm": [
+          6.380855,
+          12.832797,
+          2.648589,
+          9.854406
+        ]
+      },
+      {
+        "role": "y tick",
+        "text": "0.5",
+        "bbox_mm": [
+          10.440556,
+          8.769754,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "y tick",
+        "text": "1.0",
+        "bbox_mm": [
+          10.440556,
+          15.721626,
+          3.81,
+          2.648589
+        ]
+      },
+      {
+        "role": "y tick",
+        "text": "1.5",
+        "bbox_mm": [
+          10.440556,
+          22.673497,
+          3.81,
+          2.648589
+        ]
+      }
+    ],
+    "actual_legends": [
+      {
+        "kind": "categorical",
+        "bbox_mm": [
+          71.626967,
+          2.371285,
+          38.81749,
+          25.788715
+        ],
+        "labels": [
+          "Activated T cells",
+          "Memory B cells",
+          "Inflammatory monocytes",
+          "Dendritic cell precursors",
+          "Cytotoxic lymphocytes",
+          "Vascular endothelial cells",
+          "Stromal progenitor cells",
+          "Tissue resident macrophages"
+        ],
+        "title": "",
+        "items": [
+          {
+            "label": "Activated T cells",
+            "text_bbox_mm": [
+              74.026967,
+              25.311411,
+              20.132146,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#2581b9"
+          },
+          {
+            "label": "Memory B cells",
+            "text_bbox_mm": [
+              74.026967,
+              22.062821,
+              18.965333,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#df9a3c"
+          },
+          {
+            "label": "Inflammatory monocytes",
+            "text_bbox_mm": [
+              74.026967,
+              18.814232,
+              30.141333,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#1aa781"
+          },
+          {
+            "label": "Dendritic cell precursors",
+            "text_bbox_mm": [
+              74.026967,
+              15.565642,
+              29.802667,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#d76f3b"
+          },
+          {
+            "label": "Cytotoxic lymphocytes",
+            "text_bbox_mm": [
+              74.026967,
+              12.317053,
+              27.770667,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#007f7f"
+          },
+          {
+            "label": "Vascular endothelial cells",
+            "text_bbox_mm": [
+              74.026967,
+              9.068464,
+              30.948313,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#a37fff"
+          },
+          {
+            "label": "Stromal progenitor cells",
+            "text_bbox_mm": [
+              74.026967,
+              5.819874,
+              28.956,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#29acf3"
+          },
+          {
+            "label": "Tissue resident macrophages",
+            "text_bbox_mm": [
+              74.026967,
+              2.571285,
+              36.21749,
+              2.648589
+            ],
+            "handle_type": "Line2D",
+            "fill_color": "#e47751"
+          }
+        ],
+        "area_fraction_of_plot": 0.9429380299626895,
+        "area_fraction_of_canvas": 0.355487637295934,
+        "plot_intersection_mm2": 0.0,
+        "inferred_margin_side": "right",
+        "inferred_available_band_mm": [
+          67.75999999999999,
+          0,
+          20.240000000000002,
+          31.999999999999996
+        ],
+        "occupied_fraction_of_inferred_band": 1.5455984230258
+      }
+    ],
+    "measured_collisions": [],
+    "text_sizes_pt": [
+      8.0
+    ],
+    "data_artist_values": {
+      "collections": [
+        {
+          "offsets": [
+            [
+              0.4,
+              0.35
+            ],
+            [
+              0.67,
+              0.86
+            ],
+            [
+              0.94,
+              1.37
+            ],
+            [
+              1.21,
+              0.35
+            ],
+            [
+              1.48,
+              0.86
+            ],
+            [
+              1.75,
+              1.37
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.1450980392156863,
+              0.5058823529411764,
+              0.7254901960784313,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.425,
+              0.69
+            ],
+            [
+              0.695,
+              1.2
+            ],
+            [
+              0.965,
+              1.71
+            ],
+            [
+              1.235,
+              0.69
+            ],
+            [
+              1.505,
+              1.2
+            ],
+            [
+              1.775,
+              1.71
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.8745098039215686,
+              0.6039215686274509,
+              0.23529411764705882,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.45,
+              1.03
+            ],
+            [
+              0.72,
+              1.54
+            ],
+            [
+              0.99,
+              0.52
+            ],
+            [
+              1.26,
+              1.03
+            ],
+            [
+              1.53,
+              1.54
+            ],
+            [
+              1.8,
+              0.52
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.10196078431372549,
+              0.6549019607843137,
+              0.5058823529411764,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.475,
+              1.37
+            ],
+            [
+              0.745,
+              0.35
+            ],
+            [
+              1.015,
+              0.86
+            ],
+            [
+              1.285,
+              1.37
+            ],
+            [
+              1.555,
+              0.35
+            ],
+            [
+              1.825,
+              0.86
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.8431372549019608,
+              0.43529411764705883,
+              0.23137254901960785,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.5,
+              1.71
+            ],
+            [
+              0.77,
+              0.69
+            ],
+            [
+              1.04,
+              1.2
+            ],
+            [
+              1.31,
+              1.71
+            ],
+            [
+              1.58,
+              0.69
+            ],
+            [
+              1.85,
+              1.2
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.0,
+              0.4980392156862745,
+              0.4980392156862745,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.525,
+              0.52
+            ],
+            [
+              0.795,
+              1.03
+            ],
+            [
+              1.065,
+              1.54
+            ],
+            [
+              1.335,
+              0.52
+            ],
+            [
+              1.605,
+              1.03
+            ],
+            [
+              1.875,
+              1.54
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.6392156862745098,
+              0.4980392156862745,
+              1.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.55,
+              0.86
+            ],
+            [
+              0.82,
+              1.37
+            ],
+            [
+              1.09,
+              0.35
+            ],
+            [
+              1.36,
+              0.86
+            ],
+            [
+              1.63,
+              1.37
+            ],
+            [
+              1.9,
+              0.35
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.1607843137254902,
+              0.6745098039215687,
+              0.9529411764705882,
+              1.0
+            ]
+          ]
+        },
+        {
+          "offsets": [
+            [
+              0.575,
+              1.2
+            ],
+            [
+              0.845,
+              1.71
+            ],
+            [
+              1.115,
+              0.69
+            ],
+            [
+              1.385,
+              1.2
+            ],
+            [
+              1.655,
+              1.71
+            ],
+            [
+              1.925,
+              0.69
+            ]
+          ],
+          "sizes": [
+            12
+          ],
+          "values": null,
+          "clim": [
+            null,
+            null
+          ],
+          "facecolors": [
+            [
+              0.8941176470588236,
+              0.4666666666666667,
+              0.3176470588235294,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "images": []
+    },
+    "mark_geometry": {
+      "mode": "fixed_matplotlib_size_parameter",
+      "marker_size_parameter_pt2": 12.0,
+      "circle_fill_area_pt2": 9.42477796076938,
+      "fill_area_definition": "Ideal circle geometric fill area in pt\u00b2, excluding stroke; the rendered circle uses a B\u00e9zier path approximation.",
+      "diameter_pt": 3.4641016151377544,
+      "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+      "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."
+    },
+    "canvas_margin_bands_mm": {
+      "right": [
+        67.75999999999999,
+        0,
+        20.240000000000002,
+        31.999999999999996
+      ],
+      "left": [
+        0,
+        0,
+        16.72,
+        31.999999999999996
+      ],
+      "top": [
+        0,
+        28.16,
+        88.0,
+        3.8399999999999963
+      ],
+      "bottom": [
+        0,
+        0,
+        88.0,
+        7.36
+      ]
+    },
+    "margin_band_note": "Geometric space outside the plot rectangle; bands include corners and are not summed. Axis text also occupies these margins. Actual helper reservations are recorded separately."
+  },
+  "reported_legend_layout": {
+    "status": "needs_revision",
+    "legends": [
+      {
+        "kind": "categorical",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "right",
+          "ncol": 1,
+          "loc": "upper left",
+          "anchor_mm": [
+            71.62696721311472,
+            28.16
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 1.5,
+          "effective_key_height_mm": 1.5
+        },
+        "bbox_mm": [
+          71.62696721311474,
+          2.3712847222222204,
+          38.81748958333333,
+          25.788715277777783
+        ],
+        "plot_bbox_mm": [
+          16.72,
+          7.36,
+          51.03999999999999,
+          20.8
+        ],
+        "canvas_mm": [
+          88.0,
+          31.999999999999996
+        ],
+        "area_fraction_of_plot": 0.9429380299978602,
+        "width_fraction_of_plot": 0.7605307520245559,
+        "height_fraction_of_plot": 1.2398420806623933,
+        "area_fraction_of_canvas": 0.3554876373091933,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 2.170582735235532,
+        "available_region_mm": [
+          71.62696721311474,
+          1.0,
+          15.373032786885256,
+          30.000000000000004
+        ],
+        "key_bboxes_mm": [
+          [
+            71.82696721311474,
+            26.03337924011753,
+            1.5000000000000056,
+            1.4999999999999958
+          ],
+          [
+            71.82696721311474,
+            22.784789830395304,
+            1.5000000000000056,
+            1.4999999999999958
+          ],
+          [
+            71.82696721311474,
+            19.53620042067308,
+            1.5000000000000056,
+            1.5000000000000007
+          ],
+          [
+            71.82696721311474,
+            16.287611010950858,
+            1.5000000000000056,
+            1.5000000000000007
+          ],
+          [
+            71.82696721311474,
+            13.039021601228635,
+            1.5000000000000056,
+            1.5000000000000007
+          ],
+          [
+            71.82696721311474,
+            9.790432191506413,
+            1.5000000000000056,
+            1.4999999999999996
+          ],
+          [
+            71.82696721311474,
+            6.541842781784188,
+            1.5000000000000056,
+            1.5000000000000007
+          ],
+          [
+            71.82696721311474,
+            3.2932533720619652,
+            1.5000000000000056,
+            1.5000000000000007
+          ]
+        ],
+        "issues": [
+          "legend_outside_available_region",
+          "legend_outside_canvas"
+        ],
+        "warnings": [
+          "Review area_fraction_of_plot=0.943 above adjustable threshold 0.2; this is not a journal limit.",
+          "Review area_fraction_of_canvas=0.355 above adjustable threshold 0.12; this is not a journal limit.",
+          "Review available_region_fraction=2.171 above adjustable threshold 0.85; this is not a journal limit."
+        ],
+        "text_overlaps": [],
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              71.62696721311474,
+              2.3712847222222204,
+              38.81748958333333,
+              25.788715277777783
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "right",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              71.62696721311474,
+              15.365642361111115,
+              73.1588229166667,
+              12.794357638888888
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "right",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              71.62696721311474,
+              18.61423177083334,
+              108.30713541666667,
+              9.545768229166667
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "right",
+            "ncol": 4,
+            "length_mm": null,
+            "bbox_mm": [
+              71.62696721311474,
+              21.86282118055556,
+              132.63928125,
+              6.297178819444445
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              22.83125520833333,
+              30.160000000000007,
+              38.81748958333333,
+              25.788715277777786
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              5.660588541666657,
+              30.160000000000007,
+              73.15882291666668,
+              12.794357638888888
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              -11.913567708333327,
+              30.160000000000007,
+              108.30713541666667,
+              9.545768229166663
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 4,
+            "length_mm": null,
+            "bbox_mm": [
+              -24.079640625,
+              30.160000000000007,
+              132.63928124999998,
+              6.297178819444445
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              22.83125520833333,
+              -29.606449652777783,
+              38.81748958333333,
+              25.788715277777786
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              5.660588541666657,
+              -16.61209201388889,
+              73.15882291666668,
+              12.79435763888889
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              -11.913567708333327,
+              -13.36350260416667,
+              108.30713541666667,
+              9.545768229166669
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": 4,
+            "length_mm": null,
+            "bbox_mm": [
+              -24.079640625,
+              -10.114913194444448,
+              132.63928124999998,
+              6.297178819444446
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 1001.0531866626882,
+      "sum_envelope_area_mm2": 1001.0531866626882,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.9429380299978602,
+      "area_fraction_of_canvas": 0.3554876373091933,
+      "enclosing_bbox_mm": [
+        71.62696721311474,
+        2.3712847222222204,
+        38.81748958333333,
+        25.788715277777783
+      ],
+      "max_individual_width_mm": 38.81748958333333,
+      "max_individual_height_mm": 25.78871527777778,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [
+      "categorical: legend_outside_available_region",
+      "categorical: legend_outside_canvas"
+    ],
+    "warnings": [
+      "categorical: Review area_fraction_of_plot=0.943 above adjustable threshold 0.2; this is not a journal limit.",
+      "categorical: Review area_fraction_of_canvas=0.355 above adjustable threshold 0.12; this is not a journal limit.",
+      "categorical: Review available_region_fraction=2.171 above adjustable threshold 0.85; this is not a journal limit.",
+      "Combined guides: review area_fraction_of_plot=0.943 above adjustable threshold 0.2; this is not a journal limit.",
+      "Combined guides: review area_fraction_of_canvas=0.355 above adjustable threshold 0.12; this is not a journal limit."
+    ],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "clipped_text": [
+    {
+      "text": "Score X",
+      "bounds_px": [
+        440.4,
+        -21.47,
+        557.4,
+        9.81
+      ]
+    },
+    {
+      "text": "Activated T cells",
+      "bounds_px": [
+        874.33,
+        298.95,
+        1112.12,
+        330.24
+      ]
+    },
+    {
+      "text": "Memory B cells",
+      "bounds_px": [
+        874.33,
+        260.58,
+        1098.33,
+        291.87
+      ]
+    },
+    {
+      "text": "Inflammatory monocytes",
+      "bounds_px": [
+        874.33,
+        222.22,
+        1230.33,
+        253.5
+      ]
+    },
+    {
+      "text": "Dendritic cell precursors",
+      "bounds_px": [
+        874.33,
+        183.85,
+        1226.33,
+        215.13
+      ]
+    },
+    {
+      "text": "Cytotoxic lymphocytes",
+      "bounds_px": [
+        874.33,
+        145.48,
+        1202.33,
+        176.76
+      ]
+    },
+    {
+      "text": "Vascular endothelial cells",
+      "bounds_px": [
+        874.33,
+        107.11,
+        1239.87,
+        138.39
+      ]
+    },
+    {
+      "text": "Stromal progenitor cells",
+      "bounds_px": [
+        874.33,
+        68.74,
+        1216.33,
+        100.02
+      ]
+    },
+    {
+      "text": "Tissue resident macrophages",
+      "bounds_px": [
+        874.33,
+        30.37,
+        1302.1,
+        61.65
+      ]
+    }
+  ],
+  "tick_overlaps": [],
+  "actual_size_export_checks": null
+}

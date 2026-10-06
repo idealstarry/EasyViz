@@ -1,0 +1,52 @@
+{
+  "chart": "dotplot",
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 88,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "line_width_pt": 0.6,
+    "dpi": 300
+  },
+  "typography": {
+    "axis": 8,
+    "tick": 8,
+    "legend": 8,
+    "annotation": 8
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "column",
+    "y": "row",
+    "size": "count",
+    "color": "fraction"
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Feature",
+    "size": "Count",
+    "color": "Fraction"
+  },
+  "colormap": [
+    "#F5FBFE",
+    "#2581B9"
+  ],
+  "options": {
+    "size_max": 20,
+    "max_area_pt2": 36,
+    "size_legend": [
+      2.0,
+      10.0,
+      20
+    ],
+    "color_limits": [
+      0,
+      1
+    ],
+    "x_rotation": 0
+  }
+}

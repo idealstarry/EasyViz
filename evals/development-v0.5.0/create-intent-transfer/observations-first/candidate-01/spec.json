@@ -1,0 +1,79 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "condition",
+    "value": "signal",
+    "unit": "specimen"
+  },
+  "order": {
+    "group": [
+      "Vehicle",
+      "Low dose",
+      "High dose",
+      "Rescue"
+    ]
+  },
+  "options": {
+    "alpha": 1,
+    "point_style": "filled",
+    "box_style": "outline",
+    "box_width": 0.16,
+    "kind": "box",
+    "point_area_pt2": 9,
+    "y_limits": [
+      1,
+      6
+    ],
+    "point_layout": "beeswarm",
+    "point_gap_pt": 0.3,
+    "point_category_offset": 0.2729375000000003,
+    "point_max_offset_mm": 2.1267708333333286
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Signal (a.u.)"
+  },
+  "layout": {
+    "width_mm": 88,
+    "height_mm": 70,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.19023169191919198,
+      "right": 0.9061407828282829,
+      "bottom": 0.16464285714285715,
+      "top": 0.9561126612103172
+    }
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75,
+      "color": "#333333"
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "palette": "notch2-balanced"
+}

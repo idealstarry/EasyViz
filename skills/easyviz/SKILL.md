@@ -20,6 +20,12 @@ Accept data produced by upstream analysis. Data reshaping, descriptive statistic
 
 Choose statistics from the study design: establish pairing, independent replicates, uncertainty definitions, and multiple comparisons when relevant. Cells and technical replicates are not automatically independent experimental units. Preserve supplied statistical results when appropriate; record any recalculation, method, sample size, effect size, and applicable correction. Missing scientific information may block a statistical layer without blocking the rest of the plot.
 
+When using an adopted analysis, bind the plotted comparison to its current
+result through [Statistical analysis](references/statistical-analysis.md).
+Explicitly choose raw or adjusted P and whether observations show the included
+analysis population or all supplied measurements. Cosmetic edits must reuse the
+adopted result; a separate renderer test is not its substitute.
+
 ## Choose a track
 
 | Track | Trigger | Read |
@@ -47,6 +53,10 @@ short [first-panel design brief](references/design-space.md#plan-the-first-panel
 before selecting colors or a recipe. Then follow [First reviewed delivery](references/first-draft.md).
 A useful first result needs task-specific geometry and layer relationships,
 not just an exported template. Read only the details needed for this panel.
+Carry the adopted question and leading layer into `create_intent` when using
+the candidate helper. Its ranked mechanisms and physical-capacity measurements
+support the choice; they do not select a scientific purpose or certify beauty.
+Use custom code when the adopted organization is outside its supported routes.
 
 | Need | Resource |
 | --- | --- |
@@ -62,6 +72,10 @@ not just an exported template. Read only the details needed for this panel.
 
 For an unfamiliar Reproduce layer, read [Reference to code](references/reference-to-code.md)
 and, when needed, [Complex reproduction](references/complex-reproduction.md).
+Record what should match, what adapts to the user's data and what remains
+unknown using the [Reproduction checkpoint](references/reproduction-checkpoint.md).
+Check structure and shared guides before fine styling; compare the original
+crop and actual output, with explicit residual differences.
 [Source Data cases](references/literature-source-data.md) supply learning material;
 they do not require the user's reference paper to publish its data or code.
 
@@ -88,5 +102,19 @@ they do not require the user's reference paper to publish its data or code.
 | Availability | In sparse dot matrices, distinguish observed zero, explicitly unmeasured and coordinates absent from the supplied table. A missing row does not establish that measurement was attempted. Retain quantitative areas; use a separate decoded presence flag if tiny positive marks need help at the final size. |
 | Traceability | Save the track, reference input mode, source paths, transformations, mappings, statistics, actual font and palette, dimensions, formats, and dpi. |
 | Evidence | Distinguish image observations, caption or method evidence, author-code evidence, and design decisions. Report checks actually performed and their input scope; a successful example does not establish untested generalization. Disclose an unavailable visual review. |
+
+## Local editing and MCP
+
+Use the [workbench](references/figure-workbench.md) for numbered selections,
+code-generated previews, comparison and accepted-version restoration. Inspect
+capabilities first: supported core cosmetics can render locally; free-form,
+region and custom-code edits remain work for the active Agent. Read saved
+requests directly, preserve their source version and report per-request results.
+Saving a request does not activate an idle chat.
+
+An optional [project-scoped MCP connection](references/mcp.md) exposes the same
+attempts, requests and bounded render jobs to compatible Agents. It is a tool
+connection for this workflow, not a third track. The ordinary skill and
+workbench remain usable without the optional SDK.
 
 For independent image reading and comparison, pass an explicit file path to [EasyViz Reference Reader](../easyviz-reference-reader/SKILL.md) or [EasyViz Figure Reviewer](../easyviz-figure-reviewer/SKILL.md). These are narrow helper skills, not automatic proof that a subagent used them. Supply accessible images and the permitted context. If a helper or collaboration tools are unavailable, follow the corresponding reference directly and record that the review was not independent.

@@ -1,0 +1,52 @@
+{
+  "status": "pass",
+  "archive": "easyviz-0.5.0.zip",
+  "archive_sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6",
+  "extracted_checkpoint_sha256": "ef1f39691ace5c6a523d441b658d2f6b414cc2433ec289eea313948af4710b87",
+  "contract": {
+    "version": 1,
+    "location": "implementation-plan.json -> adoption_contract; keeps the existing layer plan",
+    "reference_sha256": "Exact staged reference hash",
+    "relationship": {
+      "id": "Unique relationship ID",
+      "property": "E.g. coordinates.shared-x, geometry.data-region-aspect or guides.group-colors",
+      "evidence_ids": "Nonempty IDs from the actual reading",
+      "behavior": [
+        "preserve",
+        "adapt",
+        "user-change"
+      ],
+      "adopted_value": "Explicit relationship to retain/change; user data need not resemble reference values",
+      "rationale": "Reason for adoption or adaptation"
+    },
+    "open_item": {
+      "evidence_id": "Every inferred/unknown reading item appears exactly once",
+      "question": "Specific information missing, rather than a vague request for more context",
+      "affected_layer_ids": "Exact reading layer IDs affected by this uncertainty",
+      "state": [
+        "unresolved",
+        "resolved",
+        "not-required"
+      ],
+      "blocking": [
+        "layer",
+        "delivery",
+        "none"
+      ],
+      "resolution": {
+        "source": "Staged input ID or user-decision",
+        "description": "Supported definition, explicit adopted preference, or reason this feature is not required"
+      }
+    },
+    "checks": [
+      "staged bytes still match",
+      "reading provenance and exact layer coverage",
+      "adopted physical layout and implementation route",
+      "active layer data/mapping/primitive declarations",
+      "explicit visual relationships",
+      "unresolved questions and required omissions"
+    ],
+    "limits": "Record completeness only. Source semantics, experimental independence, statistical validity, actual artist values, export fidelity and visual quality remain separate checks. No renderer or Agent turn is started."
+  },
+  "scope": "Actual final extracted checkpoint CLI and sibling reference_packet fallback closure; record contract discovery only."
+}

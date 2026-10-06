@@ -1,0 +1,657 @@
+{
+  "version": 1,
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "status": "adopted-record-awaiting-actual-execution-review",
+  "execution_ready": false,
+  "implementation": {
+    "route": "custom-script",
+    "script": "implementation/panel.py",
+    "recipe": null,
+    "selection_reason": "Explicit custom two-linear-segment axes support unequal numeric units, one shared categorical frame and continuous bar side outlines across a physical gap; no core chart is assumed to support all these relationships."
+  },
+  "user_data_artifact_ids": [
+    "data-1",
+    "data-2"
+  ],
+  "data_mapping": {
+    "data-1": {
+      "observation_id": "unique local gene/group observation identity, not a cross-gene mouse ID",
+      "gene": "source gene identity",
+      "display_gene": "display label",
+      "group": "genotype",
+      "relative_expression": "supplied relative-expression value"
+    },
+    "data-2": {
+      "gene": "comparison category",
+      "reported_p": "author-reported P entry"
+    }
+  },
+  "statistical_layers": [
+    {
+      "summary": "arithmetic mean ± sample-SD/sqrt(n)",
+      "unit": "caption says biological mice; source does not publish cross-gene IDs",
+      "comparison": "author P classes retained, not recomputed"
+    }
+  ],
+  "layout": {
+    "width_mm": 92,
+    "height_mm": 66,
+    "font": "Arial",
+    "typography_pt": {
+      "axis": 8,
+      "tick": 8,
+      "legend": 8,
+      "annotation": 8
+    },
+    "legend_layout": {
+      "location": "upper right",
+      "complete-footprint": "measured after rendering"
+    }
+  },
+  "colors": {
+    "YT-FF": "#55A0FB",
+    "YT-AKO": "#FF8080"
+  },
+  "panel_text": {
+    "title": "omit unless explicitly requested",
+    "caption_file": "caption.md"
+  },
+  "evidence_decisions": [
+    {
+      "evidence_id": "E1",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E2",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E3",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E4",
+      "evidence_state": "inferred",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E5",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E6",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E7",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E8",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E9",
+      "evidence_state": "unknown",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E10",
+      "evidence_state": "inferred",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E11",
+      "evidence_state": "unknown",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "flexible",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E12",
+      "evidence_state": "unknown",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "flexible",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E13",
+      "evidence_state": "unknown",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E14",
+      "evidence_state": "unknown",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E15",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E16",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E17",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "required",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E18",
+      "evidence_state": "observed",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "flexible",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    },
+    {
+      "evidence_id": "E19",
+      "evidence_state": "unknown",
+      "adopted_requirement": "Preserve recorded relationship or explicit documented adaptation; never upgrade unknown evidence to original recovered fact.",
+      "priority": "flexible",
+      "rationale": "Refer to layer adoption and open-item resolution for the concrete handling."
+    }
+  ],
+  "layers": [
+    {
+      "source_layer_id": "bars",
+      "evidence_ids": [
+        "E1",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E12",
+        "E13",
+        "E16"
+      ],
+      "reading_description": "Open mean bars with continuous tall-bar edges across an axis gap",
+      "required_data_meanings": [
+        "gene",
+        "genotype",
+        "relative-expression measurement",
+        "mean definition"
+      ],
+      "status": "implemented",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "observation_id": "unique local gene/group observation identity, not a cross-gene mouse ID",
+        "gene": "source gene identity",
+        "display_gene": "display label",
+        "group": "genotype",
+        "relative_expression": "supplied relative-expression value"
+      },
+      "transform": "Arithmetic mean on each genotype/gene; draw two explicit linear segments and join visible tall-bar side outlines in figure coordinates",
+      "artist": "Rectangle bars and Line2D cross-gap side connectors",
+      "backend": "Matplotlib custom script with source-key registration in EasyViz figure_elements",
+      "verification": [
+        "Exact source-to-artist values/counts and exported vector point coordinates checked separately; record completion alone is not approval."
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required visible reference layer implemented from the exact supplied table and observed encoding."
+      }
+    },
+    {
+      "source_layer_id": "points",
+      "evidence_ids": [
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E10",
+        "E11",
+        "E12",
+        "E13"
+      ],
+      "reading_description": "All round observation marks, within-bar display offsets",
+      "required_data_meanings": [
+        "gene",
+        "genotype",
+        "relative-expression measurement",
+        "independent observation identity"
+      ],
+      "status": "implemented",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "observation_id": "unique local gene/group observation identity, not a cross-gene mouse ID",
+        "gene": "source gene identity",
+        "display_gene": "display label",
+        "group": "genotype",
+        "relative_expression": "supplied relative-expression value"
+      },
+      "transform": "No value transform; deterministic within-bar x offsets, all source identities retained",
+      "artist": "One Line2D round marker per observation",
+      "backend": "Matplotlib custom script with source-key registration in EasyViz figure_elements",
+      "verification": [
+        "Exact source-to-artist values/counts and exported vector point coordinates checked separately; record completion alone is not approval."
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required visible reference layer implemented from the exact supplied table and observed encoding."
+      }
+    },
+    {
+      "source_layer_id": "sem",
+      "evidence_ids": [
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E15"
+      ],
+      "reading_description": "Group-colored mean ± SEM whiskers",
+      "required_data_meanings": [
+        "gene",
+        "genotype",
+        "independent observations",
+        "SEM definition"
+      ],
+      "status": "adapted",
+      "data_artifacts": [
+        "data-1"
+      ],
+      "field_mapping": {
+        "observation_id": "unique local gene/group observation identity, not a cross-gene mouse ID",
+        "gene": "source gene identity",
+        "display_gene": "display label",
+        "group": "genotype",
+        "relative_expression": "supplied relative-expression value"
+      },
+      "transform": "sample SD / sqrt(n), mean±SEM endpoints; reject every point/endpoint in omitted range",
+      "artist": "Line2D intervals and cap endpoints",
+      "backend": "Matplotlib custom script with source-key registration in EasyViz figure_elements",
+      "verification": [
+        "Exact source-to-artist values/counts and exported vector point coordinates checked separately; record completion alone is not approval."
+      ],
+      "adoption": {
+        "decision": "adapt",
+        "priority": "required",
+        "reason": "Preserve reference layer and data meanings; full SEM endpoints and explicit final manuscript geometry/type are documented adaptations."
+      }
+    },
+    {
+      "source_layer_id": "comparison",
+      "evidence_ids": [
+        "E7",
+        "E8",
+        "E9",
+        "E19"
+      ],
+      "reading_description": "Author comparison classes and short line guides",
+      "required_data_meanings": [
+        "gene",
+        "reported P value or class",
+        "test meaning"
+      ],
+      "status": "implemented",
+      "data_artifacts": [
+        "data-2"
+      ],
+      "field_mapping": {
+        "gene": "comparison category",
+        "reported_p": "author-reported P entry"
+      },
+      "transform": "Use author-reported P entry and caption star thresholds; no P calculation",
+      "artist": "Line2D horizontal guide and text stars",
+      "backend": "Matplotlib custom script with source-key registration in EasyViz figure_elements",
+      "verification": [
+        "Exact source-to-artist values/counts and exported vector point coordinates checked separately; record completion alone is not approval."
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required visible reference layer implemented from the exact supplied table and observed encoding."
+      }
+    },
+    {
+      "source_layer_id": "axes",
+      "evidence_ids": [
+        "E3",
+        "E4",
+        "E13",
+        "E14",
+        "E16"
+      ],
+      "reading_description": "Two numeric segments and one shared category frame",
+      "required_data_meanings": [],
+      "status": "adapted",
+      "data_artifacts": [],
+      "field_mapping": {},
+      "transform": "Adopt [0,16] and [35,84], shared x; equal 20 mm segment heights separated by 2.5 mm",
+      "artist": "Two aligned Axes and shared figure y label",
+      "backend": "Matplotlib custom script with source-key registration in EasyViz figure_elements",
+      "verification": [
+        "Exact source-to-artist values/counts and exported vector point coordinates checked separately; record completion alone is not approval."
+      ],
+      "adoption": {
+        "decision": "adapt",
+        "priority": "required",
+        "reason": "Preserve reference layer and data meanings; full SEM endpoints and explicit final manuscript geometry/type are documented adaptations."
+      }
+    },
+    {
+      "source_layer_id": "legend",
+      "evidence_ids": [
+        "E5",
+        "E14",
+        "E17"
+      ],
+      "reading_description": "Two outline categorical genotype keys",
+      "required_data_meanings": [],
+      "status": "implemented",
+      "data_artifacts": [],
+      "field_mapping": {},
+      "transform": "Group identity → matching outline-key color; no value encoding",
+      "artist": "Outline Patch handles and Legend",
+      "backend": "Matplotlib custom script with source-key registration in EasyViz figure_elements",
+      "verification": [
+        "Exact source-to-artist values/counts and exported vector point coordinates checked separately; record completion alone is not approval."
+      ],
+      "adoption": {
+        "decision": "preserve",
+        "priority": "required",
+        "reason": "Required visible reference layer implemented from the exact supplied table and observed encoding."
+      }
+    },
+    {
+      "source_layer_id": "panel-letter",
+      "evidence_ids": [
+        "E18"
+      ],
+      "reading_description": "Panel letter c",
+      "required_data_meanings": [],
+      "status": "omitted",
+      "data_artifacts": [],
+      "field_mapping": {},
+      "transform": null,
+      "artist": null,
+      "backend": null,
+      "verification": [],
+      "adoption": {
+        "decision": "omit",
+        "priority": "flexible",
+        "reason": "Standalone manuscript-panel convention omits panel letters and narrative titles unless explicitly requested."
+      }
+    }
+  ],
+  "intentional_differences": [
+    "92 × 66 mm Arial8 adopted physical specification",
+    "Original panel letter omitted",
+    "Full lower/upper SEM endpoints retained visibly",
+    "Explicit segment endpoints, deterministic display offsets; no pairing/normalization recovered"
+  ],
+  "adoption_contract": {
+    "reference_sha256": "652a50b3fb121c2914ba79a06d765d84124afcd22c4b1d2b1bb3b292881382ad",
+    "relationships": [
+      {
+        "id": "segments",
+        "property": "coordinates.shared-x-and-break",
+        "evidence_ids": [
+          "E3",
+          "E4",
+          "E16"
+        ],
+        "behavior": "adapt",
+        "adopted_value": "Two aligned 66 mm-wide categorical frames; 20 mm high each; lower 0–16, upper 35–84; 2.5 mm physical gap",
+        "rationale": "Preserve observed shared categorical axis and approximately 3:1 units compression; explicit numeric endpoints are adopted rather than recovered."
+      },
+      {
+        "id": "bar-continuity",
+        "property": "layers.bars.cross-gap",
+        "evidence_ids": [
+          "E1",
+          "E3"
+        ],
+        "behavior": "preserve",
+        "adopted_value": "Tall Elovl3 open side outlines stay continuous through the physical gap",
+        "rationale": "Fresh reading observed continuous bar sides, so standard independent broken axes require explicit figure-coordinate connectors."
+      },
+      {
+        "id": "group-order-colors",
+        "property": "encoding.group-map",
+        "evidence_ids": [
+          "E5",
+          "E17"
+        ],
+        "behavior": "preserve",
+        "adopted_value": "YT-FF blue left, YT-AKO salmon right; shared hue across dots/bars/SEM/legend",
+        "rationale": "Keep genotype roles; canonical colors sampled from accessible original PDF vector content differ slightly from raster antialiasing samples."
+      },
+      {
+        "id": "gap-spacing",
+        "property": "geometry.bar-gaps",
+        "evidence_ids": [
+          "E1",
+          "E16"
+        ],
+        "behavior": "preserve",
+        "adopted_value": "Slender open bars, positive pair gap, larger category gaps",
+        "rationale": "Prevent shared bar boundaries from disappearing while adapting physical units."
+      },
+      {
+        "id": "text-canvas",
+        "property": "typography.final-size",
+        "evidence_ids": [
+          "E13",
+          "E14"
+        ],
+        "behavior": "user-change",
+        "adopted_value": "92 × 66 mm, Arial, all displayed text 8 pt; separate caption",
+        "rationale": "Root adopts manuscript-sized Arial8, and exact source font/dimensions remain unknown."
+      }
+    ],
+    "open_items": [
+      {
+        "evidence_id": "E4",
+        "question": "What are the exact unprinted segment bounds? Raster extrapolation supports only approximate bounds.",
+        "affected_layer_ids": [
+          "bars",
+          "points",
+          "sem",
+          "axes"
+        ],
+        "state": "resolved",
+        "blocking": "none",
+        "resolution": {
+          "source": "user-decision",
+          "description": "Adopt explicit endpoints [0,16]/[35,84]; these do not assert recovered original endpoints. All actual raw/SEM endpoints are checked against the adopted segments."
+        }
+      },
+      {
+        "evidence_id": "E9",
+        "question": "What are the source-reported P values or classes for the displayed comparisons?",
+        "affected_layer_ids": [
+          "comparison"
+        ],
+        "state": "resolved",
+        "blocking": "none",
+        "resolution": {
+          "source": "data-2",
+          "description": "Six supplied author P entries preserve the exact reported values/bound; star classes use caption thresholds, no statistical test recalculated."
+        }
+      },
+      {
+        "evidence_id": "E10",
+        "question": "Does each dot correspond to one biological mouse observation rather than a technical measurement?",
+        "affected_layer_ids": [
+          "points"
+        ],
+        "state": "resolved",
+        "blocking": "none",
+        "resolution": {
+          "source": "caption-1",
+          "description": "Caption specifies n = 5 mice per genotype for this source panel; table contributes exactly five observations per gene/group. Biological mouse unit is caption-supported, cross-gene identities remain unknown."
+        }
+      },
+      {
+        "evidence_id": "E11",
+        "question": "Are observation identities shared across genes? Horizontal offsets cannot establish pairing.",
+        "affected_layer_ids": [
+          "points"
+        ],
+        "state": "not-required",
+        "blocking": "none",
+        "resolution": {
+          "source": "user-decision",
+          "description": "No cross-gene matching, within-subject trajectory or paired test is drawn; source cell/local identity is not a shared mouse identity."
+        }
+      },
+      {
+        "evidence_id": "E12",
+        "question": "What normalization and calibrator produced relative-expression values?",
+        "affected_layer_ids": [
+          "bars",
+          "points"
+        ],
+        "state": "not-required",
+        "blocking": "none",
+        "resolution": {
+          "source": "user-decision",
+          "description": "Retain supplied relative-expression values verbatim and report upstream normalization unknown; no upstream recalculation or calibrator inference."
+        }
+      },
+      {
+        "evidence_id": "E13",
+        "question": "What final manuscript dimensions should be adopted?",
+        "affected_layer_ids": [
+          "bars",
+          "points",
+          "axes"
+        ],
+        "state": "resolved",
+        "blocking": "none",
+        "resolution": {
+          "source": "user-decision",
+          "description": "Explicit standalone canvas 92 × 66 mm is adopted for this case; source physical dimensions are not asserted."
+        }
+      },
+      {
+        "evidence_id": "E14",
+        "question": "What exact font and final point sizes should be adopted?",
+        "affected_layer_ids": [
+          "axes",
+          "legend"
+        ],
+        "state": "resolved",
+        "blocking": "none",
+        "resolution": {
+          "source": "user-decision",
+          "description": "Explicit Arial 8 pt for all visible roles; portable --font override must record its own adopted spec. Source font/pt remains unrecovered."
+        }
+      },
+      {
+        "evidence_id": "E19",
+        "question": "Were author P values adjusted for multiple comparisons?",
+        "affected_layer_ids": [
+          "comparison"
+        ],
+        "state": "not-required",
+        "blocking": "none",
+        "resolution": {
+          "source": "user-decision",
+          "description": "Only supplied author P values/classes are retained and attributed, without recomputation or assertions about multiplicity handling."
+        }
+      }
+    ]
+  },
+  "baseline": {
+    "script": null,
+    "exports": [],
+    "review": null
+  },
+  "implementation_gap_checklist": [
+    {
+      "item": "fresh image reading and independence provenance",
+      "status": "recorded",
+      "evidence": "Independent reference-reading.md predates implementation; structured JSON is explicitly labelled a main-Agent transcription, not a new independent reading."
+    },
+    {
+      "item": "user field meanings, units, observation grain and missingness",
+      "status": "recorded-with-limits",
+      "evidence": "60 exact source values and caption-supported mouse unit; no cross-gene IDs, normalization or multiplicity reconstructed."
+    },
+    {
+      "item": "all visible layers mapped, intentionally adapted, or explicitly unresolved",
+      "status": "adopted",
+      "evidence": "Six active visible layers and explicitly omitted flexible panel letter; adoption-check.json has no required missing layers."
+    },
+    {
+      "item": "transformations, pairing, uncertainty and statistical definitions supported",
+      "status": "recorded-with-limits",
+      "evidence": "Mean/SEM is caption-supported; author P entries retained; pairing/normalization unknown and not used."
+    },
+    {
+      "item": "recipe boundaries checked; custom script used for unsupported geometry/layers",
+      "status": "adopted",
+      "evidence": "Custom script preserves continuous tall-bar side outlines and shared-x segmented scale."
+    },
+    {
+      "item": "agreed final canvas and typography; complete legend bounds measured",
+      "status": "verified",
+      "evidence": "Actual SVG/PDF at 92 × 66 mm; all PDF text 8 pt; measured legend/text bounds."
+    },
+    {
+      "item": "source-to-artist values and counts verified without invented observations",
+      "status": "verified",
+      "evidence": "actual-export-check.json: 60 source/artist observations, 60 exported SVG/PDF positions/colors and 12 independently checked means/SEMs."
+    },
+    {
+      "item": "baseline compared with adaptation at the same final size",
+      "status": "documented",
+      "evidence": "Original/product comparison normalizes screen width only; exact original physical size is unknown."
+    },
+    {
+      "item": "PDF/SVG/PNG exported, inspected and independently reviewed where possible",
+      "status": "reviewed-with-notes",
+      "evidence": "independent-visual-review.md canonical pass 2: ready_with_notes bound to stable Arial8 exports; source/actual-vector checks are separate."
+    }
+  ],
+  "limits": "Scaffold only. It is not a render.py specification, an adopted plan, or a passed review. Complete the scientific and implementation decisions explicitly."
+}

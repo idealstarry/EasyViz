@@ -1,0 +1,25 @@
+{
+  "purpose": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+  "reading_burden": {
+    "source_rows": 15,
+    "groups": {
+      "DMSO": 3,
+      "NU-7441\n(1 µM)": 3,
+      "KU-0060548\n(0.25 µM)": 3,
+      "L755507\n(5 µM)": 3,
+      "SCR7 pyrazine\n(1 µM)": 3
+    }
+  },
+  "adopted_canvas_mm": [
+    72,
+    48
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "summary",
+  "organization": "compact",
+  "mechanism": "neutral single-quantity bars with raw repeats/SD",
+  "expected_benefit": "All five open bars and three dots per treatment remain readable; neutral position decoding avoids an unnecessary five-color key.",
+  "observed_tradeoff": "The small 72 × 48 mm canvas needs oblique two-line treatment labels. The full labels fit, but label area is a substantial fraction of the canvas.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

@@ -21,7 +21,9 @@ from figure_handoff import HandoffError, normalize_inputs, bound_version, auxili
 
 MAX_SNAPSHOT_BYTES = 32 * 1024 * 1024
 ELEMENT_FIELDS = ("id", "role", "label", "source_keys", "spec_paths", "editable")
-SNAPSHOT_FILES = ("panel.svg", "panel.pdf", "panel.png", "panel.tiff", "elements.json", "handoff.json", "settings.json", "qa.json", "stats.json", "plotting-data.csv")
+SNAPSHOT_FILES = ("panel.svg", "panel.pdf", "panel.png", "panel.tiff", "elements.json", "handoff.json", "settings.json", "qa.json", "stats.json", "plotting-data.csv", "analysis-caption.md")
+ANALYSIS_CAPTURE_NAMES = {"analysis_result": "results.json", **{
+    "analysis_artifact:" + name: name for name in ("plan.json", "analyzed-data.csv", "summary.csv", "methodology.md")}}
 
 
 def read_regular(path):
@@ -362,6 +364,12 @@ def accept_attempt(figure_dir, *, validation):
     settings = safe_json(app.read_file("settings.json") or b"{}")
     if not isinstance(spec, dict) or "profile" in spec or (isinstance(settings, dict) and settings.get("figure_profile")):
         raise WorkbenchError("Accepted restore supports one self-contained source/spec/data attempt; shared profiles need an Agent")
+    adoption = spec.get("statistics", {}).get("analysis")
+    if isinstance(adoption, dict):
+        auxiliary = state["input"].get("auxiliary_inputs", {})
+        if (not set(ANALYSIS_CAPTURE_NAMES) <= set(auxiliary)
+                or auxiliary["analysis_result"]["sha256"] != adoption.get("results_sha256")):
+            raise WorkbenchError("Accepted analysis must preserve its matching report and all four declared companions")
     snapshot = app.root / "accepted-snapshot"
     if snapshot.exists() or snapshot.is_symlink():
         raise WorkbenchError("This attempt already has an accepted snapshot; preserve it")
@@ -382,14 +390,18 @@ def accept_attempt(figure_dir, *, validation):
         provenance["auxiliary_inputs"] = {}
         reused = {state["input"]["data_file"]: "source-data.csv"}
         for index, (role, record) in enumerate(sorted(auxiliary.items()), start=1):
-            name = reused.get(record["path"])
+            # An adopted report verifies companions at their exact sibling
+            # basenames. Preserve that loadable bundle, while other declared
+            # inputs keep the established generic snapshot filenames.
+            name = "adopted-analysis/" + ANALYSIS_CAPTURE_NAMES[role] if role in ANALYSIS_CAPTURE_NAMES else reused.get(record["path"])
             if name is None:
                 suffix = Path(record["path"]).suffix
                 if not re.fullmatch(r"\.[A-Za-z0-9]{1,12}", suffix):
                     suffix = ".bin"
                 name = f"auxiliary-{index:04d}{suffix}"
-                files[name] = read_regular(record["path"])
                 reused[record["path"]] = name
+            if name not in files:
+                files[name] = read_regular(record["path"])
             if sha256(files[name]) != record["sha256"]:
                 raise WorkbenchError("A declared auxiliary input changed while accepting the attempt")
             provenance["auxiliary_inputs"][role] = name
@@ -409,6 +421,7 @@ def accept_attempt(figure_dir, *, validation):
         snapshot.mkdir()
         try:
             for name, data in files.items():
+                (snapshot / name).parent.mkdir(parents=True, exist_ok=True)
                 (snapshot / name).write_bytes(data)
             write_json(snapshot / "acceptance.json", acceptance)
             snapshot_qa = read_regular(snapshot / "qa.json")
@@ -448,8 +461,11 @@ def restore_attempt(figure_dir, out):
     allowed = set(SNAPSHOT_FILES) | {"plot-spec.json", "plot-source.py", "source-data.csv"}
     files = {}
     for name, expected in acceptance["files"].items():
-        if not isinstance(name, str) or (name not in allowed and not re.fullmatch(r"auxiliary-[0-9]{4}\.[A-Za-z0-9]{1,12}", name)):
+        analysis_names = {"adopted-analysis/" + value for value in ANALYSIS_CAPTURE_NAMES.values()}
+        if not isinstance(name, str) or (name not in allowed and name not in analysis_names and not re.fullmatch(r"auxiliary-[0-9]{4}\.[A-Za-z0-9]{1,12}", name)):
             raise WorkbenchError("Snapshot contains an unsupported or escaping path")
+        if (snapshot / name).parent.is_symlink():
+            raise WorkbenchError("Snapshot input directories must not be symlinks")
         data = read_regular(snapshot / name)
         if sha256(data) != expected:
             raise WorkbenchError("Accepted snapshot has changed; restoration is refused")
@@ -498,8 +514,14 @@ def restore_attempt(figure_dir, out):
     snapshot_state = FigureWorkbench(snapshot).state()
     if not snapshot_state["provenance_valid"] or snapshot_state["version"] != acceptance["version"]:
         raise WorkbenchError("Accepted snapshot has invalid or conflicting current provenance")
+    adopted = safe_json(files["plot-spec.json"])
+    analysis = adopted.get("statistics", {}).get("analysis") if isinstance(adopted, dict) else None
+    if isinstance(analysis, dict) and (not set(ANALYSIS_CAPTURE_NAMES) <= set(auxiliary)
+            or auxiliary["analysis_result"]["sha256"] != analysis.get("results_sha256")):
+        raise WorkbenchError("Accepted analysis must preserve its matching report and every declared companion")
     target = fresh_directory(out, app.root)
     for name, data in files.items():
+        (target / name).parent.mkdir(parents=True, exist_ok=True)
         (target / name).write_bytes(data)
     bindings = {field: str(target / name) for field, name in (("data_file", "source-data.csv"), ("source_script", "plot-source.py"), ("spec_file", "plot-spec.json"))}
     rebound_auxiliary = {role: {**record, "path": str(target / declared_copies[role])} for role, record in auxiliary.items()}
@@ -544,6 +566,15 @@ def restore_attempt(figure_dir, out):
             write_json(target / "settings.json", settings)
     target_app, restored = verified_attempt(target)
     event = {"id": str(uuid.uuid4()), "action": "restored", "at": timestamp(), "accepted_attempt": str(app.root), "target_attempt": str(target), "target_version": restored["version"], "validation": acceptance.get("validation", ""), "note": "Source/spec/input and matching accepted exports were restored together. No author script was executed."}
+    if isinstance(analysis, dict):
+        result = rebound_auxiliary["analysis_result"]
+        # The accepted spec still describes the exact preserved exports. An
+        # explicit derived spec can produce a fresh attempt after relocation,
+        # without pretending its changed path was consumed by the old render.
+        analysis["results_file"] = result["path"]
+        write_json(target / "rerender-spec.json", adopted)
+        event["rerender_spec_file"] = str(target / "rerender-spec.json")
+        event["note"] += " Adopt rerender-spec.json for a new render using the byte-identical preserved analysis bundle."
     ledger = copy.deepcopy(app.ledger())
     for item in ledger["requests"]:
         if isinstance(item, dict) and item.get("status") == "pending":

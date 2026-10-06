@@ -1,0 +1,85 @@
+{
+  "status": "pass",
+  "current_build": {
+    "version": "0.5.0",
+    "archive": "easyviz-0.5.0.zip",
+    "sha256": "2b3b54d45bf128676ce8405ee0b026cc081b9ec36cb9f97d3ac57d81d77987a3",
+    "content_sha256": "5183faf772f3a1450d846cd327f717240ad091f5da4f3f35572d6ffee91c7219",
+    "files": 947,
+    "bytes": 19027064
+  },
+  "current_archive_absolute_path": "/Users/starry/Desktop/EasyViz/dist/easyviz-0.5.0.zip",
+  "final_resource_validation": {
+    "path": "final-resource-validation.json",
+    "sha256": "4343a67d103b19f37430535f96aebc5b5f09bd098b1b221644316a28fb30244d"
+  },
+  "archive_diff": {
+    "old_build": {
+      "version": "0.5.0",
+      "archive": "easyviz-0.5.0.zip",
+      "sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6",
+      "content_sha256": "d33770427f80a77e5b695c10a4c392b71f92af83fa1879a33902843e548d2ee5",
+      "files": 947,
+      "bytes": 19026819
+    },
+    "new_build": {
+      "version": "0.5.0",
+      "archive": "easyviz-0.5.0.zip",
+      "sha256": "2b3b54d45bf128676ce8405ee0b026cc081b9ec36cb9f97d3ac57d81d77987a3",
+      "content_sha256": "5183faf772f3a1450d846cd327f717240ad091f5da4f3f35572d6ffee91c7219",
+      "files": 947,
+      "bytes": 19027064
+    },
+    "added": [],
+    "removed": [],
+    "changed": [
+      {
+        "path": "easyviz/skills/easyviz/references/create-style.md",
+        "before": "1bdebfe83609fbef2d5fe910facce35a87690fe2438ccf9a0c37b4f15fa1c34c",
+        "after": "00b3a7fb2d484cb336ae6eb80fb10b085681eb42e5c1822f4360eeb36614876e"
+      },
+      {
+        "path": "easyviz/skills/easyviz/scripts/workbench/workbench.js",
+        "before": "592ef54d278a15ec7f21c8e693454d208cf783eae151777bc2283eff0b1aefe6",
+        "after": "fcdf611508ba489e554a86404a5957be288a378141049294a0301480269c9d1a"
+      }
+    ]
+  },
+  "historical_full_smokes": {
+    "check_package": {
+      "status": "pass",
+      "command": ".venv/bin/python scripts/check_package.py",
+      "tested_archive_sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6",
+      "completed_before_final_docs_and_js_changes": true
+    },
+    "plugin-validation.json": {
+      "status": "pass",
+      "report_sha256": "c78c10586fb3680f745dfcc2e2de3e5b286c5cdeda453c35067864ceab55be9c",
+      "tested_archive_sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6"
+    },
+    "extracted-mcp.json": {
+      "status": "pass",
+      "report_sha256": "dd3e75cb1ea8a77c3aae781958558fb0644df3352ace3c8199225d4798482136",
+      "tested_archive_sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6"
+    },
+    "extracted-checkpoint.json": {
+      "status": "pass",
+      "report_sha256": "eddac771ff2c5a27ef8ce8272187395125ae19667084273793e46d6204a9a99c",
+      "tested_archive_sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6"
+    }
+  },
+  "carryforward_scope": "All scientific renderers, analysis modules, MCP adapter/service, requirements, case scripts/inputs/specs/exports and checkpoint bytes are unchanged from the fully exercised extracted archive. Their prior full runtime/pixel/SDK results remain applicable to these identical members; historical reports retain the archive they actually tested. Final extraction, resource-tree and Markdown checks were run against the new archive. The sole frontend change resets disabled operation buttons after Accept/Restore; its real browser and 13-scenario handler evidence is owned by the frontend/root review and is not certified by unchanged scientific replay.",
+  "commands": {
+    "build": ".venv/bin/python scripts/build_plugin.py",
+    "full_scientific_prior": ".venv/bin/python scripts/check_package.py",
+    "legacy_pixel_prior": ".venv/bin/python tests/check_plugin.py --report evals/development-v0.5.0/package-audit/plugin-validation.json",
+    "official_sdk_prior": ".venv/bin/python evals/development-v0.5.0/package-audit/extracted_mcp.py",
+    "final_structure": ".venv/bin/python scripts/check_package.py --structure-only",
+    "final_resource_report": "Actual final extracted validate_plugin + validate_markdown_resources using the production check_package API; output final-resource-validation.json"
+  },
+  "limits": [
+    "No local installation was performed.",
+    "No Git commit or publication was performed.",
+    "No new aesthetic or model-efficacy claim is established by package verification."
+  ]
+}

@@ -1,0 +1,4658 @@
+{
+  "version": "0.3.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "needs_revision",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/05-narrow-matrix/measurements.csv",
+    "sha256": "b6074e39029a27a67e0fa5987f1d04d159edac44730634c986767d3db100ea45",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/05-narrow-matrix/spec.json",
+    "sha256": "c2ff67eaa53e92114883c612100545c752a3db1136cfdd8789017f70c1940a15",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "heatmap",
+    "input_rows": 48,
+    "reading_task_source": "adopted_create_intent",
+    "reading_task_scope": "Explicit calling-Agent purpose; this declaration does not establish scientific assumptions.",
+    "task": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+    "category_order": {
+      "row": [
+        "myC00 M2",
+        "myC01 M2",
+        "myC10 MMe",
+        "myC11 M2",
+        "myC12 M2",
+        "myC13 M2",
+        "myC14 Classical Mo",
+        "myC15 Mox",
+        "myC02 LAM",
+        "myC03 DC2",
+        "myC04 M2",
+        "myC05 Non-classical Mo",
+        "myC06 M1/M2-like",
+        "myC07 M2",
+        "myC08 M2",
+        "myC09 M2"
+      ],
+      "column": [
+        "Omental",
+        "Perivascular",
+        "Subcutaneous"
+      ]
+    },
+    "label_max_characters": {
+      "row": 22,
+      "column": 12
+    },
+    "matrix_rows": 16,
+    "matrix_columns": 3,
+    "narrow_matrix": true,
+    "create_intent": {
+      "schema_version": 1,
+      "question": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+      "reading_task": "read_matrix_values",
+      "leading_layer": "values",
+      "organization": "compact",
+      "color_role": "magnitude"
+    }
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      35.20344444444445,
+      11.33273611111111,
+      9.639695744183486,
+      89.63993641493057
+    ],
+    "canvas_mm": [
+      60.0,
+      103.99999999999999
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.5,
+        2.5
+      ],
+      "y": [
+        15.5,
+        -0.5
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotation_outside_cell",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations_overlap",
+      "cell_annotations"
+    ],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "grid-line",
+          "label": "Heatmap cell boundaries",
+          "face": [],
+          "edge": [
+            [
+              0.81960784,
+              0.8627451,
+              0.90196078,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.81960784,
+              0.8627451,
+              0.90196078,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "continuous_decoding": [
+        {
+          "rgba_samples": [
+            [
+              0.96862745,
+              0.98431373,
+              1.0,
+              1.0
+            ],
+            [
+              0.77524029,
+              0.85830065,
+              0.9368243,
+              1.0
+            ],
+            [
+              0.41708574,
+              0.68063053,
+              0.83823145,
+              1.0
+            ],
+            [
+              0.12710496,
+              0.44018454,
+              0.70749712,
+              1.0
+            ],
+            [
+              0.03137255,
+              0.18823529,
+              0.41960784,
+              1.0
+            ]
+          ],
+          "norm": "Normalize",
+          "limits": [
+            0.0,
+            40.0
+          ],
+          "center": null
+        }
+      ],
+      "guide_organization": [
+        {
+          "kind": "colorbar",
+          "position": "right",
+          "orientation": "vertical"
+        }
+      ]
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [
+        {
+          "kind": "colorbar",
+          "chosen_settings": {
+            "key_width_mm": 1.5,
+            "key_height_mm": 1.5,
+            "handletext_gap_mm": 0.7,
+            "row_gap_mm": 0.6,
+            "column_gap_mm": 2.0,
+            "borderpad_mm": 0.2,
+            "gap_mm": 2.0,
+            "canvas_padding_mm": 1.0,
+            "position": "right",
+            "thickness_mm": 2.2999999999999967,
+            "orientation": "vertical",
+            "rect_mm": [
+              47.90352423126402,
+              72.97267252604166,
+              2.2999999999999967,
+              28.000000000000007
+            ],
+            "length_mm": 28.000000000000004,
+            "ticks": [
+              0.0,
+              20.0,
+              40.0
+            ],
+            "font_size_pt": 8.0
+          },
+          "bbox_mm": [
+            47.90352423126402,
+            71.35141059027778,
+            10.096589409722236,
+            30.64858940972223
+          ],
+          "plot_bbox_mm": [
+            35.20344444444445,
+            11.33273611111111,
+            9.639695744183486,
+            89.63993641493057
+          ],
+          "canvas_mm": [
+            60.0,
+            103.99999999999999
+          ],
+          "area_fraction_of_plot": 0.35811319246135964,
+          "width_fraction_of_plot": 1.0473971043966233,
+          "height_fraction_of_plot": 0.34190775490797143,
+          "area_fraction_of_canvas": 0.0495907409065908,
+          "reserved_band_fraction": null,
+          "reserved_band_mm": null,
+          "available_region_fraction": 0.2734009036516315,
+          "available_region_mm": [
+            47.90352423126402,
+            1.0,
+            11.096475768735981,
+            101.99999999999999
+          ],
+          "key_bboxes_mm": [],
+          "issues": [],
+          "warnings": [
+            "Review area_fraction_of_plot=0.358 above adjustable threshold 0.2; this is not a journal limit."
+          ],
+          "text_overlaps": [],
+          "mapped_range": [
+            0.0,
+            40.0
+          ],
+          "attempts": [
+            {
+              "position": "right",
+              "ncol": null,
+              "length_mm": 28.0,
+              "bbox_mm": [
+                47.90352423126402,
+                71.35141059027778,
+                10.096589409722236,
+                30.64858940972223
+              ],
+              "issues": []
+            },
+            {
+              "position": "right",
+              "ncol": null,
+              "length_mm": 24.0,
+              "bbox_mm": [
+                47.90352423126402,
+                75.35141059027778,
+                10.096589409722236,
+                26.648589409722227
+              ],
+              "issues": []
+            }
+          ]
+        }
+      ],
+      "combined": {
+        "guide_count": 1,
+        "occupied_envelope_union_area_mm2": 309.4462232571266,
+        "sum_envelope_area_mm2": 309.4462232571266,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.35811319246135975,
+        "area_fraction_of_canvas": 0.0495907409065908,
+        "enclosing_bbox_mm": [
+          47.90352423126402,
+          71.35141059027778,
+          10.096589409722236,
+          30.64858940972223
+        ],
+        "max_individual_width_mm": 10.096589409722236,
+        "max_individual_height_mm": 30.64858940972223,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [
+        "colorbar: Review area_fraction_of_plot=0.358 above adjustable threshold 0.2; this is not a journal limit.",
+        "Combined guides: review area_fraction_of_plot=0.358 above adjustable threshold 0.2; this is not a journal limit."
+      ],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "font_resolution": {
+      "requested": "Arial",
+      "actual": "Arial",
+      "substituted": false
+    },
+    "mark_visibility_advisories": [],
+    "source_to_artist": {
+      "status": "pass",
+      "matrix_values_preserved": true,
+      "color_limits": [
+        0.0,
+        40.0
+      ]
+    },
+    "cell_dimensions_mm": [
+      3.2132319147278285,
+      5.602496025933161
+    ],
+    "cell_annotations": {
+      "status": "needs_revision",
+      "registered_count": 48,
+      "checked_count": 48,
+      "padding_mm": 0.2,
+      "issues": [
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 0,
+          "column": 0,
+          "text": "11.5",
+          "text_bbox_mm": [
+            34.24757081847503,
+            96.84712980821398,
+            5.124979166666667,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            95.37017650010851,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.524979166666667,
+          "required_cell_height_mm": 3.048589409722235,
+          "overflow_mm": {
+            "left": 1.155873625969416,
+            "right": 1.155873625969418,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 0,
+          "column": 1,
+          "text": "3.8",
+          "text_bbox_mm": [
+            38.1182923165362,
+            96.84712980821398,
+            3.81,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            95.37017650010851,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722235,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 0,
+          "column": 2,
+          "text": "22.7",
+          "text_bbox_mm": [
+            40.569524231264026,
+            96.84712980821398,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            95.37017650010851,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 1,
+          "column": 0,
+          "text": "10.1",
+          "text_bbox_mm": [
+            34.14306040180837,
+            91.24463378228081,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            89.76768047417536,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 1,
+          "column": 1,
+          "text": "37.6",
+          "text_bbox_mm": [
+            37.3562923165362,
+            91.24463378228081,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            89.76768047417536,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360895,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 1,
+          "column": 2,
+          "text": "13.2",
+          "text_bbox_mm": [
+            40.569524231264026,
+            91.24463378228081,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            89.76768047417536,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 2,
+          "column": 0,
+          "text": "1.3",
+          "text_bbox_mm": [
+            34.90506040180837,
+            85.64213775634768,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            84.16518444824219,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 2,
+          "column": 1,
+          "text": "1.0",
+          "text_bbox_mm": [
+            38.1182923165362,
+            85.64213775634768,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            84.16518444824219,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 2,
+          "column": 2,
+          "text": "4.6",
+          "text_bbox_mm": [
+            41.33152423126403,
+            85.64213775634768,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            84.16518444824219,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 3,
+          "column": 0,
+          "text": "6.6",
+          "text_bbox_mm": [
+            34.90506040180837,
+            80.0396417304145,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            78.56268842230904,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 3,
+          "column": 1,
+          "text": "0.3",
+          "text_bbox_mm": [
+            38.1182923165362,
+            80.0396417304145,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            78.56268842230904,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 3,
+          "column": 2,
+          "text": "0.7",
+          "text_bbox_mm": [
+            41.33152423126403,
+            80.0396417304145,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            78.56268842230904,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 4,
+          "column": 0,
+          "text": "5.2",
+          "text_bbox_mm": [
+            34.90506040180837,
+            74.43714570448134,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            72.96019239637587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 4,
+          "column": 1,
+          "text": "0.6",
+          "text_bbox_mm": [
+            38.1182923165362,
+            74.43714570448134,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            72.96019239637587,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 4,
+          "column": 2,
+          "text": "0.2",
+          "text_bbox_mm": [
+            41.33152423126403,
+            74.43714570448134,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            72.96019239637587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 5,
+          "column": 0,
+          "text": "0.8",
+          "text_bbox_mm": [
+            34.90506040180837,
+            68.83464967854819,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            67.35769637044271,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 5,
+          "column": 1,
+          "text": "0.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            68.83464967854819,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            67.35769637044271,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 5,
+          "column": 2,
+          "text": "2.8",
+          "text_bbox_mm": [
+            41.33152423126403,
+            68.83464967854819,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            67.35769637044271,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 6,
+          "column": 0,
+          "text": "0.8",
+          "text_bbox_mm": [
+            34.90506040180837,
+            63.232153652615025,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            61.755200344509554,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 6,
+          "column": 1,
+          "text": "0.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            63.232153652615025,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            61.755200344509554,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 6,
+          "column": 2,
+          "text": "2.8",
+          "text_bbox_mm": [
+            41.33152423126403,
+            63.232153652615025,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            61.755200344509554,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 7,
+          "column": 0,
+          "text": "0.1",
+          "text_bbox_mm": [
+            34.90506040180837,
+            57.62965762668187,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            56.15270431857639,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 7,
+          "column": 1,
+          "text": "0.0",
+          "text_bbox_mm": [
+            38.1182923165362,
+            57.62965762668187,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            56.15270431857639,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 7,
+          "column": 2,
+          "text": "1.5",
+          "text_bbox_mm": [
+            41.33152423126403,
+            57.62965762668187,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            56.15270431857639,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 8,
+          "column": 0,
+          "text": "13.5",
+          "text_bbox_mm": [
+            34.14306040180837,
+            52.027161600748705,
+            5.334,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            50.550208292643234,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 8,
+          "column": 1,
+          "text": "0.3",
+          "text_bbox_mm": [
+            38.1182923165362,
+            52.027161600748705,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            50.550208292643234,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 8,
+          "column": 2,
+          "text": "16.3",
+          "text_bbox_mm": [
+            40.569524231264026,
+            52.027161600748705,
+            5.334,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            50.550208292643234,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 9,
+          "column": 0,
+          "text": "6.6",
+          "text_bbox_mm": [
+            34.90506040180837,
+            46.42466557481555,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            44.94771226671006,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 9,
+          "column": 1,
+          "text": "2.0",
+          "text_bbox_mm": [
+            38.1182923165362,
+            46.42466557481555,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            44.94771226671006,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 9,
+          "column": 2,
+          "text": "14.2",
+          "text_bbox_mm": [
+            40.569524231264026,
+            46.42466557481555,
+            5.334,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            44.94771226671006,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722216,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 10,
+          "column": 0,
+          "text": "6.4",
+          "text_bbox_mm": [
+            34.90506040180837,
+            40.82216954888238,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            39.34521624077691,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 10,
+          "column": 1,
+          "text": "24.4",
+          "text_bbox_mm": [
+            37.3562923165362,
+            40.82216954888238,
+            5.334,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            39.34521624077691,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360895,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 10,
+          "column": 2,
+          "text": "6.6",
+          "text_bbox_mm": [
+            41.33152423126403,
+            40.82216954888238,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            39.34521624077691,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 11,
+          "column": 0,
+          "text": "5.5",
+          "text_bbox_mm": [
+            34.90506040180837,
+            35.219673522949215,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            33.74272021484375,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 11,
+          "column": 1,
+          "text": "4.7",
+          "text_bbox_mm": [
+            38.1182923165362,
+            35.219673522949215,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            33.74272021484375,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 11,
+          "column": 2,
+          "text": "9.5",
+          "text_bbox_mm": [
+            41.33152423126403,
+            35.219673522949215,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            33.74272021484375,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 12,
+          "column": 0,
+          "text": "13.1",
+          "text_bbox_mm": [
+            34.14306040180837,
+            29.617177497016062,
+            5.334,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            28.140224188910587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 12,
+          "column": 1,
+          "text": "1.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            29.617177497016062,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            28.140224188910587,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 12,
+          "column": 2,
+          "text": "1.4",
+          "text_bbox_mm": [
+            41.33152423126403,
+            29.617177497016062,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            28.140224188910587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 13,
+          "column": 0,
+          "text": "11.0",
+          "text_bbox_mm": [
+            34.24757081847503,
+            24.014681471082895,
+            5.124979166666667,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            22.53772816297743,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.524979166666667,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 1.155873625969416,
+            "right": 1.155873625969418,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 13,
+          "column": 1,
+          "text": "0.6",
+          "text_bbox_mm": [
+            38.1182923165362,
+            24.014681471082895,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            22.53772816297743,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 13,
+          "column": 2,
+          "text": "1.4",
+          "text_bbox_mm": [
+            41.33152423126403,
+            24.014681471082895,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            22.53772816297743,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 14,
+          "column": 0,
+          "text": "5.5",
+          "text_bbox_mm": [
+            34.90506040180837,
+            18.412185445149742,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            16.935232137044274,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 14,
+          "column": 1,
+          "text": "7.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            18.412185445149742,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            16.935232137044274,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.49838404263608965,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 14,
+          "column": 2,
+          "text": "1.3",
+          "text_bbox_mm": [
+            41.33152423126403,
+            18.412185445149742,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            16.935232137044274,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 15,
+          "column": 0,
+          "text": "2.2",
+          "text_bbox_mm": [
+            34.90506040180837,
+            12.809689419216573,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            11.332736111111105,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 15,
+          "column": 1,
+          "text": "16.4",
+          "text_bbox_mm": [
+            37.3562923165362,
+            12.809689419216573,
+            5.334,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            11.332736111111105,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 1.2603840426360826,
+            "right": 1.2603840426360895,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotation_outside_cell",
+          "row": 15,
+          "column": 2,
+          "text": "0.8",
+          "text_bbox_mm": [
+            41.33152423126403,
+            12.809689419216573,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            11.332736111111105,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204,
+          "overflow_mm": {
+            "left": 0.49838404263608266,
+            "right": 0.4983840426360848,
+            "bottom": 0.0,
+            "top": 0.0
+          }
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 1,
+              "column": 0,
+              "text": "10.1",
+              "text_bbox_mm": [
+                34.14306040180837,
+                91.24463378228081,
+                5.334,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                89.76768047417536,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 1,
+              "column": 1,
+              "text": "37.6",
+              "text_bbox_mm": [
+                37.3562923165362,
+                91.24463378228081,
+                5.334,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                89.76768047417536,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            2.1207680852721698,
+            2.648589409722235
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 8,
+              "column": 0,
+              "text": "13.5",
+              "text_bbox_mm": [
+                34.14306040180837,
+                52.027161600748705,
+                5.334,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                50.550208292643234,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 8,
+              "column": 1,
+              "text": "0.3",
+              "text_bbox_mm": [
+                38.1182923165362,
+                52.027161600748705,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                50.550208292643234,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721697,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 12,
+              "column": 0,
+              "text": "13.1",
+              "text_bbox_mm": [
+                34.14306040180837,
+                29.617177497016062,
+                5.334,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                28.140224188910587,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 12,
+              "column": 1,
+              "text": "1.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                29.617177497016062,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                28.140224188910587,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721697,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 0,
+              "column": 0,
+              "text": "11.5",
+              "text_bbox_mm": [
+                34.24757081847503,
+                96.84712980821398,
+                5.124979166666667,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                95.37017650010851,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 0,
+              "column": 1,
+              "text": "3.8",
+              "text_bbox_mm": [
+                38.1182923165362,
+                96.84712980821398,
+                3.81,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                95.37017650010851,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.254257668605503,
+            2.648589409722235
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 13,
+              "column": 0,
+              "text": "11.0",
+              "text_bbox_mm": [
+                34.24757081847503,
+                24.014681471082895,
+                5.124979166666667,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                22.53772816297743,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 13,
+              "column": 1,
+              "text": "0.6",
+              "text_bbox_mm": [
+                38.1182923165362,
+                24.014681471082895,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                22.53772816297743,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.254257668605503,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 2,
+              "column": 0,
+              "text": "1.3",
+              "text_bbox_mm": [
+                34.90506040180837,
+                85.64213775634768,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                84.16518444824219,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 2,
+              "column": 1,
+              "text": "1.0",
+              "text_bbox_mm": [
+                38.1182923165362,
+                85.64213775634768,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                84.16518444824219,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 3,
+              "column": 0,
+              "text": "6.6",
+              "text_bbox_mm": [
+                34.90506040180837,
+                80.0396417304145,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                78.56268842230904,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 3,
+              "column": 1,
+              "text": "0.3",
+              "text_bbox_mm": [
+                38.1182923165362,
+                80.0396417304145,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                78.56268842230904,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 4,
+              "column": 0,
+              "text": "5.2",
+              "text_bbox_mm": [
+                34.90506040180837,
+                74.43714570448134,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                72.96019239637587,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 4,
+              "column": 1,
+              "text": "0.6",
+              "text_bbox_mm": [
+                38.1182923165362,
+                74.43714570448134,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                72.96019239637587,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 5,
+              "column": 0,
+              "text": "0.8",
+              "text_bbox_mm": [
+                34.90506040180837,
+                68.83464967854819,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                67.35769637044271,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 5,
+              "column": 1,
+              "text": "0.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                68.83464967854819,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                67.35769637044271,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 6,
+              "column": 0,
+              "text": "0.8",
+              "text_bbox_mm": [
+                34.90506040180837,
+                63.232153652615025,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                61.755200344509554,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 6,
+              "column": 1,
+              "text": "0.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                63.232153652615025,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                61.755200344509554,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 7,
+              "column": 0,
+              "text": "0.1",
+              "text_bbox_mm": [
+                34.90506040180837,
+                57.62965762668187,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                56.15270431857639,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 7,
+              "column": 1,
+              "text": "0.0",
+              "text_bbox_mm": [
+                38.1182923165362,
+                57.62965762668187,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                56.15270431857639,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 9,
+              "column": 0,
+              "text": "6.6",
+              "text_bbox_mm": [
+                34.90506040180837,
+                46.42466557481555,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                44.94771226671006,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 9,
+              "column": 1,
+              "text": "2.0",
+              "text_bbox_mm": [
+                38.1182923165362,
+                46.42466557481555,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                44.94771226671006,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 10,
+              "column": 0,
+              "text": "6.4",
+              "text_bbox_mm": [
+                34.90506040180837,
+                40.82216954888238,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                39.34521624077691,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 10,
+              "column": 1,
+              "text": "24.4",
+              "text_bbox_mm": [
+                37.3562923165362,
+                40.82216954888238,
+                5.334,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                39.34521624077691,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721697,
+            2.6485894097222205
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 11,
+              "column": 0,
+              "text": "5.5",
+              "text_bbox_mm": [
+                34.90506040180837,
+                35.219673522949215,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                33.74272021484375,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 11,
+              "column": 1,
+              "text": "4.7",
+              "text_bbox_mm": [
+                38.1182923165362,
+                35.219673522949215,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                33.74272021484375,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 14,
+              "column": 0,
+              "text": "5.5",
+              "text_bbox_mm": [
+                34.90506040180837,
+                18.412185445149742,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                16.935232137044274,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 14,
+              "column": 1,
+              "text": "7.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                18.412185445149742,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                16.935232137044274,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721696,
+            2.6485894097222205
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 15,
+              "column": 0,
+              "text": "2.2",
+              "text_bbox_mm": [
+                34.90506040180837,
+                12.809689419216573,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                35.20344444444445,
+                11.332736111111105,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 15,
+              "column": 1,
+              "text": "16.4",
+              "text_bbox_mm": [
+                37.3562923165362,
+                12.809689419216573,
+                5.334,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                11.332736111111105,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721697,
+            2.6485894097222205
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 1,
+              "column": 1,
+              "text": "37.6",
+              "text_bbox_mm": [
+                37.3562923165362,
+                91.24463378228081,
+                5.334,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                89.76768047417536,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 1,
+              "column": 2,
+              "text": "13.2",
+              "text_bbox_mm": [
+                40.569524231264026,
+                91.24463378228081,
+                5.334,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                89.76768047417536,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            2.1207680852721746,
+            2.648589409722235
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 10,
+              "column": 1,
+              "text": "24.4",
+              "text_bbox_mm": [
+                37.3562923165362,
+                40.82216954888238,
+                5.334,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                39.34521624077691,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 10,
+              "column": 2,
+              "text": "6.6",
+              "text_bbox_mm": [
+                41.33152423126403,
+                40.82216954888238,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                39.34521624077691,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721744,
+            2.6485894097222205
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 15,
+              "column": 1,
+              "text": "16.4",
+              "text_bbox_mm": [
+                37.3562923165362,
+                12.809689419216573,
+                5.334,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                11.332736111111105,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 15,
+              "column": 2,
+              "text": "0.8",
+              "text_bbox_mm": [
+                41.33152423126403,
+                12.809689419216573,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                11.332736111111105,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721744,
+            2.6485894097222205
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 0,
+              "column": 1,
+              "text": "3.8",
+              "text_bbox_mm": [
+                38.1182923165362,
+                96.84712980821398,
+                3.81,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                95.37017650010851,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 0,
+              "column": 2,
+              "text": "22.7",
+              "text_bbox_mm": [
+                40.569524231264026,
+                96.84712980821398,
+                5.334,
+                2.648589409722235
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                95.37017650010851,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721744,
+            2.648589409722235
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 2,
+              "column": 1,
+              "text": "1.0",
+              "text_bbox_mm": [
+                38.1182923165362,
+                85.64213775634768,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                84.16518444824219,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 2,
+              "column": 2,
+              "text": "4.6",
+              "text_bbox_mm": [
+                41.33152423126403,
+                85.64213775634768,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                84.16518444824219,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 3,
+              "column": 1,
+              "text": "0.3",
+              "text_bbox_mm": [
+                38.1182923165362,
+                80.0396417304145,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                78.56268842230904,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 3,
+              "column": 2,
+              "text": "0.7",
+              "text_bbox_mm": [
+                41.33152423126403,
+                80.0396417304145,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                78.56268842230904,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 4,
+              "column": 1,
+              "text": "0.6",
+              "text_bbox_mm": [
+                38.1182923165362,
+                74.43714570448134,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                72.96019239637587,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 4,
+              "column": 2,
+              "text": "0.2",
+              "text_bbox_mm": [
+                41.33152423126403,
+                74.43714570448134,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                72.96019239637587,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 5,
+              "column": 1,
+              "text": "0.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                68.83464967854819,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                67.35769637044271,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 5,
+              "column": 2,
+              "text": "2.8",
+              "text_bbox_mm": [
+                41.33152423126403,
+                68.83464967854819,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                67.35769637044271,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 6,
+              "column": 1,
+              "text": "0.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                63.232153652615025,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                61.755200344509554,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 6,
+              "column": 2,
+              "text": "2.8",
+              "text_bbox_mm": [
+                41.33152423126403,
+                63.232153652615025,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                61.755200344509554,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 7,
+              "column": 1,
+              "text": "0.0",
+              "text_bbox_mm": [
+                38.1182923165362,
+                57.62965762668187,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                56.15270431857639,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 7,
+              "column": 2,
+              "text": "1.5",
+              "text_bbox_mm": [
+                41.33152423126403,
+                57.62965762668187,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                56.15270431857639,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 8,
+              "column": 1,
+              "text": "0.3",
+              "text_bbox_mm": [
+                38.1182923165362,
+                52.027161600748705,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                50.550208292643234,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 8,
+              "column": 2,
+              "text": "16.3",
+              "text_bbox_mm": [
+                40.569524231264026,
+                52.027161600748705,
+                5.334,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                50.550208292643234,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 9,
+              "column": 1,
+              "text": "2.0",
+              "text_bbox_mm": [
+                38.1182923165362,
+                46.42466557481555,
+                3.81,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                44.94771226671006,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 9,
+              "column": 2,
+              "text": "14.2",
+              "text_bbox_mm": [
+                40.569524231264026,
+                46.42466557481555,
+                5.334,
+                2.648589409722216
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                44.94771226671006,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            1.3587680852721744,
+            2.648589409722216
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 11,
+              "column": 1,
+              "text": "4.7",
+              "text_bbox_mm": [
+                38.1182923165362,
+                35.219673522949215,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                33.74272021484375,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 11,
+              "column": 2,
+              "text": "9.5",
+              "text_bbox_mm": [
+                41.33152423126403,
+                35.219673522949215,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                33.74272021484375,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 12,
+              "column": 1,
+              "text": "1.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                29.617177497016062,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                28.140224188910587,
+                3.2132319147278254,
+                5.602496025933166
+              ]
+            },
+            {
+              "row": 12,
+              "column": 2,
+              "text": "1.4",
+              "text_bbox_mm": [
+                41.33152423126403,
+                29.617177497016062,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                28.140224188910587,
+                3.2132319147278303,
+                5.602496025933166
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 13,
+              "column": 1,
+              "text": "0.6",
+              "text_bbox_mm": [
+                38.1182923165362,
+                24.014681471082895,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                22.53772816297743,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 13,
+              "column": 2,
+              "text": "1.4",
+              "text_bbox_mm": [
+                41.33152423126403,
+                24.014681471082895,
+                3.81,
+                2.6485894097222253
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                22.53772816297743,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.6485894097222253
+          ]
+        },
+        {
+          "code": "cell_annotations_overlap",
+          "cells": [
+            {
+              "row": 14,
+              "column": 1,
+              "text": "7.1",
+              "text_bbox_mm": [
+                38.1182923165362,
+                18.412185445149742,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                38.416676359172286,
+                16.935232137044274,
+                3.2132319147278254,
+                5.602496025933156
+              ]
+            },
+            {
+              "row": 14,
+              "column": 2,
+              "text": "1.3",
+              "text_bbox_mm": [
+                41.33152423126403,
+                18.412185445149742,
+                3.81,
+                2.6485894097222205
+              ],
+              "cell_bbox_mm": [
+                41.62990827390011,
+                16.935232137044274,
+                3.2132319147278303,
+                5.602496025933156
+              ]
+            }
+          ],
+          "intersection_mm": [
+            0.5967680852721744,
+            2.6485894097222205
+          ]
+        }
+      ],
+      "overflow_count": 48,
+      "overlap_pair_count": 32,
+      "minimum_sufficient_cell_dimensions_mm": {
+        "width": 5.734,
+        "height": 3.048589409722235
+      },
+      "cells": [
+        {
+          "row": 0,
+          "column": 0,
+          "text": "11.5",
+          "text_bbox_mm": [
+            34.24757081847503,
+            96.84712980821398,
+            5.124979166666667,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            95.37017650010851,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.524979166666667,
+          "required_cell_height_mm": 3.048589409722235
+        },
+        {
+          "row": 0,
+          "column": 1,
+          "text": "3.8",
+          "text_bbox_mm": [
+            38.1182923165362,
+            96.84712980821398,
+            3.81,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            95.37017650010851,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722235
+        },
+        {
+          "row": 0,
+          "column": 2,
+          "text": "22.7",
+          "text_bbox_mm": [
+            40.569524231264026,
+            96.84712980821398,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            95.37017650010851,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235
+        },
+        {
+          "row": 1,
+          "column": 0,
+          "text": "10.1",
+          "text_bbox_mm": [
+            34.14306040180837,
+            91.24463378228081,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            89.76768047417536,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "text": "37.6",
+          "text_bbox_mm": [
+            37.3562923165362,
+            91.24463378228081,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            89.76768047417536,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235
+        },
+        {
+          "row": 1,
+          "column": 2,
+          "text": "13.2",
+          "text_bbox_mm": [
+            40.569524231264026,
+            91.24463378228081,
+            5.334,
+            2.648589409722235
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            89.76768047417536,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722235
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "text": "1.3",
+          "text_bbox_mm": [
+            34.90506040180837,
+            85.64213775634768,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            84.16518444824219,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "text": "1.0",
+          "text_bbox_mm": [
+            38.1182923165362,
+            85.64213775634768,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            84.16518444824219,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "text": "4.6",
+          "text_bbox_mm": [
+            41.33152423126403,
+            85.64213775634768,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            84.16518444824219,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 3,
+          "column": 0,
+          "text": "6.6",
+          "text_bbox_mm": [
+            34.90506040180837,
+            80.0396417304145,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            78.56268842230904,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 3,
+          "column": 1,
+          "text": "0.3",
+          "text_bbox_mm": [
+            38.1182923165362,
+            80.0396417304145,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            78.56268842230904,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 3,
+          "column": 2,
+          "text": "0.7",
+          "text_bbox_mm": [
+            41.33152423126403,
+            80.0396417304145,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            78.56268842230904,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 4,
+          "column": 0,
+          "text": "5.2",
+          "text_bbox_mm": [
+            34.90506040180837,
+            74.43714570448134,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            72.96019239637587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 4,
+          "column": 1,
+          "text": "0.6",
+          "text_bbox_mm": [
+            38.1182923165362,
+            74.43714570448134,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            72.96019239637587,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 4,
+          "column": 2,
+          "text": "0.2",
+          "text_bbox_mm": [
+            41.33152423126403,
+            74.43714570448134,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            72.96019239637587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "text": "0.8",
+          "text_bbox_mm": [
+            34.90506040180837,
+            68.83464967854819,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            67.35769637044271,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 5,
+          "column": 1,
+          "text": "0.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            68.83464967854819,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            67.35769637044271,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 5,
+          "column": 2,
+          "text": "2.8",
+          "text_bbox_mm": [
+            41.33152423126403,
+            68.83464967854819,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            67.35769637044271,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 6,
+          "column": 0,
+          "text": "0.8",
+          "text_bbox_mm": [
+            34.90506040180837,
+            63.232153652615025,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            61.755200344509554,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 6,
+          "column": 1,
+          "text": "0.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            63.232153652615025,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            61.755200344509554,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 6,
+          "column": 2,
+          "text": "2.8",
+          "text_bbox_mm": [
+            41.33152423126403,
+            63.232153652615025,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            61.755200344509554,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 7,
+          "column": 0,
+          "text": "0.1",
+          "text_bbox_mm": [
+            34.90506040180837,
+            57.62965762668187,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            56.15270431857639,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 7,
+          "column": 1,
+          "text": "0.0",
+          "text_bbox_mm": [
+            38.1182923165362,
+            57.62965762668187,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            56.15270431857639,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 7,
+          "column": 2,
+          "text": "1.5",
+          "text_bbox_mm": [
+            41.33152423126403,
+            57.62965762668187,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            56.15270431857639,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 8,
+          "column": 0,
+          "text": "13.5",
+          "text_bbox_mm": [
+            34.14306040180837,
+            52.027161600748705,
+            5.334,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            50.550208292643234,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 8,
+          "column": 1,
+          "text": "0.3",
+          "text_bbox_mm": [
+            38.1182923165362,
+            52.027161600748705,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            50.550208292643234,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 8,
+          "column": 2,
+          "text": "16.3",
+          "text_bbox_mm": [
+            40.569524231264026,
+            52.027161600748705,
+            5.334,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            50.550208292643234,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 9,
+          "column": 0,
+          "text": "6.6",
+          "text_bbox_mm": [
+            34.90506040180837,
+            46.42466557481555,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            44.94771226671006,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 9,
+          "column": 1,
+          "text": "2.0",
+          "text_bbox_mm": [
+            38.1182923165362,
+            46.42466557481555,
+            3.81,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            44.94771226671006,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 9,
+          "column": 2,
+          "text": "14.2",
+          "text_bbox_mm": [
+            40.569524231264026,
+            46.42466557481555,
+            5.334,
+            2.648589409722216
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            44.94771226671006,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.048589409722216
+        },
+        {
+          "row": 10,
+          "column": 0,
+          "text": "6.4",
+          "text_bbox_mm": [
+            34.90506040180837,
+            40.82216954888238,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            39.34521624077691,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 10,
+          "column": 1,
+          "text": "24.4",
+          "text_bbox_mm": [
+            37.3562923165362,
+            40.82216954888238,
+            5.334,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            39.34521624077691,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 10,
+          "column": 2,
+          "text": "6.6",
+          "text_bbox_mm": [
+            41.33152423126403,
+            40.82216954888238,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            39.34521624077691,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 11,
+          "column": 0,
+          "text": "5.5",
+          "text_bbox_mm": [
+            34.90506040180837,
+            35.219673522949215,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            33.74272021484375,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 11,
+          "column": 1,
+          "text": "4.7",
+          "text_bbox_mm": [
+            38.1182923165362,
+            35.219673522949215,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            33.74272021484375,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 11,
+          "column": 2,
+          "text": "9.5",
+          "text_bbox_mm": [
+            41.33152423126403,
+            35.219673522949215,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            33.74272021484375,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 12,
+          "column": 0,
+          "text": "13.1",
+          "text_bbox_mm": [
+            34.14306040180837,
+            29.617177497016062,
+            5.334,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            28.140224188910587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 12,
+          "column": 1,
+          "text": "1.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            29.617177497016062,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            28.140224188910587,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 12,
+          "column": 2,
+          "text": "1.4",
+          "text_bbox_mm": [
+            41.33152423126403,
+            29.617177497016062,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            28.140224188910587,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 13,
+          "column": 0,
+          "text": "11.0",
+          "text_bbox_mm": [
+            34.24757081847503,
+            24.014681471082895,
+            5.124979166666667,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            22.53772816297743,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 5.524979166666667,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 13,
+          "column": 1,
+          "text": "0.6",
+          "text_bbox_mm": [
+            38.1182923165362,
+            24.014681471082895,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            22.53772816297743,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 13,
+          "column": 2,
+          "text": "1.4",
+          "text_bbox_mm": [
+            41.33152423126403,
+            24.014681471082895,
+            3.81,
+            2.6485894097222253
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            22.53772816297743,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222253
+        },
+        {
+          "row": 14,
+          "column": 0,
+          "text": "5.5",
+          "text_bbox_mm": [
+            34.90506040180837,
+            18.412185445149742,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            16.935232137044274,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 14,
+          "column": 1,
+          "text": "7.1",
+          "text_bbox_mm": [
+            38.1182923165362,
+            18.412185445149742,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            16.935232137044274,
+            3.2132319147278254,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 14,
+          "column": 2,
+          "text": "1.3",
+          "text_bbox_mm": [
+            41.33152423126403,
+            18.412185445149742,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            16.935232137044274,
+            3.2132319147278303,
+            5.602496025933156
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 15,
+          "column": 0,
+          "text": "2.2",
+          "text_bbox_mm": [
+            34.90506040180837,
+            12.809689419216573,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            35.20344444444445,
+            11.332736111111105,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 15,
+          "column": 1,
+          "text": "16.4",
+          "text_bbox_mm": [
+            37.3562923165362,
+            12.809689419216573,
+            5.334,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            38.416676359172286,
+            11.332736111111105,
+            3.2132319147278254,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 5.734,
+          "required_cell_height_mm": 3.0485894097222204
+        },
+        {
+          "row": 15,
+          "column": 2,
+          "text": "0.8",
+          "text_bbox_mm": [
+            41.33152423126403,
+            12.809689419216573,
+            3.81,
+            2.6485894097222205
+          ],
+          "cell_bbox_mm": [
+            41.62990827390011,
+            11.332736111111105,
+            3.2132319147278303,
+            5.602496025933166
+          ],
+          "required_cell_width_mm": 4.21,
+          "required_cell_height_mm": 3.0485894097222204
+        }
+      ],
+      "note": "Rendered text envelopes must fit their cells with the configured padding. Cell dimensions are a measured fit requirement, not a publication standard. No figure settings or data are changed."
+    },
+    "technical_measurement_status": "needs_revision"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "heatmap-tall-narrow"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [],
+        "continuous_semantics": {
+          "bounds": [
+            0,
+            40
+          ],
+          "center": null,
+          "note": "A suggested ramp requires already adopted numeric bounds. A diverging suggestion additionally requires an already adopted center; neither is inferred from signs or the data."
+        }
+      },
+      "route_id": "matrix-ramp-1",
+      "visual_role": "Supplied matrix with the adopted normalization and an eligible quantitative ramp",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "grid-line",
+            "label": "Heatmap cell boundaries",
+            "face": [],
+            "edge": [
+              [
+                0.81960784,
+                0.8627451,
+                0.90196078,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.81960784,
+                0.8627451,
+                0.90196078,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [
+          {
+            "rgba_samples": [
+              [
+                0.96862745,
+                0.98431373,
+                1.0,
+                1.0
+              ],
+              [
+                0.77524029,
+                0.85830065,
+                0.9368243,
+                1.0
+              ],
+              [
+                0.41708574,
+                0.68063053,
+                0.83823145,
+                1.0
+              ],
+              [
+                0.12710496,
+                0.44018454,
+                0.70749712,
+                1.0
+              ],
+              [
+                0.03137255,
+                0.18823529,
+                0.41960784,
+                1.0
+              ]
+            ],
+            "norm": "Normalize",
+            "limits": [
+              0.0,
+              40.0
+            ],
+            "center": null
+          }
+        ],
+        "guide_organization": [
+          {
+            "kind": "colorbar",
+            "position": "right",
+            "orientation": "vertical"
+          }
+        ]
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Supplied matrix with the adopted normalization and an eligible quantitative ramp. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "failed",
+        "qa_path": "candidate-01/qa.json",
+        "measured_issues": [
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotation_outside_cell",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations_overlap",
+          "cell_annotations"
+        ],
+        "renderer_status": "needs_revision",
+        "error": "Canvas QA needs revision: 0 clipped text elements, 0 tick-label overlaps, 0 legend issues, 80 cell annotation issues, 0 observation spacing conflicts, 0 observation marker boundary issues, 0 clipped observation envelopes, 0 missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly revise the adopted range/layout or split a panel that cannot fit."
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "adopted_create_intent": {
+        "schema_version": 1,
+        "question": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+        "reading_task": "read_matrix_values",
+        "leading_layer": "values",
+        "organization": "compact",
+        "color_role": "magnitude"
+      },
+      "applicable_mechanism_ids": [
+        "matrix-shape-first",
+        "matrix-value-seams"
+      ],
+      "font_resolution": {
+        "requested": "Arial",
+        "actual": "Arial",
+        "substituted": false
+      },
+      "physical_preflight": {
+        "status": "needs_revision",
+        "capacity_failures": [
+          "cell_annotation_outside_cell",
+          "cell_annotations_overlap",
+          "cell_annotations"
+        ],
+        "measurements": {
+          "data_region_width_mm": 9.639695744183486,
+          "data_region_height_mm": 89.63993641493055,
+          "data_region_aspect": 0.10753795829977726,
+          "category_pitch_mm": null,
+          "summary_thickness_mm": null,
+          "cell_dimensions_mm": [
+            3.2132319147278285,
+            5.602496025933159
+          ],
+          "guide_geometry": {
+            "status": "pass",
+            "legends": [
+              {
+                "kind": "colorbar",
+                "chosen_settings": {
+                  "key_width_mm": 1.5,
+                  "key_height_mm": 1.5,
+                  "handletext_gap_mm": 0.7,
+                  "row_gap_mm": 0.6,
+                  "column_gap_mm": 2.0,
+                  "borderpad_mm": 0.2,
+                  "gap_mm": 2.0,
+                  "canvas_padding_mm": 1.0,
+                  "position": "right",
+                  "thickness_mm": 2.2999999999999967,
+                  "orientation": "vertical",
+                  "rect_mm": [
+                    47.90352423126402,
+                    72.97267252604166,
+                    2.2999999999999967,
+                    28.000000000000007
+                  ],
+                  "length_mm": 28.000000000000004,
+                  "ticks": [
+                    0.0,
+                    20.0,
+                    40.0
+                  ],
+                  "font_size_pt": 8.0
+                },
+                "bbox_mm": [
+                  47.90352423126402,
+                  71.35141059027778,
+                  10.096589409722236,
+                  30.64858940972223
+                ],
+                "plot_bbox_mm": [
+                  35.20344444444445,
+                  11.332736111111116,
+                  9.639695744183486,
+                  89.63993641493055
+                ],
+                "canvas_mm": [
+                  60.0,
+                  103.99999999999999
+                ],
+                "area_fraction_of_plot": 0.3581131924613598,
+                "width_fraction_of_plot": 1.0473971043966233,
+                "height_fraction_of_plot": 0.3419077549079716,
+                "area_fraction_of_canvas": 0.0495907409065908,
+                "reserved_band_fraction": null,
+                "reserved_band_mm": null,
+                "available_region_fraction": 0.2734009036516315,
+                "available_region_mm": [
+                  47.90352423126402,
+                  1.0,
+                  11.096475768735981,
+                  101.99999999999999
+                ],
+                "key_bboxes_mm": [],
+                "issues": [],
+                "warnings": [
+                  "Review area_fraction_of_plot=0.358 above adjustable threshold 0.2; this is not a journal limit."
+                ],
+                "text_overlaps": [],
+                "mapped_range": [
+                  0.0,
+                  40.0
+                ],
+                "attempts": [
+                  {
+                    "position": "right",
+                    "ncol": null,
+                    "length_mm": 28.0,
+                    "bbox_mm": [
+                      47.90352423126402,
+                      71.35141059027778,
+                      10.096589409722236,
+                      30.64858940972223
+                    ],
+                    "issues": []
+                  },
+                  {
+                    "position": "right",
+                    "ncol": null,
+                    "length_mm": 24.0,
+                    "bbox_mm": [
+                      47.90352423126402,
+                      75.35141059027778,
+                      10.096589409722236,
+                      26.648589409722227
+                    ],
+                    "issues": []
+                  }
+                ]
+              }
+            ],
+            "combined": {
+              "guide_count": 1,
+              "occupied_envelope_union_area_mm2": 309.4462232571266,
+              "sum_envelope_area_mm2": 309.4462232571266,
+              "envelope_overlap_area_mm2": 0.0,
+              "has_envelope_overlap": false,
+              "area_fraction_of_plot": 0.3581131924613598,
+              "area_fraction_of_canvas": 0.0495907409065908,
+              "enclosing_bbox_mm": [
+                47.90352423126402,
+                71.35141059027778,
+                10.096589409722236,
+                30.64858940972223
+              ],
+              "max_individual_width_mm": 10.096589409722236,
+              "max_individual_height_mm": 30.64858940972223,
+              "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+            },
+            "issues": [],
+            "warnings": [
+              "colorbar: Review area_fraction_of_plot=0.358 above adjustable threshold 0.2; this is not a journal limit.",
+              "Combined guides: review area_fraction_of_plot=0.358 above adjustable threshold 0.2; this is not a journal limit."
+            ],
+            "review_thresholds": {
+              "area_fraction_of_plot": 0.2,
+              "area_fraction_of_canvas": 0.12,
+              "available_region_fraction": 0.85
+            },
+            "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+            "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+            "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+          },
+          "cell_aspect": 0.573535777598812
+        },
+        "design_advisories": [
+          {
+            "kind": "matrix_shape",
+            "action": "Judge cells and label capacity against the reading task; no square-cell or literature-ratio requirement."
+          }
+        ],
+        "scope": "Actual artist capacity evidence; ratios and contrast hints are not universal publication rules. Open the final-size exports to judge hierarchy and aesthetics."
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "adopted_create_intent": {
+    "schema_version": 1,
+    "question": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+    "reading_task": "read_matrix_values",
+    "leading_layer": "values",
+    "organization": "compact",
+    "color_role": "magnitude"
+  },
+  "mechanism_applicability": {
+    "version": "0.1.0",
+    "adopted_intent": {
+      "schema_version": 1,
+      "question": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+      "reading_task": "read_matrix_values",
+      "leading_layer": "values",
+      "organization": "compact",
+      "color_role": "magnitude"
+    },
+    "mechanisms": [
+      {
+        "id": "matrix-shape-first",
+        "families": [
+          "heatmap",
+          "annotated_matrix"
+        ],
+        "reading_tasks": [
+          "read_matrix_values",
+          "read_matrix_pattern"
+        ],
+        "leading_layers": [
+          "values"
+        ],
+        "source": "scWAT Fig. 2b, PDF p. 4",
+        "observed": "A tall expression matrix retains its few columns as compact reading units.",
+        "adaptation": "Plan cell width/height and label capacity from matrix shape before choosing the ramp.",
+        "boundary": "Square cells are optional. Preserve values, ordering and normalization; few columns should not become decorative horizontal ribbons.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "applicable",
+        "applicability_score": 3,
+        "reasons": [
+          "Observed family/burden fit and adopted purpose fit"
+        ]
+      },
+      {
+        "id": "matrix-value-seams",
+        "families": [
+          "heatmap",
+          "annotated_matrix"
+        ],
+        "reading_tasks": [
+          "read_matrix_values"
+        ],
+        "leading_layers": [
+          "values"
+        ],
+        "source": "PROGENy Fig. 2b,c, PDF p. 4; Vanneste Fig. 4d, PDF p. 6",
+        "observed": "Separators vary with cell density; dense tiny-cell heatmaps do not frame every cell equally.",
+        "adaptation": "Use subordinate seams for large direct-lookup cells; reserve enough physical space for adopted value labels.",
+        "boundary": "A seam policy is conditional. Colors cannot invent a meaningful center, endpoints or missing-state meaning.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "applicable",
+        "applicability_score": 3,
+        "reasons": [
+          "Observed family/burden fit and adopted purpose fit"
+        ]
+      },
+      {
+        "id": "compact-one-pair",
+        "families": [
+          "replicate",
+          "distribution"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "compare_distributions",
+          "inspect_observations"
+        ],
+        "leading_layers": [],
+        "source": "scWAT Fig. 2j, PDF p. 4",
+        "observed": "One treatment pair occupies a narrow region with readable samples, summaries and uncertainty.",
+        "adaptation": "Allocate width from actual mark/label capacity instead of stretching two categories across a broad canvas.",
+        "boundary": "A narrow plot is useful only if labels and every observation still fit at the adopted size.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed maximum_categories before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "dense-field-summary-separation",
+        "families": [
+          "scatter",
+          "distribution"
+        ],
+        "reading_tasks": [
+          "assess_association",
+          "compare_distributions",
+          "inspect_observations"
+        ],
+        "leading_layers": [],
+        "source": "Vanneste Fig. 5d, PDF p. 7",
+        "observed": "A wider declared curve and local white separation remain visible over tiny points.",
+        "adaptation": "Give an existing summary enough local contrast or choose separate lanes rather than fading all data.",
+        "boundary": "No curve/model is introduced; a contrasting under-stroke or raw lane is a task-specific adaptation.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed dense_raw_layer before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "density-contour-hierarchy",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "inspect_density",
+          "compare_distributions"
+        ],
+        "leading_layers": [
+          "density"
+        ],
+        "source": "PROGENy Fig. 4c, PDF p. 6",
+        "observed": "Density silhouettes remain distinct from bounded inner summaries.",
+        "adaptation": "Let the adopted density lead only when shape is part of the question; subordinate existing points/summaries without erasing them.",
+        "boundary": "Density must already exist. Small or tied groups may not justify KDE; do not tune bandwidth for a prettier silhouette.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed kind before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "distribution-observation-lane",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "inspect_observations",
+          "compare_distributions"
+        ],
+        "leading_layers": [
+          "observations"
+        ],
+        "source": "Vanneste Fig. 5d, PDF p. 7",
+        "observed": "Repeated aligned plot boxes, shared labels and class blocks separate related populations.",
+        "adaptation": "Compare an associated sample lane or shared-scale facets when overlay obscures the adopted comparison.",
+        "boundary": "A neighboring lane is an adaptation; it must retain group association and numeric values, and cannot erase needed pairing.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed multiple_categories before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "distribution-summary-hierarchy",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "compare_distributions",
+          "compare_estimates"
+        ],
+        "leading_layers": [
+          "summary"
+        ],
+        "source": "PROGENy Fig. 4c, PDF p. 6",
+        "observed": "Fine neutral density contours, categorical areas and definite inner summaries coexist in compact groups.",
+        "adaptation": "Emphasize the adopted summary; raw points and area-color reassignment are explicit adaptations.",
+        "boundary": "Preserve quartiles, KDE and bandwidth; adding an inner summary requires separate adoption.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "neutral-single-quantity",
+        "families": [
+          "replicate",
+          "composition"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "compare_composition"
+        ],
+        "leading_layers": [
+          "summary"
+        ],
+        "source": "PROGENy Fig. 2d, PDF p. 4; Vanneste Fig. 3e,g, PDF p. 5",
+        "observed": "Uniform gray bars or decoded black/white/gray compositions have definite boundaries.",
+        "adaptation": "Use labels/positions to decode a single quantity; reserve categorical colors for a required second variable.",
+        "boundary": "Multiple series need distinct decoding; neutral is optional, and supplied project colors remain authoritative.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed single_series before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "repeated-series-rhythm",
+        "families": [
+          "replicate"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "summary",
+          "observations"
+        ],
+        "source": "scWAT Fig. 3g,m, PDF p. 5; Vanneste Fig. 2g,h, PDF p. 4",
+        "observed": "Tight within-category series and wider category gaps repeat with a compact shared guide.",
+        "adaptation": "Plan stroke clearance, series gap and category pitch separately; adapt the data region to the real comparison.",
+        "boundary": "Do not copy a source aspect ratio, axis break, reference value or significance layer.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed multiple_series before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "replicate-layer-clearance",
+        "families": [
+          "replicate"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "observations",
+          "summary"
+        ],
+        "source": "scWAT Fig. 2c,i,j, PDF p. 4; Vanneste Fig. 2e–h, PDF p. 4",
+        "observed": "Open bars, small observations and visible uncertainty endpoints remain associated.",
+        "adaptation": "Plan bar width, sample span and intervals together; open or filled summaries depend on the leading layer.",
+        "boundary": "Summary and uncertainty meanings must already be adopted; hollow is not a universal style.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "small-point-class-decoding",
+        "families": [
+          "scatter"
+        ],
+        "reading_tasks": [
+          "assess_association",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "observations"
+        ],
+        "source": "scWAT Fig. 2g, PDF p. 4",
+        "observed": "Blue/pink observations and fitted strokes differ from the blue/coral bar treatment elsewhere on the page.",
+        "adaptation": "Choose class colors on actual small marks and keys; a usable area palette need not work for tiny points.",
+        "boundary": "A scatter needs a relationship question; a fitted line requires an adopted model. Source hues are not compulsory.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed grouped_scatter before this mechanism's applicability is established"
+        ]
+      }
+    ],
+    "ranking_scope": "Applicability to observed burden and adopted purpose; no beauty score, method selection or automatic winner."
+  },
+  "intent_source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/05-narrow-matrix/create-intent.json",
+    "sha256": "d9ce8a82d14ff0948df9269c277080276f08098c3b7c0d2d4b240fa811d988b1",
+    "snapshot": "source-intent.json"
+  },
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "matrix-ramp-1"
+    ],
+    "excluded_routes": [
+      {
+        "route_id": "matrix-bottom-guide",
+        "reasons": [
+          "Explicit guide/axes geometry locks guide organization"
+        ]
+      }
+    ],
+    "requested_count": 1,
+    "returned_count": 1,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

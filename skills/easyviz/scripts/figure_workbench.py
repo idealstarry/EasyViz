@@ -609,8 +609,19 @@ class FigureWorkbench:
             return {"request": item, "state": self.state()}
 
 
-def create_server(figure_dir, port=0, compare_dir=None):
+def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
     app = FigureWorkbench(figure_dir, compare_dir=compare_dir)
+    from figure_service import FigureService
+    service = FigureService(project_dir or app.root.parent)
+    attempt = service.register_attempt(app.root)
+    if app.comparison:
+        service.register_attempt(app.comparison.root)
+    # Keep this module's app instance so existing callers and diagnostics retain
+    # their session object until an explicit attempt switch.
+    service.app = app
+    service.token = app.token
+    service.current_attempt_id = attempt["id"]
+    service.note_reviewed_attempt(attempt["id"])
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -642,18 +653,43 @@ def create_server(figure_dir, port=0, compare_dir=None):
             if (mutation and supplied_origin != origin) or (supplied_origin is not None and supplied_origin != origin):
                 self.reply(403, {"error": "Requests must come from this local workbench"})
                 return False
-            if mutation and not secrets.compare_digest(self.headers.get("X-EasyViz-Token", ""), app.token):
+            if mutation and not secrets.compare_digest(self.headers.get("X-EasyViz-Token", ""), service.token):
                 self.reply(403, {"error": "Reload the workbench to obtain a valid session"})
                 return False
             return True
 
         def do_GET(self):
+            app = service.app
             if not self.permitted():
                 return
             path = urlsplit(self.path).path
             try:
                 if path == "/api/state":
-                    self.reply(200, app.state())
+                    self.reply(200, service.state())
+                elif path == "/api/capabilities":
+                    self.reply(200, service.capabilities())
+                elif path == "/api/jobs":
+                    self.reply(200, service.list_jobs())
+                elif re.fullmatch(r"/api/jobs/job-[0-9a-f]{32}", path):
+                    self.reply(200, service.get_job(path.rsplit("/", 1)[1]))
+                elif path == "/api/attempts":
+                    self.reply(200, service.list_attempts())
+                elif re.fullmatch(r"/api/attempts/attempt-[0-9a-f]{16}/(?:preview\.svg|files/panel\.(?:svg|pdf|png))", path):
+                    parts = path.split("/")
+                    preview_app = service.attempt_app(parts[3])
+                    if parts[4] == "preview.svg":
+                        raw = preview_app.read_file("panel.svg", required=True)
+                        requested_hash = parse_qs(urlsplit(self.path).query).get("v", [None])[0]
+                        if requested_hash is not None and requested_hash != sha256(raw):
+                            self.reply(409, {"error": "This figure has changed. Reload the preview."})
+                            return
+                        root, _, _ = read_svg(raw)
+                        self.reply(200, sanitized_svg(root), "image/svg+xml")
+                    else:
+                        name = parts[5]
+                        raw = preview_app.read_file(name, required=True)
+                        content_type = {"svg": "image/svg+xml", "pdf": "application/pdf", "png": "image/png"}[name.rsplit(".", 1)[1]]
+                        self.reply(200, raw, content_type, attachment=name)
                 elif path in {"/api/preview.svg", "/api/compare.svg"}:
                     preview_app = app if path == "/api/preview.svg" else app.comparison
                     if preview_app is None:
@@ -688,14 +724,15 @@ def create_server(figure_dir, port=0, compare_dir=None):
                     self.reply(200, app.ledger(), attachment="requests.json")
                 else:
                     self.reply(404, {"error": "Not found"})
-            except (WorkbenchError, OSError) as exc:
+            except (ValueError, OSError) as exc:
                 self.reply(400, {"error": str(exc)})
 
         def do_POST(self):
+            app = service.app
             if not self.permitted(mutation=True):
                 return
             path = urlsplit(self.path).path
-            if path not in {"/api/requests", "/api/requests/batch", "/api/undo"}:
+            if path not in {"/api/requests", "/api/requests/batch", "/api/undo", "/api/jobs", "/api/attempts/switch", "/api/attempts/accept", "/api/attempts/restore"} and not re.fullmatch(r"/api/jobs/job-[0-9a-f]{32}/cancel", path):
                 self.reply(404, {"error": "Not found"})
                 return
             if self.headers.get("Content-Type", "").split(";", 1)[0].strip() != "application/json":
@@ -707,14 +744,45 @@ def create_server(figure_dir, port=0, compare_dir=None):
                     self.reply(413, {"error": "Request body is missing or too large"})
                     return
                 payload = safe_json(self.rfile.read(length))
-                result = app.change_batch(payload) if path == "/api/requests/batch" else app.change(payload, undo=path == "/api/undo")
+                if not isinstance(payload, dict):
+                    raise WorkbenchError("Request must be an object")
+                if path == "/api/jobs":
+                    if set(payload) - {"version", "request_ids"}:
+                        raise WorkbenchError("Job requires only version and optional request_ids")
+                    result = service.submit_job(payload.get("version"), payload.get("request_ids"))
+                elif path.endswith("/cancel"):
+                    if payload:
+                        raise WorkbenchError("Cancellation needs an empty request object")
+                    result = service.cancel_job(path.split("/")[3])
+                elif path == "/api/attempts/switch":
+                    if set(payload) - {"attempt_id", "compare_attempt_id"}:
+                        raise WorkbenchError("Switch requires registered attempt IDs")
+                    result = service.switch_attempt(payload.get("attempt_id"), payload.get("compare_attempt_id"))
+                    self.server.app = service.app
+                elif path == "/api/attempts/accept":
+                    if set(payload) - {"attempt_id", "validation"}:
+                        raise WorkbenchError("Acceptance requires a validation note")
+                    result = service.accept(payload.get("validation"), payload.get("attempt_id"))
+                elif path == "/api/attempts/restore":
+                    if set(payload) - {"attempt_id"}:
+                        raise WorkbenchError("Restore requires a registered attempt ID")
+                    result = service.restore(payload.get("attempt_id"))
+                else:
+                    result = service.save_requests(payload) if path == "/api/requests/batch" else app.change(payload, undo=path == "/api/undo")
+                    result["state"] = service.state()
                 self.reply(200, result)
-            except (WorkbenchError, OSError, ValueError) as exc:
+            except (WorkbenchError, OSError, ValueError, TypeError) as exc:
                 self.reply(409 if "changed" in str(exc) else 400, {"error": str(exc)})
 
-    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    class WorkbenchServer(ThreadingHTTPServer):
+        def server_close(self):
+            service.close()
+            super().server_close()
+
+    server = WorkbenchServer(("127.0.0.1", port), Handler)
     server.daemon_threads = True
     server.app = app
+    server.service = service
     return server
 
 
@@ -723,11 +791,12 @@ def main():
     parser.add_argument("--figure-dir", type=Path, required=True, help="Existing attempt directory containing panel.svg")
     parser.add_argument("--port", type=int, default=0, help="Local port; 0 selects an available port")
     parser.add_argument("--compare-dir", type=Path, help="Previous attempt for a read-only side-by-side preview")
+    parser.add_argument("--project-dir", type=Path, help="Scope containing all attempts and source inputs; defaults to the figure directory's parent")
     args = parser.parse_args()
     if not 0 <= args.port <= 65535:
         parser.error("Port must be between 0 and 65535")
     try:
-        server = create_server(args.figure_dir, args.port, args.compare_dir)
+        server = create_server(args.figure_dir, args.port, args.compare_dir, args.project_dir)
     except (WorkbenchError, OSError) as exc:
         parser.exit(2, f"Cannot open figure review: {exc}\n")
     print(f"EasyViz figure review: http://127.0.0.1:{server.server_port}/", flush=True)

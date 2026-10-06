@@ -1,0 +1,73 @@
+{
+  "layout": {
+    "width_mm": 125,
+    "height_mm": 74,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.171108579861111,
+      "right": 0.905508579861111,
+      "bottom": 0.2994392830330331,
+      "top": 0.972972972972973
+    }
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "replicate",
+  "fields": {
+    "condition": "display_condition",
+    "unit": "repeat_id",
+    "component": "outcome",
+    "value": "measurement_pct"
+  },
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU-7441\n(1 µM)",
+      "KU-0060548\n(0.25 µM)",
+      "L755507\n(5 µM)",
+      "SCR7 pyrazine\n(1 µM)"
+    ],
+    "component": [
+      "HDR",
+      "HDR + mutEJ",
+      "mutEJ"
+    ]
+  },
+  "labels": {
+    "y": "Repair outcomes (%)"
+  },
+  "options": {
+    "mode": "grouped",
+    "uncertainty": "sample_sd",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.6,
+    "point_color": "#222222",
+    "bar_width": 0.8,
+    "marker_area_pt2": 5,
+    "x_rotation": 0,
+    "y_limits": [
+      0,
+      55
+    ],
+    "y_ticks": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "component_gap": 0.055
+  },
+  "colors": {
+    "HDR": "#347AAF",
+    "HDR + mutEJ": "#CE6673",
+    "mutEJ": "#5C6B6C"
+  }
+}

@@ -1,0 +1,999 @@
+{
+  "version": "0.3.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/private/tmp/easyviz-v050-create-forward/new-input.csv",
+    "sha256": "b8911c41e62fea754bfa48416f9aa6345db07d7addfc46163df354dbecade2a4",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/private/tmp/easyviz-v050-create-forward/observations-first.json",
+    "sha256": "234cf23f38ad5946681328449a8204b3973bc6b30e142f903d14e5450cc9dea0",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "distribution",
+    "input_rows": 50,
+    "reading_task_source": "adopted_create_intent",
+    "reading_task_scope": "Explicit calling-Agent purpose; this declaration does not establish scientific assumptions.",
+    "task": "Compare specimen response and within-condition variation across the adopted conditions",
+    "category_order": {
+      "group": [
+        "Vehicle",
+        "Low dose",
+        "High dose",
+        "Rescue"
+      ]
+    },
+    "label_max_characters": {
+      "group": 9
+    },
+    "kind": "box",
+    "orientation": "vertical",
+    "category_count": 4,
+    "inner_summary": "none",
+    "group_counts": {
+      "Vehicle": 11,
+      "Low dose": 13,
+      "High dose": 14,
+      "Rescue": 12
+    },
+    "maximum_tie_count": 1,
+    "dense_raw_layer": false,
+    "create_intent": {
+      "schema_version": 1,
+      "question": "Compare specimen response and within-condition variation across the adopted conditions",
+      "reading_task": "inspect_observations",
+      "leading_layer": "observations",
+      "organization": "separate_lanes"
+    }
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      10.48077777777778,
+      11.525,
+      75.51922222222223,
+      55.402886284722214
+    ],
+    "canvas_mm": [
+      88.0,
+      70.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.6,
+        3.6
+      ],
+      "y": [
+        1.0,
+        6.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {
+      "x": [
+        "Vehicle",
+        "Low dose",
+        "High dose",
+        "Rescue"
+      ]
+    },
+    "issues": [],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "distribution",
+          "label": "Vehicle",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "Low dose",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "High dose",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "distribution",
+          "label": "Rescue",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Vehicle",
+          "face": [
+            [
+              0.14509804,
+              0.50588235,
+              0.7254902,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.14509804,
+              0.50588235,
+              0.7254902,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Low dose",
+          "face": [
+            [
+              0.8745098,
+              0.60392157,
+              0.23529412,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.8745098,
+              0.60392157,
+              0.23529412,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "High dose",
+          "face": [
+            [
+              0.10196078,
+              0.65490196,
+              0.50588235,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.10196078,
+              0.65490196,
+              0.50588235,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "Rescue",
+          "face": [
+            [
+              0.8,
+              0.5254902,
+              0.7254902,
+              1.0
+            ]
+          ],
+          "edge": [
+            [
+              0.8,
+              0.5254902,
+              0.7254902,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "continuous_decoding": [],
+      "guide_organization": []
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [],
+      "combined": {
+        "guide_count": 0,
+        "occupied_envelope_union_area_mm2": 0.0,
+        "sum_envelope_area_mm2": 0.0,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.0,
+        "area_fraction_of_canvas": 0.0,
+        "enclosing_bbox_mm": null,
+        "max_individual_width_mm": 0.0,
+        "max_individual_height_mm": 0.0,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "font_resolution": {
+      "requested": "DejaVu Sans",
+      "actual": "DejaVu Sans",
+      "substituted": false
+    },
+    "mark_visibility_advisories": [],
+    "source_to_artist": {
+      "status": "pass",
+      "numeric_coordinates_preserved": true,
+      "point_area_preserved": true,
+      "observation_count": 50
+    },
+    "point_layout": {
+      "status": "pass",
+      "overlapping_circle_pairs": 0,
+      "spacing_violation_pairs": 0,
+      "minimum_center_distance_pt": 3.299999999999975,
+      "sample_overlapping_pairs": [],
+      "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+      "policy": "beeswarm",
+      "orientation": "vertical",
+      "seed": 0,
+      "categorical_axis": "x",
+      "quantitative_axis": "y",
+      "numeric_values_changed": false,
+      "input_rows": 50,
+      "placed_rows": 50,
+      "diameter_pt": 3.0,
+      "gap_pt": 0.3,
+      "requested_max_offset_mm": 4.0,
+      "point_category_offset": 0.24,
+      "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+      "categorical_boundary_rows": [],
+      "groups": [
+        {
+          "group": "Vehicle",
+          "rows": 11,
+          "category_spacing_pt": 50.969103862017235,
+          "available_max_offset_mm": 3.2467944444444474,
+          "actual_max_offset_mm": 1.5426001913307141,
+          "category_anchor_offset": 0.24,
+          "actual_total_offset_mm": 5.857984318314839,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 2787349690
+        },
+        {
+          "group": "Low dose",
+          "rows": 13,
+          "category_spacing_pt": 50.96910386201726,
+          "available_max_offset_mm": 3.2467944444444425,
+          "actual_max_offset_mm": 1.2502859927882681,
+          "category_anchor_offset": 0.24,
+          "actual_total_offset_mm": 5.399874661353688,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 1757713349
+        },
+        {
+          "group": "High dose",
+          "rows": 14,
+          "category_spacing_pt": 50.96910386201725,
+          "available_max_offset_mm": 3.2467944444444523,
+          "actual_max_offset_mm": 1.2502859927882704,
+          "category_anchor_offset": 0.24,
+          "actual_total_offset_mm": 5.296834692496812,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 3180681181
+        },
+        {
+          "group": "Rescue",
+          "rows": 12,
+          "category_spacing_pt": 50.96910386201725,
+          "available_max_offset_mm": 3.2467944444444523,
+          "actual_max_offset_mm": 1.2502859927882886,
+          "category_anchor_offset": 0.24,
+          "actual_total_offset_mm": 5.565670119772416,
+          "fallback_source_rows": [],
+          "fallback_count": 0,
+          "packing_seed": 2728246739
+        }
+      ],
+      "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+      "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+    },
+    "category_pitch_mm": 17.980767195767196,
+    "summary_thickness_mm": 2.8769227513227515,
+    "raw_summary_categorical_envelope_crossings": 0,
+    "summary_raw_separation_note": "Envelope crossings require visual inspection, particularly opaque points over box medians; violin contour width is a conservative envelope, not a density crossing test.",
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "distribution-summary-lane"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/line_roles",
+        "/options/alpha",
+        "/options/box_style",
+        "/options/box_width",
+        "/options/point_category_offset",
+        "/options/point_gap_pt",
+        "/options/point_layout",
+        "/options/point_max_offset_mm",
+        "/options/point_style",
+        "/palette"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": null,
+          "bar": null,
+          "summary_stroke": "#333333",
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/palette"
+        ],
+        "palette": {
+          "name": "notch2-balanced",
+          "origin": "suggested",
+          "type": "categorical",
+          "source": "Cruz Tleugabulova et al., Nature Communications (2024), Figure 2b",
+          "source_id": "notch2-2024",
+          "provenance": "Selected and reordered four embedded PDF legend colors (I2, I1, I4, M1). This selection spans cell classes within the same figure and is not an author-provided named palette.",
+          "note": "User selected candidate B on the cell-atlas panel; review independently for other chart contexts."
+        }
+      },
+      "route_id": "observation-color",
+      "visual_role": "Category identity on raw observations; open neutral summaries/contours",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "distribution",
+            "label": "Vehicle",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Low dose",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "High dose",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "distribution",
+            "label": "Rescue",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Vehicle",
+            "face": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.14509804,
+                0.50588235,
+                0.7254902,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Low dose",
+            "face": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8745098,
+                0.60392157,
+                0.23529412,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "High dose",
+            "face": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.10196078,
+                0.65490196,
+                0.50588235,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "Rescue",
+            "face": [
+              [
+                0.8,
+                0.5254902,
+                0.7254902,
+                1.0
+              ]
+            ],
+            "edge": [
+              [
+                0.8,
+                0.5254902,
+                0.7254902,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Category identity on raw observations; open neutral summaries/contours. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "adopted_create_intent": {
+        "schema_version": 1,
+        "question": "Compare specimen response and within-condition variation across the adopted conditions",
+        "reading_task": "inspect_observations",
+        "leading_layer": "observations",
+        "organization": "separate_lanes"
+      },
+      "applicable_mechanism_ids": [
+        "distribution-observation-lane"
+      ],
+      "distribution_lane_planning": {
+        "scope": "Omitted categorical geometry only; no numeric movement, area/font/canvas change or new packing algorithm",
+        "status": "pass",
+        "attempts": [
+          {
+            "category_pitch_pt": 42.519685039370074,
+            "marker_outer_diameter_pt": 3.0,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.803149606299215,
+            "summary_minimum_body_width_pt": 3.0,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 4.372724951803601,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.24,
+            "point_max_offset_mm": 4
+          },
+          {
+            "category_pitch_pt": 42.519685039370074,
+            "marker_outer_diameter_pt": 3.0,
+            "summary_outer_half_width_pt": 3.7765748031496287,
+            "summary_stroke_pt": 0.75,
+            "summary_body_width_pt": 6.803149606299215,
+            "summary_minimum_body_width_pt": 3.0,
+            "gap_pt": 0.3,
+            "demand_gap_pt": 0.3,
+            "required_spread_pt": 4.372724951803601,
+            "retained_summary_envelopes": [],
+            "category_axis_span": 4.2,
+            "full_centered_lane_packable": true,
+            "packing_status": "pass",
+            "spacing_violation_pairs": 0,
+            "categorical_boundary_rows": [],
+            "summary_width": 0.16,
+            "font_resolution": {
+              "requested": "DejaVu Sans",
+              "actual": "DejaVu Sans",
+              "substituted": false
+            },
+            "point_category_offset": 0.2729375000000003,
+            "point_max_offset_mm": 2.1267708333333286
+          }
+        ],
+        "summary_floor_pt": 3.0,
+        "summary_body_width_pt": 6.803149606299215,
+        "summary_floor_met": true,
+        "summary_width_explicit": false,
+        "actual_gap_pt": 0.3,
+        "gap_reduction_reason": null,
+        "available_region_margin_borrowing": null,
+        "explicit_geometry_keys": [],
+        "note": "Actual renderer packing and source/artist QA remain decisive. Conservative summary-envelope separation requires actual-image review; infeasible layouts remain invalid."
+      },
+      "font_resolution": {
+        "requested": "DejaVu Sans",
+        "actual": "DejaVu Sans",
+        "substituted": false
+      },
+      "physical_preflight": {
+        "status": "capacity_checked",
+        "capacity_failures": [],
+        "measurements": {
+          "data_region_width_mm": 63.0,
+          "data_region_height_mm": 55.402886284722214,
+          "data_region_aspect": 1.1371248724522274,
+          "category_pitch_mm": 15.0,
+          "summary_thickness_mm": 2.4,
+          "cell_dimensions_mm": null,
+          "guide_geometry": {
+            "status": "pass",
+            "legends": [],
+            "combined": {
+              "guide_count": 0,
+              "occupied_envelope_union_area_mm2": 0.0,
+              "sum_envelope_area_mm2": 0.0,
+              "envelope_overlap_area_mm2": 0.0,
+              "has_envelope_overlap": false,
+              "area_fraction_of_plot": 0.0,
+              "area_fraction_of_canvas": 0.0,
+              "enclosing_bbox_mm": null,
+              "max_individual_width_mm": 0.0,
+              "max_individual_height_mm": 0.0,
+              "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+            },
+            "issues": [],
+            "warnings": [],
+            "review_thresholds": {
+              "area_fraction_of_plot": 0.2,
+              "area_fraction_of_canvas": 0.12,
+              "available_region_fraction": 0.85
+            },
+            "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+            "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+            "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+          }
+        },
+        "design_advisories": [],
+        "scope": "Actual artist capacity evidence; ratios and contrast hints are not universal publication rules. Open the final-size exports to judge hierarchy and aesthetics."
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "adopted_create_intent": {
+    "schema_version": 1,
+    "question": "Compare specimen response and within-condition variation across the adopted conditions",
+    "reading_task": "inspect_observations",
+    "leading_layer": "observations",
+    "organization": "separate_lanes"
+  },
+  "mechanism_applicability": {
+    "version": "0.1.0",
+    "adopted_intent": {
+      "schema_version": 1,
+      "question": "Compare specimen response and within-condition variation across the adopted conditions",
+      "reading_task": "inspect_observations",
+      "leading_layer": "observations",
+      "organization": "separate_lanes"
+    },
+    "mechanisms": [
+      {
+        "id": "distribution-observation-lane",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "inspect_observations",
+          "compare_distributions"
+        ],
+        "leading_layers": [
+          "observations"
+        ],
+        "source": "Vanneste Fig. 5d, PDF p. 7",
+        "observed": "Repeated aligned plot boxes, shared labels and class blocks separate related populations.",
+        "adaptation": "Compare an associated sample lane or shared-scale facets when overlay obscures the adopted comparison.",
+        "boundary": "A neighboring lane is an adaptation; it must retain group association and numeric values, and cannot erase needed pairing.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "applicable",
+        "applicability_score": 3,
+        "reasons": [
+          "Observed family/burden fit and adopted purpose fit"
+        ]
+      },
+      {
+        "id": "compact-one-pair",
+        "families": [
+          "replicate",
+          "distribution"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "compare_distributions",
+          "inspect_observations"
+        ],
+        "leading_layers": [],
+        "source": "scWAT Fig. 2j, PDF p. 4",
+        "observed": "One treatment pair occupies a narrow region with readable samples, summaries and uncertainty.",
+        "adaptation": "Allocate width from actual mark/label capacity instead of stretching two categories across a broad canvas.",
+        "boundary": "A narrow plot is useful only if labels and every observation still fit at the adopted size.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Observed data do not meet maximum_categories=2"
+        ]
+      },
+      {
+        "id": "dense-field-summary-separation",
+        "families": [
+          "scatter",
+          "distribution"
+        ],
+        "reading_tasks": [
+          "assess_association",
+          "compare_distributions",
+          "inspect_observations"
+        ],
+        "leading_layers": [],
+        "source": "Vanneste Fig. 5d, PDF p. 7",
+        "observed": "A wider declared curve and local white separation remain visible over tiny points.",
+        "adaptation": "Give an existing summary enough local contrast or choose separate lanes rather than fading all data.",
+        "boundary": "No curve/model is introduced; a contrasting under-stroke or raw lane is a task-specific adaptation.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Observed data do not meet dense_raw_layer=True"
+        ]
+      },
+      {
+        "id": "density-contour-hierarchy",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "inspect_density",
+          "compare_distributions"
+        ],
+        "leading_layers": [
+          "density"
+        ],
+        "source": "PROGENy Fig. 4c, PDF p. 6",
+        "observed": "Density silhouettes remain distinct from bounded inner summaries.",
+        "adaptation": "Let the adopted density lead only when shape is part of the question; subordinate existing points/summaries without erasing them.",
+        "boundary": "Density must already exist. Small or tied groups may not justify KDE; do not tune bandwidth for a prettier silhouette.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Observed data do not meet kind=violin",
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "distribution-summary-hierarchy",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "compare_distributions",
+          "compare_estimates"
+        ],
+        "leading_layers": [
+          "summary"
+        ],
+        "source": "PROGENy Fig. 4c, PDF p. 6",
+        "observed": "Fine neutral density contours, categorical areas and definite inner summaries coexist in compact groups.",
+        "adaptation": "Emphasize the adopted summary; raw points and area-color reassignment are explicit adaptations.",
+        "boundary": "Preserve quartiles, KDE and bandwidth; adding an inner summary requires separate adoption.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "matrix-shape-first",
+        "families": [
+          "heatmap",
+          "annotated_matrix"
+        ],
+        "reading_tasks": [
+          "read_matrix_values",
+          "read_matrix_pattern"
+        ],
+        "leading_layers": [
+          "values"
+        ],
+        "source": "scWAT Fig. 2b, PDF p. 4",
+        "observed": "A tall expression matrix retains its few columns as compact reading units.",
+        "adaptation": "Plan cell width/height and label capacity from matrix shape before choosing the ramp.",
+        "boundary": "Square cells are optional. Preserve values, ordering and normalization; few columns should not become decorative horizontal ribbons.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed narrow_matrix before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "matrix-value-seams",
+        "families": [
+          "heatmap",
+          "annotated_matrix"
+        ],
+        "reading_tasks": [
+          "read_matrix_values"
+        ],
+        "leading_layers": [
+          "values"
+        ],
+        "source": "PROGENy Fig. 2b,c, PDF p. 4; Vanneste Fig. 4d, PDF p. 6",
+        "observed": "Separators vary with cell density; dense tiny-cell heatmaps do not frame every cell equally.",
+        "adaptation": "Use subordinate seams for large direct-lookup cells; reserve enough physical space for adopted value labels.",
+        "boundary": "A seam policy is conditional. Colors cannot invent a meaningful center, endpoints or missing-state meaning.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "neutral-single-quantity",
+        "families": [
+          "replicate",
+          "composition"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "compare_composition"
+        ],
+        "leading_layers": [
+          "summary"
+        ],
+        "source": "PROGENy Fig. 2d, PDF p. 4; Vanneste Fig. 3e,g, PDF p. 5",
+        "observed": "Uniform gray bars or decoded black/white/gray compositions have definite boundaries.",
+        "adaptation": "Use labels/positions to decode a single quantity; reserve categorical colors for a required second variable.",
+        "boundary": "Multiple series need distinct decoding; neutral is optional, and supplied project colors remain authoritative.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed single_series before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "repeated-series-rhythm",
+        "families": [
+          "replicate"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "summary",
+          "observations"
+        ],
+        "source": "scWAT Fig. 3g,m, PDF p. 5; Vanneste Fig. 2g,h, PDF p. 4",
+        "observed": "Tight within-category series and wider category gaps repeat with a compact shared guide.",
+        "adaptation": "Plan stroke clearance, series gap and category pitch separately; adapt the data region to the real comparison.",
+        "boundary": "Do not copy a source aspect ratio, axis break, reference value or significance layer.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Need observed multiple_series before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "replicate-layer-clearance",
+        "families": [
+          "replicate"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "observations",
+          "summary"
+        ],
+        "source": "scWAT Fig. 2c,i,j, PDF p. 4; Vanneste Fig. 2e–h, PDF p. 4",
+        "observed": "Open bars, small observations and visible uncertainty endpoints remain associated.",
+        "adaptation": "Plan bar width, sample span and intervals together; open or filled summaries depend on the leading layer.",
+        "boundary": "Summary and uncertainty meanings must already be adopted; hollow is not a universal style.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family"
+        ]
+      },
+      {
+        "id": "small-point-class-decoding",
+        "families": [
+          "scatter"
+        ],
+        "reading_tasks": [
+          "assess_association",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "observations"
+        ],
+        "source": "scWAT Fig. 2g, PDF p. 4",
+        "observed": "Blue/pink observations and fitted strokes differ from the blue/coral bar treatment elsewhere on the page.",
+        "adaptation": "Choose class colors on actual small marks and keys; a usable area palette need not work for tiny points.",
+        "boundary": "A scatter needs a relationship question; a fitted line requires an adopted model. Source hues are not compulsory.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Need observed grouped_scatter before this mechanism's applicability is established"
+        ]
+      }
+    ],
+    "ranking_scope": "Applicability to observed burden and adopted purpose; no beauty score, method selection or automatic winner."
+  },
+  "intent_source": {
+    "source": "source_spec"
+  },
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "observation-color",
+      "neutral-position",
+      "summary-area"
+    ],
+    "excluded_routes": [],
+    "requested_count": 1,
+    "returned_count": 1,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

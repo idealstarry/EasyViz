@@ -1,0 +1,108 @@
+{
+  "track": "create",
+  "inputs_read": [
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/01-compact-estimates/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/02-repeated-components/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/03-summary-leading/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/04-observation-leading/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/05-narrow-matrix/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/06-within-person-change/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/07-separate-compartments/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/08-unknown-units/measurements.csv",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/01-compact-estimates/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/02-repeated-components/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/03-summary-leading/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/04-observation-leading/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/05-narrow-matrix/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/06-within-person-change/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/07-separate-compartments/request.json",
+    "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/08-unknown-units/request.json"
+  ],
+  "inputs_not_read": [
+    "forward-inputs/manifest.json",
+    "original source paths mentioned inside forwarded requests",
+    "original paper images",
+    "prior example implementation scripts",
+    "implementation-agent interpretations"
+  ],
+  "canonical_guides_read": [
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/SKILL.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/create.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/first-draft.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/design-space.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/literature-style.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/chart-library.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/design-cards.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/visual-review.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/replicate-plot.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/paired-plot.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/panel-layout.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/preview-choices.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/create-style.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/data-exploration.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/complex-create.md",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/references/timecourse-plot.md"
+  ],
+  "contract_calls": [
+    "render --describe-spec",
+    "replicate_plot --describe-spec",
+    "paired_plot --describe-spec",
+    "timecourse_plot --describe-spec",
+    "create_candidates --describe-contract",
+    "create_review --describe-spec",
+    "preview_choices --describe-contract"
+  ],
+  "actual_helper_execution": {
+    "create_candidates": [
+      "01",
+      "02",
+      "03",
+      "05"
+    ],
+    "render_direct": [
+      "04",
+      "05"
+    ],
+    "paired_plot": [
+      "06"
+    ],
+    "preview_choices": [
+      "08"
+    ],
+    "custom_with_core_setup_export_readability": [
+      "07"
+    ],
+    "create_review_stage_check": "all ten final individual exports"
+  },
+  "actual_helper_access_limitations": [
+    "04 observation-color candidate route requires exactly #333333 for explicit neutral summary color; intended #666666 caused rejection and was preserved through direct core rendering.",
+    "Core distribution y_ticks is not a supported option; an initial caller spec mistake was corrected before any distribution image was rendered.",
+    "Focused time-course helper cannot overlay supplied raw terminal rows; custom code implements exact-time means/SEMs, separate unit axes and every observation.",
+    "Core heatmap has column-label aliases but no row-label alias option; a lossless extra display_state column and explicit ID mapping were prepared.",
+    "No physical nominal print-size viewer was used; actual PNGs were opened at full canvas and final proportions, supported by independent page/pixel measurements.",
+    "Self-review only; root may add independent review afterward.",
+    "Inspection supports this bounded input set and changed-schema task execution, not a causal Skill benefit or a general manuscript-quality guarantee."
+  ],
+  "synthetic_cards_actually_opened": [
+    "replicate-neutral-compact/good/panel.png",
+    "replicate-neutral-compact/failure/panel.png",
+    "distribution-summary-lane/good/panel.png",
+    "distribution-summary-lane/failure/panel.png",
+    "heatmap-tall-narrow/good/panel.png",
+    "heatmap-tall-narrow/failure/panel.png"
+  ],
+  "renderer_declared_consumed_helpers": {
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+    "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+  },
+  "replay_execution": {
+    "task": "04-observation-leading",
+    "all_three_export_hashes_identical": true
+  }
+}

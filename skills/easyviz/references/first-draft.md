@@ -22,6 +22,35 @@ literature mechanism. A passed generic render does not establish that benefit. T
 A card's whole palette/layout is not a mandatory solution, and its data or
 biological names do not become assumptions about the user's table.
 
+### Let the adopted purpose guide the helper
+
+For a new supported draft, save a short `create-intent.json`, or put the same
+object under `create_intent` in its source spec:
+
+```json
+{
+  "schema_version": 1,
+  "question": "Compare the supplied specimen response distributions across conditions",
+  "reading_task": "compare_distributions",
+  "leading_layer": "summary"
+}
+```
+
+`create_candidates.py --describe-contract` lists task, organization and color
+roles. Add only choices already adopted from the question and source context;
+the declaration does not prove an experimental unit or authorize statistics.
+An observation-first distribution can instead use `inspect_observations` with
+`leading_layer: "observations"`. These priorities change actual role treatments
+within the same family without changing values, summaries or numeric limits.
+
+The helper retains purpose, ranked source mechanisms, applicability reasons
+and boundaries in its manifest. A mechanism match is not an aesthetic winner.
+Planning metadata is removed before passing strict renderer specs; an optional
+`--intent` file is preserved as a byte-identical snapshot. If both declarations
+are supplied they must agree. Drafts without intent retain their legacy routes.
+Unsupported facets, focus encodings or scientific tasks require focused/custom
+code; they are not silently replaced by a convenient helper treatment.
+
 For supported prepared contracts, the helper can render limited proposals:
 
 ```sh
@@ -29,6 +58,7 @@ python /absolute/path/to/easyviz/scripts/create_candidates.py --describe-contrac
 python /absolute/path/to/easyviz/scripts/create_candidates.py \
   --data /absolute/path/to/project/prepared.csv \
   --spec /absolute/path/to/project/new-draft.json \
+  --intent /absolute/path/to/project/create-intent.json \
   --out /absolute/path/to/project/create-attempt-01 --new-draft --count 1
 ```
 

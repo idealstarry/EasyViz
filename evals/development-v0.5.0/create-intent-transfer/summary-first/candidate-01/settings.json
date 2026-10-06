@@ -1,0 +1,585 @@
+{
+  "chart": "distribution",
+  "fields": {
+    "group": "condition",
+    "value": "signal",
+    "unit": "specimen"
+  },
+  "order": {
+    "group": [
+      "Vehicle",
+      "Low dose",
+      "High dose",
+      "Rescue"
+    ]
+  },
+  "options": {
+    "alpha": 1,
+    "point_style": "filled",
+    "box_style": "filled",
+    "box_width": 0.16,
+    "kind": "box",
+    "point_area_pt2": 9,
+    "y_limits": [
+      1,
+      6
+    ],
+    "point_layout": "beeswarm",
+    "point_gap_pt": 0.3,
+    "point_category_offset": 0.2729375000000003,
+    "point_color": "#454545",
+    "box_fill_alpha": 1,
+    "point_max_offset_mm": 2.1267708333333286
+  },
+  "labels": {
+    "x": "Condition",
+    "y": "Signal (a.u.)"
+  },
+  "layout": {
+    "width_mm": 88.0,
+    "height_mm": 70.0,
+    "font": "DejaVu Sans",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.19023169191919198,
+      "right": 0.9061407828282829,
+      "bottom": 0.16464285714285715,
+      "top": 0.9561126612103172
+    },
+    "actual_font": "DejaVu Sans",
+    "font_substituted": false
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "line_roles": {
+    "data": {
+      "line_width_pt": 0.85
+    },
+    "summary": {
+      "line_width_pt": 0.75,
+      "color": "#333333"
+    },
+    "reference": {
+      "line_width_pt": 0.45,
+      "color": "#747474",
+      "linestyle": "--"
+    },
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "grid": {
+      "line_width_pt": 0.3,
+      "color": "#E8E8E8",
+      "linestyle": "-"
+    }
+  },
+  "palette": "progeny-summary",
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "Vehicle": "#8787DE",
+    "Low dose": "#BFE8C5",
+    "High dose": "#FF9695",
+    "Rescue": "#CACACA"
+  },
+  "seed": 0,
+  "input_file": "source.csv",
+  "input_sha256": "b8911c41e62fea754bfa48416f9aa6345db07d7addfc46163df354dbecade2a4",
+  "source_bindings": {
+    "spec_file": {
+      "path": "/private/tmp/easyviz-v050-create-forward/summary-first/candidate-01/spec.json",
+      "sha256": "75af566de2c5e24ee9827d1e1fbe6b44a68cc919688d6fdb3a1ce93d18b620a2"
+    },
+    "data_file": {
+      "path": "/private/tmp/easyviz-v050-create-forward/summary-first/source.csv",
+      "sha256": "b8911c41e62fea754bfa48416f9aa6345db07d7addfc46163df354dbecade2a4"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+      "sha256": "9461e11285e6f56396bd4fc77b1b06fc4165a86489710d02214445625706a0c5"
+    },
+    "helper:legend_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py",
+      "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+    },
+    "helper:figure_profile.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py",
+      "sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9"
+    },
+    "helper:auto_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py",
+      "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+    },
+    "helper:annotation_review.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py",
+      "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    },
+    "helper:figure_elements.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "helper:panel_readability.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py",
+      "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    },
+    "helper:observation_clipping.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py",
+      "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "b8911c41e62fea754bfa48416f9aa6345db07d7addfc46163df354dbecade2a4",
+    "row_count": 50,
+    "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; adopted analysis may explicitly select the plotted population."
+  },
+  "renderer": {
+    "version": "0.4.4",
+    "sha256": "9461e11285e6f56396bd4fc77b1b06fc4165a86489710d02214445625706a0c5",
+    "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "profile_helper_sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "readability_helper_sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+    "observation_clipping_helper_sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+  },
+  "track": "create",
+  "observation_clipping": {
+    "status": "pass",
+    "by_format": {
+      "svg": {
+        "status": "pass",
+        "checked_observations": 50,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-e4f895c7b6a3898f",
+            "label": "Vehicle",
+            "observations": 11,
+            "checked_observations": 11,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-2a3e3559c6e4634c",
+            "label": "Low dose",
+            "observations": 13,
+            "checked_observations": 13,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-795a0cc7dd69a371",
+            "label": "High dose",
+            "observations": 14,
+            "checked_observations": 14,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-016ad4d8c5a3f205",
+            "label": "Rescue",
+            "observations": 12,
+            "checked_observations": 12,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          88.0,
+          70.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "pdf": {
+        "status": "pass",
+        "checked_observations": 50,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-e4f895c7b6a3898f",
+            "label": "Vehicle",
+            "observations": 11,
+            "checked_observations": 11,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-2a3e3559c6e4634c",
+            "label": "Low dose",
+            "observations": 13,
+            "checked_observations": 13,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-795a0cc7dd69a371",
+            "label": "High dose",
+            "observations": 14,
+            "checked_observations": 14,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-016ad4d8c5a3f205",
+            "label": "Rescue",
+            "observations": 12,
+            "checked_observations": 12,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          88.0,
+          70.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "png": {
+        "status": "pass",
+        "checked_observations": 50,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-e4f895c7b6a3898f",
+            "label": "Vehicle",
+            "observations": 11,
+            "checked_observations": 11,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-2a3e3559c6e4634c",
+            "label": "Low dose",
+            "observations": 13,
+            "checked_observations": 13,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-795a0cc7dd69a371",
+            "label": "High dose",
+            "observations": 14,
+            "checked_observations": 14,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-point-group-016ad4d8c5a3f205",
+            "label": "Rescue",
+            "observations": 12,
+            "checked_observations": 12,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                3.6
+              ],
+              "y_limits": [
+                1.0,
+                6.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          87.96866666666666,
+          70.01933333333334
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      }
+    },
+    "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "fixed_matplotlib_size_parameter",
+    "marker_size_parameter_pt2": 9.0,
+    "circle_fill_area_pt2": 7.0685834705770345,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "diameter_pt": 3.0,
+    "parameter_source": "Legacy point_area_pt2 option or its fixed-mark default; no field-mapped size scale.",
+    "stroke_policy": "Fill area excludes edge stroke; core observation circles have zero linewidth."
+  },
+  "point_layout": {
+    "status": "pass",
+    "overlapping_circle_pairs": 0,
+    "spacing_violation_pairs": 0,
+    "minimum_center_distance_pt": 3.299999999999979,
+    "sample_overlapping_pairs": [],
+    "pair_sample_definition": "One-based parsed observation positions excluding the header; no observations are dropped.",
+    "policy": "beeswarm",
+    "orientation": "vertical",
+    "seed": 0,
+    "categorical_axis": "x",
+    "quantitative_axis": "y",
+    "numeric_values_changed": false,
+    "input_rows": 50,
+    "placed_rows": 50,
+    "diameter_pt": 3.0,
+    "gap_pt": 0.3,
+    "requested_max_offset_mm": 2.1267708333333286,
+    "point_category_offset": 0.2729375000000003,
+    "packing_origin": "Category center plus point_category_offset; maximum spread is measured around that anchor.",
+    "categorical_boundary_rows": [],
+    "groups": [
+      {
+        "group": "Vehicle",
+        "rows": 11,
+        "category_spacing_pt": 42.519685039370074,
+        "available_max_offset_mm": 2.1267708333333273,
+        "actual_max_offset_mm": 1.5426001913307148,
+        "category_anchor_offset": 0.2729375000000003,
+        "actual_total_offset_mm": 5.636662691330718,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 2787349690
+      },
+      {
+        "group": "Low dose",
+        "rows": 13,
+        "category_spacing_pt": 42.51968503937009,
+        "available_max_offset_mm": 2.1267708333333286,
+        "actual_max_offset_mm": 1.2502859927882808,
+        "category_anchor_offset": 0.2729375000000003,
+        "actual_total_offset_mm": 5.178553034369565,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 1757713349
+      },
+      {
+        "group": "High dose",
+        "rows": 14,
+        "category_spacing_pt": 42.519685039370074,
+        "available_max_offset_mm": 2.1267708333333286,
+        "actual_max_offset_mm": 1.2502859927882704,
+        "category_anchor_offset": 0.2729375000000003,
+        "actual_total_offset_mm": 5.0755130655126885,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 3180681181
+      },
+      {
+        "group": "Rescue",
+        "rows": 12,
+        "category_spacing_pt": 42.519685039370074,
+        "available_max_offset_mm": 2.1267708333333286,
+        "actual_max_offset_mm": 1.250285992788297,
+        "category_anchor_offset": 0.2729375000000003,
+        "actual_total_offset_mm": 5.344348492788301,
+        "fallback_source_rows": [],
+        "fallback_count": 0,
+        "packing_seed": 2728246739
+      }
+    ],
+    "algorithm": "Greedy nearest-center circle packing in final physical geometry; bounded least-crowded fallback grid when infeasible.",
+    "note": "Only categorical coordinates move. This arrangement is not a KDE/density estimate. Circle-circle spacing is audited; point-summary and text overlaps still need visual review. Explicitly enlarge the allowed lane/canvas or choose another reading task if circles cannot fit."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

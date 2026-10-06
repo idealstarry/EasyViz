@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "e047b6ee884eb2d2be4d539e0b1c7ca54eb55e6ffa174aa96bda7eecc4de4ddd",
+  "pass_number": 3,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "Fresh forward Create agent"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/serum/panel.png",
+      "sha256": "694ebf13fb72182aad1dc5b41109786eb9b69063b6d9e199595278e0b3b84c12",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image via functions.exec; actual current final PNG opened, full canvas at saved final proportions",
+      "size_basis": "Complete canvas viewed at its saved 82 × 65 mm aspect ratio; no nominal print-size display is claimed."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Actual values/identities retained by source assertions; adopted fields: {\"compartment\": \"compartment\", \"group\": \"condition\", \"time\": \"hour\", \"value\": \"ccl2\", \"unit\": \"unit\"}"
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "Lung and serum occupy identical physical data rectangles with identical time ticks and class decoding; separate unit labels and numeric ranges are explicit. Distinct open/filled mean markers help near-coincident group means."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Lung and serum occupy identical physical data rectangles with identical time ticks and class decoding; separate unit labels and numeric ranges are explicit. Distinct open/filled mean markers help near-coincident group means."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "The first serum scale was excessively empty. Pass 2 uses 0–420; pass 3 extends its lower display bound to −10 to keep the lowest positive circle complete. All concentrations remain positive. Compact raw columns can overlap in near-equal observations; no source row is dropped or connected across times."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Actual marks and keys opened together; no added in-image title or prose. Category-colored marks, neutral supporting strokes and sequential magnitude scales follow the adopted roles."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Axes, tick labels and supplied units/unknown-unit labels are visible within the canvas; explanatory prose remains in separate caption.md."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 82.0, \"height_mm\": 65.0}, \"actual_png\": {\"pixels\": [969, 768], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"pdf\": {\"width_mm\": 82.00000000000361, \"height_mm\": 64.99999999998694, \"sha256\": \"7a6f338fd925f4a18df49578933348bcc3d6b921f260476bab483d8fafb5f384\"}, \"svg\": {\"width_mm\": 82.00000004166665, \"height_mm\": 65.000000175, \"text_preserved\": true, \"font_embedding\": \"SVG references the recorded font; install it on the assembly system.\", \"sha256\": \"e492f85b0a1e4c8ec15ffd533bf474b70b51f4ce750bfa6fc778304cd8c9532b\"}, \"png\": {\"pixels\": [969, 768], \"dpi\": [299.9994, 299.9994], \"sha256\": \"694ebf13fb72182aad1dc5b41109786eb9b69063b6d9e199595278e0b3b84c12\"}}, \"format_bindings\": {\"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"7a6f338fd925f4a18df49578933348bcc3d6b921f260476bab483d8fafb5f384\", \"actual_sha256\": \"7a6f338fd925f4a18df49578933348bcc3d6b921f260476bab483d8fafb5f384\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"e492f85b0a1e4c8ec15ffd533bf474b70b51f4ce750bfa6fc778304cd8c9532b\", \"actual_sha256\": \"e492f85b0a1e4c8ec15ffd533bf474b70b51f4ce750bfa6fc778304cd8c9532b\"}, \"png\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"694ebf13fb72182aad1dc5b41109786eb9b69063b6d9e199595278e0b3b84c12\", \"actual_sha256\": \"694ebf13fb72182aad1dc5b41109786eb9b69063b6d9e199595278e0b3b84c12\"}}, \"actual_svg\": {\"width_mm\": 82.00000004166665, \"height_mm\": 65.000000175}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8.0, \"tick\": 8.0, \"legend\": 8.0, \"annotation\": 8.0, \"title\": 9.0, \"panel\": 9.0}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/07-separate-compartments/measurements.csv\", \"sha256\": \"85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a\", \"expected_sha256\": \"85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"settings.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/revision-03/serum/plot-source.py\", \"sha256\": \"08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63\", \"expected_sha256\": \"08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"settings.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/spec.json\", \"sha256\": \"66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd\", \"expected_sha256\": \"66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd\", \"status\": \"passed\"}], \"figure_profile\": []}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/serum/settings.json\", \"sha256\": \"6b5408baf9435b52649216317521455071b077c5393bd1ad951125c7d05e64b3\", \"bytes\": 2449}, \"resolved_spec_sha256\": \"38b4f9d4a7995469f23279faeba986dd5feb28524b89275bce91ee85d8c29aeb\", \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\"}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/serum/qa.json\", \"sha256\": \"4d9e292ad17936778eaf2a7f5a18598f34408424dd5a298e499de929acf6bfe6\", \"bytes\": 25961}, \"status\": \"pass\", \"valid_outputs\": true, \"input_rows\": 88, \"plotted_input_rows\": 51, \"readability_advisory\": \"no_advisory_flags\", \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/final/serum/caption.md\", \"sha256\": \"05100641c74cadb55bb5af69553001b29f6dd04c906f6e628b7bed0a59784bda\", \"bytes\": 891}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "note1",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Panel-level reading and geometry",
+      "evidence": "The first serum scale was excessively empty. Pass 2 uses 0–420; pass 3 extends its lower display bound to −10 to keep the lowest positive circle complete. All concentrations remain positive. Compact raw columns can overlap in near-equal observations; no source row is dropped or connected across times.",
+      "requirement": "Retain every supplied value, fixed canvas and agreed typography; disclose observed tradeoffs.",
+      "action": "Keep the selected valid version and preserve rejected/earlier attempts."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "note1"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": ""
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

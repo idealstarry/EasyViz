@@ -1,0 +1,73 @@
+{
+  "layout": {
+    "width_mm": 60,
+    "height_mm": 104,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "heatmap",
+  "fields": {
+    "row": "display_state",
+    "column": "tissue_label",
+    "value": "within_depot_percent"
+  },
+  "order": {
+    "y": [
+      "myC00",
+      "myC01",
+      "myC10",
+      "myC11",
+      "myC12",
+      "myC13",
+      "myC14",
+      "myC15",
+      "myC02",
+      "myC03",
+      "myC04",
+      "myC05",
+      "myC06",
+      "myC07",
+      "myC08",
+      "myC09"
+    ],
+    "x": [
+      "Omental",
+      "Perivascular",
+      "Subcutaneous"
+    ]
+  },
+  "colormap": "Blues",
+  "labels": {
+    "color": "Within depot (%)"
+  },
+  "options": {
+    "color_limits": [
+      0,
+      40
+    ],
+    "annotate_values": true,
+    "value_format": ".1f",
+    "cell_aspect": "auto",
+    "cell_border_color": "#D1DCE6",
+    "cell_border_width_pt": 0.3,
+    "column_labels": {
+      "Omental": "OM",
+      "Perivascular": "PVAT",
+      "Subcutaneous": "SC"
+    },
+    "x_rotation": 0
+  },
+  "legends": {
+    "colorbar": {
+      "position": "right",
+      "thickness_mm": 2.3
+    }
+  }
+}

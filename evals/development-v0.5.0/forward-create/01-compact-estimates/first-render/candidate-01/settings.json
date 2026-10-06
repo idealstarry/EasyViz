@@ -1,0 +1,1155 @@
+{
+  "layout": {
+    "width_mm": 72.0,
+    "height_mm": 48.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": false,
+    "margins": {
+      "left": 0.16079368007330247,
+      "right": 0.9722222222222221,
+      "bottom": 0.45925667015035504,
+      "top": 0.9583333333333334
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "replicate",
+  "fields": {
+    "condition": "display_condition",
+    "unit": "repeat_id",
+    "value": "repair_pct"
+  },
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU-7441\n(1 µM)",
+      "KU-0060548\n(0.25 µM)",
+      "L755507\n(5 µM)",
+      "SCR7 pyrazine\n(1 µM)"
+    ]
+  },
+  "labels": {
+    "y": "HDR repair (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.6,
+    "bar_color": "#444444",
+    "point_color": "#222222",
+    "bar_width": 0.42,
+    "marker_area_pt2": 5,
+    "x_rotation": 45,
+    "y_limits": [
+      0,
+      14
+    ],
+    "y_ticks": [
+      0,
+      5,
+      10
+    ],
+    "bar_edge_color": "#333333"
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {
+    "DMSO": "#444444",
+    "NU-7441\n(1 µM)": "#444444",
+    "KU-0060548\n(0.25 µM)": "#444444",
+    "L755507\n(5 µM)": "#444444",
+    "SCR7 pyrazine\n(1 µM)": "#444444"
+  },
+  "input_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+  "input_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+  "supplied_spec": {
+    "layout": {
+      "width_mm": 72,
+      "height_mm": 48,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": false,
+      "margins": {
+        "left": 0.16079368007330247,
+        "right": 0.9722222222222221,
+        "bottom": 0.45925667015035504,
+        "top": 0.9583333333333334
+      }
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "chart": "replicate",
+    "fields": {
+      "condition": "display_condition",
+      "unit": "repeat_id",
+      "value": "repair_pct"
+    },
+    "order": {
+      "condition": [
+        "DMSO",
+        "NU-7441\n(1 µM)",
+        "KU-0060548\n(0.25 µM)",
+        "L755507\n(5 µM)",
+        "SCR7 pyrazine\n(1 µM)"
+      ]
+    },
+    "labels": {
+      "y": "HDR repair (%)"
+    },
+    "options": {
+      "mode": "summary",
+      "uncertainty": "sample_sd",
+      "bar_style": "outline",
+      "bar_edge_width_pt": 0.6,
+      "bar_color": "#444444",
+      "point_color": "#222222",
+      "bar_width": 0.42,
+      "marker_area_pt2": 5,
+      "x_rotation": 45,
+      "y_limits": [
+        0,
+        14
+      ],
+      "y_ticks": [
+        0,
+        5,
+        10
+      ],
+      "bar_edge_color": "#333333"
+    }
+  },
+  "auto_layout": null,
+  "legend_layout": {
+    "status": "pass",
+    "legends": [],
+    "combined": {
+      "guide_count": 0,
+      "occupied_envelope_union_area_mm2": 0.0,
+      "sum_envelope_area_mm2": 0.0,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.0,
+      "area_fraction_of_canvas": 0.0,
+      "enclosing_bbox_mm": null,
+      "max_individual_width_mm": 0.0,
+      "max_individual_height_mm": 0.0,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "renderer": {
+    "version": "0.1.0",
+    "sha256": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+    "helper_sha256": {
+      "render.py": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+      "legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+      "auto_layout.py": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+      "figure_profile.py": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9",
+      "annotation_review.py": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+      "figure_elements.py": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062",
+      "panel_readability.py": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+      "observation_clipping.py": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "observation_clipping": {
+    "status": "pass",
+    "by_format": {
+      "pdf": {
+        "status": "pass",
+        "checked_observations": 15,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-observation-1",
+            "label": "DMSO · condition_3_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-2",
+            "label": "DMSO · condition_3_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-3",
+            "label": "DMSO · condition_3_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-4",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-5",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-6",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-7",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-8",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-9",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-10",
+            "label": "L755507\n(5 µM) · condition_6_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-11",
+            "label": "L755507\n(5 µM) · condition_6_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-12",
+            "label": "L755507\n(5 µM) · condition_6_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-13",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-14",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-15",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          72.00000000000001,
+          48.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "svg": {
+        "status": "pass",
+        "checked_observations": 15,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-observation-1",
+            "label": "DMSO · condition_3_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-2",
+            "label": "DMSO · condition_3_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-3",
+            "label": "DMSO · condition_3_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-4",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-5",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-6",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-7",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-8",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-9",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-10",
+            "label": "L755507\n(5 µM) · condition_6_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-11",
+            "label": "L755507\n(5 µM) · condition_6_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-12",
+            "label": "L755507\n(5 µM) · condition_6_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-13",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-14",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-15",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          72.00000000000001,
+          48.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "png": {
+        "status": "pass",
+        "checked_observations": 15,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-observation-1",
+            "label": "DMSO · condition_3_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-2",
+            "label": "DMSO · condition_3_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-3",
+            "label": "DMSO · condition_3_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-4",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-5",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-6",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-7",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-8",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-9",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-10",
+            "label": "L755507\n(5 µM) · condition_6_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-11",
+            "label": "L755507\n(5 µM) · condition_6_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-12",
+            "label": "L755507\n(5 µM) · condition_6_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-13",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-14",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          },
+          {
+            "element_id": "easyviz-observation-15",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+            "observations": 1,
+            "checked_observations": 1,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.55,
+                4.55
+              ],
+              "y_limits": [
+                0.0,
+                14.0
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          71.96666666666667,
+          48.006
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      }
+    },
+    "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+  },
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+      "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3"
+    }
+  },
+  "spec_file_sha256": "28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378"
+}

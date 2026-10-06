@@ -1,0 +1,22 @@
+{
+  "purpose": "Inspect the directory and suggest a useful descriptive comparison. The experimental unit and measurement units are not established.",
+  "reading_burden": {
+    "source_rows": 6,
+    "groups": {
+      "Control": 3,
+      "Treated": 3
+    }
+  },
+  "adopted_canvas_mm": [
+    74,
+    66
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "observations",
+  "organization": "compact",
+  "mechanism": "descriptive raw distribution plus unsmoothed empirical cumulative fraction",
+  "expected_benefit": "The box/points preview shows every supplied source row and a descriptive median/IQR; the ECDF shows the fraction of source rows at or below each value with unsmoothed jumps.",
+  "observed_tradeoff": "Measurement unit and experimental unit remain unknown; batch is retained as a source field and is not declared as a unit or pairing key. Both are descriptive alternatives, with no automatic aesthetic winner or inferential P.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

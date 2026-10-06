@@ -1,0 +1,34 @@
+{
+  "chart": "scatter",
+  "fields": {
+    "x": "dose",
+    "y": "response",
+    "group": "condition",
+    "unit": "unit"
+  },
+  "labels": {
+    "x": "Dose (a.u.)",
+    "y": "Response (a.u.)"
+  },
+  "layout": {
+    "width_mm": 110,
+    "height_mm": 80,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "colors": {
+    "Control": "#29ACF3",
+    "Treatment": "#FF7F7F"
+  },
+  "options": {
+    "alpha": 1,
+    "point_area_pt2": 9
+  },
+  "seed": 501
+}

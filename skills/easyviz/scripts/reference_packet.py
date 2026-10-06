@@ -143,6 +143,16 @@ def implementation_plan(reading, data_ids, custom_script):
         "evidence_decisions": [{"evidence_id": item["id"], "evidence_state": item["state"], "adopted_requirement": None, "priority": None, "rationale": None} for item in reading["evidence"]],
         "layers": [{"source_layer_id": layer["id"], "evidence_ids": layer["evidence_ids"], "reading_description": layer["description"], "required_data_meanings": layer["required_data_meanings"], "status": "unresolved", "data_artifacts": [], "field_mapping": {}, "transform": None, "artist": None, "backend": None, "verification": [], "adoption": {"decision": None, "priority": None, "reason": None}} for layer in reading["layers"]],
         "intentional_differences": [],
+        "adoption_contract": {
+            "reference_sha256": reading["reference"]["sha256"],
+            "relationships": [],
+            "open_items": [{
+                "evidence_id": item["id"],
+                "question": item["uncertainty"],
+                "affected_layer_ids": [layer["id"] for layer in reading["layers"] if item["id"] in layer["evidence_ids"]],
+                "state": "unresolved", "blocking": "layer", "resolution": None,
+            } for item in reading["evidence"] if item["state"] != "observed"],
+        },
         "baseline": {"script": None, "exports": [], "review": None},
         "implementation_gap_checklist": [{"item": item, "status": "unresolved", "evidence": None} for item in [
             "fresh image reading and independence provenance",

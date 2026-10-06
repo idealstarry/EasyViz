@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-10-06T04:54:25.442099+00:00",
+  "purpose": "Frozen before fresh forward-use runs, after implementation had begun. These changed-schema tasks probe execution and design transfer, not unseen-study generalization or a with/without-skill aesthetic comparison.",
+  "runtime_inputs": "Task directory measurements.csv and request.json. Literature guidance in the skill is allowed; no original paper image or prior case implementation at runtime.",
+  "cases": [
+    {
+      "id": "01-compact-estimates",
+      "question": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean \u00b1 sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+      "panel_mm": [
+        72,
+        48
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "Three biological replicates per treatment. Use display_condition for readable treatment text; expanded drug labels belong in the caption. Do not pool other outcome columns.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/basic-panels/replicate-bars/source-data.csv",
+      "source_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+      "input_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+      "renamed_columns": {
+        "condition": "exposure",
+        "HDR_percent": "repair_pct",
+        "unit": "repeat_id"
+      },
+      "expected": {
+        "rows": 15,
+        "plotted_values": 15,
+        "method": "mean and sample SD",
+        "inference": false
+      },
+      "row_count": 15
+    },
+    {
+      "id": "02-repeated-components",
+      "question": "Compare the absolute magnitudes of all three repair outcomes within each treatment on a common percentage scale. Preserve all repeat values and sample SD. This is a multiple-series comparison, rather than three unrelated single-outcome panels.",
+      "panel_mm": [
+        125,
+        74
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "Three biological replicates per treatment. The outcomes are separate supplied quantities; do not stack them or infer a new denominator. Use a common 0\u201355 percent y axis.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/basic-panels/replicate-bars/source-data.csv",
+      "source_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+      "input_sha256": "90c68b872b3af2ef8b40ced2b9ebff04a57942ba3dbc370420d207de28d05488",
+      "renamed_columns": {
+        "condition": "exposure",
+        "HDR_percent": "repair_pct",
+        "both_percent": "joint_pct",
+        "mutEJ_percent": "endjoining_pct",
+        "unit": "repeat_id"
+      },
+      "expected": {
+        "rows": 15,
+        "plotted_values": 45,
+        "inference": false
+      },
+      "row_count": 15
+    },
+    {
+      "id": "03-summary-leading",
+      "question": "Compare BMI centers and interquartile spreads across the three cohorts. Summaries should lead; keep every supplied participant visible without letting the raw layer obscure quartiles.",
+      "panel_mm": [
+        76,
+        72
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "BMI in kg/m\u00b2, one participant per literal person_key. No model or test is adopted. Use y range 15\u201360.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/basic-panels/cohort-box/source-data.csv",
+      "source_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+      "input_sha256": "81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136",
+      "renamed_columns": {
+        "cohort": "cohort_name",
+        "bmi": "body_mass_index",
+        "participant_key": "person_key"
+      },
+      "expected": {
+        "rows": 129,
+        "inference": false,
+        "preserve": "raw values and quartiles"
+      },
+      "row_count": 129
+    },
+    {
+      "id": "04-observation-leading",
+      "question": "Inspect participant variation and extremes within each cohort. Raw observations should lead; use summaries only as a supporting guide and retain the same group and measurement identities as task 03.",
+      "panel_mm": [
+        90,
+        76
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "BMI in kg/m\u00b2, one participant per literal person_key. No KDE, model or test is adopted. Use y range 15\u201360. A different hierarchy should be visibly justified.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/basic-panels/cohort-box/source-data.csv",
+      "source_sha256": "9a257e9c5e2822055ecba175b4c37e30f885a93cfaf69699155917087a9c0992",
+      "input_sha256": "81a0f0a8646ec57858a29a3842576add10faa376eeb173447676e18df5d66136",
+      "renamed_columns": {
+        "cohort": "cohort_name",
+        "bmi": "body_mass_index",
+        "participant_key": "person_key"
+      },
+      "expected": {
+        "rows": 129,
+        "inference": false,
+        "distinct_reading_task_from": "03-summary-leading"
+      },
+      "row_count": 129
+    },
+    {
+      "id": "05-narrow-matrix",
+      "question": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+      "panel_mm": [
+        60,
+        104
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "within_depot_percent is the original percent column, not percent2 or percent_cluster. Use sequential magnitude color with an adopted 0\u201340 percent range; no meaningful center exists. Do not inherit clustering.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/basic-panels/depot-heatmap/source-data.csv",
+      "source_sha256": "30e7007dc27f6aa504385bcc6c5197f7d2cebd49287e8221657aebd701b10f85",
+      "input_sha256": "b6074e39029a27a67e0fa5987f1d04d159edac44730634c986767d3db100ea45",
+      "renamed_columns": {
+        "subtype_label": "cell_state",
+        "depot_label": "tissue_label",
+        "percent": "within_depot_percent"
+      },
+      "expected": {
+        "rows": 48,
+        "matrix": [
+          16,
+          3
+        ],
+        "inference": false,
+        "value_column": "within_depot_percent"
+      },
+      "row_count": 48
+    },
+    {
+      "id": "06-within-person-change",
+      "question": "Show how individual IgG measurements change from before to after vaccination, with prior-infection classes decoded. Preserve the literal participant pairing. Use a paired change view, not an unrelated association scatter.",
+      "panel_mm": [
+        100,
+        86
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "IgG in BAU/ml. One row is a complete participant pair. Prior-infection status is supplied, not derived. All measurements are positive. A log measurement axis is permitted if labeled; no significance test or fitted model is adopted.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/basic-panels/paired-scatter/source-data.csv",
+      "source_sha256": "05291c4494ab29fe95da3da5679631bb1456956628d883709289215a28c12eee",
+      "input_sha256": "ec53dbfe80f0943f9d0223d551e6dd6927e345daaf4bb8ec2af0d17efa9b8b58",
+      "renamed_columns": {
+        "participant_id": "person_id",
+        "igg_before_bau_ml": "baseline_igg",
+        "igg_after_bau_ml": "followup_igg"
+      },
+      "expected": {
+        "rows": 127,
+        "measurements": 254,
+        "complete_pairs": 127,
+        "inference": false
+      },
+      "row_count": 127
+    },
+    {
+      "id": "07-separate-compartments",
+      "question": "Compare the terminal cross-sectional Ccl2 time responses for the supplied groups in lung and serum. Produce two aligned individual panels with separate units, every observation and source-consistent means/SEMs.",
+      "panel_mm": [
+        82,
+        65
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "Sample positions do not establish longitudinal mouse identity. Time is in hours. Lung and serum have different concentration units; do not pool or force a common y scale. Read the supplied source table fields and retain the mean/SEM definition.",
+      "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+      "source_path": "examples/create/compartment-ccl2/inputs/observations.csv",
+      "source_sha256": "edc17804e20e344e41272b8e6bf988d33b51fbf0b4031062f4a256c35e08ea11",
+      "input_sha256": "85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a",
+      "renamed_columns": {},
+      "expected": {
+        "rows": 88,
+        "panels": 2,
+        "inference": false
+      },
+      "row_count": 88
+    },
+    {
+      "id": "08-unknown-units",
+      "question": "Inspect the directory and suggest a useful descriptive comparison. The experimental unit and measurement units are not established.",
+      "panel_mm": [
+        74,
+        66
+      ],
+      "font": "Arial",
+      "font_pt": 8,
+      "context": "Explicit synthetic engineering fixture. Batch may represent a technical batch or experimental unit; its scientific role is unknown. Do not infer independence or compute inferential P. Record consequential unknowns while producing a descriptive preview if possible.",
+      "delivery": "Describe unresolved semantics, preserve all six records and do not fabricate units or a test.",
+      "input_sha256": "7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d",
+      "expected": {
+        "rows": 6,
+        "inference": false,
+        "unknown": [
+          "experimental unit",
+          "measurement unit"
+        ]
+      },
+      "row_count": 6
+    }
+  ]
+}

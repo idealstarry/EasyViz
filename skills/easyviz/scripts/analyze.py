@@ -197,7 +197,7 @@ def adjust_pvalues(values, method):
 def _read_csv(data_path):
     raw = data_path.read_bytes()
     try:
-        reader = csv.reader(io.StringIO(raw.decode("utf-8-sig"), newline=""))
+        reader = csv.reader(io.StringIO(raw.decode("utf-8-sig"), newline=""), strict=True)
         header = next(reader)
     except (UnicodeError, StopIteration, csv.Error) as exc:
         raise AnalysisError(f"Cannot read a nonempty UTF-8 CSV: {exc}") from None

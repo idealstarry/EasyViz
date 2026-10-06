@@ -1,0 +1,45 @@
+{
+  "python": "3.12.2",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "baseline_commit": "692c74c16a061859987e8627faf909f259b506bd",
+  "archive_hashing": {
+    "archive": "dist/easyviz-0.4.6.zip",
+    "bytes": 18703087,
+    "whole_read": {
+      "median_seconds": 0.007429375022184104,
+      "max_python_peak_bytes": 18707928,
+      "trials": 7,
+      "all_results_equal": true
+    },
+    "chunked_read": {
+      "median_seconds": 0.007665166980586946,
+      "max_python_peak_bytes": 2102478,
+      "trials": 7,
+      "all_results_equal": true
+    },
+    "same_digest": true
+  },
+  "isolated_asset_refresh": {
+    "baseline": {
+      "median_seconds": 1.4168180840206333,
+      "max_python_peak_bytes": 6486572,
+      "trials": 3,
+      "all_results_equal": true
+    },
+    "transactional": {
+      "median_seconds": 1.5534594579949044,
+      "max_python_peak_bytes": 6491125,
+      "trials": 3,
+      "all_results_equal": true
+    },
+    "same_file_bytes": true,
+    "generated_files": 654,
+    "scope": "17 existing cases, source safety, complete staging and owned-leaf rollback; includes tree identity verification in both timings"
+  },
+  "limits": [
+    "Python traced allocation excludes OS/cache memory.",
+    "Local cached disk timing is descriptive, not a cross-machine speed guarantee.",
+    "Peak allocations include copied metadata and tree-identity comparison.",
+    "Temporary staging adds one candidate copy on disk; old leaves move by rename."
+  ]
+}

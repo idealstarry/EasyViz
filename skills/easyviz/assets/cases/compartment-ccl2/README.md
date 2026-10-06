@@ -16,7 +16,7 @@ are display columns, not sampling times; mean/SEM anchors remain at exactly
 - [Lung SVG](panels/lung/output/panel.svg) · [PDF](panels/lung/output/panel.pdf)
 - [Serum SVG](panels/serum/output/panel.svg) · [PDF](panels/serum/output/panel.pdf)
 - [Caption and semantic limits](caption.md)
-- [Design choices and literature comparison](design-rationale.md)
+- [Design choices and literature comparison](https://github.com/idealstarry/EasyViz/blob/main/examples/create/compartment-ccl2/design-rationale.md)
 - [Source contract](inputs/input-contract.json) · [observations](inputs/observations.csv)
 - [Source-to-artist/export validation](https://github.com/idealstarry/EasyViz/blob/main/examples/create/compartment-ccl2/validation.json)
 

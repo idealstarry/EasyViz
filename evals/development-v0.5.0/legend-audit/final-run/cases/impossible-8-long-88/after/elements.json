@@ -1,0 +1,905 @@
+{
+  "schema_version": 1,
+  "chart": "scatter",
+  "track": null,
+  "panel": {
+    "width_mm": 88.0,
+    "height_mm": 32.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "bdf6585e6ae4d75b62d0f38918acf985df4148ccf8ba52069e9faa63dd98383c",
+    "spec_sha256": "cda56ae01865515ec1dd66eb15fc3c1dec77784b50ca57e2a2c1d2c71f1d74ef",
+    "input_sha256": "ca2a2e3e1350a6e327338749ccf0a4d9d129f1bf7b79d8c9fa68aa7f3623c4d1",
+    "source_script_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+    "auxiliary_inputs_sha256": "6393755d2a10734ed81206b38d0f38680801869a4c98e61df039fe6b1120b20a",
+    "resolved_colors_sha256": "14e27aa0c567169c3adf1034dcb4200a39fd2a59fbf515ade88573b2bd4d8286"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/legend-audit/final-run/cases/impossible-8-long-88/source.csv",
+    "spec_file": null,
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+    "supplied_spec_sha256": null,
+    "auxiliary_inputs": {
+      "helper:legend_layout.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py",
+        "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+      },
+      "helper:figure_profile.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py",
+        "sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9"
+      },
+      "helper:auto_layout.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py",
+        "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+      },
+      "helper:annotation_review.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py",
+        "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+      },
+      "helper:figure_elements.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+      },
+      "helper:panel_readability.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py",
+        "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+      },
+      "helper:observation_clipping.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py",
+        "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "easyviz-point-group-93590085b4bb472f",
+      "role": "point-group",
+      "label": "Activated T cells",
+      "source_keys": [
+        {
+          "group": "Activated T cells",
+          "records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Activated T cells",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Activated T cells",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-89887b6c854c818e",
+      "role": "point-group",
+      "label": "Memory B cells",
+      "source_keys": [
+        {
+          "group": "Memory B cells",
+          "records": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Memory B cells",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Memory B cells",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-6a75f49d346ee960",
+      "role": "point-group",
+      "label": "Inflammatory monocytes",
+      "source_keys": [
+        {
+          "group": "Inflammatory monocytes",
+          "records": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Inflammatory monocytes",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Inflammatory monocytes",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-dff3a1b772e3e166",
+      "role": "point-group",
+      "label": "Dendritic cell precursors",
+      "source_keys": [
+        {
+          "group": "Dendritic cell precursors",
+          "records": [
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Dendritic cell precursors",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Dendritic cell precursors",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-dcd880911c14d33b",
+      "role": "point-group",
+      "label": "Cytotoxic lymphocytes",
+      "source_keys": [
+        {
+          "group": "Cytotoxic lymphocytes",
+          "records": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Cytotoxic lymphocytes",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Cytotoxic lymphocytes",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-6a61c89839628796",
+      "role": "point-group",
+      "label": "Vascular endothelial cells",
+      "source_keys": [
+        {
+          "group": "Vascular endothelial cells",
+          "records": [
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Vascular endothelial cells",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Vascular endothelial cells",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-35407f8e319e7bc1",
+      "role": "point-group",
+      "label": "Stromal progenitor cells",
+      "source_keys": [
+        {
+          "group": "Stromal progenitor cells",
+          "records": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Stromal progenitor cells",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Stromal progenitor cells",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-point-group-f531a36350cb6323",
+      "role": "point-group",
+      "label": "Tissue resident macrophages",
+      "source_keys": [
+        {
+          "group": "Tissue resident macrophages",
+          "records": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ]
+        }
+      ],
+      "spec_paths": [
+        "/colors/Tissue resident macrophages",
+        "/options/alpha"
+      ],
+      "editable": {
+        "color": "/colors/Tissue resident macrophages",
+        "alpha": "/options/alpha"
+      }
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        16.72,
+        7.36,
+        51.03999999999999,
+        20.8
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-a25b05ec84419760",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        15.485277777777775,
+        7.36,
+        1.234722222222223,
+        20.8
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-583586e852f58ad3",
+      "role": "axis-line",
+      "label": "X axis line · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        16.72,
+        6.125277777777779,
+        51.039999999999985,
+        1.2347222222222218
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-ffb0bed284770937",
+      "role": "axis-label",
+      "label": "Score X",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/x"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        37.28699999999999,
+        -1.8177343750000008,
+        9.906,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-251b607479f45319",
+      "role": "axis-tick",
+      "label": "X major tick · 0.5 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        21.465261839708557,
+        6.742638888888889,
+        1.234722222222223,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-32d3aed44c39d28a",
+      "role": "tick-label",
+      "label": "X tick label · 0.5 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        20.177622950819668,
+        2.241966145833333,
+        3.81,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-d2f9de54ec255438",
+      "role": "axis-tick",
+      "label": "X major tick · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        36.67837659380692,
+        6.742638888888889,
+        1.2347222222222254,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-92ea1202889afa8b",
+      "role": "tick-label",
+      "label": "X tick label · 1.0 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        35.39073770491803,
+        2.241966145833333,
+        3.81,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-c48ae245dc0e3a1b",
+      "role": "axis-tick",
+      "label": "X major tick · 1.5 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        51.89149134790527,
+        6.742638888888889,
+        1.2347222222222158,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-2e1986515cf75e67",
+      "role": "tick-label",
+      "label": "X tick label · 1.5 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        50.60385245901638,
+        2.241966145833333,
+        3.81,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-a369cdb522813c9c",
+      "role": "axis-tick",
+      "label": "X major tick · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        67.10460610200363,
+        6.742638888888889,
+        1.2347222222222158,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b281a5203f58abf3",
+      "role": "tick-label",
+      "label": "X tick label · 2.0 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        65.81696721311474,
+        2.241966145833333,
+        3.81,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-label-5f702097b13456c5",
+      "role": "axis-label",
+      "label": "Score Y",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        6.38085503472222,
+        12.832796875,
+        2.648589409722223,
+        9.85440625
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-773c666f098ceb3d",
+      "role": "axis-tick",
+      "label": "Y major tick · 0.5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        16.102638888888887,
+        9.773654931669638,
+        1.2347222222222207,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-3ce4bc8080152ca7",
+      "role": "tick-label",
+      "label": "Y tick label · 0.5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        10.440555555555555,
+        8.76975410701686,
+        3.81,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-7b8c8fd4a49c9682",
+      "role": "axis-tick",
+      "label": "Y major tick · 1 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        16.102638888888887,
+        16.72552658942365,
+        1.2347222222222207,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-00ea6e4adfc4d4bb",
+      "role": "tick-label",
+      "label": "Y tick label · 1.0 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        10.440555555555555,
+        15.721625764770872,
+        3.81,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-f4a5d9c5fb613ecc",
+      "role": "axis-tick",
+      "label": "Y major tick · 1.5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 1.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        16.102638888888887,
+        23.67739824717766,
+        1.2347222222222207,
+        1.2347222222222254
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-2d0be86b20ad4acd",
+      "role": "tick-label",
+      "label": "Y tick label · 1.5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 1.5
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        10.440555555555555,
+        22.673497422524886,
+        3.81,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-legend-bb9e0271433bfd96",
+      "role": "legend",
+      "label": "Categorical guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/categorical"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        71.62696721311474,
+        2.3712847222222204,
+        38.81748958333333,
+        25.788715277777783
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-43c63bc3193028dc",
+      "role": "legend-key",
+      "label": "Activated T cells",
+      "source_keys": [
+        {
+          "category": "Activated T cells"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Activated T cells"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        26.03337924011753,
+        3.0000000000000013,
+        1.4999999999999958
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-e4d1e4e6a2e63010",
+      "role": "legend-key",
+      "label": "Memory B cells",
+      "source_keys": [
+        {
+          "category": "Memory B cells"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Memory B cells"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        22.784789830395304,
+        3.0000000000000013,
+        1.4999999999999958
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-56e2bdff1a348c87",
+      "role": "legend-key",
+      "label": "Inflammatory monocytes",
+      "source_keys": [
+        {
+          "category": "Inflammatory monocytes"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Inflammatory monocytes"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        19.53620042067308,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-7465acbfc96189b0",
+      "role": "legend-key",
+      "label": "Dendritic cell precursors",
+      "source_keys": [
+        {
+          "category": "Dendritic cell precursors"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Dendritic cell precursors"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        16.287611010950858,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-fba3b58f2102dcb0",
+      "role": "legend-key",
+      "label": "Cytotoxic lymphocytes",
+      "source_keys": [
+        {
+          "category": "Cytotoxic lymphocytes"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Cytotoxic lymphocytes"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        13.039021601228635,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-0ac1d9fcd1efe156",
+      "role": "legend-key",
+      "label": "Vascular endothelial cells",
+      "source_keys": [
+        {
+          "category": "Vascular endothelial cells"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Vascular endothelial cells"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        9.790432191506413,
+        3.0000000000000013,
+        1.4999999999999996
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-10e3fdccf1e9449d",
+      "role": "legend-key",
+      "label": "Stromal progenitor cells",
+      "source_keys": [
+        {
+          "category": "Stromal progenitor cells"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Stromal progenitor cells"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        6.541842781784188,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-fcb68a9d9614b813",
+      "role": "legend-key",
+      "label": "Tissue resident macrophages",
+      "source_keys": [
+        {
+          "category": "Tissue resident macrophages"
+        }
+      ],
+      "spec_paths": [
+        "/colors/Tissue resident macrophages"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        71.07696721311473,
+        3.2932533720619652,
+        3.0000000000000013,
+        1.5000000000000007
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

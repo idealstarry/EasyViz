@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 — 2026-10-06
+
+- Create candidates can consume an adopted question, reading task and visual roles, rank applicable literature mechanisms, and measure physical capacity on actual artists. Several valid designs remain available within a family; unsupported organizations require explicit custom implementation.
+- Reproduce gains a source-bound adoption checkpoint for structural matches, data adaptations and unresolved layers. A new scWAT Figure 2c case reconstructs broken-axis replicate bars from 60 real Source Data values, without author plotting code.
+- Plotted statistical annotations can bind to adopted analysis results, with explicit raw/adjusted P and included/all observation populations. Source, plan, trace and companion changes invalidate the result; cosmetic changes reuse its numerical evidence.
+- The workbench exposes target identities and editable values, code-generated cosmetic preview jobs, cancellation, per-request outcomes, comparison and accepted-version restoration. Unsupported instructions remain explicit active-Agent work.
+- An optional project-scoped MCP adapter exposes the same attempts, requests, bounded render jobs and sanitized previews through the official Python SDK. The ordinary skill/workbench remain usable without it; saving a request does not activate an idle chat.
+- Repair transactional case synchronization, package builds and extraction, including late CRC failures and unsafe source links. Preserve prior valid artifacts on caught failures, retain public compatibility, and keep optional dependencies separate.
+- Set the MIT copyright holder to `idealstarry`; update installation, workflow and release documentation.
+
+See [release QA and limits](evals/release-qa/v0.5.0/README.md).
+
 ## 0.4.6 — 2026-10-06
 
 - Add a purposeful PROGENy Create case from all 11,143 supplied coefficients: 55 signature overlaps, two complete dominant overlap comparisons and explicitly decoded descriptive sign fractions. Structural zeros, empty agreement and small denominators remain distinct; no activity, crosstalk or inference is fabricated.

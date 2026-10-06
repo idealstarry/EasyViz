@@ -1,0 +1,381 @@
+{
+  "layout": {
+    "width_mm": 60.0,
+    "height_mm": 104.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.2212462962962963,
+      "right": 0.7650568431712962,
+      "bottom": 0.06844263321314104,
+      "top": 0.9708910819811697
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "heatmap",
+  "fields": {
+    "row": "display_state",
+    "column": "tissue_label",
+    "value": "within_depot_percent"
+  },
+  "order": {
+    "y": [
+      "myC00",
+      "myC01",
+      "myC10",
+      "myC11",
+      "myC12",
+      "myC13",
+      "myC14",
+      "myC15",
+      "myC02",
+      "myC03",
+      "myC04",
+      "myC05",
+      "myC06",
+      "myC07",
+      "myC08",
+      "myC09"
+    ],
+    "x": [
+      "Omental",
+      "Perivascular",
+      "Subcutaneous"
+    ]
+  },
+  "colormap": "Blues",
+  "labels": {
+    "color": "Within depot (%)"
+  },
+  "options": {
+    "color_limits": [
+      0,
+      40
+    ],
+    "annotate_values": true,
+    "value_format": ".1f",
+    "cell_aspect": "auto",
+    "cell_border_color": "#D1DCE6",
+    "cell_border_width_pt": 0.3,
+    "column_labels": {
+      "Omental": "OM",
+      "Perivascular": "PVAT",
+      "Subcutaneous": "SC"
+    },
+    "x_rotation": 0
+  },
+  "legends": {
+    "colorbar": {
+      "position": "right",
+      "thickness_mm": 2.3
+    }
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "resolved_colors": {},
+  "seed": 0,
+  "input_file": "prepared.csv",
+  "input_sha256": "d65cf426a04825b00ac7c39723ab630eee69970149a6ac3ef06dddd865cc630f",
+  "source_bindings": {
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/05-narrow-matrix/revision-spec.json",
+      "sha256": "4aa48bfce1636c8a3fea0a6c50a40a0726c949db31c82064763bf8b43cab3f48"
+    },
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/05-narrow-matrix/prepared.csv",
+      "sha256": "d65cf426a04825b00ac7c39723ab630eee69970149a6ac3ef06dddd865cc630f"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+      "sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339"
+    },
+    "helper:legend_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py",
+      "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+    },
+    "helper:figure_profile.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py",
+      "sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9"
+    },
+    "helper:auto_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py",
+      "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+    },
+    "helper:annotation_review.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py",
+      "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    },
+    "helper:figure_elements.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "helper:panel_readability.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py",
+      "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    },
+    "helper:observation_clipping.py": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py",
+      "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "d65cf426a04825b00ac7c39723ab630eee69970149a6ac3ef06dddd865cc630f",
+    "row_count": 48,
+    "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; adopted analysis may explicitly select the plotted population."
+  },
+  "renderer": {
+    "version": "0.4.4",
+    "sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+    "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "profile_helper_sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "readability_helper_sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+    "observation_clipping_helper_sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+  },
+  "track": "create",
+  "observation_clipping": {
+    "status": "not_applicable",
+    "by_format": {
+      "pdf": {
+        "status": "not_applicable",
+        "checked_observations": 0,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          60.00000000000001,
+          104.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "svg": {
+        "status": "not_applicable",
+        "checked_observations": 0,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          60.00000000000001,
+          104.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "png": {
+        "status": "not_applicable",
+        "checked_observations": 0,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          60.028666666666666,
+          103.97066666666667
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      }
+    },
+    "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+  },
+  "auto_layout": {
+    "status": "pass",
+    "issues": [],
+    "margins": {
+      "left": 0.2212462962962963,
+      "right": 0.7650568431712962,
+      "bottom": 0.06844263321314104,
+      "top": 0.9708910819811697
+    },
+    "data_region_mm": [
+      13.27477777777778,
+      7.118033854166667,
+      32.628632812499994,
+      93.85463867187497
+    ],
+    "data_area_fraction": 0.4907609844510369,
+    "attempts": [
+      {
+        "automatic_guide_side": null,
+        "reserved_mm": {
+          "right": 12.096589409722226,
+          "bottom": 0.0,
+          "top": 1.0273274739583333
+        },
+        "issues": [],
+        "data_area_fraction": 0.4907609844510369
+      }
+    ],
+    "padding_mm": 2.0,
+    "note": "Measured technical fit at unchanged canvas and font sizes. No data or labels were removed. Largest feasible data region is a space-allocation choice, not proof of aesthetic or journal quality. If it does not fit, enlarge or split the panel explicitly."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "colorbar",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "right",
+          "thickness_mm": 2.2999999999999967,
+          "orientation": "vertical",
+          "rect_mm": [
+            47.90341059027777,
+            72.97267252604163,
+            2.2999999999999967,
+            28.000000000000007
+          ],
+          "length_mm": 28.000000000000004,
+          "ticks": [
+            0.0,
+            20.0,
+            40.0
+          ],
+          "font_size_pt": 8.0
+        },
+        "bbox_mm": [
+          47.90341059027777,
+          71.35141059027774,
+          10.096589409722236,
+          30.64858940972223
+        ],
+        "plot_bbox_mm": [
+          13.27477777777778,
+          7.118033854166667,
+          32.628632812499994,
+          93.85463867187497
+        ],
+        "canvas_mm": [
+          60.0,
+          103.99999999999999
+        ],
+        "area_fraction_of_plot": 0.10104866213450685,
+        "width_fraction_of_plot": 0.30943954862412265,
+        "height_fraction_of_plot": 0.32655380536781686,
+        "area_fraction_of_canvas": 0.0495907409065908,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.273398103732919,
+        "available_region_mm": [
+          47.90341059027777,
+          1.0,
+          11.09658940972223,
+          101.99999999999999
+        ],
+        "key_bboxes_mm": [],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "mapped_range": [
+          0.0,
+          40.0
+        ],
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              47.90341059027777,
+              71.35141059027774,
+              10.096589409722236,
+              30.64858940972223
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              47.90341059027777,
+              75.35141059027774,
+              10.096589409722236,
+              26.648589409722227
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 1,
+      "occupied_envelope_union_area_mm2": 309.4462232571266,
+      "sum_envelope_area_mm2": 309.4462232571266,
+      "envelope_overlap_area_mm2": 0.0,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.10104866213450685,
+      "area_fraction_of_canvas": 0.0495907409065908,
+      "enclosing_bbox_mm": [
+        47.90341059027777,
+        71.35141059027774,
+        10.096589409722236,
+        30.64858940972223
+      ],
+      "max_individual_width_mm": 10.096589409722236,
+      "max_individual_height_mm": 30.64858940972223,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

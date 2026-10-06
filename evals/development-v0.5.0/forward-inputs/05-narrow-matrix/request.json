@@ -1,0 +1,30 @@
+{
+  "id": "05-narrow-matrix",
+  "question": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+  "panel_mm": [
+    60,
+    104
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "context": "within_depot_percent is the original percent column, not percent2 or percent_cluster. Use sequential magnitude color with an adopted 0\u201340 percent range; no meaningful center exists. Do not inherit clustering.",
+  "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+  "source_path": "examples/create/basic-panels/depot-heatmap/source-data.csv",
+  "source_sha256": "30e7007dc27f6aa504385bcc6c5197f7d2cebd49287e8221657aebd701b10f85",
+  "input_sha256": "b6074e39029a27a67e0fa5987f1d04d159edac44730634c986767d3db100ea45",
+  "renamed_columns": {
+    "subtype_label": "cell_state",
+    "depot_label": "tissue_label",
+    "percent": "within_depot_percent"
+  },
+  "expected": {
+    "rows": 48,
+    "matrix": [
+      16,
+      3
+    ],
+    "inference": false,
+    "value_column": "within_depot_percent"
+  },
+  "row_count": 48
+}

@@ -1,6 +1,8 @@
 """Archives fail preflight without overwrites or unbounded expansion."""
 from pathlib import Path
+import os
 import stat
+import struct
 import sys
 import tempfile
 import unittest
@@ -100,6 +102,67 @@ class PackageExtractionTests(unittest.TestCase):
         self.assertEqual(check_package.extract_package(self.archive, self.destination), 4)
         self.assertEqual((self.destination / "easyviz/README.md").read_text(), "readme")
         self.assertEqual((self.destination / "easyviz/data/table.csv").read_text(), "x,y\n1,2\n")
+
+    def test_late_crc_failure_preserves_previous_extracted_files(self):
+        old = self.destination / 'easyviz/README.md'
+        old.parent.mkdir(parents=True)
+        old.write_bytes(b'previous valid package')
+        with zipfile.ZipFile(self.archive, 'w', compression=zipfile.ZIP_STORED) as package:
+            package.writestr('easyviz/README.md', b'new package')
+            package.writestr('easyviz/late.txt', b'CRC failure')
+        with zipfile.ZipFile(self.archive) as package:
+            offset = package.getinfo('easyviz/late.txt').header_offset
+        raw = bytearray(self.archive.read_bytes())
+        name_length, extra_length = struct.unpack_from('<HH', raw, offset + 26)
+        raw[offset + 30 + name_length + extra_length] ^= 1
+        self.archive.write_bytes(raw)
+        with self.assertRaisesRegex(zipfile.BadZipFile, 'Bad CRC-32'):
+            check_package.extract_package(self.archive, self.destination)
+        self.assertEqual(old.read_bytes(), b'previous valid package')
+        self.assertFalse((old.parent / 'late.txt').exists())
+        self.assertFalse(list(self.root.glob('.easyviz-extract-*')))
+
+    def test_failed_extraction_publication_restores_listed_files_and_keeps_unrelated_files(self):
+        old = self.destination / 'easyviz/README.md'
+        old.parent.mkdir(parents=True)
+        old.write_text('old readme')
+        unrelated = old.parent / 'user-notes.txt'
+        unrelated.write_text('user-owned notes')
+        self.package([('easyviz/README.md', 'new readme'), ('easyviz/data/table.csv', 'rows')])
+        real_replace = Path.replace
+        failed = False
+        def interrupted_replace(source, target):
+            nonlocal failed
+            if not failed and source.name == 'table.csv' and 'decoded' in source.parts:
+                failed = True
+                raise OSError('extraction publication interrupted')
+            return real_replace(source, target)
+        with mock.patch.object(Path, 'replace', interrupted_replace):
+            with self.assertRaisesRegex(OSError, 'extraction publication interrupted'):
+                check_package.extract_package(self.archive, self.destination)
+        self.assertEqual(old.read_text(), 'old readme')
+        self.assertEqual(unrelated.read_text(), 'user-owned notes')
+        self.assertFalse((old.parent / 'data').exists())
+        self.assertFalse(list(self.root.glob('.easyviz-extract-*')))
+
+    def test_successful_merge_retains_unlisted_existing_files(self):
+        notes = self.destination / 'easyviz/user-notes.txt'
+        notes.parent.mkdir(parents=True)
+        notes.write_text('keep user notes')
+        self.package([('easyviz/README.md', 'readme')])
+        self.assertEqual(check_package.extract_package(self.archive, self.destination), 1)
+        self.assertEqual(notes.read_text(), 'keep user notes')
+
+    def test_existing_hard_link_does_not_redirect_extraction_writes(self):
+        external = self.root / 'private.txt'
+        external.write_text('external original bytes')
+        target = self.destination / 'easyviz/README.md'
+        target.parent.mkdir(parents=True)
+        os.link(external, target)
+        self.package([('easyviz/README.md', 'new package bytes')])
+        self.assertEqual(check_package.extract_package(self.archive, self.destination), 1)
+        self.assertEqual(external.read_text(), 'external original bytes')
+        self.assertEqual(target.read_text(), 'new package bytes')
 
 
 if __name__ == "__main__":

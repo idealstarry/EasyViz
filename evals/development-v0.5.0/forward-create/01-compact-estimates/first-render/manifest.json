@@ -1,0 +1,1352 @@
+{
+  "version": "0.3.0",
+  "track": "create",
+  "stage": "new_draft",
+  "status": "visual_review_pending",
+  "source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/01-compact-estimates/measurements.csv",
+    "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+    "snapshot": "source.csv"
+  },
+  "source_spec": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/spec.json",
+    "sha256": "ca6aa0e75fd960c8d6b1db39eac3bf0846ea2c561cf68b2efc842b35e683e586",
+    "snapshot": "source-spec.json"
+  },
+  "profile": null,
+  "features": {
+    "chart": "replicate",
+    "input_rows": 15,
+    "reading_task_source": "adopted_create_intent",
+    "reading_task_scope": "Explicit calling-Agent purpose; this declaration does not establish scientific assumptions.",
+    "task": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+    "category_order": {
+      "condition": [
+        "DMSO",
+        "NU-7441\n(1 µM)",
+        "KU-0060548\n(0.25 µM)",
+        "L755507\n(5 µM)",
+        "SCR7 pyrazine\n(1 µM)"
+      ]
+    },
+    "label_max_characters": {
+      "condition": 20
+    },
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "category_count": 5,
+    "component_count": 0,
+    "create_intent": {
+      "schema_version": 1,
+      "question": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+      "reading_task": "compare_estimates",
+      "leading_layer": "summary",
+      "organization": "compact",
+      "color_role": "labels"
+    }
+  },
+  "suggested_dimension_keys": [],
+  "baseline_geometry": {
+    "data_region_mm": [
+      11.57714496527778,
+      22.044320167217045,
+      58.422855034722225,
+      23.955679832782963
+    ],
+    "canvas_mm": [
+      72.0,
+      48.0
+    ],
+    "numeric_limits": {
+      "x": [
+        -0.55,
+        4.55
+      ],
+      "y": [
+        0.0,
+        14.0
+      ]
+    },
+    "scales": {
+      "x": "linear",
+      "y": "linear"
+    },
+    "typography": {
+      "axis": 8.0,
+      "tick": 8.0,
+      "legend": 8.0,
+      "annotation": 8.0,
+      "title": 9.0,
+      "panel": 9.0
+    },
+    "category_tick_labels": {},
+    "issues": [],
+    "visual_facets": {
+      "painted_mark_roles": [
+        {
+          "role": "summary-box",
+          "label": "DMSO",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "DMSO · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-box",
+          "label": "NU-7441\n(1 µM)",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "NU-7441\n(1 µM) · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-box",
+          "label": "KU-0060548\n(0.25 µM)",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "KU-0060548\n(0.25 µM) · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-box",
+          "label": "L755507\n(5 µM)",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "L755507\n(5 µM) · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "summary-box",
+          "label": "SCR7 pyrazine\n(1 µM)",
+          "face": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "edge": [
+            0.2,
+            0.2,
+            0.2,
+            1.0
+          ]
+        },
+        {
+          "role": "summary-line",
+          "label": "SCR7 pyrazine\n(1 µM) · sample SD",
+          "face": [],
+          "edge": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ],
+          "stroke": [
+            [
+              0.26666667,
+              0.26666667,
+              0.26666667,
+              1.0
+            ]
+          ]
+        },
+        {
+          "role": "point-group",
+          "label": "DMSO · condition_3_replicate_1",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "DMSO · condition_3_replicate_2",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "DMSO · condition_3_replicate_3",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "L755507\n(5 µM) · condition_6_replicate_1",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "L755507\n(5 µM) · condition_6_replicate_2",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "L755507\n(5 µM) · condition_6_replicate_3",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        },
+        {
+          "role": "point-group",
+          "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+          "face": [
+            [
+              0.13333333,
+              0.13333333,
+              0.13333333,
+              1.0
+            ]
+          ],
+          "edge": []
+        }
+      ],
+      "continuous_decoding": [],
+      "guide_organization": []
+    },
+    "guide_geometry": {
+      "status": "pass",
+      "legends": [],
+      "combined": {
+        "guide_count": 0,
+        "occupied_envelope_union_area_mm2": 0.0,
+        "sum_envelope_area_mm2": 0.0,
+        "envelope_overlap_area_mm2": 0.0,
+        "has_envelope_overlap": false,
+        "area_fraction_of_plot": 0.0,
+        "area_fraction_of_canvas": 0.0,
+        "enclosing_bbox_mm": null,
+        "max_individual_width_mm": 0.0,
+        "max_individual_height_mm": 0.0,
+        "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+      },
+      "issues": [],
+      "warnings": [],
+      "review_thresholds": {
+        "area_fraction_of_plot": 0.2,
+        "area_fraction_of_canvas": 0.12,
+        "available_region_fraction": 0.85
+      },
+      "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+      "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+      "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+    },
+    "font_resolution": {
+      "requested": "Arial",
+      "actual": "Arial",
+      "substituted": false
+    },
+    "mark_visibility_advisories": [],
+    "source_to_artist": {
+      "status": "pass",
+      "source_rows": 15,
+      "raw_points": 15,
+      "component_values_normalized": false,
+      "ratios_derived": false,
+      "sample_size_independence_inferred": false,
+      "issues": []
+    },
+    "replicate_mark_geometry": {
+      "status": "pass",
+      "issues": [],
+      "intentional_baseline_contacts": [
+        {
+          "condition": "DMSO",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        },
+        {
+          "condition": "NU-7441\n(1 µM)",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        },
+        {
+          "condition": "KU-0060548\n(0.25 µM)",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        },
+        {
+          "condition": "L755507\n(5 µM)",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        },
+        {
+          "condition": "SCR7 pyrazine\n(1 µM)",
+          "component": null,
+          "baseline_value": 0.0,
+          "note": "Bar starts at the zero lower axis; only the lower half of the coincident baseline edge may be clipped."
+        }
+      ],
+      "grouped_separation": {
+        "status": "unchecked",
+        "note": "No positive component_gap adopted; legacy bar placement is retained."
+      }
+    },
+    "technical_measurement_status": "pass"
+  },
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "spec": "candidate-01/spec.json",
+      "eligible_design_card_ids": [
+        "replicate-neutral-compact"
+      ],
+      "changed_paths": [
+        "/layout/auto_fit",
+        "/layout/margins",
+        "/options/bar_edge_color"
+      ],
+      "color_decisions": {
+        "origin": "new_draft_suggestion",
+        "role_note": "Categorical assignment follows the unchanged declared order. Raw observations use a supplied point color when present, otherwise the category mapping; neutral role assignments and single-quantity bars are EasyViz adaptations. No numeric scale or fitted line is inferred.",
+        "role_colors": {
+          "raw": "#222222",
+          "bar": "#444444",
+          "summary_stroke": null,
+          "contour_stroke": null
+        },
+        "color_paths_changed": [
+          "/options/bar_edge_color"
+        ]
+      },
+      "route_id": "replicate-outline",
+      "visual_role": "Adopted means/uncertainty with outline supplied bars and raw observations",
+      "visual_facet_evidence": {
+        "painted_mark_roles": [
+          {
+            "role": "summary-box",
+            "label": "DMSO",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "DMSO · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "NU-7441\n(1 µM)",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "NU-7441\n(1 µM) · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "KU-0060548\n(0.25 µM)",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "KU-0060548\n(0.25 µM) · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "L755507\n(5 µM)",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "L755507\n(5 µM) · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "summary-box",
+            "label": "SCR7 pyrazine\n(1 µM)",
+            "face": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "edge": [
+              0.2,
+              0.2,
+              0.2,
+              1.0
+            ]
+          },
+          {
+            "role": "summary-line",
+            "label": "SCR7 pyrazine\n(1 µM) · sample SD",
+            "face": [],
+            "edge": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ],
+            "stroke": [
+              [
+                0.26666667,
+                0.26666667,
+                0.26666667,
+                1.0
+              ]
+            ]
+          },
+          {
+            "role": "point-group",
+            "label": "DMSO · condition_3_replicate_1",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "DMSO · condition_3_replicate_2",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "DMSO · condition_3_replicate_3",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_1",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_2",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "NU-7441\n(1 µM) · condition_4_replicate_3",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_1",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_2",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "KU-0060548\n(0.25 µM) · condition_5_replicate_3",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "L755507\n(5 µM) · condition_6_replicate_1",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "L755507\n(5 µM) · condition_6_replicate_2",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "L755507\n(5 µM) · condition_6_replicate_3",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_1",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_2",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          },
+          {
+            "role": "point-group",
+            "label": "SCR7 pyrazine\n(1 µM) · condition_7_replicate_3",
+            "face": [
+              [
+                0.13333333,
+                0.13333333,
+                0.13333333,
+                1.0
+              ]
+            ],
+            "edge": []
+          }
+        ],
+        "continuous_decoding": [],
+        "guide_organization": []
+      },
+      "changed_facets_vs_candidate_01": [],
+      "reason": "Adopted means/uncertainty with outline supplied bars and raw observations. Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
+      "technical_review": {
+        "status": "pass",
+        "qa_path": "candidate-01/qa.json",
+        "renderer_status": "pass"
+      },
+      "visual_review": {
+        "status": "pending",
+        "review_required": true
+      },
+      "adopted_create_intent": {
+        "schema_version": 1,
+        "question": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+        "reading_task": "compare_estimates",
+        "leading_layer": "summary",
+        "organization": "compact",
+        "color_role": "labels"
+      },
+      "applicable_mechanism_ids": [
+        "replicate-layer-clearance"
+      ],
+      "font_resolution": {
+        "requested": "Arial",
+        "actual": "Arial",
+        "substituted": false
+      },
+      "physical_preflight": {
+        "status": "capacity_checked",
+        "capacity_failures": [],
+        "measurements": {
+          "data_region_width_mm": 58.422855034722225,
+          "data_region_height_mm": 23.955679832782963,
+          "data_region_aspect": 2.438789274298594,
+          "category_pitch_mm": null,
+          "summary_thickness_mm": null,
+          "cell_dimensions_mm": null,
+          "guide_geometry": {
+            "status": "pass",
+            "legends": [],
+            "combined": {
+              "guide_count": 0,
+              "occupied_envelope_union_area_mm2": 0.0,
+              "sum_envelope_area_mm2": 0.0,
+              "envelope_overlap_area_mm2": 0.0,
+              "has_envelope_overlap": false,
+              "area_fraction_of_plot": 0.0,
+              "area_fraction_of_canvas": 0.0,
+              "enclosing_bbox_mm": null,
+              "max_individual_width_mm": 0.0,
+              "max_individual_height_mm": 0.0,
+              "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+            },
+            "issues": [],
+            "warnings": [],
+            "review_thresholds": {
+              "area_fraction_of_plot": 0.2,
+              "area_fraction_of_canvas": 0.12,
+              "available_region_fraction": 0.85
+            },
+            "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+            "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+            "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+          }
+        },
+        "design_advisories": [],
+        "scope": "Actual artist capacity evidence; ratios and contrast hints are not universal publication rules. Open the final-size exports to judge hierarchy and aesthetics."
+      },
+      "geometry_evidence": "candidate-01/geometry-evidence.json"
+    }
+  ],
+  "aesthetic_winner": null,
+  "adopted_create_intent": {
+    "schema_version": 1,
+    "question": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+    "reading_task": "compare_estimates",
+    "leading_layer": "summary",
+    "organization": "compact",
+    "color_role": "labels"
+  },
+  "mechanism_applicability": {
+    "version": "0.1.0",
+    "adopted_intent": {
+      "schema_version": 1,
+      "question": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+      "reading_task": "compare_estimates",
+      "leading_layer": "summary",
+      "organization": "compact",
+      "color_role": "labels"
+    },
+    "mechanisms": [
+      {
+        "id": "replicate-layer-clearance",
+        "families": [
+          "replicate"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "observations",
+          "summary"
+        ],
+        "source": "scWAT Fig. 2c,i,j, PDF p. 4; Vanneste Fig. 2e–h, PDF p. 4",
+        "observed": "Open bars, small observations and visible uncertainty endpoints remain associated.",
+        "adaptation": "Plan bar width, sample span and intervals together; open or filled summaries depend on the leading layer.",
+        "boundary": "Summary and uncertainty meanings must already be adopted; hollow is not a universal style.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "applicable",
+        "applicability_score": 3,
+        "reasons": [
+          "Observed family/burden fit and adopted purpose fit"
+        ]
+      },
+      {
+        "id": "compact-one-pair",
+        "families": [
+          "replicate",
+          "distribution"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "compare_distributions",
+          "inspect_observations"
+        ],
+        "leading_layers": [],
+        "source": "scWAT Fig. 2j, PDF p. 4",
+        "observed": "One treatment pair occupies a narrow region with readable samples, summaries and uncertainty.",
+        "adaptation": "Allocate width from actual mark/label capacity instead of stretching two categories across a broad canvas.",
+        "boundary": "A narrow plot is useful only if labels and every observation still fit at the adopted size.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Observed data do not meet maximum_categories=2"
+        ]
+      },
+      {
+        "id": "dense-field-summary-separation",
+        "families": [
+          "scatter",
+          "distribution"
+        ],
+        "reading_tasks": [
+          "assess_association",
+          "compare_distributions",
+          "inspect_observations"
+        ],
+        "leading_layers": [],
+        "source": "Vanneste Fig. 5d, PDF p. 7",
+        "observed": "A wider declared curve and local white separation remain visible over tiny points.",
+        "adaptation": "Give an existing summary enough local contrast or choose separate lanes rather than fading all data.",
+        "boundary": "No curve/model is introduced; a contrasting under-stroke or raw lane is a task-specific adaptation.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed dense_raw_layer before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "density-contour-hierarchy",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "inspect_density",
+          "compare_distributions"
+        ],
+        "leading_layers": [
+          "density"
+        ],
+        "source": "PROGENy Fig. 4c, PDF p. 6",
+        "observed": "Density silhouettes remain distinct from bounded inner summaries.",
+        "adaptation": "Let the adopted density lead only when shape is part of the question; subordinate existing points/summaries without erasing them.",
+        "boundary": "Density must already exist. Small or tied groups may not justify KDE; do not tune bandwidth for a prettier silhouette.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed kind before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "distribution-observation-lane",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "inspect_observations",
+          "compare_distributions"
+        ],
+        "leading_layers": [
+          "observations"
+        ],
+        "source": "Vanneste Fig. 5d, PDF p. 7",
+        "observed": "Repeated aligned plot boxes, shared labels and class blocks separate related populations.",
+        "adaptation": "Compare an associated sample lane or shared-scale facets when overlay obscures the adopted comparison.",
+        "boundary": "A neighboring lane is an adaptation; it must retain group association and numeric values, and cannot erase needed pairing.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "distribution-summary-hierarchy",
+        "families": [
+          "distribution"
+        ],
+        "reading_tasks": [
+          "compare_distributions",
+          "compare_estimates"
+        ],
+        "leading_layers": [
+          "summary"
+        ],
+        "source": "PROGENy Fig. 4c, PDF p. 6",
+        "observed": "Fine neutral density contours, categorical areas and definite inner summaries coexist in compact groups.",
+        "adaptation": "Emphasize the adopted summary; raw points and area-color reassignment are explicit adaptations.",
+        "boundary": "Preserve quartiles, KDE and bandwidth; adding an inner summary requires separate adoption.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family"
+        ]
+      },
+      {
+        "id": "matrix-shape-first",
+        "families": [
+          "heatmap",
+          "annotated_matrix"
+        ],
+        "reading_tasks": [
+          "read_matrix_values",
+          "read_matrix_pattern"
+        ],
+        "leading_layers": [
+          "values"
+        ],
+        "source": "scWAT Fig. 2b, PDF p. 4",
+        "observed": "A tall expression matrix retains its few columns as compact reading units.",
+        "adaptation": "Plan cell width/height and label capacity from matrix shape before choosing the ramp.",
+        "boundary": "Square cells are optional. Preserve values, ordering and normalization; few columns should not become decorative horizontal ribbons.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed narrow_matrix before this mechanism's applicability is established"
+        ]
+      },
+      {
+        "id": "matrix-value-seams",
+        "families": [
+          "heatmap",
+          "annotated_matrix"
+        ],
+        "reading_tasks": [
+          "read_matrix_values"
+        ],
+        "leading_layers": [
+          "values"
+        ],
+        "source": "PROGENy Fig. 2b,c, PDF p. 4; Vanneste Fig. 4d, PDF p. 6",
+        "observed": "Separators vary with cell density; dense tiny-cell heatmaps do not frame every cell equally.",
+        "adaptation": "Use subordinate seams for large direct-lookup cells; reserve enough physical space for adopted value labels.",
+        "boundary": "A seam policy is conditional. Colors cannot invent a meaningful center, endpoints or missing-state meaning.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task"
+        ]
+      },
+      {
+        "id": "neutral-single-quantity",
+        "families": [
+          "replicate",
+          "composition"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "compare_composition"
+        ],
+        "leading_layers": [
+          "summary"
+        ],
+        "source": "PROGENy Fig. 2d, PDF p. 4; Vanneste Fig. 3e,g, PDF p. 5",
+        "observed": "Uniform gray bars or decoded black/white/gray compositions have definite boundaries.",
+        "adaptation": "Use labels/positions to decode a single quantity; reserve categorical colors for a required second variable.",
+        "boundary": "Multiple series need distinct decoding; neutral is optional, and supplied project colors remain authoritative.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Observed data do not meet single_series=True"
+        ]
+      },
+      {
+        "id": "repeated-series-rhythm",
+        "families": [
+          "replicate"
+        ],
+        "reading_tasks": [
+          "compare_estimates",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "summary",
+          "observations"
+        ],
+        "source": "scWAT Fig. 3g,m, PDF p. 5; Vanneste Fig. 2g,h, PDF p. 4",
+        "observed": "Tight within-category series and wider category gaps repeat with a compact shared guide.",
+        "adaptation": "Plan stroke clearance, series gap and category pitch separately; adapt the data region to the real comparison.",
+        "boundary": "Do not copy a source aspect ratio, axis break, reference value or significance layer.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Observed data do not meet multiple_series=True"
+        ]
+      },
+      {
+        "id": "small-point-class-decoding",
+        "families": [
+          "scatter"
+        ],
+        "reading_tasks": [
+          "assess_association",
+          "inspect_observations"
+        ],
+        "leading_layers": [
+          "observations"
+        ],
+        "source": "scWAT Fig. 2g, PDF p. 4",
+        "observed": "Blue/pink observations and fitted strokes differ from the blue/coral bar treatment elsewhere on the page.",
+        "adaptation": "Choose class colors on actual small marks and keys; a usable area palette need not work for tiny points.",
+        "boundary": "A scatter needs a relationship question; a fitted line requires an adopted model. Source hues are not compulsory.",
+        "evidence": "Observed in the inspected supplied PDF; adaptations are proposed for new data. See references/literature-style.md.",
+        "applicability": "not_applicable",
+        "applicability_score": 0,
+        "reasons": [
+          "Different chart family",
+          "Does not address the adopted reading task",
+          "Need observed grouped_scatter before this mechanism's applicability is established"
+        ]
+      }
+    ],
+    "ranking_scope": "Applicability to observed burden and adopted purpose; no beauty score, method selection or automatic winner."
+  },
+  "intent_source": {
+    "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/create-intent.json",
+    "sha256": "a263f3d1290ca49cde15ac13279933943297eb71b152d1d522f05156b9401dc5",
+    "snapshot": "source-intent.json"
+  },
+  "design_space": {
+    "scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
+    "eligible_routes": [
+      "replicate-outline"
+    ],
+    "excluded_routes": [
+      {
+        "route_id": "replicate-filled",
+        "reasons": [
+          "Explicit /options/bar_style retains the adopted value"
+        ]
+      }
+    ],
+    "requested_count": 1,
+    "returned_count": 1,
+    "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"
+  },
+  "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption.",
+  "inputs_unchanged": true
+}

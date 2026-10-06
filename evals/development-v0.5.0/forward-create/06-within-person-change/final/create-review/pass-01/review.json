@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "98738296d387d997fd3bcc5d36d1e7e54424823ebfd4656259c84b1626fc37e1",
+  "pass_number": 1,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "Fresh forward Create agent"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/final/panel.png",
+      "sha256": "c1a1d223d6a4fb245316f5d271cbe6bb2c6347657f57411848b1f1eaec1aebcf",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image via functions.exec; actual current final PNG opened, full canvas at saved final proportions",
+      "size_basis": "Complete canvas viewed at its saved 100 × 86 mm aspect ratio; no nominal print-size display is claimed."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Actual values/identities retained by source assertions; adopted fields: {\"unit\": \"person_id\", \"condition\": \"visit\", \"value\": \"igg\", \"block\": \"infection_group\"}"
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "Two class blocks keep before/after directions and literal connectors readable; saturated blue/pink dots and matching keys distinguish classes. The log axis and original units are explicit."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "Two class blocks keep before/after directions and literal connectors readable; saturated blue/pink dots and matching keys distinguish classes. The log axis and original units are explicit."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "Dense connector regions necessarily overlap; every pair and both endpoints remain present, and the black median/IQR guide remains readable."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Actual marks and keys opened together; no added in-image title or prose. Category-colored marks, neutral supporting strokes and sequential magnitude scales follow the adopted roles."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Axes, tick labels and supplied units/unknown-unit labels are visible within the canvas; explanatory prose remains in separate caption.md."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 100.0, \"height_mm\": 86.0}, \"actual_png\": {\"pixels\": [1181, 1016], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"pdf\": {\"width_mm\": 99.99999999998803, \"height_mm\": 86.00000000001583, \"sha256\": \"456465c1017a2c537d883ec683b8fa0270c570e2687262378df6877ab3fabd0c\"}, \"svg\": {\"width_mm\": 100.00000002499999, \"height_mm\": 86.00000015555555, \"text_preserved\": true, \"font_embedding\": \"SVG references the recorded font; install it on the assembly system.\", \"sha256\": \"f7d9e2e092aaa952c084c981f12cc301f15b9f2928af81f437e258997c7bfc80\"}, \"png\": {\"pixels\": [1181, 1016], \"dpi\": [299.9994, 299.9994], \"sha256\": \"c1a1d223d6a4fb245316f5d271cbe6bb2c6347657f57411848b1f1eaec1aebcf\"}}, \"format_bindings\": {\"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"456465c1017a2c537d883ec683b8fa0270c570e2687262378df6877ab3fabd0c\", \"actual_sha256\": \"456465c1017a2c537d883ec683b8fa0270c570e2687262378df6877ab3fabd0c\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"f7d9e2e092aaa952c084c981f12cc301f15b9f2928af81f437e258997c7bfc80\", \"actual_sha256\": \"f7d9e2e092aaa952c084c981f12cc301f15b9f2928af81f437e258997c7bfc80\"}, \"png\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"c1a1d223d6a4fb245316f5d271cbe6bb2c6347657f57411848b1f1eaec1aebcf\", \"actual_sha256\": \"c1a1d223d6a4fb245316f5d271cbe6bb2c6347657f57411848b1f1eaec1aebcf\"}}, \"actual_svg\": {\"width_mm\": 100.00000002499999, \"height_mm\": 86.00000015555555}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8.0, \"tick\": 8.0, \"legend\": 8.0, \"annotation\": 8.0, \"title\": 9.0, \"panel\": 9.0}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:source_bindings:data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/prepared.csv\", \"sha256\": \"aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3\", \"expected_sha256\": \"aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3\", \"status\": \"passed\"}, {\"declared_by\": \"settings.json:input_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/prepared.csv\", \"sha256\": \"aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3\", \"expected_sha256\": \"aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/prepared.csv\", \"sha256\": \"aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3\", \"expected_sha256\": \"aa7f116267e136ef137a2bc81e4af965883407f1b07e63381077c33d398a66e3\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"elements.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/paired_plot.py\", \"sha256\": \"07a283b0dda9cecf97f924dd7f7a0655a15c18f6f542c11ee9480f57e728c36b\", \"expected_sha256\": \"07a283b0dda9cecf97f924dd7f7a0655a15c18f6f542c11ee9480f57e728c36b\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"settings.json:spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/spec.json\", \"sha256\": \"d1a7ad460c46c7a0b35c2fa086c808677dd4f205775eede69e4e74fb30a52bd0\", \"expected_sha256\": \"d1a7ad460c46c7a0b35c2fa086c808677dd4f205775eede69e4e74fb30a52bd0\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/spec.json\", \"sha256\": \"d1a7ad460c46c7a0b35c2fa086c808677dd4f205775eede69e4e74fb30a52bd0\", \"expected_sha256\": \"d1a7ad460c46c7a0b35c2fa086c808677dd4f205775eede69e4e74fb30a52bd0\", \"status\": \"passed\"}], \"figure_profile\": []}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/final/settings.json\", \"sha256\": \"3f03502c46f34bfc36b4c763bd321789482c40938f41ea39cdb1002611f9de1a\", \"bytes\": 16247}, \"resolved_spec_sha256\": \"f0b18bc40345411935ca675ceccbcf731dba557fe25962ed1e33eabed162c19f\", \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\"}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/final/qa.json\", \"sha256\": \"e2351c9d2f33c57ffeb6e0bfa5da9e4e5547fd738dcb9be505efa533f9405701\", \"bytes\": 39821}, \"status\": \"pass\", \"valid_outputs\": true, \"input_rows\": 254, \"plotted_input_rows\": 254, \"readability_advisory\": \"no_advisory_flags\", \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/06-within-person-change/final/caption.md\", \"sha256\": \"2cd102bef22955cd9564f2d1c9da3e439d367ab840808ff3a3a1e57ab625e026\", \"bytes\": 832}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "note1",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Panel-level reading and geometry",
+      "evidence": "Dense connector regions necessarily overlap; every pair and both endpoints remain present, and the black median/IQR guide remains readable.",
+      "requirement": "Retain every supplied value, fixed canvas and agreed typography; disclose observed tradeoffs.",
+      "action": "Keep the selected valid version and preserve rejected/earlier attempts."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "note1"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": ""
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

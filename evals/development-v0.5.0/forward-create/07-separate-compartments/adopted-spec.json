@@ -1,0 +1,51 @@
+{
+  "layout": {
+    "width_mm": 82,
+    "height_mm": 65,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "custom-compartment-timecourse",
+  "fields": {
+    "compartment": "compartment",
+    "group": "condition",
+    "time": "hour",
+    "value": "ccl2",
+    "unit": "unit"
+  },
+  "options": {
+    "uncertainty": "sample SEM = sample SD / sqrt(source row count)",
+    "connect_raw": false,
+    "time_offset_description": "Raw dots within ±1.0 h of condition lane anchors at hour ±1.1 h; means/SEMs remain at true hour."
+  },
+  "colors": {
+    "Control": "#347AAF",
+    "IM-DTR": "#C5604F"
+  },
+  "order": {
+    "compartment": [
+      "Lung",
+      "Serum"
+    ],
+    "group": [
+      "Control",
+      "IM-DTR"
+    ],
+    "time": [
+      0,
+      12,
+      24,
+      48
+    ]
+  },
+  "labels": {
+    "x": "Time (h)"
+  }
+}

@@ -19,6 +19,8 @@ jobs:
           cache: pip
       - name: Install declared development dependencies
         run: python -m pip install -r requirements-dev.txt
+      - name: Install optional MCP dependencies for interoperability tests
+        run: python -m pip install -r skills/easyviz/scripts/requirements-mcp.txt
       - name: Verify dependency compatibility
         run: python -m pip check
       - name: Test data, statistics, geometry and export contracts

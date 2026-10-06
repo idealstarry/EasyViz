@@ -1,0 +1,4689 @@
+{
+  "schema_version": 1,
+  "chart": "custom-broken-axis-bars",
+  "track": "reproduce",
+  "panel": {
+    "width_mm": 92.0,
+    "height_mm": 66.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "cac601436c2e744373c5cf58e33e73248deed38ab911cdbb836af10433798161",
+    "spec_sha256": "81298f79361c85a2ac8a1efc24d2678896b089698be8f101da91b8b0266b5c4e",
+    "input_sha256": "c8ab920928c754666e4f7fa9c4b1cc47bded365fe3d073efb1e983b1673f4300",
+    "source_script_sha256": "486d14bce8d106a66075d7065dbcbabf795265f95bf2ec2585a0e13c742a3666",
+    "auxiliary_inputs_sha256": "3b4c1b348e41a4864b6af0bd0253fc25360b2024a84160ddde55e70ca07264e1"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/inputs/observations.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/plot.py",
+    "supplied_spec_sha256": "5120355c8f5fa2e993578518a05dbe42b11696ecb9bf55ec3ae2af9b331d65c6",
+    "auxiliary_inputs": {
+      "author_p_values": {
+        "path": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/inputs/author-p-values.csv",
+        "sha256": "ba888ca04057ece035d633f1e075a0b033a0851c3ac6848773b0a2ad123197a5"
+      },
+      "render_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+        "sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339"
+      },
+      "figure_elements_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+      },
+      "figure_handoff_helper": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+        "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "easyviz-axis-label-d40433144e289086",
+      "role": "axis-label",
+      "label": "Relative expression",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/y"
+      ],
+      "editable": {
+        "text": "/labels/y"
+      },
+      "bbox_mm": [
+        1.675705295138888,
+        23.14266666666667,
+        2.6485894097222245,
+        24.214666666666666
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-5dfabf3b5555bcc8",
+      "role": "mean-bar",
+      "label": "ucp1 · YT-FF mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/1"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/2"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/3"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/4"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        14.980645161290324,
+        14.000000000000004,
+        2.874193548387097,
+        1.2499999999999998
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-9bd1c0ecada20e3e",
+      "role": "sem-interval",
+      "label": "ucp1 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/1"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/2"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/3"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/4"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        16.417741935483875,
+        14.839181820253211,
+        0.0,
+        0.8216363594935873
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-1888df1c79eaa6e3",
+      "role": "sem-interval",
+      "label": "ucp1 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/1"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/2"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/3"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/4"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        15.785419354838714,
+        14.839181820253211,
+        1.264645161290322,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-1f6079a70937cfbe",
+      "role": "sem-interval",
+      "label": "ucp1 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/1"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/2"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/3"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/4"
+        },
+        {
+          "observation_id": "ucp1/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        15.785419354838714,
+        15.660818179746798,
+        1.264645161290322,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-be503166cfe3473e",
+      "role": "observation",
+      "label": "Ucp1 · YT-FF · ucp1/YT-FF/1",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/1",
+          "gene": "ucp1",
+          "group": "YT-FF",
+          "source_cell": "B3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        15.077934587813624,
+        14.167913055555559,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-19362f855a8a1afc",
+      "role": "observation",
+      "label": "Ucp1 · YT-FF · ucp1/YT-FF/2",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/2",
+          "gene": "ucp1",
+          "group": "YT-FF",
+          "source_cell": "C3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        15.544991039426527,
+        15.995150555555558,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-f8d3c313eb07fa94",
+      "role": "observation",
+      "label": "Ucp1 · YT-FF · ucp1/YT-FF/3",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/3",
+          "gene": "ucp1",
+          "group": "YT-FF",
+          "source_cell": "D3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        16.012047491039432,
+        13.95341680555556,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-348e817354d24c8f",
+      "role": "observation",
+      "label": "Ucp1 · YT-FF · ucp1/YT-FF/4",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/4",
+          "gene": "ucp1",
+          "group": "YT-FF",
+          "source_cell": "E3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        16.479103942652333,
+        14.455410555555561,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-55490704142cb01f",
+      "role": "observation",
+      "label": "Ucp1 · YT-FF · ucp1/YT-FF/5",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-FF/5",
+          "gene": "ucp1",
+          "group": "YT-FF",
+          "source_cell": "F3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        16.946160394265238,
+        15.64963680555556,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-c1e299c783b8e204",
+      "role": "mean-bar",
+      "label": "ucp1 · YT-AKO mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/1"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/2"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/3"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/4"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        18.91935483870968,
+        14.000000000000004,
+        2.8741935483870993,
+        10.4775055
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-5d5407b8c8b09775",
+      "role": "sem-interval",
+      "label": "ucp1 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/1"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/2"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/3"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/4"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        20.35645161290323,
+        22.17765199850931,
+        0.0,
+        4.599707002981385
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-8ba88d63e642d611",
+      "role": "sem-interval",
+      "label": "ucp1 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/1"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/2"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/3"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/4"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        19.72412903225807,
+        22.17765199850931,
+        1.264645161290322,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-e2854936dedfb915",
+      "role": "sem-interval",
+      "label": "ucp1 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/1"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/2"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/3"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/4"
+        },
+        {
+          "observation_id": "ucp1/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        19.72412903225807,
+        26.777359001490698,
+        1.264645161290322,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-5ec059f8c513490a",
+      "role": "observation",
+      "label": "Ucp1 · YT-AKO · ucp1/YT-AKO/1",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/1",
+          "gene": "ucp1",
+          "group": "YT-AKO",
+          "source_cell": "G3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        19.01664426523298,
+        18.645815555555558,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-da6cb2f9ef426a34",
+      "role": "observation",
+      "label": "Ucp1 · YT-AKO · ucp1/YT-AKO/2",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/2",
+          "gene": "ucp1",
+          "group": "YT-AKO",
+          "source_cell": "H3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        19.483700716845885,
+        18.709685555555563,
+        0.8113888888888873,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-53ebfb96273cbc95",
+      "role": "observation",
+      "label": "Ucp1 · YT-AKO · ucp1/YT-AKO/3",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/3",
+          "gene": "ucp1",
+          "group": "YT-AKO",
+          "source_cell": "I3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        19.950757168458786,
+        26.01815555555556,
+        0.8113888888888873,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-fb1987893fe6fe8e",
+      "role": "observation",
+      "label": "Ucp1 · YT-AKO · ucp1/YT-AKO/4",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/4",
+          "gene": "ucp1",
+          "group": "YT-AKO",
+          "source_cell": "J3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        20.417813620071687,
+        26.95713055555556,
+        0.8113888888888873,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-77a33f5a62979f32",
+      "role": "observation",
+      "label": "Ucp1 · YT-AKO · ucp1/YT-AKO/5",
+      "source_keys": [
+        {
+          "observation_id": "ucp1/YT-AKO/5",
+          "gene": "ucp1",
+          "group": "YT-AKO",
+          "source_cell": "K3"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        20.884870071684592,
+        30.02826805555556,
+        0.8113888888888897,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-317b3edbeaf1b7ba",
+      "role": "mean-bar",
+      "label": "cidea · YT-FF mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/1"
+        },
+        {
+          "observation_id": "cidea/YT-FF/2"
+        },
+        {
+          "observation_id": "cidea/YT-FF/3"
+        },
+        {
+          "observation_id": "cidea/YT-FF/4"
+        },
+        {
+          "observation_id": "cidea/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        25.625806451612906,
+        14.000000000000004,
+        2.874193548387097,
+        1.2500002500000011
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-d5a5177c02c12edf",
+      "role": "sem-interval",
+      "label": "cidea · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/1"
+        },
+        {
+          "observation_id": "cidea/YT-FF/2"
+        },
+        {
+          "observation_id": "cidea/YT-FF/3"
+        },
+        {
+          "observation_id": "cidea/YT-FF/4"
+        },
+        {
+          "observation_id": "cidea/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        27.06290322580646,
+        15.122457884355166,
+        0.0,
+        0.2550847312896745
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-ff56b77aba8916bd",
+      "role": "sem-interval",
+      "label": "cidea · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/1"
+        },
+        {
+          "observation_id": "cidea/YT-FF/2"
+        },
+        {
+          "observation_id": "cidea/YT-FF/3"
+        },
+        {
+          "observation_id": "cidea/YT-FF/4"
+        },
+        {
+          "observation_id": "cidea/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        26.430580645161296,
+        15.122457884355166,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-2ea405c7353ddb08",
+      "role": "sem-interval",
+      "label": "cidea · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/1"
+        },
+        {
+          "observation_id": "cidea/YT-FF/2"
+        },
+        {
+          "observation_id": "cidea/YT-FF/3"
+        },
+        {
+          "observation_id": "cidea/YT-FF/4"
+        },
+        {
+          "observation_id": "cidea/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        26.430580645161296,
+        15.37754261564484,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-d40cf525be1e9afa",
+      "role": "observation",
+      "label": "Cidea · YT-FF · cidea/YT-FF/1",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/1",
+          "gene": "cidea",
+          "group": "YT-FF",
+          "source_cell": "B4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        25.723095878136203,
+        14.58361930555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-c8da360ec16925f0",
+      "role": "observation",
+      "label": "Cidea · YT-FF · cidea/YT-FF/2",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/2",
+          "gene": "cidea",
+          "group": "YT-FF",
+          "source_cell": "C4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        26.19015232974911,
+        14.82299555555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-6438ca7347a1ff51",
+      "role": "observation",
+      "label": "Cidea · YT-FF · cidea/YT-FF/3",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/3",
+          "gene": "cidea",
+          "group": "YT-FF",
+          "source_cell": "D4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        26.657208781362012,
+        14.705496805555558,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-e3c8bcd35af361d6",
+      "role": "observation",
+      "label": "Cidea · YT-FF · cidea/YT-FF/4",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/4",
+          "gene": "cidea",
+          "group": "YT-FF",
+          "source_cell": "E4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        27.124265232974917,
+        14.78164930555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-530e014ffed546db",
+      "role": "observation",
+      "label": "Cidea · YT-FF · cidea/YT-FF/5",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-FF/5",
+          "gene": "cidea",
+          "group": "YT-FF",
+          "source_cell": "F4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        27.591321684587818,
+        15.32776805555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-863212e8dd59adb9",
+      "role": "mean-bar",
+      "label": "cidea · YT-AKO mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/1"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/2"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/3"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/4"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        29.56451612903227,
+        14.000000000000004,
+        2.874193548387097,
+        5.938886500000002
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-d55d3b9c5a77a14c",
+      "role": "sem-interval",
+      "label": "cidea · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/1"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/2"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/3"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/4"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        31.001612903225816,
+        19.23008036212026,
+        0.0,
+        1.4176122757594896
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-d05883907672c486",
+      "role": "sem-interval",
+      "label": "cidea · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/1"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/2"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/3"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/4"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        30.369290322580653,
+        19.23008036212026,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-95ec9c457cbddf46",
+      "role": "sem-interval",
+      "label": "cidea · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/1"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/2"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/3"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/4"
+        },
+        {
+          "observation_id": "cidea/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        30.369290322580653,
+        20.647692637879747,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-0715fc2a625a28c2",
+      "role": "observation",
+      "label": "Cidea · YT-AKO · cidea/YT-AKO/1",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/1",
+          "gene": "cidea",
+          "group": "YT-AKO",
+          "source_cell": "G4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        29.66180555555556,
+        18.10039055555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-a27938cbfd6d45dd",
+      "role": "observation",
+      "label": "Cidea · YT-AKO · cidea/YT-AKO/2",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/2",
+          "gene": "cidea",
+          "group": "YT-AKO",
+          "source_cell": "H4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        30.12886200716846,
+        18.16682055555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-2c8e0bda0db13db5",
+      "role": "observation",
+      "label": "Cidea · YT-AKO · cidea/YT-AKO/3",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/3",
+          "gene": "cidea",
+          "group": "YT-AKO",
+          "source_cell": "I4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        30.59591845878137,
+        21.24072055555556,
+        0.8113888888888922,
+        0.8113888888888897
+      ]
+    },
+    {
+      "id": "easyviz-observation-7aad98895aedc2d2",
+      "role": "observation",
+      "label": "Cidea · YT-AKO · cidea/YT-AKO/4",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/4",
+          "gene": "cidea",
+          "group": "YT-AKO",
+          "source_cell": "J4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        31.06297491039427,
+        18.93517555555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-71f7e60b1bd62f63",
+      "role": "observation",
+      "label": "Cidea · YT-AKO · cidea/YT-AKO/5",
+      "source_keys": [
+        {
+          "observation_id": "cidea/YT-AKO/5",
+          "gene": "cidea",
+          "group": "YT-AKO",
+          "source_cell": "K4"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        31.530031362007175,
+        21.22285305555556,
+        0.8113888888888922,
+        0.8113888888888897
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-7253cbae4c25e72d",
+      "role": "mean-bar",
+      "label": "dio2 · YT-FF mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/1"
+        },
+        {
+          "observation_id": "dio2/YT-FF/2"
+        },
+        {
+          "observation_id": "dio2/YT-FF/3"
+        },
+        {
+          "observation_id": "dio2/YT-FF/4"
+        },
+        {
+          "observation_id": "dio2/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        36.27096774193549,
+        14.000000000000004,
+        2.874193548387097,
+        1.2499997500000009
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-5c9ebf4dd822099e",
+      "role": "sem-interval",
+      "label": "dio2 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/1"
+        },
+        {
+          "observation_id": "dio2/YT-FF/2"
+        },
+        {
+          "observation_id": "dio2/YT-FF/3"
+        },
+        {
+          "observation_id": "dio2/YT-FF/4"
+        },
+        {
+          "observation_id": "dio2/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        37.70806451612904,
+        14.922826079059114,
+        0.0,
+        0.6543473418817777
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-f433275c7121de24",
+      "role": "sem-interval",
+      "label": "dio2 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/1"
+        },
+        {
+          "observation_id": "dio2/YT-FF/2"
+        },
+        {
+          "observation_id": "dio2/YT-FF/3"
+        },
+        {
+          "observation_id": "dio2/YT-FF/4"
+        },
+        {
+          "observation_id": "dio2/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        37.07574193548388,
+        14.922826079059114,
+        1.2646451612903196,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-8114cdb19789ccb8",
+      "role": "sem-interval",
+      "label": "dio2 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/1"
+        },
+        {
+          "observation_id": "dio2/YT-FF/2"
+        },
+        {
+          "observation_id": "dio2/YT-FF/3"
+        },
+        {
+          "observation_id": "dio2/YT-FF/4"
+        },
+        {
+          "observation_id": "dio2/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        37.07574193548388,
+        15.577173420940891,
+        1.2646451612903196,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-07caf7d9ee733777",
+      "role": "observation",
+      "label": "Dio2 · YT-FF · dio2/YT-FF/1",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/1",
+          "gene": "dio2",
+          "group": "YT-FF",
+          "source_cell": "B5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        36.36825716845878,
+        13.83749055555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-3e933e1029519152",
+      "role": "observation",
+      "label": "Dio2 · YT-FF · dio2/YT-FF/2",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/2",
+          "gene": "dio2",
+          "group": "YT-FF",
+          "source_cell": "C5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        36.83531362007169,
+        14.34737055555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-702ea43db33bd0f2",
+      "role": "observation",
+      "label": "Dio2 · YT-FF · dio2/YT-FF/3",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/3",
+          "gene": "dio2",
+          "group": "YT-FF",
+          "source_cell": "D5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        37.3023700716846,
+        15.097343055555559,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-24eaa9fcf1a56ace",
+      "role": "observation",
+      "label": "Dio2 · YT-FF · dio2/YT-FF/4",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/4",
+          "gene": "dio2",
+          "group": "YT-FF",
+          "source_cell": "E5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        37.7694265232975,
+        15.339154305555558,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-34d3f319014e238a",
+      "role": "observation",
+      "label": "Dio2 · YT-FF · dio2/YT-FF/5",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-FF/5",
+          "gene": "dio2",
+          "group": "YT-FF",
+          "source_cell": "F5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        38.2364829749104,
+        15.60016805555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-71bcbb4f8ce38515",
+      "role": "mean-bar",
+      "label": "dio2 · YT-AKO mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/1"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/2"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/3"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/4"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        40.20967741935485,
+        14.000000000000004,
+        2.874193548387097,
+        9.430602750000002
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-ebf1b007047a3ead",
+      "role": "sem-interval",
+      "label": "dio2 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/1"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/2"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/3"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/4"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        41.646774193548396,
+        20.574366057125793,
+        0.0,
+        5.7124733857484165
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-76fe8fcc7d30b77d",
+      "role": "sem-interval",
+      "label": "dio2 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/1"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/2"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/3"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/4"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        41.01445161290324,
+        20.574366057125793,
+        1.2646451612903293,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-926796cc1621a10d",
+      "role": "sem-interval",
+      "label": "dio2 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/1"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/2"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/3"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/4"
+        },
+        {
+          "observation_id": "dio2/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        41.01445161290324,
+        26.28683944287421,
+        1.2646451612903293,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-8be70c08e566c890",
+      "role": "observation",
+      "label": "Dio2 · YT-AKO · dio2/YT-AKO/1",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/1",
+          "gene": "dio2",
+          "group": "YT-AKO",
+          "source_cell": "G5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        40.306966845878144,
+        16.77524055555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-2eb2af029a2dc85e",
+      "role": "observation",
+      "label": "Dio2 · YT-AKO · dio2/YT-AKO/2",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/2",
+          "gene": "dio2",
+          "group": "YT-AKO",
+          "source_cell": "H5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        40.77402329749105,
+        17.04499680555556,
+        0.8113888888888922,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-72702337c1a2713e",
+      "role": "observation",
+      "label": "Dio2 · YT-AKO · dio2/YT-AKO/3",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/3",
+          "gene": "dio2",
+          "group": "YT-AKO",
+          "source_cell": "I5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        41.24107974910395,
+        31.86374305555556,
+        0.8113888888888922,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-20127861c5da804c",
+      "role": "observation",
+      "label": "Dio2 · YT-AKO · dio2/YT-AKO/4",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/4",
+          "gene": "dio2",
+          "group": "YT-AKO",
+          "source_cell": "J5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        41.70813620071686,
+        23.225205555555558,
+        0.8113888888888922,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-882550d8013c2bb5",
+      "role": "observation",
+      "label": "Dio2 · YT-AKO · dio2/YT-AKO/5",
+      "source_keys": [
+        {
+          "observation_id": "dio2/YT-AKO/5",
+          "gene": "dio2",
+          "group": "YT-AKO",
+          "source_cell": "K5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        42.17519265232976,
+        26.215355555555558,
+        0.8113888888888922,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-1a4136aa4b6b23ef",
+      "role": "mean-bar",
+      "label": "cox8b · YT-FF mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/1"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/2"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/3"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/4"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        46.91612903225808,
+        14.000000000000004,
+        2.874193548387102,
+        1.2499999999999998
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-dcd3db199609f220",
+      "role": "sem-interval",
+      "label": "cox8b · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/1"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/2"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/3"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/4"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        48.353225806451626,
+        15.064148866868116,
+        0.0,
+        0.37170226626377173
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-92a712f9af5d12cb",
+      "role": "sem-interval",
+      "label": "cox8b · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/1"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/2"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/3"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/4"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        47.72090322580646,
+        15.064148866868116,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-d6545ef0f8b623bd",
+      "role": "sem-interval",
+      "label": "cox8b · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/1"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/2"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/3"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/4"
+        },
+        {
+          "observation_id": "cox8b/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        47.72090322580646,
+        15.435851133131889,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-fa167d95ac2526e0",
+      "role": "observation",
+      "label": "Cox8b · YT-FF · cox8b/YT-FF/1",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/1",
+          "gene": "cox8b",
+          "group": "YT-FF",
+          "source_cell": "B6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        47.01341845878137,
+        14.32465680555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-91bde94a906be017",
+      "role": "observation",
+      "label": "Cox8b · YT-FF · cox8b/YT-FF/2",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/2",
+          "gene": "cox8b",
+          "group": "YT-FF",
+          "source_cell": "C6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        47.480474910394285,
+        15.19811805555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-eddc0e162b482fd9",
+      "role": "observation",
+      "label": "Cox8b · YT-FF · cox8b/YT-FF/3",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/3",
+          "gene": "cox8b",
+          "group": "YT-FF",
+          "source_cell": "D6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        47.94753136200718,
+        14.59788805555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-06a443ab502572ea",
+      "role": "observation",
+      "label": "Cox8b · YT-FF · cox8b/YT-FF/4",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/4",
+          "gene": "cox8b",
+          "group": "YT-FF",
+          "source_cell": "E6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        48.41458781362009,
+        14.776665555555558,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-9605594d47239640",
+      "role": "observation",
+      "label": "Cox8b · YT-FF · cox8b/YT-FF/5",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-FF/5",
+          "gene": "cox8b",
+          "group": "YT-FF",
+          "source_cell": "F6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        48.88164426523299,
+        15.32419930555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-61e12e639bd090da",
+      "role": "mean-bar",
+      "label": "cox8b · YT-AKO mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/1"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/2"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/3"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/4"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        50.85483870967743,
+        14.000000000000004,
+        2.874193548387102,
+        9.0807055
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-c578ced769eb923b",
+      "role": "sem-interval",
+      "label": "cox8b · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/1"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/2"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/3"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/4"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        52.29193548387098,
+        21.752643675168617,
+        0.0,
+        2.6561236496627734
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-59997ddb367f895e",
+      "role": "sem-interval",
+      "label": "cox8b · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/1"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/2"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/3"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/4"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        51.65961290322581,
+        21.752643675168617,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-9dbb1a99769c02c6",
+      "role": "sem-interval",
+      "label": "cox8b · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/1"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/2"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/3"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/4"
+        },
+        {
+          "observation_id": "cox8b/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        51.65961290322581,
+        24.40876732483139,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-da8edf0df485ece6",
+      "role": "observation",
+      "label": "Cox8b · YT-AKO · cox8b/YT-AKO/1",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/1",
+          "gene": "cox8b",
+          "group": "YT-AKO",
+          "source_cell": "G6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        50.952128136200734,
+        21.206871805555558,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-76358f4ec84a56e1",
+      "role": "observation",
+      "label": "Cox8b · YT-AKO · cox8b/YT-AKO/2",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/2",
+          "gene": "cox8b",
+          "group": "YT-AKO",
+          "source_cell": "H6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        51.41918458781363,
+        20.20794305555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-98947bcff7efac07",
+      "role": "observation",
+      "label": "Cox8b · YT-AKO · cox8b/YT-AKO/3",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/3",
+          "gene": "cox8b",
+          "group": "YT-AKO",
+          "source_cell": "I6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        51.88624103942654,
+        21.275730555555562,
+        0.8113888888888825,
+        0.8113888888888897
+      ]
+    },
+    {
+      "id": "easyviz-observation-a33924036afbd91c",
+      "role": "observation",
+      "label": "Cox8b · YT-AKO · cox8b/YT-AKO/4",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/4",
+          "gene": "cox8b",
+          "group": "YT-AKO",
+          "source_cell": "J6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        52.353297491039434,
+        23.013441805555555,
+        0.8113888888888825,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-93dc6ea113d50571",
+      "role": "observation",
+      "label": "Cox8b · YT-AKO · cox8b/YT-AKO/5",
+      "source_keys": [
+        {
+          "observation_id": "cox8b/YT-AKO/5",
+          "gene": "cox8b",
+          "group": "YT-AKO",
+          "source_cell": "K6"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        52.820353942652346,
+        27.671068055555555,
+        0.8113888888888825,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-eb47ba6e4c70575f",
+      "role": "mean-bar",
+      "label": "elovl3 · YT-FF mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/1"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/2"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/3"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/4"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        57.56129032258066,
+        14.000000000000004,
+        2.874193548387102,
+        1.2499999999999998
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-89b89d8136016a9b",
+      "role": "sem-interval",
+      "label": "elovl3 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/1"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/2"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/3"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/4"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        58.99838709677421,
+        14.900770893402344,
+        0.0,
+        0.6984582131953195
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-96213981cf0fd1eb",
+      "role": "sem-interval",
+      "label": "elovl3 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/1"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/2"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/3"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/4"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        58.36606451612904,
+        14.900770893402344,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-6f481c3ec382fe19",
+      "role": "sem-interval",
+      "label": "elovl3 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/1"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/2"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/3"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/4"
+        },
+        {
+          "observation_id": "elovl3/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        58.36606451612904,
+        15.599229106597663,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-3170f4af4212616b",
+      "role": "observation",
+      "label": "Elovl3 · YT-FF · elovl3/YT-FF/1",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/1",
+          "gene": "elovl3",
+          "group": "YT-FF",
+          "source_cell": "B7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        57.658579749103964,
+        14.14296180555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-150000af4e9c3174",
+      "role": "observation",
+      "label": "Elovl3 · YT-FF · elovl3/YT-FF/2",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/2",
+          "gene": "elovl3",
+          "group": "YT-FF",
+          "source_cell": "C7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        58.12563620071686,
+        14.96865930555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-28bb8292182595e9",
+      "role": "observation",
+      "label": "Elovl3 · YT-FF · elovl3/YT-FF/3",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/3",
+          "gene": "elovl3",
+          "group": "YT-FF",
+          "source_cell": "D7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        58.59269265232977,
+        14.93565930555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-c030a2de4d9dd29c",
+      "role": "observation",
+      "label": "Elovl3 · YT-FF · elovl3/YT-FF/4",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/4",
+          "gene": "elovl3",
+          "group": "YT-FF",
+          "source_cell": "E7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        59.059749103942664,
+        14.13696430555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-662d95b8cdb4a1b3",
+      "role": "observation",
+      "label": "Elovl3 · YT-FF · elovl3/YT-FF/5",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-FF/5",
+          "gene": "elovl3",
+          "group": "YT-FF",
+          "source_cell": "F7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        59.526805555555576,
+        16.03728305555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-eb7169f0f672a345",
+      "role": "mean-bar",
+      "label": "elovl3 · YT-AKO mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        61.5,
+        14.000000000000004,
+        2.874193548387102,
+        69.78526000000001
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-d72653446772a746",
+      "role": "mean-bar",
+      "label": "elovl3 · YT-AKO mean · segment 2",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        61.5,
+        22.214285714285715,
+        2.874193548387102,
+        22.78702367346938
+      ]
+    },
+    {
+      "id": "easyviz-broken-bar-outline-285e30b48176f475",
+      "role": "broken-bar-outline",
+      "label": "elovl3 · YT-AKO continuous outline",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        61.500000000000014,
+        34.00000000000001,
+        0.0,
+        2.4999999999999996
+      ]
+    },
+    {
+      "id": "easyviz-broken-bar-outline-7223d7efa8101645",
+      "role": "broken-bar-outline",
+      "label": "elovl3 · YT-AKO continuous outline",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        64.37419354838711,
+        34.00000000000001,
+        0.0,
+        2.4999999999999996
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-39177205f2f1a616",
+      "role": "sem-interval",
+      "label": "elovl3 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        62.937096774193556,
+        43.12704451676624,
+        0.0,
+        3.7485297419777264
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-89b9869b275f32c8",
+      "role": "sem-interval",
+      "label": "elovl3 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        62.3047741935484,
+        43.12704451676624,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-fb044500d0050d92",
+      "role": "sem-interval",
+      "label": "elovl3 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/2"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/3"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/4"
+        },
+        {
+          "observation_id": "elovl3/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        62.3047741935484,
+        46.87557425874397,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-05b9cf2041c9dbb2",
+      "role": "observation",
+      "label": "Elovl3 · YT-AKO · elovl3/YT-AKO/1",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/1",
+          "gene": "elovl3",
+          "group": "YT-AKO",
+          "source_cell": "G7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        61.59728942652332,
+        42.52210963718821,
+        0.8113888888888825,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-ff0ba8aa017fe614",
+      "role": "observation",
+      "label": "Elovl3 · YT-AKO · elovl3/YT-AKO/2",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/2",
+          "gene": "elovl3",
+          "group": "YT-AKO",
+          "source_cell": "H7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        62.064345878136216,
+        52.04932188208617,
+        0.8113888888888825,
+        0.8113888888888825
+      ]
+    },
+    {
+      "id": "easyviz-observation-3293609d7ae9d453",
+      "role": "observation",
+      "label": "Elovl3 · YT-AKO · elovl3/YT-AKO/3",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/3",
+          "gene": "elovl3",
+          "group": "YT-AKO",
+          "source_cell": "I7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        62.53140232974912,
+        43.48887698412699,
+        0.8113888888888825,
+        0.8113888888888825
+      ]
+    },
+    {
+      "id": "easyviz-observation-5a934820a6bff97e",
+      "role": "observation",
+      "label": "Elovl3 · YT-AKO · elovl3/YT-AKO/4",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/4",
+          "gene": "elovl3",
+          "group": "YT-AKO",
+          "source_cell": "J7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        62.99845878136202,
+        42.31040759637188,
+        0.8113888888888825,
+        0.8113888888888922
+      ]
+    },
+    {
+      "id": "easyviz-observation-c021c78146176287",
+      "role": "observation",
+      "label": "Elovl3 · YT-AKO · elovl3/YT-AKO/5",
+      "source_keys": [
+        {
+          "observation_id": "elovl3/YT-AKO/5",
+          "gene": "elovl3",
+          "group": "YT-AKO",
+          "source_cell": "K7"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        63.46551523297492,
+        42.60735861678005,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-4a8eec6c2008291a",
+      "role": "mean-bar",
+      "label": "prdm16 · YT-FF mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/1"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/2"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/3"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/4"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        68.20645161290324,
+        14.000000000000004,
+        2.874193548387102,
+        1.2499999999999998
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-77350b90af406895",
+      "role": "sem-interval",
+      "label": "prdm16 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/1"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/2"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/3"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/4"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        69.6435483870968,
+        14.998264788752712,
+        0.0,
+        0.5034704224945831
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-7ccd3d54199a8137",
+      "role": "sem-interval",
+      "label": "prdm16 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/1"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/2"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/3"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/4"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        69.01122580645163,
+        14.998264788752712,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-62268b109077f490",
+      "role": "sem-interval",
+      "label": "prdm16 · YT-FF SEM",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/1"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/2"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/3"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/4"
+        },
+        {
+          "observation_id": "prdm16/YT-FF/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        69.01122580645163,
+        15.501735211247293,
+        1.2646451612903244,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-0991396adb3c8065",
+      "role": "observation",
+      "label": "Prdm16 · YT-FF · prdm16/YT-FF/1",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/1",
+          "gene": "prdm16",
+          "group": "YT-FF",
+          "source_cell": "B8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        68.30374103942655,
+        14.95982805555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-e89ae44ba7c5d576",
+      "role": "observation",
+      "label": "Prdm16 · YT-FF · prdm16/YT-FF/2",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/2",
+          "gene": "prdm16",
+          "group": "YT-FF",
+          "source_cell": "C8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        68.77079749103946,
+        14.318078055555558,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-1e1ea7ac82e4aa8a",
+      "role": "observation",
+      "label": "Prdm16 · YT-FF · prdm16/YT-FF/3",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/3",
+          "gene": "prdm16",
+          "group": "YT-FF",
+          "source_cell": "D8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        69.23785394265235,
+        15.728204305555558,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-32d3f989e7e25679",
+      "role": "observation",
+      "label": "Prdm16 · YT-FF · prdm16/YT-FF/4",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/4",
+          "gene": "prdm16",
+          "group": "YT-FF",
+          "source_cell": "E8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        69.70491039426526,
+        14.81254805555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-f5df5c1b9febb172",
+      "role": "observation",
+      "label": "Prdm16 · YT-FF · prdm16/YT-FF/5",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-FF/5",
+          "gene": "prdm16",
+          "group": "YT-FF",
+          "source_cell": "F8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        70.17196684587816,
+        14.40286930555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-mean-bar-0d3fbc8ca8219870",
+      "role": "mean-bar",
+      "label": "prdm16 · YT-AKO mean · segment 1",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/1"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/2"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/3"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/4"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/bar_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/bar_linewidth_pt"
+      },
+      "bbox_mm": [
+        72.14516129032259,
+        14.000000000000004,
+        2.874193548387102,
+        0.8676150000000005
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-dc4c15aab559ccde",
+      "role": "sem-interval",
+      "label": "prdm16 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/1"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/2"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/3"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/4"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        73.58225806451614,
+        14.745355921181316,
+        0.0,
+        0.24451815763737234
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-2aade2f5f9657a7d",
+      "role": "sem-interval",
+      "label": "prdm16 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/1"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/2"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/3"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/4"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        72.94993548387097,
+        14.745355921181316,
+        1.264645161290334,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-sem-interval-0ee03426b86b1186",
+      "role": "sem-interval",
+      "label": "prdm16 · YT-AKO SEM",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/1"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/2"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/3"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/4"
+        },
+        {
+          "observation_id": "prdm16/YT-AKO/5"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/error_linewidth_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "linewidth": "/style/error_linewidth_pt"
+      },
+      "bbox_mm": [
+        72.94993548387097,
+        14.989874078818689,
+        1.264645161290334,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-observation-6aecaffe70db931f",
+      "role": "observation",
+      "label": "Prdm16 · YT-AKO · prdm16/YT-AKO/1",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/1",
+          "gene": "prdm16",
+          "group": "YT-AKO",
+          "source_cell": "G8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        72.2424507168459,
+        14.18393680555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-bd8e1155b9991719",
+      "role": "observation",
+      "label": "Prdm16 · YT-AKO · prdm16/YT-AKO/2",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/2",
+          "gene": "prdm16",
+          "group": "YT-AKO",
+          "source_cell": "H8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        72.7095071684588,
+        14.20633055555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-c4ada463447ad1c7",
+      "role": "observation",
+      "label": "Prdm16 · YT-AKO · prdm16/YT-AKO/3",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/3",
+          "gene": "prdm16",
+          "group": "YT-AKO",
+          "source_cell": "I8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        73.1765636200717,
+        14.50675805555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-2c41ed49c676e5f0",
+      "role": "observation",
+      "label": "Prdm16 · YT-AKO · prdm16/YT-AKO/4",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/4",
+          "gene": "prdm16",
+          "group": "YT-AKO",
+          "source_cell": "J8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        73.64362007168461,
+        14.574185555555559,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-observation-62e3d7affbaa7c96",
+      "role": "observation",
+      "label": "Prdm16 · YT-AKO · prdm16/YT-AKO/5",
+      "source_keys": [
+        {
+          "observation_id": "prdm16/YT-AKO/5",
+          "gene": "prdm16",
+          "group": "YT-AKO",
+          "source_cell": "K8"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO",
+        "/style/point_size_pt"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO",
+        "size": "/style/point_size_pt"
+      },
+      "bbox_mm": [
+        74.11067652329751,
+        14.83839180555556,
+        0.8113888888888825,
+        0.8113888888888873
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-df3311dfa6c18be8",
+      "role": "reported-comparison",
+      "label": "ucp1 reported **",
+      "source_keys": [
+        {
+          "gene": "ucp1",
+          "reported_p": "4.2378299999999997E-3",
+          "source_cell": "L3"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        16.417741935483875,
+        31.833962500000005,
+        3.9387096774193533,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-f7f3ed0e52df4121",
+      "role": "reported-comparison",
+      "label": "ucp1 reported **",
+      "source_keys": [
+        {
+          "gene": "ucp1",
+          "reported_p": "4.2378299999999997E-3",
+          "source_cell": "L3"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        17.286430107526886,
+        32.1339625,
+        2.2013333333333334,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-3f84cd0d23557222",
+      "role": "reported-comparison",
+      "label": "cidea reported ***",
+      "source_keys": [
+        {
+          "gene": "cidea",
+          "reported_p": "1.8600999999999999E-4",
+          "source_cell": "L4"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        27.06290322580646,
+        23.046415000000003,
+        3.938709677419358,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-543db9c1c57061e1",
+      "role": "reported-comparison",
+      "label": "cidea reported ***",
+      "source_keys": [
+        {
+          "gene": "cidea",
+          "reported_p": "1.8600999999999999E-4",
+          "source_cell": "L4"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        27.381258064516132,
+        23.346415000000004,
+        3.302,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-2d3425cc0a0c0d94",
+      "role": "reported-comparison",
+      "label": "dio2 reported *",
+      "source_keys": [
+        {
+          "gene": "dio2",
+          "reported_p": "2.1627799999999999E-2",
+          "source_cell": "L5"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        37.70806451612904,
+        33.6694375,
+        3.9387096774193533,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-10a37cc7a110fee2",
+      "role": "reported-comparison",
+      "label": "dio2 reported *",
+      "source_keys": [
+        {
+          "gene": "dio2",
+          "reported_p": "2.1627799999999999E-2",
+          "source_cell": "L5"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        39.127086021505384,
+        33.969437500000005,
+        1.1006666666666667,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-8843335952f307d9",
+      "role": "reported-comparison",
+      "label": "cox8b reported ***",
+      "source_keys": [
+        {
+          "gene": "cox8b",
+          "reported_p": "3.8738999999999999E-4",
+          "source_cell": "L6"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        48.353225806451626,
+        29.476762500000003,
+        3.9387096774193533,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-3c39f46cc6a5ccc2",
+      "role": "reported-comparison",
+      "label": "cox8b reported ***",
+      "source_keys": [
+        {
+          "gene": "cox8b",
+          "reported_p": "3.8738999999999999E-4",
+          "source_cell": "L6"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        48.671580645161306,
+        29.776762500000004,
+        3.302,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-c14d4a9235a1878e",
+      "role": "reported-comparison",
+      "label": "elovl3 reported ***",
+      "source_keys": [
+        {
+          "gene": "elovl3",
+          "reported_p": "< 0.0001",
+          "source_cell": "L7"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        58.99838709677421,
+        53.85501632653062,
+        3.9387096774193533,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-reported-comparison-4870718673b3e201",
+      "role": "reported-comparison",
+      "label": "elovl3 reported ***",
+      "source_keys": [
+        {
+          "gene": "elovl3",
+          "reported_p": "< 0.0001",
+          "source_cell": "L7"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "position",
+        "color"
+      ],
+      "bbox_mm": [
+        59.31674193548389,
+        54.155016326530614,
+        3.302,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-break-0fc8a771fb003f84",
+      "role": "axis-break",
+      "label": "Discontinuous y axis",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.812,
+        34.00000000000001,
+        2.376,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-break-b2b54432861c27f5",
+      "role": "axis-break",
+      "label": "Discontinuous y axis",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        10.812,
+        36.5,
+        2.376,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-legend-98efd4294289e695",
+      "role": "legend",
+      "label": "Genotype key",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [
+        "position"
+      ],
+      "bbox_mm": [
+        73.58877083333334,
+        50.85726562500001,
+        17.031229166666666,
+        8.542734375
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-7f3b197579cca91e",
+      "role": "legend-key",
+      "label": "YT-FF",
+      "source_keys": [
+        {
+          "group": "YT-FF"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-FF"
+      ],
+      "editable": {
+        "color": "/colors/YT-FF"
+      },
+      "bbox_mm": [
+        74.71765972222224,
+        56.196700607638896,
+        3.245555555555559,
+        2.0122444444444434
+      ]
+    },
+    {
+      "id": "easyviz-legend-key-f0859bff795a9bdc",
+      "role": "legend-key",
+      "label": "YT-AKO",
+      "source_keys": [
+        {
+          "group": "YT-AKO"
+        }
+      ],
+      "spec_paths": [
+        "/colors/YT-AKO"
+      ],
+      "editable": {
+        "color": "/colors/YT-AKO"
+      },
+      "bbox_mm": [
+        74.71765972222224,
+        52.560333420138896,
+        3.245555555555559,
+        2.0122444444444434
+      ]
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        12.0,
+        14.000000000000004,
+        66.00000000000001,
+        20.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-a25b05ec84419760",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.012222222222224,
+        14.000000000000004,
+        0.987777777777777,
+        20.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-583586e852f58ad3",
+      "role": "axis-line",
+      "label": "X axis line · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.0,
+        13.012222222222226,
+        66.00000000000001,
+        0.987777777777777
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+      "role": "axis-tick",
+      "label": "X major tick · 0 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        17.893207885304662,
+        13.506111111111114,
+        0.9877777777777794,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-5d983dcecf828e06",
+      "role": "tick-label",
+      "label": "X tick label · Ucp1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        13.777231965378052,
+        5.471188547879935,
+        6.482700341008957,
+        6.482700341008957
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-d2f9de54ec255438",
+      "role": "axis-tick",
+      "label": "X major tick · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        28.538369175627246,
+        13.506111111111114,
+        0.9877777777777745,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-92ea1202889afa8b",
+      "role": "tick-label",
+      "label": "X tick label · Cidea · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        23.943446262576945,
+        4.992241554756248,
+        6.961647334132647,
+        6.961647334132645
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-a369cdb522813c9c",
+      "role": "axis-tick",
+      "label": "X major tick · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        39.18353046594983,
+        13.506111111111114,
+        0.9877777777777745,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b281a5203f58abf3",
+      "role": "tick-label",
+      "label": "X tick label · Dio2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        35.66623828742783,
+        6.069872289284545,
+        5.884016599604345,
+        5.884016599604347
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-8e9950117fc321fa",
+      "role": "axis-tick",
+      "label": "X major tick · 3 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 3.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        49.82869175627241,
+        13.506111111111114,
+        0.9877777777777842,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-865985a3371cdbf9",
+      "role": "tick-label",
+      "label": "X tick label · Cox8b · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 3.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        44.63508510181751,
+        4.393557813351637,
+        7.560331075537258,
+        7.560331075537255
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-5a1f6e5dc2b9c6dd",
+      "role": "axis-tick",
+      "label": "X major tick · 4 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 4.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        60.473853046594996,
+        13.506111111111114,
+        0.9877777777777842,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-26430bb33cb41647",
+      "role": "tick-label",
+      "label": "X tick label · Elovl3 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 4.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        55.63945663698285,
+        4.752768058194403,
+        7.2011208306944985,
+        7.20112083069449
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-f67b783fd93ed70b",
+      "role": "axis-tick",
+      "label": "X major tick · 5 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 5.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        71.11901433691757,
+        13.506111111111114,
+        0.9877777777777842,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-eb6ca08b8b548768",
+      "role": "tick-label",
+      "label": "X tick label · Prdm16 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 5.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        64.78790857379391,
+        3.2560587046828773,
+        8.697830184206017,
+        8.697830184206016
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-8e1c294e3379762a",
+      "role": "axis-tick",
+      "label": "Y major tick · 0 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        13.506111111111114,
+        0.9877777777777794,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-57febe4cb684f4bd",
+      "role": "tick-label",
+      "label": "Y tick label · 0 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        8.782666666666668,
+        12.378738064236114,
+        1.524,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-23f8ddcc854605f8",
+      "role": "axis-tick",
+      "label": "Y major tick · 5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 5.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        19.75611111111111,
+        0.9877777777777794,
+        0.9877777777777794
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-4ba416968e7ffc2d",
+      "role": "tick-label",
+      "label": "Y tick label · 5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 5.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        8.782666666666668,
+        18.628738064236114,
+        1.524,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-63bf692f9cee0146",
+      "role": "axis-tick",
+      "label": "Y major tick · 10 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 10.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        26.006111111111114,
+        0.9877777777777794,
+        0.9877777777777745
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-2b892f5599040a30",
+      "role": "tick-label",
+      "label": "Y tick label · 10 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 10.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        24.878738064236114,
+        3.048,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-5422336878fea5a9",
+      "role": "axis-tick",
+      "label": "Y major tick · 15 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 15.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        32.25611111111112,
+        0.9877777777777794,
+        0.9877777777777745
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b71284fbc4aebc9c",
+      "role": "tick-label",
+      "label": "Y tick label · 15 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 15.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        31.128738064236117,
+        3.048,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axes-80f59f16ea6a58b2",
+      "role": "axes",
+      "label": "Data region 2",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        12.0,
+        36.5,
+        66.00000000000001,
+        20.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-aadfcac3edf9fe4a",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.012222222222224,
+        36.5,
+        0.987777777777777,
+        20.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-bb097fff0398a97b",
+      "role": "axis-tick",
+      "label": "Y major tick · 40 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 40.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        38.04692743764173,
+        0.9877777777777794,
+        0.9877777777777745
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-7576b729f0389b09",
+      "role": "tick-label",
+      "label": "Y tick label · 40 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 40.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        36.91955439076673,
+        3.048,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-3c76872e2f727062",
+      "role": "axis-tick",
+      "label": "Y major tick · 50 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 50.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        42.128560090702955,
+        0.9877777777777794,
+        0.9877777777777745
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-6ecbec7e18cc5543",
+      "role": "tick-label",
+      "label": "Y tick label · 50 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 50.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        41.001187043827954,
+        3.048,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-9d215b91cdafc28f",
+      "role": "axis-tick",
+      "label": "Y major tick · 60 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 60.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        46.210192743764175,
+        0.9877777777777794,
+        0.9877777777777842
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-f40d2e8e58bd96c4",
+      "role": "tick-label",
+      "label": "Y tick label · 60 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 60.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        45.082819696889175,
+        3.048,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-396efe1e1e7dec67",
+      "role": "axis-tick",
+      "label": "Y major tick · 70 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 70.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        50.291825396825395,
+        0.9877777777777794,
+        0.9877777777777842
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-fb9088ee69a5ac6d",
+      "role": "tick-label",
+      "label": "Y tick label · 70 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 70.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        49.164452349950395,
+        3.048,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-53ca8fcdd5b0922e",
+      "role": "axis-tick",
+      "label": "Y major tick · 80 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 80.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        11.50611111111111,
+        54.373458049886615,
+        0.9877777777777794,
+        0.9877777777777842
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-9311d819d81273f7",
+      "role": "tick-label",
+      "label": "Y tick label · 80 · left",
+      "source_keys": [
+        {
+          "axis_index": 1,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 80.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        7.2586666666666675,
+        53.246085003011615,
+        3.048,
+        2.6485894097222253
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

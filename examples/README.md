@@ -42,6 +42,7 @@ The paired case's [independent comparison](../evals/design-value/paired-comparis
 
 | Case | Permitted inputs and scientific limits | Final size | Evidence |
 | --- | --- | --- | --- |
+| [scWAT broken-axis replicate bars](reproduce/scwat-broken-axis/README.md) | Figure 2c, 60 real Source Data values, author mean/SEM and supplied P classes; no inferred cross-gene pairing | Case-recorded manuscript panel; 8 pt | Fresh independent reference reading, source-cell trace, explicit omitted-range checks and original/result comparison |
 | [BMI violin](no-author-code/massier-bmi-violin/README.md) | Image, source data, and permitted semantic context; original KDE parameters unknown | 160 × 100 mm; 8 pt | Independent image reader, runnable reconstruction, first render, data checks, independent visual review |
 | [Integration radar](no-author-code/massier-integration-radar/README.md) | Image and 25 supplied rates; original radial-origin padding unknown | 88 × 88 mm; 8 pt | Same process; zero rates retained at an explicitly chosen zero origin |
 | [Supplied area scatter](no-author-code/xiang-bubble-volcano/README.md) | Nature Communications Fig. 3E Source Data; 1,457 rows/37 zeros, supplied classes and explicit direction | 88 × 120 mm; 8 pt | Independent reading/review; actual export geometry audit; renamed-field synthetic transfer |

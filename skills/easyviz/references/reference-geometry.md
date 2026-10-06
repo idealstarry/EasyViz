@@ -12,6 +12,12 @@ Treat guide burden as part of layout. Preserve essential axes, units, ticks, cla
 
 Finally, verify the adopted design at real size. Compare original, prior output and revision with stated physical dimensions; a smaller thumbnail is not evidence of better proportion. Audit actual PDF vectors and editable text, not just renderer settings or a QA flag. The separate export audit verifies all forest endpoints and all radar vertices directly from the PDF. Independent visual review must still assess balance, legibility and residual differences. These are reference-informed rules, not a universal layout or color template.
 
+For discontinuous axes, adopt each visible segment, its scale and the omitted
+range explicitly. Raw points and uncertainty endpoints must remain in the union
+of displayed segments; a value in the gap is a failed input/layout contract,
+not permission to hide it. The [adoption checkpoint](reproduction-checkpoint.md)
+and broken-axis case connect this rule to actual rendering and source checks.
+
 Sources: Vabistsevits et al. Figure 3a,b, [DOI 10.1038/s41467-024-48105-7](https://doi.org/10.1038/s41467-024-48105-7); Massier et al. Figure 1e, [DOI 10.1038/s41467-023-36983-2](https://doi.org/10.1038/s41467-023-36983-2); Shi et al. Figure 1d, [DOI 10.1038/s41467-021-22092-5](https://doi.org/10.1038/s41467-021-22092-5). Source crops are attributed CC BY 4.0 excerpts. Measured values and unknowns are retained in the [repository geometry audit](https://github.com/idealstarry/EasyViz/tree/main/evals/development-v0.4.6/reproduce-design). Reading occurred after earlier reproduction context existed, so it is not a blind experiment.
 
 

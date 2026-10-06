@@ -11,7 +11,8 @@ import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import install_plugin
-from check_package import CURATED_CREATE_RESOURCES, extract_package, validate_plugin
+from check_package import (CURATED_CREATE_RESOURCES, OPTIONAL_MCP_RESOURCES, V046_CASE_RESOURCES,
+                           V050_REPRODUCE_RESOURCES, V050_RUNTIME_RESOURCES, extract_package, validate_plugin)
 
 
 class InstallerTests(unittest.TestCase):
@@ -81,13 +82,14 @@ class InstallerTests(unittest.TestCase):
                   for name in ("source-data.csv", "candidate-spec.json", "caption.md", "provenance.json")]
         files += [f"skills/{name}/SKILL.md" for name in
                   ("easyviz", "easyviz-reference-reader", "easyviz-figure-reviewer")]
+        files += [f"skills/easyviz/scripts/{name}" for name in V050_RUNTIME_RESOURCES]
         for name in files:
             path = self.source / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("test resource\n")
         # Structure fixtures include every future runtime-consumed dependency;
         # actual numeric/vector correctness is tested by the extracted smoke.
-        for case, resources in CURATED_CREATE_RESOURCES.items():
+        for case, resources in (CURATED_CREATE_RESOURCES | V050_REPRODUCE_RESOURCES).items():
             for name in resources:
                 path = self.source / "skills/easyviz/assets/cases" / case / name
                 path.parent.mkdir(parents=True, exist_ok=True)
@@ -123,6 +125,128 @@ class InstallerTests(unittest.TestCase):
         else:
             output = {}
         return subprocess.CompletedProcess(command, 0, stdout=json.dumps(output), stderr="")
+
+    def test_optional_mcp_requires_complete_local_closure_without_enabling_it(self):
+        scripts = self.source / 'skills/easyviz/scripts'
+        self.assertEqual(validate_plugin(self.source)['version'], '0.4.2')
+        (scripts / 'easyviz_mcp.py').write_text('# optional adapter\n')
+        with mock.patch.object(install_plugin, 'run') as cli:
+            with self.assertRaisesRegex(ValueError, 'requirements-mcp.txt'):
+                self.install()
+        cli.assert_not_called()
+        self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+        self.assertFalse(self.target.exists())
+        for name in OPTIONAL_MCP_RESOURCES:
+            (scripts / name).write_text('# optional local closure\n')
+        with mock.patch.object(install_plugin, 'run', side_effect=self.fake_cli):
+            result = self.install()
+        self.assertEqual(result['status'], 'installed')
+        for name in OPTIONAL_MCP_RESOURCES:
+            self.assertEqual((self.cache / 'skills/easyviz/scripts' / name).read_bytes(),
+                             (scripts / name).read_bytes())
+        self.assertNotIn('mcpServers', json.loads((self.cache / '.codex-plugin/plugin.json').read_text()))
+
+    def test_interface_resource_paths_are_checked_before_installation_writes(self):
+        for interface in ([], {'logo': ['assets/logo.svg']}, {'composerIcon': 3}):
+            with self.subTest(interface=interface):
+                self.manifest.write_text(json.dumps({'name': 'easyviz', 'version': '0.4.2', 'interface': interface}))
+                with self.assertRaisesRegex(ValueError, 'Plugin interface'):
+                    self.install()
+                self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+                self.assertFalse(self.target.exists())
+
+    def test_new_runtime_dependencies_are_version_gated_before_installation_writes(self):
+        for name in ("scripts/create_candidates.py", "scripts/create_review.py", "references/first-draft.md",
+                     "references/design-cards.md", "references/reference-geometry.md"):
+            path = self.source / 'skills/easyviz' / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('release test resource\n')
+        for case, names in V046_CASE_RESOURCES.items():
+            for name in names:
+                path = self.source / 'skills/easyviz/assets/cases' / case / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('release source test resource\n')
+        repo = Path(__file__).resolve().parents[1]
+        shutil.copytree(repo / 'skills/easyviz/assets/design-cards', self.source / 'skills/easyviz/assets/design-cards')
+        for name in V050_RUNTIME_RESOURCES:
+            with self.subTest(helper=name):
+                path = self.source / 'skills/easyviz/scripts' / name
+                old = path.read_bytes()
+                path.unlink()
+                self.manifest.write_text(json.dumps({'name': 'easyviz', 'version': '0.4.6'}))
+                self.assertEqual(validate_plugin(self.source)['version'], '0.4.6')
+                self.manifest.write_text(json.dumps({'name': 'easyviz', 'version': '0.5.0'}))
+                with mock.patch.object(install_plugin, 'run') as cli:
+                    with self.assertRaisesRegex(ValueError, name):
+                        self.install()
+                cli.assert_not_called()
+                self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+                self.assertFalse(self.target.exists())
+                path.write_bytes(old)
+        with mock.patch.object(install_plugin, 'run', side_effect=self.fake_cli):
+            self.assertEqual(self.install()['version'], '0.5.0')
+
+    def test_isolated_catalog_keeps_unrelated_entries_and_rolls_back_after_cli_failure(self):
+        with mock.patch.object(install_plugin, 'run', side_effect=self.fake_cli):
+            self.install()
+        isolated = self.target.parent / '.agents/plugins/marketplace.json'
+        view = json.loads(isolated.read_text())
+        view['plugins'].append({'name': 'unrelated-isolated', 'custom': ['preserve']})
+        view['extra'] = 'preserve'
+        isolated.write_text(json.dumps(view))
+        with mock.patch.object(install_plugin, 'run', side_effect=self.fake_cli):
+            self.install()
+        latest = json.loads(isolated.read_text())
+        self.assertEqual(latest['plugins'][1], view['plugins'][1])
+        self.assertEqual(latest['extra'], 'preserve')
+        before = isolated.read_bytes()
+        def failing_cli(command, *, env, cwd):
+            if command[1:3] == ['plugin', 'add']:
+                raise install_plugin.InstallError('plugin add failed')
+            return self.fake_cli(command, env=env, cwd=cwd)
+        with mock.patch.object(install_plugin, 'run', side_effect=failing_cli):
+            with self.assertRaisesRegex(install_plugin.InstallError, 'plugin add failed'):
+                self.install()
+        self.assertEqual(isolated.read_bytes(), before)
+
+    def test_first_isolated_cli_failure_removes_only_created_catalog(self):
+        isolated = self.codex_home / 'plugins/.agents/plugins/marketplace.json'
+        with mock.patch.object(install_plugin, 'run', side_effect=install_plugin.InstallError('CLI failed')):
+            with self.assertRaisesRegex(install_plugin.InstallError, 'CLI failed'):
+                self.install()
+        self.assertFalse(isolated.exists())
+        self.assertFalse(self.target.exists())
+        self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+
+    def test_unidentified_isolated_catalog_is_preserved(self):
+        isolated = self.codex_home / 'plugins/.agents/plugins/marketplace.json'
+        isolated.parent.mkdir(parents=True)
+        old = json.dumps({'name': 'other-marketplace', 'plugins': [self.other]}).encode()
+        isolated.write_bytes(old)
+        with mock.patch.object(install_plugin, 'run') as cli:
+            with self.assertRaisesRegex(install_plugin.InstallError, 'not identified as this installation'):
+                self.install()
+        cli.assert_not_called()
+        self.assertEqual(isolated.read_bytes(), old)
+        self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+
+    def test_atomic_write_failure_cleans_staging_and_preserves_previous_file(self):
+        real_fdopen = install_plugin.os.fdopen
+        class InterruptedStream:
+            def __init__(self, descriptor, mode):
+                self.stream = real_fdopen(descriptor, mode)
+            def __enter__(self):
+                return self
+            def write(self, data):
+                self.stream.write(data[:3])
+                raise OSError('write interrupted')
+            def __exit__(self, *args):
+                self.stream.close()
+        with mock.patch.object(install_plugin.os, 'fdopen', InterruptedStream):
+            with self.assertRaisesRegex(OSError, 'write interrupted'):
+                install_plugin.atomic_write(self.catalog, b'new catalog')
+        self.assertEqual(self.catalog.read_bytes(), self.original_bytes)
+        self.assertFalse(list(self.catalog.parent.glob('.easyviz-*')))
 
     def install(self):
         return install_plugin.install(self.source, self.home, self.codex_home, None)

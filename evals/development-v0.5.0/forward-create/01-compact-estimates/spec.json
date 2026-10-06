@@ -1,0 +1,53 @@
+{
+  "layout": {
+    "width_mm": 72,
+    "height_mm": 48,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "replicate",
+  "fields": {
+    "condition": "display_condition",
+    "unit": "repeat_id",
+    "value": "repair_pct"
+  },
+  "order": {
+    "condition": [
+      "DMSO",
+      "NU-7441\n(1 µM)",
+      "KU-0060548\n(0.25 µM)",
+      "L755507\n(5 µM)",
+      "SCR7 pyrazine\n(1 µM)"
+    ]
+  },
+  "labels": {
+    "y": "HDR repair (%)"
+  },
+  "options": {
+    "mode": "summary",
+    "uncertainty": "sample_sd",
+    "bar_style": "outline",
+    "bar_edge_width_pt": 0.6,
+    "bar_color": "#444444",
+    "point_color": "#222222",
+    "bar_width": 0.42,
+    "marker_area_pt2": 5,
+    "x_rotation": 45,
+    "y_limits": [
+      0,
+      14
+    ],
+    "y_ticks": [
+      0,
+      5,
+      10
+    ]
+  }
+}

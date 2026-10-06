@@ -27,12 +27,13 @@ def _load(name, filename):
 core = _load("easyviz_candidates_core", "render.py")
 style = _load("easyviz_candidates_style", "create_style.py")
 replicate = _load("easyviz_candidates_replicate", "replicate_plot.py")
+mechanisms = _load("easyviz_candidates_mechanisms", "design_mechanisms.py")
 require, SpecError = core.require, core.SpecError
-VERSION = "0.2.3"
+VERSION = "0.3.0"
 SUPPORTED = ("distribution", "heatmap", "scatter", "replicate")
 CONTRACT = {
     "version": VERSION,
-    "command": "create_candidates.py --data prepared.csv --spec adopted-new-draft.json --out NEW_DIRECTORY --new-draft [--count 1|2|3] [--no-render]",
+    "command": "create_candidates.py --data prepared.csv --spec adopted-new-draft.json --out NEW_DIRECTORY --new-draft [--intent FILE] [--count 1|2|3] [--no-render]",
     "track": "create",
     "scope": "New explicitly mapped distribution (box/violin), complete heatmap, fixed-area scatter, or focused replicate draft; existing accepted/reproduce panels use their original source and renderer.",
     "declaration": "--new-draft is required; input is an ordinary renderer spec, with explicit fields and already adopted scientific methods. For replicate, options.mode and options.uncertainty are required.",
@@ -40,6 +41,9 @@ CONTRACT = {
     "suggested": "Only omitted new-draft dimensions/cosmetics receive chart/data suggestions. Conditional visual-role and decoding routes are limited tool implementations, not the complete design space. At most three materially distinct rendered mark/color/guide proposals; width/margin changes alone do not count. Fewer if explicit choices lock the routes.",
     "outputs": ["source.csv", "source-spec.json", "profile.json when used", "manifest.json", "candidate-NN/spec.json", "candidate-NN/panel.png and other requested exports unless --no-render", "per-candidate renderer data/settings/statistics/qa; geometry-evidence.json"],
     "review": "Technical QA and source/artist evidence are separate from pending visual review. All candidates require inspecting actual exports; no winner is selected, and failed candidates remain visibly invalid.",
+    "create_intent": mechanisms.CONTRACT["create_intent"],
+    "intent_policy": "Optional planning-only create_intent in the source spec or --intent sidecar; required keys are schema_version, question and reading_task. Adopted purpose/leading layer rank applicable mechanisms and routes. Unsupported organizations require custom code instead of being silently substituted. Intent is kept in manifest.json, not passed to strict renderer schemas. Legacy drafts without intent retain their existing routes/defaults.",
+    "physical_preflight": "Per-candidate actual-mm geometry/capacity and task-dependent design advisories; no universal cell/body/aspect rule or aesthetic pass.",
 }
 
 
@@ -98,6 +102,75 @@ def _features(data, spec):
     return result
 
 
+def _adopt_intent(intent, features, spec):
+    """Resolve explicit planning intent without adopting scientific calculations."""
+    if intent is None:
+        return None
+    adopted = mechanisms.validate_intent(intent)
+    chart = features["chart"]
+    tasks = {"distribution": {"compare_estimates", "compare_distributions", "inspect_observations", "inspect_density"},
+             "replicate": {"compare_estimates", "inspect_observations"},
+             "scatter": {"assess_association", "inspect_observations"},
+             "heatmap": {"read_matrix_values", "read_matrix_pattern"}}
+    require(adopted["reading_task"] in tasks[chart], "Adopted reading task requires another focused/custom implementation; the candidate helper will not substitute its chart-family hint")
+    adopted.setdefault("leading_layer", {"inspect_observations": "observations", "inspect_density": "density", "assess_association": "observations", "read_matrix_values": "values", "read_matrix_pattern": "values"}.get(adopted["reading_task"], "summary"))
+    supported_layers = {"distribution": {"observations", "summary", "density"}, "replicate": {"observations", "summary"}, "scatter": {"observations"}, "heatmap": {"values"}}
+    require(adopted["leading_layer"] in supported_layers[chart], "Adopted leading layer requires focused/custom code; no statistical layer will be invented")
+    if adopted["leading_layer"] == "density" or adopted["reading_task"] == "inspect_density":
+        require(features.get("kind") == "violin", "Density intent requires an already adopted violin/KDE; intent cannot add a density estimate")
+    organization = adopted.get("organization")
+    require(organization != "aligned_facets", "Aligned facets require focused/custom code with shared declared scales; the helper cannot replace them with an overlay")
+    require(organization != "separate_lanes" or chart == "distribution", "Separate categorical lanes require a distribution or custom implementation")
+    if organization == "separate_lanes":
+        require("point_category_offset" not in spec.get("options", {}) or spec["options"]["point_category_offset"] != 0, "Separate lanes conflict with the explicit zero sample offset; preserve it or adopt a new organization explicitly")
+    require(organization != "repeated_groups" or (chart == "replicate" and features.get("mode") == "grouped"), "Repeated series require an adopted grouped replicate contract or custom implementation")
+    color_role = adopted.get("color_role")
+    roles = {"distribution": {"labels", "summary_areas", "observations"}, "replicate": {"labels", "series"}, "scatter": {"labels", "observations", "series"}, "heatmap": {"magnitude", "direction"}}
+    require(color_role is None or color_role in roles[chart], "Adopted color role requires a custom design; no category focus, scale or meaning will be inferred")
+    if chart == "replicate" and color_role == "labels":
+        require(features["mode"] == "summary", "Several bar series need explicit decoding; label-only colors require custom code")
+    if chart == "scatter" and color_role == "labels":
+        require(not features["group_count"], "Intermingled scatter classes need decoded identity; label-only styling requires custom code")
+    if chart == "heatmap" and color_role == "direction":
+        require("color_center" in spec.get("options", {}), "Directional color intent needs an already adopted meaningful center; no center is inferred")
+    return adopted
+
+
+def _intent_routes(routes, excluded, base, features, intent):
+    if intent is None:
+        return routes, excluded
+    # The scientific question drives organization/roles, never KDE, values or tests.
+    if "profile" in base:
+        return routes, excluded
+    preferred = []
+    if features["chart"] == "distribution":
+        preferred = {"summary": ["summary-area", "neutral-position", "observation-color"],
+                     "observations": ["observation-color", "neutral-position", "summary-area"],
+                     "density": ["density-silhouette", "summary-area", "neutral-position"]}[intent["leading_layer"]]
+        if intent["leading_layer"] == "density":
+            patches = {("options", "violin_fill_alpha"): .35,
+                       ("options", "point_color"): "#454545",
+                       ("line_roles", "data", "line_width_pt"): .85,
+                       ("line_roles", "summary", "line_width_pt"): .55}
+            if not any(key in base for key in ("palette", "colors")):
+                patches[("palette",)] = "progeny-summary"
+            routes = [{"id": "density-silhouette", "visual_role": "Adopted density leads, with bounded subordinate existing summaries/observations", "patches": patches}, *routes]
+        color_route = {"labels": "neutral-position", "summary_areas": "summary-area", "observations": "observation-color"}.get(intent.get("color_role"))
+        if color_route:
+            retained = []
+            for route in routes:
+                if route["id"] == color_route:
+                    retained.append(route)
+                else:
+                    excluded.append({"route_id": route["id"], "reasons": ["Does not carry the adopted color_role=" + intent["color_role"]]})
+            require(retained, "Adopted color role conflicts with explicit settings or this helper's capacity; preserve those settings and use focused/custom code")
+            routes = retained
+    elif features["chart"] == "replicate":
+        preferred = ["replicate-outline", "replicate-filled"] if intent["leading_layer"] == "observations" else ["replicate-filled", "replicate-outline"]
+    rank = {key: index for index, key in enumerate(preferred)}
+    return sorted(routes, key=lambda route: rank.get(route["id"], len(rank))), excluded
+
+
 def _draw(data_path, spec):
     """Use exactly the same source preparation, statistics and draw as export."""
     renderer = replicate if spec["chart"] == "replicate" else core
@@ -140,6 +213,43 @@ def _visual_facets(fig):
     return {"painted_mark_roles": marks, "continuous_decoding": ramps, "guide_organization": guides}
 
 
+def _visibility_advisories(fig):
+    """Measure actual paint against its background; contrast is only a hint."""
+    background = core.np.asarray(core.mcolors.to_rgba(fig.axes[0].get_facecolor()))[:3]
+    def luminance(rgb):
+        linear = core.np.where(rgb <= .04045, rgb / 12.92, ((rgb + .055) / 1.055) ** 2.4)
+        return float(linear @ core.np.asarray([.2126, .7152, .0722]))
+    background_luma = luminance(background)
+    advisories = []
+    for item in getattr(fig, "_easyviz_elements", []):
+        if item["role"] not in ("point-group", "distribution", "summary-box", "summary-line", "component"):
+            continue
+        artist, colors = item["_artist"], []
+        for plural, single in (("get_facecolors", "get_facecolor"), ("get_edgecolors", "get_edgecolor"), ("get_colors", "get_color")):
+            method = next((name for name in (plural, single) if hasattr(artist, name)), None)
+            if method is None:
+                continue
+            value = getattr(artist, method)()
+            array = core.np.asarray(core.mcolors.to_rgba_array(value), dtype=float)
+            if array.size:
+                array = array.reshape(-1, 4)
+                colors.extend(array[array[:, 3] > 0].tolist())
+        if not colors:
+            advisories.append({"kind": "mark_visibility", "role": item["role"], "label": item["label"],
+                               "action": "This artist has no nontransparent paint; inspect whether another declared layer represents its evidence."})
+            continue
+        contrast = []
+        for rgba in colors:
+            rgb = core.np.asarray(rgba[:3]) * rgba[3] + background * (1 - rgba[3])
+            level = luminance(rgb)
+            contrast.append((max(level, background_luma) + .05) / (min(level, background_luma) + .05))
+        if min(contrast) < 1.5:
+            advisories.append({"kind": "mark_visibility", "role": item["role"], "label": item["label"],
+                               "minimum_paint_contrast": min(contrast), "maximum_paint_contrast": max(contrast),
+                               "action": "Inspect this pale paint at final size together with its actual boundary; the contrast hint is not a scientific-mark pass threshold."})
+    return advisories
+
+
 def _measure(fig, data, spec, typography):
     """Evidence from real artists; no sampled aesthetic quality score."""
     ax = fig.axes[0]
@@ -151,7 +261,8 @@ def _measure(fig, data, spec, typography):
                 "scales": {"x": ax.get_xscale(), "y": ax.get_yscale()}, "typography": typography,
                 "category_tick_labels": {}, "issues": [], "visual_facets": _visual_facets(fig),
                 "guide_geometry": fig._easyviz_legend_layout.validate(),
-                "font_resolution": deepcopy(fig._easyviz_candidate_font)}
+                "font_resolution": deepcopy(fig._easyviz_candidate_font),
+                "mark_visibility_advisories": _visibility_advisories(fig)}
     chart, fields, options = spec["chart"], spec["fields"], spec.get("options", {})
     elements = getattr(fig, "_easyviz_elements", [])
     if chart in ("distribution", "scatter"):
@@ -210,6 +321,9 @@ def _measure(fig, data, spec, typography):
         evidence["source_to_artist"] = {"status": "pass" if unchanged else "needs_revision", "matrix_values_preserved": bool(unchanged), "color_limits": [float(image.norm.vmin), float(image.norm.vmax)]}
         evidence["cell_dimensions_mm"] = [float(box.width * factor / len(cols)), float(box.height * factor / len(rows))]
         evidence["cell_annotations"] = core.annotation_review.check_heatmap_annotations(fig, ax)
+        seam_mm = options.get("cell_border_width_pt", 0) * 25.4 / 72
+        if seam_mm >= min(evidence["cell_dimensions_mm"]):
+            evidence["issues"].append("cell_border_consumes_cell_interior")
     else:
         evidence["source_to_artist"] = replicate.audit_source_artists(Path(data.attrs["candidate_source_path"]), spec, fig)
         clipped, marks = replicate._canvas_checks(fig)
@@ -368,6 +482,7 @@ def _cosmetics(base, features, route):
         if "profile" not in base and key not in base.get("line_roles", {}).get(role, {}):
             result.setdefault("line_roles", {}).setdefault(role, {})[key] = value
     chart = features["chart"]
+    intent = features.get("create_intent")
     if chart == "distribution":
         suggest("point_layout", "beeswarm")
         if options["point_layout"] == "beeswarm":
@@ -385,6 +500,15 @@ def _cosmetics(base, features, route):
             suggest("point_style", "hollow")
         if options.get("point_style") == "hollow":
             suggest("point_edge_width_pt", .45)
+        if intent and intent.get("organization") == "separate_lanes":
+            suggest("point_category_offset", .24)
+        if intent and features["kind"] == "violin":
+            if intent["leading_layer"] == "density":
+                stroke("data", "line_width_pt", .85)
+                stroke("summary", "line_width_pt", .55)
+            elif intent["leading_layer"] == "summary" and supplied.get("violin_inner") == "box":
+                stroke("data", "line_width_pt", .45)
+                stroke("summary", "line_width_pt", .8)
     elif chart == "heatmap":
         suggest("cell_aspect", "auto")
         suggest("cell_border_width_pt", 0)
@@ -402,11 +526,43 @@ def _cosmetics(base, features, route):
     for path, value in route["patches"].items():
         if _value(base, path) is not _MISSING or (path == ("palette",) and "colors" in base):
             continue
+        if path[0] == "line_roles" and path[-1] == "line_width_pt" and "line_width_pt" in base.get("layout", {}):
+            continue
         target = result
         for key in path[:-1]:
             target = target.setdefault(key, {})
         target[path[-1]] = value
     return result
+
+
+def _plan_replicate_gap(data_path, spec, adopted):
+    """Repair only omitted grouped gaps from actual axis pitch and stroke width."""
+    if spec["chart"] != "replicate" or spec.get("options", {}).get("mode") != "grouped":
+        return spec, None
+    explicit = "component_gap" in adopted.get("options", {})
+    fig = None
+    try:
+        fig, data, _, _ = _draw(data_path, spec)
+        axis = fig.axes[0]
+        pitch_pt = axis.get_window_extent().width / fig.dpi * 72 / abs(axis.get_xlim()[1] - axis.get_xlim()[0])
+        stroke_pt = max((float(patch.get_linewidth()) for patch in axis.patches if core.mcolors.to_rgba(patch.get_edgecolor())[3] > 0), default=0.)
+        count = len(core.ordered(data, spec["fields"]["component"], spec, "component"))
+        gap = spec["options"].get("component_gap", 0)
+        desired = (stroke_pt + .2) / pitch_pt if stroke_pt else gap
+        record = {"explicit_gap": explicit, "category_pitch_pt": pitch_pt, "maximum_stroke_pt": stroke_pt,
+                  "initial_gap": gap, "requested_gap": gap,
+                  "scope": "Measured grouped stroke clearance; a 0.2 pt reading gap is an EasyViz starting proposal, not a publication rule."}
+        if not explicit and gap < desired:
+            if spec["options"].get("bar_width", .6) - (count - 1) * desired > 0:
+                spec = deepcopy(spec)
+                spec["options"]["component_gap"] = desired
+                record["requested_gap"] = desired
+            else:
+                record["unresolved"] = "Measured stroke separation would leave no positive bar interior; revise the adopted geometry explicitly."
+        return spec, record
+    finally:
+        if fig is not None:
+            core.plt.close(fig)
 
 
 def _manual_layout(spec):
@@ -692,7 +848,7 @@ def _color_evidence(source, candidate):
     return record
 
 
-def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, render=True):
+def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, render=True, intent_path=None):
     """Create a fresh inspectable proposal directory, preserving all inputs."""
     data_path, spec_path, out = Path(data_path), Path(spec_path), Path(out)
     require(new_draft is True, "Declare new_draft=True / --new-draft; accepted panels and Reproduce specifications are outside this helper")
@@ -702,6 +858,18 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
     _, rows = _read_source(raw)
     source_spec = json.loads(spec_raw)
     require(isinstance(source_spec, dict) and source_spec.get("chart") in SUPPORTED, f"Candidate charts are {SUPPORTED}; other charts retain their existing Create workflow")
+    has_intent = "create_intent" in source_spec
+    intent_value = source_spec.pop("create_intent", None)
+    if has_intent:
+        mechanisms.validate_intent(intent_value)
+    intent_raw = None
+    if intent_path is not None:
+        intent_path = Path(intent_path)
+        intent_raw = intent_path.read_bytes()
+        external_intent = json.loads(intent_raw)
+        mechanisms.validate_intent(external_intent)
+        require(intent_value is None or external_intent == intent_value, "Source create_intent and --intent disagree; adopt one coherent purpose before rendering")
+        intent_value = external_intent
     require(source_spec["chart"] != "scatter" or "size" not in source_spec.get("fields", {}), "Candidate scatter requires fixed observations; fields.size retains the quantitative-area workflow")
     if source_spec["chart"] == "replicate":
         require("profile" not in source_spec, "Focused replicate renderer does not accept figure profiles; use its explicit adopted layout/typography contract")
@@ -717,6 +885,12 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
         data = core.prepare(data_path, resolved)
     require(len(data) == len(rows), "CSV preparation changed the row count")
     features = _features(data, resolved)
+    adopted_intent = _adopt_intent(intent_value, features, resolved)
+    mechanism_ranking = mechanisms.rank_mechanisms(features, adopted_intent)
+    if adopted_intent is not None:
+        features.update(create_intent=adopted_intent, reading_task_source="adopted_create_intent",
+                        reading_task_scope="Explicit calling-Agent purpose; this declaration does not establish scientific assumptions.",
+                        task=adopted_intent["question"])
     base = deepcopy(resolved)
     layout = base.setdefault("layout", {})
     suggested = []
@@ -730,6 +904,7 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
         formats.append("png")
     # All proposals share the same default numeric bounds and measured font.
     choices, excluded = _route_choices(base, features)
+    choices, excluded = _intent_routes(choices, excluded, base, features, adopted_intent)
     first = _cosmetics(base, features, choices[0])
     fig = None
     try:
@@ -766,6 +941,9 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
                 core.plt.close(fig)
         candidate = _compact(proposed, features, fitted, annotation_minimum)
         candidate, lane_plan = _plan_distribution_lane(data_path, candidate, base, features, fitted)
+        gap_plan = None
+        if adopted_intent is not None:
+            candidate, gap_plan = _plan_replicate_gap(data_path, candidate, base)
         fig = None
         try:
             fig, _, _, _ = _draw(data_path, candidate)
@@ -778,7 +956,7 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
             excluded.append({"route_id": route["id"], "reasons": ["Same actual mark/color/guide facets as an earlier candidate; width/margin differences alone do not count"]})
             continue
         seen.add(fingerprint)
-        plans.append((route, candidate, facets, lane_plan))
+        plans.append((route, candidate, facets, lane_plan, gap_plan))
         if len(plans) == count:
             break
     # Claim the fresh directory atomically only after input validation/planning.
@@ -787,18 +965,22 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
     (out / "source-spec.json").write_bytes(spec_raw)
     if profile_record:
         (out / "profile.json").write_bytes(profile_raw)
+    if intent_raw is not None:
+        (out / "source-intent.json").write_bytes(intent_raw)
     manifest = {"version": VERSION, "track": "create", "stage": "new_draft", "status": "in_progress",
                 "source": {"path": str(data_path.resolve()), "sha256": _digest(raw), "snapshot": "source.csv"},
                 "source_spec": {"path": str(spec_path.resolve()), "sha256": _digest(spec_raw), "snapshot": "source-spec.json"},
                 "profile": profile_record, "features": features, "suggested_dimension_keys": suggested,
                 "baseline_geometry": baseline, "candidates": [], "aesthetic_winner": None,
+                "adopted_create_intent": adopted_intent, "mechanism_applicability": mechanism_ranking,
+                "intent_source": {"path": str(intent_path.resolve()), "sha256": _digest(intent_raw), "snapshot": "source-intent.json"} if intent_raw is not None else {"source": "source_spec" if intent_value is not None else "legacy_family_hints"},
                 "design_space": {"scope": "Limited conditional tool routes, not the complete set of scientifically valid figure designs or a reading-task recommendation",
                                  "eligible_routes": [route["id"] for route in choices], "excluded_routes": excluded,
                                  "requested_count": count, "returned_count": len(plans),
                                  "distinctness_basis": "Actual artist RGBA/quantitative ramp samples and measured guide position/orientation; no width/margin-only count inflation"},
                 "note": "Chart/data heuristics propose inspectable designs; technical success does not certify visual quality. Inspect actual candidates and complete visual review before adoption."}
     _json(out / "manifest.json", manifest)
-    for ordinal, (route, candidate, facets, lane_plan) in enumerate(plans, 1):
+    for ordinal, (route, candidate, facets, lane_plan, gap_plan) in enumerate(plans, 1):
         candidate_id = f"candidate-{ordinal:02d}"
         directory = out / candidate_id
         directory.mkdir()
@@ -814,8 +996,12 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
                   "reason": route["visual_role"] + ". Measured fit at the adopted science, canvas and fonts; explicit paths remain locked. This limited route is a proposal, not a preferred or exhaustive design.",
                   "technical_review": {"status": "not_rendered", "qa_path": None},
                   "visual_review": {"status": "pending", "review_required": True}}
+        record["adopted_create_intent"] = adopted_intent
+        record["applicable_mechanism_ids"] = [item["id"] for item in mechanism_ranking["mechanisms"] if item["applicability"] == "applicable"]
         if lane_plan is not None:
             record["distribution_lane_planning"] = lane_plan
+        if gap_plan is not None:
+            record["replicate_gap_planning"] = gap_plan
         fig = None
         try:
             # Actual artist evidence is useful even in spec-only planning mode.
@@ -827,6 +1013,8 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
             if lane_plan is not None and not lane_plan["summary_width_explicit"] and not lane_plan["summary_floor_met"]:
                 geometry["issues"].append("automatic_summary_physical_width_floor")
                 geometry["technical_measurement_status"] = "needs_revision"
+            geometry["physical_preflight"] = mechanisms.physical_preflight(features, geometry)
+            record["physical_preflight"] = geometry["physical_preflight"]
             _json(directory / "geometry-evidence.json", geometry)
             record["geometry_evidence"] = f"{candidate_id}/geometry-evidence.json"
             if geometry["technical_measurement_status"] == "needs_revision":
@@ -853,6 +1041,8 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
     unchanged = data_path.read_bytes() == raw and spec_path.read_bytes() == spec_raw
     if profile_record:
         unchanged &= _digest(Path(profile_record["path"]).read_bytes()) == profile_record["sha256"]
+    if intent_raw is not None:
+        unchanged &= intent_path.read_bytes() == intent_raw
     manifest["inputs_unchanged"] = bool(unchanged)
     manifest["status"] = "visual_review_pending" if unchanged and all(c["technical_review"]["status"] in ("pass", "not_rendered") for c in manifest["candidates"]) else "needs_revision"
     _json(out / "manifest.json", manifest)
@@ -864,6 +1054,7 @@ def main():
     parser.add_argument("--data", type=Path)
     parser.add_argument("--spec", type=Path)
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--intent", type=Path, help="Optional adopted Create purpose/roles, using the planning-only create_intent contract")
     parser.add_argument("--new-draft", action="store_true", help="Explicit declaration that this is a new Create draft, never an accepted panel")
     parser.add_argument("--count", type=int, choices=(1, 2, 3), default=2, help="Maximum distinct justified candidates")
     parser.add_argument("--no-render", action="store_true", help="Write specs and artist geometry evidence only; exports and visual review remain pending")
@@ -875,7 +1066,7 @@ def main():
     if not (args.data and args.spec and args.out and args.new_draft):
         parser.error("--data, --spec, --out and --new-draft are required")
     try:
-        manifest = create_candidates(args.data, args.spec, args.out, new_draft=args.new_draft, count=args.count, render=not args.no_render)
+        manifest = create_candidates(args.data, args.spec, args.out, new_draft=args.new_draft, count=args.count, render=not args.no_render, intent_path=args.intent)
     except (ValueError, OSError, ImportError) as exc:
         parser.exit(2, f"EasyViz: {exc}\n")
     print(json.dumps({"status": manifest["status"], "output": str(args.out), "candidate_count": len(manifest["candidates"]), "visual_review": "pending"}))

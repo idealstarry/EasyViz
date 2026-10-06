@@ -3,13 +3,16 @@ from contextlib import redirect_stdout
 import hashlib
 import importlib.util
 import io
+import json
 from pathlib import Path
 import tempfile
+import sys
 import unittest
 from unittest import mock
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'scripts/sync_skill_cases.py'
+sys.path.insert(0, str(SCRIPT.parent))
 loader = importlib.util.spec_from_file_location('easyviz_sync_cases_test', SCRIPT)
 sync_cases = importlib.util.module_from_spec(loader)
 loader.loader.exec_module(sync_cases)
@@ -19,7 +22,7 @@ class SyncSkillCasesTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix='easyviz-sync-test-')
         self.addCleanup(self.temporary.cleanup)
-        self.root = Path(self.temporary.name)
+        self.root = Path(self.temporary.name).resolve()
         self.assets = self.root / 'assets'
         self.patch = mock.patch.object(sync_cases, 'ASSETS', self.assets)
         self.patch.start()
@@ -28,6 +31,101 @@ class SyncSkillCasesTests(unittest.TestCase):
     def sync(self):
         with redirect_stdout(io.StringIO()):
             sync_cases.sync()
+
+    def asset_bytes(self):
+        return {path.relative_to(self.assets).as_posix(): path.read_bytes()
+                for path in self.assets.rglob('*') if path.is_file()}
+
+    def test_late_invalid_source_keeps_every_previous_case_and_recipe(self):
+        self.sync()
+        (self.assets / 'fixtures/keep.txt').parent.mkdir(parents=True, exist_ok=True)
+        (self.assets / 'fixtures/keep.txt').write_text('hand maintained')
+        before = self.asset_bytes()
+        real_copy = sync_cases.copy_file
+        calls = 0
+        def invalid_late_input(source, target, assets=None):
+            nonlocal calls
+            calls += 1
+            if calls == 40:
+                json.loads('{invalid source JSON')
+            return real_copy(source, target, assets)
+        with mock.patch.object(sync_cases, 'copy_file', side_effect=invalid_late_input):
+            with self.assertRaises(json.JSONDecodeError):
+                self.sync()
+        self.assertEqual(calls, 40)
+        self.assertEqual(self.asset_bytes(), before)
+        self.assertFalse(list(self.assets.glob('.easyviz-sync-*')))
+
+    def test_partial_publication_restores_previous_cases_and_recipe(self):
+        self.sync()
+        (self.assets / 'cases/massier-bmi-violin/previous.txt').write_text('previous content')
+        before = self.asset_bytes()
+        real_replace = Path.replace
+        failed = False
+        def interrupted_replace(source, target):
+            nonlocal failed
+            if not failed and source.name == 'xiang-bubble-volcano' and source.parent.parent.name == 'generated':
+                failed = True
+                raise OSError('case publication interrupted')
+            return real_replace(source, target)
+        with mock.patch.object(Path, 'replace', interrupted_replace):
+            with self.assertRaisesRegex(OSError, 'case publication interrupted'):
+                self.sync()
+        self.assertTrue(failed)
+        self.assertEqual(self.asset_bytes(), before)
+        self.assertFalse(list(self.assets.glob('.easyviz-sync-*')))
+
+    def test_external_source_links_and_special_files_never_enter_portable_assets(self):
+        repository = self.root / 'repository'
+        repository.mkdir()
+        external = self.root / 'private.csv'
+        external.write_text('private content')
+        target = self.assets / 'cases/test/input.csv'
+        source = repository / 'linked.csv'
+        source.symlink_to(external)
+        with mock.patch.object(sync_cases, 'ROOT', repository):
+            with self.assertRaisesRegex(ValueError, 'External portable source'):
+                sync_cases.copy_file(source, target)
+            source.unlink()
+            directory = repository / 'external'
+            directory.symlink_to(self.root, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, 'Symlink, missing or special portable source'):
+                sync_cases.copy_file(directory / external.name, target)
+            import os
+            os.mkfifo(source)
+            with self.assertRaisesRegex(ValueError, 'not a regular file'):
+                sync_cases.copy_file(source, target)
+            source.unlink()
+            source.symlink_to(source.name)
+            with self.assertRaisesRegex(ValueError, 'Unresolvable portable source'):
+                sync_cases.copy_file(source, target)
+        self.assertFalse(self.assets.exists())
+        self.assertEqual(external.read_text(), 'private content')
+
+    def test_repository_shared_file_links_are_materialized_without_local_paths(self):
+        repository = self.root / 'repository'
+        repository.mkdir()
+        shared = repository / 'shared.txt'
+        shared.write_text(json.dumps({'local_full_pdf': '/Users/private/paper.pdf', 'value': 3}))
+        source = repository / 'metadata.json'
+        source.symlink_to(shared)
+        target = self.assets / 'cases/test/metadata.json'
+        with mock.patch.object(sync_cases, 'ROOT', repository):
+            sync_cases.copy_file(source, target)
+        self.assertFalse(target.is_symlink())
+        self.assertEqual(json.loads(target.read_text()), {'value': 3})
+
+    def test_new_reproduce_case_ships_only_frozen_previews_and_runnable_inputs(self):
+        self.sync()
+        case = self.assets / 'cases/scwat-broken-axis'
+        source = sync_cases.ROOT / 'examples/reproduce/scwat-broken-axis'
+        self.assertEqual((case / 'inputs/observations.csv').read_bytes(),
+                         (source / 'inputs/observations.csv').read_bytes())
+        self.assertTrue((case / 'output/comparison.png').is_file())
+        self.assertTrue((case / 'extract_source.py').is_file())
+        for name in ('settings.json', 'qa.json', 'elements.json', 'handoff.json', 'consumed-sources.json'):
+            self.assertFalse((case / 'output' / name).exists())
+        self.assertIn('frozen previews', (case / 'README.md').read_text())
 
     def test_refresh_removes_deleted_and_excluded_files_without_changing_sources(self):
         source = sync_cases.ROOT / 'examples/no-author-code/xiang-bubble-volcano'

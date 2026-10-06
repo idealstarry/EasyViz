@@ -7,6 +7,8 @@ from pathlib import Path
 import json
 import shutil
 
+from package_io import replace_outputs, staging_directory
+
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'skills/easyviz/assets'
 GENERATED_CASES = (
@@ -14,19 +16,30 @@ GENERATED_CASES = (
     'paired-effects', 'paired-myeloid-remodeling', 'xiang-bubble-volcano',
     'vabistsevits-forest', 'urschel-paired', 'truong-components', 'urschel-ecdf', 'shi-timecourse', 'yayon-cma', 'basic-panels', 'repair-outcomes',
     'thermogenic-expression', 'compartment-ccl2', 'pathway-signatures',
+    'scwat-broken-axis',
 )
+PORTABLE_README_LINKS = {
+    'cases/urschel-ecdf/README.md':
+        ('../../no-author-code/urschel-paired/README.md', '../urschel-paired/README.md'),
+    'cases/massier-bmi-violin/README.md':
+        ('first-render/panel.png', 'https://github.com/idealstarry/EasyViz/blob/main/'
+         'examples/no-author-code/massier-bmi-violin/first-render/panel.png'),
+}
 
 
-def check_output_path(target):
+def check_output_path(target, assets=None):
     """Check the owned root through the destination without resolving symlinks.
 
     Production ASSETS belongs to the already resolved repository ROOT. An
     explicit out-of-repository ASSETS used by isolated tests is its own boundary;
     system aliases above that boundary, such as /var, are not owned paths.
     """
-    relative = target.relative_to(ASSETS)
-    boundary = ROOT if ASSETS.is_relative_to(ROOT) else ASSETS
-    asset_parts = ASSETS.relative_to(boundary).parts
+    assets = ASSETS if assets is None else assets
+    if '..' in assets.parts or '..' in target.parts:
+        raise ValueError(f'Refusing a parent traversal assets path: {target}')
+    relative = target.relative_to(assets)
+    boundary = ROOT if assets.is_relative_to(ROOT) else assets
+    asset_parts = assets.relative_to(boundary).parts
     owned_parts = asset_parts + relative.parts
     for path in (boundary, *(boundary.joinpath(*owned_parts[:index])
                             for index in range(1, len(owned_parts) + 1))):
@@ -34,21 +47,51 @@ def check_output_path(target):
             raise ValueError(f'Refusing to write through a symlink assets path: {path}')
 
 
+def generated_destinations(assets):
+    return ([assets / 'cases' / case for case in GENERATED_CASES]
+            + [assets / 'recipes/annotated-heatmap' / name
+               for name in ('plot.py', 'settings.json')])
+
+
+def check_generated_destinations(assets):
+    for target in generated_destinations(assets):
+        check_output_path(target, assets)
+        is_case = target.parent.name == 'cases'
+        if target.exists() and not (target.is_dir() if is_case else target.is_file()):
+            raise ValueError(f'Invalid generated case/recipe destination: {target}')
+
+
 def reset_generated_cases():
-    """Rebuild owned case directories, retaining hand-maintained recipe files."""
-    targets = [ASSETS / 'cases' / case for case in GENERATED_CASES]
-    # Check every destination before deleting anything, including recipe files
-    # that copy_file will update without owning their whole parent directory.
-    for target in targets + [ASSETS / 'recipes/annotated-heatmap' / name
-                             for name in ('plot.py', 'settings.json')]:
-        check_output_path(target)
-    for target in targets:
-        if target.exists() and not target.is_dir():
-            raise ValueError(f'Generated case destination is not a directory: {target}')
-    for target in targets:
+    """Reset owned case directories; retained for callers needing an empty tree."""
+    check_generated_destinations(ASSETS)
+    for target in generated_destinations(ASSETS)[:len(GENERATED_CASES)]:
         if target.exists():
             shutil.rmtree(target)
         target.mkdir(parents=True, exist_ok=True)
+
+
+def check_source_file(source):
+    """Resolve a shared file only inside ROOT; reject redirected directories."""
+    if '..' in source.parts or not source.is_relative_to(ROOT):
+        raise ValueError(f'Portable source must stay inside the repository: {source}')
+    relative = source.relative_to(ROOT)
+    for path in (ROOT, *(ROOT.joinpath(*relative.parts[:index])
+                        for index in range(1, len(relative.parts)))):
+        if path.is_symlink() or not path.is_dir():
+            raise ValueError(f'Symlink, missing or special portable source: {path}')
+    # Two curated examples intentionally link the common legend helper.
+    # Materialize its repository-owned bytes, never an external linked file.
+    try:
+        resolved = source.resolve()
+    except (OSError, RuntimeError) as error:
+        raise ValueError(f'Unresolvable portable source: {source}') from error
+    if not resolved.is_relative_to(ROOT):
+        raise ValueError(f'External portable source: {source}')
+    if resolved != source:
+        return check_source_file(resolved)
+    if not resolved.is_file():
+        raise ValueError(f'Portable source is not a regular file: {source}')
+    return resolved
 
 
 def portable_metadata(value):
@@ -62,82 +105,81 @@ def portable_metadata(value):
     return value
 
 
-def copy_file(source, target):
-    check_output_path(target)
+def copy_file(source, target, assets=None):
+    assets = ASSETS if assets is None else assets
+    is_json = source.suffix == '.json'
+    source = check_source_file(source)
+    check_output_path(target, assets)
     target.parent.mkdir(parents=True, exist_ok=True)
-    if source.suffix == '.json':
+    if is_json:
         target.write_text(json.dumps(portable_metadata(json.loads(source.read_text())), indent=2) + '\n')
     else:
         shutil.copy2(source, target)
         # Development examples retain their own relative links. The portable
         # case layout has no track folders or development-only render history.
-        readme_links = {
-            ASSETS / 'cases/urschel-ecdf/README.md':
-                ('../../no-author-code/urschel-paired/README.md', '../urschel-paired/README.md'),
-            ASSETS / 'cases/massier-bmi-violin/README.md':
-                ('first-render/panel.png', 'https://github.com/idealstarry/EasyViz/blob/main/'
-                 'examples/no-author-code/massier-bmi-violin/first-render/panel.png'),
-        }
-        if target in readme_links:
-            before, after = readme_links[target]
+        rewrite = PORTABLE_README_LINKS.get(target.relative_to(assets).as_posix())
+        if rewrite is not None:
+            before, after = rewrite
             target.write_text(target.read_text().replace(f']({before})', f']({after})'))
 
 
-def sync():
-    reset_generated_cases()
+def _populate_assets(assets):
+    # Every source is consumed into a separate tree before current assets move.
+    def copy(source, target):
+        copy_file(source, target, assets)
     for case in ('massier-bmi-violin', 'massier-integration-radar'):
         source = ROOT / 'examples/no-author-code' / case
-        target = ASSETS / 'cases' / case
+        target = assets / 'cases' / case
         target.mkdir(parents=True, exist_ok=True)
         for name in ('plot.py', 'settings.json', 'adopted-spec.md', 'stats.json', 'qa.json',
                      'plotting-data.csv', 'panel.png', 'panel.pdf', 'panel.svg',
                      'independent-review.json', 'independent-review.md', 'README.md'):
-            copy_file(source / name, target / name)
+            copy(source / name, target / name)
         if (source / 'density-data.csv').exists():
-            copy_file(source / 'density-data.csv', target / 'density-data.csv')
+            copy(source / 'density-data.csv', target / 'density-data.csv')
         for file in (source / 'inputs').iterdir():
             if file.is_file():
-                copy_file(file, target / 'inputs' / file.name)
-        copy_file(ROOT / 'evals/reproduce-inputs' / case / 'provenance.json', target / 'provenance.json')
+                copy(file, target / 'inputs' / file.name)
+        copy(ROOT / 'evals/reproduce-inputs' / case / 'provenance.json', target / 'provenance.json')
         adopted = target / 'adopted-spec.md'
         adopted.write_text(adopted.read_text().replace(f'.venv/bin/python examples/no-author-code/{case}/plot.py', 'python /path/to/case/plot.py'))
         if case == 'massier-bmi-violin':
             adopted.write_text(adopted.read_text() + '\nDevelopment-only access logs and first-render history described above are retained in the development repository, outside this portable case.\n')
     case = 'cell-atlas-dotplot'
     source = ROOT / 'examples/create' / case
-    target = ASSETS / 'cases' / case
+    target = assets / 'cases' / case
     for name in ('plot.py', 'legend_layout.py', 'figure-settings.json', 'annotations.json', 'source-data.csv',
                  'data-dictionary.md', 'provenance.json', 'README.md', 'request.md', 'caption.md'):
-        copy_file(source / name, target / name)
+        copy(source / name, target / name)
     for name in ('figure.png', 'figure.pdf', 'figure.svg', 'plotted-data.csv', 'validation.json'):
-        copy_file(source / 'output' / name, target / 'output' / name)
+        copy(source / 'output' / name, target / 'output' / name)
     # Reusable implementation only: the CC BY-NC Gontijo tables stay in development.
     source = ROOT / 'examples/create/annotated-inhibition'
-    target = ASSETS / 'recipes/annotated-heatmap'
+    target = assets / 'recipes/annotated-heatmap'
     for name in ('plot.py', 'settings.json'):
-        copy_file(source / name, target / name)
+        copy(source / name, target / name)
     source = ROOT / 'examples/create/paired-effects'
-    target = ASSETS / 'cases/paired-effects'
+    target = assets / 'cases/paired-effects'
     for name in ('plot.py', 'legend_layout.py', 'figure-settings.json', 'actual-settings.json', 'source.csv',
                  'plotting-data.csv', 'provenance.json', 'README.md', 'request.md', 'caption.md',
                  'numeric-qa.json', 'reuse-validation.json', 'legend-update-review.json', 'review-independent.md',
                  'review-independent.json', 'panel.png', 'panel.pdf', 'panel.svg'):
-        copy_file(source / name, target / name)
+        copy(source / name, target / name)
     for file in (source / 'evaluation').iterdir():
         if file.is_file():
-            copy_file(file, target / 'evaluation' / file.name)
+            copy(file, target / 'evaluation' / file.name)
     source = ROOT / 'examples/create/paired-myeloid-remodeling'
-    target = ASSETS / 'cases/paired-myeloid-remodeling'
+    target = assets / 'cases/paired-myeloid-remodeling'
     for name in ('plot.py', 'prepare.py', 'figure-settings.json', 'annotations.json',
                  'source-data.csv', 'provenance.json', 'README.md', 'caption.md',
                  'design-rationale.md', 'numeric-verification.json', 'pdf-verification.json',
                  'visual-review.json', 'standalone-verification.json', 'hollow-box-review.json'):
-        copy_file(source / name, target / name)
+        copy(source / name, target / name)
     for folder in ('output', 'transfer-five-year'):
         for file in (source / folder).rglob('*'):
             if file.is_file():
-                copy_file(file, target / file.relative_to(source))
-    copy_file(ROOT / 'evals/design-value/paired-comparison.md', target / 'independent-comparison.md')
+                copy(file, target / file.relative_to(source))
+    copy(ROOT / 'evals/design-value/paired-comparison.md', target / 'independent-comparison.md')
     for track, case in (
             ('no-author-code', 'xiang-bubble-volcano'),
             ('no-author-code', 'vabistsevits-forest'),
@@ -147,7 +189,7 @@ def sync():
             ('no-author-code', 'shi-timecourse'),
             ('no-author-code', 'yayon-cma')):
         source = ROOT / 'examples' / track / case
-        target = ASSETS / 'cases' / case
+        target = assets / 'cases' / case
         # Retain reviewed evidence and compact inputs; omit development history.
         for file in source.rglob('*'):
             relative = file.relative_to(source)
@@ -156,38 +198,45 @@ def sync():
                     or file.name in ('access-log.json', 'first-attempt-evidence.json')
                     or file.suffix == '.pyc'):
                 continue
-            copy_file(file, target / relative)
+            copy(file, target / relative)
     # Reviewed revisions are explicit, nested additions. Only executable
     # inputs and frozen preview exports travel; current-path QA/maps/receipts
     # stay in development and are regenerated by a fresh local redraw.
     for case in ('vabistsevits-forest', 'massier-integration-radar'):
         source = ROOT / 'examples/no-author-code' / case / 'revision-v0.4.6'
-        target = ASSETS / 'cases' / case / 'revision-v0.4.6'
+        target = assets / 'cases' / case / 'revision-v0.4.6'
         for name in ('README.md', 'plot.py', 'adopted-spec.json', 'caption.md',
                      'output/panel.png', 'output/panel.pdf', 'output/panel.svg'):
-            copy_file(source / name, target / name)
+            copy(source / name, target / name)
         readme = target / 'README.md'
         readme.write_text(readme.read_text() + '\nBundled exports are frozen previews. Fresh redraws create local-current source bindings, QA, registered artists and receipts; development history remains in the original repository.\n')
     source = ROOT / 'examples/create/basic-panels'
-    target = ASSETS / 'cases/basic-panels'
-    curated = json.loads((ROOT / 'evals/basic-panels-v0.4.3/portable-files.json').read_text())
+    target = assets / 'cases/basic-panels'
+    curated_path = ROOT / 'evals/basic-panels-v0.4.3/portable-files.json'
+    curated = json.loads(check_source_file(curated_path).read_text())
     for name in curated['files']:
         relative = Path(name)
         if relative.is_absolute() or '..' in relative.parts or not (source / relative).is_file():
             raise ValueError(f'Invalid basic-panel curated input: {name}')
-        copy_file(source / relative, target / relative)
+        copy(source / relative, target / relative)
     source = ROOT / 'examples/create/repair-outcomes'
-    target = ASSETS / 'cases/repair-outcomes'
+    target = assets / 'cases/repair-outcomes'
     for file in source.rglob('*'):
         relative = file.relative_to(source)
         if file.is_file() and '__pycache__' not in relative.parts and file.suffix != '.pyc':
-            copy_file(file, target / relative)
+            copy(file, target / relative)
     # New custom cases ship their executable dependency closure and frozen
     # previews. Development source/QA/receipt/review records retain absolute
     # inspected paths in the repository; they are not rewritten into a false
     # current-source attestation after relocation. Fresh redraws create actual
     # current metadata and element maps in the user's writable project.
     curated_custom = {
+        'scwat-broken-axis': (
+            'README.md', 'plot.py', 'spec.json', 'caption.md', 'extract_source.py', 'validate.py',
+            'inputs/reference.png', 'inputs/reference-caption.md', 'inputs/observations.csv',
+            'inputs/author-p-values.csv', 'inputs/provenance.json', 'output/panel.svg',
+            'output/panel.pdf', 'output/panel.png', 'output/comparison.png',
+            'output/plotting-data.csv', 'output/summary-data.csv'),
         'pathway-signatures': (
             'plot.py', 'validate.py', 'spec.json', 'caption.md', 'source-record.json',
             'inputs/coefficients.csv', 'inputs/input-contract.json',
@@ -213,17 +262,19 @@ def sync():
     }
     import re
     from urllib.parse import urlsplit
+    prose_names = ('README.md', 'design-notes.md', 'design-rationale.md')
     for case, names in curated_custom.items():
-        source = ROOT / 'examples/create' / case
-        target = ASSETS / 'cases' / case
+        source = ROOT / 'examples' / ('reproduce' if case == 'scwat-broken-axis' else 'create') / case
+        target = assets / 'cases' / case
         for name in names:
-            copy_file(source / name, target / name)
+            if name not in prose_names:
+                copy(source / name, target / name)
         # Keep useful prose and local runnable-input links; development-only
         # evidence links point to the preserved original repository record.
-        for name in ('README.md', 'design-notes.md', 'design-rationale.md'):
+        for name in prose_names:
             if not (source / name).is_file():
                 continue
-            original = (source / name).read_text()
+            original = check_source_file(source / name).read_text()
             def link(match):
                 label, destination = match.group(1), match.group(2)
                 parsed = urlsplit(destination)
@@ -239,7 +290,7 @@ def sync():
                 return f'[{label}]({url})'
             transformed = re.sub(r'\[([^\]]*)\]\(([^\s)]+)\)', link, original)
             if name == 'README.md':
-                transformed = transformed.replace(f'python examples/create/{case}/', 'python ')
+                transformed = transformed.replace(f'python {source.relative_to(ROOT).as_posix()}/', 'python ')
                 transformed = transformed.replace('From the repository root, redraw into a new folder',
                                                   'From this copied case directory, redraw into a new folder')
                 transformed += ('\nThe bundled exports are frozen previews. Redraw this copied case into a fresh '
@@ -247,6 +298,20 @@ def sync():
                                 'and a handoff receipt. Development review/history links refer to the original '
                                 'repository records.\n')
             (target / name).write_text(transformed)
+
+
+def sync():
+    """Generate every case first, then atomically replace each owned leaf."""
+    check_generated_destinations(ASSETS)
+    ASSETS.mkdir(parents=True, exist_ok=True)
+    with staging_directory(ASSETS, '.easyviz-sync-') as staging:
+        generated = staging / 'generated'
+        generated.mkdir()
+        _populate_assets(generated)
+        check_generated_destinations(ASSETS)
+        replace_outputs([(source, ASSETS / source.relative_to(generated))
+                         for source in generated_destinations(generated)], staging,
+                        lambda target: check_output_path(target, ASSETS))
     print('Synced reviewed CC BY cases, synthetic workflow support and the annotated-heatmap recipe; custom cases omit development histories and stale current metadata.')
 
 

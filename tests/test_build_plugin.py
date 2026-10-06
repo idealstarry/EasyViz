@@ -11,7 +11,7 @@ import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import build_plugin
-from check_package import CURATED_CREATE_RESOURCES
+from check_package import CURATED_CREATE_RESOURCES, V050_REPRODUCE_RESOURCES, V050_RUNTIME_RESOURCES
 
 
 class BuildPluginTests(unittest.TestCase):
@@ -35,9 +35,11 @@ class BuildPluginTests(unittest.TestCase):
             'LICENSE': 'License\n',
             'THIRD_PARTY_NOTICES.md': 'Attribution\n',
         }
-        for case, names in CURATED_CREATE_RESOURCES.items():
+        for case, names in (CURATED_CREATE_RESOURCES | V050_REPRODUCE_RESOURCES).items():
             for name in names:
                 resources[f"skills/easyviz/assets/cases/{case}/{name}"] = "portable curated source resource\n"
+        for name in V050_RUNTIME_RESOURCES:
+            resources[f"skills/easyviz/scripts/{name}"] = "runtime test resource\n"
         for name, content in resources.items():
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -49,6 +51,12 @@ class BuildPluginTests(unittest.TestCase):
         patch = mock.patch.object(build_plugin, 'sync')
         self.sync = patch.start()
         self.addCleanup(patch.stop)
+        # These ownership/transaction fixtures omit chart-specific resources.
+        # The full resource validator has separate installer/extracted tests.
+        patch = mock.patch.object(build_plugin, 'validate_plugin', side_effect=lambda path:
+                                  json.loads((path / '.codex-plugin/plugin.json').read_text()))
+        self.validate_plugin = patch.start()
+        self.addCleanup(patch.stop)
 
     def external_marker(self, name='outside'):
         outside = self.base / name
@@ -56,6 +64,77 @@ class BuildPluginTests(unittest.TestCase):
         marker.parent.mkdir(parents=True)
         marker.write_bytes(b'external files must stay untouched')
         return outside, marker
+
+    def output_bytes(self):
+        return {path.relative_to(self.dist).as_posix(): path.read_bytes()
+                for path in self.dist.rglob('*') if path.is_file()}
+
+    def test_failed_copy_or_zip_preserves_previous_package_and_summary(self):
+        build_plugin.build()
+        (self.dist / 'easyviz/previous.txt').write_bytes(b'previous package note')
+        (self.dist / 'unrelated.bin').write_bytes(b'unrelated distribution file')
+        before = self.output_bytes()
+        (self.root / 'plugins/easyviz/README.md').write_text('new candidate readme\n')
+        real_copy = build_plugin.shutil.copytree
+        def interrupted_copy(source, target, *args, **kwargs):
+            result = real_copy(source, target, *args, **kwargs)
+            if Path(source) == self.root / 'plugins/easyviz/assets':
+                raise OSError('copy interrupted after partial staging')
+            return result
+        with mock.patch.object(build_plugin.shutil, 'copytree', side_effect=interrupted_copy):
+            with self.assertRaisesRegex(OSError, 'copy interrupted'):
+                build_plugin.build()
+        self.assertEqual(self.output_bytes(), before)
+        real_write = zipfile.ZipFile.writestr
+        calls = 0
+        def interrupted_zip(package, *args, **kwargs):
+            nonlocal calls
+            calls += 1
+            real_write(package, *args, **kwargs)
+            if calls == 3:
+                raise OSError('ZIP interrupted after partial archive')
+        with mock.patch.object(zipfile.ZipFile, 'writestr', interrupted_zip):
+            with self.assertRaisesRegex(OSError, 'ZIP interrupted'):
+                build_plugin.build()
+        self.assertEqual(self.output_bytes(), before)
+        self.assertFalse(list(self.dist.glob('.easyviz-build-*')))
+
+    def test_failed_summary_publication_restores_all_previous_outputs(self):
+        build_plugin.build()
+        (self.dist / 'easyviz/previous.txt').write_bytes(b'previous package note')
+        before = self.output_bytes()
+        (self.root / 'plugins/easyviz/README.md').write_text('new candidate readme\n')
+        real_replace = Path.replace
+        failed = False
+        def interrupted_replace(source, target):
+            nonlocal failed
+            if not failed and source.name == 'build.json' and source.parent.name.startswith('.easyviz-build-'):
+                failed = True
+                raise OSError('summary publication interrupted')
+            return real_replace(source, target)
+        with mock.patch.object(Path, 'replace', interrupted_replace):
+            with self.assertRaisesRegex(OSError, 'summary publication interrupted'):
+                build_plugin.build()
+        self.assertTrue(failed)
+        self.assertEqual(self.output_bytes(), before)
+        self.assertFalse(list(self.dist.glob('.easyviz-build-*')))
+
+    def test_incomplete_candidate_keeps_previous_valid_package(self):
+        build_plugin.build()
+        before = self.output_bytes()
+        self.validate_plugin.side_effect = ValueError('Missing portable resource')
+        with self.assertRaisesRegex(ValueError, 'Missing portable resource'):
+            build_plugin.build()
+        self.assertEqual(self.output_bytes(), before)
+        self.assertFalse(list(self.dist.glob('.easyviz-build-*')))
+
+    def test_manifest_changed_during_copy_does_not_publish_wrong_archive_version(self):
+        build_plugin.build()
+        before = self.output_bytes()
+        self.validate_plugin.side_effect = lambda path: {'name': 'easyviz', 'version': '2.0.0'}
+        with self.assertRaisesRegex(ValueError, 'manifest changed'):
+            build_plugin.build()
+        self.assertEqual(self.output_bytes(), before)
 
     def assert_rejected_without_sync(self, dist=None, pattern='symlink build path'):
         with self.assertRaisesRegex(ValueError, pattern):

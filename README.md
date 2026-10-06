@@ -51,8 +51,9 @@ Keep its layers and axis structure, use a 100 × 76 mm panel and 8 pt text,
 and write plotting code for any unsupported layers. Export PDF, SVG and PNG.
 ```
 
-The Agent clarifies units and comparisons, applies suitable
-[design cards](skills/easyviz/references/design-cards.md), and reviews actual images.
+The Agent establishes the question and experimental units, selects suitable
+literature mechanisms, and reviews the actual images. Adopted statistical
+results remain bound to the plotted comparison during cosmetic edits.
 
 ## Examples
 
@@ -96,10 +97,19 @@ descriptive sign fractions. [Data and code](examples/create/pathway-signatures/R
 
 [Data, code and declared adaptations](examples/no-author-code/massier-integration-radar/revision-v0.4.6/README.md).
 
-Both reconstructions retain all supplied values and adopt editable 8 pt text.
+**Broken-axis replicate bars** · Figure 2c from
+[Huang et al., Nature Communications (2023)](https://doi.org/10.1038/s41467-023-43021-8).
+
+| Original literature panel | EasyViz reconstruction |
+| --- | --- |
+| <img src="examples/reproduce/scwat-broken-axis/inputs/reference.png" alt="Original scWAT Figure 2c gene expression bars with a broken y axis" width="350"> | <a href="examples/reproduce/scwat-broken-axis/"><img src="examples/reproduce/scwat-broken-axis/output/panel.png" alt="Reconstructed broken-axis bars with individual observations, means and SEM" width="350"></a> |
+
+[Data, code and declared adaptations](examples/reproduce/scwat-broken-axis/README.md).
+
+These reconstructions retain all selected supplied values and adopt editable 8 pt text.
 Their case pages record measured geometry, intentional changes and remaining
 differences.
-Both original excerpts are [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The original excerpts are [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 [Time-course reproduction](examples/no-author-code/shi-timecourse/README.md) is also available.
 
 Published Source Data or author code is optional for your own reproduction.
@@ -123,16 +133,20 @@ Choose a palette for the marks and scientific meaning. Defaults are editable.
 ```text
 Open the EasyViz local figure workbench for this panel.
 Let me select elements or draw numbered regions and save my instructions.
-When I say the requests are ready, apply them and show the new attempt
-beside the previous one.
+Preview supported edits from the plotting code. Apply the remaining
+instructions and compare the new attempt with the previous one.
 ```
 
-The Agent opens `http://127.0.0.1:PORT/`. Add numbered selections or regions,
-write instructions, and **Save requests**. Tell the Agent to apply them; it
-edits the code and shows the new attempt beside the previous one. Saving alone
-does not start the Agent. Element selection needs a matching element map;
-custom plots can use the documented export handoff.
+The Agent opens `http://127.0.0.1:PORT/`. Select several targets, write an
+instruction for each, then **Save requests**. **Render saved edits** previews
+supported cosmetics; the active Agent handles custom or free-form changes.
+Compare, accept and restore attempts from the page. Saving alone does not start
+an idle Agent. Element selection requires an actual matching element map.
 [Workbench guide](skills/easyviz/references/figure-workbench.md).
+
+Optional [MCP](skills/easyviz/references/mcp.md) connects the same project,
+requests and render jobs to a compatible Agent. Ask it to set up the connection
+using [INSTALL.md](INSTALL.md); the ordinary skill and page need no MCP SDK.
 
 ## Guides
 
@@ -141,7 +155,7 @@ custom plots can use the documented export handoff.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](evals/release-qa/v0.4.6/README.md)
+[Validation and limits](evals/release-qa/v0.5.0/README.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

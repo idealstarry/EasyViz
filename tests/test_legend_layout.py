@@ -141,6 +141,26 @@ class LegendLayoutTests(unittest.TestCase):
         self.assertTrue(checked["png_pass"], checked)
         np.testing.assert_allclose(checked["expected_diameters_pt"], 2 * np.sqrt(np.array([9, 36, 144]) / math.pi))
 
+    def test_export_benchmark_recognizes_semantic_legend_and_rejects_wrong_size(self):
+        fig, manager, _ = self.size_guide(area_semantics="geometric_circle_area", dpi=300)
+        legend = manager.entries[0]["artist"]
+        legend.set_gid("easyviz-legend-0123456789abcdef")
+        spec = {"chart": "dotplot", "layout": {"width_mm": 100, "height_mm": 70, "dpi": 300},
+                "options": {"size_max": 160, "max_area_pt2": 144, "size_legend": [10, 40, 160]}}
+        geometry = benchmark.inspect_figure(fig, spec)
+        with tempfile.TemporaryDirectory(prefix="easyviz-semantic-legend-export-") as folder:
+            folder = Path(folder)
+            fig.savefig(folder / "panel.svg")
+            checked = benchmark.inspect_size_exports(folder, geometry, spec)
+            self.assertTrue(checked["svg_pass"], checked)
+            self.assertEqual(len(checked["svg_marker_extents"]), 3)
+            # Matching the semantic group must still measure its real paths.
+            handle = legend.legend_handles[-1]
+            handle.set_sizes(handle.get_sizes() * 4)
+            fig.savefig(folder / "panel.svg")
+            corrupted = benchmark.inspect_size_exports(folder, geometry, spec)
+            self.assertFalse(corrupted["svg_pass"], corrupted)
+
     def test_explicit_placement_columns_and_font_are_honored(self):
         fig, ax = self.figure(132, 96)
         manager = helper.LegendLayout(fig, ax, {"legend": 8}, {

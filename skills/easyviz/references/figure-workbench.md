@@ -11,6 +11,7 @@ Run this standard-library tool from the discovered EasyViz skill directory:
 
 ```sh
 python /absolute/path/to/easyviz/scripts/figure_workbench.py \
+  --project-dir /absolute/path/to/project \
   --figure-dir /absolute/path/to/project/attempt-01 --port 0
 ```
 
@@ -73,6 +74,32 @@ definitions and their local references.
 Draft numbers and selection boxes are browser review overlays. They do not
 alter source values, become scientific labels, or appear in downloaded SVG,
 PDF or PNG exports. Saved requests remain separate instructions for the Agent.
+
+## Render and review saved changes
+
+Expand **Target and editable properties** to see the real mapped source keys,
+specification paths and current values. A collection remains a group; the page
+does not manufacture individual-point identity.
+
+When the current attempt supports automatic core edits, **Render saved edits**
+regenerates SVG, PDF and PNG through the plotting code. Watch the actual job
+state or cancel it before publication. A mixed batch can render supported
+cosmetics while leaving region, layout or free-form instructions pending for
+the Agent. Each saved request shows its own outcome. Newly entered drafts are
+retained while a preview finishes.
+
+Open the completed attempt, compare it with its predecessor and inspect the
+actual figure. **Accept** preserves verified source/spec/data/exports for later
+restoration; **Restore accepted** creates a separate restored attempt. Neither
+a successful render nor acceptance is an automatic aesthetic judgment.
+The attempt selector and History refer only to registered figures within the
+explicit project scope. A changed source or failed preview keeps the previous
+visible figure and reports the failure.
+
+Unsupported edits use the active Agent's code workflow. Tell it the requests
+are ready; it reads `requests.json` directly or uses the optional
+[MCP connection](mcp.md). Saving alone does not start an idle Agent, and no
+copying or rephrasing of the instructions is required.
 
 The **Edit**, **Requests** and **History** tabs keep the inspector within the
 desktop viewport; long content scrolls inside the active tab. On small screens

@@ -1,0 +1,28 @@
+{
+  "id": "02-repeated-components",
+  "question": "Compare the absolute magnitudes of all three repair outcomes within each treatment on a common percentage scale. Preserve all repeat values and sample SD. This is a multiple-series comparison, rather than three unrelated single-outcome panels.",
+  "panel_mm": [
+    125,
+    74
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "context": "Three biological replicates per treatment. The outcomes are separate supplied quantities; do not stack them or infer a new denominator. Use a common 0–55 percent y axis.",
+  "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+  "source_path": "examples/create/basic-panels/replicate-bars/source-data.csv",
+  "source_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+  "input_sha256": "90c68b872b3af2ef8b40ced2b9ebff04a57942ba3dbc370420d207de28d05488",
+  "renamed_columns": {
+    "condition": "exposure",
+    "HDR_percent": "repair_pct",
+    "both_percent": "joint_pct",
+    "mutEJ_percent": "endjoining_pct",
+    "unit": "repeat_id"
+  },
+  "expected": {
+    "rows": 15,
+    "plotted_values": 45,
+    "inference": false
+  },
+  "row_count": 15
+}

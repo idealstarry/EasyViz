@@ -311,6 +311,98 @@ samples use SciPy's asymptotic calculation, with an explicit caveat through
 separate permutation procedure with a recorded random seed and computation
 budget. No interval is manufactured for a rank effect.
 
+## Adopt analysis once, then render or revise the figure
+
+For new inferential core scatter/distribution panels, bind a reviewed result
+instead of calculating a second test in the renderer. Read `methodology.md`,
+effects, assumptions and exclusions before adopting it. Both tracks may consume
+the same planned result when it describes their actual supplied observations.
+The statistical design is not a cosmetic setting.
+
+```json
+"statistics": {
+  "analysis": {
+    "schema_version": 1,
+    "results_file": "analysis-attempt-01/results.json",
+    "results_sha256": "the exact adopted results.json SHA-256 digest",
+    "comparison": "planned_group_difference",
+    "pvalue": "raw",
+    "population": "all"
+  },
+  "annotate": true
+}
+```
+
+`results_sha256` is an internal version binding, not a separate checksum file
+for users to manage. The Agent can calculate it using Python:
+
+```python
+import hashlib
+from pathlib import Path
+digest = hashlib.sha256(Path("analysis-attempt-01/results.json").read_bytes()).hexdigest()
+```
+
+The report path is relative to the original plotting spec, or the current
+directory for a dictionary-only API call. `resolve_spec` canonicalizes that
+path before a spec is relocated. Keep the report's four companion files
+(`plan.json`, `analyzed-data.csv`, `summary.csv`, `methodology.md`) together.
+The renderer validates their exact bytes, plan, source-record accounting and
+literal values, as well as the source CSV, compared fields and sampling unit.
+The report supplies method, group order and effect direction. Do not add legacy
+`method`, `groups` or `unit` options beside `analysis`.
+
+Both P-value and plotted-population choices are **explicit**:
+
+- `pvalue="raw"` displays the recorded unadjusted value with a `P` label.
+  If a family adjustment exists, it remains in `stats.json` and the statistical
+  caption supplement. Choose raw only when scientifically intended.
+- `pvalue="adjusted"` requires an actual recorded multiplicity adjustment and
+  displays that value with an `adjusted P` label. It never changes the effect
+  interval's recorded pointwise scope or chooses significant comparisons.
+- `population="all"` preserves all supplied finite visible observations. A
+  test may use only a planned group/subset, for example excluding an incomplete
+  pair while showing its finite available observation. The caption states the
+  distinction; visible group summaries are summaries of the plotted population,
+  not automatically the inferential subset. Missing plotted fields remain an
+  explicit error; the renderer does not silently discard them.
+- `population="included"` explicitly plots only included source records from
+  the adopted comparison. This changes the plotted population and must be
+  adopted deliberately. Paired complete-case exclusions remove both partners
+  exactly as recorded; unselected/excluded rows remain in the exact source
+  snapshot and trace. Unit strings and measurements are retained.
+
+For a descriptive-only result use `pvalue="raw"` and `annotate=false`; there
+is no P value to display. No design is inferred from spreadsheet rows.
+
+Outputs retain the complete frozen analysis under `adopted-analysis/`, its
+adoption/population identity in `settings.json` and `stats.json`, and an
+`analysis-caption.md` supplement. Combine that supplement with the actual
+scientific panel description and source attribution in `caption.md`; do not
+place it inside the image. Cosmetic rerenders preserve the same adopted result,
+effects, intervals and method. Changed source bytes, source row order, result,
+plan, companions or fields require a new reviewed adoption and cannot silently
+reuse old P values. Identical source bytes at a new path remain valid.
+
+Custom scatter/distribution-equivalent code can call
+`analysis_result.load(binding, source_csv, fields, chart, spec_path=...)` and
+consume its frozen `result`, literal CSV `source_records` and caption. Source
+record numbers include the header (first data record is 2), including quoted
+multiline records. Use those exact identities for selection, never a nearest
+point. Core binding does not cover transformed summary tables, arbitrary
+upstream model reports or every focused recipe. For upstream results, preserve
+the adopted upstream table and record model, formula, sampling unit,
+population, effect/uncertainty definitions, P-value family and exact source
+bindings in the custom implementation; do not fabricate an `analyze.py` report
+or recompute an upstream model just to satisfy this schema.
+
+Saved `statistics.method/groups/unit` specs remain supported for compatibility,
+with their previous single-test calculations. Their `stats.json` explicitly
+labels that legacy scope; this interface does not establish confirmed design,
+planned missingness exclusions, effect intervals or a hypothesis family.
+Keep old artifacts replayable, but use adopted planned analysis for new
+inferential figures. Style-only edits must not upgrade an old statistical
+decision silently.
+
 ## Outputs and replay evidence
 
 - `results.json`: plan, comparison results, unit/row counts, effects, intervals

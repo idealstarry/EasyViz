@@ -17,6 +17,7 @@ import tempfile
 import uuid
 
 from check_package import validate_plugin, validate_resource_tree
+from package_io import file_sha256
 
 
 class InstallError(RuntimeError):
@@ -52,10 +53,11 @@ def detect_cli(explicit: str | None, env: dict, cwd: Path) -> str:
 
 def atomic_write(path: Path, data: bytes, *, expected_bytes: object = _UNCHECKED) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".easyviz-", delete=False) as stream:
-        staging = Path(stream.name)
-        stream.write(data)
+    descriptor, name = tempfile.mkstemp(dir=path.parent, prefix=".easyviz-")
+    staging = Path(name)
     try:
+        with os.fdopen(descriptor, "wb") as stream:
+            stream.write(data)
         if expected_bytes is not _UNCHECKED:
             current = path.read_bytes() if path.exists() else None
             if current != expected_bytes:
@@ -73,7 +75,7 @@ def content_hashes(folder: Path) -> dict[str, str]:
         if ("__pycache__" in relative.parts or path.name == ".DS_Store"
                 or path.suffix in (".pyc", ".pyo") or not path.is_file()):
             continue
-        hashes[relative.as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
+        hashes[relative.as_posix()] = file_sha256(path)
     return hashes
 
 
@@ -248,6 +250,13 @@ def _install(source: Path, home: Path, codex_home: Path, explicit_cli: str | Non
     catalog = merged_catalog(original, entry)
     isolated = home != Path.home().resolve()
     marketplace = ("easyviz-isolated-" + hashlib.sha256(str(home).encode()).hexdigest()[:12]) if isolated else catalog["name"]
+    isolated_path = target.parent / ".agents/plugins/marketplace.json"
+    isolated_original = None
+    isolated_catalog = None
+    if isolated:
+        owned_path(isolated_path, codex_home)
+        if isolated_path.exists() and not isolated_path.is_file():
+            raise InstallError("Isolated marketplace is not a file; existing path was left untouched")
     cache = codex_home / "plugins/cache" / marketplace / "easyviz" / manifest["version"]
     owned_path(cache, codex_home)
     if cache.exists():
@@ -268,6 +277,7 @@ def _install(source: Path, home: Path, codex_home: Path, explicit_cli: str | Non
     cache_attempted = False
     target_replaced = False
     catalog_replaced = False
+    isolated_replaced = False
     suffix = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:8]
     try:
         shutil.copytree(source, staging, dirs_exist_ok=True)
@@ -295,12 +305,18 @@ def _install(source: Path, home: Path, codex_home: Path, explicit_cli: str | Non
             # A uniquely named catalog prevents an isolated test selecting the real Personal source.
             isolated_root = target.parent
             view_entry = {**entry, "source": {"source": "local", "path": "./easyviz"}}
-            isolated_catalog = {"name": marketplace, "interface": {"displayName": "Isolated EasyViz"},
-                                "plugins": [view_entry]}
-            isolated_path = isolated_root / ".agents/plugins/marketplace.json"
+            latest_isolated = isolated_path.read_bytes() if isolated_path.exists() else None
+            template = {"name": marketplace, "interface": {"displayName": "Isolated EasyViz"}, "plugins": []}
+            isolated_catalog = merged_catalog(latest_isolated if latest_isolated is not None
+                                              else json.dumps(template).encode(), view_entry)
+            if isolated_catalog["name"] != marketplace:
+                raise InstallError("Isolated marketplace is not identified as this installation; left untouched")
+            isolated_original = latest_isolated
             owned_path(isolated_path, codex_home)
             atomic_write(isolated_path,
-                         (json.dumps(isolated_catalog, indent=2) + "\n").encode())
+                         (json.dumps(isolated_catalog, indent=2) + "\n").encode(),
+                         expected_bytes=isolated_original)
+            isolated_replaced = True
             run([cli, "plugin", "marketplace", "add", str(isolated_root), "--json"], env=env, cwd=home)
         # Snapshot the trusted, predetermined cache location before invoking a
         # CLI that can overwrite the same-version cache and then fail validation.
@@ -360,6 +376,12 @@ def _install(source: Path, home: Path, codex_home: Path, explicit_cli: str | Non
             if catalog_replaced:
                 owned_path(catalog_path, home)
                 rollback_catalog(catalog_path, original, catalog)
+        except (OSError, InstallError) as rollback_error:
+            rollback_errors.append(str(rollback_error))
+        try:
+            if isolated_replaced:
+                owned_path(isolated_path, codex_home)
+                rollback_catalog(isolated_path, isolated_original, isolated_catalog)
         except (OSError, InstallError) as rollback_error:
             rollback_errors.append(str(rollback_error))
         if rollback_errors:

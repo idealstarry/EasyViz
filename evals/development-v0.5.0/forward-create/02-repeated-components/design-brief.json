@@ -1,0 +1,25 @@
+{
+  "purpose": "Compare the absolute magnitudes of all three repair outcomes within each treatment on a common percentage scale. Preserve all repeat values and sample SD. This is a multiple-series comparison, rather than three unrelated single-outcome panels.",
+  "reading_burden": {
+    "source_rows": 15,
+    "groups": {
+      "DMSO": 3,
+      "NU-7441\n(1 µM)": 3,
+      "KU-0060548\n(0.25 µM)": 3,
+      "L755507\n(5 µM)": 3,
+      "SCR7 pyrazine\n(1 µM)": 3
+    }
+  },
+  "adopted_canvas_mm": [
+    125,
+    74
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "summary",
+  "organization": "repeated_groups",
+  "mechanism": "compact repeated component groups on common absolute scale",
+  "expected_benefit": "Five compact blocks retain three separate open summaries with visible inner gaps and common numeric baseline; the series key matches open bar outlines.",
+  "observed_tradeoff": "Very small sample-SD intervals in the low outcomes approach the marker diameter at the common absolute scale; their numerical endpoints are retained and high-outcome intervals remain definite.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

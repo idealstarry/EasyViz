@@ -1,0 +1,141 @@
+{
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "chart": "custom-broken-axis-bars",
+  "layout": {
+    "width_mm": 92.0,
+    "height_mm": 66.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "svg",
+    "pdf",
+    "png"
+  ],
+  "gene_order": [
+    "marker_a",
+    "marker_b",
+    "marker_c"
+  ],
+  "group_order": [
+    "Baseline",
+    "Perturbed"
+  ],
+  "colors": {
+    "Baseline": "#55A0FB",
+    "Perturbed": "#FF8080"
+  },
+  "segments": [
+    [
+      0,
+      16
+    ],
+    [
+      35,
+      84
+    ]
+  ],
+  "segment_ticks": [
+    [
+      0,
+      5,
+      10,
+      15
+    ],
+    [
+      40,
+      50,
+      60,
+      70,
+      80
+    ]
+  ],
+  "geometry_mm": {
+    "left": 12,
+    "width": 66,
+    "bottom": 14,
+    "segment_height": 20,
+    "gap": 2.5
+  },
+  "style": {
+    "bar_width": 0.27,
+    "bar_gap": 0.1,
+    "bar_linewidth_pt": 0.65,
+    "point_size_pt": 2.3,
+    "error_linewidth_pt": 0.65,
+    "annotation_linewidth_pt": 0.55
+  },
+  "labels": {
+    "y": "Relative expression"
+  },
+  "annotation_policy": "Source P classes only; no P-value recomputation or invented correction",
+  "intentional_differences": [
+    "The selected original panel letter c is omitted for an individual manuscript panel.",
+    "Final 92 \u00d7 66 mm canvas, Arial and 8 pt for every text role are explicitly adopted; source font points were not recovered.",
+    "Visible numeric segments are explicitly adopted as 0\u201316 and 35\u201384 to retain every point and comparison line; the reference's upper lower bound is inferred.",
+    "Deterministic bounded within-bar offsets preserve all five observations without claiming scientific x coordinates or mouse pairing.",
+    "Group colors come from direct PDF vector colors, not an exact color inference from the raster.",
+    "Full lower/upper SEM endpoints are displayed and checked; the reference visibly emphasizes the upper whisker.",
+    "Comparison guides may use the physical axis gap; no observation or SEM endpoint is hidden there."
+  ],
+  "evidence_limits": [
+    "Engineering fixture only: simulated values/classes are not biological findings or evidence of statistical validity."
+  ],
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/scwat-broken-axis/user-data-transfer/inputs/observations.csv",
+      "sha256": "2bb4755be9b09272fcef2ec615e0b7e5c047ecc5989affee3ebb5436c7f169c0"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/plot.py",
+      "sha256": "798e88cc0ebdb81216f6295b99c016e6401c5f08f4664c944dc8c12f2123ed6b"
+    },
+    "spec_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/scwat-broken-axis/user-data-transfer/spec.json",
+      "sha256": "048316e2de6ce786dd243ae899c7887b903d0075a11174632a070f7d46c8c82f"
+    },
+    "author_p_values": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/scwat-broken-axis/user-data-transfer/inputs/author-p-values.csv",
+      "sha256": "5ff60ecba2210e1a81463552413dc8b373a847d48b32fbba93cc2da5b80b7403"
+    },
+    "render_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+      "sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339"
+    },
+    "figure_elements_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "figure_handoff_helper": {
+      "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_handoff.py",
+      "sha256": "cb5995f17f6905f1a1a755bdba2cca8cb14772bd57c76f93a7bd52496f75b75a"
+    }
+  },
+  "resolved_colors": {
+    "Baseline": "#55A0FB",
+    "Perturbed": "#FF8080"
+  },
+  "version": {
+    "input_sha256": "2bb4755be9b09272fcef2ec615e0b7e5c047ecc5989affee3ebb5436c7f169c0",
+    "source_script_sha256": "798e88cc0ebdb81216f6295b99c016e6401c5f08f4664c944dc8c12f2123ed6b"
+  }
+}

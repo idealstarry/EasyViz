@@ -1,0 +1,1386 @@
+{
+  "schema_version": 1,
+  "chart": "heatmap",
+  "track": "create",
+  "panel": {
+    "width_mm": 60.0,
+    "height_mm": 104.0
+  },
+  "coordinate_system": "bbox_mm uses canvas lower-left; SVG y increases downward",
+  "version": {
+    "figure_sha256": "ba2c0845cffde22849f778ff097f61080d41efd1827a4033d77240bf79189735",
+    "spec_sha256": "04abdd4405f10ecb04fe45c00d355eae8d60ecf76c3f2b1598763d30cbc3413e",
+    "input_sha256": "d65cf426a04825b00ac7c39723ab630eee69970149a6ac3ef06dddd865cc630f",
+    "source_script_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+    "auxiliary_inputs_sha256": "6393755d2a10734ed81206b38d0f38680801869a4c98e61df039fe6b1120b20a"
+  },
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/05-narrow-matrix/prepared.csv",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/05-narrow-matrix/final-spec.json",
+    "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+    "supplied_spec_sha256": "e4d8804a7c091bd964ec6fd247acbcafa90bf31642ac82295b53ecee8927ba50",
+    "auxiliary_inputs": {
+      "helper:legend_layout.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py",
+        "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+      },
+      "helper:figure_profile.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py",
+        "sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9"
+      },
+      "helper:auto_layout.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py",
+        "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+      },
+      "helper:annotation_review.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py",
+        "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+      },
+      "helper:figure_elements.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+        "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+      },
+      "helper:panel_readability.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py",
+        "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+      },
+      "helper:observation_clipping.py": {
+        "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py",
+        "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "easyviz-matrix-65f8ed6bc26ecd49",
+      "role": "matrix",
+      "label": "Heatmap values",
+      "source_keys": [
+        {
+          "row": "myC00",
+          "column": "Omental"
+        },
+        {
+          "row": "myC00",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC00",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC01",
+          "column": "Omental"
+        },
+        {
+          "row": "myC01",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC01",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC10",
+          "column": "Omental"
+        },
+        {
+          "row": "myC10",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC10",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC11",
+          "column": "Omental"
+        },
+        {
+          "row": "myC11",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC11",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC12",
+          "column": "Omental"
+        },
+        {
+          "row": "myC12",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC12",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC13",
+          "column": "Omental"
+        },
+        {
+          "row": "myC13",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC13",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC14",
+          "column": "Omental"
+        },
+        {
+          "row": "myC14",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC14",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC15",
+          "column": "Omental"
+        },
+        {
+          "row": "myC15",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC15",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC02",
+          "column": "Omental"
+        },
+        {
+          "row": "myC02",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC02",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC03",
+          "column": "Omental"
+        },
+        {
+          "row": "myC03",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC03",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC04",
+          "column": "Omental"
+        },
+        {
+          "row": "myC04",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC04",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC05",
+          "column": "Omental"
+        },
+        {
+          "row": "myC05",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC05",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC06",
+          "column": "Omental"
+        },
+        {
+          "row": "myC06",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC06",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC07",
+          "column": "Omental"
+        },
+        {
+          "row": "myC07",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC07",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC08",
+          "column": "Omental"
+        },
+        {
+          "row": "myC08",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC08",
+          "column": "Subcutaneous"
+        },
+        {
+          "row": "myC09",
+          "column": "Omental"
+        },
+        {
+          "row": "myC09",
+          "column": "Perivascular"
+        },
+        {
+          "row": "myC09",
+          "column": "Subcutaneous"
+        }
+      ],
+      "spec_paths": [
+        "/colormap",
+        "/options/color_limits"
+      ],
+      "editable": [
+        "color"
+      ],
+      "bbox_mm": [
+        13.274777777777782,
+        7.118033854166674,
+        32.628632812499994,
+        93.85463867187497
+      ]
+    },
+    {
+      "id": "easyviz-grid-line-ad247402708368f7",
+      "role": "grid-line",
+      "label": "Heatmap cell boundaries",
+      "source_keys": [],
+      "spec_paths": [
+        "/options/cell_border_color",
+        "/options/cell_border_width_pt"
+      ],
+      "editable": {
+        "color": "/options/cell_border_color",
+        "linewidth": "/options/cell_border_width_pt"
+      }
+    },
+    {
+      "id": "easyviz-axes-c733e892ae73784e",
+      "role": "axes",
+      "label": "Data region",
+      "source_keys": [],
+      "spec_paths": [],
+      "editable": [],
+      "bbox_mm": [
+        13.27477777777778,
+        7.118033854166667,
+        32.628632812499994,
+        93.85463867187497
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-a25b05ec84419760",
+      "role": "axis-line",
+      "label": "Y axis line · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.040055555555556,
+        7.118033854166674,
+        1.234722222222223,
+        93.85463867187497
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-ccc292c102dd7332",
+      "role": "axis-line",
+      "label": "Y axis line · right",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "right"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        45.90341059027778,
+        7.118033854166674,
+        0.0,
+        93.85463867187497
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-583586e852f58ad3",
+      "role": "axis-line",
+      "label": "X axis line · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        13.274777777777782,
+        5.883311631944445,
+        32.628632812499994,
+        1.2347222222222218
+      ]
+    },
+    {
+      "id": "easyviz-axis-line-d99df2d262383eca",
+      "role": "axis-line",
+      "label": "X axis line · top",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "top"
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        13.274777777777782,
+        100.97267252604163,
+        32.628632812499994,
+        0.0
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-55fa9a7ca5a5ee6b",
+      "role": "axis-tick",
+      "label": "X major tick · 0 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        18.09552213541667,
+        6.5006727430555555,
+        1.2347222222222207,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-5d983dcecf828e06",
+      "role": "tick-label",
+      "label": "X tick label · OM · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 0.0,
+          "column": "Omental",
+          "display_label": "OM"
+        }
+      ],
+      "spec_paths": [
+        "/options/column_labels/Omental"
+      ],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        16.46921657986111,
+        1.9999999999999996,
+        4.487333333333334,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-d2f9de54ec255438",
+      "role": "axis-tick",
+      "label": "X major tick · 1 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        28.971733072916663,
+        6.5006727430555555,
+        1.2347222222222254,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-92ea1202889afa8b",
+      "role": "tick-label",
+      "label": "X tick label · PVAT · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 1.0,
+          "column": "Perivascular",
+          "display_label": "PVAT"
+        }
+      ],
+      "spec_paths": [
+        "/options/column_labels/Perivascular"
+      ],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        26.15744835069444,
+        1.9999999999999996,
+        6.863291666666667,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-a369cdb522813c9c",
+      "role": "axis-tick",
+      "label": "X major tick · 2 · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        39.84794401041666,
+        6.5006727430555555,
+        1.2347222222222254,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b281a5203f58abf3",
+      "role": "tick-label",
+      "label": "X tick label · SC · bottom",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "x",
+          "side": "bottom",
+          "tick_kind": "major",
+          "tick_location": 2.0,
+          "column": "Subcutaneous",
+          "display_label": "SC"
+        }
+      ],
+      "spec_paths": [
+        "/options/column_labels/Subcutaneous"
+      ],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        38.517971788194444,
+        1.9999999999999996,
+        3.8946666666666667,
+        2.6485894097222227
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-8e1c294e3379762a",
+      "role": "axis-tick",
+      "label": "Y major tick · 0 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        97.42235395643443,
+        1.2347222222222207,
+        1.2347222222222352
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-57febe4cb684f4bd",
+      "role": "tick-label",
+      "label": "Y tick label · myC00 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 0.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        96.41845313178166,
+        8.805333333333333,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-7b8c8fd4a49c9682",
+      "role": "axis-tick",
+      "label": "Y major tick · 1 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        91.55643903944224,
+        1.2347222222222207,
+        1.2347222222222352
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-00ea6e4adfc4d4bb",
+      "role": "tick-label",
+      "label": "Y tick label · myC01 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 1.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        90.55253821478948,
+        8.805333333333333,
+        2.648589409722216
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-bd287d4ddd92159b",
+      "role": "axis-tick",
+      "label": "Y major tick · 2 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        85.69052412245007,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-5a9aa9c621720d22",
+      "role": "tick-label",
+      "label": "Y tick label · myC10 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 2.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        84.68662329779728,
+        8.805333333333333,
+        2.648589409722235
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-0bbaa9bc49cbe83d",
+      "role": "axis-tick",
+      "label": "Y major tick · 3 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 3.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        79.82460920545789,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-a95435e8b688ce33",
+      "role": "tick-label",
+      "label": "Y tick label · myC11 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 3.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.2090208333333345,
+        78.8207083808051,
+        8.5963125,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-813f58dfce7a30f9",
+      "role": "axis-tick",
+      "label": "Y major tick · 4 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 4.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        73.9586942884657,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-e500f07c8d8d5e1f",
+      "role": "tick-label",
+      "label": "Y tick label · myC12 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 4.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        72.9547934638129,
+        8.805333333333333,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-23f8ddcc854605f8",
+      "role": "axis-tick",
+      "label": "Y major tick · 5 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 5.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        68.09277937147351,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-4ba416968e7ffc2d",
+      "role": "tick-label",
+      "label": "Y tick label · myC13 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 5.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        67.08887854682074,
+        8.805333333333333,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-b279e7150157534f",
+      "role": "axis-tick",
+      "label": "Y major tick · 6 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 6.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        62.22686445448133,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-4c3e3655610f1f10",
+      "role": "tick-label",
+      "label": "Y tick label · myC14 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 6.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        61.22296362982855,
+        8.805333333333333,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-1b8d6a50123ef2d2",
+      "role": "axis-tick",
+      "label": "Y major tick · 7 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 7.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        56.36094953748914,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-e1ba7319fef300d3",
+      "role": "tick-label",
+      "label": "Y tick label · myC15 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 7.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        55.35704871283636,
+        8.805333333333333,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-33caf1f006d9d388",
+      "role": "axis-tick",
+      "label": "Y major tick · 8 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 8.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        50.49503462049696,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-556c223d01e5de87",
+      "role": "tick-label",
+      "label": "Y tick label · myC02 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 8.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        49.49113379584418,
+        8.805333333333333,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-b31243fa069c2d46",
+      "role": "axis-tick",
+      "label": "Y major tick · 9 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 9.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        44.62911970350478,
+        1.2347222222222207,
+        1.2347222222222158
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-a71ca89c037d91b3",
+      "role": "tick-label",
+      "label": "Y tick label · myC03 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 9.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        43.625218878851996,
+        8.805333333333333,
+        2.6485894097222253
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-63bf692f9cee0146",
+      "role": "axis-tick",
+      "label": "Y major tick · 10 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 10.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        38.76320478651258,
+        1.2347222222222207,
+        1.2347222222222254
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-2b892f5599040a30",
+      "role": "tick-label",
+      "label": "Y tick label · myC04 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 10.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        37.75930396185981,
+        8.805333333333333,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-bdfeb23f59c1545e",
+      "role": "axis-tick",
+      "label": "Y major tick · 11 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 11.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        32.8972898695204,
+        1.2347222222222207,
+        1.2347222222222254
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-ddcffd130e682fc9",
+      "role": "tick-label",
+      "label": "Y tick label · myC05 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 11.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        31.89338904486763,
+        8.805333333333333,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-6cedac2ad16a65e3",
+      "role": "axis-tick",
+      "label": "Y major tick · 12 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 12.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        27.03137495252822,
+        1.2347222222222207,
+        1.2347222222222254
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-819c88dae82aa57d",
+      "role": "tick-label",
+      "label": "Y tick label · myC06 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 12.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        26.027474127875447,
+        8.805333333333333,
+        2.6485894097222205
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-39dcc77d7553f0a2",
+      "role": "axis-tick",
+      "label": "Y major tick · 13 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 13.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        21.165460035536032,
+        1.2347222222222207,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-ed2887fd83086860",
+      "role": "tick-label",
+      "label": "Y tick label · myC07 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 13.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        20.16155921088325,
+        8.805333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-b0dcc48b27d1f9b1",
+      "role": "axis-tick",
+      "label": "Y major tick · 14 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 14.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        15.29954511854385,
+        1.2347222222222207,
+        1.2347222222222207
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-0745a8433b4145f5",
+      "role": "tick-label",
+      "label": "Y tick label · myC08 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 14.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        14.29564429389107,
+        8.805333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-axis-tick-5422336878fea5a9",
+      "role": "axis-tick",
+      "label": "Y major tick · 15 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 15.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "linewidth"
+      ],
+      "bbox_mm": [
+        12.65741666666667,
+        9.433630201551667,
+        1.2347222222222207,
+        1.234722222222223
+      ]
+    },
+    {
+      "id": "easyviz-tick-label-b71284fbc4aebc9c",
+      "role": "tick-label",
+      "label": "Y tick label · myC09 · left",
+      "source_keys": [
+        {
+          "axis_index": 0,
+          "axis": "y",
+          "side": "left",
+          "tick_kind": "major",
+          "tick_location": 15.0
+        }
+      ],
+      "spec_paths": [],
+      "editable": [
+        "color",
+        "fontsize"
+      ],
+      "bbox_mm": [
+        2.0000000000000013,
+        8.429729376898889,
+        8.805333333333333,
+        2.648589409722223
+      ]
+    },
+    {
+      "id": "easyviz-legend-f5c772d78843a502",
+      "role": "legend",
+      "label": "Colorbar guide",
+      "source_keys": [],
+      "spec_paths": [
+        "/legends/colorbar"
+      ],
+      "editable": [
+        "layout"
+      ],
+      "bbox_mm": [
+        47.90341059027777,
+        72.97267252604163,
+        2.3000000000000065,
+        28.000000000000007
+      ]
+    },
+    {
+      "id": "easyviz-guide-label-1fb9c6d0abe4c07b",
+      "role": "guide-label",
+      "label": "Within depot (%)",
+      "source_keys": [],
+      "spec_paths": [
+        "/labels/color"
+      ],
+      "editable": [
+        "text"
+      ],
+      "bbox_mm": [
+        55.35141059027779,
+        76.81267252604164,
+        2.6485894097222253,
+        20.32
+      ]
+    }
+  ],
+  "scope": "Registered artists and shared guides only. Collections select a point group. Unregistered individual points and raster heatmap cells require region notes. No data coordinates or quantitative areas are draggable."
+}

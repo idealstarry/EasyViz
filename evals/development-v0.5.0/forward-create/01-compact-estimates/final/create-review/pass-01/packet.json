@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review_packet",
+  "policy_version": "0.4.4",
+  "pass_number": 1,
+  "reading_task": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+  "inputs": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final",
+    "caption": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/caption.md",
+    "baseline_dir": null,
+    "baseline_kind": null
+  },
+  "snapshot": {
+    "figure_dir": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final",
+    "artifacts": {
+      "panel.png": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/panel.png",
+        "sha256": "60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138",
+        "bytes": 40069
+      },
+      "panel.pdf": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/panel.pdf",
+        "sha256": "7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b",
+        "bytes": 22869
+      },
+      "panel.svg": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/panel.svg",
+        "sha256": "1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2",
+        "bytes": 18268
+      },
+      "settings.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/settings.json",
+        "sha256": "76770df3dfc03488e91117e8545131c4d292aa598a52590b4eb5d24503d19c80",
+        "bytes": 34188
+      },
+      "elements.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/elements.json",
+        "sha256": "6068527b0d9fac820bad649428685587ebcab098eb531c21a77d71ea87fe9f67",
+        "bytes": 22636
+      },
+      "qa.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/qa.json",
+        "sha256": "72c64cb68701102e6bb237459a33bc3d2ce687fda5a98c549cd15d5972144fc7",
+        "bytes": 60589
+      },
+      "stats.json": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/stats.json",
+        "sha256": "b0a0af971b2fa6e68decd12264ce621fef7a1583560eabee2a8d42d17e223524",
+        "bytes": 377
+      },
+      "plotting-data.csv": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/plotting-data.csv",
+        "sha256": "efc89e12322a573db266ac0ad00978d01fce78ebf8e5ba651764f61b165ab32a",
+        "bytes": 3469
+      },
+      "caption": {
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/caption.md",
+        "sha256": "4e1cb330b8e056ac9a9b691e8af0fe4847243b76eccf9cf202cdc7fae48ba98e",
+        "bytes": 574
+      }
+    },
+    "source_bindings": {
+      "data_file": [
+        {
+          "declared_by": "settings.json:source_bindings:data_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+          "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+          "expected_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+          "status": "passed"
+        },
+        {
+          "declared_by": "settings.json:input_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+          "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+          "expected_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+          "status": "passed"
+        },
+        {
+          "declared_by": "elements.json:input.data_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+          "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+          "expected_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+          "status": "passed"
+        }
+      ],
+      "source_script": [
+        {
+          "declared_by": "elements.json:input.source_script",
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+          "sha256": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+          "expected_sha256": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+          "status": "passed"
+        }
+      ],
+      "spec_file": [
+        {
+          "declared_by": "elements.json:input.spec_file",
+          "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/candidate-01/spec.json",
+          "sha256": "28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378",
+          "expected_sha256": "28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378",
+          "status": "passed"
+        }
+      ],
+      "figure_profile": []
+    },
+    "panel": {
+      "width_mm": 72.0,
+      "height_mm": 48.0
+    },
+    "measured_checks": {
+      "export_dimensions": {
+        "status": "passed",
+        "evidence": {
+          "adopted_canvas_mm": {
+            "width_mm": 72.0,
+            "height_mm": 48.0
+          },
+          "actual_png": {
+            "pixels": [
+              850,
+              567
+            ],
+            "dpi": [
+              299.9994,
+              299.9994
+            ]
+          },
+          "qa_exports": {
+            "pdf": {
+              "width_mm": 72.00000000000833,
+              "height_mm": 48.000000000005556,
+              "sha256": "7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b"
+            },
+            "svg": {
+              "width_mm": 71.99999993333333,
+              "height_mm": 47.99999995555555,
+              "text_preserved": true,
+              "font_embedding": "SVG references the recorded font; install it on the assembly system.",
+              "sha256": "1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2"
+            },
+            "png": {
+              "pixels": [
+                850,
+                567
+              ],
+              "dpi": [
+                299.9994,
+                299.9994
+              ],
+              "sha256": "60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138"
+            }
+          },
+          "format_bindings": {
+            "pdf": {
+              "status": "passed",
+              "measurement_source": "hash_bound_qa",
+              "recorded_sha256": "7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b",
+              "actual_sha256": "7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b"
+            },
+            "svg": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2",
+              "actual_sha256": "1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2"
+            },
+            "png": {
+              "status": "passed",
+              "measurement_source": "current_file",
+              "recorded_sha256": "60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138",
+              "actual_sha256": "60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138"
+            }
+          },
+          "actual_svg": {
+            "width_mm": 71.99999993333333,
+            "height_mm": 47.99999995555555
+          }
+        }
+      },
+      "typography": {
+        "status": "passed",
+        "evidence": {
+          "actual_font": "Arial",
+          "font_substituted": false,
+          "sizes_pt": {
+            "axis": 8.0,
+            "tick": 8.0,
+            "legend": 8.0,
+            "annotation": 8.0,
+            "title": 9.0,
+            "panel": 9.0
+          },
+          "scope": "Actual-font and point-size records from the exporter; font embedding is not inferred from PNG."
+        }
+      },
+      "source_provenance": {
+        "status": "passed",
+        "evidence": {
+          "declared_sources": {
+            "data_file": [
+              {
+                "declared_by": "settings.json:source_bindings:data_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+                "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+                "expected_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+                "status": "passed"
+              },
+              {
+                "declared_by": "settings.json:input_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+                "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+                "expected_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+                "status": "passed"
+              },
+              {
+                "declared_by": "elements.json:input.data_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv",
+                "sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+                "expected_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+                "status": "passed"
+              }
+            ],
+            "source_script": [
+              {
+                "declared_by": "elements.json:input.source_script",
+                "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py",
+                "sha256": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+                "expected_sha256": "44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926",
+                "status": "passed"
+              }
+            ],
+            "spec_file": [
+              {
+                "declared_by": "elements.json:input.spec_file",
+                "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/candidate-01/spec.json",
+                "sha256": "28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378",
+                "expected_sha256": "28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378",
+                "status": "passed"
+              }
+            ],
+            "figure_profile": []
+          },
+          "saved_specification": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/settings.json",
+            "sha256": "76770df3dfc03488e91117e8545131c4d292aa598a52590b4eb5d24503d19c80",
+            "bytes": 34188
+          },
+          "resolved_spec_sha256": "1a5012327c24610fb85ce6b7ee10397a193f3b9efd174d8592ab3bd3232d3eb9",
+          "scope": "Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness."
+        }
+      },
+      "technical_qa": {
+        "status": "passed",
+        "evidence": {
+          "qa": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/qa.json",
+            "sha256": "72c64cb68701102e6bb237459a33bc3d2ce687fda5a98c549cd15d5972144fc7",
+            "bytes": 60589
+          },
+          "status": "pass",
+          "valid_outputs": true,
+          "input_rows": 15,
+          "plotted_input_rows": null,
+          "readability_advisory": "no_advisory_flags",
+          "scope": "Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review."
+        }
+      },
+      "caption": {
+        "status": "passed",
+        "evidence": {
+          "artifact": {
+            "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/caption.md",
+            "sha256": "4e1cb330b8e056ac9a9b691e8af0fe4847243b76eccf9cf202cdc7fae48ba98e",
+            "bytes": 574
+          },
+          "scope": "Separate caption is present; its scientific wording is a review attestation."
+        }
+      }
+    },
+    "candidate_png": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/panel.png",
+      "sha256": "60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138",
+      "bytes": 40069
+    },
+    "baseline_png": null
+  },
+  "required_design_checks": [
+    "scientific_mapping",
+    "reading_priority",
+    "mark_hierarchy",
+    "geometry",
+    "palette_and_strokes",
+    "guides_and_text"
+  ],
+  "required_external_checks": [
+    "export_dimensions",
+    "typography",
+    "source_provenance",
+    "technical_qa",
+    "caption"
+  ],
+  "instructions": [
+    "Open the actual candidate PNG as a complete canvas before first user-visible delivery.",
+    "Consider the recorded physical size: inspect a nominal-size view if available, or honestly record a final-proportions view and its size basis. One actual opening may cover both views.",
+    "Record brief, concrete evidence for each design criterion; inspect the caption separately.",
+    "Acknowledge the saved measured evidence without inventing measurements. Required failed/not_checked items prevent readiness.",
+    "Correct critical/major failures before delivery; record corrections and residual minor/intentional differences. A clean first pass is valid.",
+    "Keep comparative preference separate from readiness. No baseline or reference image is required for Create.",
+    "After any meaningful change, rerender affected formats and stage the current exports for another review; at most three visual passes total."
+  ],
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

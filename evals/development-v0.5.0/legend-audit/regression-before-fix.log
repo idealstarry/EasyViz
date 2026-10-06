@@ -1,0 +1,16 @@
+/Users/starry/.matplotlib is not a writable directory
+Matplotlib created a temporary cache directory at /var/folders/v6/3zcrnqgj035csj46zx0q8fwc0000gn/T/matplotlib-ng49h7ko because there was an issue with the default path ({configdir}); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Matplotlib is building the font cache; this may take a moment.
+F
+======================================================================
+FAIL: test_export_benchmark_recognizes_semantic_legend_and_rejects_wrong_size (test_legend_layout.LegendLayoutTests.test_export_benchmark_recognizes_semantic_legend_and_rejects_wrong_size)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/starry/Desktop/EasyViz/tests/test_legend_layout.py", line 155, in test_export_benchmark_recognizes_semantic_legend_and_rejects_wrong_size
+    self.assertTrue(checked["svg_pass"], checked)
+AssertionError: False is not true : {'expected_areas_pt2': [9.0, 36.0, 144.0], 'expected_diameters_pt': [3.385137501286538, 6.770275002573076, 13.540550005146152], 'area_contract': 'Geometric circle fill area, excluding stroke; raw Matplotlib s is 4/pi times this area.', 'expected_svg_centers_pt': [[35.683660629921256, 164.85603732283462], [66.95775354330708, 164.856034488189], [98.23184645669292, 164.85603448818898]], 'svg_center_tolerance_pt': 0.25, 'svg_diameter_tolerance_pt': 0.001, 'svg_marker_extents': [], 'svg_pass': False, 'png_ink_checks': [], 'png_pass': False, 'scope': 'Circular quantitative legend keys in these Matplotlib SVG/PNG exports; SVG path diameters use point-sized viewBox units. SVG center tolerance permits subpoint text-centering differences between raster/vector backends; it does not loosen marker area checks. Raster tolerance accounts for integer positioning and antialiasing.'}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.055s
+
+FAILED (failures=1)

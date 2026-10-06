@@ -1,0 +1,23 @@
+{
+  "purpose": "Read the within-depot percentage for each of 16 cell subtypes in three depots. Use a compact tall heatmap with decoded numerical scale and retain observed zeros.",
+  "reading_burden": {
+    "source_rows": 48,
+    "groups": {
+      "Omental": 16,
+      "Perivascular": 16,
+      "Subcutaneous": 16
+    }
+  },
+  "adopted_canvas_mm": [
+    60,
+    104
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "values",
+  "organization": "compact",
+  "mechanism": "matrix-shaped compact cells and decoded sequential scale",
+  "expected_benefit": "Unique subtype aliases free enough physical width for three columns; every two-decimal label fits its cell, and the colorbar decodes the linear 0–40% scale.",
+  "observed_tradeoff": "Pass 1 full-label geometry caused numerical label overlap. Pass 2 fixed geometry but rounded the smallest positive value to 0.0. Pass 3 shows 0.04, preserving the positive/zero distinction.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

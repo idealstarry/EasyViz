@@ -47,6 +47,11 @@ the actual colored layer.
   useful bright pair in one scatter need not color a single-series bar or every
   boundary of a distribution. Neutral marks are an eligible data treatment,
   not solely a background or metadata role.
+- Preserve the project's accepted brightness preference as well as category
+  identity. When bright summary fills are preferred, do not darken the whole
+  palette merely to help a few tiny observations. Test definite neutral edges,
+  a neutral observation layer or an explicitly decoded same-hue point treatment
+  at final size; compare the complete palette before adopting it.
 - Use a sequential `colormap` for magnitude; it may span more than one hue.
   Its palest end must remain visible
   for borderless dots; compare `notch2-blue` on low-value dots when appropriate.
@@ -298,7 +303,15 @@ is supported. Actual image inspection still makes the selection.
    dashed reference and definite axes should remain distinct in export.
 5. Verify group-color consistency, intact source rows, statistics, dimensions
    and exports. Technical QA covers those checks only where supported; image
-   inspection remains necessary for aesthetics and scientific readability.
+  inspection remains necessary for aesthetics and scientific readability.
+
+New-draft `geometry-evidence.json` also contains `physical_preflight`: actual
+data-region dimensions, categorical pitch, summary/cell size, guide evidence
+and capacity failures. Pale-paint contrast and conservative point/summary
+envelope crossings are design advisories, not pass/fail aesthetic thresholds.
+Inspect the specific boundary and task at final size before changing it. For
+adopted grouped-bar intent, only an omitted gap may be increased from measured
+stroke clearance; explicit gaps, mark sizes and axes remain authoritative.
 
 For a matrix, inspect the low, middle and high portions of the actual data.
 Show an adopted meaningful center on its guide when one exists. An asymmetric
@@ -308,6 +321,6 @@ metadata and marginals must use the same identifier order and declare whether
 their summaries refer to the displayed subset or complete data.
 
 The workbench maps core regression, distribution and supplied reference widths
-to their effective spec paths. Saved cosmetic requests still require an Agent
-to apply the source/spec change and rerender; they do not edit exported PDF/SVG
-bytes in place.
+to their effective spec paths. **Render saved edits** can rerender supported
+core cosmetics from code; custom or free-form instructions require an active
+Agent. Each route produces a fresh attempt and keeps prior PDF/SVG exports.

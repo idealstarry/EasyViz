@@ -1,0 +1,112 @@
+{
+  "checked_at": "2026-10-06T05:07:22.134315+00:00",
+  "status": "reviewed issues repaired and independently reproduced; no known unresolved defect in this audited scope",
+  "auditor_production_edits": false,
+  "auditor_commits": false,
+  "scope": "Local service/MCP, job lifecycle, request binding, accepted analysis bundle and restore",
+  "source_sha256": {
+    "skills/easyviz/scripts/figure_service.py": "68a76580ecb31268448d85797846e8b71a7acf8897fba9ff7f365dbba681a293",
+    "skills/easyviz/scripts/easyviz_mcp.py": "ceb37e19b1a54f0e9679499d83aca0e53f35dd7c0c53064c672f9857706fd5fe",
+    "skills/easyviz/scripts/figure_workbench.py": "716b15134fd6a2fd86569bfaa4854ce084bee5d5bb4e5a8fa64d0aa3afe596c3",
+    "skills/easyviz/scripts/analysis_result.py": "e954e19f16f75108f27d15b8b22d3f281aa676543098577eaf2bc6a5042ffcdd",
+    "skills/easyviz/scripts/apply_figure_requests.py": "742f40349e5fd7cadaaab4bff7ebe1c72e0ac9cee4227b68dd0bcae969f3d739",
+    "skills/easyviz/scripts/render.py": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339"
+  },
+  "checks": {
+    "service": {
+      "tests": 21,
+      "passed": true,
+      "log": "service-tests-final.log"
+    },
+    "workbench": {
+      "tests": 37,
+      "passed": true,
+      "log": "workbench-tests.log"
+    },
+    "apply_requests": {
+      "tests": 24,
+      "passed": true,
+      "log": "apply-tests.log"
+    },
+    "analysis_binding": {
+      "tests": 11,
+      "passed": true,
+      "log": "analysis-tests.log"
+    }
+  },
+  "reproduced_and_fixed": [
+    {
+      "issue": "Post-history registry publication failure lost registered target and broke retries",
+      "before": "job failed, target null/unregistered, source request applied, retry pending check failed",
+      "after": "actual applied event and exact target QA recover registered succeeded target and idempotent retry",
+      "script": "registry_publication_failure.py",
+      "result": "registry-publication-result.json"
+    },
+    {
+      "issue": "Interrupted-job recovery did not bind the exact committed QA digest",
+      "before": "replaced PDF plus newly rehashed current QA recovered as earlier outcome",
+      "after": "mismatched event target_qa_sha256 refuses recovery and marks interrupted failed",
+      "script": "recovery_qa_binding.py",
+      "result": "recovery-qa-binding-result.json"
+    },
+    {
+      "issue": "Cancellation before Agent-only handoff could be overwritten succeeded",
+      "before": "accepted queued cancellation ended succeeded/agent_handoff with cancel_requested true",
+      "after": "terminal handoff rereads cancellation under shared registry lock; final cancelled",
+      "script": "handoff_cancel_race.py",
+      "result": "handoff-cancel-race-result.json"
+    },
+    {
+      "issue": "A self-contained attempt used as project root advertised unsupported preview",
+      "before": "preview supported true, job failed creating descendant of reviewed attempt",
+      "after": "preview supported false and submit rejects with containing-project guidance before registering a job",
+      "script": "self_scoped_attempt.py",
+      "result": "self-scoped-attempt-result.json"
+    },
+    {
+      "issue": "CLI SIGINT left detached owned renderer alive",
+      "before": "main exited KeyboardInterrupt while child remained alive",
+      "after": "main exits 130, closes service, stops and reaps child",
+      "script": "cli_interrupt_cleanup.py",
+      "result": "cli-interrupt-cleanup-result.json"
+    }
+  ],
+  "additional_probes": {
+    "actual_crossprocess_and_custom": {
+      "owner_pid": 50024,
+      "observer_pid": 50023,
+      "status_after_second_process_open": "running",
+      "overlap_rejected": "Another figure job is active in this project; wait or cancel it first",
+      "cancellation_requested": true,
+      "final_status": "cancelled",
+      "target_attempt_id": null,
+      "owner_exit": 0,
+      "source_statuses": [
+        "pending",
+        "pending"
+      ],
+      "registered_attempt_count": 1,
+      "owner_stderr": "",
+      "custom": {
+        "phase": "agent_handoff",
+        "target_attempt_id": null,
+        "marker_exists": false,
+        "source_status": "pending"
+      }
+    },
+    "missing_optional_sdk": {
+      "python": "system Python without mcp package",
+      "exit": 2,
+      "message": "Optional MCP SDK is missing. Install requirements-mcp.txt in this Python environment."
+    },
+    "visual_quality": "Not assessed or claimed by this runtime audit"
+  },
+  "reproduction_order": [
+    "registry_publication_failure.py",
+    "recovery_qa_binding.py",
+    "crossprocess_and_custom.py",
+    "handoff_cancel_race.py",
+    "self_scoped_attempt.py",
+    "cli_interrupt_cleanup.py"
+  ]
+}

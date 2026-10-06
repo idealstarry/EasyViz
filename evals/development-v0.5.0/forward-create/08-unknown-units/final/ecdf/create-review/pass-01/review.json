@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "13e1720b4176aac73f0d98e36c16448be7ae78c09ab2695c81d9c6f547b62758",
+  "pass_number": 1,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "Fresh forward Create agent"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/final/ecdf/panel.png",
+      "sha256": "5ff6b03b999b0090cc9717c8f3f9c041481d8f97097779f90f8884564ed75b51",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image via functions.exec; actual current final PNG opened, full canvas at saved final proportions",
+      "size_basis": "Complete canvas viewed at its saved 74 × 66 mm aspect ratio; no nominal print-size display is claimed."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Actual values/identities retained by source assertions; adopted fields: {\"group\": \"condition\", \"value\": \"value\"}"
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "The box/points preview shows every supplied source row and a descriptive median/IQR; the ECDF shows the fraction of source rows at or below each value with unsmoothed jumps."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "The box/points preview shows every supplied source row and a descriptive median/IQR; the ECDF shows the fraction of source rows at or below each value with unsmoothed jumps."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "Measurement unit and experimental unit remain unknown; batch is retained as a source field and is not declared as a unit or pairing key. Both are descriptive alternatives, with no automatic aesthetic winner or inferential P."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Actual marks and keys opened together; no added in-image title or prose. Category-colored marks, neutral supporting strokes and sequential magnitude scales follow the adopted roles."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Axes, tick labels and supplied units/unknown-unit labels are visible within the canvas; explanatory prose remains in separate caption.md."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 74.0, \"height_mm\": 66.0}, \"actual_png\": {\"pixels\": [874, 780], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"pdf\": {\"width_mm\": 74.00000000001444, \"height_mm\": 65.99999999999, \"sha256\": \"035672bef4ed58e59c0b8e2fae0e5e01008296777e626fa814b4dea1c89f2037\"}, \"svg\": {\"width_mm\": 74.00000016666667, \"height_mm\": 65.99999993888888, \"text_preserved\": true, \"font_embedding\": \"SVG references the recorded font; install it on the assembly system.\", \"sha256\": \"39e94fa5facbf1e9d7467a7a8295e5c09fd301dbcf27a3beea5769a4c90e410b\"}, \"png\": {\"pixels\": [874, 780], \"dpi\": [299.9994, 299.9994], \"sha256\": \"5ff6b03b999b0090cc9717c8f3f9c041481d8f97097779f90f8884564ed75b51\"}}, \"format_bindings\": {\"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"035672bef4ed58e59c0b8e2fae0e5e01008296777e626fa814b4dea1c89f2037\", \"actual_sha256\": \"035672bef4ed58e59c0b8e2fae0e5e01008296777e626fa814b4dea1c89f2037\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"39e94fa5facbf1e9d7467a7a8295e5c09fd301dbcf27a3beea5769a4c90e410b\", \"actual_sha256\": \"39e94fa5facbf1e9d7467a7a8295e5c09fd301dbcf27a3beea5769a4c90e410b\"}, \"png\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"5ff6b03b999b0090cc9717c8f3f9c041481d8f97097779f90f8884564ed75b51\", \"actual_sha256\": \"5ff6b03b999b0090cc9717c8f3f9c041481d8f97097779f90f8884564ed75b51\"}}, \"actual_svg\": {\"width_mm\": 74.00000016666665, \"height_mm\": 65.99999993888888}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8.0, \"tick\": 8.0, \"legend\": 8.0, \"annotation\": 8.0, \"title\": 9.0, \"panel\": 9.0}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:source_bindings:data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/source.csv\", \"sha256\": \"7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d\", \"expected_sha256\": \"7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d\", \"status\": \"passed\"}, {\"declared_by\": \"settings.json:input_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/source.csv\", \"sha256\": \"7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d\", \"expected_sha256\": \"7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/source.csv\", \"sha256\": \"7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d\", \"expected_sha256\": \"7386c8be12bbf2543e57649e723b91b0fbcf1c8af382bf3f1d88275169efae0d\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"elements.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/ecdf_plot.py\", \"sha256\": \"94b313f3374be7f87aab0b88bdbec418af915ad5dc9a6bd82c3ec9c394890607\", \"expected_sha256\": \"94b313f3374be7f87aab0b88bdbec418af915ad5dc9a6bd82c3ec9c394890607\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"settings.json:spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/ecdf/spec.json\", \"sha256\": \"4fef8ec59d6bbeb393c390a8a7fc42e1a21b90f1ecdc2ec2a237eacbb353ee90\", \"expected_sha256\": \"4fef8ec59d6bbeb393c390a8a7fc42e1a21b90f1ecdc2ec2a237eacbb353ee90\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/first-render/ecdf/spec.json\", \"sha256\": \"4fef8ec59d6bbeb393c390a8a7fc42e1a21b90f1ecdc2ec2a237eacbb353ee90\", \"expected_sha256\": \"4fef8ec59d6bbeb393c390a8a7fc42e1a21b90f1ecdc2ec2a237eacbb353ee90\", \"status\": \"passed\"}], \"figure_profile\": []}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/final/ecdf/settings.json\", \"sha256\": \"e0c65ff85d19b07005743cadf5f329c78dfe90ea080ba8af31a2bbcdfa959f5d\", \"bytes\": 10674}, \"resolved_spec_sha256\": \"89dc353280e9bad2d5f94cbb531eaa36ba0bd824dc4dc7c6e68189c4d55a21e9\", \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\"}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/final/ecdf/qa.json\", \"sha256\": \"ed5edcd5d1391867e14f1ed2d6a2da01b8af46e0fc35749e7cce18cec4db3933\", \"bytes\": 14642}, \"status\": \"pass\", \"valid_outputs\": true, \"input_rows\": 6, \"plotted_input_rows\": null, \"readability_advisory\": \"no_advisory_flags\", \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/08-unknown-units/final/ecdf/caption.md\", \"sha256\": \"0c5f752b01afa8d369c09d10f25467d4f751a01d4bb882b65fcf9240edfa9320\", \"bytes\": 815}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "note1",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Panel-level reading and geometry",
+      "evidence": "Measurement unit and experimental unit remain unknown; batch is retained as a source field and is not declared as a unit or pairing key. Both are descriptive alternatives, with no automatic aesthetic winner or inferential P.",
+      "requirement": "Retain every supplied value, fixed canvas and agreed typography; disclose observed tradeoffs.",
+      "action": "Keep the selected valid version and preserve rejected/earlier attempts."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "note1"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": ""
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

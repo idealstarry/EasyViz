@@ -52,6 +52,21 @@ all observations. An unadopted new-canvas default can be chosen for this task;
 an explicit canvas stays fixed. Check resulting exterior whitespace as well as
 the data rectangle.
 
+### Retrieve a local mechanism from actual burden
+
+`scripts/design_mechanisms.py --describe-contract` exposes a small stdlib-only
+catalog keyed by reading task, leading layer and observed chart burden. To
+inspect applicability for a custom/focused route, pass `--features` with actual
+counts and `--intent` with the adopted purpose. Unknown burden remains unresolved;
+a selected `mechanism_id` must actually apply. Results retain source-panel
+observations separately from proposed adaptations and counterexamples.
+
+The new-draft candidate helper runs this retrieval automatically. Use its
+applicable mechanisms as local evidence for planning, not a requirement to
+copy a paper's complete geometry, palette or analysis. A strong mechanism may
+lead to custom code when the helper cannot express its organization. Inspect
+the excluded routes and concrete reasons rather than accepting the first index.
+
 ## Conditional routes within basic families
 
 | Family and condition | Organization and visual roles |

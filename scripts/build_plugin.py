@@ -4,8 +4,9 @@ import hashlib
 import json
 import shutil
 import zipfile
-from check_package import validate_resource_tree
+from check_package import validate_plugin, validate_resource_tree
 from sync_skill_cases import sync
+from package_io import file_sha256, replace_outputs, staging_directory
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
@@ -84,35 +85,45 @@ def build(dist: Path | None = None) -> dict:
     # Sync refreshes generated skill assets; validate that authoritative tree too.
     validate_sources()
     dist.mkdir(parents=True, exist_ok=True)
-    # Only replace the identified generated build directory, never the source.
-    if target.exists():
-        shutil.rmtree(target)
-    target.mkdir()
-    shutil.copytree(ROOT / 'plugins/easyviz/.codex-plugin', target / '.codex-plugin')
-    shutil.copytree(ROOT / 'plugins/easyviz/assets', target / 'assets')
-    shutil.copytree(ROOT / 'skills', target / 'skills', ignore=shutil.ignore_patterns('__pycache__', '.DS_Store', '*.pyc'))
-    shutil.copy2(ROOT / 'plugins/easyviz/README.md', target / 'README.md')
-    for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):
-        if (ROOT / name).exists():
-            shutil.copy2(ROOT / name, target / name)
-    content_identity = hashlib.sha256()
-    with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as package:
-        for path in sorted(target.rglob('*')):
-            if path.is_file():
-                # Package identity follows file contents, not checkout timestamps.
-                info = zipfile.ZipInfo(path.relative_to(dist).as_posix(), date_time=(1980, 1, 1, 0, 0, 0))
-                info.create_system = 3
-                info.external_attr = 0o100644 << 16
-                info.compress_type = zipfile.ZIP_DEFLATED
-                content = path.read_bytes()
-                package.writestr(info, content)
-                content_identity.update(info.filename.encode() + b'\0' + hashlib.sha256(content).digest())
-    summary = {'version': version, 'archive': archive.name,
-               'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
-               'content_sha256': content_identity.hexdigest(),
-               'files': sum(path.is_file() for path in target.rglob('*')),
-               'bytes': archive.stat().st_size}
-    summary_path.write_text(json.dumps(summary, indent=2) + '\n')
+    # Copy, ZIP and summary failures preserve all previous valid outputs.
+    with staging_directory(dist, '.easyviz-build-') as staging:
+        staged_target = staging / 'easyviz'
+        staged_archive = staging / archive.name
+        staged_summary = staging / summary_path.name
+        staged_target.mkdir()
+        shutil.copytree(ROOT / 'plugins/easyviz/.codex-plugin', staged_target / '.codex-plugin')
+        shutil.copytree(ROOT / 'plugins/easyviz/assets', staged_target / 'assets')
+        shutil.copytree(ROOT / 'skills', staged_target / 'skills', ignore=shutil.ignore_patterns('__pycache__', '.DS_Store', '*.pyc'))
+        shutil.copy2(ROOT / 'plugins/easyviz/README.md', staged_target / 'README.md')
+        for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):
+            if (ROOT / name).exists():
+                shutil.copy2(ROOT / name, staged_target / name)
+        copied_manifest = validate_plugin(staged_target)
+        if copied_manifest != manifest:
+            raise ValueError('Plugin manifest changed while preparing the build')
+        content_identity = hashlib.sha256()
+        file_count = 0
+        with zipfile.ZipFile(staged_archive, 'w', compression=zipfile.ZIP_DEFLATED) as package:
+            for path in sorted(staged_target.rglob('*')):
+                if path.is_file():
+                    # Package identity follows file contents, not checkout timestamps.
+                    info = zipfile.ZipInfo(path.relative_to(staging).as_posix(), date_time=(1980, 1, 1, 0, 0, 0))
+                    info.create_system = 3
+                    info.external_attr = 0o100644 << 16
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    content = path.read_bytes()
+                    package.writestr(info, content)
+                    content_identity.update(info.filename.encode() + b'\0' + hashlib.sha256(content).digest())
+                    file_count += 1
+        summary = {'version': version, 'archive': archive.name,
+                   'sha256': file_sha256(staged_archive),
+                   'content_sha256': content_identity.hexdigest(),
+                   'files': file_count,
+                   'bytes': staged_archive.stat().st_size}
+        staged_summary.write_text(json.dumps(summary, indent=2) + '\n')
+        replace_outputs([(staged_target, target), (staged_archive, archive),
+                         (staged_summary, summary_path)], staging,
+                        lambda path: check_output_path(path, dist))
     return summary
 
 

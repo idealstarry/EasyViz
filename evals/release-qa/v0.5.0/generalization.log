@@ -1,0 +1,22 @@
+01_rectangular_heatmap: success
+02_long_labels_small: clear_layout_rejection
+02_long_labels_repaired: success
+03_sparse_denominator_composition: success
+04_unresolved_composition_missingness: clear_data_rejection
+05_zero_sum_composition: clear_data_rejection
+06_sparse_dot_matrix: success
+07_dot_corruption_duplicate: clear_data_rejection
+07_dot_corruption_negative_size: clear_data_rejection
+07_dot_corruption_nonfinite_color: clear_data_rejection
+07_dot_corruption_missing_label: clear_data_rejection
+08_dense_log_scatter: success
+08_zero_log_bound: clear_data_rejection
+09_repeated_correlation_unit: clear_data_rejection
+10_unbalanced_nine_group_distribution: success
+11_within_group_unit_repetition: clear_data_rejection
+12_zero_paired_differences: clear_data_rejection
+13_internal_tick_collisions: clear_layout_rejection
+13_tick_collisions_repaired: success
+14_literal_category_names: success
+15_repeated_three_visit_test: clear_unsupported
+{"counts": {"success": 8, "clear_layout_rejection": 2, "clear_data_rejection": 10, "clear_unsupported": 1}, "open_problem_cases": [], "report": "evals/development-v0.5.0/generalization/report.json"}

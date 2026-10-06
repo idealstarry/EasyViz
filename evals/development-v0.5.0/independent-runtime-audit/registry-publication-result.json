@@ -1,0 +1,228 @@
+{
+  "job": {
+    "id": "job-e3af604568854a7d8b05bfde27b3651d",
+    "status": "succeeded",
+    "phase": "complete",
+    "message": "Recovered a verified preview already recorded before service interruption.",
+    "error": null,
+    "source_attempt_id": "attempt-8d47390b7fc922f8",
+    "target_attempt_id": "attempt-4b2b65fb93c25b2b",
+    "request_ids": [
+      "a10aba06-976c-4056-8d27-9689938b6287"
+    ],
+    "automatic_request_ids": [
+      "a10aba06-976c-4056-8d27-9689938b6287"
+    ],
+    "agent_request_ids": [],
+    "agent_requests": [],
+    "created_at": "2026-10-06T05:00:48+00:00",
+    "updated_at": "2026-10-06T05:00:49+00:00",
+    "idempotency_key": "963d0a15cbe63ac77342e34710c1019e7aa046c9e6356d43765a8aa294764ac3",
+    "cancel_requested": false,
+    "owner_pid": 50279,
+    "target_path": ".easyviz-service/attempts/job-e3af604568854a7d8b05bfde27b3651d",
+    "outcome_id": "cb555b8f-3cac-464a-b65f-413e1901df72"
+  },
+  "source_request": {
+    "id": "a10aba06-976c-4056-8d27-9689938b6287",
+    "created_at": "2026-10-06T05:00:48+00:00",
+    "status": "applied",
+    "version": {
+      "figure_sha256": "49399da7da6fb1c355b7a4f4b31044732d25d83e05644e83822ffaaccee5cab7",
+      "spec_sha256": "ec5728be2398e5f2648ff6db0d50ccdd4d09678ca4e8249c0118bfa487a1e23c",
+      "input_sha256": "d1ee5fb469c3d97f782e68c3c4b54cbcc5a567adbe405fcc639b7474741c0f32",
+      "source_script_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+      "auxiliary_inputs_sha256": "6393755d2a10734ed81206b38d0f38680801869a4c98e61df039fe6b1120b20a",
+      "resolved_colors_sha256": "f06ce563ead15ae6e50f33576cdd47d17ddbfc622654566775cd2448cec143a4"
+    },
+    "input": {
+      "data_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/registry-publication-fixture/data.csv",
+      "spec_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/registry-publication-fixture/spec.json",
+      "source_script": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/render.py",
+      "supplied_spec_sha256": "7fcbc0e35ffa21e03dca1e1e5345557f69e01e56b4fc9e853df626c19480e98a",
+      "auxiliary_inputs": {
+        "helper:legend_layout.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/legend_layout.py",
+          "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+        },
+        "helper:figure_profile.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_profile.py",
+          "sha256": "b6e838c9d4b15e0e266015bc85a24fab87eb8c98b4b814cc8757116c83d0efc9"
+        },
+        "helper:auto_layout.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/auto_layout.py",
+          "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+        },
+        "helper:annotation_review.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/annotation_review.py",
+          "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+        },
+        "helper:figure_elements.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/figure_elements.py",
+          "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+        },
+        "helper:panel_readability.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/panel_readability.py",
+          "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+        },
+        "helper:observation_clipping.py": {
+          "path": "/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/observation_clipping.py",
+          "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+        }
+      }
+    },
+    "element_id": null,
+    "element_ids": [
+      "easyviz-point-group-f5e248a3a0a1a382",
+      "easyviz-legend-key-24df07970d4d9d9c"
+    ],
+    "instruction": "Use purple for A.",
+    "elements": [
+      {
+        "id": "easyviz-point-group-f5e248a3a0a1a382",
+        "role": "point-group",
+        "label": "A",
+        "source_keys": [
+          {
+            "group": "A",
+            "records": [
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "spec_paths": [
+          "/colors/A",
+          "/options/alpha"
+        ],
+        "editable": {
+          "color": "/colors/A",
+          "alpha": "/options/alpha"
+        }
+      },
+      {
+        "id": "easyviz-legend-key-24df07970d4d9d9c",
+        "role": "legend-key",
+        "label": "A",
+        "source_keys": [
+          {
+            "category": "A"
+          }
+        ],
+        "spec_paths": [
+          "/colors/A"
+        ],
+        "editable": [
+          "color"
+        ]
+      }
+    ],
+    "selector": {
+      "category": "A"
+    },
+    "property": "color",
+    "value": "#AA22BB",
+    "applied_at": "2026-10-06T05:00:49+00:00",
+    "result": {
+      "target_attempt": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/registry-publication-fixture/.easyviz-service/attempts/job-e3af604568854a7d8b05bfde27b3651d",
+      "target_version": {
+        "figure_sha256": "fa2c5c2c74040825a93975bb8e5f89bab15abd3158d0b288fd98937bb7911ac2",
+        "spec_sha256": "017810c51ecc950259ab97cc439e11e127f9c725abc23f5a3cc693fcb6e5d9f4",
+        "input_sha256": "d1ee5fb469c3d97f782e68c3c4b54cbcc5a567adbe405fcc639b7474741c0f32",
+        "source_script_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+        "auxiliary_inputs_sha256": "6393755d2a10734ed81206b38d0f38680801869a4c98e61df039fe6b1120b20a",
+        "resolved_colors_sha256": "cb119545457347d4ce68442c6345b0fcec4d7baa561ae20c0c4583f8555eb8fe"
+      },
+      "target_qa_sha256": "d123a3884d0fa0abb16aacf9981a567cdae0c4a989580f09d6aebd0ac0f50a7a",
+      "changed_files": [
+        "plot-spec.json"
+      ],
+      "validation": "Core export QA passed. Inspect the fresh preview before accepting its visual design."
+    }
+  },
+  "registered_attempts": {
+    "current_attempt_id": "attempt-8d47390b7fc922f8",
+    "attempts": [
+      {
+        "id": "attempt-8d47390b7fc922f8",
+        "name": "attempt-01",
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/registry-publication-fixture/attempt-01",
+        "panel": {
+          "width_mm": 120.0,
+          "height_mm": 90.0
+        },
+        "version": {
+          "figure_sha256": "49399da7da6fb1c355b7a4f4b31044732d25d83e05644e83822ffaaccee5cab7",
+          "spec_sha256": "ec5728be2398e5f2648ff6db0d50ccdd4d09678ca4e8249c0118bfa487a1e23c",
+          "input_sha256": "d1ee5fb469c3d97f782e68c3c4b54cbcc5a567adbe405fcc639b7474741c0f32",
+          "source_script_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+          "auxiliary_inputs_sha256": "6393755d2a10734ed81206b38d0f38680801869a4c98e61df039fe6b1120b20a",
+          "resolved_colors_sha256": "f06ce563ead15ae6e50f33576cdd47d17ddbfc622654566775cd2448cec143a4"
+        },
+        "track": "create",
+        "source_current": true,
+        "accepted": false,
+        "preview_url": "/api/attempts/attempt-8d47390b7fc922f8/preview.svg?v=49399da7da6fb1c355b7a4f4b31044732d25d83e05644e83822ffaaccee5cab7",
+        "files": {
+          "svg": "/api/attempts/attempt-8d47390b7fc922f8/files/panel.svg",
+          "pdf": "/api/attempts/attempt-8d47390b7fc922f8/files/panel.pdf",
+          "png": "/api/attempts/attempt-8d47390b7fc922f8/files/panel.png"
+        }
+      },
+      {
+        "id": "attempt-4b2b65fb93c25b2b",
+        "name": "job-e3af604568854a7d8b05bfde27b3651d",
+        "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/registry-publication-fixture/.easyviz-service/attempts/job-e3af604568854a7d8b05bfde27b3651d",
+        "panel": {
+          "width_mm": 120.0,
+          "height_mm": 90.0
+        },
+        "version": {
+          "figure_sha256": "fa2c5c2c74040825a93975bb8e5f89bab15abd3158d0b288fd98937bb7911ac2",
+          "spec_sha256": "017810c51ecc950259ab97cc439e11e127f9c725abc23f5a3cc693fcb6e5d9f4",
+          "input_sha256": "d1ee5fb469c3d97f782e68c3c4b54cbcc5a567adbe405fcc639b7474741c0f32",
+          "source_script_sha256": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+          "auxiliary_inputs_sha256": "6393755d2a10734ed81206b38d0f38680801869a4c98e61df039fe6b1120b20a",
+          "resolved_colors_sha256": "cb119545457347d4ce68442c6345b0fcec4d7baa561ae20c0c4583f8555eb8fe"
+        },
+        "track": "create",
+        "source_current": true,
+        "accepted": false,
+        "preview_url": "/api/attempts/attempt-4b2b65fb93c25b2b/preview.svg?v=fa2c5c2c74040825a93975bb8e5f89bab15abd3158d0b288fd98937bb7911ac2",
+        "files": {
+          "svg": "/api/attempts/attempt-4b2b65fb93c25b2b/files/panel.svg",
+          "pdf": "/api/attempts/attempt-4b2b65fb93c25b2b/files/panel.pdf",
+          "png": "/api/attempts/attempt-4b2b65fb93c25b2b/files/panel.png"
+        }
+      }
+    ]
+  },
+  "retry": {
+    "job": {
+      "id": "job-e3af604568854a7d8b05bfde27b3651d",
+      "status": "succeeded",
+      "phase": "complete",
+      "message": "Recovered a verified preview already recorded before service interruption.",
+      "error": null,
+      "source_attempt_id": "attempt-8d47390b7fc922f8",
+      "target_attempt_id": "attempt-4b2b65fb93c25b2b",
+      "request_ids": [
+        "a10aba06-976c-4056-8d27-9689938b6287"
+      ],
+      "automatic_request_ids": [
+        "a10aba06-976c-4056-8d27-9689938b6287"
+      ],
+      "agent_request_ids": [],
+      "agent_requests": [],
+      "created_at": "2026-10-06T05:00:48+00:00",
+      "updated_at": "2026-10-06T05:00:49+00:00",
+      "idempotency_key": "963d0a15cbe63ac77342e34710c1019e7aa046c9e6356d43765a8aa294764ac3",
+      "cancel_requested": false,
+      "owner_pid": 50279,
+      "target_path": ".easyviz-service/attempts/job-e3af604568854a7d8b05bfde27b3651d",
+      "outcome_id": "cb555b8f-3cac-464a-b65f-413e1901df72"
+    }
+  },
+  "generated_attempt": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/registry-publication-fixture/.easyviz-service/attempts/job-e3af604568854a7d8b05bfde27b3651d"
+}

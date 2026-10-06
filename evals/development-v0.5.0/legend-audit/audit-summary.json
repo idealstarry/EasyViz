@@ -1,0 +1,153 @@
+{
+  "checked_at": "2026-10-06T05:22:47.902788+00:00",
+  "conclusion": "Stale SVG legend-group selector, reproduced by exact HEAD renderer; no 0.5 runtime regression and no plotting runtime source edits",
+  "cause": "SVG registered guide IDs use easyviz-legend- while the audit accepted only legend_; real quantitative circles were omitted from measurements",
+  "fixed_sources": [
+    "tests/check_legend_layouts.py",
+    "tests/test_legend_layout.py"
+  ],
+  "source_freeze_sha256": {
+    "tests/check_legend_layouts.py": "2f8eacd3d99477e8d26e10c6028a7d9d85cd0ecc588215b9862d00a2d8121795",
+    "tests/test_legend_layout.py": "4c899ee7e8653a25ecd34a77cdf8b48d8b68efb53d2bab84d70df0094e65c17a",
+    "skills/easyviz/scripts/render.py": "464465938e4283bc7080d0ade1d8193af099dc75a8d105370fcf5fc9d3677339",
+    "skills/easyviz/scripts/legend_layout.py": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "skills/easyviz/scripts/figure_elements.py": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+  },
+  "exact_head_before_fix": [
+    {
+      "id": "dot-small-88",
+      "renderer_status": "pass",
+      "svg_pass": false,
+      "svg_marker_extents": [],
+      "png_pass": true,
+      "renderer_sha256": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3"
+    },
+    {
+      "id": "dot-large-132",
+      "renderer_status": "pass",
+      "svg_pass": false,
+      "svg_marker_extents": [],
+      "png_pass": true,
+      "renderer_sha256": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3"
+    }
+  ],
+  "preserved_root_evidence": "root-run-before-fix",
+  "restored_tracked_paths": 51,
+  "historical_tracked_diff_after_restore": [],
+  "regression_test_before_fix": "regression-before-fix.log",
+  "regression_tests_after_fix": {
+    "tests": 11,
+    "passed": true,
+    "log": "legend-tests-after.log"
+  },
+  "final_fresh_benchmark": {
+    "passed": 10,
+    "failed": 0,
+    "results": "final-run/results.json",
+    "log": "final-ten-case.log"
+  },
+  "existing_unchanged_svg_measurements": [
+    {
+      "context": "root_saved",
+      "case": "dot-small-88",
+      "svg_pass": true,
+      "png_pass": true,
+      "expected_diameters_pt": [
+        2.140948939383325,
+        4.787307364817192,
+        6.770275002573076
+      ],
+      "actual_diameters_pt": [
+        [
+          2.140948999999978,
+          2.140949000000006
+        ],
+        [
+          4.787307999999996,
+          4.787306999999998
+        ],
+        [
+          6.7702750000000265,
+          6.770275000000012
+        ]
+      ]
+    },
+    {
+      "context": "root_saved",
+      "case": "dot-large-132",
+      "svg_pass": true,
+      "png_pass": true,
+      "expected_diameters_pt": [
+        4.28189787876665,
+        9.574614729634384,
+        13.540550005146152
+      ],
+      "actual_diameters_pt": [
+        [
+          4.281898000000012,
+          4.281897999999998
+        ],
+        [
+          9.574614999999994,
+          9.574614999999994
+        ],
+        [
+          13.540549999999996,
+          13.540549999999996
+        ]
+      ]
+    },
+    {
+      "context": "exact_head",
+      "case": "dot-small-88",
+      "svg_pass": true,
+      "png_pass": true,
+      "expected_diameters_pt": [
+        2.140948939383325,
+        4.787307364817192,
+        6.770275002573076
+      ],
+      "actual_diameters_pt": [
+        [
+          2.140948999999978,
+          2.140949000000006
+        ],
+        [
+          4.787307999999996,
+          4.787306999999998
+        ],
+        [
+          6.7702750000000265,
+          6.770275000000012
+        ]
+      ]
+    },
+    {
+      "context": "exact_head",
+      "case": "dot-large-132",
+      "svg_pass": true,
+      "png_pass": true,
+      "expected_diameters_pt": [
+        4.28189787876665,
+        9.574614729634384,
+        13.540550005146152
+      ],
+      "actual_diameters_pt": [
+        [
+          4.281898000000012,
+          4.281897999999998
+        ],
+        [
+          9.574614999999994,
+          9.574614999999994
+        ],
+        [
+          13.540549999999996,
+          13.540549999999996
+        ]
+      ]
+    }
+  ],
+  "visual_quality": "Not assessed or claimed by this path-area audit",
+  "commits": false
+}

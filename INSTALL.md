@@ -37,6 +37,33 @@ Example first request:
 
 > Use $easyviz to make a dot plot from my source table. Use Arial 8 pt, a 180 × 120 mm panel, and separate PDF, SVG, PNG and caption files.
 
+## Optional MCP and local review
+
+The ordinary plugin installation does not enable an MCP server or install its
+optional SDK. When the user wants a connected review workflow, establish the
+authorized project directory, choose a Python environment with the plotting
+dependencies, and install the packaged `skills/easyviz/scripts/requirements-mcp.txt`
+there. Follow the packaged [MCP guide](skills/easyviz/references/mcp.md) to
+configure the selected client's supported STDIO connection. Verify actual tool
+discovery and a read of the intended attempt in that client.
+
+For a Codex CLI that supports the documented command, the Agent can register a
+distinct project connection using:
+
+```sh
+codex mcp add easyviz-project -- /absolute/path/to/python \
+  /absolute/path/to/installed/easyviz/scripts/easyviz_mcp.py \
+  --project-dir /absolute/path/to/authorized-project
+```
+
+Resolve all paths from the real installation result, retain other connections,
+and check the client's current help before applying configuration. An MCP
+registration does not install the skill or verify drawing dependencies. Do not
+claim desktop discovery until checked in a refreshed client. Use the same
+project scope when launching the [workbench](skills/easyviz/references/figure-workbench.md).
+It can generate supported cosmetic previews itself; custom instructions remain
+work for the active Agent.
+
 ## Client support and evidence
 
 The local installation mechanism follows [OpenAI's plugin packaging documentation](https://developers.openai.com/plugins/build/plugins). The available CLI commands are checked on the installed client. Local registration, an extracted Python run, desktop display, and skill discovery are distinct checks; report only those completed. Public plugin-directory availability, web/cloud installation and arbitrary desktop versions are not established by this installer.

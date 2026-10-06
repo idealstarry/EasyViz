@@ -1,0 +1,95 @@
+{
+  "input": {
+    "data_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-inputs/07-separate-compartments/measurements.csv",
+    "source_script": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/revision-03/serum/plot-source.py",
+    "spec_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/spec.json",
+    "supplied_spec_sha256": "66b228e48a63416c6cbd4bfdaf5155dca957691dba4e8f74fde6264b3a561bbd"
+  },
+  "version": {
+    "input_sha256": "85514f3ae523ed7694f46b31746e53cf4029c5c20b2078b5b0db5439b6a1ad2a",
+    "source_script_sha256": "08aac8dd5641b847791cbb0d34a51962aece70bbb332577da8ee32e4827adb63"
+  },
+  "layout": {
+    "width_mm": 82.0,
+    "height_mm": 65.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "auto_fit": true,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "spec": {
+    "layout": {
+      "width_mm": 82,
+      "height_mm": 65,
+      "font": "Arial",
+      "font_size_pt": 8,
+      "dpi": 300,
+      "auto_fit": true
+    },
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "chart": "custom-compartment-timecourse",
+    "fields": {
+      "compartment": "compartment",
+      "group": "condition",
+      "time": "hour",
+      "value": "ccl2",
+      "unit": "unit"
+    },
+    "options": {
+      "uncertainty": "sample SEM = sample SD / sqrt(source row count)",
+      "connect_raw": false,
+      "time_offset_description": "Raw dots within ±1.0 h of condition lane anchors at hour ±1.1 h; means/SEMs remain at true hour."
+    },
+    "colors": {
+      "Control": "#347AAF",
+      "IM-DTR": "#C5604F"
+    },
+    "order": {
+      "compartment": [
+        "Lung",
+        "Serum"
+      ],
+      "group": [
+        "Control",
+        "IM-DTR"
+      ],
+      "time": [
+        0,
+        12,
+        24,
+        48
+      ]
+    },
+    "labels": {
+      "x": "Time (h)"
+    }
+  },
+  "track": "create",
+  "caption_file": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/07-separate-compartments/revision-03/serum/caption.md"
+}

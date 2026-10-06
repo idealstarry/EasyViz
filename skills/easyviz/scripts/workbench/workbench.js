@@ -1,7 +1,9 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
 let state, svg, annotations = [], activeNumber = null, nextNumber = 1, mode = 'element', drag = null;
-let loading = false, saving = false;
+let loading = false, saving = false, operating = false;
+let capabilities = null, attempts = [], activeJob = null, jobTimer = null, serviceRevision = 0;
+let comparisonVisible = true;
 let storageUnavailable = false;
 const NS = 'http://www.w3.org/2000/svg';
 const dropdowns = new Map();
@@ -121,9 +123,10 @@ for (const [index, name] of reviewPanels.entries()) {
 }
 function message(text, error = false) { $('message').textContent = text; $('message').classList.toggle('error', error); }
 async function api(path, payload) {
-  const options = payload ? {method:'POST', headers:{'Content-Type':'application/json','X-EasyViz-Token':state.token}, body:JSON.stringify(payload)} : {};
+  const options = payload !== undefined ? {method:'POST', headers:{'Content-Type':'application/json','X-EasyViz-Token':state.token}, body:JSON.stringify(payload)} : {};
   const response = await fetch(path, options);
-  const body = await response.json();
+  let body;
+  try { body = await response.json(); } catch (_) { throw new Error('The local service returned an unreadable response. Reload the figure and try again.'); }
   if (!response.ok) throw new Error(body.error || 'Unable to read this figure.');
   return body;
 }
@@ -192,7 +195,11 @@ function highlight(rect) {
   svg.append(mark);
 }
 function activeAnnotation() { return annotations.find(note=>note.number===activeNumber); }
-function annotationElements(note) { return state.elements.filter(element=>(note?.element_ids||[]).includes(element.id)); }
+function annotationElements(note) { return (state?.elements||[]).filter(element=>(note?.element_ids||[]).includes(element.id)); }
+function editableProperties(element) { return Array.isArray(element.editable)?element.editable:Object.keys(element.editable||{}); }
+function effectiveInstruction(note) {
+  return note.instruction.trim() || (note.property&&String(note.value).trim()?`Set ${propertyNames[note.property]||note.property} to ${String(note.value).trim()} for ${annotationLabel(note)}.`:'');
+}
 function annotationLabel(note) {
   const elements=annotationElements(note);
   return elements.length===1?elements[0].label:elements.length?elements.length+' mapped elements':note.region_mm?'Selected region':'Whole figure';
@@ -201,7 +208,8 @@ function draftKey() { return 'easyviz-annotations:'+state.figure_name+':'+JSON.s
 function annotationStatus() {
   const note=activeAnnotation();
   $('annotation-state').hidden=!note||(!note.saved&&!storageUnavailable);
-  $('annotation-state').textContent=note?.saved?'Saved · use Requests to undo this instruction':storageUnavailable?'Draft · save before closing or refreshing this page':'Draft · this instruction has not been saved';
+  const request=note?.request_id?state.requests.find(item=>item.id===note.request_id):null;
+  $('annotation-state').textContent=note?.saved?(request?.status==='applied'?'Applied · review the rendered attempt':request?.status==='pending'?'Saved · use Requests to undo this instruction':'Saved · '+(request?.status||'recorded')):storageUnavailable?'Draft · save before closing or refreshing this page':'Draft · this instruction has not been saved';
 }
 function persistDrafts() {
   if(!state) return;
@@ -261,8 +269,8 @@ function drawAnnotations() {
     for(const [key,value] of Object.entries({x:bx,y:by,width:badgeWidth,height:badgeHeight,rx:6/scaleX,ry:6/scaleY})) tile.setAttribute(key,String(value));
     const label=document.createElementNS(NS,'text');label.setAttribute('x',String(bx+badgeWidth/2));label.setAttribute('y',String(by+badgeHeight/2));label.setAttribute('font-size',String(11/scaleY));label.textContent=String(note.number);
     badge.append(tile,label);
-    badge.addEventListener('click',event=>{event.stopPropagation();if(!loading&&!saving) focusAnnotation(note.number);});
-    badge.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();if(!loading&&!saving)focusAnnotation(note.number);}});
+    badge.addEventListener('click',event=>{event.stopPropagation();if(!loading&&!saving&&!operating) focusAnnotation(note.number);});
+    badge.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();if(!loading&&!saving&&!operating)focusAnnotation(note.number);}});
     layer.append(badge);
   }
   svg.append(layer);
@@ -271,18 +279,18 @@ function annotationChips() {
   const list=$('annotation-list');list.replaceChildren();
   if(!annotations.length) {const empty=document.createElement('p');empty.className='empty';empty.textContent='Click elements or draw regions to add numbered annotations.';list.append(empty);}
   for(const note of annotations) {
-    const chip=document.createElement('button');chip.type='button';chip.className='annotation-chip'+(note.saved?' saved':note.instruction.trim()?' complete':'');chip.textContent=String(note.number);
-    chip.setAttribute('aria-label',`Annotation ${note.number}: ${annotationLabel(note)}, ${note.saved?'saved':note.instruction.trim()?'ready to save':'draft'}`);
-    chip.setAttribute('aria-pressed',String(note.number===activeNumber));chip.disabled=loading||saving;
+    const chip=document.createElement('button');chip.type='button';chip.className='annotation-chip'+(note.saved?' saved':effectiveInstruction(note)?' complete':'');chip.textContent=String(note.number);
+    chip.setAttribute('aria-label',`Annotation ${note.number}: ${annotationLabel(note)}, ${note.saved?'saved':effectiveInstruction(note)?'ready to save':'draft'}`);
+    chip.setAttribute('aria-pressed',String(note.number===activeNumber));chip.disabled=loading||saving||operating;
     chip.addEventListener('click',()=>focusAnnotation(note.number));list.append(chip);
   }
 }
 function focusAnnotation(number) {
-  if(loading||saving) return;
+  if(loading||saving||operating) return;
   captureAnnotation();activeNumber=number;showPanel('edit');selectionChanged();persistDrafts();
 }
 function addAnnotation(target,forceNew=false) {
-  if(loading||saving||!state||!svg) return;
+  if(loading||saving||operating||!state||!svg) return;
   captureAnnotation();
   const signature=note=>JSON.stringify({ids:[...(note.element_ids||[])].sort(),region:note.region_mm||null,selector:note.selector||null});
   const existing=!forceNew&&(annotations.find(note=>!note.saved&&signature(note)===signature(target))||annotations.find(note=>signature(note)===signature(target)));
@@ -326,18 +334,187 @@ function selectionChanged() {
   $('remove-annotation').setAttribute('aria-label',note?`Remove annotation ${note.number}`:'Remove annotation');
   const property=$('property'); property.replaceChildren(new Option('Free-form instruction',''));
   if(elements.length) {
-    const properties=element=>Array.isArray(element.editable)?element.editable:Object.keys(element.editable||{});
-    const editable=properties(elements[0]).filter(name=>elements.every(element=>properties(element).includes(name)));
+    const editable=editableProperties(elements[0]).filter(name=>elements.every(element=>editableProperties(element).includes(name)));
     for(const name of editable) property.add(new Option(propertyNames[name]||name.replaceAll('_',' '),name));
     $('selection-details').textContent=elements.length===1?elements[0].label+' · '+elements[0].role:`${elements.length} mapped elements · `+elements.slice(0,4).map(element=>element.label).join(', ');
   } else if(region) {
     $('selection-details').textContent=`Region: ${region.x.toFixed(2)}, ${region.y.toFixed(2)} mm · ${region.width.toFixed(2)} × ${region.height.toFixed(2)} mm (top-left origin)`;
   } else { $('selection-details').textContent=note?'Whole figure / general note':'Select a location or add a general note.'; }
-  $('selection-details').hidden=!region;
+  $('selection-details').hidden=!note;
+  targetDetails(elements);
   $('property').value=note?.property||'';$('instruction').value=note?.instruction||'';
   $('value-field').hidden=!note?.property;$('property-value').value=note?.value??'';
-  syncDropdown('property');syncDropdown('semantic-list');
+  syncDropdown('property');syncDropdown('semantic-list');propertyHelp();
   annotationChips();highlight(null);drawAnnotations();controls();
+}
+
+function targetDetails(elements) {
+  $('target-details').hidden=!elements.length;
+  const host=$('target-identity');host.replaceChildren();
+  const field=(list,label,value)=>{
+    const term=document.createElement('dt'),description=document.createElement('dd');
+    term.textContent=label;description.textContent=value;list.append(term,description);
+  };
+  for(const element of elements.slice(0,8)) {
+    const title=document.createElement('p');title.className='identity-heading';title.textContent=element.label;
+    const details=document.createElement('dl');field(details,'Mapped object',element.id+' · '+element.role);
+    if((element.source_keys||[]).length) field(details,'Source identity',JSON.stringify(element.source_keys));
+    const properties=editableProperties(element);
+    field(details,'Editable properties',properties.length?properties.map(name=>propertyNames[name]||name).join(', '):'No directly editable properties; describe the change for your Agent.');
+    if(!Array.isArray(element.editable)) {
+      const bindings=Object.entries(element.editable||{}).map(([name,path])=>(propertyNames[name]||name)+' → '+path);
+      if(bindings.length) field(details,'Plotting specification',bindings.join('; '));
+    }
+    host.append(title,details);
+  }
+  if(elements.length>8) {const remaining=document.createElement('p');remaining.className='help';remaining.textContent=`${elements.length-8} more mapped objects share this selection.`;host.append(remaining);}
+}
+function propertyHelp() {
+  const name=$('property').value,elements=annotationElements(activeAnnotation());
+  $('property-help').hidden=!name;
+  if(!name) return;
+  const current=elements.map(element=>element.editable_values?.[name]);
+  const present=current.filter(value=>value!==undefined);
+  let value='';
+  if(present.length===elements.length&&present.length) value=present.every(item=>JSON.stringify(item)===JSON.stringify(present[0]))?'Current: '+(typeof present[0]==='string'?present[0]:JSON.stringify(present[0]))+'. ':'Current values differ across this selection. ';
+  const supported=capabilities?.preview?.supported&&(capabilities.preview.properties||[]).includes(name);
+  $('property-help').textContent=value+(supported?'Save this value, then render a new attempt.':'Saved for your Agent to apply in the plotting code.');
+  const placeholder=name==='alpha'?'0–1':name.includes('width')?'For example: 0.8':name.includes('color')?'For example: #2581B9':name==='linestyle'?'For example: solid or dashed':'Enter a new value';
+  $('property-value').placeholder=placeholder;
+}
+function runningJob() { return activeJob&&['queued','running'].includes(activeJob.status); }
+function currentPending() { return (state?.requests||[]).filter(item=>item.status==='pending'&&item.current_version); }
+function previewableRequests() {
+  const properties=capabilities?.preview?.supported?capabilities.preview.properties||[]:[];
+  return currentPending().filter(item=>item.property&&properties.includes(item.property));
+}
+function serviceControls() {
+  const busy=loading||saving||operating,rendering=runningJob();
+  // Job actions share the same transient operation state as all other controls.
+  // Acceptance/restore can refresh a job while operating is true; the final
+  // controls() call must restore these buttons without another job response.
+  $('cancel-job').disabled=busy;
+  $('open-job-result').disabled=busy||!!rendering;
+  $('review-remaining-requests').disabled=busy||!!rendering;
+  $('attempt-toolbar').hidden=!attempts.length;
+  $('attempt-list').disabled=busy||!!rendering;
+  const current=attempts.find(item=>item.id===state?.attempt_id);
+  $('accept-attempt').disabled=busy||!!rendering||!current||current.unavailable||current.accepted||state?.source_current===false;
+  $('accept-attempt').textContent=current?.accepted?'Accepted':'Accept';
+  $('restore-attempt').hidden=!attempts.some(item=>item.accepted);
+  $('restore-attempt').disabled=busy||!!rendering;
+  $('compare-toggle').hidden=!state?.comparison;
+  $('compare-toggle').disabled=busy;
+  $('compare-toggle').textContent=comparisonVisible?'Hide comparison':'Show comparison';
+  $('compare-toggle').setAttribute('aria-pressed',String(comparisonVisible));
+  $('preview-edits').hidden=!capabilities?.preview?.supported;
+  $('preview-edits').disabled=busy||!!rendering||!previewableRequests().length||state?.source_current===false;
+  $('preview-edits').textContent=rendering?'Rendering…':'Render saved edits';
+  const pending=currentPending(),direct=previewableRequests().length,agent=pending.length-direct;
+  $('handoff-hint').hidden=!pending.length&&!capabilities?.preview?.reason;
+  $('handoff-hint').textContent=agent?`${agent} saved ${agent===1?'instruction needs':'instructions need'} your Agent. Return to the chat and ask it to apply the saved requests.`:direct?'Render creates a separate attempt from the plotting code. Review it before accepting.':capabilities?.preview?.reason||'';
+  if(capabilities) $('workflow-description').textContent='Save numbered instructions together. Render saved edits creates a new attempt for supported properties. For free-form or unsupported changes, return to the chat and ask your Agent to apply the saved requests. Saving does not start an Agent automatically.';
+  syncDropdown('attempt-list');
+}
+function renderAttempts() {
+  const list=$('attempt-list');list.replaceChildren();
+  for(const attempt of attempts) if(!attempt.unavailable) list.add(new Option(attempt.name+(attempt.accepted?' · accepted':''),attempt.id));
+  list.value=state?.attempt_id||'';syncDropdown('attempt-list');
+  const history=$('history-list');
+  for(const row of [...history.children]) if(row.className==='attempt-row') row.remove();
+  for(const attempt of attempts) {
+    const row=document.createElement('div');row.className='attempt-row';
+    const title=document.createElement('p');title.className='attempt-title';title.textContent=(attempt.name||attempt.id)+(attempt.unavailable?' · unavailable':'')+(attempt.id===state?.attempt_id?' · current':'')+(attempt.accepted?' · accepted':'');
+    const meta=document.createElement('p');meta.className='attempt-meta';
+    meta.textContent=attempt.unavailable?attempt.error||'This attempt is unavailable.':attempt.panel?`${Number(attempt.panel.width_mm).toFixed(1)} × ${Number(attempt.panel.height_mm).toFixed(1)} mm`:'';
+    const links=document.createElement('div');links.className='attempt-links';
+    const open=document.createElement('button');open.type='button';open.className='text-button';open.textContent='View attempt';open.disabled=attempt.unavailable||attempt.id===state?.attempt_id||!!runningJob();open.addEventListener('click',()=>switchAttempt(attempt.id));links.append(open);
+    for(const [extension,url] of Object.entries(attempt.files||{})) {
+      if(!['svg','pdf','png'].includes(extension)||typeof url!=='string'||!url.startsWith('/')) continue;
+      const link=document.createElement('a');link.href=url;link.download='panel.'+extension;link.textContent=extension.toUpperCase();links.append(link);
+    }
+    row.append(title,meta,links);history.append(row);
+  }
+  if(attempts.length) {$('history-section').hidden=false;$('history-empty').hidden=true;}
+  serviceControls();
+}
+async function refreshService() {
+  if(!state) return;
+  const revision=++serviceRevision,identity=state.attempt_id||JSON.stringify(state.version);
+  const results=await Promise.allSettled([api('/api/capabilities'),api('/api/attempts'),api('/api/jobs')]);
+  if(revision!==serviceRevision||identity!==(state?.attempt_id||JSON.stringify(state?.version))) return;
+  capabilities=results[0].status==='fulfilled'?results[0].value:null;
+  attempts=results[1].status==='fulfilled'&&Array.isArray(results[1].value.attempts)?results[1].value.attempts:[];
+  if(results[2].status==='fulfilled'&&Array.isArray(results[2].value.jobs)) {
+    const jobs=results[2].value.jobs;
+    const currentJob=activeJob?jobs.find(item=>item.id===activeJob.id):null;
+    const relevant=currentJob||[...jobs].reverse().find(item=>['queued','running'].includes(item.status))||[...jobs].reverse().find(item=>item.source_attempt_id===state?.attempt_id||item.target_attempt_id===state?.attempt_id);
+    if(relevant) {activeJob=relevant;renderJob();scheduleJobPoll();}
+  }
+  renderAttempts();propertyHelp();serviceControls();
+}
+function renderJob() {
+  $('job-status').hidden=!activeJob;
+  if(!activeJob) return;
+  const titles={queued:'Preview queued',running:'Rendering from code',succeeded:'New attempt ready',failed:'Preview failed',cancelled:'Preview cancelled'};
+  $('job-title').textContent=titles[activeJob.status]||'Preview status';
+  $('job-status').classList.toggle('failed',activeJob.status==='failed');
+  const detail=activeJob.error||activeJob.message||activeJob.phase||'';
+  const agentCount=(activeJob.agent_request_ids||[]).length;
+  $('job-detail').textContent=detail+(activeJob.status==='succeeded'&&agentCount?` ${agentCount} ${agentCount===1?'instruction remains':'instructions remain'} for your Agent.`:'');
+  $('cancel-job').hidden=!runningJob();
+  $('open-job-result').hidden=activeJob.status!=='succeeded'||!activeJob.target_attempt_id||activeJob.target_attempt_id===state?.attempt_id;
+  $('review-remaining-requests').hidden=activeJob.status!=='succeeded'||!agentCount||!activeJob.source_attempt_id;
+  serviceControls();
+}
+function scheduleJobPoll() {
+  if(jobTimer!==null&&typeof clearTimeout==='function') clearTimeout(jobTimer);
+  jobTimer=null;
+  if(runningJob()&&typeof setTimeout==='function') jobTimer=setTimeout(pollJob,1200);
+}
+async function pollJob() {
+  jobTimer=null;
+  if(!runningJob()) return;
+  const id=activeJob.id;
+  try {
+    const result=await api('/api/jobs/'+encodeURIComponent(id));
+    if(activeJob?.id!==id) return;
+    activeJob=result.job;renderJob();
+    if(!runningJob()) {
+      const nextState=await api('/api/state');
+      if(nextState.attempt_id===state?.attempt_id||!nextState.attempt_id) updateQueue(nextState);
+      await refreshService();
+      if(activeJob.status==='succeeded'&&activeJob.source_attempt_id===state?.attempt_id&&activeJob.target_attempt_id&&!annotations.some(note=>!note.saved&&effectiveInstruction(note))) await switchAttempt(activeJob.target_attempt_id);
+      else if(activeJob.status==='failed') message('Preview failed. The current attempt and saved instructions have been kept.',true);
+    }
+  } catch(error) {
+    // A disconnected service has no reliable job state. Keep its identity and
+    // stop claiming the render is active until a successful status refresh.
+    $('job-title').textContent='Status unavailable';$('job-detail').textContent=error.message+' Reload the figure to reconnect.';
+    $('cancel-job').hidden=true;message('Unable to read render status. Your saved instructions remain available.',true);
+    return;
+  }
+  scheduleJobPoll();
+}
+async function switchAttempt(id) {
+  if(loading||saving||operating||runningJob()||!state||!id) return;
+  captureAnnotation();persistDrafts();operating=true;controls();
+  try {
+    const result=await api('/api/attempts/switch',{attempt_id:id,...(comparisonVisible&&state.attempt_id!==id?{compare_attempt_id:state.attempt_id}:{})});
+    operating=false;
+    if(!await load(result.state)) return false;
+    message('Viewing '+state.figure_name+'. Each attempt retains its own exports and numbered requests.');
+    return true;
+  } catch(error) {message(error.message,true);return false;} finally {operating=false;controls();renderJob();}
+}
+async function renderSavedEdits() {
+  if(loading||saving||operating||runningJob()||!state||state.source_current===false) return;
+  const ids=currentPending().map(item=>item.id);if(!ids.length) return;
+  captureAnnotation();persistDrafts();operating=true;controls();
+  try {
+    const result=await api('/api/jobs',{version:state.version,request_ids:ids});
+    activeJob=result.job;renderJob();scheduleJobPoll();message('Rendering supported saved edits from the plotting code.');
+  } catch(error) {message(error.message+' Saved instructions have been kept.',true);} finally {operating=false;controls();renderJob();}
 }
 
 function restoreAnnotations(memoryDrafts=null) {
@@ -375,7 +552,13 @@ function queue() {
     const label=document.createElement('p');label.className='request-label';label.textContent=`${item.annotation_number?'#'+item.annotation_number:'Request '+(index+1)} · ${item.elements?.length>1?item.elements.length+' mapped elements':item.element?.label|| (item.region_mm?'Selected region':'Whole figure')}`;
     const instruction=document.createElement('p');instruction.textContent=item.instruction;
     const status=document.createElement('p');status.className='request-status';status.textContent=`${item.status}${item.current_version?'':' · older figure version'}${item.result?.target_attempt?' · '+item.result.target_attempt.split('/').pop():''}`;
-    row.append(label,instruction,status);list.append(row);
+    row.append(label,instruction,status);
+    if(item.result) {
+      const detail=document.createElement('p');detail.className='request-result';
+      detail.textContent=item.result.message||item.result.note||item.result.reason||item.result.validation||'';
+      if(detail.textContent) row.append(detail);
+    }
+    list.append(row);
   }
   const history=$('history-list');history.replaceChildren();
   $('history-section').hidden=!(state.history||[]).length;
@@ -385,11 +568,12 @@ function queue() {
     const target=item.target_attempt?.split('/').pop()||(item.version?.figure_sha256?'version '+item.version.figure_sha256.slice(0,8):'version');
     row.textContent=`${item.action} · ${target}${item.validation?' · '+item.validation:''}`;history.append(row);
   }
+  if(attempts.length) renderAttempts();
   controls();
 }
 function controls() {
-  const busy=loading||saving;
-  const note=activeAnnotation(),ready=annotations.filter(note=>!note.saved&&note.instruction.trim()).length;
+  const busy=loading||saving||operating;
+  const note=activeAnnotation(),ready=annotations.filter(note=>!note.saved&&effectiveInstruction(note)).length;
   $('reload').disabled=busy;
   $('save').disabled=busy||!ready||!state||!svg||state.source_current===false;
   $('save').textContent=saving?'Saving…':ready?`Save requests (${ready})`:'Save requests';
@@ -403,22 +587,25 @@ function controls() {
   for(const chip of $('annotation-list').children) if(chip.tagName==='BUTTON') chip.disabled=busy;
   syncDropdown('property');
   syncDropdown('semantic-list');
+  serviceControls();
 }
 function updateQueue(nextState) {
   // An HTTP response can observe a subsequent render. Queue updates never
   // replace the version or geometry of the SVG that the user is still viewing.
   const sameVersion=(left,right)=>JSON.stringify(left)===JSON.stringify(right);
   state={...state,history:nextState.history||state.history,requests:nextState.requests.map(item=>({...item,current_version:sameVersion(item.version,state.version)}))};
-  queue();
+  queue();annotationStatus();
 }
-async function load() {
-  if(loading||saving) return;
+async function load(nextProvided = null) {
+  if(loading||saving||operating) return;
+  if(nextProvided && !nextProvided.version) nextProvided=null;
   captureAnnotation();persistDrafts();
   const previousIdentity=state?draftKey():null;
   const memoryDrafts={nextNumber,activeNumber,notes:annotations.filter(note=>!note.saved)};
   loading=true;drag=null;controls();
+  let loaded=false;
   try {
-    const nextState=await api('/api/state');
+    const nextState=nextProvided||await api('/api/state');
     const response=await fetch('/api/preview.svg?v='+encodeURIComponent(nextState.version.figure_sha256));
     if(!response.ok) { const error=await response.json();throw new Error(error.error||'Figure preview is unavailable.'); }
     const documentSvg=new DOMParser().parseFromString(await response.text(),'image/svg+xml');
@@ -442,8 +629,8 @@ async function load() {
     $('selection-message').textContent='Click elements or draw regions to add numbered annotations, then write an instruction for each.';
     $('source-status').textContent=state.source_current===false?'Source files have changed. Render a fresh attempt before saving.':state.source_current===true?'Figure and source versions verified.':'Source verification unavailable. Your Agent must verify the source before applying requests.';
     $('source-status').classList.toggle('error',state.source_current===false);
-    $('comparison').hidden=!previousSvg;$('current-label').hidden=!previousSvg;
-    $('figure-host').parentNode?.classList.toggle('has-comparison',!!previousSvg);
+    $('comparison').hidden=!previousSvg||!comparisonVisible;$('current-label').hidden=!previousSvg||!comparisonVisible;
+    $('figure-host').parentNode?.classList.toggle('has-comparison',!!previousSvg&&comparisonVisible);
     $('comparison-host').replaceChildren(...(previousSvg?[previousSvg]:[]));
     $('comparison-label').textContent=state.comparison?'Previous · '+state.comparison.figure_name:'';
     $('current-label').textContent='Current · '+state.figure_name;
@@ -455,12 +642,15 @@ async function load() {
     for(const extension of ['svg','pdf','png']) if(state.files.includes('panel.'+extension)) {const link=document.createElement('a');link.href='/files/panel.'+extension;link.download='panel.'+extension;link.textContent=extension.toUpperCase();$('downloads').append(link);}
     selectionChanged();queue();setMode(state.manifest_valid?'element':'region');
     message('Select numbered annotations to edit their instructions. Save requests saves every completed draft.');
+    loaded=true;
   } catch(error) {message(error.message,true);} finally {loading=false;controls();}
+  refreshService();
+  return loaded;
 }
 $('element-mode').addEventListener('click',()=>setMode('element'));
 $('region-mode').addEventListener('click',()=>setMode('region'));
-$('clear').addEventListener('click',()=>{if(loading||saving)return;annotations=annotations.filter(note=>note.saved);activeNumber=annotations[0]?.number??null;nextNumber=Math.max(1,...state.requests.filter(item=>item.current_version&&Number.isInteger(item.annotation_number)).map(item=>item.annotation_number+1));selectionChanged();persistDrafts();message('Unsaved annotations cleared. Numbering restarts after any saved requests.');});
-$('remove-annotation').addEventListener('click',()=>{const note=activeAnnotation();if(loading||saving||!note||note.saved)return;annotations=annotations.filter(item=>item!==note);activeNumber=annotations.find(item=>!item.saved)?.number??annotations[0]?.number??null;selectionChanged();persistDrafts();message(`Annotation ${note.number} removed. Other numbers stay unchanged.`);});
+$('clear').addEventListener('click',()=>{if(loading||saving||operating)return;annotations=annotations.filter(note=>note.saved);activeNumber=annotations[0]?.number??null;nextNumber=Math.max(1,...state.requests.filter(item=>item.current_version&&Number.isInteger(item.annotation_number)).map(item=>item.annotation_number+1));selectionChanged();persistDrafts();message('Unsaved annotations cleared. Numbering restarts after any saved requests.');});
+$('remove-annotation').addEventListener('click',()=>{const note=activeAnnotation();if(loading||saving||operating||!note||note.saved)return;annotations=annotations.filter(item=>item!==note);activeNumber=annotations.find(item=>!item.saved)?.number??annotations[0]?.number??null;selectionChanged();persistDrafts();message(`Annotation ${note.number} removed. Other numbers stay unchanged.`);});
 $('add-general').addEventListener('click',()=>selectElements([]));
 $('new-instruction').addEventListener('click',()=>{const note=activeAnnotation();if(!note||!note.saved)return;addAnnotation({element_ids:note.element_ids,...(note.selector?{selector:note.selector}:{}),...(note.region_mm?{region_mm:note.region_mm}:{}),anchor_mm:note.anchor_mm},true);});
 $('element-list').addEventListener('change',()=>{setMode('element');selectElements([$('element-list').value].filter(Boolean));});
@@ -468,16 +658,16 @@ $('semantic-list').addEventListener('change',()=>{const value=$('semantic-list')
 function draftChanged() {captureAnnotation();persistDrafts();annotationChips();controls();}
 $('instruction').addEventListener('input',draftChanged);
 $('property-value').addEventListener('input',draftChanged);
-$('property').addEventListener('change',()=>{$('value-field').hidden=!$('property').value;draftChanged();});
+$('property').addEventListener('change',()=>{$('value-field').hidden=!$('property').value;propertyHelp();draftChanged();});
 $('reload').addEventListener('click',load);
 $('figure-host').addEventListener('click',event=>{
-  if(loading||saving||mode!=='element'||!svg) return;
+  if(loading||saving||operating||mode!=='element'||!svg) return;
   const element=pickElement(event);
   if(!element) {message('No mapped element here. Choose an item in the list or use Select region.');return;}
   selectElements([element.id]);
 });
 $('figure-host').addEventListener('pointerdown',event=>{
-  if(loading||saving||mode!=='region'||!svg||!svg.contains(event.target)||event.target.closest?.('.annotation-badge')||event.button!==0) return;
+  if(loading||saving||operating||mode!=='region'||!svg||!svg.contains(event.target)||event.target.closest?.('.annotation-badge')||event.button!==0) return;
   event.preventDefault();$('figure-host').setPointerCapture(event.pointerId);drag=svgPoint(event);
 });
 $('figure-host').addEventListener('pointermove',event=>{
@@ -490,15 +680,15 @@ $('figure-host').addEventListener('pointerup',event=>{
 });
 $('figure-host').addEventListener('pointercancel',()=>{drag=null;highlight(null);});
 $('request-form').addEventListener('submit',async event=>{
-  event.preventDefault();if(loading||saving||!state||!svg||state.source_current===false) return;
+  event.preventDefault();if(loading||saving||operating||!state||!svg||state.source_current===false) return;
   captureAnnotation();persistDrafts();
-  const ready=annotations.filter(note=>!note.saved&&note.instruction.trim());if(!ready.length)return;
+  const ready=annotations.filter(note=>!note.saved&&effectiveInstruction(note));if(!ready.length)return;
   const missing=ready.find(note=>note.property&&!String(note.value).trim());
   if(missing) {focusAnnotation(missing.number);message(`Enter a new value for annotation ${missing.number}, or choose Free-form instruction.`,true);return;}
   saving=true;controls();
   try {
     const requests=ready.map(note=>{
-      const item={version:state.version,instruction:note.instruction,annotation_number:note.number,anchor_mm:note.anchor_mm};
+      const item={version:state.version,instruction:effectiveInstruction(note),annotation_number:note.number,anchor_mm:note.anchor_mm};
       if(note.selector)item.selector=note.selector;
       else if(note.element_ids.length>1)item.element_ids=note.element_ids;
       else if(note.element_ids.length)item.element_id=note.element_ids[0];
@@ -509,14 +699,47 @@ $('request-form').addEventListener('submit',async event=>{
     const result=await api('/api/requests/batch',{version:state.version,requests});
     for(const item of result.requests) {const note=annotations.find(note=>note.number===item.annotation_number);if(note){note.saved=true;note.request_id=item.id;}}
     updateQueue(result.state);persistDrafts();
-    message(`${result.requests.length} ${result.requests.length===1?'request':'requests'} saved. Ask your Agent to apply the saved workbench requests.`);
+    message(`${result.requests.length} ${result.requests.length===1?'request':'requests'} saved. ${capabilities?.preview?.supported?'Render supported edits here, or ask your Agent to apply the saved instructions.':'Ask your Agent to apply the saved workbench requests.'}`);
   } catch(error) {message(error.message+' Your draft instructions have been kept.',true);} finally {saving=false;selectionChanged();}
 });
 $('undo').addEventListener('click',async()=>{
-  if(loading||saving||!state) return;
+  if(loading||saving||operating||!state) return;
   const item=[...state.requests].reverse().find(item=>item.status==='pending'&&item.current_version);if(!item) return;
   saving=true;controls();
   try {const result=await api('/api/undo',{version:state.version,request_id:item.id});updateQueue(result.state);annotations=annotations.filter(note=>note.request_id!==item.id);if(!activeAnnotation())activeNumber=annotations.find(note=>!note.saved)?.number??annotations[0]?.number??null;persistDrafts();message('Last request undone. The figure exports are unchanged.');} catch(error) {message(error.message,true);} finally {saving=false;selectionChanged();}
+});
+$('preview-edits').addEventListener('click',renderSavedEdits);
+$('open-job-result').addEventListener('click',()=>switchAttempt(activeJob?.target_attempt_id));
+$('review-remaining-requests').addEventListener('click',async()=>{
+  if(loading||saving||operating||runningJob()||!activeJob?.source_attempt_id) return;
+  const source=activeJob.source_attempt_id;
+  if(source!==state?.attempt_id&&!await switchAttempt(source)) return;
+  showPanel('requests');
+  message('Remaining instructions are shown on their original source attempt. Ask your Agent to apply them; switching does not reassign requests.');
+});
+$('attempt-list').addEventListener('change',()=>switchAttempt($('attempt-list').value));
+$('compare-toggle').addEventListener('click',()=>{
+  if(loading||saving||operating) return;
+  comparisonVisible=!comparisonVisible;
+  $('comparison').hidden=!state?.comparison||!comparisonVisible;
+  $('current-label').hidden=!state?.comparison||!comparisonVisible;
+  $('figure-host').parentNode?.classList.toggle('has-comparison',!!state?.comparison&&comparisonVisible);
+  serviceControls();drawAnnotations();
+});
+$('cancel-job').addEventListener('click',async()=>{
+  if(!runningJob()||operating) return;operating=true;controls();renderJob();
+  try {const result=await api('/api/jobs/'+encodeURIComponent(activeJob.id)+'/cancel',{});activeJob=result.job;renderJob();scheduleJobPoll();message(activeJob.status==='cancelled'?'Preview cancelled. The current attempt has been kept.':'Cancellation requested; waiting for the renderer to stop.');}
+  catch(error) {message(error.message,true);} finally {operating=false;controls();renderJob();}
+});
+$('accept-attempt').addEventListener('click',async()=>{
+  if(loading||saving||operating||runningJob()||!state?.attempt_id) return;operating=true;controls();
+  try {const result=await api('/api/attempts/accept',{attempt_id:state.attempt_id,validation:'Reviewed by the user in the EasyViz workbench.'});if(result.state)updateQueue(result.state);await refreshService();message('This attempt is accepted and available to restore.');}
+  catch(error) {message(error.message,true);} finally {operating=false;controls();}
+});
+$('restore-attempt').addEventListener('click',async()=>{
+  if(loading||saving||operating||runningJob()||!state) return;captureAnnotation();persistDrafts();operating=true;controls();
+  try {const result=await api('/api/attempts/restore',{});operating=false;const loaded=result.attempt?.id?await switchAttempt(result.attempt.id):await load(result.state);if(!loaded)return;message('Restored the accepted source and specification as a separate attempt.');}
+  catch(error) {message(error.message,true);} finally {operating=false;controls();}
 });
 window.addEventListener('resize',()=>{if(!drag)drawAnnotations();});
 load();

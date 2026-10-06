@@ -5,6 +5,11 @@ Agent-facing helper with no remote model/API calls. Its default `apply` operatio
 prepares a new spec and an inspectable `request-plan.json`; it does not run an
 author script or claim that a new SVG/PDF has been produced.
 
+The [local workbench](figure-workbench.md) and optional [MCP adapter](mcp.md)
+also share these verified preparation, recording and snapshot operations via
+`figure_service.py`. The service adds bounded cancellable jobs and registered
+attempts; its automatic preview still runs only the installed core renderer.
+
 ## Prepare a cosmetic change
 
 ```sh
@@ -128,6 +133,14 @@ cannot be omitted from acceptance; a missing or tampered dependency in the
 snapshot prevents restoration before creating a new output. Restored file
 locations may change, while source role/hash identity and original export bytes
 remain unchanged.
+
+For an adopted `statistics.analysis` result, the report and its four verified
+companions remain together under `adopted-analysis/` with their required
+basenames. The restored `plot-spec.json` retains the exact accepted bytes and
+export provenance. Restoration also creates an explicit `rerender-spec.json`
+that points to the preserved report bundle; adopt that derived spec for a new
+render after the original analysis directory moves or disappears. Its result
+digest, selected population and raw/adjusted P choice stay unchanged.
 
 Restoration executes no author code. It restores the accepted source contents,
 spec, input and already reviewed exports together; it cannot infer lost code

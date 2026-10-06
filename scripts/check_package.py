@@ -16,6 +16,8 @@ import zipfile
 import unicodedata
 from urllib.parse import unquote, urlsplit
 
+from package_io import file_sha256, replace_outputs, staging_directory
+
 
 SKILLS = ("easyviz", "easyviz-reference-reader", "easyviz-figure-reviewer")
 CREATE_DESIGN_CARDS = ("replicate-neutral-compact", "distribution-summary-lane", "violin-summary-hierarchy",
@@ -43,6 +45,14 @@ V046_CASE_RESOURCES = {
 MAX_ZIP_ENTRIES = 10000
 MAX_ZIP_MEMBER_BYTES = 64 * 1024 * 1024
 MAX_ZIP_TOTAL_BYTES = 256 * 1024 * 1024
+V050_RUNTIME_RESOURCES = ("analysis_result.py", "figure_service.py")
+OPTIONAL_MCP_RESOURCES = ("easyviz_mcp.py", "requirements-mcp.txt", "figure_service.py")
+V050_REPRODUCE_RESOURCES = {
+    "scwat-broken-axis": ("README.md", "plot.py", "spec.json", "caption.md", "extract_source.py", "validate.py",
+        "inputs/reference.png", "inputs/reference-caption.md", "inputs/observations.csv",
+        "inputs/author-p-values.csv", "inputs/provenance.json", "output/panel.svg", "output/panel.pdf",
+        "output/panel.png", "output/comparison.png", "output/plotting-data.csv", "output/summary-data.csv"),
+}
 
 
 def version_at_least(value: str, target: tuple[int, int, int]) -> bool:
@@ -184,6 +194,15 @@ def validate_plugin(plugin: Path) -> dict:
         required.append("skills/easyviz/references/reference-geometry.md")
         for case, resources in V046_CASE_RESOURCES.items():
             required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
+    if version_at_least(manifest["version"], (0, 5, 0)):
+        required.extend(f"skills/easyviz/scripts/{name}" for name in V050_RUNTIME_RESOURCES)
+        for case, resources in V050_REPRODUCE_RESOURCES.items():
+            required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
+    scripts = plugin / "skills/easyviz/scripts"
+    # The adapter is optional, but an advertised adapter/SDK requirements file
+    # must carry its full local closure. Core-only old packages remain valid.
+    if any((scripts / name).exists() for name in OPTIONAL_MCP_RESOURCES[:2]):
+        required.extend(f"skills/easyviz/scripts/{name}" for name in OPTIONAL_MCP_RESOURCES)
     for name in SKILLS:
         entry = plugin / "skills" / name / "SKILL.md"
         required.append(str(entry.relative_to(plugin)))
@@ -197,9 +216,14 @@ def validate_plugin(plugin: Path) -> dict:
         for relative in ("panels/hdr", "panels/both", "panels/mutej", "transfer/panels/hdr", "transfer/panels/mutej"):
             required.extend(f"skills/easyviz/assets/cases/repair-outcomes/{relative}/{name}"
                             for name in ("spec.json", "source-data.csv", "caption.md"))
+    interface = manifest.get("interface", {})
+    if not isinstance(interface, dict):
+        raise ValueError("Plugin interface must be an object")
     for key in ("logo", "composerIcon"):
-        target = manifest.get("interface", {}).get(key)
+        target = interface.get(key)
         if target:
+            if not isinstance(target, str):
+                raise ValueError(f"Plugin interface {key} must be a resource path")
             required.append(target)
     for name in required:
         path = (plugin / name).resolve()
@@ -234,6 +258,17 @@ def validate_plugin(plugin: Path) -> dict:
 
 
 def extract_package(archive: Path, destination: Path) -> int:
+    def check_target(target, is_directory):
+        relative = target.relative_to(destination)
+        parents = (destination, *(destination / parent for parent in reversed(relative.parents)))
+        for candidate in (*parents, target):
+            if candidate.is_symlink():
+                raise ValueError(f"Symlink extraction path: {candidate}")
+        if any(candidate.exists() and not candidate.is_dir() for candidate in parents):
+            raise ValueError(f"Conflicting existing extraction parent: {relative}")
+        if target.exists() and not (target.is_dir() if is_directory else target.is_file()):
+            raise ValueError(f"Conflicting existing extraction path: {relative}")
+
     with zipfile.ZipFile(archive) as package:
         entries = package.infolist()
         if len(entries) > MAX_ZIP_ENTRIES:
@@ -267,17 +302,59 @@ def extract_package(archive: Path, destination: Path) -> int:
                 raise ValueError(f"Conflicting file/directory ZIP paths: {name}")
             # Existing extraction paths must not redirect a safe archive outside
             # its selected destination. Preflight every entry before any writes.
-            parents = (destination, *(destination / str(parent) for parent in reversed(path.parents)))
-            for candidate in (*parents, destination / name):
-                if candidate.is_symlink():
-                    raise ValueError(f"Symlink extraction path: {candidate}")
-            if any(candidate.exists() and not candidate.is_dir() for candidate in parents):
-                raise ValueError(f"Conflicting existing extraction parent: {name}")
-            target = destination / name
-            if target.exists() and target.is_dir() != is_directory:
-                raise ValueError(f"Conflicting existing extraction path: {name}")
-        package.extractall(destination)
+            check_target(destination / name, is_directory)
+        # A CRC/decompression error in a late member must not overwrite an
+        # earlier file in a previously extracted package. Decode each member
+        # once into staging, then merge only the listed leaves with rollback.
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with staging_directory(destination.parent, '.easyviz-extract-') as staging:
+            decoded = staging / 'decoded'
+            package.extractall(decoded)
+            directories = {destination}
+            replacements = []
+            for name, is_directory in paths.values():
+                target = destination / name
+                directories.update(target.parents if is_directory else target.parent.parents)
+                if is_directory:
+                    directories.add(target)
+                else:
+                    directories.add(target.parent)
+                    replacements.append((decoded / name, target))
+            directories = sorted((path for path in directories if path.is_relative_to(destination)),
+                                 key=lambda path: len(path.parts))
+            created = []
+            try:
+                for path in directories:
+                    check_target(path, True)
+                    if not path.exists():
+                        path.mkdir()
+                        created.append(path)
+                replace_outputs(replacements, staging, lambda target: check_target(target, False))
+            except BaseException:
+                for path in reversed(created):
+                    try:
+                        path.rmdir()
+                    except OSError:
+                        pass
+                raise
     return len(entries)
+
+
+def _check_captured_figure(skill: Path, figure: Path, isolated: Path, env: dict) -> dict:
+    """Inspect extracted live element maps and the complete receipt closure."""
+    probe = (
+        "import json,sys; from pathlib import Path; "
+        "sys.path.insert(0,sys.argv[1]); from figure_workbench import FigureWorkbench; "
+        "s=FigureWorkbench(Path(sys.argv[2])).state(); "
+        "assert s['manifest_valid'] and s['provenance_valid'] and s['source_current'] is True,s; "
+        "assert s['elements'],s; "
+        "assert all(v.get('current') is True for v in s['source_versions'].values()),s; "
+        "print(json.dumps({'source_current':s['source_current'],'elements':len(s['elements']),'declared_inputs':len(s['source_versions'])}))")
+    checked = subprocess.run([sys.executable, "-I", "-B", "-c", probe, str(skill / "scripts"), str(figure)],
+                             cwd=isolated, env=env, capture_output=True, text=True)
+    if checked.returncode:
+        raise RuntimeError(f"Extracted {figure} workbench source bindings failed: " + checked.stdout + checked.stderr)
+    return json.loads(checked.stdout)
 
 
 def check_curated_create_cases(skill: Path, isolated: Path, env: dict) -> dict:
@@ -315,20 +392,7 @@ def check_curated_create_cases(skill: Path, isolated: Path, env: dict) -> dict:
                     or settings.get("layout", {}).get("actual_font") != "DejaVu Sans"
                     or settings.get("layout", {}).get("font_substituted")):
                 raise ValueError(f"Extracted {name} font/export QA is incomplete")
-            binding_check = (
-                "import json,sys; from pathlib import Path; "
-                "sys.path.insert(0,sys.argv[1]); from figure_workbench import FigureWorkbench; "
-                "s=FigureWorkbench(Path(sys.argv[2])).state(); "
-                "assert s['manifest_valid'] and s['provenance_valid'] and s['source_current'] is True,s; "
-                "assert s['elements'],s; "
-                "assert all(v.get('current') is True for v in s['source_versions'].values()),s; "
-                "print(json.dumps({'source_current':s['source_current'],'elements':len(s['elements']),'declared_inputs':len(s['source_versions'])}))")
-            checked = subprocess.run([sys.executable, "-I", "-B", "-c", binding_check,
-                                      str(skill / "scripts"), str(figure)],
-                                     cwd=isolated, env=env, capture_output=True, text=True)
-            if checked.returncode:
-                raise RuntimeError(f"Extracted {name} workbench source bindings failed: " + checked.stdout + checked.stderr)
-            bindings.append(json.loads(checked.stdout))
+            bindings.append(_check_captured_figure(skill, figure, isolated, env))
         results[name] = {"status": "pass", "font": "DejaVu Sans", "figures": bindings,
                          "source_vector_validation": json.loads(validation.read_text())}
     return results
@@ -363,14 +427,37 @@ def check_v046_cases(skill: Path, isolated: Path, env: dict, root: Path) -> None
         if checked.returncode:
             raise RuntimeError("Extracted 0.4.6 actual source/vector/font validation failed: " + checked.stdout + checked.stderr)
     for figure in (pathway_out, *(case / "revision-v0.4.6/output" for case in copied.values())):
-        probe = ("import sys; from pathlib import Path; sys.path.insert(0,sys.argv[1]); "
-                 "from figure_workbench import FigureWorkbench; s=FigureWorkbench(Path(sys.argv[2])).state(); "
-                 "assert s['manifest_valid'] and s['provenance_valid'] and s['source_current'] is True,s; "
-                 "assert s['elements'] and all(v.get('current') is True for v in s['source_versions'].values()),s")
-        checked = subprocess.run([sys.executable, "-I", "-B", "-c", probe, str(skill / "scripts"), str(figure)],
+        _check_captured_figure(skill, figure, isolated, env)
+
+
+def check_v050_cases(skill: Path, isolated: Path, env: dict) -> dict:
+    """Redraw the bundled segmented-axis case; keep its frozen preview intact."""
+    case = skill / 'assets/cases/scwat-broken-axis'
+    output = isolated / 'scwat-fresh-output'
+    report = isolated / 'scwat-portable-validation.json'
+    commands = [
+        [sys.executable, '-I', '-B', str(case / 'plot.py'), '--font', 'DejaVu Sans',
+         '--out', str(output), '--tools', str(skill / 'scripts')],
+        [sys.executable, '-I', '-B', str(case / 'validate.py'), '--out', str(output), '--report', str(report)],
+    ]
+    for command in commands:
+        checked = subprocess.run(command, cwd=isolated, env=env, capture_output=True, text=True)
+        if checked.returncode:
+            raise RuntimeError('Extracted segmented-axis source/vector validation failed: ' + checked.stdout + checked.stderr)
+    measured = json.loads(report.read_text())
+    if measured.get('status') != 'passed' or measured.get('source_observations_checked') != 60:
+        raise ValueError('Extracted segmented-axis case must retain all 60 source observations')
+    bindings = _check_captured_figure(skill, output, isolated, env)
+    adapter = skill / 'scripts/easyviz_mcp.py'
+    if adapter.is_file():
+        # Help/discovery must also work with no site-packages, scientific
+        # dependencies or optional SDK installed. This does not start MCP.
+        checked = subprocess.run([sys.executable, '-I', '-S', str(adapter), '--help'],
                                  cwd=isolated, env=env, capture_output=True, text=True)
         if checked.returncode:
-            raise RuntimeError("Extracted 0.4.6 actual source/map receipt is not current: " + checked.stdout + checked.stderr)
+            raise RuntimeError('Optional MCP help requires unadvertised dependencies: ' + checked.stdout + checked.stderr)
+    return {'status': 'pass', 'adopted_font': 'DejaVu Sans', 'source_vector_validation': measured,
+            'bindings': bindings, 'optional_mcp_help_without_site_packages': adapter.is_file()}
 
 
 def main() -> int:
@@ -381,7 +468,7 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
     build = json.loads((root / "dist/build.json").read_text()) if args.archive is None else None
     archive = args.archive or root / "dist" / build["archive"]
-    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    digest = file_sha256(archive)
     if build and digest != build["sha256"]:
         raise ValueError("ZIP checksum differs from dist/build.json")
     with tempfile.TemporaryDirectory(prefix="easyviz-package-smoke-") as temporary:
@@ -584,6 +671,8 @@ def main() -> int:
                 check_curated_create_cases(skill, isolated, env)
             if version_at_least(manifest["version"], (0, 4, 6)):
                 check_v046_cases(skill, isolated, env, root)
+            if version_at_least(manifest["version"], (0, 5, 0)):
+                check_v050_cases(skill, isolated, env)
             basic = skill / "assets/cases/basic-panels"
             if basic.is_dir():
                 output = isolated / "basic-output"
@@ -608,7 +697,7 @@ def main() -> int:
                         raise RuntimeError("Extracted grouped comparison failed: " + checked.stdout + checked.stderr)
     print(json.dumps({"status": "pass", "version": manifest["version"], "archive": archive.name,
                       "sha256": digest, "files": file_count,
-                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+; fresh thermogenic-expression/compartment-ccl2 source/vector/font/mapped-source checks for 0.4.5+; actual copied pathway/forest/radar source/vector/font and current artist/receipt checks for 0.4.6+"}, indent=2))
+                      "checks": "structure" if args.structure_only else "structure, extracted recipe/workflow discovery, core, draft/measured layout, compound matrix, actual previews, seven Source Data wrappers, basic panels and individual repair-outcome panels/grouped alternative when present; scene proposals and honestly pending Create review for 0.4.4+; fresh thermogenic-expression/compartment-ccl2 source/vector/font/mapped-source checks for 0.4.5+; actual copied pathway/forest/radar source/vector/font and current artist/receipt checks for 0.4.6+; segmented-axis source/vector/mapped-source redraw and optional SDK-free MCP help for 0.5.0+"}, indent=2))
     return 0
 
 

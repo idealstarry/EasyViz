@@ -1,0 +1,112 @@
+{
+  "01-compact-estimates": {
+    "visual_passes": 1,
+    "selected": "first-render/candidate-01",
+    "findings": [
+      "Compact neutral open bars and repeats readable; treatment labels take substantial space in the fixed small canvas."
+    ]
+  },
+  "02-repeated-components": {
+    "visual_passes": 1,
+    "selected": "first-render/candidate-01",
+    "findings": [
+      "Repeated three-series blocks, gaps, common absolute scale and guide readable. Small SDs are close to marker size on this shared axis."
+    ]
+  },
+  "03-summary-leading": {
+    "visual_passes": 1,
+    "selected": "first-render/candidate-01",
+    "findings": [
+      "Filled summary areas lead; neutral raw lanes preserve unbroken quartiles and median."
+    ]
+  },
+  "04-observation-leading": {
+    "visual_passes": 3,
+    "selected": "first-render",
+    "attempts": [
+      {
+        "pass": 1,
+        "dir": "first-render",
+        "qa": "pass",
+        "finding": "Colored dots clearly lead; a few Kerr dots touch upper supporting summary boundary."
+      },
+      {
+        "pass": 2,
+        "dir": "revision-02",
+        "qa": "needs_revision",
+        "finding": "Offset 0.32 makes points clearer of summary but reduces available physical lane; 16 pair conflicts, rejected."
+      },
+      {
+        "pass": 3,
+        "dir": "revision-03",
+        "qa": "needs_revision",
+        "finding": "Offset 0.25 with narrower supporting box still leaves 1 packing conflict, rejected. Return to original valid image, accept minor summary contact."
+      }
+    ]
+  },
+  "05-narrow-matrix": {
+    "visual_passes": 3,
+    "selected": "revision-03",
+    "attempts": [
+      {
+        "pass": 1,
+        "dir": "first-render/candidate-01",
+        "qa": "needs_revision",
+        "finding": "Long full subtype labels left 3.21 mm cell width and caused annotated values to collide."
+      },
+      {
+        "pass": 2,
+        "dir": "revision-02",
+        "qa": "pass",
+        "finding": "Unique aliases recover cell capacity; smallest positive value appeared as rounded 0.0."
+      },
+      {
+        "pass": 3,
+        "dir": "revision-03",
+        "qa": "pass",
+        "finding": "Two decimal places distinguish 0.04 from an observed zero; all annotations fit."
+      }
+    ]
+  },
+  "06-within-person-change": {
+    "visual_passes": 1,
+    "selected": "first-render",
+    "findings": [
+      "Two class blocks, literal paired segments, opaque class dots and log units readable; connector crossings retained explicitly."
+    ]
+  },
+  "07-separate-compartments": {
+    "visual_passes": 3,
+    "selected": "revision-03",
+    "attempts": [
+      {
+        "pass": 1,
+        "dir": "first-render",
+        "qa": "pass for recorded source/summary/text checks",
+        "finding": "Serum scale 0–2100 places source observations too close to baseline."
+      },
+      {
+        "pass": 2,
+        "dir": "revision-02",
+        "qa": "pass for recorded source/summary/text checks",
+        "finding": "Useful separate serum 0–420 range; lowest positive 0.875 circle near zero has incomplete outer edge."
+      },
+      {
+        "pass": 3,
+        "dir": "revision-03",
+        "qa": "pass with actual outer-circle envelope check",
+        "finding": "Lower serum display bound −10 gives complete lowest circle; zero remains decoded, every source value remains positive."
+      }
+    ]
+  },
+  "08-unknown-units": {
+    "visual_passes": 1,
+    "selected": [
+      "first-render/box-points",
+      "first-render/ecdf"
+    ],
+    "findings": [
+      "Both actual alternatives opened; all six source rows retained. Unknown units/design remain explicit and no batch independence, pairing or test is inferred."
+    ]
+  }
+}

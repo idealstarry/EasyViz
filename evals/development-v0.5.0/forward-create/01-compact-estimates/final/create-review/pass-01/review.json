@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "easyviz_create_review",
+  "policy_version": "0.4.4",
+  "packet_sha256": "1658bfc416648e4bb1967cacf0915ad9e8417a5c45b11d515b6b0a86e08af859",
+  "pass_number": 1,
+  "reviewer": {
+    "role": "self-review",
+    "identity": "Fresh forward Create agent"
+  },
+  "status": "ready_with_notes",
+  "images_opened": [
+    {
+      "role": "candidate",
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/panel.png",
+      "sha256": "60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138",
+      "views": [
+        "full_canvas",
+        "final_proportions"
+      ],
+      "tool": "functions.view_image via functions.exec; actual current final PNG opened, full canvas at saved final proportions",
+      "size_basis": "Complete canvas viewed at its saved 72 × 48 mm aspect ratio; no nominal print-size display is claimed."
+    }
+  ],
+  "design_checks": [
+    {
+      "criterion": "scientific_mapping",
+      "status": "passed",
+      "evidence": "Actual values/identities retained by source assertions; adopted fields: {\"condition\": \"display_condition\", \"unit\": \"repeat_id\", \"value\": \"repair_pct\"}"
+    },
+    {
+      "criterion": "reading_priority",
+      "status": "passed",
+      "evidence": "All five open bars and three dots per treatment remain readable; neutral position decoding avoids an unnecessary five-color key."
+    },
+    {
+      "criterion": "mark_hierarchy",
+      "status": "passed",
+      "evidence": "All five open bars and three dots per treatment remain readable; neutral position decoding avoids an unnecessary five-color key."
+    },
+    {
+      "criterion": "geometry",
+      "status": "passed",
+      "evidence": "The small 72 × 48 mm canvas needs oblique two-line treatment labels. The full labels fit, but label area is a substantial fraction of the canvas."
+    },
+    {
+      "criterion": "palette_and_strokes",
+      "status": "passed",
+      "evidence": "Actual marks and keys opened together; no added in-image title or prose. Category-colored marks, neutral supporting strokes and sequential magnitude scales follow the adopted roles."
+    },
+    {
+      "criterion": "guides_and_text",
+      "status": "passed",
+      "evidence": "Axes, tick labels and supplied units/unknown-unit labels are visible within the canvas; explanatory prose remains in separate caption.md."
+    }
+  ],
+  "external_checks": [
+    {
+      "criterion": "export_dimensions",
+      "status": "passed",
+      "evidence": "{\"adopted_canvas_mm\": {\"width_mm\": 72.0, \"height_mm\": 48.0}, \"actual_png\": {\"pixels\": [850, 567], \"dpi\": [299.9994, 299.9994]}, \"qa_exports\": {\"pdf\": {\"width_mm\": 72.00000000000833, \"height_mm\": 48.000000000005556, \"sha256\": \"7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b\"}, \"svg\": {\"width_mm\": 71.99999993333333, \"height_mm\": 47.99999995555555, \"text_preserved\": true, \"font_embedding\": \"SVG references the recorded font; install it on the assembly system.\", \"sha256\": \"1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2\"}, \"png\": {\"pixels\": [850, 567], \"dpi\": [299.9994, 299.9994], \"sha256\": \"60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138\"}}, \"format_bindings\": {\"pdf\": {\"status\": \"passed\", \"measurement_source\": \"hash_bound_qa\", \"recorded_sha256\": \"7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b\", \"actual_sha256\": \"7bf8dfdce2aef5aa5562d3ccfb1e89259e9e9f2bee4a3eed057bb4564a08421b\"}, \"svg\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2\", \"actual_sha256\": \"1c6806bcd01257b621e17c118abea001314e231c9e2d722ccd35445ca18e72e2\"}, \"png\": {\"status\": \"passed\", \"measurement_source\": \"current_file\", \"recorded_sha256\": \"60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138\", \"actual_sha256\": \"60f783af9eb98c80f45e8a53ae7980efabdf71bce283d86319aa8883782ef138\"}}, \"actual_svg\": {\"width_mm\": 71.99999993333333, \"height_mm\": 47.99999995555555}}"
+    },
+    {
+      "criterion": "typography",
+      "status": "passed",
+      "evidence": "{\"actual_font\": \"Arial\", \"font_substituted\": false, \"sizes_pt\": {\"axis\": 8.0, \"tick\": 8.0, \"legend\": 8.0, \"annotation\": 8.0, \"title\": 9.0, \"panel\": 9.0}, \"scope\": \"Actual-font and point-size records from the exporter; font embedding is not inferred from PNG.\"}"
+    },
+    {
+      "criterion": "source_provenance",
+      "status": "passed",
+      "evidence": "{\"declared_sources\": {\"data_file\": [{\"declared_by\": \"settings.json:source_bindings:data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv\", \"sha256\": \"21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3\", \"expected_sha256\": \"21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3\", \"status\": \"passed\"}, {\"declared_by\": \"settings.json:input_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv\", \"sha256\": \"21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3\", \"expected_sha256\": \"21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3\", \"status\": \"passed\"}, {\"declared_by\": \"elements.json:input.data_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/source.csv\", \"sha256\": \"21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3\", \"expected_sha256\": \"21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3\", \"status\": \"passed\"}], \"source_script\": [{\"declared_by\": \"elements.json:input.source_script\", \"path\": \"/Users/starry/Desktop/EasyViz/skills/easyviz/scripts/replicate_plot.py\", \"sha256\": \"44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926\", \"expected_sha256\": \"44bc260d99f8829ba958800da55e2d00497288ba6dd2d1986f30ae199ca95926\", \"status\": \"passed\"}], \"spec_file\": [{\"declared_by\": \"elements.json:input.spec_file\", \"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/first-render/candidate-01/spec.json\", \"sha256\": \"28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378\", \"expected_sha256\": \"28e0446e07b0b349671929b9373afddb6024de7fbcf6fbff0f0fae6f1a081378\", \"status\": \"passed\"}], \"figure_profile\": []}, \"saved_specification\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/settings.json\", \"sha256\": \"76770df3dfc03488e91117e8545131c4d292aa598a52590b4eb5d24503d19c80\", \"bytes\": 34188}, \"resolved_spec_sha256\": \"1a5012327c24610fb85ce6b7ee10397a193f3b9efd174d8592ab3bd3232d3eb9\", \"scope\": \"Source/spec byte hashes establish continuity; they do not establish scientific or statistical correctness.\"}"
+    },
+    {
+      "criterion": "technical_qa",
+      "status": "passed",
+      "evidence": "{\"qa\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/qa.json\", \"sha256\": \"72c64cb68701102e6bb237459a33bc3d2ce687fda5a98c549cd15d5972144fc7\", \"bytes\": 60589}, \"status\": \"pass\", \"valid_outputs\": true, \"input_rows\": 15, \"plotted_input_rows\": null, \"readability_advisory\": \"no_advisory_flags\", \"scope\": \"Acknowledges saved numerical/export evidence; visual hierarchy, point/summary occlusion and statistics still need review.\"}"
+    },
+    {
+      "criterion": "caption",
+      "status": "passed",
+      "evidence": "{\"artifact\": {\"path\": \"/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/forward-create/01-compact-estimates/final/caption.md\", \"sha256\": \"4e1cb330b8e056ac9a9b691e8af0fe4847243b76eccf9cf202cdc7fae48ba98e\", \"bytes\": 574}, \"scope\": \"Separate caption is present; its scientific wording is a review attestation.\"}"
+    }
+  ],
+  "findings": [
+    {
+      "id": "note1",
+      "severity": "note",
+      "state": "accepted",
+      "location": "Panel-level reading and geometry",
+      "evidence": "The small 72 × 48 mm canvas needs oblique two-line treatment labels. The full labels fit, but label area is a substantial fraction of the canvas.",
+      "requirement": "Retain every supplied value, fixed canvas and agreed typography; disclose observed tradeoffs.",
+      "action": "Keep the selected valid version and preserve rejected/earlier attempts."
+    }
+  ],
+  "corrections": [],
+  "residual_issues": [
+    "note1"
+  ],
+  "preference": {
+    "choice": "not_applicable",
+    "reasons": ""
+  },
+  "limitation": "A recorded attestation establishes record completeness and current artifact bindings. It cannot prove that the reviewer opened an image, establish aesthetic superiority, or certify statistical validity or publication acceptance."
+}

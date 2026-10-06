@@ -1,0 +1,23 @@
+{
+  "purpose": "Compare BMI centers and interquartile spreads across the three cohorts. Summaries should lead; keep every supplied participant visible without letting the raw layer obscure quartiles.",
+  "reading_burden": {
+    "source_rows": 129,
+    "groups": {
+      "Kerr": 77,
+      "Petrus": 29,
+      "Krieg": 23
+    }
+  },
+  "adopted_canvas_mm": [
+    76,
+    72
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "leading_layer": "summary",
+  "organization": "separate_lanes",
+  "mechanism": "filled summary boundaries plus adjacent raw lanes",
+  "expected_benefit": "Filled cohort boxes and strong medians lead; neutral packed raw dots form adjacent lanes without breaking the median or quartile boundaries.",
+  "observed_tradeoff": "The unequal cohort counts remain fully represented; no density or inferred sample-size area is added.",
+  "record_timing": "Purpose, roles, actual burden and concrete geometry were planned in create-intent.json, initial spec.json and agent working notes before first rendering; this durable summary was consolidated after bounded image review."
+}

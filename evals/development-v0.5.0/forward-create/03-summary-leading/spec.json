@@ -1,0 +1,66 @@
+{
+  "layout": {
+    "width_mm": 76,
+    "height_mm": 72,
+    "font": "Arial",
+    "font_size_pt": 8,
+    "dpi": 300,
+    "auto_fit": true
+  },
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "chart": "distribution",
+  "fields": {
+    "group": "cohort_name",
+    "value": "body_mass_index",
+    "unit": "person_key"
+  },
+  "order": {
+    "group": [
+      "Kerr",
+      "Krieg",
+      "Petrus"
+    ]
+  },
+  "colors": {
+    "Kerr": "#586BB5",
+    "Krieg": "#287E71",
+    "Petrus": "#C15C67"
+  },
+  "labels": {
+    "x": "Cohort",
+    "y": "BMI (kg/m\u00b2)"
+  },
+  "line_roles": {
+    "axis": {
+      "line_width_pt": 0.55,
+      "color": "#222222"
+    },
+    "summary": {
+      "line_width_pt": 0.85,
+      "color": "#333333"
+    }
+  },
+  "options": {
+    "kind": "box",
+    "box_style": "filled",
+    "box_width": 0.24,
+    "box_fill_alpha": 1,
+    "point_style": "filled",
+    "alpha": 1,
+    "point_color": "#555555",
+    "point_area_pt2": 5,
+    "point_layout": "beeswarm",
+    "point_category_offset": 0.24,
+    "point_max_offset_mm": 5,
+    "point_gap_pt": 0.2,
+    "y_limits": [
+      15,
+      60
+    ],
+    "grid": false
+  }
+}

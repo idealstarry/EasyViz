@@ -9,6 +9,8 @@ For development and full figure checks, use Python 3.12 and the declared develop
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
+# Optional: run the MCP interoperability tests as well.
+.venv/bin/python -m pip install -r skills/easyviz/scripts/requirements-mcp.txt
 ```
 
 ```sh
@@ -43,9 +45,33 @@ occlusion, heatmap semantics, text and color accessibility.
 
 Keep two tracks. In create, [inspect_data.py](../skills/easyviz/references/data-exploration.md) inventories prepared CSV/TSV/XLSX data and proposes concrete reading tasks; [analyze.py](../skills/easyviz/references/statistical-analysis.md) executes an adopted descriptive or inferential plan separately from drawing. Preserve literal IDs, source values, experimental-unit declarations, exclusions, effect direction and comparison families. Unknown design supports descriptive previews, not inferred independent sample counts.
 
+The candidate helper consumes an explicit `create_intent` when supplied. Its
+conditional mechanism rankings support the Agent's adopted question and layer
+roles; they do not pick a scientific objective. `analysis_result.py` verifies
+an adopted comparison and population before the core renderer annotates its
+raw or adjusted P. Cosmetic changes reuse the captured report. Existing limited
+renderer tests remain a documented legacy route, rather than silently becoming
+the separately adopted analysis.
+
 In reproduce, stage the supplied reference and user tables with [reference_packet.py](../skills/easyviz/references/reference-to-code.md), obtain a fresh image reading, adopt each layer and map it to code. Implement unfamiliar geometry explicitly. A paper's Source Data or author code is not an entry requirement; published Source Data cases provide auditable learning and numerical validation evidence.
 
+The [reproduction checkpoint](../skills/easyviz/references/reproduction-checkpoint.md)
+records matched relationships, changed-data adaptations and unresolved layers.
+It can permit supported raw layers while blocking an incomplete required
+statistical layer; successful adoption never substitutes for independent image
+review. The new [scWAT case](../examples/reproduce/scwat-broken-axis/README.md)
+checks actual exported coordinates and rejects raw values or SEM endpoints
+that would disappear inside the omitted axis interval.
+
 The shared [figure workbench](../skills/easyviz/references/figure-workbench.md) serves either track from `127.0.0.1`. It saves selected-element or millimetre-region instructions in `requests.json` bound to the inspected SVG version. The Agent edits the spec/profile or script, preserves the accepted attempt, and rerenders all requested formats. Custom scripts can register real artists with `figure_elements.py`; an SVG without a matching manifest still supports general and region notes. Keep semantic source keys and quantitative mark geometry tied to the data.
+
+`figure_service.py` shares bounded preview jobs and verified attempt operations
+between the page and the optional [MCP adapter](../skills/easyviz/references/mcp.md).
+Supported core cosmetics generate real SVG/PDF/PNG; custom and free-form work
+stays on its original source attempt for the Agent. Neither saving nor exposing
+an MCP tool wakes an idle conversation. Test transport sessions and actual
+Agent-host execution separately. Page acceptance/restoration uses verified
+captured source/spec/export bytes, not a browser-only SVG edit.
 
 ## Extend a chart family
 
@@ -147,4 +173,4 @@ For each release, set the manifest version before building and record the archiv
 
 The historical initial release evidence is under `evals/release-qa/`; it identifies its original 0.1.0 archive. Later releases must identify their own archive and applicable checks. GitHub release publication and public plugin-directory submission are separate from building or local installation.
 
-The [0.4.3 QA record](../evals/release-qa/v0.4.3/README.md) records this version's checks and archive identity. Do not carry an earlier archive's checksum or successful CI status forward to a new build.
+The [0.5.0 QA record](../evals/release-qa/v0.5.0/README.md) records this version's checks and archive identity. Do not carry an earlier archive's checksum or successful CI status forward to a new build.

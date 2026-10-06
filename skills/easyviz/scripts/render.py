@@ -60,6 +60,15 @@ annotation_review = _load_captured_helper("easyviz_annotation_review", "annotati
 figure_elements = _load_captured_helper("easyviz_figure_elements", "figure_elements.py")
 panel_readability = _load_captured_helper("easyviz_panel_readability", "panel_readability.py")
 observation_clipping = _load_captured_helper("easyviz_observation_clipping", "observation_clipping.py")
+_ANALYSIS_RESULT = None
+
+
+def _analysis_helper():
+    """Load the exact optional binding helper only when an adoption is used."""
+    global _ANALYSIS_RESULT
+    if _ANALYSIS_RESULT is None:
+        _ANALYSIS_RESULT = _load_captured_helper("easyviz_analysis_result", "analysis_result.py")
+    return _ANALYSIS_RESULT
 
 
 class SpecError(ValueError):
@@ -164,7 +173,8 @@ SCHEMA = {
     "distribution_point_layout": {"point_layout": "jitter (default) or beeswarm", "point_max_offset_mm": 4, "point_gap_pt": .3, "meaning": "Beeswarm moves only the categorical coordinate after final layout; preserves values, rows, marker size and canvas. Unresolved mark overlaps fail QA and remain in exported data."},
     "distribution_layer_geometry": {"point_category_offset": "Optional finite JSON number in [-0.4, 0.4], default 0; shifts the raw layer in category-spacing units, not measurement units. Positive is right for vertical plots; orientation/reversed axes determine physical direction. Packing spread is measured around the shifted anchor; point envelopes must stay in the original category lane.", "violin_width": "Optional finite 0 < width <= 1, default 0.7; changes categorical silhouette width only. Scott bandwidth, numeric evaluation values and density normalization are unchanged."},
     "heatmap_cell_geometry": {"cell_border_width_pt": "Optional finite nonnegative JSON number, default 0; draws editable vector internal seams exactly at half-integer cell boundaries.", "cell_border_color": "Optional valid color string, default white.", "column_labels": "Optional complete mapping from actual column keys to distinct nonempty display strings. Source keys, order and numeric values stay unchanged; define abbreviations in the caption."},
-    "statistics": {"method": "none; pearson|spearman (scatter); welch|mannwhitney|wilcoxon (distribution)", "groups": ["A", "B"], "unit": "pairing ID column (mandatory for wilcoxon)", "annotate": False},
+    "statistics": {"analysis": {"schema_version": 1, "results_file": "path/to/adopted/results.json", "results_sha256": "digest of the exact adopted result bytes", "comparison": "planned comparison name", "pvalue": "raw | adjusted (explicit)", "population": "all | included (explicit; included changes plotted population)"}, "annotate": False,
+                   "legacy": "Saved method/groups/unit options remain compatible; new inferential figures should adopt a confirmed analyze.py result. Do not combine legacy options with analysis."},
     "semantics": ["Margins are subplot bounds in 0..1, not padding widths.", "layout.auto_fit=true measures labels and guides within the unchanged canvas; do not combine it with margins or manual guide coordinates. It is a technical fit, not aesthetic certification.", "orders must include every category exactly once.", "dotplot and mapped scatter max_area_pt2 denote true circle geometric fill area, excluding stroke; area=size/size_max*max_area_pt2 and Matplotlib s=4/pi*area. Zero means zero area.", "Legacy point_area_pt2 for fixed scatter/distribution marks is the Matplotlib s parameter (squared diameter), not geometric circle fill area; settings record both quantities.", "Scatter size options require fields.size and cannot be combined with point_area_pt2.", "Scatter options.reference_lines draws supplied numeric positions only; it does not compute classes or significance.", "composition normalization is mandatory; sample_sum uses only supplied categories.", "denominator values repeat for all categories within a sample; incomplete composition remains below 1.", "No test is run unless requested; default distributions are descriptive boxplots and all observations.", "SVG preserves editable text and references the font; PDF embeds the selected font."]
 }
 
@@ -391,6 +401,16 @@ def resolve_spec(spec, *, profile=None, panel=None, spec_path=None):
     except figure_profile.ConfigurationError as exc:
         raise SpecError(str(exc)) from None
     validate_spec(resolved)
+    if "analysis" in resolved.get("statistics", {}):
+        helper = _analysis_helper()
+        try:
+            binding = helper.validate_binding(resolved["statistics"]["analysis"])
+        except helper.AnalysisBindingError as exc:
+            raise SpecError(str(exc)) from None
+        result_path = Path(binding["results_file"])
+        if not result_path.is_absolute():
+            result_path = (Path(spec_path).resolve().parent if spec_path is not None else Path.cwd()) / result_path
+        binding["results_file"] = str(result_path.resolve())
     return resolved, record
 
 
@@ -642,7 +662,7 @@ def place_distribution_points(fig, ax, data, spec, pending):
     fig._easyviz_point_layout = report
 
 
-def prepare(data_path, spec):
+def prepare(data_path, spec, adopted_analysis=None):
     validate_spec(spec)
     chart = spec.get("chart")
     require(chart in REQUIRED, f"chart must be one of {list(REQUIRED)}")
@@ -658,6 +678,10 @@ def prepare(data_path, spec):
     data = read_source_csv(data_path)
     require(len(data) > 0, "Input has no observations")
     require(not any(c.startswith("_easyviz_") for c in data.columns), "Input columns starting _easyviz_ are reserved")
+    if adopted_analysis is not None:
+        require(data.attrs["source_csv_sha256"] == adopted_analysis["source_sha256"],
+                "Source data changed after analysis binding; adopt the current input again")
+        data = data.loc[[record - 2 for record in adopted_analysis["source_records"]]].copy()
     observed = pd.Series(True, index=data.index)
     if chart == "dotplot":
         if "state" in fields:
@@ -790,12 +814,16 @@ def continuous(spec, values):
     return cmap, norm
 
 
-def statistics(data, spec):
+def statistics(data, spec, adopted_analysis=None):
     config = spec.get("statistics")
     if not config:
         return {"method": "none", "note": "Descriptive visualization; no inferential test requested."}
     require(isinstance(config, dict), "statistics must be an object")
-    require(not (set(config) - {"method", "groups", "unit", "annotate"}), "Unknown statistics options; supported: method, groups, unit, annotate")
+    require(not (set(config) - {"method", "groups", "unit", "annotate", "analysis"}), "Unknown statistics options; supported: analysis, annotate, or saved legacy method/groups/unit")
+    if "analysis" in config:
+        require(not ({"method", "groups", "unit"} & set(config)), "Adopted analysis cannot be combined with a second statistical computation")
+        require(adopted_analysis is not None, "Load and validate the adopted analysis binding before computing plotting statistics")
+        return adopted_analysis["result"]
     if config.get("method") == "none":
         require("groups" not in config and "unit" not in config and not config.get("annotate", False), "statistics.method='none' cannot be combined with groups, unit, or annotate=true")
         return {"method": "none", "note": "Descriptive visualization; no inferential test requested."}
@@ -851,6 +879,8 @@ def statistics(data, spec):
     if result["pvalue"] == 0:
         result["pvalue_display"] = {"text": "p < 0.001", "upper_bound": .001, "raw_library_value_preserved": 0.0, "note": "The numerical library returned zero, potentially from floating-point underflow or a limiting exact correlation. Display a bound rather than claiming an empirically exact zero probability."}
     result["multiplicity"] = "One specified test; no multiple-testing correction."
+    result["compatibility"] = {"mode": "legacy_render_statistics", "scope": "Saved renderer specifications only; direct single-test computation on plotted rows with legacy SciPy method routing. Unit confirmation, planned exclusions, effects and multiplicity families are not established by this interface.",
+                               "new_inference": "Adopt a confirmed analyze.py comparison through statistics.analysis."}
     return result
 
 
@@ -1274,14 +1304,20 @@ def draw(data, spec, layout, typography, result):
     if labels.get("panel"):
         fig.text(.035, .965, labels["panel"], ha="left", va="top", fontsize=typography["panel"], fontweight="bold")
     if spec.get("statistics", {}).get("annotate", False):
-        require(result.get("method") != "none", "Statistical annotation requires a test")
-        ptext = "p < 0.001" if result["pvalue"] == 0 else f"p = {result['pvalue']:.3g}"
+        require(result.get("pvalue") is not None, "Statistical P annotation requires an inferential result; descriptive analysis has no P value")
+        ptext = result.get("annotation_text") or ("p < 0.001" if result["pvalue"] == 0 else f"p = {result['pvalue']:.3g}")
         note = f"{result['method']}: {ptext}"
         if result["method"] in ("pearson", "spearman"):
             note = f"{'r' if result['method'] == 'pearson' else 'rho'} = {result['statistic']:.2f}; {ptext}"
         elif "groups" in result:
             note = f"{' vs '.join(map(str, result['groups']))}\n{note}"
-        ax.text(.02, .98, note, ha="left", va="top", transform=ax.transAxes, fontsize=typography["annotation"], bbox={"facecolor": "white", "edgecolor": "none", "alpha": .85, "pad": 1}, zorder=6)
+        annotation = ax.text(.02, .98, note, ha="left", va="top", transform=ax.transAxes, fontsize=typography["annotation"], bbox={"facecolor": "white", "edgecolor": "none", "alpha": .85, "pad": 1}, zorder=6)
+        if "adoption" in result:
+            figure_elements.register(fig, annotation, "statistical-annotation", f"Adopted comparison: {result['name']}",
+                                     key=["analysis", result["name"]],
+                                     source_keys=[{"comparison": result["name"], "results_sha256": result["adoption"]["results_sha256"], "pvalue": result["adoption"]["pvalue"]}],
+                                     spec_paths=["/statistics/analysis", "/statistics/annotate", "/typography/annotation"],
+                                     editable={"fontsize": "/typography/annotation"})
     if chart != "heatmap":
         ax.spines[["top", "right"]].set_visible(False)
     if layout.get("auto_fit", False):
@@ -1416,17 +1452,31 @@ def check_tick_label_overlap(fig, painter):
 
 def _render(data_path, spec, out, profile_record=None, spec_path=None, track=None, source_bindings=None):
     data_path, out = Path(data_path), Path(out)
-    data = prepare(data_path, spec)
+    adopted_analysis = None
+    if "analysis" in spec.get("statistics", {}):
+        helper = _analysis_helper()
+        try:
+            adopted_analysis = helper.load(spec["statistics"]["analysis"], data_path, spec["fields"], spec["chart"], spec_path=spec_path)
+        except (helper.AnalysisBindingError, OSError) as exc:
+            raise SpecError(f"Adopted analysis: {exc}") from None
+    data = prepare(data_path, spec, adopted_analysis)
     bindings = dict(source_bindings or {})
+    if adopted_analysis is not None:
+        bindings.update(adopted_analysis["source_bindings"])
     bindings["data_file"] = {"path": str(data_path.resolve()), "sha256": data.attrs["source_csv_sha256"]}
     for name, digest in RUNTIME_SOURCE_DIGESTS.items():
+        # A previous run may have loaded the optional analysis helper. Bind it
+        # only when this render consumed an adopted result; process history
+        # must not change an otherwise identical non-analysis source bundle.
+        if name == "analysis_result.py" and adopted_analysis is None:
+            continue
         role = "source_script" if name == "render.py" else f"helper:{name}"
         bindings[role] = {"path": str(Path(__file__).with_name(name).resolve()), "sha256": digest}
     if profile_record is not None:
         bindings["figure_profile"] = {"path": profile_record["path"], "sha256": profile_record["sha256"]}
     continuity = source_continuity(bindings)
     require(continuity["status"] == "pass", "Source/spec/profile changed before rendering; prepare the current inputs again")
-    results = statistics(data, spec)
+    results = statistics(data, spec, adopted_analysis)
     layout, typography, rc = setup(spec)
     out.mkdir(parents=True, exist_ok=True)
     with plt.rc_context(rc), warnings.catch_warnings(record=True) as captured:
@@ -1480,7 +1530,7 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=spec.get("formats", ["pdf", "png"]), seed=spec.get("seed", 0), input_file=data_path.name, input_sha256=bindings["data_file"]["sha256"])
             settings["source_bindings"] = bindings
             settings["source_snapshot"] = {"file": "source-data.csv", "sha256": bindings["data_file"]["sha256"],
-                                           "row_count": len(data), "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; parsed once with strict header/record width."}
+                                           "row_count": adopted_analysis["source_rows"] if adopted_analysis else len(data), "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; adopted analysis may explicitly select the plotted population."}
             settings["renderer"] = {"version": VERSION, "sha256": RUNTIME_SOURCE_DIGESTS["render.py"]}
             if track is not None:
                 settings["track"] = track
@@ -1505,7 +1555,7 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
                 settings["point_layout"] = point_layout
             settings["runtime"] = {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}
             passed = continuity["status"] == "pass" and not clipped and not missing_glyphs and not overlaps and legends["status"] == "pass" and cell_annotations["status"] == "pass" and (not fitted or fitted["status"] == "pass") and (not point_layout or point_layout["status"] != "needs_revision") and clipping_report["status"] != "needs_revision"
-            qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover text canvas boundaries, same-axis horizontal/vertical tick-label overlap, heatmap cell annotations and final circular observation envelopes at each export canvas size. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
+            qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": adopted_analysis["source_rows"] if adopted_analysis else len(data), "plotted_input_rows": len(data), "input_sha256": settings["input_sha256"], "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlaps, "unchecked_oblique_tick_labels": oblique_labels, "missing_glyphs": missing_glyphs, "exports": exports, "visual_review_required": True, "note": "Automated checks cover text canvas boundaries, same-axis horizontal/vertical tick-label overlap, heatmap cell annotations and final circular observation envelopes at each export canvas size. Oblique text, other label/mark overlaps, statistical design and visual fidelity still require visual review."}
             qa["legend_layout"] = legends
             qa["cell_annotations"] = cell_annotations
             qa["readability"] = readability
@@ -1517,6 +1567,12 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
                 qa["dot_states"] = chart_states
             if point_layout:
                 qa["point_layout"] = point_layout
+            if adopted_analysis is not None:
+                settings["adopted_analysis"] = results["adoption"]
+                qa["adopted_analysis"] = {"status": "pass", "comparison": results["name"], "pvalue": results["adoption"]["pvalue"], "population": results["adoption"]["population"], "recomputed": False}
+                for name, content in adopted_analysis["payloads"].items():
+                    (out / name).parent.mkdir(parents=True, exist_ok=True)
+                    (out / name).write_bytes(content)
             data.to_csv(out / "plotting-data.csv", index=False)
             (out / "source-data.csv").write_bytes(data.attrs["source_csv_bytes"])
             write_json(out / "settings.json", settings)

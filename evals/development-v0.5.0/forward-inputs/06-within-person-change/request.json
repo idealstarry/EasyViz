@@ -1,0 +1,27 @@
+{
+  "id": "06-within-person-change",
+  "question": "Show how individual IgG measurements change from before to after vaccination, with prior-infection classes decoded. Preserve the literal participant pairing. Use a paired change view, not an unrelated association scatter.",
+  "panel_mm": [
+    100,
+    86
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "context": "IgG in BAU/ml. One row is a complete participant pair. Prior-infection status is supplied, not derived. All measurements are positive. A log measurement axis is permitted if labeled; no significance test or fitted model is adopted.",
+  "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+  "source_path": "examples/create/basic-panels/paired-scatter/source-data.csv",
+  "source_sha256": "05291c4494ab29fe95da3da5679631bb1456956628d883709289215a28c12eee",
+  "input_sha256": "ec53dbfe80f0943f9d0223d551e6dd6927e345daaf4bb8ec2af0d17efa9b8b58",
+  "renamed_columns": {
+    "participant_id": "person_id",
+    "igg_before_bau_ml": "baseline_igg",
+    "igg_after_bau_ml": "followup_igg"
+  },
+  "expected": {
+    "rows": 127,
+    "measurements": 254,
+    "complete_pairs": 127,
+    "inference": false
+  },
+  "row_count": 127
+}

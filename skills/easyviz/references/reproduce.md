@@ -66,6 +66,11 @@ For integrated references, resolve
 before drawing. Bind every adopted material layer to actual exported artists;
 use the optional recorded-plan auditor when these dependencies need a repeatable
 check. It does not certify image interpretation or visual quality.
+For unfamiliar geometry or ambiguous layer meanings, use the
+[adoption checkpoint](reproduction-checkpoint.md) to make preserved/adapted
+relationships and unresolved questions actionable before rendering. A supported
+raw-data layer can progress while a required statistic remains explicitly open;
+completed record checks do not establish a finished delivery.
 Reproduce visual relationships before tuning small styling details: chart
 geometry and scales, data-to-layer mappings, grouping and colors, then
 typography and spacing. Reuse library components without inheriting their sample
@@ -89,6 +94,12 @@ explicitly adopt physical sizes when it is unknown. Shared decoding, narrow
 data lanes and relative type hierarchy can matter more than matching a palette.
 
 Render individual panels using the adopted specification and final-size layout. Save the script, settings, data transformations, and evidence sources. Write a separate `caption.md` with explanatory prose, abbreviation definitions, methods, attribution, and caveats under the [Panel layout](panel-layout.md) caption rules. Use known figure/panel identifiers only; do not inherit the reference's numbering for a new manuscript. The reproducibility record must identify the actual inputs accessed, including optional author code.
+
+Make the adopted geometry visible before detailed styling: inspect shared plot
+spans, axis segments, data-to-mark proportions and complete guide space using
+the user's actual data. In the final handoff, pair the selected original region
+with the actual output and list preserved relationships, data/user adaptations
+and residual uncertainty. Record an unknown reference physical scale explicitly.
 
 Custom implementations reuse the physical-size/font/export helpers and provide
 their own source-to-artist, layer and alignment checks. Save a baseline before

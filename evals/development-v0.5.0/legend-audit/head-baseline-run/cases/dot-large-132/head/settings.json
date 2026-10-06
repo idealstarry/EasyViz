@@ -1,0 +1,669 @@
+{
+  "chart": "dotplot",
+  "layout": {
+    "width_mm": 132.0,
+    "height_mm": 96.0,
+    "font": "Arial",
+    "font_size_pt": 8.0,
+    "line_width_pt": 0.6,
+    "dpi": 300,
+    "margins": {
+      "left": 0.19,
+      "right": 0.77,
+      "bottom": 0.23,
+      "top": 0.88
+    },
+    "actual_font": "Arial",
+    "font_substituted": false
+  },
+  "typography": {
+    "axis": 8.0,
+    "tick": 8.0,
+    "legend": 8.0,
+    "annotation": 8.0,
+    "title": 9.0,
+    "panel": 9.0
+  },
+  "formats": [
+    "svg",
+    "png"
+  ],
+  "seed": 23,
+  "fields": {
+    "x": "column",
+    "y": "row",
+    "size": "count",
+    "color": "fraction"
+  },
+  "labels": {
+    "x": "Sample",
+    "y": "Feature",
+    "size": "Count",
+    "color": "Fraction"
+  },
+  "colormap": [
+    "#F5FBFE",
+    "#2581B9"
+  ],
+  "options": {
+    "size_max": 200,
+    "max_area_pt2": 144,
+    "size_legend": [
+      20.0,
+      100.0,
+      200
+    ],
+    "color_limits": [
+      0,
+      1
+    ],
+    "x_rotation": 0
+  },
+  "resolved_colors": {},
+  "input_file": "source.csv",
+  "input_sha256": "017f3a20a981225a407fb97d2276646f89476d442e9cf2201f343109fbd6c670",
+  "source_bindings": {
+    "data_file": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/legend-audit/head-baseline-run/cases/dot-large-132/source.csv",
+      "sha256": "017f3a20a981225a407fb97d2276646f89476d442e9cf2201f343109fbd6c670"
+    },
+    "source_script": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/render.py",
+      "sha256": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3"
+    },
+    "helper:legend_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/legend_layout.py",
+      "sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0"
+    },
+    "helper:figure_profile.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/figure_profile.py",
+      "sha256": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca"
+    },
+    "helper:auto_layout.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/auto_layout.py",
+      "sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417"
+    },
+    "helper:annotation_review.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/annotation_review.py",
+      "sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e"
+    },
+    "helper:figure_elements.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/figure_elements.py",
+      "sha256": "99fef9b47586c5b581e650dcf5138a9f11009ae4b335141a25a972829a6d1062"
+    },
+    "helper:panel_readability.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/panel_readability.py",
+      "sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1"
+    },
+    "helper:observation_clipping.py": {
+      "path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/independent-runtime-audit/legend-check/head-baseline/skills/easyviz/scripts/observation_clipping.py",
+      "sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+    }
+  },
+  "source_snapshot": {
+    "file": "source-data.csv",
+    "sha256": "017f3a20a981225a407fb97d2276646f89476d442e9cf2201f343109fbd6c670",
+    "row_count": 25,
+    "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; parsed once with strict header/record width."
+  },
+  "renderer": {
+    "version": "0.4.4",
+    "sha256": "cbc0ea00fbb3307d0b42df7ff4a8f56bd42a759aeb99f43f8deb573b6e4672c3",
+    "legend_helper_sha256": "239b78c99435a6295c3fa81ffabe65c9df8e9481a557a55e06aed255bac832b0",
+    "profile_helper_sha256": "843484befc8b727b6dd782e801b973163e3edfe3d76976b41dcb58b14847d9ca",
+    "auto_layout_helper_sha256": "e79843abe459621c19ae328612f98511a9bd1e5fa044b5f14d9565cc4175e417",
+    "annotation_helper_sha256": "e04323100ff91c74aa1ac775db0b76710bf76b218d760d84b741dd72a016778e",
+    "readability_helper_sha256": "10dacf7f16657e2e675101a23ddca65dc312940189e17440d798bb0119584da1",
+    "observation_clipping_helper_sha256": "bba2b73392d91c19f139a1108499b17ded31c382d5618821e7f4d17c8a6ca5e4"
+  },
+  "observation_clipping": {
+    "status": "pass",
+    "by_format": {
+      "svg": {
+        "status": "pass",
+        "checked_observations": 25,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-67cb76da615332d8",
+            "label": "Observed dot values",
+            "observations": 25,
+            "checked_observations": 25,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                4.6
+              ],
+              "y_limits": [
+                4.6,
+                -0.6
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          132.00000000000003,
+          96.0
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      },
+      "png": {
+        "status": "pass",
+        "checked_observations": 25,
+        "clipped_observations": 0,
+        "unmeasured_observations": 0,
+        "ignored_observations": {
+          "nonfinite_or_masked": 0,
+          "zero_area": 0,
+          "invisible": 0
+        },
+        "groups": [
+          {
+            "element_id": "easyviz-point-group-67cb76da615332d8",
+            "label": "Observed dot values",
+            "observations": 25,
+            "checked_observations": 25,
+            "clipped_observations": 0,
+            "unmeasured_observations": 0,
+            "axes": {
+              "x_limits": [
+                -0.6,
+                4.6
+              ],
+              "y_limits": [
+                4.6,
+                -0.6
+              ],
+              "x_scale": "linear",
+              "y_scale": "linear"
+            }
+          }
+        ],
+        "clipped": [],
+        "advisories": [],
+        "canvas_mm": [
+          131.99533333333335,
+          96.012
+        ],
+        "scope": "Final transformed registered circular observation paths plus visible solid stroke against the actual rectangular artist clip and physical figure canvas. No other occlusion, aesthetics, state glyphs, bars or unregistered marks are certified; no geometry or data is edited."
+      }
+    },
+    "note": "Confirmed observation clipping invalidates delivery. Locked scales, areas, linewidths and source rows are retained; explicitly revise the adopted range/layout or divide the panel. Advisory geometry still needs inspection."
+  },
+  "legend_layout": {
+    "status": "pass",
+    "legends": [
+      {
+        "kind": "colorbar",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "right",
+          "orientation": "vertical",
+          "rect_mm": [
+            103.64000000000001,
+            62.64,
+            2.000000000000007,
+            21.84
+          ],
+          "length_mm": 21.84,
+          "thickness_mm": 2.000000000000007,
+          "ticks": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "font_size_pt": 8.0
+        },
+        "bbox_mm": [
+          103.64000000000001,
+          61.01873806423611,
+          10.558589409722208,
+          24.488589409722227
+        ],
+        "plot_bbox_mm": [
+          25.080000000000005,
+          22.08,
+          76.56,
+          62.4
+        ],
+        "canvas_mm": [
+          132.0,
+          96.0
+        ],
+        "area_fraction_of_plot": 0.054123161489004874,
+        "width_fraction_of_plot": 0.13791260984485643,
+        "height_fraction_of_plot": 0.39244534310452284,
+        "area_fraction_of_canvas": 0.020404431881354837,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.10053695439861289,
+        "available_region_mm": [
+          103.64000000000001,
+          1.0,
+          27.359999999999996,
+          94.0
+        ],
+        "key_bboxes_mm": [],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "mapped_range": [
+          0.0,
+          1.0
+        ],
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 21.84,
+            "bbox_mm": [
+              103.64000000000001,
+              61.01873806423611,
+              10.558589409722208,
+              24.488589409722227
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              103.64000000000001,
+              58.858738064236114,
+              10.558589409722208,
+              26.648589409722227
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              103.64000000000001,
+              54.85873806423611,
+              10.558589409722208,
+              30.64858940972223
+            ],
+            "issues": []
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 26.796,
+            "bbox_mm": [
+              48.057000000000016,
+              86.48000000000002,
+              30.606,
+              8.803244357638855
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              49.455000000000005,
+              86.48000000000002,
+              27.810000000000002,
+              8.803244357638855
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              47.45500000000001,
+              86.48000000000002,
+              31.809999999999995,
+              8.803244357638855
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 26.796,
+            "bbox_mm": [
+              48.057000000000016,
+              1.5050868055555524,
+              30.606,
+              9.397178819444447
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 24.0,
+            "bbox_mm": [
+              49.455000000000005,
+              1.5050868055555524,
+              27.810000000000002,
+              9.397178819444447
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": null,
+            "length_mm": 28.0,
+            "bbox_mm": [
+              47.45500000000001,
+              1.5050868055555524,
+              31.809999999999995,
+              9.397178819444447
+            ],
+            "issues": []
+          }
+        ]
+      },
+      {
+        "kind": "size",
+        "chosen_settings": {
+          "key_width_mm": 1.5,
+          "key_height_mm": 1.5,
+          "handletext_gap_mm": 0.7,
+          "row_gap_mm": 0.6,
+          "column_gap_mm": 2.0,
+          "borderpad_mm": 0.2,
+          "gap_mm": 2.0,
+          "canvas_padding_mm": 1.0,
+          "position": "right",
+          "ncol": 1,
+          "loc": "upper left",
+          "anchor_mm": [
+            103.64000000000001,
+            59.01873806423611
+          ],
+          "font_size_pt": 8.0,
+          "effective_key_width_mm": 4.776805140704337,
+          "effective_key_height_mm": 4.776805140704337
+        },
+        "bbox_mm": [
+          103.64000000000001,
+          39.83973323240088,
+          10.448805140704321,
+          19.179004831835236
+        ],
+        "plot_bbox_mm": [
+          25.080000000000005,
+          22.08,
+          76.56,
+          62.4
+        ],
+        "canvas_mm": [
+          132.0,
+          96.0
+        ],
+        "area_fraction_of_plot": 0.04194750980471011,
+        "width_fraction_of_plot": 0.1364786460384577,
+        "height_fraction_of_plot": 0.3073558466640262,
+        "area_fraction_of_canvas": 0.01581421119637571,
+        "reserved_band_fraction": null,
+        "reserved_band_mm": null,
+        "available_region_fraction": 0.07791996558124653,
+        "available_region_mm": [
+          103.64000000000001,
+          1.0,
+          27.359999999999996,
+          94.0
+        ],
+        "key_bboxes_mm": [
+          [
+            105.47312336118084,
+            52.27678970892772,
+            1.510558418342679,
+            1.510558418342679
+          ],
+          [
+            104.53954691665277,
+            45.96640812369533,
+            3.377711307398807,
+            3.377711307398788
+          ],
+          [
+            103.84000000000002,
+            39.890056066338225,
+            4.776805140704321,
+            4.77680514070434
+          ]
+        ],
+        "issues": [],
+        "warnings": [],
+        "text_overlaps": [],
+        "marker_areas_pt2": [
+          14.4,
+          72.0,
+          144.0
+        ],
+        "marker_size_parameters_pt2": [
+          18.334649444186343,
+          91.67324722093171,
+          183.34649444186343
+        ],
+        "area_semantics": "geometric_circle_area",
+        "fill_area_definition": "Ideal circle geometric fill area in pt², excluding edge stroke; Matplotlib s is squared diameter in pt².",
+        "attempts": [
+          {
+            "position": "right",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              103.64000000000001,
+              39.83973323240088,
+              10.448805140704321,
+              19.179004831835236
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              103.64000000000001,
+              45.216538373105216,
+              22.49761028140866,
+              13.802199691130898
+            ],
+            "issues": []
+          },
+          {
+            "position": "right",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              103.64000000000001,
+              50.59334351380956,
+              33.022415422113006,
+              8.42539455042656
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              58.135597429647845,
+              86.48000000000002,
+              10.44880514070434,
+              19.179004831835226
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              52.11119485929568,
+              86.48000000000002,
+              22.497610281408672,
+              13.802199691130888
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "top",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              46.848792288943514,
+              86.48000000000002,
+              33.02241542211301,
+              8.42539455042655
+            ],
+            "issues": []
+          },
+          {
+            "position": "bottom",
+            "ncol": 1,
+            "length_mm": null,
+            "bbox_mm": [
+              58.135597429647845,
+              -8.276739206835234,
+              10.44880514070434,
+              19.179004831835233
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": 2,
+            "length_mm": null,
+            "bbox_mm": [
+              52.11119485929568,
+              -2.899934066130896,
+              22.497610281408672,
+              13.802199691130895
+            ],
+            "issues": [
+              "legend_outside_available_region",
+              "legend_outside_canvas"
+            ]
+          },
+          {
+            "position": "bottom",
+            "ncol": 3,
+            "length_mm": null,
+            "bbox_mm": [
+              46.848792288943514,
+              2.4768710745734386,
+              33.02241542211301,
+              8.42539455042656
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ],
+    "combined": {
+      "guide_count": 2,
+      "occupied_envelope_union_area_mm2": 458.9626450810015,
+      "sum_envelope_area_mm2": 458.96264508100154,
+      "envelope_overlap_area_mm2": 5.215729793740643e-14,
+      "has_envelope_overlap": false,
+      "area_fraction_of_plot": 0.09607067129371497,
+      "area_fraction_of_canvas": 0.03621864307773054,
+      "enclosing_bbox_mm": [
+        103.64000000000001,
+        39.83973323240088,
+        10.558589409722208,
+        45.66759424155746
+      ],
+      "max_individual_width_mm": 10.558589409722206,
+      "max_individual_height_mm": 24.488589409722227,
+      "semantics": "Union of complete rectangular guide envelopes, not ink area. The enclosing bbox includes empty gaps and is reported separately. Available regions are not actual reserved layout bands."
+    },
+    "issues": [],
+    "warnings": [],
+    "review_thresholds": {
+      "area_fraction_of_plot": 0.2,
+      "area_fraction_of_canvas": 0.12,
+      "available_region_fraction": 0.85
+    },
+    "font_policy": "Preserve configured legend font size; never shrink the canvas or quantitative size keys.",
+    "selection_policy": "Fit first, then declared candidate order; never minimize occupied area as an aesthetic objective. Automatic placement is provisional and needs visual judgment.",
+    "measurement_note": "Legend bbox includes rendered keys, labels and title. Available-region occupancy describes free space outside the plot, not allocated legend space. Ratios and pass status describe technical fit, not design improvement. Check other annotation collisions visually."
+  },
+  "mark_geometry": {
+    "mode": "mapped_circle_fill_area",
+    "source_field": "count",
+    "size_max": 200.0,
+    "max_area_pt2": 144.0,
+    "max_marker_size_parameter_pt2": 183.34649444186343,
+    "fill_area_definition": "Ideal circle geometric fill area in pt², excluding stroke; the rendered circle uses a Bézier path approximation.",
+    "area_formula": "circle_fill_area_pt2 = size / size_max * max_area_pt2",
+    "parameter_formula": "matplotlib_s = 4 / pi * circle_fill_area_pt2",
+    "diameter_formula": "diameter_pt = 2 * sqrt(circle_fill_area_pt2 / pi)",
+    "stroke_policy": "Fill area excludes edge stroke; core quantitative circles are borderless.",
+    "observed_rows": 25
+  },
+  "dot_states": {
+    "observed_rows": 25,
+    "zero_rows": 0,
+    "unmeasured_rows": 0,
+    "missing_coordinates": [],
+    "missing_cells_meaning": "unsupplied",
+    "small_positive_rows": 0,
+    "small_positive_area_threshold_pt2": 0.0,
+    "state_markers": true,
+    "symbols": {},
+    "note": "State glyphs are separate nonquantitative marks. Observed geometric circle fill area remains size / size_max * max_area_pt2, with Matplotlib s = 4/pi times that area; an absent row is not a measured zero."
+  },
+  "runtime": {
+    "python": "3.12.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "Pillow": "12.3.0",
+    "pypdf": "6.18.0"
+  }
+}

@@ -169,6 +169,13 @@ passed report establishes recorded checks only; image semantics, derived
 statistics and visual quality still need their own evidence. Ordinary panels
 can keep their existing lightweight settings and validation.
 
+Before drawing unfamiliar geometry, complete the scaffold's `adoption_contract`
+and run the [adoption checkpoint](reproduction-checkpoint.md). It binds retained
+visual relationships and specific open questions to the supplied reading/data;
+an unresolved interval can block that layer while supported observations
+continue. It checks recorded decisions, not the correctness of image semantics,
+statistics or future exports. Preserve the separate final audit/review steps.
+
 ## 5. Use common helpers in a new implementation
 
 Custom code can import `render.py` by its actual skill path, call

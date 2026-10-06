@@ -20,6 +20,11 @@ each basic family; one case or card is not its mandatory finished design. Use
 the [internal design brief](design-space.md#plan-the-first-panel) to plan a
 concrete data rectangle, category/group gaps and leading layer from the actual
 data before choosing colors or rendering.
+For an eligible new draft, declare that purpose in the planning-only
+`create_intent` contract described in [First reviewed delivery](first-draft.md).
+The candidate helper consumes the adopted task and roles, ranks applicable
+literature mechanisms with reasons, and records actual physical preflight.
+Its renderer specs remain separate from planning and statistical analysis.
 
 For an aligned matrix contrast or separate-unit time course, consult
 [Purposeful extra layers](complex-create.md). Its worked cases transfer concrete

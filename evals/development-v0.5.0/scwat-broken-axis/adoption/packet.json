@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "track": "reproduce",
+  "input_mode": "image-data",
+  "artifacts": [
+    {
+      "id": "reference",
+      "original_path": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/inputs/reference.png",
+      "path": "reader-inputs/reference.png",
+      "bytes": 32587,
+      "sha256": "652a50b3fb121c2914ba79a06d765d84124afcd22c4b1d2b1bb3b292881382ad"
+    },
+    {
+      "id": "caption-1",
+      "original_path": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/inputs/reference-caption.md",
+      "path": "reader-inputs/caption-1-reference-caption.md",
+      "bytes": 419,
+      "sha256": "2599e64f249bc1bc0826c0eb20f75bc5a99af9d154719f135bdfb0863b4cb0d1"
+    },
+    {
+      "id": "data-1",
+      "original_path": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/inputs/observations.csv",
+      "path": "data/data-1-observations.csv",
+      "bytes": 3941,
+      "sha256": "c8ab920928c754666e4f7fa9c4b1cc47bded365fe3d073efb1e983b1673f4300"
+    },
+    {
+      "id": "data-2",
+      "original_path": "/Users/starry/Desktop/EasyViz/examples/reproduce/scwat-broken-axis/inputs/author-p-values.csv",
+      "path": "data/data-2-author-p-values.csv",
+      "bytes": 267,
+      "sha256": "ba888ca04057ece035d633f1e075a0b033a0851c3ac6848773b0a2ad123197a5"
+    },
+    {
+      "id": "reading",
+      "original_path": "/Users/starry/Desktop/EasyViz/evals/development-v0.5.0/scwat-broken-axis/reference-reading-transcription.json",
+      "path": "reference-reading.json",
+      "bytes": 9186,
+      "sha256": "85a6ab5fd0b5852974fc93c8f37d2fa7397233b657727a32628a209139239d50"
+    }
+  ],
+  "reading": {
+    "provided": true,
+    "schema_validated": true,
+    "reader_provenance": {
+      "agent_id": "implementing-Agent transcription of /root/v050_scwat_reader report",
+      "independence": "main-agent",
+      "image_viewed": true,
+      "limitations": [
+        "The independent reader inspected only this reference and caption before implementation. This JSON is a later implementing-Agent transcription of that reading, not another independent or blind reading.",
+        "Immutable original reading: reference-reading.md, SHA-256 94e7303893c1d6a64b8f3c4b4c3339e6560d91284c124005c122dc92e83dae6a.",
+        "The implementing Agent had prior familiarity with the paper; this case is a workflow exercise, not a held-out benchmark.",
+        "Raster geometry does not establish the original physical canvas or exact typeface."
+      ]
+    },
+    "semantic_reading_verified": false,
+    "independence_verified": false
+  },
+  "plan": "implementation-plan.json",
+  "reader_input_ids": [
+    "caption-1",
+    "reference"
+  ],
+  "limitations": [
+    "The tool stages bytes; no image semantics or statistical meanings are inspected.",
+    "Reader separation is an input/instruction contract, not an operating-system sandbox.",
+    "Independent reading and visual review are self-reported evidence, never certified by packet creation.",
+    "Author code and paper Source Data are not required and are not retrieved or executed."
+  ]
+}

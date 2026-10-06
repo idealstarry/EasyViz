@@ -1,0 +1,48 @@
+{
+  "status": "pass",
+  "protocol_version": "2026-07-28",
+  "sdk_version": "2.3.0",
+  "transport": "official SDK stdio",
+  "tool_count": 13,
+  "tools": [
+    "accept_attempt",
+    "cancel_job",
+    "capabilities",
+    "get_attempt",
+    "get_job",
+    "list_attempts",
+    "list_jobs",
+    "list_requests",
+    "prepare_edits",
+    "record_outcome",
+    "register_attempt",
+    "render_attempt",
+    "restore_attempt"
+  ],
+  "listed_resources_count": 0,
+  "resource_templates": [
+    "easyviz://attempt/{attempt_id}/panel.svg"
+  ],
+  "read_only_tool": "get_attempt",
+  "actual_attempt_id": "attempt-8d47390b7fc922f8",
+  "actual_panel_mm": {
+    "width_mm": 88.0,
+    "height_mm": 88.0
+  },
+  "scoped_preview_resource_read": true,
+  "preview_svg_bytes": 14188,
+  "limits": "Discovery/read-only tool and registered SVG resource only; no write tool, preview job, Agent wake-up or installation.",
+  "archive": "easyviz-0.5.0.zip",
+  "archive_sha256": "8aa6b1ccb6fe7a83d529bef10b182970e1fa6b6b1d1994159963f67a94858ff6",
+  "archive_entries": 947,
+  "source": "Final extracted ZIP; both renderer and MCP adapter executed from the temporary package tree.",
+  "new_module_closure": {
+    "analysis_result.py": "e954e19f16f75108f27d15b8b22d3f281aa676543098577eaf2bc6a5042ffcdd",
+    "design_mechanisms.py": "d5e7ebf61dee78b847939539f011e95d26a2c4c3ad0aafb5c02d9c80270013dc",
+    "figure_service.py": "68a76580ecb31268448d85797846e8b71a7acf8897fba9ff7f365dbba681a293",
+    "reproduction_checkpoint.py": "ef1f39691ace5c6a523d441b658d2f6b414cc2433ec289eea313948af4710b87",
+    "easyviz_mcp.py": "ceb37e19b1a54f0e9679499d83aca0e53f35dd7c0c53064c672f9857706fd5fe",
+    "requirements-mcp.txt": "921ec06dbedfd0f4ff5022048cc5c7a0e8166276a0b84fcde6581f5e47fc6e55"
+  },
+  "fresh_figure_qa": "pass"
+}

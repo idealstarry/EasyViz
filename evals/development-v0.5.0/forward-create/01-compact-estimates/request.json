@@ -1,0 +1,27 @@
+{
+  "id": "01-compact-estimates",
+  "question": "Compare HDR repair percentages across the five treatments; show every independent biological repeat and mean ± sample SD. One quantity is decoded by treatment position; no inferential comparison is adopted.",
+  "panel_mm": [
+    72,
+    48
+  ],
+  "font": "Arial",
+  "font_pt": 8,
+  "context": "Three biological replicates per treatment. Use display_condition for readable treatment text; expanded drug labels belong in the caption. Do not pool other outcome columns.",
+  "delivery": "Individual PDF/SVG/PNG, code, caption, retained observations, actual image review. Select a suitable design without a runtime reference image.",
+  "source_path": "examples/create/basic-panels/replicate-bars/source-data.csv",
+  "source_sha256": "3f9ac6f9234ad147738a4ff364e24120ca758ea7252305c9b4f50d5cea6fb19a",
+  "input_sha256": "21bb4fa62946f6ef1d8290e13515fae2a0ecde536c12502400524516a95b86e3",
+  "renamed_columns": {
+    "condition": "exposure",
+    "HDR_percent": "repair_pct",
+    "unit": "repeat_id"
+  },
+  "expected": {
+    "rows": 15,
+    "plotted_values": 15,
+    "method": "mean and sample SD",
+    "inference": false
+  },
+  "row_count": 15
+}
