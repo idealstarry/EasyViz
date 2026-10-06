@@ -75,7 +75,7 @@ class SpecError(ValueError):
     """The requested panel cannot faithfully represent the supplied input."""
 
 
-VERSION = "0.4.4"
+VERSION = "0.5.1"
 
 
 REQUIRED = {
@@ -280,6 +280,46 @@ def require_core_chart(chart):
 
 def write_json(path, obj):
     path.write_text(json.dumps(obj, indent=2, ensure_ascii=False, allow_nan=False) + "\n")
+
+
+def save_document(out):
+    """Package a current mapped SVG after its graphic exports pass QA.
+
+    Legacy in-memory/custom exports without a complete file binding still
+    remain valid graphics. Their explicit status must not claim an editable
+    document was delivered.
+    """
+    out = Path(out)
+    if not (out / "panel.svg").is_file():
+        return None
+    try:
+        from ev_document import EVDocumentError, export_document
+        from figure_workbench import WorkbenchError
+    except ImportError as exc:
+        write_json(out / "document-status.json", {"status": "unavailable", "reason": str(exc)})
+        return None
+    try:
+        path = export_document(out)
+    except (EVDocumentError, WorkbenchError) as exc:
+        write_json(out / "document-status.json", {"status": "unavailable", "reason": str(exc)})
+        return None
+    write_json(out / "document-status.json", {"status": "ready", "file": path.name,
+                                             "format": "ev", "canvas": "svg"})
+    return path
+
+
+def begin_document(out, spec, spec_path):
+    """Invalidate the previous document and persist omitted input specs."""
+    out = Path(out)
+    for name in ("panel.ev", "document-status.json"):
+        target = out / name
+        require(not target.is_symlink(), "Document output must not be a symlink")
+        target.unlink(missing_ok=True)
+    if spec_path is None:
+        spec_path = out / "plot-spec.json"
+        require(not spec_path.is_symlink(), "Document specification must not be a symlink")
+        write_json(spec_path, spec)
+    return spec_path
 
 
 def number(value, name, minimum=0, strict=True):
@@ -1370,7 +1410,7 @@ def draw(data, spec, layout, typography, result):
 
 
 def export(fig, out, spec, layout):
-    formats = spec.get("formats", ["pdf", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and len(formats) > 0 and len(formats) == len(set(formats)), "formats must be a nonempty list without duplicates")
     require(all(f in ("pdf", "svg", "png", "tiff") for f in formats), "Supported formats: pdf, svg, png, tiff")
     figure_elements.attach_layout(fig, spec)
@@ -1527,7 +1567,7 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             clipping_report = fig._easyviz_observation_clipping
             missing_glyphs = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
             settings = dict(spec)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=spec.get("formats", ["pdf", "png"]), seed=spec.get("seed", 0), input_file=data_path.name, input_sha256=bindings["data_file"]["sha256"])
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=spec.get("formats", ["svg"]), seed=spec.get("seed", 0), input_file=data_path.name, input_sha256=bindings["data_file"]["sha256"])
             settings["source_bindings"] = bindings
             settings["source_snapshot"] = {"file": "source-data.csv", "sha256": bindings["data_file"]["sha256"],
                                            "row_count": adopted_analysis["source_rows"] if adopted_analysis else len(data), "semantics": "Exact captured CSV bytes, including literal numeric spellings and source-cell/ID columns; adopted analysis may explicitly select the plotted population."}
@@ -1583,6 +1623,7 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             point_boundary_issues = len(point_layout.get("categorical_boundary_rows", [])) if point_layout else 0
             clipped_marks = max((report["clipped_observations"] for report in clipping_report["by_format"].values()), default=0)
             require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {point_issues} observation spacing conflicts, {point_boundary_issues} observation marker boundary issues, {clipped_marks} clipped observation envelopes, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly revise the adopted range/layout or split a panel that cannot fit.")
+            save_document(out)
             return qa
         finally:
             plt.close(fig)
@@ -1610,11 +1651,14 @@ def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, tr
     out.mkdir(parents=True, exist_ok=True)
     status = {"status": "in_progress", "valid_outputs": False, "note": "Until this run passes, any exports in this directory are unverified and may belong to an earlier run."}
     write_json(out / "qa.json", status)
+    # A failed rerender must never leave yesterday's editable document ready
+    # next to invalid new exports.
     try:
         require(track in (None, "create", "reproduce"), "track must be create or reproduce when supplied")
         bindings = {}
         require(captured_spec_bytes is None or isinstance(captured_spec_bytes, bytes) and spec_path is not None,
                 "captured_spec_bytes requires exact bytes and the corresponding spec_path")
+        spec_path = begin_document(out, spec, spec_path)
         if spec_path is not None:
             spec_file = Path(spec_path).resolve()
             # Python callers can use a not-yet-saved spec path only as the
@@ -1642,6 +1686,7 @@ def render_spec_file(data_path, spec_path, out, *, profile=None, panel=None, tra
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False,
                                 "note": "Specification loading and rendering must both finish before these exports are validated."})
     try:
+        begin_document(out, None, spec_path)
         raw = Path(spec_path).read_bytes()
         return render(data_path, parse_spec_bytes(raw), out, profile=profile, panel=panel,
                       spec_path=spec_path, track=track, captured_spec_bytes=raw)

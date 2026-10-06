@@ -270,6 +270,19 @@ def prepare_requests(figure_dir, out, request_ids=None, *, render=False):
         canonical = json.dumps(resolved, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode()
         if sha256(canonical) != state["version"].get("spec_sha256"):
             raise WorkbenchError("Resolved specification differs from the reviewed figure version")
+    # A portable .ev or accepted restore preserves the exact original spec
+    # bytes that describe the reviewed exports. Only the new render may use a
+    # relocated report, and only when its explicitly bound bytes are identical.
+    adoption = spec.get("statistics", {}).get("analysis")
+    if isinstance(adoption, dict):
+        auxiliary = state["input"].get("auxiliary_inputs", {})
+        report = auxiliary.get("analysis_result")
+        if (not isinstance(report, dict)
+                or not set(ANALYSIS_CAPTURE_NAMES) <= set(auxiliary)
+                or report.get("sha256") != adoption.get("results_sha256")
+                or sha256(read_regular(report["path"])) != report["sha256"]):
+            raise WorkbenchError("Portable edits require the byte-identical adopted analysis and its declared companions")
+        adoption["results_file"] = report["path"]
     # Recheck provenance after planning and before making a new attempt.
     if app.state()["version"] != state["version"] or app.state()["source_current"] is not True:
         raise WorkbenchError("Figure or source changed while preparing requests")
@@ -293,6 +306,53 @@ def prepare_requests(figure_dir, out, request_ids=None, *, render=False):
     return plan
 
 
+def verify_frozen_analysis(source_app, target_app):
+    """Cosmetic edits may relocate reports, but cannot change adopted inference."""
+    def specification(app):
+        state = app.state()
+        path = state["input"].get("spec_file")
+        if not isinstance(path, str) or not Path(path).is_file():
+            return None
+        raw = read_regular(path)
+        if sha256(raw) != state["input"].get("supplied_spec_sha256"):
+            raise WorkbenchError("The captured statistical specification changed before recording edits")
+        spec = safe_json(raw)
+        if not isinstance(spec, dict):
+            raise WorkbenchError("The captured specification must be a JSON object")
+        config = copy.deepcopy(spec.get("statistics") or {})
+        if not isinstance(config, dict):
+            raise WorkbenchError("Statistical choices must be a JSON object")
+        config.pop("annotate", None)
+        if isinstance(config.get("analysis"), dict):
+            config["analysis"].pop("results_file", None)
+        return {} if config == {"method": "none"} else config
+
+    original_spec, result_spec = specification(source_app), specification(target_app)
+    if original_spec is not None and original_spec != result_spec:
+        raise WorkbenchError("Cosmetic edits must preserve adopted statistical choices in the plotting specification")
+
+    def records(app):
+        stats_path = app.root / "stats.json"
+        stats = safe_json(read_regular(stats_path) if stats_path.exists() or stats_path.is_symlink() else b"{}")
+        settings = safe_json(app.read_file("settings.json") or b"{}")
+        if not isinstance(stats, dict) or not isinstance(settings, dict):
+            raise WorkbenchError("Statistical records must be JSON objects")
+        stats = copy.deepcopy(stats)
+        adoption = stats.get("adoption")
+        if isinstance(adoption, dict):
+            adoption.pop("results_file", None)
+        settings_adoption = copy.deepcopy(settings.get("adopted_analysis"))
+        if isinstance(settings_adoption, dict):
+            settings_adoption.pop("results_file", None)
+        return stats, settings_adoption
+
+    original, result = records(source_app), records(target_app)
+    adopted = (original[0].get("adoption") is not None or original[1] is not None
+               or result[0].get("adoption") is not None or result[1] is not None)
+    if adopted and original != result:
+        raise WorkbenchError("Cosmetic edits must preserve adopted analysis, population, comparisons and P-value choices")
+
+
 def record_requests(figure_dir, target_dir, request_ids, *, changed_files, validation, superseded_ids=None):
     app, state = verified_attempt(figure_dir, require_sources=False)
     target_app, target = verified_attempt(target_dir)
@@ -303,6 +363,7 @@ def record_requests(figure_dir, target_dir, request_ids, *, changed_files, valid
         raise WorkbenchError("Applied results must be a separate fresh attempt")
     if state["version"].get("input_sha256") != target["version"].get("input_sha256") or auxiliary_identity(state["input"]) != auxiliary_identity(target["input"]):
         raise WorkbenchError("Cosmetic request history requires unchanged primary and declared auxiliary source data")
+    verify_frozen_analysis(app, target_app)
     qa_bytes = target_app.read_file("qa.json")
     passing_qa(qa_bytes, "target")
     if not isinstance(validation, str) or not validation.strip() or len(validation) > 8000:

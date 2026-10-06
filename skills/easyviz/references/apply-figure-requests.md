@@ -7,8 +7,38 @@ author script or claim that a new SVG/PDF has been produced.
 
 The [local workbench](figure-workbench.md) and optional [MCP adapter](mcp.md)
 also share these verified preparation, recording and snapshot operations via
-`figure_service.py`. The service adds bounded cancellable jobs and registered
-attempts; its automatic preview still runs only the installed core renderer.
+`figure_service.py`. The service adds registered attempts and bounded cancellable
+jobs. Its core preview runs only the installed renderer; **Submit edits** queues
+code, layout and free-form changes for the original Agent connected through
+MCP. That active Agent receives the batch through `wait_for_submission` and
+reports actual editing/rendering/reviewing through `report_session_progress`
+before verified fresh exports through `complete_session_job`. Idle delivery
+requires a separate, successfully created host scheduled check; a local queue
+does not wake the host. A separate Codex worker requires
+explicit authorization. **Save drafts** remains a storage operation.
+
+## Iterate from the original chat
+
+A request such as “Apply the saved EasyViz workbench comments to the current
+figure” authorizes this Agent to carry out the saved edits now. **Save drafts**
+already writes them to the attempt's `requests.json`; an additional browser
+submission or host scheduled task is unnecessary.
+
+Read the current reviewed attempt, its full pending comments, mappings and
+source/version bindings. When MCP is available, inspect `list_jobs` first.
+Claim a matching original-owner queued job with `wait_for_submission`, or
+continue its still-valid claimed running job, and finish through
+`complete_session_job`. Do not process that batch independently or create a
+duplicate job. Without an active matching job, read the ledger directly or use
+`list_requests` and `prepare_edits` as described in the [MCP guide](mcp.md#chat-triggered-saved-comment-iteration).
+
+Interpret free-form comments and explicitly edit the plotting source/spec;
+`apply --render` does not interpret prose. Preserve the adopted track,
+workbench name, science, dimensions, fonts and requested formats. Render a
+fresh attempt, open the actual result, verify the requested changes and exports,
+then [record](#record-agent-edits) only fulfilled request IDs. With MCP, register
+that attempt and use `record_outcome` for this unqueued flow. Leave unresolved
+requests pending and show the result for comparison in the existing workbench.
 
 ## Prepare a cosmetic change
 
@@ -79,15 +109,18 @@ attempt for diagnosis and keeps source requests pending.
 
 ## Record Agent edits
 
-For an author script, make explicit source/spec edits, render a fresh attempt,
-recompute the map and inspect the final output. Then record the outcome:
+For an author script, the active Agent or connected project worker makes explicit
+source/spec edits, renders a fresh attempt, recomputes the map and inspects the
+final output. Preserve all explicitly requested formats; SVG is the default
+graphic output. A genuine map enables vector targets; source receipts alone
+enable general/region instructions. Then record the outcome:
 
 ```sh
 python /absolute/path/to/easyviz/scripts/apply_figure_requests.py record \
   --figure-dir /absolute/path/to/project/attempt-01 \
   --target-dir /absolute/path/to/project/attempt-02 \
   --request-id REQUEST_UUID --changed-file plot-spec.json \
-  --validation 'Inspected SVG/PNG at final dimensions and verified PDF content.'
+  --validation 'Inspected SVG at final dimensions and verified all declared exports.'
 ```
 
 The target needs a current source handoff receipt or a current element map,
@@ -113,7 +146,7 @@ exports together:
 ```sh
 python /absolute/path/to/easyviz/scripts/apply_figure_requests.py accept \
   --figure-dir /absolute/path/to/project/attempt-02 \
-  --validation 'Reviewed SVG/PNG, marks and guides; PDF dimensions match.'
+  --validation 'Reviewed SVG, marks and guides; declared export dimensions match.'
 
 python /absolute/path/to/easyviz/scripts/apply_figure_requests.py restore \
   --figure-dir /absolute/path/to/project/attempt-02 \
@@ -147,7 +180,14 @@ spec, input and already reviewed exports together; it cannot infer lost code
 from SVG/PDF. This workflow handles one source/spec/data attempt and its explicitly declared auxiliary files. Shared profiles still require Agent preservation of every dependent panel. Imported author modules and external assets are preserved only when explicitly declared; the helper cannot discover undeclared runtime dependencies. A restored copy of a core source file is
 provenance, not permission for `--render` to execute it as an arbitrary script.
 
-Open the fresh result with `figure_workbench.py --figure-dir NEW_ATTEMPT
---compare-dir PREVIOUS_ATTEMPT --port 0` to compare versions. The browser's
+Package the accepted/current attempt in `.ev` with only its declared inputs for
+transport and library import; this does not recover missing historical source
+or turn raster content into vectors. Importing and registering a bundle do not
+execute its code.
+
+Open the project library with `easyviz_workbench.py --project-dir PROJECT
+--port 0`, or open the fresh result with `figure_workbench.py --project-dir
+PROJECT --figure-dir NEW_ATTEMPT --compare-dir PREVIOUS_ATTEMPT --port 0`
+to compare versions. The browser's
 **Undo pending** only cancels a pending instruction; applied results are restored
 through the accepted source/spec/export bundle.

@@ -18,8 +18,9 @@ or references to editable scientific figures.
 | **Create** | Data and a scientific question | Choose a useful chart, apply suitable design and review the image. |
 | **Reproduce** | A reference image and your data | Read the reference, implement its layers and compare the result. |
 
-Receive PDF, SVG and PNG, a caption, code and plotting data at your chosen size
-and typography.
+Receive SVG by default, a separate caption and an editable `.ev` project with
+code and declared plotting data at your chosen size and typography. Request
+PDF, PNG or TIFF when needed.
 
 ## Install
 
@@ -40,7 +41,7 @@ Start a new chat after installing or updating.
 ```text
 Use EasyViz to inspect /path/to/my-data and recommend useful figures.
 Use an 80 × 70 mm panel and 8 pt text. Inspect and refine the actual images
-before delivery, export PDF, SVG and PNG, and save a separate caption.
+before delivery, export SVG and an editable .ev project, and save a separate caption.
 ```
 
 **Reproduce**
@@ -48,7 +49,7 @@ before delivery, export PDF, SVG and PNG, and save a separate caption.
 ```text
 Use EasyViz to reproduce this reference with my measurements.csv.
 Keep its layers and axis structure, use a 100 × 76 mm panel and 8 pt text,
-and write plotting code for any unsupported layers. Export PDF, SVG and PNG.
+and write plotting code for any unsupported layers. Export SVG and an editable .ev project.
 ```
 
 The Agent establishes the question and experimental units, selects suitable
@@ -128,25 +129,49 @@ Choose a palette for the marks and scientific meaning. Defaults are editable.
 
 [All palettes, HEX values and literature sources](docs/palettes.md).
 
-## Local figure review
+## Local workbench
+
+Ask your Agent to use EasyViz to create, reproduce or edit a figure. After the
+first validated SVG and `.ev` project are ready, it opens the workbench by
+default and provides the local address. Ask for files only to skip the browser.
+To open the project library before plotting:
 
 ```text
-Open the EasyViz local figure workbench for this panel.
-Let me select elements or draw numbered regions and save my instructions.
-Preview supported edits from the plotting code. Apply the remaining
-instructions and compare the new attempt with the previous one.
+Open the EasyViz workbench for this project.
 ```
 
-The Agent opens `http://127.0.0.1:PORT/`. Select several targets, write an
-instruction for each, then **Save requests**. **Render saved edits** previews
-supported cosmetics; the active Agent handles custom or free-form changes.
-Compare, accept and restore attempts from the page. Saving alone does not start
-an idle Agent. Element selection requires an actual matching element map.
-[Workbench guide](skills/easyviz/references/figure-workbench.md).
+Use the local page at `http://127.0.0.1:PORT/` to annotate figures, and the
+original Agent chat to apply your edits:
 
-Optional [MCP](skills/easyviz/references/mcp.md) connects the same project,
-requests and render jobs to a compatible Agent. Ask it to set up the connection
-using [INSTALL.md](INSTALL.md); the ordinary skill and page need no MCP SDK.
+1. Choose a registered figure or import a valid `.ev` project.
+2. Select SVG elements or draw numbered regions, write a comment for each,
+   then click **Save drafts** to save all completed comments together.
+3. Return to the **same chat that created the figure** and send:
+
+   ```text
+   Apply the saved EasyViz workbench comments to this figure.
+   Update its plotting code, render a fresh attempt and review the result.
+   ```
+
+4. The Agent reads the saved comments directly; no copying or retyping is
+   needed. Compare the new attempt in the workbench, accept it or request
+   another round of changes. An accepted version can be restored later.
+
+With an original Agent connected and actively waiting through
+[MCP](skills/easyviz/references/mcp.md), **Submit edits** can hand off the comments
+without another chat message. After that Agent's turn ends, use step 3 unless
+a supported host's scheduled continuation has been configured and verified.
+Saving comments alone does not start an idle Agent.
+
+The editable canvas uses mapped SVG elements; raster layers remain raster.
+PDF and PNG are additional exports. Click the figure name to rename it; the
+`.ev` project and Agent context keep that name.
+[Workbench guide](skills/easyviz/references/figure-workbench.md) ·
+[Optional scheduled checks](skills/easyviz/references/session-trigger.md).
+
+For MCP setup, ask your Agent to follow [INSTALL.md](INSTALL.md). A separate
+Codex worker is available only when explicitly requested; importing an `.ev`
+project alone does not run its code.
 
 ## Guides
 
@@ -155,7 +180,7 @@ using [INSTALL.md](INSTALL.md); the ordinary skill and page need no MCP SDK.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](evals/release-qa/v0.5.0/README.md)
+[Validation and limits](docs/validation-v0.5.1.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

@@ -10,7 +10,7 @@ Create and reproduce scientific plots from user data. In create, establish the u
 | [Reference Reader](skills/easyviz-reference-reader/SKILL.md) | Independent interpretation of a reference figure without author code |
 | [Figure Reviewer](skills/easyviz-figure-reviewer/SKILL.md) | Compare a rendered panel with the adopted requirements and reference |
 
-Keep all three skill directories together when using the plugin. The main skill can also be used alone, with its documented non-independent fallback. The optional review workbench runs on localhost; analysis runs only from an explicit adopted plan.
+Keep all three skill directories together when using the plugin. The main skill can also be used alone, with its documented non-independent fallback. The independent workbench runs on localhost and opens validated `.ev` projects; analysis runs only from an explicit adopted plan. SVG is the default graphic export; PDF, PNG and TIFF remain available on request.
 
 ## Install or update
 
@@ -33,13 +33,36 @@ python skills/easyviz/scripts/render.py \
 
 The core supports heatmaps, composition bars, dot plots, scatter plots, and box/violin distributions. Focused scripts add supplied intervals, paired observations, replicate bars, ECDF and time courses with uncertainty bands. New geometry can use custom plotting code under the same size, data and review rules. Planned statistics require explicit methods and experimental units.
 
-For directory exploration, use `inspect_data.py`; for an adopted analysis, use `analyze.py`. `reference_packet.py` stages reproduce inputs and a layer implementation plan. `figure_workbench.py --figure-dir /absolute/path/to/attempt --port 0` opens a local page where the user selects SVG elements or regions and saves instructions. The Agent reads those requests, edits the plotting code/specification, and rerenders SVG, PDF and PNG together. These helpers serve the same two tracks.
+For directory exploration, use `inspect_data.py`; for an adopted analysis, use
+`analyze.py`. `reference_packet.py` stages reproduce inputs and a layer
+implementation plan. These helpers serve the same two tracks.
 
 For new Create drafts, `create_candidates.py` proposes a few actual views
 from chart/data features while retaining explicit user settings. The Agent
 opens relevant design cards and the new exports, corrects visible findings
 and uses `create_review.py` to record a review bound to the current files.
 The tools neither select an aesthetic winner nor certify publication quality.
+
+## Review and iterate
+
+The Agent opens the local workbench after the first validated SVG and `.ev`
+are ready. Ask it to open the workbench for this project to browse figures
+before plotting. The independent entry is
+`easyviz_workbench.py --project-dir /absolute/path/to/project --port 0`.
+
+1. Choose a registered attempt or import a valid `.ev` project.
+2. Select mapped SVG elements or draw numbered regions, write a separate
+   comment for each and click **Save drafts**.
+3. In the **original Agent chat**, say: “Apply the saved EasyViz workbench
+   comments, update the plotting code and render a fresh attempt.” The Agent
+   reads the comments directly; no copying or retyping is needed.
+4. Compare the result in the workbench, accept it or repeat the process.
+
+**Submit edits** hands work to an original Agent connected and actively
+waiting through MCP. After its turn ends, return to the original chat to start
+the next round. Automatic continuation requires a supported host task that has
+been configured and verified. A separate Codex worker is available only when
+explicitly requested. See the [workbench guide](skills/easyviz/references/figure-workbench.md).
 
 ## Resources
 

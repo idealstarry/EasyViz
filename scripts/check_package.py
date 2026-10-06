@@ -45,7 +45,9 @@ V046_CASE_RESOURCES = {
 MAX_ZIP_ENTRIES = 10000
 MAX_ZIP_MEMBER_BYTES = 64 * 1024 * 1024
 MAX_ZIP_TOTAL_BYTES = 256 * 1024 * 1024
+WORKBENCH_RUNTIME_NAMES = (".requests.lock", ".easyviz-service")
 V050_RUNTIME_RESOURCES = ("analysis_result.py", "figure_service.py")
+V051_RUNTIME_RESOURCES = ("ev_document.py", "agent_dispatch.py", "easyviz_workbench.py")
 OPTIONAL_MCP_RESOURCES = ("easyviz_mcp.py", "requirements-mcp.txt", "figure_service.py")
 V050_REPRODUCE_RESOURCES = {
     "scwat-broken-axis": ("README.md", "plot.py", "spec.json", "caption.md", "extract_source.py", "validate.py",
@@ -60,13 +62,22 @@ def version_at_least(value: str, target: tuple[int, int, int]) -> bool:
     return bool(match and tuple(map(int, match.groups())) >= target)
 
 
-def validate_resource_tree(plugin: Path) -> None:
+def is_workbench_runtime_path(path: Path | PurePosixPath) -> bool:
+    return any(part in WORKBENCH_RUNTIME_NAMES for part in path.parts)
+
+
+def validate_resource_tree(plugin: Path, *, allow_runtime_state: bool = False) -> None:
     """Portable packages contain only owned regular files and directories."""
     if plugin.is_symlink() or not plugin.is_dir():
         raise ValueError("Plugin source must be a regular directory")
     for path in plugin.rglob("*"):
+        relative = path.relative_to(plugin)
+        if is_workbench_runtime_path(relative):
+            if allow_runtime_state:
+                continue
+            raise ValueError(f"Workbench runtime state in package: {relative}")
         if path.is_symlink() or not (path.is_file() or path.is_dir()):
-            raise ValueError(f"Symlink or special package resource: {path.relative_to(plugin)}")
+            raise ValueError(f"Symlink or special package resource: {relative}")
 
 
 def markdown_destinations(text: str) -> list[str]:
@@ -198,6 +209,8 @@ def validate_plugin(plugin: Path) -> dict:
         required.extend(f"skills/easyviz/scripts/{name}" for name in V050_RUNTIME_RESOURCES)
         for case, resources in V050_REPRODUCE_RESOURCES.items():
             required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
+    if version_at_least(manifest["version"], (0, 5, 1)):
+        required.extend(f"skills/easyviz/scripts/{name}" for name in V051_RUNTIME_RESOURCES)
     scripts = plugin / "skills/easyviz/scripts"
     # The adapter is optional, but an advertised adapter/SDK requirements file
     # must carry its full local closure. Core-only old packages remain valid.
@@ -285,6 +298,8 @@ def extract_package(archive: Path, destination: Path) -> int:
                 raise ValueError(f"Unsafe or unexpected ZIP entry: {info.filename}")
             if any(p in (".venv", "__pycache__", ".git") for p in path.parts):
                 raise ValueError(f"Development files in ZIP: {info.filename}")
+            if is_workbench_runtime_path(path):
+                raise ValueError(f"Workbench runtime state in ZIP: {info.filename}")
             canonical = path.as_posix()
             key = unicodedata.normalize("NFC", canonical).casefold()
             if key in paths:

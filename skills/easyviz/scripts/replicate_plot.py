@@ -108,7 +108,7 @@ def validate_spec(spec):
         core.figure_profile.validate_typography(spec.get("typography", {}))
     except core.figure_profile.ConfigurationError as exc:
         raise SpecError(str(exc)) from None
-    formats = spec.get("formats", ["pdf", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and formats and all(isinstance(v, str) for v in formats) and len(set(formats)) == len(formats) and set(formats) <= {"pdf", "svg", "png", "tiff"}, "formats must list unique supported exports")
 
 
@@ -471,6 +471,7 @@ def render(data_path, spec, out, *, spec_path=None):
     data_path, out = Path(data_path), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     core.write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports from previous runs are unverified until this run passes."})
+    spec_path = core.begin_document(out, spec, spec_path)
     fig, before = None, set(plt.get_fignums())
     try:
         data = prepare(data_path, spec)
@@ -514,6 +515,7 @@ def render(data_path, spec, out, *, spec_path=None):
             core.write_json(out / "settings.json", settings)
             core.write_json(out / "qa.json", qa)
             require(passed, "Source or fixed-canvas QA needs revision; inspect qa.json and actual panel at the requested dimensions and font.")
+            core.save_document(out)
             return qa
     except Exception as exc:
         qa = json.loads((out / "qa.json").read_text())

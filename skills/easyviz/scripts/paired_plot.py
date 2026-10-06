@@ -112,7 +112,7 @@ def validate_spec(spec):
         require("block" in fields, "colors requires fields.block")
         require(isinstance(spec["colors"], dict), "colors must map block labels to colors")
     require("palette" not in spec or "block" in fields, "palette requires fields.block")
-    formats = spec.get("formats", ["pdf", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and bool(formats) and all(v in ("pdf", "svg", "png", "tiff") for v in formats), "formats must list pdf, svg, png and/or tiff")
     require(len(set(formats)) == len(formats), "formats cannot contain duplicates")
 
@@ -387,6 +387,7 @@ def render(data_path, spec, out, *, spec_path=None):
     data_path, out = Path(data_path), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports are unverified until this attempted run passes."})
+    spec_path = core.begin_document(out, spec, spec_path)
     fig, figures_before = None, set(plt.get_fignums())
     try:
         data = prepare(data_path, spec)
@@ -422,7 +423,7 @@ def render(data_path, spec, out, *, spec_path=None):
             qa["readability"] = readability
             qa["observation_clipping"] = clipping_report
             settings = deepcopy(resolved)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["pdf", "png"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, allow_nan=False).encode()).hexdigest())
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["svg"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"y_scale": fig.axes[0].get_yscale(), "y_limits": list(map(float, fig.axes[0].get_ylim())), "condition_order": audit["conditions"]}
             settings["summary_policy"] = {"method": "median_iqr", "scale": "raw measurements", "quantile_method": resolved.get("options", {}).get("quantile_method", "linear"), "interval_meaning": "interquartile range of observations, not a confidence interval", "tests_performed": False}
             settings["mark_policy"] = {"geometric_circle_area_pt2": geometry["circle_geometric_area_pt2"], "matplotlib_s": core.circle_size_parameter(geometry["circle_geometric_area_pt2"]), "diameter_pt": geometry["point_diameter_pt"], "placement": resolved.get("options", {}).get("point_layout", "swarm"), "placement_measured_after_layout": True, "connect_pairs": resolved.get("options", {}).get("connect_pairs", False), "jitter_shared_within_unit": True if resolved.get("options", {}).get("point_layout") == "jitter" else None, "outline_width_pt": geometry["outline_width_pt"]}
@@ -441,6 +442,7 @@ def render(data_path, spec, out, *, spec_path=None):
             write_json(out / "stats.json", {**settings["summary_policy"], "complete_units": audit["complete_units"], "observations": len(data), "pairing_inferred": False, "missing_values_filled": False})
             write_json(out / "qa.json", qa)
             require(passed, "Canvas or source-to-artist QA needs revision; inspect qa.json and the actual exported panel. Preserve final dimensions and fonts or explicitly adopt a larger panel.")
+            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

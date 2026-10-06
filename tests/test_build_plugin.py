@@ -11,7 +11,8 @@ import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import build_plugin
-from check_package import CURATED_CREATE_RESOURCES, V050_REPRODUCE_RESOURCES, V050_RUNTIME_RESOURCES
+from check_package import (CURATED_CREATE_RESOURCES, V050_REPRODUCE_RESOURCES, V050_RUNTIME_RESOURCES,
+                           V051_RUNTIME_RESOURCES, extract_package, validate_resource_tree)
 
 
 class BuildPluginTests(unittest.TestCase):
@@ -38,7 +39,7 @@ class BuildPluginTests(unittest.TestCase):
         for case, names in (CURATED_CREATE_RESOURCES | V050_REPRODUCE_RESOURCES).items():
             for name in names:
                 resources[f"skills/easyviz/assets/cases/{case}/{name}"] = "portable curated source resource\n"
-        for name in V050_RUNTIME_RESOURCES:
+        for name in V050_RUNTIME_RESOURCES + V051_RUNTIME_RESOURCES:
             resources[f"skills/easyviz/scripts/{name}"] = "runtime test resource\n"
         for name, content in resources.items():
             path = self.root / name
@@ -331,6 +332,68 @@ class BuildPluginTests(unittest.TestCase):
         self.assertFalse(stale.exists())
         self.assertEqual(sibling.read_bytes(), b'keep sibling')
         self.assertEqual((self.root / 'LICENSE').read_text(), 'License\n')
+
+    def test_real_archive_omits_workbench_state_but_retains_scientific_examples_and_source(self):
+        example = 'skills/easyviz/assets/cases/local-review'
+        kept = {
+            f'{example}/plot.py': b'print("scientific plotting source")\n',
+            f'{example}/inputs/data.csv': b'group,value\nA,3\n',
+            f'{example}/output/requests.json': b'{"requests": []}\n',
+            f'{example}/output/figure-info.json': b'{"name": "Reviewed panel"}\n',
+            f'{example}/output/panel.ev': b'portable example project\n',
+            f'{example}/.easyviz-service-guide.md': b'legitimate descriptive resource\n',
+        }
+        omitted = {
+            f'{example}/output/.requests.lock': b'local lock\n',
+            f'{example}/.easyviz-service/registry.json': b'local private connection state\n',
+            'plugins/easyviz/assets/.easyviz-service/registry.json': b'local asset review state\n',
+            'plugins/easyviz/.codex-plugin/.requests.lock': b'local manifest lock\n',
+        }
+        for relative, content in (kept | omitted).items():
+            path = self.root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(content)
+        before = {path.relative_to(self.root): path.read_bytes()
+                  for path in self.root.rglob('*') if path.is_file()}
+        summary = build_plugin.build()
+        with zipfile.ZipFile(self.dist / summary['archive']) as package:
+            names = package.namelist()
+            self.assertIsNone(package.testzip())
+            self.assertFalse(any(part in ('.requests.lock', '.easyviz-service')
+                                 for name in names for part in Path(name).parts))
+            for relative, content in kept.items():
+                self.assertEqual(package.read('easyviz/' + relative), content)
+                self.assertEqual((self.dist / 'easyviz' / relative).read_bytes(), content)
+            self.assertEqual(package.read('easyviz/skills/easyviz/scripts/render.py'),
+                             (self.root / 'skills/easyviz/scripts/render.py').read_bytes())
+        for relative, content in before.items():
+            self.assertEqual((self.root / relative).read_bytes(), content)
+
+    def test_archive_runtime_state_is_rejected_before_extraction_writes(self):
+        summary = build_plugin.build()
+        clean = (self.dist / summary['archive']).read_bytes()
+        for member in ('easyviz/skills/easyviz/output/.requests.lock',
+                       'easyviz/skills/easyviz/.easyviz-service/registry.json',
+                       'easyviz/skills/easyviz/.easyviz-service/'):
+            with self.subTest(member=member):
+                archive = self.base / 'unexpected-state.zip'
+                archive.write_bytes(clean)
+                with zipfile.ZipFile(archive, 'a') as package:
+                    package.writestr(member, b'local runtime state')
+                destination = self.base / 'extracted'
+                with self.assertRaisesRegex(ValueError, 'Workbench runtime state in ZIP'):
+                    extract_package(archive, destination)
+                self.assertFalse(destination.exists())
+
+    def test_unpacked_package_runtime_state_is_rejected(self):
+        for relative in ('.requests.lock', '.easyviz-service/registry.json'):
+            with self.subTest(relative=relative):
+                package = self.base / ('package-lock' if relative == '.requests.lock' else 'package-service')
+                runtime = package / relative
+                runtime.parent.mkdir(parents=True)
+                runtime.write_bytes(b'local runtime state')
+                with self.assertRaisesRegex(ValueError, 'Workbench runtime state in package'):
+                    validate_resource_tree(package)
 
     def test_explicit_external_output_is_supported_and_preserves_unrelated_files(self):
         dist = self.base / 'custom-output/nested/dist'

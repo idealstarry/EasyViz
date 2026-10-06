@@ -142,7 +142,7 @@ def validate_spec(spec):
     _object(labels, {"x", "y", "color"}, "labels")
     require(all(isinstance(v, str) for v in labels.values()), "labels must contain strings")
     require(isinstance(spec.get("legends", {}), dict), "legends must be an object")
-    formats = spec.get("formats", ["pdf", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and formats and all(isinstance(v, str) for v in formats) and len(set(formats)) == len(formats) and set(formats) <= {"pdf", "svg", "png", "tiff"}, "Supported unique formats: pdf, svg, png, tiff")
     try:
         core.figure_profile.validate_layout(spec.get("layout", {}))
@@ -630,6 +630,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None, **inputs):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False})
+    spec_path = core.begin_document(out, spec, spec_path)
     before, fig = set(plt.get_fignums()), None
     try:
         spec_hash = None
@@ -692,6 +693,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None, **inputs):
             write_json(manifest_path, manifest)
             write_json(out / "qa.json", qa)
             require(passed, "Compound matrix QA needs revision; inspect qa.json and the exported preview. Preserve final fonts and canvas or request a larger panel.")
+            core.save_document(out)
             return qa
     except Exception as exc:
         qa = json.loads((out / "qa.json").read_text())

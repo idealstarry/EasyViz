@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Review a local SVG and save version-bound edit requests without changing exports.
+"""Open a project-scoped EasyViz figure library and SVG review workbench.
 
-Uses only the Python standard library. Start with --figure-dir ATTEMPT --port 0.
-The HTTP service is deliberately limited to a fixed set of local figure files.
+Start with --project-dir PROJECT, optionally --figure-dir ATTEMPT and --open.
+Import portable .ev projects, save drafts or submit edits to a connected Agent.
+The local service uses the standard library; rendering needs plotting packages.
 """
 from __future__ import annotations
 
@@ -19,11 +20,15 @@ import re
 import secrets
 import stat
 import sys
+import tempfile
 import threading
 import time
+import unicodedata
 from urllib.parse import parse_qs, urlsplit
 import uuid
 import xml.etree.ElementTree as ET
+import webbrowser
+from urllib.request import urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from figure_handoff import HandoffError, normalize_inputs, bound_version, validate_receipt
@@ -38,6 +43,8 @@ FILES = {"panel.svg", "panel.pdf", "panel.png", "settings.json", "qa.json", "ele
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_REQUEST_BYTES = 64 * 1024
 MAX_BATCH_BYTES = 100 * MAX_REQUEST_BYTES
+MAX_FIGURE_INFO_BYTES = 4096
+MAX_FIGURE_NAME_LENGTH = 120
 LEDGER_LOCK_TIMEOUT = 5.
 _ANY_LEDGER = object()
 SVG_NS = "http://www.w3.org/2000/svg"
@@ -126,6 +133,80 @@ def safe_json(data):
 
 def timestamp():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def validate_figure_name(value):
+    """Normalize a display name without interpreting it as a path or plot title."""
+    if not isinstance(value, str) or any(unicodedata.category(character) in {"Cc", "Cf", "Cs"} for character in value):
+        raise WorkbenchError("Figure name must be text without control characters")
+    name = value.strip()
+    if not name or len(name) > MAX_FIGURE_NAME_LENGTH:
+        raise WorkbenchError("Figure name must contain 1 to 120 characters")
+    return name
+
+
+def validate_figure_info(value):
+    """Validate portable, bounded figure metadata independently of scientific QA."""
+    if (not isinstance(value, dict) or set(value) - {"schema_version", "display_name", "updated_at"}
+            or type(value.get("schema_version")) is not int or value["schema_version"] != 1):
+        raise WorkbenchError("figure-info.json uses an unsupported format")
+    info = {**value, "display_name": validate_figure_name(value.get("display_name"))}
+    if "updated_at" in info and (not isinstance(info["updated_at"], str) or len(info["updated_at"]) > 64
+                                 or any(unicodedata.category(character) in {"Cc", "Cf", "Cs"} for character in info["updated_at"])):
+        raise WorkbenchError("Figure metadata needs a valid update timestamp")
+    return info
+
+
+def make_figure_info(name):
+    return {"schema_version": 1, "display_name": validate_figure_name(name), "updated_at": timestamp()}
+
+
+def read_figure_info(root):
+    """Read one regular metadata file, bounding the actual opened file's bytes."""
+    path = Path(root) / "figure-info.json"
+    if path.is_symlink():
+        raise WorkbenchError("figure-info.json must be a bounded regular local file")
+    try:
+        descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0))
+    except FileNotFoundError:
+        return None
+    except OSError as exc:
+        raise WorkbenchError("figure-info.json must be a bounded regular local file") from exc
+    try:
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode) or metadata.st_size > MAX_FIGURE_INFO_BYTES:
+            raise WorkbenchError("figure-info.json must be a bounded regular local file")
+        stream = os.fdopen(descriptor, "rb")
+    except BaseException:
+        os.close(descriptor)
+        raise
+    with stream:
+        raw = stream.read(MAX_FIGURE_INFO_BYTES + 1)
+    if len(raw) > MAX_FIGURE_INFO_BYTES:
+        raise WorkbenchError("Figure metadata exceeds its size limit")
+    return validate_figure_info(safe_json(raw))
+
+
+def write_figure_info(root, name):
+    """Persist only the display name, preserving SVG, data and version identities."""
+    root = Path(root)
+    info = make_figure_info(name)
+    raw = (json.dumps(info, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8")
+    with ledger_file_lock(root):
+        read_figure_info(root)  # Refuse replacing malformed or non-regular metadata.
+        path = root / "figure-info.json"
+        temporary = root / (".figure-info-" + uuid.uuid4().hex + ".tmp")
+        try:
+            with temporary.open("xb") as stream:
+                stream.write(raw)
+                stream.flush()
+                os.fsync(stream.fileno())
+            if path.is_symlink():
+                raise WorkbenchError("figure-info.json must be a bounded regular local file")
+            os.replace(temporary, path)
+        finally:
+            temporary.unlink(missing_ok=True)
+    return info
 
 
 def source_versions(input_info, version):
@@ -244,6 +325,15 @@ class FigureWorkbench:
         self.comparison = FigureWorkbench(compare_dir) if compare_dir is not None else None
         self.state()  # Fail before listening when the essential figure is invalid.
 
+    def figure_name(self, fallback=None):
+        info = read_figure_info(self.root)
+        if info is not None:
+            return info["display_name"]
+        return fallback if isinstance(fallback, str) and fallback.strip() else self.root.name
+
+    def rename(self, name):
+        return write_figure_info(self.root, name)
+
     def read_file(self, name, *, required=False):
         if name not in FILES:
             raise WorkbenchError("File is not available in this workbench")
@@ -257,6 +347,59 @@ class FigureWorkbench:
         if not path.is_file() or path.stat().st_size > MAX_FILE_BYTES:
             raise WorkbenchError(f"{name} is not a supported local figure file")
         return path.read_bytes()
+
+    def available_files(self, svg_hash, receipt=None, *, bound=False):
+        """Advertise exports from this render, leaving older formats on disk.
+
+        A fresh SVG-only render can reuse a directory holding yesterday's PDF
+        and PNG. Their existence is insufficient: current QA or the validated
+        source handoff must declare their exact bytes alongside this SVG.
+        Unbound legacy previews without either record remain downloadable.
+        """
+        present = {name for name in FILES if (self.root / name).is_file() and not (self.root / name).is_symlink()}
+        hashes = {"panel.svg": svg_hash}
+        qa_raw = self.read_file("qa.json")
+        qa = safe_json(qa_raw) if qa_raw else None
+        declarations = receipt["exports"] if receipt else {} if bound else None
+        if qa_raw:
+            if not isinstance(qa, dict) or qa.get("status") in {"failed", "in_progress"}:
+                declarations = {}
+            else:
+                exports = qa.get("exports")
+                if isinstance(exports, dict):
+                    if isinstance(exports.get("svg"), dict) and exports["svg"].get("sha256") == svg_hash:
+                        declarations = {"panel." + extension: record.get("sha256")
+                                        for extension, record in exports.items()
+                                        if extension in {"svg", "pdf", "png"} and isinstance(record, dict)}
+                    elif not receipt:
+                        declarations = {}
+                elif not receipt:
+                    declarations = {}
+        for name in ("panel.pdf", "panel.png"):
+            present_regular = name in present
+            present.discard(name)
+            if not present_regular:
+                continue
+            try:
+                raw = self.read_file(name)
+            except (WorkbenchError, OSError):
+                continue
+            if raw is not None:
+                actual = sha256(raw)
+                if declarations is None or declarations.get(name) == actual:
+                    present.add(name)
+                    hashes[name] = actual
+        return sorted(present), hashes
+
+    def read_export(self, name):
+        """Return current advertised export bytes, with a final race check."""
+        if name not in {"panel.svg", "panel.pdf", "panel.png"}:
+            raise WorkbenchError("Choose a supported figure export")
+        state = self.state()
+        if name not in state["files"]:
+            return None
+        raw = self.read_file(name)
+        return raw if raw is not None and sha256(raw) == state["export_hashes"].get(name) else None
 
     def ledger_bytes(self):
         path = self.root / "requests.json"
@@ -405,7 +548,8 @@ class FigureWorkbench:
         if self.comparison:
             previous = self.comparison.state()
             comparison = {key: previous[key] for key in ("figure_name", "version", "panel", "view_box")}
-        return {"schema_version": 1, "figure_name": self.root.name, "track": track, "version": version, "input": input_info, "source_versions": checks, "source_current": source_current, "panel": panel, "view_box": box, "manifest_valid": valid, "provenance_valid": provenance_valid, "handoff_error": receipt_error, "selection_message": reason, "elements": elements, "requests": requests, "history": ledger.get("history", []), "comparison": comparison, "files": sorted(name for name in FILES if (self.root / name).is_file() and not (self.root / name).is_symlink()), "token": self.token}
+        files, export_hashes = self.available_files(actual_hash, receipt, bound=provenance_valid or bool(raw_receipt))
+        return {"schema_version": 1, "figure_name": self.figure_name(), "track": track, "version": version, "input": input_info, "source_versions": checks, "source_current": source_current, "panel": panel, "view_box": box, "manifest_valid": valid, "provenance_valid": provenance_valid, "handoff_error": receipt_error, "selection_message": reason, "elements": elements, "requests": requests, "history": ledger.get("history", []), "comparison": comparison, "files": files, "export_hashes": export_hashes, "token": self.token}
 
     def validate_region(self, region, panel):
         if not isinstance(region, dict) or set(region) != {"x", "y", "width", "height"}:
@@ -609,19 +753,74 @@ class FigureWorkbench:
             return {"request": item, "state": self.state()}
 
 
-def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
-    app = FigureWorkbench(figure_dir, compare_dir=compare_dir)
+def discover_attempts(service):
+    """Find EasyViz outputs within this project without following links.
+
+    The library accepts existing source-bound EasyViz outputs. Arbitrary SVG,
+    PDF and PNG files cannot become editable figures just by appearing here.
+    Walking is bounded so a large data project cannot stall the local page.
+    """
+    checked = 0
+    for root, directories, names in os.walk(service.project, followlinks=False):
+        directory = Path(root)
+        depth = len(directory.relative_to(service.project).parts)
+        directories[:] = sorted(name for name in directories
+                                if not name.startswith(".") and name not in {"node_modules", "__pycache__", "accepted-snapshot"}
+                                and not (directory / name).is_symlink()) if depth < 6 else []
+        checked += 1
+        if checked > 1000:
+            break
+        if "panel.svg" not in names or not {"elements.json", "handoff.json"}.intersection(names):
+            continue
+        try:
+            app = FigureWorkbench(directory)
+            state = app.state()
+            if not state["provenance_valid"]:
+                continue
+            service._sources_in_scope(state)
+            service.register_attempt(directory)
+        except (ValueError, OSError):
+            continue
+
+
+def library_state(service):
+    result = service.list_attempts()
+    result.update(project_id=service.project_id, project_name=service.project.name,
+                  token=service.token, empty=not any(not item.get("unavailable") for item in result["attempts"]))
+    return result
+
+
+def workbench_state(service):
+    if service.app is not None:
+        return service.state()
+    return {"empty": True, "project_id": service.project_id, "project_name": service.project.name,
+            "token": service.token, "requests": [], "history": [], "elements": []}
+
+
+def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
+    if figure_dir is None and project_dir is None:
+        raise WorkbenchError("Choose a project directory for the figure library")
+    if compare_dir is not None and figure_dir is None:
+        raise WorkbenchError("Choose a figure before adding a comparison attempt")
+    app = FigureWorkbench(figure_dir, compare_dir=compare_dir) if figure_dir is not None else None
     from figure_service import FigureService
     service = FigureService(project_dir or app.root.parent)
-    attempt = service.register_attempt(app.root)
-    if app.comparison:
-        service.register_attempt(app.comparison.root)
-    # Keep this module's app instance so existing callers and diagnostics retain
-    # their session object until an explicit attempt switch.
-    service.app = app
-    service.token = app.token
-    service.current_attempt_id = attempt["id"]
-    service.note_reviewed_attempt(attempt["id"])
+    if app is not None:
+        attempt = service.register_attempt(app.root)
+        if app.comparison:
+            service.register_attempt(app.comparison.root)
+        # Keep existing callers' session until an explicit attempt switch.
+        service.app = app
+        service.token = app.token
+        service.current_attempt_id = attempt["id"]
+        service.note_reviewed_attempt(attempt["id"])
+    else:
+        discover_attempts(service)
+        listed = service.list_attempts()
+        available = [item["id"] for item in listed["attempts"] if not item.get("unavailable")]
+        selected = listed["review_attempt_id"] if listed["review_attempt_id"] in available else next(iter(available), None)
+        if selected:
+            service.switch_attempt(selected)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -665,7 +864,11 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
             path = urlsplit(self.path).path
             try:
                 if path == "/api/state":
-                    self.reply(200, service.state())
+                    self.reply(200, workbench_state(service))
+                elif path == "/api/library":
+                    self.reply(200, library_state(service))
+                elif path == "/api/agent":
+                    self.reply(200, service.agent_status())
                 elif path == "/api/capabilities":
                     self.reply(200, service.capabilities())
                 elif path == "/api/jobs":
@@ -687,10 +890,16 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
                         self.reply(200, sanitized_svg(root), "image/svg+xml")
                     else:
                         name = parts[5]
-                        raw = preview_app.read_file(name, required=True)
+                        raw = preview_app.read_export(name)
+                        if raw is None:
+                            self.reply(404, {"error": "This export is unavailable for the current figure version"})
+                            return
                         content_type = {"svg": "image/svg+xml", "pdf": "application/pdf", "png": "image/png"}[name.rsplit(".", 1)[1]]
                         self.reply(200, raw, content_type, attachment=name)
                 elif path in {"/api/preview.svg", "/api/compare.svg"}:
+                    if app is None:
+                        self.reply(404, {"error": "Open an EasyViz figure from the library first"})
+                        return
                     preview_app = app if path == "/api/preview.svg" else app.comparison
                     if preview_app is None:
                         self.reply(404, {"error": "No previous attempt was supplied"})
@@ -713,15 +922,29 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
                         body = body.replace(b"__LOGO_VERSION__", sha256(LOGO.read_bytes()).encode("ascii"))
                     self.reply(200, body, content_type)
                 elif path.startswith("/files/") and path.removeprefix("/files/") in FILES:
+                    if app is None:
+                        self.reply(404, {"error": "Open a figure first"})
+                        return
                     name = path.removeprefix("/files/")
-                    body = app.read_file(name)
+                    body = app.read_export(name) if name in {"panel.svg", "panel.pdf", "panel.png"} else app.read_file(name)
                     if body is None:
                         self.reply(404, {"error": "This export is unavailable"})
                     else:
                         content_type = {"svg": "image/svg+xml", "pdf": "application/pdf", "png": "image/png", "json": "application/json"}[name.rsplit(".", 1)[1]]
                         self.reply(200, body, content_type, attachment=name)
                 elif path == "/files/requests.json":
+                    if app is None:
+                        self.reply(404, {"error": "Open a figure first"})
+                        return
                     self.reply(200, app.ledger(), attachment="requests.json")
+                elif path == "/files/panel.ev":
+                    if app is None:
+                        self.reply(404, {"error": "Open a figure first"})
+                        return
+                    from ev_document import export_document
+                    with tempfile.TemporaryDirectory(dir=service.storage, prefix="export-") as temporary:
+                        document = export_document(app.root, Path(temporary) / "panel.ev")
+                        self.reply(200, document.read_bytes(), "application/octet-stream", attachment="panel.ev")
                 else:
                     self.reply(404, {"error": "Not found"})
             except (ValueError, OSError) as exc:
@@ -732,7 +955,10 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
             if not self.permitted(mutation=True):
                 return
             path = urlsplit(self.path).path
-            if path not in {"/api/requests", "/api/requests/batch", "/api/undo", "/api/jobs", "/api/attempts/switch", "/api/attempts/accept", "/api/attempts/restore"} and not re.fullmatch(r"/api/jobs/job-[0-9a-f]{32}/cancel", path):
+            if path == "/api/documents/import":
+                self.import_document()
+                return
+            if path not in {"/api/requests", "/api/requests/batch", "/api/undo", "/api/jobs", "/api/agent/jobs", "/api/agent/configure", "/api/library/refresh", "/api/attempts/switch", "/api/attempts/rename", "/api/attempts/accept", "/api/attempts/restore"} and not re.fullmatch(r"/api/jobs/job-[0-9a-f]{32}/cancel", path):
                 self.reply(404, {"error": "Not found"})
                 return
             if self.headers.get("Content-Type", "").split(";", 1)[0].strip() != "application/json":
@@ -746,7 +972,20 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
                 payload = safe_json(self.rfile.read(length))
                 if not isinstance(payload, dict):
                     raise WorkbenchError("Request must be an object")
-                if path == "/api/jobs":
+                if path == "/api/library/refresh":
+                    if payload:
+                        raise WorkbenchError("Library refresh needs an empty request object")
+                    discover_attempts(service)
+                    result = library_state(service)
+                elif path == "/api/agent/configure":
+                    if set(payload) - {"backend", "enabled"}:
+                        raise WorkbenchError("Choose an available Agent backend")
+                    result = service.configure_agent(payload.get("backend", "codex"), enabled=payload.get("enabled", True))
+                elif path == "/api/agent/jobs":
+                    if set(payload) - {"version", "request_ids", "attempt_id"}:
+                        raise WorkbenchError("Agent job requires a source version and optional request IDs")
+                    result = service.submit_agent_job(payload.get("version"), payload.get("request_ids"), payload.get("attempt_id"))
+                elif path == "/api/jobs":
                     if set(payload) - {"version", "request_ids"}:
                         raise WorkbenchError("Job requires only version and optional request_ids")
                     result = service.submit_job(payload.get("version"), payload.get("request_ids"))
@@ -759,6 +998,10 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
                         raise WorkbenchError("Switch requires registered attempt IDs")
                     result = service.switch_attempt(payload.get("attempt_id"), payload.get("compare_attempt_id"))
                     self.server.app = service.app
+                elif path == "/api/attempts/rename":
+                    if set(payload) - {"attempt_id", "name"} or "name" not in payload:
+                        raise WorkbenchError("Rename requires a figure name and optional registered attempt ID")
+                    result = service.rename_attempt(payload["name"], payload.get("attempt_id"))
                 elif path == "/api/attempts/accept":
                     if set(payload) - {"attempt_id", "validation"}:
                         raise WorkbenchError("Acceptance requires a validation note")
@@ -768,39 +1011,120 @@ def create_server(figure_dir, port=0, compare_dir=None, project_dir=None):
                         raise WorkbenchError("Restore requires a registered attempt ID")
                     result = service.restore(payload.get("attempt_id"))
                 else:
+                    if app is None:
+                        raise WorkbenchError("Open a figure before saving edit requests")
                     result = service.save_requests(payload) if path == "/api/requests/batch" else app.change(payload, undo=path == "/api/undo")
                     result["state"] = service.state()
                 self.reply(200, result)
             except (WorkbenchError, OSError, ValueError, TypeError) as exc:
                 self.reply(409 if "changed" in str(exc) else 400, {"error": str(exc)})
 
+        def import_document(self):
+            """Accept one validated .ev archive; never arbitrary file paths."""
+            from ev_document import import_document, MAX_DOCUMENT_BYTES
+            try:
+                name = parse_qs(urlsplit(self.path).query).get("name", [""])[0]
+                if Path(name).name != name or not name.lower().endswith(".ev"):
+                    raise WorkbenchError("Choose an EasyViz .ev project file")
+                if self.headers.get("Content-Type", "").split(";", 1)[0].strip() != "application/octet-stream":
+                    self.reply(415, {"error": "Upload the .ev file as application/octet-stream"})
+                    return
+                length = int(self.headers.get("Content-Length", "0"))
+                if length <= 0 or length > MAX_DOCUMENT_BYTES:
+                    self.reply(413, {"error": "The .ev file is empty or exceeds the 64 MiB limit"})
+                    return
+                with tempfile.TemporaryDirectory(dir=service.storage, prefix="upload-") as temporary:
+                    document = Path(temporary) / "import.ev"
+                    remaining = length
+                    with document.open("xb") as stream:
+                        while remaining:
+                            block = self.rfile.read(min(1024 * 1024, remaining))
+                            if not block:
+                                raise WorkbenchError("The .ev upload was interrupted")
+                            stream.write(block)
+                            remaining -= len(block)
+                    target = import_document(document, service.project)
+                attempt = service.register_attempt(target)
+                result = service.switch_attempt(attempt["id"])
+                self.server.app = service.app
+                result["attempt"] = attempt
+                self.reply(200, result)
+            except (OSError, ValueError, TypeError) as exc:
+                self.reply(400, {"error": str(exc)})
+
     class WorkbenchServer(ThreadingHTTPServer):
         def server_close(self):
             service.close()
+            endpoint = service.storage / "workbench.json"
+            try:
+                if not endpoint.is_symlink() and safe_json(endpoint.read_bytes()).get("token") == service.token:
+                    endpoint.unlink()
+            except (OSError, ValueError, AttributeError):
+                pass
             super().server_close()
 
     server = WorkbenchServer(("127.0.0.1", port), Handler)
     server.daemon_threads = True
-    server.app = app
+    server.app = service.app
     server.service = service
     return server
 
 
-def main():
+def existing_workbench(project_dir):
+    """Reuse only a live instance whose project and session both match."""
+    project = Path(project_dir).expanduser().resolve()
+    endpoint = project / ".easyviz-service/workbench.json"
+    try:
+        if endpoint.is_symlink() or endpoint.stat().st_size > 4096:
+            return None
+        value = safe_json(endpoint.read_bytes())
+        port = value.get("port")
+        if isinstance(port, bool) or not isinstance(port, int) or not 0 < port <= 65535:
+            return None
+        url = f"http://127.0.0.1:{port}/"
+        with urlopen(url + "api/library", timeout=1) as response:
+            data = safe_json(response.read(MAX_REQUEST_BYTES))
+        expected = "project-" + sha256(str(project).encode())[:16]
+        if data.get("project_id") == expected and secrets.compare_digest(str(data.get("token", "")), str(value.get("token", "invalid"))):
+            return url
+    except (OSError, ValueError, AttributeError):
+        pass
+    return None
+
+
+def main(argv=None, *, launch=False):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--figure-dir", type=Path, required=True, help="Existing attempt directory containing panel.svg")
+    parser.add_argument("--figure-dir", type=Path, help="Optional existing EasyViz attempt containing panel.svg")
     parser.add_argument("--port", type=int, default=0, help="Local port; 0 selects an available port")
     parser.add_argument("--compare-dir", type=Path, help="Previous attempt for a read-only side-by-side preview")
-    parser.add_argument("--project-dir", type=Path, help="Scope containing all attempts and source inputs; defaults to the figure directory's parent")
-    args = parser.parse_args()
+    parser.add_argument("--project-dir", type=Path, help="Scope containing attempts and inputs; defaults to the figure parent or current directory")
+    parser.add_argument("--open", dest="open_browser", action="store_true", default=launch, help="Open the workbench in a browser")
+    parser.add_argument("--no-open", dest="open_browser", action="store_false", help="Print the local address without opening a browser")
+    args = parser.parse_args(argv)
+    if args.project_dir is None and args.figure_dir is None:
+        args.project_dir = Path.cwd()
     if not 0 <= args.port <= 65535:
         parser.error("Port must be between 0 and 65535")
     try:
+        project = args.project_dir or args.figure_dir.expanduser().resolve().parent
+        existing = existing_workbench(project) if args.figure_dir is None and args.compare_dir is None else None
+        if existing:
+            print(f"EasyViz workbench: {existing}", flush=True)
+            if args.open_browser:
+                webbrowser.open(existing)
+            return
         server = create_server(args.figure_dir, args.port, args.compare_dir, args.project_dir)
+        from figure_service import _atomic_json
+        _atomic_json(server.service.storage / "workbench.json", {
+            "port": server.server_port, "project_id": server.service.project_id,
+            "token": server.service.token, "pid": os.getpid()})
     except (WorkbenchError, OSError) as exc:
         parser.exit(2, f"Cannot open figure review: {exc}\n")
-    print(f"EasyViz figure review: http://127.0.0.1:{server.server_port}/", flush=True)
-    print(f"Edit requests: {server.app.root / 'requests.json'}\nPress Ctrl+C to close.", flush=True)
+    url = f"http://127.0.0.1:{server.server_port}/"
+    print(f"EasyViz workbench: {url}", flush=True)
+    print(f"Project: {server.service.project}\nPress Ctrl+C to close.", flush=True)
+    if args.open_browser:
+        webbrowser.open(url)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

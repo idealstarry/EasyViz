@@ -63,7 +63,48 @@ class FigureServiceTests(unittest.TestCase):
             time.sleep(.03)
         self.fail("Preview did not finish within the test budget")
 
+    def test_renamed_metadata_is_authoritative_across_services_registration_and_comparison(self):
+        from ev_document import inspect_document
+        original = {path.name: path.read_bytes() for path in self.attempt.iterdir() if path.is_file()}
+        registry = json.loads(self.service.registry_path.read_text())
+        registry["attempts"][self.service.current_attempt_id]["display_name"] = "Legacy display name"
+        figure_service._atomic_json(self.service.registry_path, registry)
+        self.assertEqual(self.service.get_attempt()["name"], "Legacy display name")
+        self.assertEqual(self.service.state()["figure_name"], "Legacy display name")
+        other = FigureService(self.root, self.attempt)
+        try:
+            result = self.service.rename_attempt("  炎症细胞变化  ")
+            self.assertEqual(result["attempt"]["name"], "炎症细胞变化")
+            self.assertEqual(result["attempt"]["version"], self.version)
+            self.assertEqual(other.get_attempt()["name"], "炎症细胞变化")
+            self.assertEqual(other.state()["figure_name"], "炎症细胞变化")
+            self.assertEqual(other.list_attempts()["attempts"][0]["name"], "炎症细胞变化")
+            self.assertEqual(other.register_attempt(self.attempt)["name"], "炎症细胞变化")
+            self.service.switch_attempt(self.service.current_attempt_id, self.service.current_attempt_id)
+            self.assertEqual(self.service.state()["comparison"]["figure_name"], "炎症细胞变化")
+            self.assertEqual(json.loads(self.service.registry_path.read_text())["attempts"][self.service.current_attempt_id]["display_name"], "Legacy display name")
+            for name, raw in original.items():
+                if name in {"panel.ev", "document-status.json"}:
+                    continue  # Portable display metadata follows the saved name.
+                with self.subTest(file=name):
+                    self.assertEqual((self.attempt / name).read_bytes(), raw)
+            self.assertEqual(inspect_document(self.attempt / "panel.ev")["name"], "炎症细胞变化")
+            self.assertEqual(json.loads((self.attempt / "document-status.json").read_text())["status"], "ready")
+            without_selection = FigureService(self.root)
+            try:
+                result = without_selection.rename_attempt("Named without a selected view", self.service.current_attempt_id)
+                self.assertTrue(result["state"]["empty"])
+                self.assertEqual(result["attempt"]["name"], "Named without a selected view")
+                self.assertEqual(other.state()["figure_name"], "Named without a selected view")
+                self.assertEqual(inspect_document(self.attempt / "panel.ev")["name"], "Named without a selected view")
+                self.assertEqual(other.state()["version"], self.version)
+            finally:
+                without_selection.close()
+        finally:
+            other.close()
+
     def test_real_preview_publishes_three_matching_exports_without_changing_accepted_source(self):
+        self.service.rename_attempt("Response distribution")
         accepted = self.service.accept("Baseline SVG and final-size exports inspected.")
         original = {name: (self.attempt / name).read_bytes() for name in ("panel.svg", "panel.pdf", "panel.png", "accepted-snapshot/acceptance.json")}
         request = self.save()
@@ -71,6 +112,8 @@ class FigureServiceTests(unittest.TestCase):
         self.assertEqual(job["status"], "succeeded", job)
         self.assertEqual(job["phase"], "complete")
         target = self.service.get_attempt(job["target_attempt_id"])
+        self.assertEqual(target["name"], "Response distribution")
+        self.assertEqual(FigureWorkbench(target["path"]).state()["figure_name"], "Response distribution")
         self.assertEqual(set(target["files"]), {"svg", "pdf", "png"})
         self.assertEqual(target["panel"], accepted["attempt"]["panel"])
         self.assertNotEqual(target["version"]["figure_sha256"], self.version["figure_sha256"])
@@ -93,9 +136,12 @@ class FigureServiceTests(unittest.TestCase):
         self.assertEqual(len(self.service.list_jobs()["jobs"]), 1)
 
     def test_free_form_and_regions_remain_pending_in_explicit_agent_handoff(self):
+        self.service.rename_attempt("Annotated figure")
         item = self.save(selector=None, property=None, value=None, region_mm={"x": 10, "y": 10, "width": 30, "height": 20},
                          instruction="Move this legend 2 mm right while retaining all data and panel sizes.")
         plan = self.service.prepare_edits(self.version, [item["id"]])
+        self.assertEqual(plan["figure_name"], "Annotated figure")
+        self.assertEqual(self.service.list_requests()["figure_name"], "Annotated figure")
         self.assertEqual(plan["automatic_request_ids"], [])
         self.assertEqual(plan["agent_requests"][0]["request_id"], item["id"])
         job = self.wait(self.service.submit_job(self.version, [item["id"]])["job"]["id"])
@@ -252,8 +298,10 @@ class FigureServiceTests(unittest.TestCase):
     def test_attempt_only_scope_reports_review_only_and_refuses_fresh_render_or_restore(self):
         # Capture a self-contained accepted copy, so its primary inputs lie
         # within the same folder and the scope issue is independent of paths.
+        self.service.rename_attempt("Accepted response")
         self.service.accept("Original final-size export bundle inspected.")
         copy_attempt = self.service.restore()["attempt"]
+        self.assertEqual(copy_attempt["name"], "Accepted response")
         path = Path(copy_attempt["path"])
         narrow = FigureService(path, path)
         try:
@@ -467,12 +515,25 @@ class FigureServiceTests(unittest.TestCase):
         async def check():
             async with Client(create_mcp(self.service), raise_exceptions=True) as client:
                 names = {tool.name for tool in (await client.list_tools()).tools}
-                self.assertTrue({"capabilities", "get_attempt", "render_attempt", "record_outcome"} <= names)
+                self.assertTrue({"capabilities", "get_attempt", "rename_attempt", "render_attempt", "record_outcome",
+                                 "agent_status", "configure_agent", "submit_agent_job"} <= names)
+                connection = await client.call_tool("agent_status", {})
+                self.assertFalse(connection.structured_content["enabled"])
+                self.assertFalse(connection.structured_content["existing_chat_wake"])
                 result = await client.call_tool("get_attempt", {})
                 self.assertFalse(result.is_error)
                 self.assertEqual(result.structured_content["panel"], {"width_mm": 120., "height_mm": 90.})
                 resource = await client.read_resource(result.structured_content["preview_resource"])
                 self.assertEqual(len(resource.contents), 1)
+                renamed = await client.call_tool("rename_attempt", {"name": "  Treatment response  "})
+                self.assertFalse(renamed.is_error)
+                self.assertEqual(renamed.structured_content["attempt"]["name"], "Treatment response")
+                current = await client.call_tool("get_attempt", {})
+                self.assertEqual(current.structured_content["name"], "Treatment response")
+                self.assertEqual(current.structured_content["version"], self.version)
+                self.assertEqual(self.service.state()["figure_name"], "Treatment response")
+                invalid_name = await client.call_tool("rename_attempt", {"name": "not\na title"})
+                self.assertTrue(invalid_name.is_error)
                 denied = await client.call_tool("register_attempt", {"figure_dir": "../outside"})
                 self.assertTrue(denied.is_error)
         asyncio.run(check())
@@ -497,8 +558,13 @@ class FigureServiceTests(unittest.TestCase):
             async with Client(create_mcp(connected), raise_exceptions=True) as client:
                 attempt = await client.call_tool("get_attempt", {})
                 self.assertEqual(attempt.structured_content["id"], second_id)
+                renamed = await client.call_tool("rename_attempt", {"name": "Selected browser figure"})
+                self.assertEqual(renamed.structured_content["attempt"]["id"], second_id)
+                self.assertEqual(self.service.state()["figure_name"], "Selected browser figure")
+                self.assertEqual(connected.get_attempt()["name"], self.attempt.name)
                 requests = await client.call_tool("list_requests", {})
                 self.assertEqual(requests.structured_content["attempt_id"], second_id)
+                self.assertEqual(requests.structured_content["figure_name"], "Selected browser figure")
                 self.assertEqual(requests.structured_content["requests"][0]["id"], note["id"])
                 caps = await client.call_tool("capabilities", {})
                 self.assertEqual(caps.structured_content["current_attempt_id"], second_id)

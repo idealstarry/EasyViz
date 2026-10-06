@@ -126,7 +126,7 @@ def validate_spec(spec):
     guide = spec.get("legends", {}).get("categorical", {})
     require(isinstance(guide, dict), "legends.categorical must be an object")
     require(not set(guide) & {"title", "edgecolor", "linewidth_pt", "markerscale", "allow_plot_overlap"}, "Legend keys must retain curve styling and remain outside the data region")
-    formats = spec.get("formats", ["pdf", "svg", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and formats and all(isinstance(fmt, str) and fmt in ("pdf", "svg", "png", "tiff") for fmt in formats) and len(formats) == len(set(formats)), "formats must be distinct pdf/svg/png/tiff entries")
 
 
@@ -433,6 +433,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
     data_path, out = Path(data_path), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False})
+    spec_path = core.begin_document(out, spec, spec_path)
     fig = None
     try:
         require(track in (None, "create", "reproduce"), "track must be create or reproduce when supplied")
@@ -490,6 +491,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
                        "new_measurements_interpolated": False, "connections": "Straight segments between adjacent supplied x values"})
             write_json(out / "qa.json", qa)
             require(passed, "Source, labels or fixed-canvas QA needs revision; inspect qa.json and the render")
+            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

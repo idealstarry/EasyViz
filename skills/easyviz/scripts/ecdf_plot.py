@@ -106,7 +106,7 @@ def validate_spec(spec):
         require(isinstance(legends["categorical"], dict), "legends.categorical must be an object")
         # Curve keys must retain their actual color and stroke width.
         require(not {"edgecolor", "linewidth_pt", "title"} & set(legends["categorical"]), "ECDF legend colors and widths follow the curves; set curve_line_width_pt for both. Legend prose belongs in the caption.")
-    formats = spec.get("formats", ["pdf", "svg", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and formats and all(isinstance(v, str) for v in formats) and len(formats) == len(set(formats)), "formats must be a nonempty list without duplicates")
     require(set(formats) <= {"pdf", "svg", "png", "tiff"}, "Supported formats: pdf, svg, png, tiff")
     try:
@@ -358,13 +358,14 @@ def render(data_path, spec, out, *, spec_path=None):
     data_path, out = Path(data_path), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports may be stale or unverified until this run passes."})
+    spec_path = core.begin_document(out, spec, spec_path)
     fig, before = None, set(plt.get_fignums())
     try:
         data = prepare(data_path, spec)
         input_hash = data.attrs["source_csv_sha256"]
         resolved = deepcopy(spec)
         resolved.setdefault("chart", "ecdf")
-        resolved.setdefault("formats", ["pdf", "svg", "png"])
+        resolved.setdefault("formats", ["svg"])
         resolved.setdefault("layout", {}).setdefault("auto_fit", "margins" not in resolved.get("layout", {}))
         layout, typography, rc = setup(resolved)
         with plt.rc_context(rc), warnings.catch_warnings(record=True) as captured:
@@ -407,6 +408,7 @@ def render(data_path, spec, out, *, spec_path=None):
             write_json(out / "stats.json", {"method": "unweighted_empirical_distribution", "tests_performed": False, "smoothing_applied": False, "distributions_fitted": False, "confidence_intervals_computed": False, "experimental_independence_inferred": False, "observation_counts": {group: int(rows["observation_count"].iloc[0]) for group, rows in summary.groupby("group", sort=False)}})
             write_json(out / "qa.json", qa)
             require(passed, "Canvas or source-to-curve QA needs revision; inspect qa.json and the exported panel. Preserve final dimensions and fonts or explicitly request a larger panel.")
+            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

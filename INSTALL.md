@@ -35,9 +35,65 @@ For a plotting task, the Agent checks the selected Python environment against th
 
 Example first request:
 
-> Use $easyviz to make a dot plot from my source table. Use Arial 8 pt, a 180 × 120 mm panel, and separate PDF, SVG, PNG and caption files.
+> Use $easyviz to make a dot plot from my source table. Use Arial 8 pt, a 180 × 120 mm panel, SVG and an editable .ev project, with a separate caption. Also export PDF if needed for assembly.
 
-## Optional MCP and local review
+## Independent workbench and original-session editing
+
+The [workbench](skills/easyviz/references/figure-workbench.md) starts with an
+authorized project directory even when no figure is selected. Resolve the
+installed script path and selected Python environment, then launch
+`easyviz_workbench.py --project-dir /absolute/path/to/project --port 0`.
+The launcher opens the browser and reuses this project's running service;
+`--no-open` only prints its address. Users can select registered attempts or
+import validated `.ev` bundles with **Open .ev**. Importing a bundle only validates and stages
+its declared files; it does not execute plotting code.
+
+By default, the Agent that started EasyViz handles saved edits in that same
+conversation. After verifying MCP tool discovery, that Agent calls
+`connect_session` with its actual host/session ID, keeps the returned connection
+token private, and calls `wait_for_submission` with a wait of at most 45 seconds.
+The wait refreshes the connection lease and returns a submitted batch to that
+active Agent. Claiming establishes receipt; the Agent reports actual editing,
+rendering and reviewing with `report_session_progress`, then verified completion
+through `complete_session_job`. The original project owner remains fixed even
+after a lease expires.
+
+The page's **Connect original Agent** control explains how the original Agent
+connects; it does not enable a separate CLI worker. **Submit edits** queues work
+for the connected original session; **Save drafts** only stores instructions.
+Verify actual browser submission, same-session claim, fresh outputs and recorded
+outcomes before reporting that the connection works. Merely registering a
+session ID is not proof of execution in that host conversation.
+
+Live MCP delivery requires the original Agent to remain active and waiting.
+For optional checks after its turn ends, use the selected host's native
+conversation scheduler. Successfully create an original-conversation task with
+a bounded lifetime first, then register its real task ID, interval and expiration
+through EasyViz. Local registration neither creates the host task nor proves
+delivery. A requested one-minute interval is not a host timing guarantee.
+Verify an actual submission resumed after the original turn ends before claiming
+idle delivery. Follow the [session trigger guide](docs/workbench-session-trigger.md)
+and packaged [MCP guidance](skills/easyviz/references/mcp.md).
+
+If no host task is available or the connection expires, saved requests remain
+readable in the original conversation; resume that Agent there. Do not silently
+use a new session or create a workaround scheduler.
+
+When the user explicitly requests a separate editing worker, use
+the optional MCP `configure_agent` operation to configure the project's worker.
+Check
+that the selected `codex` executable is available and already authenticated,
+and that the worker's Python environment can rerender the project. The backend
+runs a dedicated headless session for each submitted batch in a fresh attempt.
+It uses the selected client's existing authentication; installation does not
+enable the worker or modify global model settings. Verify an actual submitted
+edit before reporting that the connection works. The page distinguishes
+**Save drafts** from **Submit edits** and reports progress, cancellation and
+per-request outcomes. `submit_agent_job` follows the configured backend:
+`session` queues for the original Agent, while an explicitly configured `codex`
+backend starts this separate worker. Check `agent_status` before submission.
+
+## Optional MCP
 
 The ordinary plugin installation does not enable an MCP server or install its
 optional SDK. When the user wants a connected review workflow, establish the
@@ -61,8 +117,11 @@ and check the client's current help before applying configuration. An MCP
 registration does not install the skill or verify drawing dependencies. Do not
 claim desktop discovery until checked in a refreshed client. Use the same
 project scope when launching the [workbench](skills/easyviz/references/figure-workbench.md).
-It can generate supported cosmetic previews itself; custom instructions remain
-work for the active Agent.
+The MCP adapter exposes original-session connection, bounded submission waits
+and verified completion alongside attempt, request and core-render operations.
+It also exposes the explicitly separate worker route. MCP configuration by
+itself does not connect a session or enable automatic editing; verify the
+actual authoring Agent's connection and end-to-end submission.
 
 ## Client support and evidence
 

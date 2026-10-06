@@ -8,10 +8,12 @@ The adapter uses stdio; protocol output is never mixed with renderer logging.
 from __future__ import annotations
 
 import argparse
+import asyncio
 from contextlib import asynccontextmanager
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 import sys
+import threading
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -41,7 +43,7 @@ def create_mcp(service: FigureService):
             service.close()
 
     server = MCPServer("EasyViz", title="EasyViz local figures", lifespan=lifespan,
-        instructions="Inspect capabilities and the current attempt first. Only cosmetic core jobs run automatically. For custom/region/free-form requests, edit the declared plotting source with the active Agent, render a fresh attempt, inspect its exports and record the outcome. Never claim this server wakes an idle chat or accepts a visual design automatically.")
+        instructions="Inspect capabilities and the current attempt first. Connect the conversation that first invoked EasyViz with connect_session; keep its credential private and use bounded wait_for_submission calls while that same Agent is active. A claim means received only: report_session_progress as actual editing, rendering and review begin. Implement edits in copied source/specification and complete_session_job only after fresh exports pass QA and visual review. MCP alone cannot wake an idle chat. Optional Codex Desktop scheduled checks require actual successful native host creation before register_session_trigger; registration metadata is not execution verification or instant delivery. A separately authorized dedicated Codex worker creates new sessions; never use it as a silent fallback.")
     read_only = ToolAnnotations(read_only_hint=True, destructive_hint=False, open_world_hint=False)
     local_write = ToolAnnotations(read_only_hint=False, destructive_hint=False, open_world_hint=False)
 
@@ -84,6 +86,11 @@ def create_mcp(service: FigureService):
         """Register an existing attempt inside --project-dir; never execute its plotting script."""
         return call(service.register_attempt, figure_dir)
 
+    @server.tool(annotations=local_write)
+    def rename_attempt(name: str, attempt_id: str | None = None) -> dict[str, Any]:
+        """Save a figure's display name for the workbench and Agent; retain paths and scientific exports."""
+        return call(service.rename_attempt, name, selected(attempt_id))
+
     @server.tool(annotations=read_only)
     def list_requests(attempt_id: str | None = None) -> dict[str, Any]:
         """Read saved, numbered edit requests and their current-version binding without copying prompts."""
@@ -100,6 +107,90 @@ def create_mcp(service: FigureService):
                        attempt_id: str | None = None) -> dict[str, Any]:
         """Submit one bounded preview job using only the unchanged installed core renderer. Poll get_job; custom requests remain Agent handoff."""
         return call(service.submit_job, version, request_ids, selected(attempt_id))
+
+    @server.tool(annotations=read_only)
+    def agent_status() -> dict[str, Any]:
+        """Inspect the original-conversation lease or opt-in worker without starting inference; never return credentials."""
+        return call(service.agent_status)
+
+    @server.tool(annotations=local_write)
+    def connect_session(owner_session_id: str, host: str = "codex", lease_seconds: int = 300) -> dict[str, Any]:
+        """Bind this active original conversation for same-session edits. Keep returned token private; no model/process is started and no idle chat is woken."""
+        return call(service.connect_session, owner_session_id, host, lease_seconds)
+
+    @server.tool(annotations=local_write)
+    def renew_same_session(owner_session_id: str, connection_token: str) -> dict[str, Any]:
+        """Refresh the still-live original conversation connection using its existing private credential; never take over another owner or revive expired credentials."""
+        return call(service.renew_same_session, owner_session_id, connection_token)
+
+    @server.tool(annotations=local_write)
+    def register_session_trigger(owner_session_id: str, connection_token: str, automation_id: str,
+                                 interval_seconds: int, expires_at: float) -> dict[str, Any]:
+        """Register an actual native Codex Desktop heartbeat ONLY after its host creation succeeded. Supply real automation ID, 60..3600-second interval and Unix expiry within 24h. This records owner registration, not verified execution or instant/portable MCP wake."""
+        return call(service.register_session_trigger, owner_session_id, connection_token,
+                    automation_id, interval_seconds, expires_at)
+
+    @server.tool(annotations=local_write)
+    def disable_session_trigger(owner_session_id: str, connection_token: str) -> dict[str, Any]:
+        """Disable native automatic-check queue metadata. Separately stop the actual host heartbeat with its native tool; this server cannot manage host automation."""
+        return call(service.disable_session_trigger, owner_session_id, connection_token)
+
+    @server.tool(annotations=local_write)
+    async def wait_for_submission(owner_session_id: str, connection_token: str,
+                                  timeout_seconds: float = 30) -> dict[str, Any]:
+        """Refresh this original conversation's lease and atomically claim a submitted batch; wait 0 to 45 seconds. Resume plotting in this same conversation."""
+        stopped = threading.Event()
+        worker = asyncio.create_task(asyncio.to_thread(call, service.wait_for_submission,
+            owner_session_id, connection_token, timeout_seconds, cancellation_event=stopped))
+        try:
+            return await asyncio.shield(worker)
+        except asyncio.CancelledError:
+            stopped.set()
+            def release_undelivered(done):
+                try:
+                    result = done.result()
+                    job = result.get("job") if isinstance(result, dict) else None
+                    if job:
+                        service._release_session_claim(owner_session_id, connection_token, job["id"])
+                except (Exception, asyncio.CancelledError):
+                    # A disconnected/cancelled/failed batch must not be revived.
+                    pass
+            worker.add_done_callback(release_undelivered)
+            try:
+                await asyncio.shield(worker)
+            except (Exception, asyncio.CancelledError):
+                pass
+            raise
+
+    @server.tool(annotations=local_write)
+    def report_session_progress(owner_session_id: str, connection_token: str, job_id: str,
+                                phase: str = "editing") -> dict[str, Any]:
+        """Report actual editing, rendering and reviewing beginnings in order for this original conversation's claimed batch. Receiving edits alone is not editing progress."""
+        return call(service.report_session_progress, owner_session_id, connection_token, job_id, phase)
+
+    @server.tool(annotations=local_write)
+    def complete_session_job(owner_session_id: str, connection_token: str, job_id: str,
+                             target_attempt_id: str, request_ids: list[str], changed_files: list[str],
+                             validation: str) -> dict[str, Any]:
+        """Complete this conversation's claimed job only after actual fresh changed exports pass source/QA checks; describe visual review. Omitted requests remain pending."""
+        return call(service.complete_session_job, owner_session_id, connection_token, job_id,
+                    target_attempt_id, request_ids, changed_files, validation)
+
+    @server.tool(annotations=local_write)
+    def disconnect_session(owner_session_id: str, connection_token: str) -> dict[str, Any]:
+        """Disconnect the owned original conversation; uncommitted edits stay pending and no other worker is started."""
+        return call(service.disconnect_session, owner_session_id, connection_token)
+
+    @server.tool(annotations=local_write)
+    def configure_agent(backend: str = "codex", enabled: bool = True) -> dict[str, Any]:
+        """Connect/disconnect the installed local Codex worker only for the explicitly authorized project. Requires user intent; never edit host global configuration."""
+        return call(service.configure_agent, backend, enabled)
+
+    @server.tool(annotations=local_write)
+    def submit_agent_job(version: dict[str, str], request_ids: list[str] | None = None,
+                         attempt_id: str | None = None) -> dict[str, Any]:
+        """Queue saved edits for the connected original conversation, or an explicitly authorized separate worker. A same-session Agent receives them through wait_for_submission, never a new process."""
+        return call(service.submit_agent_job, version, request_ids, selected(attempt_id))
 
     @server.tool(annotations=read_only)
     def list_jobs() -> dict[str, Any]:

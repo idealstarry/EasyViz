@@ -72,6 +72,79 @@ class FigureWorkbenchTests(unittest.TestCase):
     def change(self, **extra):
         return {"version":self.version,"element_id":"data-group-a","property":"color","value":"#E47751","instruction":"Use coral for Group A; retain point values and sizes.",**extra}
 
+    def test_rename_is_portable_persistent_metadata_and_preserves_scientific_files(self):
+        before = self.server.service.state()
+        registry_before = self.server.service.registry_path.read_bytes()
+        code, result = self.data("POST", "/api/attempts/rename", {"name": "  炎症反应 / Figure 2b  "})
+        self.assertEqual(code, 200, result)
+        self.assertEqual(result["attempt"]["name"], "炎症反应 / Figure 2b")
+        self.assertEqual(result["state"]["figure_name"], result["attempt"]["name"])
+        self.assertEqual(result["state"]["version"], before["version"])
+        self.assertEqual(result["state"]["elements"], before["elements"])
+        self.assertEqual(self.server.service.registry_path.read_bytes(), registry_before)
+        info = json.loads((self.root / "figure-info.json").read_text())
+        self.assertEqual(info["schema_version"], 1)
+        self.assertEqual(info["display_name"], "炎症反应 / Figure 2b")
+        self.assertIn("updated_at", info)
+        fresh = workbench.FigureWorkbench(self.root)
+        self.assertEqual(fresh.state()["figure_name"], "炎症反应 / Figure 2b")
+        for name, raw in self.initial.items():
+            with self.subTest(file=name):
+                self.assertEqual((self.root / name).read_bytes(), raw)
+        self.assertEqual(self.data("GET", "/api/library")[1]["attempts"][0]["name"], "炎症反应 / Figure 2b")
+
+    def test_rename_rejects_invalid_names_attempt_ids_and_untrusted_http_mutations(self):
+        invalid = (None, 5, True, [], {}, "", "   ", "x" * 121, "line\nbreak", "name\x00", "name\t", "ab\u200bcd")
+        for name in invalid:
+            with self.subTest(name=repr(name)):
+                code, result = self.data("POST", "/api/attempts/rename", {"name": name})
+                self.assertEqual(code, 400, result)
+                self.assertFalse((self.root / "figure-info.json").exists())
+        for payload in ({}, {"name": "Valid", "path": "../escape"}, {"name": "Valid", "attempt_id": "../attempt"},
+                        {"name": "Valid", "attempt_id": "attempt-" + "f" * 16}):
+            with self.subTest(payload=payload):
+                self.assertEqual(self.data("POST", "/api/attempts/rename", payload)[0], 400)
+        self.assertEqual(self.request("POST", "/api/attempts/rename", {"name": "Valid"},
+                                      headers={"Origin": "https://untrusted.test"})[0], 403)
+        self.assertEqual(self.request("POST", "/api/attempts/rename", {"name": "Valid"},
+                                      headers={"X-EasyViz-Token": "wrong-token"})[0], 403)
+        code, result = self.data("POST", "/api/attempts/rename", {"name": "中" * 120})
+        self.assertEqual(code, 200, result)
+        self.assertEqual(result["attempt"]["name"], "中" * 120)
+
+    def test_figure_metadata_refuses_symlinks_non_regular_oversized_and_invalid_json(self):
+        metadata = self.root / "figure-info.json"
+        untouched = self.root / "outside-info.json"
+        untouched.write_text(json.dumps(workbench.make_figure_info("Untouched")))
+        metadata.symlink_to(untouched)
+        with self.assertRaises(workbench.WorkbenchError):
+            workbench.read_figure_info(self.root)
+        with self.assertRaises(workbench.WorkbenchError):
+            workbench.write_figure_info(self.root, "Forbidden")
+        self.assertEqual(json.loads(untouched.read_text())["display_name"], "Untouched")
+        metadata.unlink()
+        metadata.mkdir()
+        with self.assertRaises(workbench.WorkbenchError):
+            workbench.read_figure_info(self.root)
+        metadata.rmdir()
+        for raw in (b" " * (workbench.MAX_FIGURE_INFO_BYTES + 1), b"{broken", b"[]",
+                    b'{"schema_version":true,"display_name":"Name"}',
+                    b'{"schema_version":1,"display_name":"Name","path":"../escape"}'):
+            with self.subTest(raw=raw[:80]):
+                metadata.write_bytes(raw)
+                with self.assertRaises(workbench.WorkbenchError):
+                    workbench.read_figure_info(self.root)
+
+    def test_failed_metadata_publication_preserves_previous_name_and_cleans_temporary_file(self):
+        workbench.write_figure_info(self.root, "Previous name")
+        original = (self.root / "figure-info.json").read_bytes()
+        with patch.object(workbench.os, "replace", side_effect=OSError("simulated publication failure")):
+            with self.assertRaises(OSError):
+                workbench.write_figure_info(self.root, "Next name")
+        self.assertEqual((self.root / "figure-info.json").read_bytes(), original)
+        self.assertEqual(workbench.FigureWorkbench(self.root).state()["figure_name"], "Previous name")
+        self.assertFalse(list(self.root.glob(".figure-info-*.tmp")))
+
     def test_http_state_and_original_exports_keep_physical_geometry_and_sources(self):
         self.assertEqual(self.server.server_address[0],"127.0.0.1")
         code,state=self.data("GET","/api/state")
@@ -650,6 +723,8 @@ class FigureWorkbenchTests(unittest.TestCase):
 CLIENT_HARNESS = r"""
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const source=fs.readFileSync(process.argv[1],'utf8');
+const html=fs.readFileSync(require('node:path').join(require('node:path').dirname(process.argv[1]),'index.html'),'utf8');
+const documentIds=new Map([...html.matchAll(/<([a-z][a-z0-9]*)\b[^>]*\bid="([^"]+)"/g)].map(match=>[match[2],match[1].toUpperCase()]));
 const tick=()=>new Promise(resolve=>setImmediate(resolve));
 const jsonResponse=(body,ok=true)=>({ok,json:async()=>body});
 class Element {
@@ -668,11 +743,11 @@ class Element {
   contains(node){return node===this||!!node?.parentNode&&this.contains(node.parentNode);}
   getElementById(id){if(this.id===id)return this;for(const child of this.children){const found=child.getElementById(id);if(found)return found;}return null;}
   querySelectorAll(selector){const attr=selector.match(/^\[([^\]]+)\]$/)?.[1],result=[];for(const child of this.children){if(attr&&Object.hasOwn(child.attributes,attr))result.push(child);result.push(...child.querySelectorAll(selector));}return result;}
-  closest(selector){if(selector==='.'+this.className)return this;return this.parentNode?.closest(selector)||null;}
+  closest(selector){if(selector.startsWith('.')&&(this.className||'').split(' ').includes(selector.slice(1)))return this;return this.parentNode?.closest(selector)||null;}
   getBBox(){return this.box;}
   getScreenCTM(){return{a:1,b:0,c:0,d:1,inverse(){return this;},multiply(){return this;}};}
   createSVGPoint(){return{x:0,y:0,matrixTransform(){return{x:this.x,y:this.y};}};}
-  setPointerCapture(){}focus(){}
+  setPointerCapture(){}focus(){}showModal(){this.open=true;}close(){this.open=false;}
   get options(){return this.children;}
   get selectedOptions(){return this.children.filter(option=>option.value===this.value);}
 }
@@ -692,7 +767,7 @@ function figure(name='A',extra={}) {
   ],requests:[],history:[],files:['panel.svg'],token:'session',selection_message:'Mapped elements.',...extra};
 }
 function harness(initial,storage=new Map(),brokenStorage=false) {
-  const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,new Element(id));return nodes.get(id);};
+  const nodes=new Map(),node=id=>{if(!documentIds.has(id))return null;if(!nodes.has(id))nodes.set(id,new Element(id,documentIds.get(id)));return nodes.get(id);};
   const h={data:initial,posted:[],nodes,node,storage,paint:()=>null,override:null,batchFailure:false};
   const current=(item)=>({...item,current_version:JSON.stringify(item.version)===JSON.stringify(h.data.version)});
   async function fetch(path,options) {
@@ -731,7 +806,9 @@ function harness(initial,storage=new Map(),brokenStorage=false) {
   h.chip=number=>{const chip=node('annotation-list').children.find(item=>item.tagName==='BUTTON'&&item.textContent===String(number));assert.ok(chip,'Annotation '+number+' must be present');return chip.listeners.click();};
   h.numbers=()=>node('annotation-list').children.filter(item=>item.tagName==='BUTTON').map(item=>Number(item.textContent));
   h.submit=()=>node('request-form').listeners.submit({preventDefault(){}});
-  h.region=()=>{h.click('region-mode');const root=h.svg();node('figure-host').listeners.pointerdown({target:root,button:0,pointerId:1,clientX:20,clientY:40,preventDefault(){}});node('figure-host').listeners.pointerup({target:root,pointerId:1,clientX:60,clientY:70});};
+  h.region=(x=20,y=40,width=40,height=30)=>{h.click('region-mode');const root=h.svg();node('figure-host').listeners.pointerdown({target:root,button:0,pointerId:1,clientX:x,clientY:y,preventDefault(){}});node('figure-host').listeners.pointerup({target:root,pointerId:1,clientX:x+width,clientY:y+height});};
+  h.firstPage=async name=>{for(let guard=0;guard<100&&!node(name+'-previous').disabled;guard++)await h.click(name+'-previous');assert.equal(node(name+'-previous').disabled,true);};
+  h.descendants=root=>root.children.flatMap(child=>[child,...h.descendants(child)]);
   vm.runInContext(source,h.context);
   h.start=async()=>{await tick();await tick();};
   return h;
@@ -754,7 +831,8 @@ const h=harness(figure());await h.start();
 assert.equal(h.node('save').disabled,true,'an empty form must not enable Save requests');
 h.paint=(x,y)=>Math.hypot(x-125,y-80)<=2?h.svg().getElementById('use-A'):h.svg().getElementById('axes');
 h.point('use-A',125,80);assert.deepEqual(h.numbers(),[1]);
-assert.match(h.node('selection-details').textContent,/^A · point-group/);
+assert.equal(h.node('selection-details').textContent,'A');
+assert.equal(h.inspect('activeAnnotation().element_ids[0]'),'group-A','painted points select their mapped group');
 h.input('instruction','Keep these point values; change only their color.');
 h.point('axes',130,80);assert.deepEqual(h.numbers(),[1],'a near miss reactivates the same painted target');
 assert.equal(h.node('instruction').value,'Keep these point values; change only their color.');
@@ -771,24 +849,105 @@ h.inspect('state.manifest_valid=false');h.paint=()=>h.svg().getElementById('use-
 h.point('use-A',125,80);assert.deepEqual(h.numbers(),[1,2,3,4],'a stale map cannot guess identities');
 """)
 
-    def test_client_bulk_selection_intersects_properties_and_blocks_changed_sources(self):
+    def test_keyboard_svg_targets_create_independent_comments_and_freeze_during_save(self):
+        self.run_client(r"""
+const initial=figure('A'),h=harness(initial);await h.start();
+const activate=(id,key)=>{
+ const target=h.svg().getElementById(id),event={key,target,prevented:false,stopped:false,
+  preventDefault(){this.prevented=true;},stopPropagation(){this.stopped=true;}};
+ assert.ok(target.listeners.keydown,'mapped SVG targets support keyboard activation');
+ target.listeners.keydown(event);return event;
+};
+assert.equal(h.svg().getAttribute('role'),'group');
+for(const [id,label] of [['group-A','A'],['group-B','B']]){
+ const target=h.svg().getElementById(id);
+ assert.equal(target.getAttribute('role'),'button');assert.equal(target.getAttribute('tabindex'),'0');
+ assert.equal(target.getAttribute('aria-label'),'Annotate '+label);
+}
+const enter=activate('group-A','Enter');
+assert.equal(enter.prevented,true);assert.equal(enter.stopped,true,'activation does not also select the enclosing axes');
+assert.deepEqual(h.numbers(),[1]);h.input('instruction','Keep group A values; make its points teal.');
+const space=activate('group-B',' ');assert.equal(space.prevented,true);assert.equal(space.stopped,true);
+assert.deepEqual(h.numbers(),[1,2]);assert.equal(h.node('instruction').value,'','Space creates a separate blank comment');
+h.input('instruction','Keep group B values; make its points coral.');
+activate('group-A','Enter');assert.deepEqual(h.numbers(),[1,2]);
+assert.equal(h.node('instruction').value,'Keep group A values; make its points teal.','revisiting a target restores only its own comment');
+activate('group-B',' ');assert.equal(h.node('instruction').value,'Keep group B values; make its points coral.');
+let finishSave;
+h.override=(path,options)=>{
+ if(path!=='/api/requests/batch')return undefined;
+ h.posted.push(JSON.parse(options.body));return new Promise(resolve=>{finishSave=resolve;});
+};
+const saving=h.submit();await tick();
+activate('key-A','Enter');activate('axis-line',' ');
+assert.deepEqual(h.numbers(),[1,2],'keyboard selection is frozen while saving the source-bound batch');
+assert.equal(h.node('instruction').disabled,true);
+finishSave(jsonResponse({error:'Save temporarily unavailable'},false));await saving;
+assert.deepEqual(h.posted[0].requests.map(item=>item.element_id),['group-A','group-B']);
+assert.deepEqual(h.posted[0].requests.map(item=>item.instruction),['Keep group A values; make its points teal.','Keep group B values; make its points coral.']);
+for(const request of h.posted[0].requests){assert.deepEqual(request.version,initial.version);assert.equal(request.property,undefined);assert.equal(request.value,undefined);}
+activate('group-A','Enter');assert.equal(h.node('instruction').value,'Keep group A values; make its points teal.');
+activate('group-B',' ');assert.equal(h.node('instruction').value,'Keep group B values; make its points coral.');
+""")
+
+    def test_hollow_summary_target_keeps_observation_priority_and_independent_source_comments(self):
+        self.run_client(r"""
+const initial=figure();initial.elements.find(element=>element.id==='group-A').role='summary-box';
+const h=harness(initial);await h.start();
+const bar=h.svg().getElementById('group-A'),point=h.svg().getElementById('group-B');
+assert.equal(bar.getAttribute('pointer-events'),'all','only a closed summary mark should expose its unpainted interior to native SVG hit testing');
+assert.equal(point.getAttribute('pointer-events'),undefined,'painted observations retain their original native hit behavior');
+assert.equal(h.svg().getElementById('axes').getAttribute('pointer-events'),undefined,'the enclosing data region cannot capture child marks');
+h.point('use-A');h.input('instruction','Make the open bar outline thinner.');
+h.point('use-B');h.input('instruction','Preserve this observation value, use a larger marker.');
+assert.deepEqual(h.numbers(),[1,2]);
+assert.equal(h.inspect('activeAnnotation().element_ids[0]'),'group-B','a painted observation is resolved before any summary target');
+await h.submit();
+assert.deepEqual(h.posted[0].requests.map(item=>item.element_id),['group-A','group-B']);
+assert.deepEqual(h.posted[0].requests.map(item=>item.instruction),['Make the open bar outline thinner.','Preserve this observation value, use a larger marker.']);
+""")
+
+    def test_annotation_badges_stay_outside_marks_and_remain_separate_at_crowded_edges(self):
+        self.run_client(r"""
+const h=harness(figure());await h.start();
+const canvas={x:0,y:0,width:305,height:245},bar={x:150,y:33,width:14,height:175};
+const overlaps=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+const place=(anchor,mark,placed=[])=>h.inspect(`placeAnnotationBadge(${JSON.stringify(anchor)},${JSON.stringify(mark)},22,22,{x:4,y:4},${JSON.stringify(canvas)},${JSON.stringify(placed)})`);
+const first=place({x:164,y:33},bar);
+assert.ok(first.x>=bar.x+bar.width+4&&first.y+first.height<=bar.y-4,'with room available, the badge is outside the upper-right corner with a four-pixel gutter');
+for(const point of [{x:155,y:29,width:3.5,height:3.5},{x:159,y:28,width:3.5,height:3.5},{x:162,y:30,width:3.5,height:3.5}])assert.equal(overlaps(first,point),false,'the summary annotation cannot cover the visible replicate points near its corner');
+const nearby={x:155,y:29,width:3.5,height:3.5},second=place({x:158.5,y:29},nearby,[first]);
+assert.equal(overlaps(first,second),false,'a second annotation sharing this corner retains its own clickable tile');
+assert.equal(overlaps(second,nearby),false);
+for(const mark of [{x:298,y:2,width:5,height:5},{x:2,y:236,width:5,height:5},{x:298,y:237,width:5,height:5}]){
+ const badge=place({x:mark.x+mark.width,y:mark.y},mark,[first,second]);
+ assert.ok(badge.x>=canvas.x&&badge.y>=canvas.y&&badge.x+badge.width<=canvas.width&&badge.y+badge.height<=canvas.height,'corner fallback keeps the entire clickable tile inside the canvas');
+ assert.equal(overlaps(badge,mark),false,'an edge fallback must not hide its selected point');
+ assert.equal(overlaps(badge,first)||overlaps(badge,second),false);
+}
+""")
+
+    def test_numbered_comments_keep_real_mapped_targets_and_block_changed_sources(self):
         self.run_client(r"""
 const initial=figure('B',{history:[{action:'accepted',target_attempt:'/trial/attempt-01'},{action:'applied',target_attempt:'/trial/attempt-02'},{action:'accepted',version:{figure_sha256:'legacy-hash'}}]});
 const h=harness(initial);await h.start();
-assert.deepEqual(h.node('history-list').children.map(row=>row.textContent),['accepted · attempt-01','applied · attempt-02','accepted · version legacy-h']);
-h.choose('semantic-list',JSON.stringify({category:'A'}));
-assert.deepEqual(h.node('property').children.map(option=>option.value),['','color'],'bulk editable properties must intersect every real mapped member');
-h.choose('property','color');h.input('property-value','#112233');h.input('instruction','Use this color for category A.');
+assert.deepEqual(h.node('history-list').children.map(row=>h.descendants(row).find(node=>node.className==='attempt-title').textContent),['accepted · attempt-01','applied · attempt-02','accepted · version legacy-h']);
+assert.equal(h.node('element-list'),null,'the simplified editor does not offer another target picker');
+assert.equal(h.node('property'),null,'each annotation accepts a written instruction');
+h.point('use-A');h.input('instruction','Use teal for group A; retain its values and point sizes.');
+h.point('text-A');h.input('instruction','Move this guide right by 2 mm.');
+h.chip(1);assert.equal(h.node('instruction').value,'Use teal for group A; retain its values and point sizes.');
 await h.submit();assert.equal(h.posted.length,1);
 assert.deepEqual(h.posted[0].version,initial.version);
-assert.deepEqual(h.posted[0].requests[0].selector,{category:'A'});
-assert.equal(h.posted[0].requests[0].property,'color');assert.equal(h.posted[0].requests[0].value,'#112233');
+assert.deepEqual(h.posted[0].requests.map(item=>item.element_id),['group-A','key-A'],'visible SVG groups remain separate source-bound targets');
+assert.deepEqual(h.posted[0].requests.map(item=>item.instruction),['Use teal for group A; retain its values and point sizes.','Move this guide right by 2 mm.']);
+for(const item of h.posted[0].requests){assert.equal(item.property,undefined);assert.equal(item.value,undefined);assert.equal(item.selector,undefined);}
 assert.equal(h.posted[0].requests[0].annotation_number,1);assert.deepEqual(h.posted[0].requests[0].version,initial.version);
 const anchor=h.posted[0].requests[0].anchor_mm;
 assert.ok(Number.isFinite(anchor.x)&&Number.isFinite(anchor.y)&&anchor.x>=0&&anchor.x<=120&&anchor.y>=0&&anchor.y<=90);
 assert.equal(h.node('instruction').disabled,true,'saved instructions must be read-only');
-h.choose('semantic-list',JSON.stringify({category:'B'}));h.input('instruction','Keep group B separate.');
-await h.submit();assert.equal(h.posted.length,2);assert.equal(h.posted[1].requests[0].annotation_number,2);
+h.point('use-B');h.input('instruction','Keep group B separate.');
+await h.submit();assert.equal(h.posted.length,2);assert.equal(h.posted[1].requests[0].annotation_number,3);assert.equal(h.posted[1].requests[0].element_id,'group-B');
 h.data={...h.data,source_current:false};await h.click('reload');
 assert.equal(h.node('save').disabled,true);
 h.point('use-A');h.input('instruction','Must refuse stale source.');await h.submit();
@@ -828,12 +987,12 @@ assert.equal(h.node('save').disabled,true);
     def test_independent_instructions_switch_remove_and_batch_failure_keeps_drafts(self):
         self.run_client(r"""
 const h=harness(figure());await h.start();
-h.point('use-A');h.choose('property','color');h.input('property-value','#112233');h.input('instruction','First independent instruction.');
+h.point('use-A');h.input('instruction','First independent instruction.');
 h.point('use-B');h.input('instruction','Second independent instruction.');
 h.point('text-A');h.input('instruction','Third independent instruction.');
 assert.deepEqual(h.numbers(),[1,2,3]);
-h.chip(1);assert.equal(h.node('instruction').value,'First independent instruction.');assert.equal(h.node('property-value').value,'#112233');
-h.chip(2);assert.equal(h.node('instruction').value,'Second independent instruction.');assert.equal(h.node('property').value,'','property edits do not bleed across notes');
+h.chip(1);assert.equal(h.node('instruction').value,'First independent instruction.');
+h.chip(2);assert.equal(h.node('instruction').value,'Second independent instruction.');
 h.click('remove-annotation');assert.deepEqual(h.numbers(),[1,3],'removing one annotation must not renumber its neighbours');
 h.point('stroke');assert.deepEqual(h.numbers(),[1,3,4]);assert.equal(h.node('instruction').value,'');
 let resolveBatch;
@@ -845,7 +1004,7 @@ assert.deepEqual(h.numbers(),[1,3,4],'saving freezes new selections, clearing an
 resolveBatch(jsonResponse({error:'The second requested change is invalid.'},false));await saving;h.override=null;
 assert.equal(h.posted.length,1);assert.deepEqual(h.posted[0].requests.map(item=>item.annotation_number),[1,3],'only filled drafts are submitted, leaving the blank annotation untouched');
 assert.equal(h.posted[0].requests[0].element_id,'group-A');assert.equal(h.posted[0].requests[1].element_id,'key-A');
-assert.equal(h.posted[0].requests[0].property,'color');assert.equal(h.posted[0].requests[1].property,undefined);
+for(const item of h.posted[0].requests){assert.equal(item.property,undefined);assert.equal(item.value,undefined);}
 assert.match(h.node('message').textContent,/draft instructions have been kept/);
 h.chip(1);assert.equal(h.node('instruction').value,'First independent instruction.');assert.equal(h.node('instruction').disabled,false);
 h.chip(3);assert.equal(h.node('instruction').value,'Third independent instruction.');assert.equal(h.node('instruction').disabled,false);
@@ -881,16 +1040,202 @@ h.point('use-A');assert.deepEqual(h.numbers(),[2],'undone saved numbers remain o
 h.input('instruction','Use a fresh annotation after undo.');await h.submit();assert.equal(h.posted[1].requests[0].annotation_number,2);
 """)
 
+    def test_general_note_allocates_only_when_a_real_comment_is_written(self):
+        self.run_client(r"""
+const h=harness(figure());await h.start();
+for(let click=0;click<5;click++)h.click('add-general');
+assert.deepEqual(h.numbers(),[],'opening or repeatedly focusing a general comment must not create numbered annotations');
+assert.equal(h.svg().querySelectorAll('[data-annotation-number]').length,0,'an empty general comment has no badge on the figure');
+assert.equal(h.node('instruction').disabled,false,'the unnumbered general comment remains editable');
+assert.equal(h.node('save').disabled,true);
+h.input('instruction',' \t\n ');
+assert.deepEqual(h.numbers(),[],'whitespace is not an actual comment');
+assert.equal(h.node('save').disabled,true);
+h.input('instruction','Align the panel and retain all measured values.');
+assert.deepEqual(h.numbers(),[1],'the first nonempty comment receives the first number');
+assert.equal(h.svg().querySelectorAll('[data-annotation-number]').length,1);
+h.input('instruction','Align the panel, retaining all measured values and units.');
+h.click('add-general');
+assert.deepEqual(h.numbers(),[1],'editing or revisiting a real general comment keeps its identity');
+assert.equal(h.node('instruction').value,'Align the panel, retaining all measured values and units.');
+await h.submit();
+assert.equal(h.posted.length,1);assert.equal(h.posted[0].requests.length,1);
+assert.equal(h.posted[0].requests[0].annotation_number,1);
+assert.equal(h.posted[0].requests[0].instruction,'Align the panel, retaining all measured values and units.');
+assert.equal(h.posted[0].requests[0].element_id,undefined);
+assert.equal(h.posted[0].requests[0].region_mm,undefined);
+""")
+
+    def test_empty_general_composer_removal_clear_reload_and_text_deletion_keep_numbers(self):
+        self.run_client(r"""
+for(const action of ['remove-annotation','clear','reload']){
+ const h=harness(figure());await h.start();h.click('add-general');h.input('instruction',' \n ');
+ await h.click(action);assert.deepEqual(h.numbers(),[],'discarding an empty composer never creates a note');
+ h.point('use-A');assert.deepEqual(h.numbers(),[1],action+' must not consume the next annotation number');
+}
+const storage=new Map(),before=harness(figure(),storage);await before.start();
+before.click('add-general');before.input('instruction',' \t ');
+const restored=harness(figure(),storage);await restored.start();
+assert.deepEqual(restored.numbers(),[],'a newly loaded page does not restore an empty numbered general comment');
+restored.point('use-A');assert.deepEqual(restored.numbers(),[1]);
+restored.input('instruction','Keep group A separate.');restored.click('add-general');
+restored.input('instruction','A temporary whole-figure comment.');assert.deepEqual(restored.numbers(),[1,2]);
+restored.input('instruction',' \n ');assert.deepEqual(restored.numbers(),[1],'erasing a general comment removes its unsaved numbered note');
+assert.equal(restored.svg().querySelectorAll('[data-annotation-number]').length,1);
+restored.point('use-B');assert.deepEqual(restored.numbers(),[1,2],'an erased trailing general comment releases its unused number');
+restored.chip(1);assert.equal(restored.node('instruction').value,'Keep group A separate.');
+const neighbours=harness(figure());await neighbours.start();
+neighbours.click('add-general');neighbours.input('instruction','Temporary first general comment.');
+neighbours.point('use-A');neighbours.input('instruction','Keep the second annotation on group A.');
+neighbours.chip(1);neighbours.input('instruction','');
+assert.deepEqual(neighbours.numbers(),[2],'discarding a lower general number must not renumber a surviving annotation');
+neighbours.chip(2);assert.equal(neighbours.node('instruction').value,'Keep the second annotation on group A.');
+""")
+
+    def test_legacy_empty_general_drafts_do_not_restore_phantom_numbers(self):
+        self.run_client(r"""
+const initial=figure('A'),storage=new Map();
+initial.requests=[
+ {id:'saved-general',version:initial.version,status:'pending',annotation_number:5,element_ids:[],instruction:'Keep this saved whole-figure comment.'},
+ {id:'undone-general',version:initial.version,status:'undone',annotation_number:8,element_ids:[],instruction:'This saved number remains reserved after undo.'}
+];
+storage.set('easyviz-annotations:'+initial.figure_name+':'+JSON.stringify(initial.version),JSON.stringify({
+ nextNumber:99,activeNumber:4,notes:[
+  {number:1,element_ids:[],instruction:''},
+  {number:2,element_ids:['group-A'],instruction:'Keep this written element comment.'},
+  {number:3,element_ids:[],instruction:'Keep this written general comment.'},
+  {number:4,element_ids:[],instruction:' \n '}
+ ]
+}));
+const h=harness(initial,storage);await h.start();
+assert.deepEqual(h.numbers().sort((a,b)=>a-b),[2,3,5],'legacy blank general drafts are removed while written and saved comments retain their numbers');
+h.chip(2);assert.equal(h.node('instruction').value,'Keep this written element comment.');
+h.chip(3);assert.equal(h.node('instruction').value,'Keep this written general comment.');
+h.point('use-B');assert.deepEqual(h.numbers().sort((a,b)=>a-b),[2,3,5,9],'a stale draft counter is discarded, while undone saved number eight is still reserved');
+h.input('instruction','Use the next available number for group B.');
+await h.submit();
+assert.deepEqual(h.posted[0].requests.map(item=>item.annotation_number),[2,3,9]);
+assert.ok(h.posted[0].requests.every(item=>item.instruction.trim()),'migration never sends an empty phantom note');
+""")
+
+    def test_saved_general_new_instruction_waits_for_text_and_preserves_reserved_ids(self):
+        self.run_client(r"""
+const h=harness(figure());await h.start();
+h.click('add-general');h.input('instruction','The original saved general instruction.');await h.submit();
+assert.deepEqual(h.numbers(),[1]);assert.equal(h.node('instruction').disabled,true);
+h.click('new-instruction');assert.deepEqual(h.numbers(),[1],'opening another instruction on a saved general comment does not allocate a number');
+assert.equal(h.node('instruction').disabled,false);assert.equal(h.node('instruction').value,'');
+h.input('instruction',' \n ');assert.deepEqual(h.numbers(),[1]);
+h.click('remove-annotation');assert.deepEqual(h.numbers(),[1]);
+h.chip(1);assert.equal(h.node('instruction').value,'The original saved general instruction.');
+h.click('new-instruction');h.input('instruction','A second general instruction.');assert.deepEqual(h.numbers(),[1,2]);
+h.input('instruction','');assert.deepEqual(h.numbers(),[1],'erasing the new draft never removes the original saved request');
+h.chip(1);h.click('new-instruction');h.input('instruction','The final second general instruction.');
+assert.deepEqual(h.numbers(),[1,2]);await h.submit();
+assert.equal(h.posted[1].requests.length,1);assert.equal(h.posted[1].requests[0].annotation_number,2);
+assert.equal(h.posted[1].requests[0].instruction,'The final second general instruction.');
+await h.click('undo');assert.deepEqual(h.numbers(),[1]);
+h.chip(1);h.click('new-instruction');assert.deepEqual(h.numbers(),[1]);
+h.input('instruction','A fresh instruction after undo.');assert.deepEqual(h.numbers(),[1,3],'an undone saved instruction still reserves number two');
+""")
+
+    def test_general_note_quota_and_number_limit_do_not_expose_unsaveable_composers(self):
+        self.run_client(r"""
+const full=harness(figure());await full.start();
+for(let index=0;index<100;index++){
+ full.region(20+index*2,40,1,3);full.input('instruction','Keep region comment '+index+'.');
+}
+full.click('add-general');
+assert.equal(full.inspect('generalDraft'),null,'a full draft quota must reject a new composer before the user can type an unsaveable comment');
+assert.equal(full.node('annotation-title').textContent,'Annotation 100');
+assert.equal(full.node('instruction').value,'Keep region comment 99.','quota rejection preserves the existing written annotation');
+assert.match(full.node('message').textContent,/Save or remove some drafts/);
+assert.equal(full.inspect('annotations.length'),100);
+await full.click('reload');full.chip(100);assert.equal(full.node('instruction').value,'Keep region comment 99.');
+const reusable=harness(figure());await reusable.start();
+reusable.click('add-general');reusable.input('instruction','An existing general comment at quota.');
+for(let index=0;index<99;index++){
+ reusable.region(20+index*2,40,1,3);reusable.input('instruction','Other region '+index+'.');
+}
+reusable.click('add-general');assert.equal(reusable.node('instruction').value,'An existing general comment at quota.','quota does not block revisiting a real existing general annotation');
+assert.equal(reusable.inspect('activeNumber'),1);assert.equal(reusable.inspect('annotations.length'),100);
+const limited=figure('B');
+limited.requests=[{id:'last-number',version:limited.version,status:'undone',annotation_number:1000000,element_ids:[],instruction:'This saved number remains occupied.'}];
+const exhausted=harness(limited);await exhausted.start();exhausted.click('add-general');
+assert.equal(exhausted.inspect('generalDraft'),null,'the terminal saved number prevents opening a composer whose comment cannot receive an ID');
+assert.equal(exhausted.node('instruction').disabled,true);assert.deepEqual(exhausted.numbers(),[]);
+assert.match(exhausted.node('message').textContent,/annotation number limit/);
+const saved=figure('C');
+saved.requests=[{id:'final-general',version:saved.version,status:'pending',annotation_number:1000000,element_ids:[],instruction:'The final saved general comment is still readable.'}];
+const readable=harness(saved);await readable.start();readable.click('add-general');
+assert.equal(readable.node('instruction').value,'The final saved general comment is still readable.');
+assert.equal(readable.inspect('activeNumber'),1000000);
+readable.click('new-instruction');assert.equal(readable.inspect('generalDraft'),null,'new instructions on saved generals enforce the same terminal-number guard');
+assert.equal(readable.node('instruction').value,'The final saved general comment is still readable.');
+assert.equal(readable.node('instruction').disabled,true);
+""")
+
     def test_same_version_reload_keeps_memory_drafts_when_storage_is_unavailable(self):
         self.run_client(r"""
 const h=harness(figure(),new Map(),true);await h.start();
 h.point('use-A');h.input('instruction','Keep this instruction even when browser storage is blocked.');
-h.choose('property','color');h.input('property-value','#334455');
 await h.click('reload');assert.deepEqual(h.numbers(),[1]);
 assert.equal(h.node('instruction').value,'Keep this instruction even when browser storage is blocked.');
-assert.equal(h.node('property').value,'color');assert.equal(h.node('property-value').value,'#334455');
 await h.submit();assert.equal(h.posted.length,1);assert.equal(h.posted[0].requests[0].instruction,'Keep this instruction even when browser storage is blocked.');
-assert.equal(h.posted[0].requests[0].value,'#334455');
+assert.equal(h.posted[0].requests[0].element_id,'group-A');assert.equal(h.posted[0].requests[0].property,undefined);
+""")
+
+    def test_annotation_pagination_preserves_all_comments_geometry_and_failed_save(self):
+        self.run_client(r"""
+const initial=figure('A'),h=harness(initial);await h.start();
+for(let index=0;index<13;index++){
+ h.region(20+12*index,40,8,10);
+ h.input('instruction','Comment '+(index+1)+' for its selected region.');
+}
+assert.deepEqual(h.numbers(),[13],'new annotations beyond twelve are immediately visible');
+assert.equal(h.node('annotations-pager').hidden,false);
+assert.equal(h.node('annotations-next').disabled,true);
+await h.click('annotations-previous');
+assert.deepEqual(h.numbers(),Array.from({length:12},(_,index)=>index+1));
+h.chip(1);assert.equal(h.node('instruction').value,'Comment 1 for its selected region.');
+h.input('instruction','Refined comment 1 for its selected region.');
+await h.click('annotations-next');assert.deepEqual(h.numbers(),[13]);
+h.chip(13);assert.equal(h.node('instruction').value,'Comment 13 for its selected region.');
+assert.equal(h.svg().querySelectorAll('[data-annotation-number]').length,13,'pagination never removes annotations from the figure');
+h.batchFailure=true;await h.submit();
+assert.equal(h.posted.length,1);assert.equal(h.posted[0].requests.length,13,'saving includes filled drafts on every page');
+assert.deepEqual(h.posted[0].requests.map(item=>item.annotation_number),Array.from({length:13},(_,index)=>index+1));
+for(const [index,item] of h.posted[0].requests.entries()){
+ assert.deepEqual(item.version,initial.version);
+ assert.deepEqual(item.region_mm,{x:5+6*index,y:10,width:4,height:5});
+ assert.equal(item.property,undefined);assert.equal(item.value,undefined);
+ assert.equal(item.instruction,(index===0?'Refined comment 1':'Comment '+(index+1))+' for its selected region.');
+}
+assert.equal(h.inspect('annotations.filter(note=>!note.saved).length'),13);
+assert.match(h.node('message').textContent,/draft instructions have been kept/);
+await h.click('annotations-previous');h.chip(1);
+assert.equal(h.node('instruction').value,'Refined comment 1 for its selected region.');
+h.batchFailure=false;await h.submit();
+assert.deepEqual(h.posted[1],h.posted[0],'retry sends unchanged source-bound notes from all pages');
+assert.equal(h.inspect('annotations.filter(note=>note.saved).length'),13);
+assert.equal(h.node('instruction').disabled,true);
+""")
+
+    def test_older_structured_draft_keeps_its_comment_and_mapped_identity(self):
+        self.run_client(r"""
+const initial=figure('A'),storage=new Map();
+storage.set('easyviz-annotations:'+initial.figure_name+':'+JSON.stringify(initial.version),JSON.stringify({
+ nextNumber:2,activeNumber:1,notes:[{number:1,element_ids:['group-A'],instruction:'Keep my saved comment.',property:'color',value:'#334455',saved:false}]
+}));
+const h=harness(initial,storage);await h.start();
+assert.deepEqual(h.numbers(),[1]);assert.equal(h.node('instruction').value,'Keep my saved comment.\nSet Color to #334455 for A.','retired controls become visible text so older intent is retained');
+assert.equal(h.inspect('annotations[0].property'),undefined);assert.equal(h.inspect('annotations[0].value'),undefined);
+h.input('instruction','Use a brighter blue for these points; retain the measurements.');
+await h.submit();assert.equal(h.posted.length,1);
+const request=h.posted[0].requests[0];
+assert.equal(request.element_id,'group-A');assert.deepEqual(request.version,initial.version);
+assert.equal(request.instruction,'Use a brighter blue for these points; retain the measurements.');
+assert.equal(request.property,undefined);assert.equal(request.value,undefined,'a legacy hidden control cannot override the written instruction');
 """)
 
 

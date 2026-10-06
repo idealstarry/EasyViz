@@ -185,7 +185,7 @@ def prepare_request(raw, request):
     labels = request.get("labels", {})
     _object(labels, {"value", "group"}, "labels")
     require(all(isinstance(v, str) for v in labels.values()), "labels must be strings")
-    formats = request.get("formats", ["png", "pdf", "svg"])
+    formats = request.get("formats", ["svg", "png"])
     require(isinstance(formats, list) and all(isinstance(v, str) for v in formats) and "png" in formats and len(formats) == len(set(formats)) and set(formats) <= {"png", "pdf", "svg", "tiff"}, "formats must include png and contain only unique png/pdf/svg/tiff names")
     common = {"fields": deepcopy(fields), "colors": deepcopy(colors), "order": {"group": list(groups)}, "layout": layout, "typography": deepcopy(typography), "formats": list(formats)}
     if "line_roles" in request:

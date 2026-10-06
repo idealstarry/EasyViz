@@ -124,7 +124,7 @@ def validate_spec(spec):
     require(mode != "all_filled" or not ({"filled", "hollow"} & set(labels)), "Mark-state legend labels require an explicit mark_fill semantic")
     for key in ("layout", "typography", "legends"):
         require(isinstance(spec.get(key, {}), dict), f"{key} must be an object")
-    formats = spec.get("formats", ["pdf", "png"])
+    formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and formats and all(isinstance(v, str) for v in formats) and len(formats) == len(set(formats)), "formats must be a nonempty list without duplicates")
     require(set(formats) <= {"pdf", "svg", "png", "tiff"}, "Supported formats: pdf, svg, png, tiff")
     # Validate shared layout/types without routing an interval through core chart validation.
@@ -470,6 +470,7 @@ def render(data_path, spec, out, *, spec_path=None):
     data_path, out = Path(data_path), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Until this run passes, exports may be stale or unverified."})
+    spec_path = core.begin_document(out, spec, spec_path)
     fig = None
     figures_before = set(plt.get_fignums())
     try:
@@ -508,7 +509,7 @@ def render(data_path, spec, out, *, spec_path=None):
             qa = {"status": "pass" if passed else "needs_revision", "valid_outputs": passed, "input_rows": len(data), "plotted_input_rows": len(fig._easyviz_interval_artists), "input_sha256": input_hash, "width_mm": layout["width_mm"], "height_mm": layout["height_mm"], "clipped_text": clipped, "overlapping_tick_labels": overlap, "unchecked_oblique_tick_labels": oblique, "missing_glyphs": missing, "source_to_artist_audit": audit, "mark_geometry": geometry, "legend_layout": legends, "exports": exports, "visual_review_required": True}
             qa["readability"] = readability
             settings = deepcopy(resolved)
-            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["pdf", "png"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest())
+            settings.update(layout=layout, typography=typography, resolved_colors=colors, formats=resolved.get("formats", ["svg"]), input_file=str(data_path.resolve()), input_sha256=input_hash, supplied_spec=deepcopy(spec), spec_sha256=hashlib.sha256(json.dumps(spec, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest())
             settings["axis"] = {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim())), "explicit_x_ticks": resolved.get("options", {}).get("x_ticks"), "reference_value": resolved.get("options", {}).get("reference_value"), "reference_drawn": "reference_value" in resolved.get("options", {})}
             settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
             area = resolved.get("options", {}).get("marker_area_pt2", 20)
@@ -525,6 +526,7 @@ def render(data_path, spec, out, *, spec_path=None):
             write_json(out / "stats.json", {"method": "supplied_intervals", "intervals_recomputed": False, "weights_inferred": False, "sample_size_inferred": False, "tests_performed": False})
             write_json(out / "qa.json", qa)
             require(passed, "Canvas or source-to-artist QA needs revision; inspect qa.json and the exported panel. Preserve final dimensions and fonts or explicitly request a larger panel.")
+            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

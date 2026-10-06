@@ -143,7 +143,7 @@ def _hash_file(path):
 def write(fig, out, spec, layout):
     """Write a map bound to the actual SVG bytes and the resolved specification."""
     out = Path(out)
-    svg = out / "panel.svg" if "svg" in spec.get("formats", ["pdf", "png"]) else None
+    svg = out / "panel.svg" if "svg" in spec.get("formats", ["svg"]) else None
     svg_ids = None
     if svg is not None and svg.is_file():
         svg_ids = {element.attrib["id"] for element in ET.parse(svg).iter() if "id" in element.attrib}

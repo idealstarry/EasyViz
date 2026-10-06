@@ -3,73 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EasyViz · Figure review</title>
+  <title>EasyViz · Workbench</title>
   <link rel="icon" href="/logo.svg?v=__LOGO_VERSION__" type="image/svg+xml" sizes="any">
   <link rel="stylesheet" href="/workbench.css">
   <script src="/workbench.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><img class="brand-mark" src="/logo.svg?v=__LOGO_VERSION__" alt="" width="36" height="36"><div><strong>EasyViz</strong><span class="subtle">Figure review</span></div></div>
-    <div class="top-actions"><span id="track" class="pill" hidden></span><button id="reload" type="button">Reload figure</button></div>
+    <div class="brand"><img class="brand-mark" src="/logo.svg?v=__LOGO_VERSION__" alt="" width="36" height="36"><div><strong>EasyViz</strong><span class="subtle">Workbench</span></div></div>
+    <div class="top-actions"><span id="track" class="pill" hidden></span><button id="open-library" type="button" aria-expanded="false" aria-controls="figure-library">Figures</button><button id="reload" type="button">Reload</button></div>
   </header>
   <main>
-    <div class="heading"><div><h1 id="figure-name">Loading figure…</h1><p id="selection-message" class="subtle">Open a figure, select an element and describe what you want to change.</p></div><div id="dimensions" class="dimensions"></div></div>
-    <div class="layout">
+    <div class="heading"><div class="heading-copy"><div id="figure-name-display" class="figure-name-row"><h1 id="figure-name">Loading figure…</h1><button id="rename-figure" type="button" class="rename-button" aria-label="Rename figure" title="Rename figure" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z"/><path d="m13 6 5 5"/></svg></button></div><form id="figure-name-form" class="figure-name-form" hidden><label class="visually-hidden" for="figure-name-input">Figure name</label><input id="figure-name-input" type="text" maxlength="120" autocomplete="off" required><button id="save-figure-name" type="submit">Save name</button><button id="cancel-figure-name" type="button">Cancel</button></form><p id="selection-message" class="subtle">Open a figure, select an element and describe what you want to change.</p></div><div id="dimensions" class="dimensions"></div></div>
+    <section id="figure-library" class="figure-library" aria-label="EasyViz figure library" hidden>
+      <div class="library-heading"><div><h2>Your figures</h2><p id="library-project" class="help"></p></div><div class="library-actions"><button id="refresh-library" type="button">Refresh</button><button id="import-document" type="button">Open .ev</button><input id="document-file" type="file" accept=".ev" hidden></div></div>
+      <p id="library-empty" class="empty" hidden>Open an EasyViz .ev project, or create a figure in this project. SVG is the interactive canvas; PDF and PNG are available as exports.</p>
+      <div id="library-list" class="library-list"></div>
+    </section>
+    <div id="editor-layout" class="layout">
       <section class="preview-card" aria-label="Figure preview">
         <div id="attempt-toolbar" class="attempt-toolbar" hidden><div class="attempt-picker"><label for="attempt-list">Viewing</label><select id="attempt-list" aria-label="Figure attempt"></select></div><div class="attempt-actions"><button id="compare-toggle" type="button" aria-pressed="true" hidden>Hide comparison</button><button id="accept-attempt" type="button">Accept</button><button id="restore-attempt" type="button" hidden>Restore accepted</button></div></div>
         <div class="preview-toolbar"><div class="mode-group" aria-label="Selection mode"><button id="element-mode" type="button" class="active" aria-pressed="true">Select element</button><button id="region-mode" type="button" aria-pressed="false">Select region</button><button id="clear" type="button">Clear drafts</button></div><span class="subtle" id="preview-size">Full canvas</span></div>
         <div id="comparison" class="comparison" hidden><p id="comparison-label" class="comparison-label"></p><div id="comparison-host" aria-label="Read-only previous attempt preview"></div></div>
         <p id="current-label" class="comparison-label" hidden></p>
-        <div id="figure-host" tabindex="0" aria-label="Interactive SVG figure; use the element list to select with a keyboard"></div>
+        <div id="figure-host" tabindex="0" aria-label="Interactive SVG figure; focus a mapped target and press Enter to annotate"></div>
         <div class="preview-footer"><span>Each attempt keeps its own source and exports.</span><div id="downloads"></div></div>
       </section>
       <aside class="review-card" aria-label="Edit requests">
+        <div class="agent-connection"><div><strong id="agent-label">Agent disconnected</strong><span id="agent-check-hint" hidden></span></div><button id="connect-agent" type="button">Connect original Agent</button></div>
         <nav class="inspector-tabs" role="tablist" aria-label="Review panels">
           <button id="edit-tab" type="button" role="tab" aria-selected="true" aria-controls="edit-panel" tabindex="0">Edit</button>
           <button id="requests-tab" type="button" role="tab" aria-selected="false" aria-controls="requests-panel" tabindex="-1">Requests <span id="request-count" class="tab-count" hidden></span></button>
           <button id="history-tab" type="button" role="tab" aria-selected="false" aria-controls="history-panel" tabindex="-1">History</button>
         </nav>
-        <section id="job-status" class="job-status" aria-label="Render status" aria-live="polite" hidden><div class="job-heading"><strong id="job-title">Rendering preview</strong><button id="cancel-job" type="button" class="text-button" hidden>Cancel</button></div><p id="job-detail"></p><div class="job-actions"><button id="open-job-result" type="button" class="text-button" hidden>Open rendered attempt</button><button id="review-remaining-requests" type="button" class="text-button" hidden>Review remaining requests</button></div></section>
+        <section id="job-status" class="job-status" aria-label="Edit status" aria-live="polite" hidden><div class="job-heading"><strong id="job-title">Waiting for edits</strong><button id="cancel-job" type="button" class="text-button" hidden>Cancel</button></div><p id="job-detail"></p><div class="job-actions"><button id="open-job-result" type="button" class="text-button" hidden>Open rendered attempt</button><button id="review-remaining-requests" type="button" class="text-button" hidden>Review remaining requests</button></div></section>
         <div id="edit-panel" class="inspector-panel" role="tabpanel" aria-labelledby="edit-tab" tabindex="0">
         <form id="request-form" novalidate>
-          <div class="section-title"><h2>Edit figure</h2></div>
-          <p id="source-status" class="source-status"></p>
+          <p id="source-status" class="source-status" hidden></p>
           <div class="annotation-heading"><span>Annotations</span><button id="add-general" type="button" class="text-button">General note</button></div>
           <div id="annotation-list" class="annotation-list" role="group" aria-label="Numbered annotations"></div>
+          <div id="annotations-pager" class="list-pagination" hidden><button id="annotations-previous" type="button" class="text-button" aria-label="Previous annotations">Previous</button><span id="annotations-page"></span><button id="annotations-next" type="button" class="text-button" aria-label="Next annotations">Next</button></div>
           <div class="annotation-heading" id="active-annotation" hidden><strong id="annotation-title"></strong><button id="remove-annotation" type="button" class="text-button">Remove</button></div>
           <p id="annotation-state" class="help" hidden></p>
           <button id="new-instruction" type="button" class="text-button" hidden>Add another instruction here</button>
-          <p id="selection-details" class="selection-details">Leave a general note, choose an element or mark a region.</p>
-          <details id="target-details" class="target-details" hidden><summary>Target and editable properties</summary><div id="target-identity"></div></details>
-          <details class="selection-options"><summary>Choose from mapped elements</summary>
-          <label for="semantic-list">Select a mapped group</label><select id="semantic-list"><option value="">Choose a category, role or source/spec path…</option></select>
-          <label for="element-list">Select an element</label><select id="element-list" size="5" aria-describedby="selection-help"><option value="">Whole figure / general note</option></select>
-          <p id="selection-help" class="help selection-help">Each click or drawn region adds a numbered annotation. Choose its number to edit the instruction. Scatter collections select a whole point group; use a region for a specific point.</p>
-          </details>
-          <div class="property-fields"><div>
-          <label for="property">What to change</label><select id="property"><option value="">Free-form instruction</option></select>
-          </div>
-          <div id="value-field" hidden><label for="property-value">New value</label><input id="property-value" type="text" placeholder="For example: #2581B9 or 0.8" maxlength="4000"></div>
-          </div>
-          <p id="property-help" class="help property-help" hidden></p>
-          <label for="instruction">Your instruction</label><textarea id="instruction" rows="3" maxlength="8000" placeholder="Move this legend 2 mm to the right. Keep the font size and panel dimensions."></textarea>
-          <details class="workflow-help"><summary>How changes work</summary>
-          <p id="workflow-description" class="help">Save numbered instructions together. Supported property edits can be rendered from the plotting code; free-form or unsupported changes are saved for your Agent to apply. The page never changes scientific marks only in the browser.</p>
-          </details>
+          <p id="selection-details" class="selection-details" hidden></p>
+          <label for="instruction">Comment</label><textarea id="instruction" rows="5" maxlength="8000" placeholder="Describe what to change at this annotation."></textarea>
         </form>
         </div>
-        <div id="edit-footer" class="inspector-footer"><button class="primary" id="save" type="submit" form="request-form">Save requests</button><button id="preview-edits" type="button" hidden>Render saved edits</button><p id="handoff-hint" class="help" hidden></p></div>
+        <div id="edit-footer" class="inspector-footer"><button class="primary" id="submit-edits" type="button">Submit edits</button><div class="secondary-actions"><button id="save" type="submit" form="request-form">Save drafts</button></div><p id="handoff-hint" class="help" hidden></p></div>
         <div id="requests-panel" class="inspector-panel" role="tabpanel" aria-labelledby="requests-tab" tabindex="0" hidden>
-        <section class="queue-section" aria-label="Saved requests"><div class="section-title"><h2>Saved requests</h2><button id="undo" type="button" class="text-button" disabled>Undo pending</button></div><div id="request-list"><p class="empty">No changes requested yet.</p></div><a id="download-requests" class="small-link" href="/files/requests.json" download>Download requests</a><details class="workflow-help"><summary>Undo and restore</summary><p class="help">Undo cancels a pending instruction. Accept a reviewed attempt to mark a version you can restore. Restoring creates a new attempt from its verified source and specification.</p></details></section>
+        <section class="queue-section" aria-label="Saved requests"><div class="section-title"><h2>Saved requests</h2><button id="undo" type="button" class="text-button" disabled>Undo pending</button></div><div id="request-list"><p class="empty">No changes requested yet.</p></div><div id="requests-pager" class="list-pagination" hidden><button id="requests-previous" type="button" class="text-button" aria-label="Previous requests">Previous</button><span id="requests-page"></span><button id="requests-next" type="button" class="text-button" aria-label="Next requests">Next</button></div><a id="download-requests" class="small-link" href="/files/requests.json" download>Download requests</a></section>
         </div>
         <div id="history-panel" class="inspector-panel" role="tabpanel" aria-labelledby="history-tab" tabindex="0" hidden>
         <p id="history-empty" class="empty">No attempt history yet.</p>
-        <section id="history-section" class="queue-section" aria-label="Attempt history" hidden><div class="section-title"><h2>Attempt history</h2></div><div id="history-list"></div></section>
+        <section id="history-section" class="queue-section" aria-label="Attempt history" hidden><div class="section-title"><h2>Attempt history</h2></div><div id="history-list"></div><div id="history-pager" class="list-pagination" hidden><button id="history-previous" type="button" class="text-button" aria-label="Previous history">Previous</button><span id="history-page"></span><button id="history-next" type="button" class="text-button" aria-label="Next history">Next</button></div></section>
         </div>
       </aside>
     </div>
     <p id="message" role="status" aria-live="polite"></p>
   </main>
+  <dialog id="note-dialog" aria-labelledby="note-dialog-title"><div class="note-dialog-heading"><h2 id="note-dialog-title"></h2><button id="note-dialog-close" type="button" class="text-button">Close</button></div><p id="note-dialog-text"></p></dialog>
 </body>
 </html>

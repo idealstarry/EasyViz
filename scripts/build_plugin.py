@@ -4,12 +4,13 @@ import hashlib
 import json
 import shutil
 import zipfile
-from check_package import validate_plugin, validate_resource_tree
+from check_package import WORKBENCH_RUNTIME_NAMES, validate_plugin, validate_resource_tree
 from sync_skill_cases import sync
 from package_io import file_sha256, replace_outputs, staging_directory
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
+COPY_IGNORE = shutil.ignore_patterns('__pycache__', '.DS_Store', '*.pyc', *WORKBENCH_RUNTIME_NAMES)
 
 
 def check_output_path(path: Path, dist: Path) -> None:
@@ -42,7 +43,8 @@ def validate_sources() -> None:
             if candidate.is_symlink() or not (candidate.is_file() or candidate.is_dir()):
                 raise ValueError(f'Symlink or special build source: {candidate}')
     for path in directories:
-        validate_resource_tree(path)
+        # Local workbench state stays in the checkout and is excluded on copy.
+        validate_resource_tree(path, allow_runtime_state=True)
     for path in files:
         if not path.is_file():
             raise ValueError(f'Build source is not a regular file: {path}')
@@ -91,9 +93,9 @@ def build(dist: Path | None = None) -> dict:
         staged_archive = staging / archive.name
         staged_summary = staging / summary_path.name
         staged_target.mkdir()
-        shutil.copytree(ROOT / 'plugins/easyviz/.codex-plugin', staged_target / '.codex-plugin')
-        shutil.copytree(ROOT / 'plugins/easyviz/assets', staged_target / 'assets')
-        shutil.copytree(ROOT / 'skills', staged_target / 'skills', ignore=shutil.ignore_patterns('__pycache__', '.DS_Store', '*.pyc'))
+        shutil.copytree(ROOT / 'plugins/easyviz/.codex-plugin', staged_target / '.codex-plugin', ignore=COPY_IGNORE)
+        shutil.copytree(ROOT / 'plugins/easyviz/assets', staged_target / 'assets', ignore=COPY_IGNORE)
+        shutil.copytree(ROOT / 'skills', staged_target / 'skills', ignore=COPY_IGNORE)
         shutil.copy2(ROOT / 'plugins/easyviz/README.md', staged_target / 'README.md')
         for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):
             if (ROOT / name).exists():

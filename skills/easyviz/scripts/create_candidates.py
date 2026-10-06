@@ -899,7 +899,8 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
             layout[key] = value
             suggested.append(key)
     layout.setdefault("auto_fit", not _manual_layout(base))
-    formats = base.setdefault("formats", ["pdf", "png"])
+    # PNG supports candidate image review; SVG is the editable deliverable.
+    formats = base.setdefault("formats", ["svg", "png"])
     if "png" not in formats:
         formats.append("png")
     # All proposals share the same default numeric bounds and measured font.
