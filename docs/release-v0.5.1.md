@@ -52,7 +52,7 @@ Editable figure projects and a clearer workbench-to-Agent review loop.
 
 ## Validation
 
-849 tests passed. The full portable-package check also passed, including actual
+850 tests passed. The full portable-package check also passed, including actual
 redraws from extracted resources. The release requires successful GitHub Core
 checks on its commit; [the QA record](../evals/release-qa/v0.5.1/README.md)
 includes the reviewed scope, actual workbench evidence and applicable limits.

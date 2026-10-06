@@ -32,6 +32,12 @@ import ev_document
 
 class AgentDispatchTests(unittest.TestCase):
     def setUp(self):
+        # This suite supplies a controlled Python subprocess instead of a
+        # provider-backed CLI. Declare its discovery for the whole test too;
+        # status checks and reopened services must not depend on host software.
+        discovery = patch.object(agent_dispatch, "codex_binary", return_value=sys.executable)
+        discovery.start()
+        self.addCleanup(discovery.stop)
         self.temp = tempfile.TemporaryDirectory(prefix="easyviz-agent-contract-")
         self.root = Path(self.temp.name).resolve()
         self.data = self.root / "data.csv"
@@ -113,6 +119,23 @@ print(json.dumps({{'type': 'turn.completed'}}))
             other.close()
         with self.assertRaisesRegex(WorkbenchError, "Only the Codex"):
             self.service.configure_agent("/bin/sh", True)
+
+    def test_unavailable_cli_blocks_configured_submissions_without_starting_worker(self):
+        self.connect()
+        item = self.save()
+        with patch.object(agent_dispatch, "codex_binary", return_value=None), \
+                patch.object(agent_dispatch, "start_worker") as start:
+            status = self.service.agent_status()
+            self.assertTrue(status["enabled"])
+            self.assertFalse(status["available"])
+            self.assertFalse(status["automatic_dispatch"])
+            with self.assertRaisesRegex(WorkbenchError, "Connect"):
+                self.service.submit_agent_job(self.version, [item["id"]])
+            with self.assertRaisesRegex(WorkbenchError, "not installed or available"):
+                self.service.configure_agent()
+            start.assert_not_called()
+        self.assertEqual(self.service.list_jobs()["jobs"], [])
+        self.assertEqual(self.service.app.ledger()["requests"][0]["status"], "pending")
 
     def test_full_saved_batch_uses_real_svg_only_output_and_preserves_original(self):
         color, freeform = self.save(), self.save(True)

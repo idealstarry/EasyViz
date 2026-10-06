@@ -7,7 +7,8 @@ local workbench workflow.
 
 | Check | Result |
 | --- | --- |
-| Complete test suite | 849 tests passed in 374.434 seconds |
+| Complete test suite | 850 tests passed in 382.803 seconds |
+| Controlled worker tests with real Codex discovery unavailable | 21 passed; independently repeated |
 | Declared dependency compatibility | Passed; 46 installed packages compatible |
 | Portable ZIP | 952 files; 19,073,805 bytes |
 | Full extracted-package validation | Passed, including real recipe/source-data redraws, vector exports, mappings, fonts and workflow discovery |
@@ -35,6 +36,13 @@ actual renders to check defects and verify their repairs.
   rechecks its request state to prevent already-applied comments being queued.
 - Portable packages omit temporary request locks and private local service
   directories while retaining scientific examples and runtime resources.
+- Controlled-worker tests declare their simulated process independently of a
+  developer's installed CLI. A separate missing-CLI regression preserves the
+  production refusal to start an unavailable dedicated worker. The original
+  session's full edit/completion loop also passed with CLI discovery absent.
+
+CI reports its first test error immediately; a successful run still exercises
+the complete suite before building and checking the portable package.
 
 Checks also exercised partial completion, simultaneous completion, source
 changes after submission, accepted-version restoration and portable pending
