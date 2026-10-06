@@ -1,0 +1,73 @@
+name: Publish verified release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release draft tag
+        type: string
+        required: true
+      commit:
+        description: Exact commit checked by Core checks
+        type: string
+        required: true
+      ci_run:
+        description: Core checks run to await
+        type: string
+        required: true
+      asset_sha256:
+        description: Identity of the validated ZIP already attached to the draft
+        type: string
+        required: true
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: idealstarry/EasyViz
+      RELEASE_TAG: ${{ inputs.tag }}
+      TARGET_COMMIT: ${{ inputs.commit }}
+      CHECK_RUN_ID: ${{ inputs.ci_run }}
+      EXPECTED_ZIP_SHA256: ${{ inputs.asset_sha256 }}
+    steps:
+      - name: Validate inputs and await the exact Core checks run
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$TARGET_COMMIT" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$CHECK_RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$EXPECTED_ZIP_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          test "$(gh run view "$CHECK_RUN_ID" --json headSha --jq .headSha)" = "$TARGET_COMMIT"
+          test "$(gh run view "$CHECK_RUN_ID" --json name --jq .name)" = 'Core checks'
+          test "$(gh run view "$CHECK_RUN_ID" --json event --jq .event)" = 'push'
+          gh run watch "$CHECK_RUN_ID" --interval 20 --exit-status
+      - name: Verify the draft and the uploaded ZIP
+        run: |
+          gh release view "$RELEASE_TAG" --json isDraft,tagName,targetCommitish,assets > "$RUNNER_TEMP/release.json"
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])
+          draft = json.loads((root / 'release.json').read_text())
+          assert draft['isDraft'] is True, 'Expected an unpublished draft'
+          assert draft['tagName'] == os.environ['RELEASE_TAG']
+          assert draft['targetCommitish'] == os.environ['TARGET_COMMIT'], 'Wrong release commit'
+          name = 'easyviz-' + os.environ['RELEASE_TAG'][1:] + '.zip'
+          assert [asset['name'] for asset in draft['assets']] == [name], 'Unexpected release assets'
+          assert draft['assets'][0]['state'] == 'uploaded'
+          assert draft['assets'][0]['digest'] == 'sha256:' + os.environ['EXPECTED_ZIP_SHA256'], 'ZIP changed'
+          PY
+      - name: Publish the verified draft
+        run: |
+          gh release edit "$RELEASE_TAG" --draft=false --latest
+          test "$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft)" = false
+          printf 'Published [%s](https://github.com/%s/releases/tag/%s).\n' "$RELEASE_TAG" "$GH_REPO" "$RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"
