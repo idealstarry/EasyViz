@@ -8,6 +8,7 @@
 - Reject export paths that would overwrite data, specifications, profiles, analysis companions, auxiliary inputs or runtime sources, including linked aliases. Apply the guard to core and focused renderers before modifying output state. Focused recipes reject nonzero decimal underflow instead of plotting false zeros.
 - Preserve caller-relative profile and analysis paths when saving an in-memory specification; the saved specification can be replayed from a different working directory. Explicit profile overrides receive their own source-overwrite protection.
 - Bind workbench acceptance and downloads to the displayed attempt/version; reject unseen replacements. Distinguish historical accepted snapshots from current accepted output, and retain separate figure captions when restoring an accepted version.
+- Exclude local workbench display-name metadata from new plugin builds, retaining it in the user's project and preserving legacy archive compatibility. Clean and locally annotated source trees produce the same portable package.
 
 See [validation and limits](docs/validation-v0.5.2.md).
 

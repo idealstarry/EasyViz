@@ -15,6 +15,8 @@ separate; they do not infer a tree or change quantitative branch lengths.
 Repairs protect source files from export aliases, preserve adopted analysis in
 Create candidates, reject silent numerical underflow, bind workbench acceptance
 and downloads to the reviewed version, and restore separate figure captions.
+Portable builds also omit local workbench display-name state while preserving
+the user's project and compatibility with older archives.
 
 The normal workbench workflow remains **Save drafts → ask the original Agent
 chat to apply the comments → compare and accept the fresh result**. MCP can

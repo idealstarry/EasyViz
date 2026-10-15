@@ -70,6 +70,35 @@ class BuildPluginTests(unittest.TestCase):
         return {path.relative_to(self.dist).as_posix(): path.read_bytes()
                 for path in self.dist.rglob('*') if path.is_file()}
 
+    def test_local_figure_display_metadata_does_not_change_distributed_package(self):
+        output = self.root / 'skills/easyviz/assets/cases/repair-outcomes/panels/hdr/output'
+        output.mkdir(parents=True, exist_ok=True)
+        preserved = {'panel.svg': b'<svg>reviewed panel</svg>\n',
+                     'elements.json': b'{"elements": []}\n',
+                     'settings.json': b'{"track": "create"}\n',
+                     'caption.md': b'Reviewed separate caption.\n'}
+        for name, raw in preserved.items():
+            (output / name).write_bytes(raw)
+        clean_summary = build_plugin.build()
+        clean_outputs = self.output_bytes()
+        metadata = output / 'figure-info.json'
+        metadata_bytes = b'{"schema_version": 1, "display_name": "My local panel", "updated_at": "2026-10-15T10:00:00Z"}\n'
+        metadata.write_bytes(metadata_bytes)
+        stateful_summary = build_plugin.build()
+        self.assertEqual(stateful_summary, clean_summary)
+        self.assertEqual(self.output_bytes(), clean_outputs)
+        self.assertEqual(metadata.read_bytes(), metadata_bytes, 'Building must preserve the local display name')
+        packaged_output = self.dist / 'easyviz' / output.relative_to(self.root)
+        self.assertFalse((packaged_output / metadata.name).exists())
+        with zipfile.ZipFile(self.dist / clean_summary['archive']) as archive:
+            self.assertFalse(any(Path(name).name == 'figure-info.json' for name in archive.namelist()))
+            for name, raw in preserved.items():
+                self.assertEqual((packaged_output / name).read_bytes(), raw)
+                member = (Path('easyviz') / output.relative_to(self.root) / name).as_posix()
+                self.assertEqual(archive.read(member), raw)
+        # Old published packages containing display metadata remain readable.
+        validate_resource_tree(output)
+
     def test_failed_copy_or_zip_preserves_previous_package_and_summary(self):
         build_plugin.build()
         (self.dist / 'easyviz/previous.txt').write_bytes(b'previous package note')
@@ -339,11 +368,11 @@ class BuildPluginTests(unittest.TestCase):
             f'{example}/plot.py': b'print("scientific plotting source")\n',
             f'{example}/inputs/data.csv': b'group,value\nA,3\n',
             f'{example}/output/requests.json': b'{"requests": []}\n',
-            f'{example}/output/figure-info.json': b'{"name": "Reviewed panel"}\n',
             f'{example}/output/panel.ev': b'portable example project\n',
             f'{example}/.easyviz-service-guide.md': b'legitimate descriptive resource\n',
         }
         omitted = {
+            f'{example}/output/figure-info.json': b'{"schema_version": 1, "display_name": "Reviewed panel"}\n',
             f'{example}/output/.requests.lock': b'local lock\n',
             f'{example}/.easyviz-service/registry.json': b'local private connection state\n',
             'plugins/easyviz/assets/.easyviz-service/registry.json': b'local asset review state\n',
@@ -359,7 +388,7 @@ class BuildPluginTests(unittest.TestCase):
         with zipfile.ZipFile(self.dist / summary['archive']) as package:
             names = package.namelist()
             self.assertIsNone(package.testzip())
-            self.assertFalse(any(part in ('.requests.lock', '.easyviz-service')
+            self.assertFalse(any(part in ('.requests.lock', '.easyviz-service', 'figure-info.json')
                                  for name in names for part in Path(name).parts))
             for relative, content in kept.items():
                 self.assertEqual(package.read('easyviz/' + relative), content)

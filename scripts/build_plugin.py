@@ -10,7 +10,10 @@ from package_io import file_sha256, replace_outputs, staging_directory
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
-COPY_IGNORE = shutil.ignore_patterns('__pycache__', '.DS_Store', '*.pyc', *WORKBENCH_RUNTIME_NAMES)
+# Opening a bundled example can add its local workbench display name. Leave
+# that metadata in place, but keep it out of newly distributed packages.
+# Older archives may legitimately contain it, so the package validator accepts it.
+COPY_IGNORE = shutil.ignore_patterns('__pycache__', '.DS_Store', '*.pyc', 'figure-info.json', *WORKBENCH_RUNTIME_NAMES)
 
 
 def check_output_path(path: Path, dist: Path) -> None:
