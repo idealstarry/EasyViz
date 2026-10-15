@@ -75,7 +75,85 @@ class SpecError(ValueError):
     """The requested panel cannot faithfully represent the supplied input."""
 
 
-VERSION = "0.5.1"
+class OutputCollisionError(SpecError):
+    """An export destination would replace a declared input or runtime source."""
+
+
+def guard_output_inputs(data_path, out, *, spec=None, spec_path=None, profile=None, additional_inputs=None):
+    """Reject input/output aliases before creating QA or invalidating old files.
+
+    Output files can be ordinary paths, symlinks or hard links. Comparing only
+    source basenames misses linked destinations outside the export directory.
+    An explicit plot-spec.json remains a valid saved input: begin_document
+    writes that name only when no specification path was supplied.
+    """
+    out = Path(out)
+    names = {"qa.json", "settings.json", "stats.json", "elements.json", "plotting-data.csv",
+             "source-data.csv", "panel.ev", "document-status.json", "summary-data.json",
+             "summary-data.csv", "cumulative-data.csv", "matrix-cells.csv", "artist-values.csv",
+             "marginal-data.csv", "caption.md", "analysis-caption.md"}
+    names.update(f"panel.{extension}" for extension in ("pdf", "svg", "png", "tiff"))
+    names.update(f"adopted-analysis/{name}" for name in
+                 ("results.json", "plan.json", "analyzed-data.csv", "summary.csv", "methodology.md"))
+    if spec_path is None:
+        names.add("plot-spec.json")
+    inputs = {"data": Path(data_path)}
+    if spec_path is not None:
+        inputs["specification"] = Path(spec_path)
+    base = Path(spec_path).resolve().parent if spec_path is not None else Path.cwd()
+    if isinstance(spec, dict):
+        declared_profile = spec.get("profile")
+        if isinstance(declared_profile, (str, Path)):
+            path = Path(declared_profile)
+            inputs["figure profile"] = path if path.is_absolute() else base / path
+        statistics_config = spec.get("statistics")
+        binding = statistics_config.get("analysis") if isinstance(statistics_config, dict) else None
+        if isinstance(binding, dict) and isinstance(binding.get("results_file"), str):
+            path = Path(binding["results_file"])
+            path = path if path.is_absolute() else base / path
+            inputs["analysis result"] = path
+            for name in ("plan.json", "analyzed-data.csv", "summary.csv", "methodology.md"):
+                inputs[f"analysis companion {name}"] = path.parent / name
+    if profile is not None:
+        # Explicit CLI/Python profile overrides use the caller's CWD, while
+        # a declaration inside the specification uses that file's directory.
+        inputs["figure profile override"] = Path(profile).resolve()
+    for role, path in (additional_inputs or {}).items():
+        if path is not None:
+            inputs[str(role)] = Path(path)
+    # Focused recipes import this renderer and siblings from this directory.
+    # Protect executable sources as well as user-declared plotting inputs.
+    for path in Path(__file__).parent.glob("*.py"):
+        inputs[f"runtime source {path.name}"] = path
+    def identity(path):
+        try:
+            record = path.stat()
+        except FileNotFoundError:
+            return None
+        return record.st_dev, record.st_ino
+
+    destinations = [(out / name, (out / name).resolve(), identity(out / name)) for name in names]
+    for role, source in inputs.items():
+        resolved = source.resolve()
+        source_identity = identity(source)
+        for destination, target, destination_identity in destinations:
+            aliases = resolved == target or (source_identity is not None and source_identity == destination_identity)
+            if aliases:
+                raise OutputCollisionError(f"Output {destination} would replace {role} input {source}; choose a separate output directory or input filename")
+
+
+def load_adopted_analysis(data_path, spec, *, spec_path=None):
+    """Load the canonical frozen comparison without recomputing inference."""
+    if "analysis" not in spec.get("statistics", {}):
+        return None
+    helper = _analysis_helper()
+    try:
+        return helper.load(spec["statistics"]["analysis"], data_path, spec["fields"], spec["chart"], spec_path=spec_path)
+    except (helper.AnalysisBindingError, OSError) as exc:
+        raise SpecError(f"Adopted analysis: {exc}") from None
+
+
+VERSION = "0.5.2"
 
 
 REQUIRED = {
@@ -331,6 +409,12 @@ def number(value, name, minimum=0, strict=True):
     require(math.isfinite(result), f"{name} must be finite")
     require(result > minimum if strict else result >= minimum, f"{name} must be {'>' if strict else '>='} {minimum}")
     return result
+
+
+def require_numeric_representability(original, converted, column):
+    """Reject nonzero decimals silently rounded to zero by numeric parsing."""
+    require(all(float(value) != 0 or Decimal(str(text)) == 0 for text, value in zip(original, converted)),
+            f"A nonzero value in {column} is below floating-point representability; no source value is silently replaced by zero")
 
 
 def validate_spec(spec):
@@ -753,8 +837,7 @@ def prepare(data_path, spec, adopted_analysis=None):
         except (ValueError, TypeError):
             raise SpecError(f"{col} must contain only numeric values") from None
         require(np.isfinite(converted.to_numpy(dtype=float)).all(), f"Non-finite values in {col}")
-        require(all(float(value) != 0 or Decimal(text) == 0 for value, text in zip(converted, raw_numeric[role])),
-                f"A nonzero value in {col} is below floating-point representability; no source value is silently replaced by zero")
+        require_numeric_representability(raw_numeric[role], converted, col)
         if chart == "dotplot":
             data[col] = pd.Series(np.nan, index=data.index, dtype=float)
             data.loc[observed, col] = converted.to_numpy(dtype=float)
@@ -1492,13 +1575,7 @@ def check_tick_label_overlap(fig, painter):
 
 def _render(data_path, spec, out, profile_record=None, spec_path=None, track=None, source_bindings=None):
     data_path, out = Path(data_path), Path(out)
-    adopted_analysis = None
-    if "analysis" in spec.get("statistics", {}):
-        helper = _analysis_helper()
-        try:
-            adopted_analysis = helper.load(spec["statistics"]["analysis"], data_path, spec["fields"], spec["chart"], spec_path=spec_path)
-        except (helper.AnalysisBindingError, OSError) as exc:
-            raise SpecError(f"Adopted analysis: {exc}") from None
+    adopted_analysis = load_adopted_analysis(data_path, spec, spec_path=spec_path)
     data = prepare(data_path, spec, adopted_analysis)
     bindings = dict(source_bindings or {})
     if adopted_analysis is not None:
@@ -1648,6 +1725,7 @@ def parse_spec_bytes(raw):
 def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, track=None, captured_spec_bytes=None):
     """Mark every attempted run so stale exports cannot retain a passing QA record."""
     out = Path(out)
+    guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path, profile=profile)
     out.mkdir(parents=True, exist_ok=True)
     status = {"status": "in_progress", "valid_outputs": False, "note": "Until this run passes, any exports in this directory are unverified and may belong to an earlier run."}
     write_json(out / "qa.json", status)
@@ -1658,7 +1736,14 @@ def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, tr
         bindings = {}
         require(captured_spec_bytes is None or isinstance(captured_spec_bytes, bytes) and spec_path is not None,
                 "captured_spec_bytes requires exact bytes and the corresponding spec_path")
+        original_spec_path = spec_path
         spec_path = begin_document(out, spec, spec_path)
+        if original_spec_path is None:
+            # Preserve the in-memory API's CWD-based input references before
+            # relocating its saved specification into the output directory.
+            resolved, profile_record = resolve_spec(spec, profile=profile, panel=panel)
+            write_json(spec_path, resolved)
+            spec = resolved
         if spec_path is not None:
             spec_file = Path(spec_path).resolve()
             # Python callers can use a not-yet-saved spec path only as the
@@ -1669,7 +1754,8 @@ def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, tr
             require(spec_raw is None or parse_spec_bytes(spec_raw) == spec,
                     "Supplied specification differs from the captured spec file; save the adopted dictionary or omit the file claim")
             bindings["spec_file"] = {"path": str(spec_file), "sha256": hashlib.sha256(spec_raw).hexdigest() if spec_raw is not None else None}
-        resolved, profile_record = resolve_spec(spec, profile=profile, panel=panel, spec_path=spec_path)
+        if original_spec_path is not None:
+            resolved, profile_record = resolve_spec(spec, profile=profile, panel=panel, spec_path=spec_path)
         return _render(data_path, resolved, out, profile_record, spec_path=spec_path, track=track, source_bindings=bindings)
     except Exception as exc:
         current = json.loads((out / "qa.json").read_text())
@@ -1682,19 +1768,23 @@ def render(data_path, spec, out, *, profile=None, panel=None, spec_path=None, tr
 def render_spec_file(data_path, spec_path, out, *, profile=None, panel=None, track=None):
     """Load and render one captured spec snapshot; failed parsing invalidates QA."""
     out = Path(out)
-    out.mkdir(parents=True, exist_ok=True)
-    write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False,
-                                "note": "Specification loading and rendering must both finish before these exports are validated."})
+    guard_output_inputs(data_path, out, spec_path=spec_path, profile=profile)
     try:
-        begin_document(out, None, spec_path)
         raw = Path(spec_path).read_bytes()
         return render(data_path, parse_spec_bytes(raw), out, profile=profile, panel=panel,
                       spec_path=spec_path, track=track, captured_spec_bytes=raw)
+    except OutputCollisionError:
+        raise
     except Exception as exc:
-        current = json.loads((out / "qa.json").read_text())
-        if current.get("status") == "in_progress":
-            current.update(status="failed", error=str(exc))
-            write_json(out / "qa.json", current)
+        out.mkdir(parents=True, exist_ok=True)
+        # Parsing failures must invalidate old exports too, without overwriting
+        # an input rejected by the collision preflight above.
+        path = out / "qa.json"
+        current = json.loads(path.read_text()) if path.exists() else {}
+        if current.get("status") != "needs_revision":
+            current.update(status="failed", valid_outputs=False, error=str(exc))
+            write_json(path, current)
+        begin_document(out, None, spec_path)
         raise
 
 

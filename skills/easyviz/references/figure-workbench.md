@@ -480,6 +480,18 @@ restoring an applied version requires its matching source/spec/input/exports.
 exports, queue, history, source-version checks, optional comparison metadata and
 ephemeral session token. `GET /api/preview.svg?v=HASH` returns
 the safe preview only when the supplied figure hash is current.
+`POST /api/attempts/accept` requires the displayed complete `version` and a
+`validation` note, plus an optional registered `attempt_id`. A replacement
+published after review is rejected until its preview has been reloaded and
+inspected. Attempt metadata distinguishes `accepted` for the current version
+from `has_accepted_snapshot` and `accepted_snapshot` for an earlier immutable
+version that remains available to restore.
+
+Active preview and history downloads use attempt-scoped URLs with the displayed
+SVG version; ordinary exports also bind their exact bytes. Switching another
+browser to a different attempt cannot redirect these links. A replaced render
+requires reloading before downloading its SVG, PDF, PNG or `.ev` project.
+
 `POST /api/requests` accepts a version, instruction, optional element/region and
 optional supported property/value. It accepts one selection form: `element_id`,
 `element_ids`, or `selector` with any intersection of `role`, `category`,

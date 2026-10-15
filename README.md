@@ -22,6 +22,9 @@ Receive SVG by default, a separate caption and an editable `.ev` project with
 code and declared plotting data at your chosen size and typography. Request
 PDF, PNG or TIFF when needed.
 
+For custom Create panels, the Agent plans the [main comparison and supporting
+layers](skills/easyviz/references/evidence-first-create.md) before the first render.
+
 ## Install
 
 Give your Agent this request:
@@ -180,7 +183,7 @@ project alone does not run its code.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](docs/validation-v0.5.1.md)
+[Validation and limits](docs/validation-v0.5.2.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

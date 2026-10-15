@@ -857,6 +857,32 @@ def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
                 return False
             return True
 
+        def reply_export(self, preview_app, name):
+            """Bind downloads to the displayed attempt, render and export bytes."""
+            query = parse_qs(urlsplit(self.path).query)
+            requested_hash = query.get("v", [None])[0]
+            state = preview_app.state()
+            if requested_hash is not None and requested_hash != state["version"]["figure_sha256"]:
+                self.reply(409, {"error": "This figure has changed. Reload it before downloading."})
+                return
+            if name == "panel.ev":
+                from ev_document import export_document
+                with tempfile.TemporaryDirectory(dir=service.storage, prefix="export-") as temporary:
+                    document = export_document(preview_app.root, Path(temporary) / "panel.ev",
+                                               expected_version=state["version"] if requested_hash is not None else None)
+                    self.reply(200, document.read_bytes(), "application/octet-stream", attachment=name)
+                return
+            raw = preview_app.read_export(name)
+            if raw is None:
+                self.reply(404, {"error": "This export is unavailable for the current figure version"})
+                return
+            expected_export = query.get("h", [None])[0]
+            if expected_export is not None and sha256(raw) != expected_export:
+                self.reply(409, {"error": "This export has changed. Reload it before downloading."})
+                return
+            content_type = {"svg": "image/svg+xml", "pdf": "application/pdf", "png": "image/png"}[name.rsplit(".", 1)[1]]
+            self.reply(200, raw, content_type, attachment=name)
+
         def do_GET(self):
             app = service.app
             if not self.permitted():
@@ -877,7 +903,7 @@ def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
                     self.reply(200, service.get_job(path.rsplit("/", 1)[1]))
                 elif path == "/api/attempts":
                     self.reply(200, service.list_attempts())
-                elif re.fullmatch(r"/api/attempts/attempt-[0-9a-f]{16}/(?:preview\.svg|files/panel\.(?:svg|pdf|png))", path):
+                elif re.fullmatch(r"/api/attempts/attempt-[0-9a-f]{16}/(?:preview\.svg|files/panel\.(?:svg|pdf|png|ev))", path):
                     parts = path.split("/")
                     preview_app = service.attempt_app(parts[3])
                     if parts[4] == "preview.svg":
@@ -889,13 +915,7 @@ def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
                         root, _, _ = read_svg(raw)
                         self.reply(200, sanitized_svg(root), "image/svg+xml")
                     else:
-                        name = parts[5]
-                        raw = preview_app.read_export(name)
-                        if raw is None:
-                            self.reply(404, {"error": "This export is unavailable for the current figure version"})
-                            return
-                        content_type = {"svg": "image/svg+xml", "pdf": "application/pdf", "png": "image/png"}[name.rsplit(".", 1)[1]]
-                        self.reply(200, raw, content_type, attachment=name)
+                        self.reply_export(preview_app, parts[5])
                 elif path in {"/api/preview.svg", "/api/compare.svg"}:
                     if app is None:
                         self.reply(404, {"error": "Open an EasyViz figure from the library first"})
@@ -926,7 +946,10 @@ def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
                         self.reply(404, {"error": "Open a figure first"})
                         return
                     name = path.removeprefix("/files/")
-                    body = app.read_export(name) if name in {"panel.svg", "panel.pdf", "panel.png"} else app.read_file(name)
+                    if name in {"panel.svg", "panel.pdf", "panel.png"}:
+                        self.reply_export(app, name)
+                        return
+                    body = app.read_file(name)
                     if body is None:
                         self.reply(404, {"error": "This export is unavailable"})
                     else:
@@ -941,14 +964,11 @@ def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
                     if app is None:
                         self.reply(404, {"error": "Open a figure first"})
                         return
-                    from ev_document import export_document
-                    with tempfile.TemporaryDirectory(dir=service.storage, prefix="export-") as temporary:
-                        document = export_document(app.root, Path(temporary) / "panel.ev")
-                        self.reply(200, document.read_bytes(), "application/octet-stream", attachment="panel.ev")
+                    self.reply_export(app, "panel.ev")
                 else:
                     self.reply(404, {"error": "Not found"})
             except (ValueError, OSError) as exc:
-                self.reply(400, {"error": str(exc)})
+                self.reply(409 if "changed" in str(exc) else 400, {"error": str(exc)})
 
         def do_POST(self):
             app = service.app
@@ -1003,9 +1023,10 @@ def create_server(figure_dir=None, port=0, compare_dir=None, project_dir=None):
                         raise WorkbenchError("Rename requires a figure name and optional registered attempt ID")
                     result = service.rename_attempt(payload["name"], payload.get("attempt_id"))
                 elif path == "/api/attempts/accept":
-                    if set(payload) - {"attempt_id", "validation"}:
-                        raise WorkbenchError("Acceptance requires a validation note")
-                    result = service.accept(payload.get("validation"), payload.get("attempt_id"))
+                    if (set(payload) - {"attempt_id", "validation", "version"}
+                            or not isinstance(payload.get("version"), dict) or not payload["version"]):
+                        raise WorkbenchError("Acceptance requires the reviewed figure version and a validation note")
+                    result = service.accept(payload.get("validation"), payload.get("attempt_id"), version=payload["version"])
                 elif path == "/api/attempts/restore":
                     if set(payload) - {"attempt_id"}:
                         raise WorkbenchError("Restore requires a registered attempt ID")

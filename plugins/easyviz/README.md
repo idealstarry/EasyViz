@@ -1,5 +1,9 @@
 # EasyViz
 
+Create plans the main comparison before allocating annotation tracks, labels
+and guides; custom radial layouts include ordered bands and bounded label
+spacing. Both tracks retain scientific mappings and review actual exports.
+
 Create and reproduce scientific plots from user data. In create, establish the useful comparison, then choose a basic chart and plan its data-region proportions, layer relationships and color roles. Numeric fields alone do not justify a scatter. In reproduce, use a reference image and your own data, including references without published Source Data or author code. Export individual panels at their final physical size.
 
 ## Skills

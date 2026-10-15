@@ -146,11 +146,13 @@ def prepare(data_path, spec):
         require(column in data.columns, f"Missing input column for {role}: {column}")
         require(not data[column].astype(str).str.strip().eq("").any(), f"Empty values in {column}; do not invent an interval for a missing row")
     for role in ("estimate", "lower", "upper"):
+        original = data[f[role]].copy()
         try:
             data[f[role]] = pd.to_numeric(data[f[role]], errors="raise")
         except (ValueError, TypeError):
             raise SpecError(f"{f[role]} must contain only numeric values") from None
         require(np.isfinite(data[f[role]].to_numpy(float)).all(), f"Non-finite values in {f[role]}")
+        core.require_numeric_representability(original, data[f[role]], f[role])
     lower, estimate, upper = [data[f[role]].to_numpy(float) for role in ("lower", "estimate", "upper")]
     require(np.all(lower <= estimate) and np.all(estimate <= upper), "Supplied intervals must bracket the estimate: lower <= estimate <= upper")
     if options.get("x_scale", "linear") == "log":
@@ -468,6 +470,7 @@ def _clipped_text(fig):
 def render(data_path, spec, out, *, spec_path=None):
     """Return QA on success; persist truthful failed QA before raising on failure."""
     data_path, out = Path(data_path), Path(out)
+    core.guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Until this run passes, exports may be stale or unverified."})
     spec_path = core.begin_document(out, spec, spec_path)
@@ -553,6 +556,10 @@ def main():
         return
     if not all((args.data, args.spec, args.out)):
         parser.error("--data, --spec and --out are required unless --describe-spec is used")
+    try:
+        core.guard_output_inputs(args.data, args.out, spec_path=args.spec)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz interval: {exc}\n")
     try:
         spec = json.loads(args.spec.read_text())
     except (ValueError, OSError) as exc:

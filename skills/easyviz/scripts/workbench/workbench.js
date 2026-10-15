@@ -512,10 +512,12 @@ function serviceControls() {
   $('attempt-toolbar').hidden=!attempts.length;
   $('attempt-list').disabled=busy||!!rendering;
   const current=attempts.find(item=>item.id===state?.attempt_id);
-  $('accept-attempt').disabled=busy||!!rendering||!current||current.unavailable||current.accepted||state?.source_current===false;
-  $('accept-attempt').textContent=current?.accepted?'Accepted':'Accept';
-  $('restore-attempt').hidden=!attempts.some(item=>item.accepted);
-  $('restore-attempt').disabled=busy||!!rendering;
+  $('accept-attempt').disabled=busy||!!rendering||!current||current.unavailable||current.accepted||current.has_accepted_snapshot||state?.source_current===false;
+  $('accept-attempt').textContent=current?.accepted?'Accepted':current?.has_accepted_snapshot?'Earlier snapshot saved':'Accept';
+  $('accept-attempt').title=current?.has_accepted_snapshot&&!current.accepted?'An earlier version is preserved. Use a fresh attempt to accept another version.':'';
+  $('restore-attempt').hidden=!attempts.some(item=>item.accepted||item.has_accepted_snapshot);
+  $('restore-attempt').disabled=busy||!!rendering||!(current?.accepted||current?.has_accepted_snapshot);
+  $('restore-attempt').title=current?.accepted||current?.has_accepted_snapshot?'Restore this attempt\'s accepted snapshot.':'Open an attempt with an accepted snapshot to restore it.';
   $('compare-toggle').hidden=!state?.comparison;
   $('compare-toggle').disabled=busy;
   $('compare-toggle').textContent=comparisonVisible?'Hide comparison':'Show comparison';
@@ -851,8 +853,10 @@ async function load(nextProvided = null) {
     restoreAnnotations(draftKey()===previousIdentity?memoryDrafts:null);
     pages.annotations.page=Math.floor(Math.max(0,annotations.findIndex(note=>note.number===activeNumber))/pages.annotations.size);
     $('downloads').replaceChildren();
-    for(const extension of ['svg','pdf','png']) if(state.files.includes('panel.'+extension)) {const link=document.createElement('a');link.href='/files/panel.'+extension;link.download='panel.'+extension;link.textContent=extension.toUpperCase();$('downloads').append(link);}
-    if(state.provenance_valid) {const project=document.createElement('a');project.href='/files/panel.ev';project.download='panel.ev';project.textContent='.ev project';$('downloads').append(project);}
+    const downloadBase=state.attempt_id?'/api/attempts/'+encodeURIComponent(state.attempt_id)+'/files/':'/files/';
+    const downloadQuery='?v='+encodeURIComponent(state.version.figure_sha256);
+    for(const extension of ['svg','pdf','png']) if(state.files.includes('panel.'+extension)) {const name='panel.'+extension,link=document.createElement('a'),hash=state.export_hashes?.[name];link.href=downloadBase+name+downloadQuery+(hash?'&h='+encodeURIComponent(hash):'');link.download=name;link.textContent=extension.toUpperCase();$('downloads').append(link);}
+    if(state.provenance_valid) {const project=document.createElement('a');project.href=downloadBase+'panel.ev'+downloadQuery;project.download='panel.ev';project.textContent='.ev project';$('downloads').append(project);}
     selectionChanged();queue();setMode(state.manifest_valid?'element':'region');
     message('');
     loaded=true;
@@ -1014,7 +1018,7 @@ $('cancel-job').addEventListener('click',async()=>{
 });
 $('accept-attempt').addEventListener('click',async()=>{
   if(loading||saving||operating||runningJob()||!state?.attempt_id) return;operating=true;controls();
-  try {const result=await api('/api/attempts/accept',{attempt_id:state.attempt_id,validation:'Reviewed by the user in the EasyViz workbench.'});if(result.state)updateQueue(result.state);await refreshService();message('This attempt is accepted and available to restore.');}
+  try {const result=await api('/api/attempts/accept',{attempt_id:state.attempt_id,version:state.version,validation:'Reviewed by the user in the EasyViz workbench.'});if(result.state)updateQueue(result.state);await refreshService();message('This attempt is accepted and available to restore.');}
   catch(error) {message(error.message,true);} finally {operating=false;controls();}
 });
 $('restore-attempt').addEventListener('click',async()=>{

@@ -13,6 +13,14 @@ summaries. Consequential unknowns may limit a statistical layer while descriptiv
 plotting proceeds. Fill cosmetic defaults from the project or task; the user
 need not approve a palette or choose a renderer.
 
+For custom/multi-layer panels or a related set, read
+[Evidence before layout](evidence-first-create.md) first. Decide what the main
+view should reveal, which complete details belong in tables, and how much
+space the evidence, annotation tracks, labels and guides need. Resolve this
+inside the existing brief and review budget. An "initial draft" still needs
+an internally reviewed visual organization; it does not mean delivering the
+first technically valid rendering and waiting for the user to redesign it.
+
 Decide reading task, organization and visual roles separately using
 [Create design paths](design-space.md). Before the first render, use its short
 [panel planning brief](design-space.md#plan-the-first-panel) to choose the

@@ -1,5 +1,11 @@
 # Create track
 
+For a custom/multi-layer plot or a related panel set, start with
+[Evidence before layout](evidence-first-create.md): choose the main comparison,
+separate lookup detail, and budget evidence, tracks, labels and guides before
+the first render. This remains Create when literature informs the design but
+the user has not supplied a reference to reproduce.
+
 Create an individual scientific panel from source data, a communication goal or chart type, optional additions, and export preferences. Reuse the same data, typography, palette, and physical-size rules as reproduce.
 
 State the scientific question, the comparison readers should make and why this

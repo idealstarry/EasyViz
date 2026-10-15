@@ -139,6 +139,7 @@ def prepare(data_path, spec):
         raise SpecError(f"{f['value']} must contain only raw numeric values") from None
     values = data[f["value"]].to_numpy(float)
     require(np.isfinite(values).all(), "ECDF observations must be finite")
+    core.require_numeric_representability(data["_easyviz_source_value_text"], values, f["value"])
     require(options.get("x_scale", "linear") != "log" or np.all(values > 0), "Log x axes require strictly positive observations")
     if "x_limits" in options:
         low, high = options["x_limits"]
@@ -356,6 +357,7 @@ def _clipped_text(fig):
 def render(data_path, spec, out, *, spec_path=None):
     """Persist failed QA before raising; old exports never imply a new pass."""
     data_path, out = Path(data_path), Path(out)
+    core.guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports may be stale or unverified until this run passes."})
     spec_path = core.begin_document(out, spec, spec_path)
@@ -436,8 +438,14 @@ def main():
     if not all((args.data, args.spec, args.out)):
         parser.error("--data, --spec and --out are required unless --describe-spec is used")
     try:
+        core.guard_output_inputs(args.data, args.out, spec_path=args.spec)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz ECDF: {exc}\n")
+    try:
         spec = json.loads(args.spec.read_text())
         qa = render(args.data, spec, args.out, spec_path=args.spec)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz ECDF: {exc}\n")
     except (ValueError, OSError, ImportError) as exc:
         args.out.mkdir(parents=True, exist_ok=True)
         path = args.out / "qa.json"

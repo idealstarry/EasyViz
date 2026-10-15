@@ -190,6 +190,7 @@ def prepare(data_path, spec, *, row_metadata=None, column_metadata=None, row_lin
     except (ValueError, TypeError):
         raise SpecError("Observed matrix values must be numeric") from None
     require(np.isfinite(numeric).all(), "Observed matrix values must be finite")
+    core.require_numeric_representability(data.loc[observed, f["value"]], numeric, f["value"])
     require(len(numeric) > 0, "At least one observed value is required for a continuous matrix scale")
     data["_easyviz_source_row"] = np.arange(1, len(data) + 1)
     data["_easyviz_state"] = states
@@ -628,6 +629,7 @@ def _caption(prepared, spec):
 def render(data_path, spec, out, *, spec_path=None, track=None, **inputs):
     """Persist reviewable exports plus truthful failed or successful QA."""
     out = Path(out)
+    core.guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path, additional_inputs=inputs)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False})
     spec_path = core.begin_document(out, spec, spec_path)
@@ -721,10 +723,17 @@ def main():
         print(json.dumps(SCHEMA, indent=2))
         return
     if not all((args.data, args.spec, args.out)): parser.error("--data, --spec and --out are required unless --describe-spec is used")
+    inputs = {f"{axis}_{kind}": getattr(args, f"{axis}_{kind}") for axis in ("row", "column") for kind in ("metadata", "linkage")}
+    try:
+        core.guard_output_inputs(args.data, args.out, spec_path=args.spec, additional_inputs=inputs)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz annotated matrix: {exc}\n")
     try:
         spec = json.loads(args.spec.read_text())
         qa = render(args.data, spec, args.out, spec_path=args.spec, track=args.track,
-                    **{f"{axis}_{kind}": getattr(args, f"{axis}_{kind}") for axis in ("row", "column") for kind in ("metadata", "linkage")})
+                    **inputs)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz annotated matrix: {exc}\n")
     except (ValueError, OSError, ImportError) as exc:
         args.out.mkdir(parents=True, exist_ok=True)
         if not (args.out / "qa.json").exists(): write_json(args.out / "qa.json", {"status": "failed", "valid_outputs": False, "error": str(exc)})

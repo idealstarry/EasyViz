@@ -417,7 +417,7 @@ def _materialize(root, manifest, files, *, trusted_runtime=False):
     return state, matched
 
 
-def export_document(figure_dir, output_path=None):
+def export_document(figure_dir, output_path=None, *, expected_version=None):
     """Atomically create/refresh panel.ev from a verified mapped attempt."""
     try:
         root = Path(figure_dir).expanduser().resolve()
@@ -426,6 +426,8 @@ def export_document(figure_dir, output_path=None):
                 or any(parent.is_symlink() for parent in output.parents) or (output.exists() and not output.is_file())):
             raise EVDocumentError("Output must be a regular .ev file in an existing local directory")
         manifest, files = _capture(root)
+        if expected_version is not None and manifest["version"] != expected_version:
+            raise EVDocumentError("This figure has changed since review. Reload it before downloading.")
         state = FigureWorkbench(root).state()
         source_paths = [state["input"][field] for field in PRIMARY] + [record["path"] for record in state["input"].get("auxiliary_inputs", {}).values()]
         if any(output == Path(path).absolute() for path in source_paths):

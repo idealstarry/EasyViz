@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.2 — 2026-10-15
+
+- Create plans the main scientific comparison before allocating panels, lookup tables, supporting tracks and guides. Custom and multi-layer first drafts apply conditional reference lessons inside the existing visual-review budget, without adopting a single palette or layout for every task.
+- Add standard-library radial layout helpers for exact ordered category bands, bounded balanced label placement and physical track/guide diagnostics. Equal-angle intervals, complete-circle seam merging and open-window label limits are explicit; scientific tree coordinates remain the custom implementation's responsibility.
+- Repair Create candidates using adopted analysis results, including relative result paths, adjusted P values and explicitly included observation populations. Candidate styling reuses the adopted evidence rather than recomputing it.
+- Reject export paths that would overwrite data, specifications, profiles, analysis companions, auxiliary inputs or runtime sources, including linked aliases. Apply the guard to core and focused renderers before modifying output state. Focused recipes reject nonzero decimal underflow instead of plotting false zeros.
+- Preserve caller-relative profile and analysis paths when saving an in-memory specification; the saved specification can be replayed from a different working directory. Explicit profile overrides receive their own source-overwrite protection.
+- Bind workbench acceptance and downloads to the displayed attempt/version; reject unseen replacements. Distinguish historical accepted snapshots from current accepted output, and retain separate figure captions when restoring an accepted version.
+
+See [validation and limits](docs/validation-v0.5.2.md).
+
+## 0.5.1 — 2026-10-06
+
+- Add standalone workbench entry and validated `.ev` projects with SVG interaction, figure renaming, original-session MCP submission, progress and cancellation. The normal workflow saves comments and applies them from the original Agent chat.
+- Preserve adopted exports and request ownership across source changes, completion and restoration. Refine annotation selection and workbench layout, and exclude temporary service state from portable packages.
+- Validate the actual browser-to-original-Agent edit/render/review loop, the complete test suite and extracted-package redraws. Idle host scheduling remains optional and unverified.
+
+See [release QA and limits](evals/release-qa/v0.5.1/README.md).
+
 ## 0.5.0 — 2026-10-06
 
 - Create candidates can consume an adopted question, reading task and visual roles, rank applicable literature mechanisms, and measure physical capacity on actual artists. Several valid designs remain available within a family; unsupported organizations require explicit custom implementation.

@@ -496,7 +496,7 @@ class FigureServiceTests(unittest.TestCase):
             self.assertEqual(status, 200, raw)
             self.assertEqual(json.loads(raw)["state"]["attempt_id"], target_id)
             self.assertEqual(request("GET", "/api/compare.svg")[0], 200)
-            self.assertEqual(request("POST", "/api/attempts/accept", {"validation": "Preview and matching PDF/PNG inspected."})[0], 200)
+            self.assertEqual(request("POST", "/api/attempts/accept", {"version": server.service.state()["version"], "validation": "Preview and matching PDF/PNG inspected."})[0], 200)
             status, raw = request("POST", "/api/attempts/restore", {})
             self.assertEqual(status, 200, raw)
             restored = json.loads(raw)

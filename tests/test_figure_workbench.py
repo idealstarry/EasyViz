@@ -825,6 +825,69 @@ class WorkbenchClientTests(unittest.TestCase):
         result=subprocess.run([shutil.which("node"),"-e",wrapped,str(script)],capture_output=True,text=True,timeout=20)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
 
+    def test_active_download_links_bind_displayed_attempt_render_and_export_bytes(self):
+        self.run_client(r"""
+const initial=figure('A',{attempt_id:'attempt-first',provenance_valid:true,files:['panel.svg','panel.pdf','panel.png'],export_hashes:{'panel.svg':'svg-bytes','panel.pdf':'pdf-bytes','panel.png':'png-bytes'}});
+const h=harness(initial);await h.start();
+h.data=figure('B',{attempt_id:'attempt-other'});
+const links=h.node('downloads').children;
+assert.deepEqual(links.map(link=>link.href),[
+ '/api/attempts/attempt-first/files/panel.svg?v=A&h=svg-bytes',
+ '/api/attempts/attempt-first/files/panel.pdf?v=A&h=pdf-bytes',
+ '/api/attempts/attempt-first/files/panel.png?v=A&h=png-bytes',
+ '/api/attempts/attempt-first/files/panel.ev?v=A'
+]);
+assert.equal(h.svg().name,'SVG-A','another service selection cannot silently replace active download targets');
+""")
+
+    def test_acceptance_sends_displayed_version_when_service_has_replaced_figure(self):
+        self.run_client(r"""
+const initial=figure('A',{attempt_id:'attempt-review'}),h=harness(initial);
+h.override=(path,options)=>{
+  if(path==='/api/library')return jsonResponse({attempts:[{id:'attempt-review',name:'Reviewed figure'}]});
+  if(path==='/api/agent')return jsonResponse({});
+  if(path==='/api/jobs')return jsonResponse({jobs:[]});
+  if(path==='/api/attempts/accept'){
+    const payload=JSON.parse(options.body);h.posted.push(payload);
+    return jsonResponse({error:'This figure has changed since review. Reload and inspect it before accepting.'},false);
+  }
+};
+await h.start();
+h.data=figure('B',{attempt_id:'attempt-review'});
+await h.click('accept-attempt');
+assert.equal(h.posted.length,1);
+assert.deepEqual(h.posted[0].version,initial.version);
+assert.equal(h.posted[0].attempt_id,'attempt-review');
+assert.match(h.node('message').textContent,/changed since review/);
+assert.equal(h.svg().name,'SVG-A');
+""")
+
+    def test_earlier_accepted_snapshot_does_not_label_current_replacement_completed(self):
+        self.run_client(r"""
+const initial=figure('B',{attempt_id:'attempt-review'}),h=harness(initial);
+const previous={figure_sha256:'A',spec_sha256:'spec-A'};
+h.override=(path)=>{
+ if(path==='/api/library')return jsonResponse({attempts:[{id:'attempt-review',name:'Replacement',accepted:false,has_accepted_snapshot:true,accepted_snapshot:{version:previous}}]});
+ if(path==='/api/jobs')return jsonResponse({jobs:[]});
+ if(path==='/api/agent')return jsonResponse({});
+};
+await h.start();
+assert.equal(h.node('accept-attempt').textContent,'Earlier snapshot saved');
+assert.equal(h.node('accept-attempt').disabled,true,'immutable previous acceptance requires a fresh attempt');
+assert.equal(h.node('restore-attempt').hidden,false,'the earlier accepted version remains available to restore');
+assert.equal(h.node('restore-attempt').disabled,false);
+const presentation=h.inspect("jobPresentation({kind:'agent',backend:'session',status:'succeeded',phase:'complete',target_attempt_id:'attempt-review',agent_request_ids:[]})");
+assert.equal(presentation.state,'review','an earlier accepted version cannot complete the replacement preview');
+h.override=(path)=>{
+ if(path==='/api/library')return jsonResponse({attempts:[{id:'attempt-review',name:'Unsnapshotted current figure',accepted:false},{id:'other-attempt',name:'Earlier accepted figure',accepted:true}]});
+ if(path==='/api/jobs')return jsonResponse({jobs:[]});
+ if(path==='/api/agent')return jsonResponse({});
+};
+await h.click('reload');await tick();await tick();
+assert.equal(h.node('restore-attempt').hidden,false);
+assert.equal(h.node('restore-attempt').disabled,true,'a different figure\'s snapshot cannot restore the current attempt');
+""")
+
     def test_clicks_resolve_painted_targets_nearby_without_guessing_group_boxes(self):
         self.run_client(r"""
 const h=harness(figure());await h.start();

@@ -160,6 +160,13 @@ matching SVG/source/spec/input provenance, then copies the bundle into a fresh a
 attempts are never overwritten. Pending instructions inherited from the accepted
 attempt become superseded in the restored attempt's ledger.
 
+The browser submits the exact displayed `version` when accepting and refuses
+an export replaced since review. MCP callers should also pass the version they
+inspected. An earlier accepted snapshot remains restorable after an in-place
+rerender, but it does not mark the replacement as accepted; use a fresh attempt
+for another acceptance. Snapshots also retain the separate `caption.md` and
+`figure-caption.md` files when present, restoring their accepted contents.
+
 Snapshots retain all declared auxiliary input bytes, including aligned matrix
 metadata and supplied linkage files. A changed or missing secondary source
 cannot be omitted from acceptance; a missing or tampered dependency in the

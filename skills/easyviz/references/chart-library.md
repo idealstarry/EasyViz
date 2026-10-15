@@ -53,6 +53,11 @@ Prepare reshaped/aggregated plotting data explicitly. The renderer rejects inval
 
 ## Integrated scientific panels
 
+For a supplied circular hierarchy or custom radial annotation graphic, use
+the [radial layout helpers](radial-layout.md) for exact ordered category runs,
+bounded label separation and physical track/guide diagnostics. This is custom
+layout support; it adds no core chart family or tree-inference workflow.
+
 Let the scientific question determine the layers. A panel can contain aligned axes or annotation tracks that explain the same data while remaining a single export at its final physical size. Related layers must retain their meanings and alignment; adding detail is useful only when it improves interpretation.
 
 | Pattern | Data and semantic requirements | Implementation boundary |

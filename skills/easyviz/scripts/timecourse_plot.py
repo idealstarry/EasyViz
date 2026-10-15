@@ -169,6 +169,7 @@ def prepare(data_path, spec):
             except (ValueError, TypeError):
                 raise SpecError(f"{column} must contain finite numeric summaries") from None
             require(np.isfinite(values).all(), f"{column} must contain finite numeric summaries")
+            core.require_numeric_representability(data[column], values, column)
             data["_easyviz_" + role] = values
     data["_easyviz_series"] = data[fields["series"]] if "series" in fields else "all"
     data["_easyviz_source_row"] = np.arange(1, len(data) + 1)
@@ -431,6 +432,7 @@ def _font_evidence(fig):
 
 def render(data_path, spec, out, *, spec_path=None, track=None):
     data_path, out = Path(data_path), Path(out)
+    core.guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False})
     spec_path = core.begin_document(out, spec, spec_path)
@@ -518,6 +520,10 @@ def main():
     if not all((args.data, args.spec, args.out)):
         parser.error("--data, --spec and --out are required")
     try:
+        core.guard_output_inputs(args.data, args.out, spec_path=args.spec)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz timecourse: {exc}\n")
+    try:
         spec = json.loads(args.spec.read_text())
     except (ValueError, OSError) as exc:
         args.out.mkdir(parents=True, exist_ok=True)
@@ -525,6 +531,8 @@ def main():
         parser.exit(2, f"EasyViz timecourse: {exc}\n")
     try:
         qa = render(args.data, spec, args.out, spec_path=args.spec, track=args.track)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz timecourse: {exc}\n")
     except (ValueError, OSError, ImportError) as exc:
         args.out.mkdir(parents=True, exist_ok=True)
         if not (args.out / "qa.json").exists():

@@ -214,9 +214,10 @@ def create_mcp(service: FigureService):
         return call(service.record_outcome, source_attempt_id, target_attempt_id, request_ids, changed_files, validation)
 
     @server.tool(annotations=local_write)
-    def accept_attempt(validation: str, attempt_id: str | None = None) -> dict[str, Any]:
-        """Capture an immutable accepted source/spec/data/export snapshot after user or Agent visual review."""
-        return call(service.accept, validation, selected(attempt_id))
+    def accept_attempt(validation: str, attempt_id: str | None = None,
+                       version: dict[str, str] | None = None) -> dict[str, Any]:
+        """Capture a reviewed immutable snapshot; pass its inspected version to reject unseen replacements."""
+        return call(service.accept, validation, selected(attempt_id), version=version)
 
     @server.tool(annotations=local_write)
     def restore_attempt(attempt_id: str | None = None) -> dict[str, Any]:

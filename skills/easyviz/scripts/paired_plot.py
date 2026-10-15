@@ -134,6 +134,7 @@ def prepare(data_path, spec):
         raise SpecError(f"{fields['value']} must contain only numeric values") from None
     values = data[fields["value"]].to_numpy(float)
     require(np.isfinite(values).all(), "Measurements must all be finite")
+    core.require_numeric_representability(data["_easyviz_source_value_text"], values, fields["value"])
     require(opts.get("y_scale") != "log" or (values > 0).all(), "Log display requires strictly positive measurements; no pseudocount is added")
     conditions = core.ordered(data, fields["condition"], spec, "condition")
     require(len(conditions) >= 2, "Paired observations require at least two conditions")
@@ -385,6 +386,7 @@ def _clipped_text(fig):
 def render(data_path, spec, out, *, spec_path=None):
     """Persist truthful QA even on failure, so stale panel exports cannot pass."""
     data_path, out = Path(data_path), Path(out)
+    core.guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path)
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports are unverified until this attempted run passes."})
     spec_path = core.begin_document(out, spec, spec_path)
@@ -469,6 +471,10 @@ def main():
         return
     if not all((args.data, args.spec, args.out)):
         parser.error("--data, --spec and --out are required unless --describe-spec is used")
+    try:
+        core.guard_output_inputs(args.data, args.out, spec_path=args.spec)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz paired: {exc}\n")
     try:
         spec = json.loads(args.spec.read_text())
     except (ValueError, OSError) as exc:

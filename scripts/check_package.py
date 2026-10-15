@@ -48,6 +48,9 @@ MAX_ZIP_TOTAL_BYTES = 256 * 1024 * 1024
 WORKBENCH_RUNTIME_NAMES = (".requests.lock", ".easyviz-service")
 V050_RUNTIME_RESOURCES = ("analysis_result.py", "figure_service.py")
 V051_RUNTIME_RESOURCES = ("ev_document.py", "agent_dispatch.py", "easyviz_workbench.py")
+V052_RESOURCES = ("scripts/radial_layout.py", "references/evidence-first-create.md",
+                  "references/radial-layout.md", "assets/fixtures/radial-layout/runs.json",
+                  "assets/fixtures/radial-layout/labels.json")
 OPTIONAL_MCP_RESOURCES = ("easyviz_mcp.py", "requirements-mcp.txt", "figure_service.py")
 V050_REPRODUCE_RESOURCES = {
     "scwat-broken-axis": ("README.md", "plot.py", "spec.json", "caption.md", "extract_source.py", "validate.py",
@@ -211,6 +214,8 @@ def validate_plugin(plugin: Path) -> dict:
             required.extend(f"skills/easyviz/assets/cases/{case}/{name}" for name in resources)
     if version_at_least(manifest["version"], (0, 5, 1)):
         required.extend(f"skills/easyviz/scripts/{name}" for name in V051_RUNTIME_RESOURCES)
+    if version_at_least(manifest["version"], (0, 5, 2)):
+        required.extend(f"skills/easyviz/{name}" for name in V052_RESOURCES)
     scripts = plugin / "skills/easyviz/scripts"
     # The adapter is optional, but an advertised adapter/SDK requirements file
     # must carry its full local closure. Core-only old packages remain valid.
@@ -502,6 +507,29 @@ def main() -> int:
             spec_path.write_text(json.dumps(spec))
             env = os.environ.copy()
             env.update(MPLCONFIGDIR=str(isolated / "matplotlib"), MPLBACKEND="Agg")
+            if version_at_least(manifest["version"], (0, 5, 2)):
+                # Exercise the new layout tool from the actual extracted package,
+                # with site packages disabled and an unrelated working folder.
+                radial = skill / "scripts/radial_layout.py"
+                reports = {}
+                for operation in ("runs", "labels"):
+                    result = subprocess.run(
+                        [sys.executable, "-S", "-B", str(radial), "--input",
+                         str(skill / "assets/fixtures/radial-layout" / f"{operation}.json")],
+                        cwd=isolated, env=env, capture_output=True, text=True)
+                    if result.returncode:
+                        raise RuntimeError("Extracted radial layout failed: " + result.stdout + result.stderr)
+                    reports[operation] = json.loads(result.stdout)
+                runs = reports["runs"]
+                if (len(runs["items"]) != 6 or len(runs["runs"]) != 3
+                        or not runs["runs"][0]["wraps_seam"]
+                        or runs["runs"][0]["item_ids"] != ["item-06", "item-01"]):
+                    raise ValueError("Extracted category bands lost identity or the exact circular seam")
+                labels = reports["labels"]
+                if (labels["status"] != "ready" or len(labels["labels"]) != 3
+                        or labels["labels"][0]["shift_deg"] >= 0
+                        or labels["labels"][-1]["shift_deg"] <= 0):
+                    raise ValueError("Extracted crowded labels did not retain balanced bounded placement")
             discovery = subprocess.run([sys.executable, str(skill / "scripts/render.py"),
                                         "--describe-spec"], cwd=isolated, env=env,
                                        capture_output=True, text=True)

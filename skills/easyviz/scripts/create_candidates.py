@@ -174,13 +174,14 @@ def _intent_routes(routes, excluded, base, features, intent):
 def _draw(data_path, spec):
     """Use exactly the same source preparation, statistics and draw as export."""
     renderer = replicate if spec["chart"] == "replicate" else core
-    data = renderer.prepare(data_path, spec)
+    adopted_analysis = core.load_adopted_analysis(data_path, spec) if renderer is core else None
+    data = core.prepare(data_path, spec, adopted_analysis) if renderer is core else renderer.prepare(data_path, spec)
     layout, typography, rc = core.setup(spec)
     with core.plt.rc_context(rc):
         if renderer is replicate:
             fig, _ = renderer.draw(data, spec, layout, typography)
         else:
-            fig, _ = core.draw(data, spec, layout, typography, core.statistics(data, spec))
+            fig, _ = core.draw(data, spec, layout, typography, core.statistics(data, spec, adopted_analysis))
         fig.canvas.draw()
     fig._easyviz_candidate_font = {"requested": layout["font"], "actual": layout["actual_font"],
                                   "substituted": layout["font_substituted"]}
@@ -876,15 +877,20 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
         require({"mode", "uncertainty"} <= set(source_spec.get("options", {})), "Replicate candidates require adopted options.mode and options.uncertainty; neither is inferred")
         resolved, profile_record = deepcopy(source_spec), None
         data = replicate.prepare(data_path, resolved)
+        adopted_analysis = None
     else:
         resolved, profile_record = core.resolve_spec(source_spec, spec_path=spec_path)
         # The resolver's adopted bytes are the authority, even if an external
         # writer changes the live profile during subsequent measured planning.
         profile_raw = Path(profile_record["path"]).read_bytes() if profile_record else None
         require(profile_raw is None or _digest(profile_raw) == profile_record["sha256"], "Figure profile changed during resolution; retry from a stable adopted profile")
-        data = core.prepare(data_path, resolved)
-    require(len(data) == len(rows), "CSV preparation changed the row count")
+        adopted_analysis = core.load_adopted_analysis(data_path, resolved, spec_path=spec_path)
+        data = core.prepare(data_path, resolved, adopted_analysis)
+    expected_rows = len(adopted_analysis["source_records"]) if adopted_analysis else len(rows)
+    require(len(data) == expected_rows, "CSV preparation changed the explicitly adopted plotting population")
     features = _features(data, resolved)
+    features["source_input_rows"] = len(rows)
+    analysis_bindings = adopted_analysis["source_bindings"] if adopted_analysis else {}
     adopted_intent = _adopt_intent(intent_value, features, resolved)
     mechanism_ranking = mechanisms.rank_mechanisms(features, adopted_intent)
     if adopted_intent is not None:
@@ -972,6 +978,7 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
                 "source": {"path": str(data_path.resolve()), "sha256": _digest(raw), "snapshot": "source.csv"},
                 "source_spec": {"path": str(spec_path.resolve()), "sha256": _digest(spec_raw), "snapshot": "source-spec.json"},
                 "profile": profile_record, "features": features, "suggested_dimension_keys": suggested,
+                "analysis_source_bindings": analysis_bindings,
                 "baseline_geometry": baseline, "candidates": [], "aesthetic_winner": None,
                 "adopted_create_intent": adopted_intent, "mechanism_applicability": mechanism_ranking,
                 "intent_source": {"path": str(intent_path.resolve()), "sha256": _digest(intent_raw), "snapshot": "source-intent.json"} if intent_raw is not None else {"source": "source_spec" if intent_value is not None else "legacy_family_hints"},
@@ -1044,6 +1051,9 @@ def create_candidates(data_path, spec_path, out, *, new_draft=False, count=2, re
         unchanged &= _digest(Path(profile_record["path"]).read_bytes()) == profile_record["sha256"]
     if intent_raw is not None:
         unchanged &= intent_path.read_bytes() == intent_raw
+    if analysis_bindings:
+        manifest["analysis_source_continuity"] = core.source_continuity(analysis_bindings)
+        unchanged &= manifest["analysis_source_continuity"]["status"] == "pass"
     manifest["inputs_unchanged"] = bool(unchanged)
     manifest["status"] = "visual_review_pending" if unchanged and all(c["technical_review"]["status"] in ("pass", "not_rendered") for c in manifest["candidates"]) else "needs_revision"
     _json(out / "manifest.json", manifest)

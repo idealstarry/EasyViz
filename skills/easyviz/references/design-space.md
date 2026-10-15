@@ -22,6 +22,11 @@ reference; this resource adds no track.
 
 ## Plan the first panel
 
+For a custom/multi-layer panel or a manuscript set, first use
+[Evidence before layout](evidence-first-create.md). Decide the visual
+comparison and the role of full lookup tables before allocating panels. A
+palette revision cannot repair the wrong organization of the evidence.
+
 Write a short internal design brief before rendering; a few lines in working
 notes or the spec rationale suffice. Resolve supported cosmetic choices without
 asking the user to approve a layout. Use source context to settle the question;

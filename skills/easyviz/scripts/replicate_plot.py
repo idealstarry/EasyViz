@@ -127,6 +127,7 @@ def prepare(data_path, spec):
     except (ValueError, TypeError):
         raise SpecError("value must contain finite numbers") from None
     require(np.isfinite(data[fields["value"]].to_numpy(float)).all(), "value must contain finite numbers")
+    core.require_numeric_representability(data["_easyviz_source_value_text"], data[fields["value"]], fields["value"])
     keys = [fields["condition"], fields["unit"]] + ([fields["component"]] if "component" in fields else [])
     require(not data.duplicated(keys).any(), "Duplicate condition-unit-component observations")
     conditions = core.ordered(data, fields["condition"], spec, "condition")
@@ -469,6 +470,7 @@ def _canvas_checks(fig):
 
 def render(data_path, spec, out, *, spec_path=None):
     data_path, out = Path(data_path), Path(out)
+    core.guard_output_inputs(data_path, out, spec=spec, spec_path=spec_path)
     out.mkdir(parents=True, exist_ok=True)
     core.write_json(out / "qa.json", {"status": "in_progress", "valid_outputs": False, "note": "Exports from previous runs are unverified until this run passes."})
     spec_path = core.begin_document(out, spec, spec_path)
@@ -542,6 +544,10 @@ def main():
         return
     if not all((args.data, args.spec, args.out)):
         parser.error("--data, --spec and --out are required")
+    try:
+        core.guard_output_inputs(args.data, args.out, spec_path=args.spec)
+    except core.OutputCollisionError as exc:
+        parser.exit(2, f"EasyViz: {exc}\n")
     args.out.mkdir(parents=True, exist_ok=True)
     core.write_json(args.out / "qa.json", {"status": "in_progress", "valid_outputs": False})
     try:

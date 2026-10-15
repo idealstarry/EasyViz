@@ -282,12 +282,32 @@ class FigureService:
         state = app.state()
         with self.lock, ledger_file_lock(self.storage):
             record = self._read_registry()["attempts"].get(attempt_id, {})
+        accepted_snapshot = None
+        acceptance_error = None
+        snapshot = app.root / "accepted-snapshot"
+        acceptance_path = snapshot / "acceptance.json"
+        if acceptance_path.exists() or acceptance_path.is_symlink():
+            try:
+                if snapshot.is_symlink():
+                    raise WorkbenchError("Accepted snapshot must be a regular local directory")
+                acceptance = safe_json(_helpers().read_regular(acceptance_path))
+                if (not isinstance(acceptance, dict) or acceptance.get("schema_version") != 1
+                        or not isinstance(acceptance.get("version"), dict) or not acceptance["version"]):
+                    raise WorkbenchError("Unsupported acceptance snapshot")
+                accepted_snapshot = {key: copy.deepcopy(acceptance[key]) for key in ("version", "accepted_at") if key in acceptance}
+            except (WorkbenchError, OSError, ValueError) as exc:
+                acceptance_error = str(exc)
         base = f"/api/attempts/{attempt_id}"
         return {"id": attempt_id, "name": app.figure_name(record.get("display_name")), "path": str(app.root),
                 "panel": state["panel"], "version": state["version"], "track": state["track"],
-                "source_current": state["source_current"], "accepted": (app.root / "accepted-snapshot/acceptance.json").is_file(),
+                "source_current": state["source_current"],
+                "accepted": accepted_snapshot is not None and accepted_snapshot["version"] == state["version"],
+                "has_accepted_snapshot": accepted_snapshot is not None,
+                "accepted_snapshot": accepted_snapshot, "acceptance_error": acceptance_error,
                 "preview_url": base + "/preview.svg?v=" + state["version"]["figure_sha256"],
-                "files": {ext: base + "/files/panel." + ext for ext in ("svg", "pdf", "png") if "panel." + ext in state["files"]}}
+                "files": {ext: base + "/files/panel." + ext + "?v=" + state["version"]["figure_sha256"]
+                          + "&h=" + state["export_hashes"]["panel." + ext]
+                          for ext in ("svg", "pdf", "png") if "panel." + ext in state["files"]}}
 
     def rename_attempt(self, name, attempt_id=None):
         """Update portable display metadata; never rename paths or scientific exports."""
@@ -1421,10 +1441,10 @@ class FigureService:
                 _atomic_json(self.registry_path, registry)
             return {"job": copy.deepcopy(job)}
 
-    def accept(self, validation, attempt_id=None):
+    def accept(self, validation, attempt_id=None, *, version=None):
         app = self.attempt_app(attempt_id)
         self._sources_in_scope(app.state())
-        acceptance = _helpers().accept_attempt(app.root, validation=validation)
+        acceptance = _helpers().accept_attempt(app.root, validation=validation, expected_version=version)
         return {"acceptance": acceptance, "attempt": self.get_attempt(attempt_id), "state": self.state()}
 
     def restore(self, attempt_id=None):

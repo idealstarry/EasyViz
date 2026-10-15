@@ -3,11 +3,15 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import http.client
+import io
 import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import threading
 import unittest
+import zipfile
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
@@ -52,6 +56,151 @@ class ApplyRequestsTests(unittest.TestCase):
     def request(self, **extra):
         payload={"version":self.state["version"],"selector":{"category":"A"},"property":"color","value":"#AA11CC","instruction":"Use purple for category A while preserving data and area.",**extra}
         return self.app.change(payload)["request"]
+
+    def test_browser_acceptance_rejects_unseen_replacement_and_requires_review_version(self):
+        from figure_workbench import create_server
+        server = create_server(self.attempt, project_dir=self.root)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        origin = f"http://127.0.0.1:{server.server_port}"
+
+        def accept(payload):
+            connection = http.client.HTTPConnection("127.0.0.1", server.server_port, timeout=3)
+            try:
+                connection.request("POST", "/api/attempts/accept", json.dumps(payload), {
+                    "Content-Type": "application/json", "Origin": origin,
+                    "X-EasyViz-Token": server.service.token})
+                response = connection.getresponse()
+                return response.status, json.loads(response.read())
+            finally:
+                connection.close()
+
+        try:
+            reviewed = copy.deepcopy(self.state["version"])
+            # The browser still displays the earlier SVG; another renderer has
+            # published a complete, valid replacement in the same directory.
+            replacement = SVG.replace(b">A<", b">Unseen replacement<")
+            (self.attempt / "panel.svg").write_bytes(replacement)
+            path = self.attempt / "elements.json"
+            manifest = json.loads(path.read_text())
+            manifest["version"]["figure_sha256"] = digest(replacement)
+            path.write_text(json.dumps(manifest))
+            current = self.app.state()["version"]
+            self.assertNotEqual(reviewed, current)
+            note = "Reviewed by the user in the EasyViz workbench."
+            for payload, expected_status in (({"validation": note}, 400),
+                                             ({"validation": note, "version": {}}, 400),
+                                             ({"validation": note, "version": reviewed}, 409)):
+                status, result = accept(payload)
+                self.assertEqual(status, expected_status, result)
+                self.assertFalse((self.attempt / "accepted-snapshot").exists())
+                self.assertFalse(self.app.ledger().get("history"))
+            status, result = accept({"validation": note, "version": current})
+            self.assertEqual(status, 200, result)
+            self.assertEqual(result["acceptance"]["version"], current)
+            self.assertEqual((self.attempt / "accepted-snapshot/panel.svg").read_bytes(), replacement)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=2)
+
+    def test_historical_snapshot_does_not_mark_replacement_accepted_and_remains_restorable(self):
+        from figure_service import FigureService
+        service = FigureService(self.root, self.attempt)
+        try:
+            accepted = service.accept("Inspected original source and exports.", version=self.state["version"])
+            original_version = accepted["acceptance"]["version"]
+            self.assertTrue(accepted["attempt"]["accepted"])
+            replacement = SVG.replace(b">A<", b">Unseen replacement<")
+            (self.attempt / "panel.svg").write_bytes(replacement)
+            path = self.attempt / "elements.json"
+            manifest = json.loads(path.read_text())
+            manifest["version"]["figure_sha256"] = digest(replacement)
+            path.write_text(json.dumps(manifest))
+            current = service.get_attempt()
+            self.assertFalse(current["accepted"], "An immutable old snapshot cannot accept a replacement SVG")
+            self.assertTrue(current["has_accepted_snapshot"])
+            self.assertEqual(current["accepted_snapshot"]["version"], original_version)
+            restored = service.restore()["attempt"]
+            self.assertEqual(restored["version"], original_version)
+            self.assertEqual((Path(restored["path"]) / "panel.svg").read_bytes(), SVG)
+            self.assertEqual((self.attempt / "panel.svg").read_bytes(), replacement)
+        finally:
+            service.close()
+
+    def test_accepted_restore_preserves_original_separate_caption_sidecars(self):
+        captions = {"caption.md": "Original figure caption with units and methods.\n",
+                    "figure-caption.md": "Original source and uncertainty definitions.\n"}
+        for name, text in captions.items():
+            (self.attempt / name).write_text(text, encoding="utf-8")
+        helper.accept_attempt(self.attempt, validation="Reviewed panel and separate captions.")
+        for name in captions:
+            (self.attempt / name).write_text("Later unaccepted caption.\n", encoding="utf-8")
+        out = self.root / "restored-with-captions"
+        helper.restore_attempt(self.attempt, out)
+        for name, text in captions.items():
+            self.assertEqual((out / name).read_text(encoding="utf-8"), text)
+            self.assertEqual((self.attempt / name).read_text(encoding="utf-8"), "Later unaccepted caption.\n")
+
+    def test_scoped_downloads_keep_displayed_attempt_and_reject_replaced_exports(self):
+        from figure_workbench import create_server
+        other = self.root / "attempt-02"
+        self.make_attempt(other, self.spec, svg=SVG.replace(b">A<", b">Other figure<"))
+        for directory in (self.attempt, other):
+            for extension in ("pdf", "png"):
+                (directory / ("panel." + extension)).write_bytes((directory.name + "-" + extension).encode())
+            exports = {ext: {"sha256": digest((directory / ("panel." + ext)).read_bytes())}
+                       for ext in ("svg", "pdf", "png")}
+            (directory / "qa.json").write_text(json.dumps({"status": "pass", "valid_outputs": True, "exports": exports}))
+        server = create_server(self.attempt, project_dir=self.root)
+        other_id = server.service.register_attempt(other)["id"]
+        shown = server.service.get_attempt()
+        ev_url = f"/api/attempts/{shown['id']}/files/panel.ev?v={shown['version']['figure_sha256']}"
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        origin = f"http://127.0.0.1:{server.server_port}"
+
+        def request(path, payload=None):
+            connection = http.client.HTTPConnection("127.0.0.1", server.server_port, timeout=3)
+            try:
+                headers = {"Content-Type": "application/json", "Origin": origin,
+                           "X-EasyViz-Token": server.service.token}
+                connection.request("POST" if payload is not None else "GET", path,
+                                   json.dumps(payload) if payload is not None else None, headers)
+                response = connection.getresponse()
+                return response.status, response.read()
+            finally:
+                connection.close()
+
+        try:
+            self.assertEqual(request("/api/attempts/switch", {"attempt_id": other_id})[0], 200)
+            for extension, url in shown["files"].items():
+                status, raw = request(url)
+                self.assertEqual(status, 200)
+                self.assertEqual(raw, (self.attempt / ("panel." + extension)).read_bytes())
+                self.assertNotEqual(raw, (other / ("panel." + extension)).read_bytes())
+            status, raw = request(ev_url)
+            self.assertEqual(status, 200)
+            with zipfile.ZipFile(io.BytesIO(raw)) as document:
+                self.assertEqual(document.read("panel.svg"), SVG)
+                self.assertEqual(json.loads(document.read("document.json"))["version"], shown["version"])
+            self.assertEqual(request(shown["files"]["pdf"].rsplit("&h=", 1)[0] + "&h=" + "0" * 64)[0], 409)
+            replacement = SVG.replace(b">A<", b">Replacement<")
+            (self.attempt / "panel.svg").write_bytes(replacement)
+            path = self.attempt / "elements.json"
+            manifest = json.loads(path.read_text())
+            manifest["version"]["figure_sha256"] = digest(replacement)
+            path.write_text(json.dumps(manifest))
+            qa_path = self.attempt / "qa.json"
+            qa = json.loads(qa_path.read_text())
+            qa["exports"]["svg"]["sha256"] = digest(replacement)
+            qa_path.write_text(json.dumps(qa))
+            for url in [*shown["files"].values(), ev_url]:
+                self.assertEqual(request(url)[0], 409, "An old preview must not download a replacement export")
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=2)
 
     def test_prepare_bulk_color_changes_complete_mapping_and_only_cosmetic_spec(self):
         item=self.request()

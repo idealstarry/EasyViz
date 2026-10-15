@@ -68,6 +68,14 @@ heatmap is judged by the same color, stroke and final-size standards.
 
 For both tracks, flag an added in-image title unless it was explicitly requested. A title visible in the reference is not authorization to copy it. Do not ask the implementer to restore omitted reference prose or a fixed top-left header; moving that material to the caption is the default manuscript adaptation. Keep plotted counts and necessary annotations when they convey data, rather than treating every number or label as an unwanted overview. Check the caption as a separate artifact, not as figure text to be inserted.
 
+For a custom hierarchy or multi-track view, inspect primary evidence, annotation
+width, label envelope and guide footprint separately. A slim ring can still
+overpower a compressed center; a large tree can crowd its labels. Check exact
+identity joins, meaningful class boundaries, circular seam labels and leader
+crossings. Keep metric branch lengths and adopted ordering intact. Use
+[Evidence before layout](evidence-first-create.md) when a clean export still
+looks like a list of results rather than the intended scientific comparison.
+
 ## Compare a claimed improvement
 
 A candidate can satisfy numerical, export, and collision checks yet be visually inferior to the baseline. For a claimed refinement, inspect both actual exports at the same physical size. Compare the intended reading task: visibility of the important pattern, grouping and order, association of related layers, lookup effort, contrast, and use of space. Return a preference of `baseline`, `candidate`, or `no_clear_preference`, with concrete visible reasons. Retaining the baseline is a valid outcome. Smaller bounds, fewer ticks, more layers, and more passing tests do not establish improvement.

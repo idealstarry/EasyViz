@@ -21,7 +21,7 @@ from figure_handoff import HandoffError, normalize_inputs, bound_version, auxili
 
 MAX_SNAPSHOT_BYTES = 32 * 1024 * 1024
 ELEMENT_FIELDS = ("id", "role", "label", "source_keys", "spec_paths", "editable")
-SNAPSHOT_FILES = ("panel.svg", "panel.pdf", "panel.png", "panel.tiff", "elements.json", "handoff.json", "settings.json", "qa.json", "stats.json", "plotting-data.csv", "analysis-caption.md")
+SNAPSHOT_FILES = ("panel.svg", "panel.pdf", "panel.png", "panel.tiff", "elements.json", "handoff.json", "settings.json", "qa.json", "stats.json", "plotting-data.csv", "analysis-caption.md", "caption.md", "figure-caption.md")
 ANALYSIS_CAPTURE_NAMES = {"analysis_result": "results.json", **{
     "analysis_artifact:" + name: name for name in ("plan.json", "analyzed-data.csv", "summary.csv", "methodology.md")}}
 
@@ -415,8 +415,10 @@ def record_requests(figure_dir, target_dir, request_ids, *, changed_files, valid
     return event
 
 
-def accept_attempt(figure_dir, *, validation):
+def accept_attempt(figure_dir, *, validation, expected_version=None):
     app, state = verified_attempt(figure_dir)
+    if expected_version is not None and (not isinstance(expected_version, dict) or expected_version != state["version"]):
+        raise WorkbenchError("This figure has changed since review. Reload and inspect it before accepting.")
     qa_bytes = app.read_file("qa.json")
     passing_qa(qa_bytes, "accepted attempt")
     if not isinstance(validation, str) or not validation.strip():
