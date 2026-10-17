@@ -176,6 +176,34 @@ class HarnessInstallerTests(unittest.TestCase):
         self.assertEqual(Path(result["target"]), project / ".dsh" / "skills")
         self.assertFalse(self.home.exists())
 
+    def test_nested_git_project_is_rejected_without_writes_and_actual_root_works(self):
+        for marker_type in ("directory", "worktree-file"):
+            with self.subTest(marker_type=marker_type):
+                project = self.root / marker_type
+                project.mkdir()
+                marker = project / ".git"
+                if marker_type == "directory":
+                    marker.mkdir()
+                else:
+                    marker.write_text("gitdir: /unread/worktree/config\n")
+                selected = project / "nested/not-yet-created"
+                with self.assertRaisesRegex(install_harness.InstallError,
+                                            "nearest Git root: " + str(project)):
+                    install_harness.install(self.source, project=selected)
+                self.assertFalse((project / "nested").exists())
+                self.assertFalse((project / ".dsh").exists())
+                result = install_harness.install(self.source, project=project)
+                self.assertEqual(Path(result["target"]), project / ".dsh/skills")
+
+    def test_nested_independent_git_root_uses_its_nearest_marker(self):
+        outer = self.root / "outer"
+        inner = outer / "inner"
+        inner.mkdir(parents=True)
+        (outer / ".git").mkdir()
+        (inner / ".git").write_text("gitdir: /unread/inner\n")
+        self.assertEqual(install_harness.target_directory(project=inner), inner / ".dsh/skills")
+        self.assertFalse((outer / ".dsh").exists())
+
     def test_environment_home_and_explicit_override(self):
         with mock.patch.dict(os.environ, {"DSH_HOME": str(self.home)}):
             self.assertEqual(install_harness.target_directory(), self.target)

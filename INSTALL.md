@@ -50,6 +50,11 @@ installer. An existing unowned skill with the same name stops installation
 before replacement. Detected failures restore previous bundles; any recovery
 failure reports the retained original files' location.
 
+For project scope, select the Git worktree root. Harness searches that root
+even when the conversation starts in a subdirectory. The installer rejects a
+nested `--project` and reports the root to select; without Git, use the same
+directory as the Harness conversation's working directory.
+
 The active Harness profile must expose its filesystem skill provider and skill
 tool. Verify discovery of `easyviz`, `easyviz-reference-reader` and
 `easyviz-figure-reviewer` in the selected session after installation. A disk

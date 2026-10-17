@@ -38,6 +38,16 @@ def target_directory(*, project: Path | None = None,
     # Resolve system directory aliases first, while refusing links at or below
     # the explicitly selected directory (including a symlink selected itself).
     owned_path(target, selected.expanduser().absolute())
+    if project is not None:
+        selected = selected.resolve()
+        for ancestor in (selected, *selected.parents):
+            # Harness recognizes both checkout directories and worktree files.
+            if (ancestor / ".git").exists():
+                if ancestor != selected:
+                    raise InstallError(
+                        f"DeepSeek Harness discovers project skills at the nearest Git root: {ancestor}. "
+                        f"Re-run with --project {ancestor}; the selected nested directory was left untouched.")
+                break
     return target.resolve()
 
 
@@ -142,7 +152,7 @@ def main() -> int:
                         help="Validated EasyViz plugin directory, for example dist/easyviz")
     scope = parser.add_mutually_exclusive_group()
     scope.add_argument("--project", type=Path,
-                       help="Install only in PROJECT/.dsh/skills")
+                       help="Install in PROJECT/.dsh/skills; PROJECT must be the nearest Git root when present")
     scope.add_argument("--dsh-home", type=Path,
                        help="Override DSH_HOME (default: $DSH_HOME or ~/.dsh)")
     args = parser.parse_args()
