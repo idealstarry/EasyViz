@@ -1,0 +1,47 @@
+{
+  "name": "@idealstarry/easyviz",
+  "version": "0.5.2",
+  "description": "Install EasyViz scientific plotting skills and open its local figure workbench.",
+  "type": "module",
+  "bin": {
+    "easyviz": "bin/easyviz.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin/",
+    "dist/npm/easyviz/",
+    "scripts/install_plugin.py",
+    "scripts/install_harness.py",
+    "scripts/check_package.py",
+    "scripts/package_io.py",
+    "scripts/prepare_npm.mjs",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "INSTALL.md"
+  ],
+  "scripts": {
+    "prepare": "node scripts/prepare_npm.mjs",
+    "test": "node --test tests/npm-cli.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idealstarry/EasyViz.git"
+  },
+  "homepage": "https://github.com/idealstarry/EasyViz",
+  "bugs": {
+    "url": "https://github.com/idealstarry/EasyViz/issues"
+  },
+  "author": "Starry",
+  "license": "MIT",
+  "keywords": [
+    "scientific-figures",
+    "bioinformatics",
+    "agent-skills",
+    "deepseek-harness"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

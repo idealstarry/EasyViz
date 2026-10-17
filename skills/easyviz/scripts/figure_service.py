@@ -632,7 +632,7 @@ class FigureService:
         if (not isinstance(owner_session_id, str) or
                 not re.fullmatch(r"[A-Za-z0-9_.:/-]{1,128}", owner_session_id)):
             raise WorkbenchError("Provide the original host's bounded session identifier")
-        if host not in {"codex", "claude-code", "opencode", "local-agent"}:
+        if host not in {"codex", "claude-code", "opencode", "deepseek-harness", "local-agent"}:
             raise WorkbenchError("Unsupported original Agent host")
         expected = os.environ.get("CODEX_THREAD_ID")
         if expected and (owner_session_id != expected or host != "codex"):

@@ -46,8 +46,8 @@ class SessionDispatchTests(unittest.TestCase):
         self.service.close()
         self.temp.cleanup()
 
-    def connect(self):
-        self.connection = self.service.connect_session(self.owner)
+    def connect(self, host="codex"):
+        self.connection = self.service.connect_session(self.owner, host=host)
         self.token = self.connection["connection_token"]
         return self.connection
 
@@ -111,8 +111,20 @@ class SessionDispatchTests(unittest.TestCase):
                 self.service.connect_session("other-conversation", host="local-agent")
 
     def test_live_queue_claim_fresh_export_completion_stays_same_session_without_process(self):
+        self.check_live_queue_without_process("codex")
+
+    def test_harness_queue_stays_with_original_session_after_completion_and_disconnect(self):
+        self.owner = "dsh-original-conversation"
+        with patch.dict(os.environ, {"CODEX_THREAD_ID": ""}):
+            self.check_live_queue_without_process("deepseek-harness")
+            self.assertEqual(self.service.agent_status()["host"], "deepseek-harness")
+            self.service.disconnect_session(self.owner, self.token)
+            with self.assertRaisesRegex(WorkbenchError, "ownership transfer"):
+                self.service.connect_session("other-dsh-conversation", host="deepseek-harness")
+
+    def check_live_queue_without_process(self, host):
         with patch.object(agent_dispatch, "start_worker", side_effect=AssertionError("No fresh CLI allowed")) as start:
-            self.connect()
+            self.connect(host)
             item = self.save()
             job = self.submit([item["id"]])
             self.assertEqual(job["owner_session_id"], self.owner)

@@ -110,6 +110,10 @@ they do not require the user's reference paper to publish its data or code.
 
 ## Local editing and MCP
 
+For installation and host-specific setup in DeepSeek Harness, read
+[DeepSeek Harness](references/deepseek-harness.md). The same two plotting tracks
+and review rules apply; the host's filesystem skill provider supplies discovery.
+
 Keep workbench edits in the conversation that first invoked EasyViz unless the
 user explicitly requests a separate editing worker. When the user says “Apply
 the saved EasyViz workbench comments,” read the current figure's pending

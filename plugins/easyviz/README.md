@@ -20,6 +20,10 @@ Keep all three skill directories together when using the plugin. The main skill 
 
 Ask a local Agent: “Install or update https://github.com/idealstarry/EasyViz in my local ChatGPT Desktop; read INSTALL.md and complete it for me.” The [repository installation guide](https://github.com/idealstarry/EasyViz/blob/main/INSTALL.md) tells the Agent how to acquire the source, use the standard-library installer, preserve your other plugins, refresh the installed copy, and verify it. A compatible Codex CLI is required for automatic local installation. Downloading this package alone does not register it.
 
+An [npm entry and DeepSeek Harness installer](https://github.com/idealstarry/EasyViz/blob/main/INSTALL.md#npm-installation)
+are also available from the repository. The Harness adapter installs all three
+skill bundles in its documented filesystem roots and does not require Codex.
+
 The manifest records this package's version. Start a new chat after installation; refresh or restart the desktop if an update is not visible. This is a local plugin installation, with client support checked on the installed version.
 
 ## Runtime

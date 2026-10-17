@@ -6,7 +6,63 @@ Give your local Agent the repository URL and this request:
 
 The Agent handles acquisition, packaging, installation, and verification. The user does not need to copy a sequence of terminal commands. This installs the local plugin for compatible ChatGPT Desktop/Codex clients; it does not publish to the public plugin directory or import conversation history.
 
-## Instructions for the Agent
+## npm installation
+
+The npm entry requires Node.js 20+ and Python 3.11+. Until the scoped package
+is published to the npm registry, install directly from the public GitHub
+source; no npm account is required:
+
+```sh
+npm install -g git+https://github.com/idealstarry/EasyViz.git#main
+```
+
+This explicitly selects the current `main` source, including its local build
+step. A reviewed commit can replace `main` for a pinned installation. The
+existing stable-release installation below remains available. Run the same
+npm command to update the CLI, then rerun the selected client installation:
+
+| Client | Register EasyViz |
+| --- | --- |
+| ChatGPT Desktop / Codex | `easyviz install --target codex` |
+| DeepSeek Harness | `easyviz install --target deepseek-harness` |
+| DeepSeek Harness, one project | `easyviz install --target deepseek-harness --project /absolute/path/to/project` |
+
+The npm package carries the complete, matching-version portable payload and
+the existing standard-library installers. Installing the npm CLI alone does
+not register skills, alter Python environments or enable MCP. There are no
+`install` or `postinstall` hooks. For a specific Python environment use
+`--python /absolute/path/to/python` or `EASYVIZ_PYTHON`. Codex also accepts
+`--codex` and isolated `--home`; Harness accepts `--dsh-home`.
+
+`easyviz path --skill easyviz` prints the bundled skill path. After the Agent
+checks its drawing dependencies, `easyviz workbench --project-dir /path/to/project`
+opens the local workbench. `easyviz mcp --project-dir /path/to/project` starts
+the optional server on stdio with that Python environment; it neither installs
+the SDK nor registers a client connection.
+
+## DeepSeek Harness
+
+The adapter installs all three skill folders through Harness's official
+filesystem provider. User scope is `$DSH_HOME/skills` (default
+`~/.dsh/skills`); project scope is `PROJECT/.dsh/skills`. It preserves other
+skills and configuration and updates only bundles marked as managed by this
+installer. An existing unowned skill with the same name stops installation
+before replacement. Detected failures restore previous bundles; any recovery
+failure reports the retained original files' location.
+
+The active Harness profile must expose its filesystem skill provider and skill
+tool. Verify discovery of `easyviz`, `easyviz-reference-reader` and
+`easyviz-figure-reviewer` in the selected session after installation. A disk
+installation result alone does not establish session discovery or visual
+quality. Read the packaged [Harness guidance](skills/easyviz/references/deepseek-harness.md)
+for drawing, actual-image review and workbench iteration. This is a skill
+installation route, rather than a `dsh plugin add` Cordis bundle.
+
+Without npm, an Agent can build the portable plugin and run
+`python scripts/install_harness.py --source dist/easyviz`, adding `--project`
+when project scope is intended. No Codex executable is required for this route.
+
+## Instructions for the Agent: ChatGPT Desktop / Codex
 
 1. Read this file and the repository's `AGENTS.md`. Use the current approved source in an existing EasyViz checkout when the user is maintaining it. For a new external installation, default to the latest **published stable release** and its matching tagged source; exclude drafts and prereleases. Clone `https://github.com/idealstarry/EasyViz.git` into a writable directory and select the verified release tag, or obtain that tag's source archive. Use the development branch only when the user requests development changes. Preserve uncommitted work in an existing checkout; do not reset it just to update.
 2. Find Python 3.11 or newer and a local Codex CLI that supports `plugin add --json`. The installer checks the executable on `PATH`, common macOS locations, and `--codex` when supplied. If the installed client lacks that command, report the detected limitation and help update the user's selected client. Do not claim that a package is installed because its files were downloaded.
