@@ -9,23 +9,31 @@ The Agent handles acquisition, packaging, installation, and verification. The us
 ## npm installation
 
 The npm entry requires Node.js 20+ and Python 3.11+. Until the scoped package
-is published to the npm registry, install directly from the public GitHub
+is published to the npm registry, run the installer from the public GitHub
 source; no npm account is required:
 
 ```sh
-npm install -g git+https://github.com/idealstarry/EasyViz.git#main
+npm exec --yes --package=git+https://github.com/idealstarry/EasyViz.git#main -- \
+  easyviz install --target deepseek-harness
 ```
 
 This explicitly selects the current `main` source, including its local build
 step. A reviewed commit can replace `main` for a pinned installation. The
-existing stable-release installation below remains available. Run the same
-npm command to update the CLI, then rerun the selected client installation:
+existing stable-release installation below remains available. This one-shot
+entry does not need a global npm installation. Repeat it to install an updated
+source; after `easyviz`, select the command for the intended client:
 
-| Client | Register EasyViz |
+| Client | Command after `easyviz` |
 | --- | --- |
-| ChatGPT Desktop / Codex | `easyviz install --target codex` |
-| DeepSeek Harness | `easyviz install --target deepseek-harness` |
-| DeepSeek Harness, one project | `easyviz install --target deepseek-harness --project /absolute/path/to/project` |
+| ChatGPT Desktop / Codex | `install --target codex` |
+| DeepSeek Harness | `install --target deepseek-harness` |
+| DeepSeek Harness, one project | `install --target deepseek-harness --project /absolute/path/to/project` |
+
+For offline or global CLI use, an Agent can run `npm pack` in the checkout,
+then install the resulting `idealstarry-easyviz-VERSION.tgz` with
+`npm install -g /absolute/path/to/that-package.tgz`. The complete resources
+are already in that tarball. Global installation directly from Git is not the
+recommended route; the verified source entry above uses `npm exec`.
 
 The npm package carries the complete, matching-version portable payload and
 the existing standard-library installers. Installing the npm CLI alone does
@@ -34,6 +42,7 @@ not register skills, alter Python environments or enable MCP. There are no
 `--python /absolute/path/to/python` or `EASYVIZ_PYTHON`. Codex also accepts
 `--codex` and isolated `--home`; Harness accepts `--dsh-home`.
 
+With the same npm prefix (or a globally installed tarball),
 `easyviz path --skill easyviz` prints the bundled skill path. After the Agent
 checks its drawing dependencies, `easyviz workbench --project-dir /path/to/project`
 opens the local workbench. `easyviz mcp --project-dir /path/to/project` starts

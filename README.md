@@ -37,11 +37,11 @@ ChatGPT Desktop. Follow INSTALL.md and verify the installation for me.
 **npm / DeepSeek Harness** · Node.js 20+ and Python 3.11+:
 
 ```sh
-npm install -g git+https://github.com/idealstarry/EasyViz.git#main
-easyviz install --target deepseek-harness
+npm exec --yes --package=git+https://github.com/idealstarry/EasyViz.git#main -- \
+  easyviz install --target deepseek-harness
 ```
 
-For ChatGPT Desktop/Codex, use `easyviz install --target codex` instead.
+For ChatGPT Desktop/Codex, change the target to `codex`.
 This npm route installs the current GitHub source and needs no npm account.
 It includes all three skills; drawing dependencies are installed separately.
 See [installation and update options](INSTALL.md). Start a new chat after installing.

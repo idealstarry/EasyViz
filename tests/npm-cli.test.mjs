@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, rmSync, symlinkSync, realpathSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, rmSync, symlinkSync, realpathSync, existsSync, readdirSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { test } from 'node:test';
 import { detectPython, parseArguments, SKILLS } from '../bin/easyviz.mjs';
 
@@ -153,3 +153,77 @@ test('prepare on an already bundled tarball validates its version without source
   assert.equal(result.status, 1);
   assert.match(result.stderr, /version does not match/);
 });
+
+test('ordinary npm Git installation and npm exec build ignored resources through prepare',
+  { skip: process.platform === 'win32', timeout: 60000 }, (t) => {
+    const npm = spawnSync('npm', ['--version'], { encoding: 'utf8', timeout: 10000 });
+    const git = spawnSync('git', ['--version'], { encoding: 'utf8', timeout: 10000 });
+    if (npm.status !== 0 || git.status !== 0) {
+      t.skip('npm and Git are required for the local Git lifecycle integration test.');
+      return;
+    }
+    const temporary = realpathSync(mkdtempSync(path.join(os.tmpdir(), 'easyviz-npm-git-')));
+    t.after(() => rmSync(temporary, { recursive: true, force: true }));
+    const source = path.join(temporary, 'source');
+    const prefix = path.join(temporary, 'prefix');
+    const cache = path.join(temporary, 'cache');
+    mkdirSync(source);
+    mkdirSync(prefix);
+    writeFileSync(path.join(prefix, 'package.json'), '{"name":"easyviz-lifecycle-consumer","private":true}');
+    writeFileSync(path.join(source, 'package.json'), JSON.stringify({
+      name: '@idealstarry/easyviz', version: '0.5.2', type: 'module',
+      bin: { easyviz: 'cli.mjs' }, files: ['cli.mjs', 'prepare.mjs', 'payload.json'],
+      scripts: { prepare: 'node prepare.mjs' },
+    }));
+    writeFileSync(path.join(source, 'prepare.mjs'),
+      'import { writeFileSync } from "node:fs"; writeFileSync(new URL("payload.json", import.meta.url), JSON.stringify({prepared: true}));\n');
+    writeFileSync(path.join(source, 'cli.mjs'),
+      '#!/usr/bin/env node\nimport { readFileSync } from "node:fs"; console.log(readFileSync(new URL("payload.json", import.meta.url), "utf8"));\n');
+    writeFileSync(path.join(source, '.gitignore'), 'payload.json\n');
+    const userConfig = path.join(temporary, 'npm-user.conf');
+    const globalConfig = path.join(temporary, 'npm-global.conf');
+    writeFileSync(userConfig, '');
+    writeFileSync(globalConfig, '');
+    const runGit = (args) => {
+      const result = spawnSync('git', ['-c', 'core.hooksPath=/dev/null', ...args], {
+        cwd: source, encoding: 'utf8', timeout: 10000,
+      });
+      assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+      return result.stdout.trim();
+    };
+    runGit(['init', '--quiet', '--template=']);
+    runGit(['add', 'package.json', 'cli.mjs', 'prepare.mjs', '.gitignore']);
+    runGit(['-c', 'user.name=EasyViz test', '-c', 'user.email=test@example.invalid',
+      '-c', 'commit.gpgsign=false', 'commit', '--quiet', '-m', 'Local lifecycle fixture']);
+    const revision = runGit(['rev-parse', 'HEAD']);
+    const spec = `git+${pathToFileURL(source).href}#${revision}`;
+    const result = spawnSync('npm', ['install', '--prefix', prefix, '--cache', cache,
+      '--userconfig', userConfig, '--globalconfig', globalConfig,
+      '--offline', '--no-audit', '--no-fund', spec], {
+      cwd: temporary, encoding: 'utf8', timeout: 45000, maxBuffer: 1024 * 1024,
+      env: { ...process.env, npm_config_update_notifier: 'false' }, shell: false,
+    });
+    assert.equal(result.status, 0, `${result.error ?? ''}\n${result.stdout}\n${result.stderr}`);
+    const installed = path.join(prefix, 'node_modules/@idealstarry/easyviz');
+    assert.ok(existsSync(path.join(installed, 'payload.json')), JSON.stringify({
+      stdout: result.stdout, stderr: result.stderr,
+      files: existsSync(installed) ? readdirSync(installed) : readdirSync(path.join(prefix, 'node_modules')),
+      logs: readdirSync(path.join(cache, '_logs')).map(name => readFileSync(path.join(cache, '_logs', name), 'utf8')).join('\n').split('\n').filter(line => /prepare|error|reify|git dep/.test(line)),
+    }));
+    assert.deepEqual(JSON.parse(readFileSync(path.join(installed, 'payload.json'), 'utf8')), { prepared: true });
+    const command = spawnSync(process.execPath, [path.join(prefix, 'node_modules/.bin/easyviz')], {
+      cwd: temporary, encoding: 'utf8', timeout: 10000,
+    });
+    assert.equal(command.status, 0, command.stderr);
+    assert.deepEqual(JSON.parse(command.stdout), { prepared: true });
+    const oneShot = spawnSync('npm', ['exec', '--yes', `--package=${spec}`,
+      '--cache', path.join(temporary, 'exec-cache'), '--userconfig', userConfig,
+      '--globalconfig', globalConfig, '--offline', '--no-audit', '--no-fund', '--', 'easyviz'], {
+      cwd: temporary, encoding: 'utf8', timeout: 45000, maxBuffer: 1024 * 1024,
+      env: { ...process.env, npm_config_update_notifier: 'false' }, shell: false,
+    });
+    assert.equal(oneShot.status, 0, `${oneShot.error ?? ''}\n${oneShot.stdout}\n${oneShot.stderr}`);
+    assert.deepEqual(JSON.parse(oneShot.stdout), { prepared: true });
+    assert.equal(readFileSync(userConfig, 'utf8'), '');
+    assert.equal(readFileSync(globalConfig, 'utf8'), '');
+  });
