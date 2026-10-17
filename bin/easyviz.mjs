@@ -11,6 +11,8 @@ export const SKILLS = ['easyviz', 'easyviz-reference-reader', 'easyviz-figure-re
 const HELP = `EasyViz — scientific plotting skills and local figure review
 
 Usage:
+  easyviz deepseek [--project DIRECTORY | --dsh-home DIRECTORY] [--python PATH]
+  easyviz codex [--home OS_HOME] [--codex PATH] [--python PATH]
   easyviz install [--target codex|deepseek-harness] [--python PATH]
     Codex:   [--home OS_HOME] [--codex PATH]
     Harness: [--project DIRECTORY | --dsh-home DIRECTORY]
@@ -36,6 +38,15 @@ const OPTIONS = {
 const SWITCHES = new Set(['--open', '--no-open']);
 
 export function parseArguments(argv) {
+  const shortcuts = { deepseek: 'deepseek-harness', codex: 'codex' };
+  if (Object.hasOwn(shortcuts, argv[0])) {
+    const shortcut = shortcuts[argv[0]];
+    const rest = argv.slice(1);
+    if (rest.length === 1 && ['--help', '-h'].includes(rest[0])) {
+      return { command: 'help', options: {} };
+    }
+    return parseArguments(['install', '--target', shortcut, ...rest]);
+  }
   if (argv.length === 0 || (argv.length === 1 && ['--help', '-h', 'help'].includes(argv[0]))) {
     return { command: 'help', options: {} };
   }

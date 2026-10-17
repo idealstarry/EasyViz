@@ -34,15 +34,14 @@ Install or update https://github.com/idealstarry/EasyViz in my local
 ChatGPT Desktop. Follow INSTALL.md and verify the installation for me.
 ```
 
-**npm / DeepSeek Harness** · Node.js 20+ and Python 3.11+:
+**npm** · Node.js 20+ and Python 3.11+:
 
 ```sh
-npm exec --yes --package=git+https://github.com/idealstarry/EasyViz.git#main -- \
-  easyviz install --target deepseek-harness
+npx easyviz deepseek
 ```
 
-For ChatGPT Desktop/Codex, change the target to `codex`.
-This npm route installs the current GitHub source and needs no npm account.
+For ChatGPT Desktop/Codex, use `npx easyviz codex`.
+Installing the public npm package needs no npm account.
 It includes all three skills; drawing dependencies are installed separately.
 See [installation and update options](INSTALL.md). Start a new chat after installing.
 

@@ -36,4 +36,5 @@ jobs:
         run: |
           npm test
           npm pack --pack-destination "$RUNNER_TEMP"
-          python scripts/check_npm_package.py "$RUNNER_TEMP/idealstarry-easyviz-$(node bin/easyviz.mjs --version).tgz"
+          EASYVIZ_NPM_ARCHIVE_NAME=$(node -p "require('./package.json').name.replace(/^@/, '').replace('/', '-')")
+          python scripts/check_npm_package.py "$RUNNER_TEMP/$EASYVIZ_NPM_ARCHIVE_NAME-$(node bin/easyviz.mjs --version).tgz"

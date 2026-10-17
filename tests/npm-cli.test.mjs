@@ -103,6 +103,22 @@ test('Codex and Harness dispatch preserve exact arguments and installer exit cod
   assert.deepEqual(JSON.parse(result.stdout).args, ['--source', f.payload, '--dsh-home', selectedHome]);
 });
 
+test('short install commands retain the chosen client and reject a conflicting target', (t) => {
+  const f = fixture(t);
+  for (const [command, flag, script] of [
+    ['deepseek', '--dsh-home', 'install_harness.py'], ['codex', '--home', 'install_plugin.py'],
+  ]) {
+    const selectedHome = path.join(f.temporary, `${command} home`);
+    const result = invoke(f, [command, flag, selectedHome]);
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(JSON.parse(result.stdout), { script, args: ['--source', f.payload, flag, selectedHome] });
+    assert.throws(() => parseArguments([command, '--target', 'codex']), /Repeated option/);
+    assert.equal(parseArguments([command, '--help']).command, 'help');
+  }
+  assert.throws(() => parseArguments(['deepseek', '--home', '/tmp/codex']), /only to codex/);
+  assert.throws(() => parseArguments(['codex', '--dsh-home', '/tmp/dsh']), /only to deepseek/);
+});
+
 test('workbench and MCP forward only declared project options without registration or environment installation', (t) => {
   const f = fixture(t);
   const python = detectPython().executable;
