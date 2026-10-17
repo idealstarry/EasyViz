@@ -36,11 +36,18 @@ ChatGPT Desktop. Follow INSTALL.md and verify the installation for me.
 
 **npm** · Node.js 20+ and Python 3.11+:
 
+ChatGPT Desktop / Codex:
+
+```sh
+npx easyviz codex
+```
+
+DeepSeek Harness:
+
 ```sh
 npx easyviz deepseek
 ```
 
-For ChatGPT Desktop/Codex, use `npx easyviz codex`.
 Installing the public npm package needs no npm account.
 It includes all three skills; drawing dependencies are installed separately.
 See [installation and update options](INSTALL.md). Start a new chat after installing.

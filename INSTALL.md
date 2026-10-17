@@ -8,16 +8,16 @@ The Agent handles acquisition, packaging, installation, and verification. The us
 
 ## npm installation
 
-The npm entry requires Node.js 20+ and Python 3.11+. Run the published installer;
-installing a public package needs no npm account:
+The npm entry requires Node.js 20+ and Python 3.11+. For ChatGPT Desktop / Codex,
+run the published installer; installing a public package needs no npm account:
 
 ```sh
-npx easyviz deepseek
+npx easyviz codex
 ```
 
 This downloads the published package and registers its complete skill bundles
 in the selected client. A global CLI installation is optional. Use
-`npx easyviz@0.5.2 deepseek` to pin this version, or `npx easyviz@latest deepseek`
+`npx easyviz@0.5.2 codex` to pin this version, or `npx easyviz@latest codex`
 when explicitly updating to the newest published version.
 
 | Client | Command |
@@ -26,14 +26,14 @@ when explicitly updating to the newest published version.
 | DeepSeek Harness | `npx easyviz deepseek` |
 | DeepSeek Harness, one project | `npx easyviz deepseek --project /absolute/path/to/project` |
 
-For a permanent CLI, run `npm install -g easyviz`, then use `easyviz deepseek`
-or `easyviz codex`. For offline use, an Agent can run `npm pack` in a checkout,
+For a permanent CLI, run `npm install -g easyviz`, then use `easyviz codex`
+or `easyviz deepseek`. For offline use, an Agent can run `npm pack` in a checkout,
 then install `easyviz-VERSION.tgz` with
 `npm install -g /absolute/path/to/that-package.tgz`. The complete resources
 are already in that tarball.
 
 For development changes explicitly requested from `main`, use
-`npm exec --yes --package=git+https://github.com/idealstarry/EasyViz.git#main -- easyviz deepseek`.
+`npm exec --yes --package=git+https://github.com/idealstarry/EasyViz.git#main -- easyviz codex`.
 This source route builds locally before use and needs Git and Python.
 
 The npm package carries the complete, matching-version portable payload and
