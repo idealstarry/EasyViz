@@ -1,25 +1,24 @@
-# EasyViz 0.5.3
+EasyViz 0.5.3 focuses on reviewed first figures, concise clarification and direct chat refinements, with the workbench available when needed.
 
-The default workflow is reviewed figures followed by small changes in the
-original Agent chat. The local workbench, MCP connection and editable `.ev`
-project are optional. Ask to open the workbench when you want to select
-elements, annotate several regions or compare attempts visually.
+### Track improvements
 
-On the first plotting use in each conversation, the Agent briefly introduces
-direct chat editing and the optional workbench. It inspects available inputs
-before asking consequential missing questions, within at most two intake
-rounds. Supplied choices remain authoritative; unknown scientific facts stay
-explicit. Create and Reproduce retain their own design and review contracts.
+- **First use:** briefly introduce drawing, chat refinements and the optional workbench once per conversation, including how to ask the Agent to open it.
+- **Focused intake:** inspect the supplied data or reference before asking consequential missing questions, within at most two rounds. Preserve supplied choices and keep unknown scientific facts explicit.
+- **First delivery:** retain distinct Create and Reproduce workflows, inspect the actual rendered image and correct concrete findings within the existing review budget before delivery. Reuse adopted answers, statistics and project settings for later cosmetic edits.
 
-Actual-image review still precedes the first finished delivery. The Agent
-reuses adopted answers and project settings and corrects concrete findings
-within the existing review budget. An attractive template or a successful
-export alone does not establish that the first result is ready.
+### Workbench and MCP
 
-Ordinary renderers retain requested graphics when optional element-map export
-fails, clean stale editing metadata and report the affected editing capability.
-Scientific, geometry, clipping and graphic-export failures still block delivery.
-The workbench also rejects ambiguous duplicate SVG IDs for element selection.
+The local workbench, MCP connection and `.ev` project are optional. Ordinary drawing and chat refinements deliver reviewed graphics, captions and runnable source directly. Ask to open the workbench when selecting elements, annotating several regions or comparing attempts would help.
 
-Install or update with `npx easyviz codex`, or `npx easyviz deepseek` for
-DeepSeek Harness. See [validation and limits](validation-v0.5.3.md).
+Saved comments can be applied from the original Agent chat. Optional MCP submission requires that Agent to be active and waiting; it does not start an idle chat.
+
+### Reliability and validation
+
+- Preserve valid graphics when optional element-map export fails, clear stale editing metadata and report the affected capability. Scientific, clipping and graphic-export failures still block delivery.
+- Reject duplicate SVG IDs for element selection, and retain source verification when a map is unavailable.
+- Verify that the extracted renderer version matches the plugin manifest.
+- **918 Python tests and 11 npm CLI tests passed.** Extracted-package rendering and both client installers were checked; browser annotations, on-demand `.ev` export and a new-data first-delivery/chat-edit workflow were exercised.
+
+[Install or update](https://github.com/idealstarry/EasyViz/blob/main/INSTALL.md) · [Changelog](https://github.com/idealstarry/EasyViz/blob/main/CHANGELOG.md) · [QA record](https://github.com/idealstarry/EasyViz/blob/v0.5.3/docs/validation-v0.5.3.md)
+
+Give your local Agent the repository link and ask it to follow `INSTALL.md`, or use the attached portable plugin ZIP.
