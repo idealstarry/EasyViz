@@ -191,8 +191,8 @@ class FigureElementsTests(unittest.TestCase):
         spec = deepcopy(self.spec)
         spec["formats"] = ["png"]
         core.render(self.data, spec, out)
-        manifest = json.loads((out / "elements.json").read_text())
-        self.assertIsNone(manifest["version"]["figure_sha256"])
+        self.assertFalse((out / "elements.json").exists())
+        self.assertEqual(json.loads((out / "editing-status.json").read_text())["status"], "unavailable")
         self.assertEqual((out / "panel.svg").read_bytes(), old_svg)
 
     def test_metadata_tags_do_not_change_rendered_heatmap_pixels(self):

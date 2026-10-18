@@ -307,6 +307,7 @@ def _render_distribution(source, raw, spec, out, spec_path):
             qa["observation_clipping"] = clipping_report
             settings = {**deepcopy(spec), "layout": layout, "typography": typography, "resolved_colors": colors, "input_file": str(source.resolve()), "input_sha256": _hash(source), "spec_file": str(spec_path.resolve()), "spec_file_sha256": _hash(spec_path), "track": "create", "renderer": {"version": VERSION, "sha256": _hash(Path(__file__)), "helper_sha256": {name: _hash(Path(__file__).with_name(name)) for name in HELPERS}}, "point_layout": point_layout, "axis": {"x_scale": fig.axes[0].get_xscale(), "x_limits": list(map(float, fig.axes[0].get_xlim()))}, "runtime": {"python": platform.python_version(), **{name: package_version(name) for name in ("matplotlib", "numpy", "pandas", "scipy", "Pillow", "pypdf")}}}
             settings["observation_clipping"] = clipping_report
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             settings["renderer"]["helper_sha256"]["observation_clipping.py"] = core.RUNTIME_SOURCE_DIGESTS["observation_clipping.py"]
             headers, rows = _read_source(raw)
             data["_easyviz_source_row"] = range(1, len(rows) + 1)

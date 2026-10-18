@@ -1,5 +1,10 @@
 # Optional local MCP connection
 
+Read this reference only when setting up or using a requested MCP editing
+connection. Ordinary plotting, actual-image review, chat refinements and
+applying saved workbench comments in the original conversation do not require
+MCP. Installing EasyViz or mentioning a figure is not a connection request.
+
 MCP lets a compatible Agent use the workbench's project-scoped figure service:
 its library, source-bound requests, render jobs and original-session editing
 queue. Create and Reproduce keep their existing workflows. **Save drafts** only

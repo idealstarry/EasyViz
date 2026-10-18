@@ -514,10 +514,10 @@ def render(data_path, spec, out, *, spec_path=None):
             data.to_csv(out / "plotting-data.csv", index=False)
             core.write_json(out / "summary-data.json", fig._easyviz_replicate_summary)
             core.write_json(out / "stats.json", {"method": "descriptive_mean", "uncertainty": resolved.get("options", {}).get("uncertainty", "sample_sd"), "sd_ddof": 1 if resolved.get("options", {}).get("uncertainty", "sample_sd") == "sample_sd" else None, "stacked_point_and_interval_quantity": "per-unit component total" if resolved.get("options", {}).get("mode") == "stacked" else None, "unit_count_definition": "Number of distinct mapped unit IDs within each condition; biological independence and cross-condition pairing are not inferred.", "tests_performed": False, "ratios_derived": False, "normalization_performed": False})
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             core.write_json(out / "settings.json", settings)
             core.write_json(out / "qa.json", qa)
             require(passed, "Source or fixed-canvas QA needs revision; inspect qa.json and actual panel at the requested dimensions and font.")
-            core.save_document(out)
             return qa
     except Exception as exc:
         qa = json.loads((out / "qa.json").read_text())

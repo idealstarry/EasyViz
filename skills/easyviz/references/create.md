@@ -8,6 +8,16 @@ the user has not supplied a reference to reproduce.
 
 Create an individual scientific panel from source data, a communication goal or chart type, optional additions, and export preferences. Reuse the same data, typography, palette, and physical-size rules as reproduce.
 
+Use [First use and focused intake](../SKILL.md#first-use-and-focused-intake):
+inspect the supplied tables and project context first, then use at most two
+short clarification rounds for the whole plotting request. When needed, first
+ask what comparison matters and where the panel will be used; prioritize an
+unresolved experimental unit or pairing over cosmetic preferences. A second
+round resolves only a fact that materially changes that chosen plan. Offer a
+recommended path with brief alternatives, and accept “recommend for me” without
+asking the user to choose every design detail. Reuse accepted answers during
+revisions instead of starting intake again.
+
 State the scientific question, the comparison readers should make and why this
 panel is needed. Confirm that the supplied variables and study design support that
 reading before choosing a chart family. A scatter, bar,
@@ -41,8 +51,8 @@ For the first finished panel, follow [First reviewed delivery](first-draft.md):
 inspect applicable [card mechanisms](design-cards.md), implement the chosen
 route, and correct actual image findings internally. Use a meaningful additional
 candidate only when it resolves a design uncertainty.
-Resolve cosmetic defaults autonomously; clarify missing scientific facts only
-when they change the adopted meaning or analysis.
+Resolve cosmetic defaults autonomously; clarify only information that changes
+the adopted meaning, analysis or intended use under the shared intake limit.
 
 If the user supplies a directory without a clear question or chart, start with
 [Data exploration](data-exploration.md). Inventory the tables, inspect actual
@@ -53,11 +63,13 @@ useful association question. Ask only for scientific facts that change a
 proposed analysis; keep descriptive exploration moving while those facts
 remain unknown. The user need not choose a renderer or write a specification.
 
-For an eligible observation table with an unresolved reading task, use [Actual preview choices](preview-choices.md)
-to show box + all points and an unsmoothed ECDF at the same final dimensions,
-fonts, colors and numeric scale. State which helps the proposed reading task,
-inspect the actual exports, and retain the user's choice. The manifest contains
-no automatic winner. Unknown units/design remain explicit and descriptive;
+For an eligible observation table where a distribution-versus-cumulative reading
+choice would help resolve the purpose, [Actual preview choices](preview-choices.md)
+can show box + all points and an unsmoothed ECDF at the same final dimensions,
+fonts, colors and numeric scale. Explain which helps the proposed reading task
+and inspect the actual exports. Keep a user's supplied choice, or choose the
+supported route when design judgment was delegated; no extra selection round
+is mandatory. The manifest contains no automatic winner. Unknown units/design remain explicit and descriptive;
 pairing, technical repeats and summary tables require a different prepared
 contract. A directory recommendation without a rendered image is only a proposal.
 
@@ -219,7 +231,8 @@ Treat each case's schema, selection, denominators, annotation joins, and layout 
 
 For edits to an existing panel, reuse its data, script, and accepted settings. Record the requested addition and any consequent layout change. Do not silently change denominators, tests, category colors, axis limits, or experimental units while adding a layer.
 
-For detailed changes, the [Figure workbench](figure-workbench.md) records selected
+Handle ordinary revisions directly in chat using the accepted code/settings.
+For requested visual annotations, the optional [Figure workbench](figure-workbench.md) records selected
 layers or canvas regions and the version the user inspected. Apply requests to
 the original spec/profile or script, preserve the accepted attempt, and redraw
 the affected formats. It is a shared editing tool, not another plotting track.
@@ -266,4 +279,4 @@ Record review of the selected current exports using
 support readiness. Only attest to images actually opened and checks actually
 performed; artifact hashes bind versions, not aesthetic quality.
 
-Provide the individual panel in the requested formats, a PNG preview when useful, separate `caption.md`, runnable script, actual settings, traceable plotting data, and calculated statistical results if applicable. Follow the journal-style caption guidance in [Panel layout](panel-layout.md); use figure/panel identifiers only when known. State meaningful unresolved limitations and the recorded placement dimensions. The user assembles panels at those dimensions.
+Provide the individual panel as editable SVG and the requested additional formats, a PNG preview when useful, separate `caption.md`, runnable script, actual settings, traceable plotting data, and calculated statistical results if applicable. Follow the journal-style caption guidance in [Panel layout](panel-layout.md); use figure/panel identifiers only when known. State meaningful unresolved limitations and the recorded placement dimensions. The user assembles panels at those dimensions. Workbench activation, MCP and `.ev` packaging are optional and do not establish or replace first-delivery quality.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.3 — 2026-10-18
+
+- Make the local workbench, MCP connection and editable `.ev` packaging opt-in. Ordinary Create/Reproduce delivery and chat-based tweaks retain reviewed graphics, runnable source, captions and traceable inputs.
+- Add one short first-use introduction per conversation and data-first clarification with at most two rounds of consequential questions. Preserve supplied constraints, user choices and scientific uncertainty; recommend design choices when requested.
+- Keep actual-image review before the first finished delivery. Reuse adopted answers and project style, repair concrete findings within the existing review budget, and keep the two plotting tracks distinct.
+- Separate optional map-export failures from graphic validity, clean stale maps and archives, and retain explicit editable-project export. Preserve verified source checks in Create review even when an optional map is unavailable.
+- Reject duplicate actual SVG IDs for selectable elements while retaining genuine source-bound region/general notes. Verify the packaged renderer version against its plugin manifest.
+
+See [validation and limits](docs/validation-v0.5.3.md).
+
 ## 0.5.2 — 2026-10-15
 
 - Create plans the main scientific comparison before allocating panels, lookup tables, supporting tracks and guides. Custom and multi-layer first drafts apply conditional reference lessons inside the existing visual-review budget, without adopting a single palette or layout for every task.

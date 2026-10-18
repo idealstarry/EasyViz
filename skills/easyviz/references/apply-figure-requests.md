@@ -187,12 +187,13 @@ spec, input and already reviewed exports together; it cannot infer lost code
 from SVG/PDF. This workflow handles one source/spec/data attempt and its explicitly declared auxiliary files. Shared profiles still require Agent preservation of every dependent panel. Imported author modules and external assets are preserved only when explicitly declared; the helper cannot discover undeclared runtime dependencies. A restored copy of a core source file is
 provenance, not permission for `--render` to execute it as an arbitrary script.
 
-Package the accepted/current attempt in `.ev` with only its declared inputs for
-transport and library import; this does not recover missing historical source
+When transport or an editable-project export is requested, package the
+accepted/current attempt in `.ev` with only its declared inputs for
+library import; this does not recover missing historical source
 or turn raster content into vectors. Importing and registering a bundle do not
 execute its code.
 
-Open the project library with `easyviz_workbench.py --project-dir PROJECT
+For requested visual comparison, open the project library with `easyviz_workbench.py --project-dir PROJECT
 --port 0`, or open the fresh result with `figure_workbench.py --project-dir
 PROJECT --figure-dir NEW_ATTEMPT --compare-dir PREVIOUS_ATTEMPT --port 0`
 to compare versions. The browser's

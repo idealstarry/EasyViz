@@ -29,6 +29,14 @@ python3 -m venv .venv
 
 ## Workflow helpers
 
+Ordinary delivery is a reviewed graphic with runnable source and a caption.
+The workbench and MCP are activated only on request. First-use introduction
+and the two-round clarification limit live in the skill workflow, using the
+current conversation and existing project settings rather than global state.
+Keep real scientific/export checks independent of optional element mapping
+and `.ev` packaging. Opening a current graphic later must use its real source
+bindings and a fresh map; it must not relabel stale editing metadata as current.
+
 Create starts with a basic single plot. `create_style.py` fills missing cosmetic
 choices in new unprofiled drafts and previews; explicit overrides take
 precedence. `crisp` is the default and `legacy` is available for earlier preview

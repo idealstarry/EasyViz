@@ -400,15 +400,20 @@ def render(data_path, summary_path, spec, out, runtime_path, *, spec_path=None, 
             settings = {**deepcopy(spec), "layout": layout, "typography": typography, "runtime": str(Path(runtime_path).resolve()), "runtime_sha256": {name: hashlib.sha256(Path(runtime_path).joinpath(name).read_bytes()).hexdigest() for name in ("aligned_layers.py", "annotated_matrix.py", "render.py", "figure_elements.py")}, "inputs": {key: {"path": str(path), "sha256": hashes[key]} for key, path in paths.items()}, "provenance": provenance, "summary_calculations": "none; supplied values and strict declared P classes only", "outline_policy": "Borderless matrix cells and supplied bars; hollow significance circle and source-emphasis outlines are explicit exceptions"}
             settings["supplied_spec"] = supplied_spec
             settings["font_override"] = font_override
+            if fig._easyviz_editing_availability["status"] == "available":
+                try:
+                    manifest = json.loads((out / "elements.json").read_text())
+                    manifest["input"]["aligned_layer_inputs"] = settings["inputs"]
+                    runtime.write_json(out / "elements.json", manifest)
+                except Exception as exc:
+                    runtime.core.record_editing_availability(fig, out, reason=exc, stage="aligned_layer_inputs")
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             runtime.write_json(out / "qa.json", qa)
             runtime.write_json(out / "settings.json", settings)
             runtime.pd.DataFrame(source_audit["artist_values"]).to_csv(out / "artist-values.csv", index=False)
             source["data"].to_csv(out / "plotting-data.csv", index=False)
             source["summary"].to_csv(out / "supplied-summary.csv", index=False)
             runtime.write_json(out / "stats.json", {"normalization_recomputed": False, "cosine_recomputed": False, "anova_recomputed": False, "clustering_performed": False, "supplied_summary_rows": len(source["summary"]), "declared_significance_classes": spec["significance"]})
-            manifest = json.loads((out / "elements.json").read_text())
-            manifest["input"]["aligned_layer_inputs"] = settings["inputs"]
-            runtime.write_json(out / "elements.json", manifest)
             caption = HERE / "caption.md"
             if caption.is_file() and provenance_path: (out / "caption.md").write_text(caption.read_text())
             else: (out / "caption.md").write_text("Synthetic transfer panel. Two supplied matrices and supplied summary values share literal ordered feature IDs. Significance circles decode supplied adjusted P values; no normalization, cosine, test or clustering was recomputed.\n")

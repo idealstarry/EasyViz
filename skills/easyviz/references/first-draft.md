@@ -6,6 +6,14 @@ first finished result. Reproduce retains its adopted reference and settings.
 Routine corrections need review of the affected result, not compulsory
 alternative designs.
 
+The first delivered version is the first **internally reviewed** result, not
+the first render. Follow [focused intake](../SKILL.md#first-use-and-focused-intake)
+before designing; the two-round limit does not transfer design judgment to the
+user. Save adopted answers in existing spec/settings/project context, retain
+unknown scientific facts explicitly, and use accepted preferences when relevant.
+This workflow runs without the workbench, MCP or `.ev`; review real exported
+images with available image tools and deliver the result in chat.
+
 ## Choose a design route and render
 
 Establish the reading task, fields, units, independent observations and supported
@@ -150,7 +158,9 @@ Correct concrete findings internally and render all affected formats. Allow
 at most **three visual passes in total**, including the initial candidate
 comparison; generating another alternative does not restart that budget.
 Keep source observations, scientific meanings, agreed fonts and dimensions.
-After the third pass, report unresolved findings rather than fabricate a pass.
+This is an upper bound, not a requirement to perform three passes: deliver when
+the current inspected result meets the adopted specification and its actual
+checks pass. After the third pass, report unresolved findings rather than fabricate a pass.
 If safe packing still fails, state the capacity limit; a split panel or another
 reading task is a proposal, not a silent replacement of the requested plot.
 

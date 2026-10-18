@@ -238,6 +238,13 @@ def evidence(status, detail):
 def source_bindings(root, records):
     """Use declared paths only; relative paths are scoped to the figure directory."""
     claims = {"data_file": [], "source_script": [], "spec_file": [], "figure_profile": []}
+    bound_data_labels = set()
+    for record in records.values():
+        binding = object_at(object_at(record, "source_bindings"), "data_file")
+        location, expected = binding.get("path"), binding.get("sha256")
+        if isinstance(location, str) and location.strip() and isinstance(expected, str):
+            bound_data_labels.add((Path(location).name, expected))
+
     def declared_sources(origin, bindings):
         # Preserve explicit consumed role/path/hash claims. Never discover
         # dependencies from filenames, imports or the working directory.
@@ -276,9 +283,15 @@ def source_bindings(root, records):
                                      ("spec_file", "spec_file", "spec_file_sha256")):
             location = record.get(field)
             if isinstance(location, str) and location.strip():
-                # Core settings.input_file is a basename label. When the element
-                # map records the actual data_file, that exact pointer wins.
-                if field == "input_file" and not Path(location).is_absolute() and any(object_at(value, "input").get("data_file") for value in records.values()):
+                # Core settings.input_file is a basename label. Prefer the
+                # element map's location, or a structured source binding with
+                # that exact basename/hash, even when optional mapping failed.
+                # Every structured declaration is still verified below; this
+                # does not suppress conflicting paths or consumed byte hashes.
+                if (field == "input_file" and not Path(location).is_absolute()
+                        and (any(object_at(value, "input").get("data_file") for value in records.values())
+                             or isinstance(record.get(hash_key), str)
+                             and (location, record[hash_key]) in bound_data_labels)):
                     continue
                 claims[role].append((origin + ":" + field, location, record.get(hash_key)))
     result = {}

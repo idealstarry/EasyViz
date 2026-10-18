@@ -112,6 +112,12 @@ remaining uncertainty that changes the next analysis or figure. Do not present
 every question and every table as a long questionnaire. Descriptive previews
 can proceed with explicitly unknown units when they identify their counts as
 source rows and preserve all observations.
+These tool-generated questions are suggestions, not a required interview.
+Follow [focused intake](../SKILL.md#first-use-and-focused-intake): at most two
+rounds of one or two consequential questions for the whole plotting request,
+with existing answers reused across tables. If an answer remains unavailable,
+retain the unknown and omit unsupported inference while making useful
+descriptive progress.
 
 `numeric_pair_eligibility` means that numeric coordinates exist. It selects no
 chart, x/y mapping or correlation method. Resolve what the reader needs to

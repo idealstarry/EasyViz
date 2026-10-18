@@ -535,7 +535,8 @@ def main() -> int:
                                        capture_output=True, text=True)
             if discovery.returncode:
                 raise RuntimeError(discovery.stdout + discovery.stderr)
-            routes = json.loads(discovery.stdout).get("focused_recipes", {})
+            discovery_info = json.loads(discovery.stdout)
+            routes = discovery_info.get("focused_recipes", {})
             if set(routes) != {"interval", "paired", "replicate", "ecdf", "timecourse", "annotated_matrix"}:
                 raise ValueError("Extracted chart discovery does not identify every focused recipe")
             for route in routes.values():
@@ -613,6 +614,10 @@ def main() -> int:
             qa = json.loads((isolated / "output/qa.json").read_text())
             if qa.get("status") != "pass" or not qa.get("valid_outputs"):
                 raise ValueError("Extracted core smoke failed canvas/export QA")
+            if version_at_least(manifest["version"], (0, 5, 3)):
+                settings = json.loads((isolated / "output/settings.json").read_text())
+                if settings.get("renderer", {}).get("version") != manifest["version"]:
+                    raise ValueError("Extracted renderer version differs from the plugin manifest")
             teaching = skill / "assets/fixtures/statistical-analysis"
             for name, arguments, expected in (
                 ("inspect_data", ["--input", str(teaching), "--out", str(isolated / "intake")], "analysis-options.json"),

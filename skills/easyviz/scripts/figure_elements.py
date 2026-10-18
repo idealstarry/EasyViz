@@ -8,8 +8,10 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
+import tempfile
 import xml.etree.ElementTree as ET
 
 
@@ -206,5 +208,16 @@ def write(fig, out, spec, layout):
     if isinstance(colors, dict) and colors:
         palette = json.dumps(colors, ensure_ascii=False, sort_keys=True, allow_nan=False, separators=(",", ":")).encode()
         manifest["version"]["resolved_colors_sha256"] = hashlib.sha256(palette).hexdigest()
-    (out / "elements.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False) + "\n")
+    # Replace the complete map atomically. An interrupted optional sidecar write
+    # must not leave a partial JSON document beside otherwise usable exports.
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=out,
+                                         prefix=".elements-", suffix=".json", delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False) + "\n")
+        os.replace(temporary, out / "elements.json")
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     return manifest

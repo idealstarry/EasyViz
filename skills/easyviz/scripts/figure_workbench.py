@@ -455,7 +455,9 @@ class FigureWorkbench:
                 candidate_panel = {"width_mm": width, "height_mm": height}
                 dimensions_match = all(svg_panel[key] is None or abs(svg_panel[key] - candidate_panel[key]) < .05 for key in candidate_panel)
                 valid = declared_version.get("figure_sha256") == actual_hash and dimensions_match
-                ids = {node.attrib["id"] for node in svg_root.iter() if "id" in node.attrib}
+                svg_ids = [node.attrib["id"] for node in svg_root.iter() if "id" in node.attrib]
+                ids = set(svg_ids)
+                duplicate_svg_ids = len(svg_ids) != len(ids)
                 candidates = manifest.get("elements")
                 if valid and isinstance(candidates, list):
                     seen = set()
@@ -472,15 +474,20 @@ class FigureWorkbench:
                         seen.add(element["id"])
                         elements.append({**element, "label": str(element.get("label", element["id"])), "role": str(element.get("role", "element"))})
                     reason = "Select a mark, axis, label or guide to describe a change."
-                    # Adopt dimensions and provenance only after the full map is
-                    # validated. A stale map cannot define a new SVG's regions.
+                    # Adopt dimensions and provenance only after the map's
+                    # bindings are validated. Ambiguous SVG IDs disable element
+                    # selection independently of these current source records.
                     panel = candidate_panel
                     version.update({key: value for key, value in declared_version.items() if key in {"spec_sha256", "input_sha256", "source_script_sha256", "resolved_colors_sha256", "auxiliary_inputs_sha256"} and isinstance(value, str)})
                     input_info = normalize_inputs(manifest.get("input", {}), self.root)
                     version = bound_version(version, input_info)
                     map_bound = True
                     valid = bool(elements)
-                    if not elements:
+                    if duplicate_svg_ids:
+                        valid = False
+                        elements = []
+                        reason = "The SVG contains duplicate element IDs. Regenerate it for element selection; source bindings remain available for a region or general note."
+                    elif not elements:
                         reason = "No selectable artists were registered. Source and figure bindings are available; use a region or general note."
                 else:
                     valid = False

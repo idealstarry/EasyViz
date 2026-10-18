@@ -1,8 +1,9 @@
 # EasyViz
 
-Create plans the main comparison before allocating annotation tracks, labels
-and guides; custom radial layouts include ordered bands and bounded label
-spacing. Both tracks retain scientific mappings and review actual exports.
+Start with reviewed figures and direct chat-based tweaks. On first use in a
+conversation, the Agent briefly introduces EasyViz and its optional workbench.
+It inspects the data before asking up to two rounds of consequential missing
+questions, then plans the main comparison and reviews actual exports.
 
 Create and reproduce scientific plots from user data. In create, establish the useful comparison, then choose a basic chart and plan its data-region proportions, layer relationships and color roles. Numeric fields alone do not justify a scatter. In reproduce, use a reference image and your own data, including references without published Source Data or author code. Export individual panels at their final physical size.
 
@@ -14,7 +15,7 @@ Create and reproduce scientific plots from user data. In create, establish the u
 | [Reference Reader](skills/easyviz-reference-reader/SKILL.md) | Independent interpretation of a reference figure without author code |
 | [Figure Reviewer](skills/easyviz-figure-reviewer/SKILL.md) | Compare a rendered panel with the adopted requirements and reference |
 
-Keep all three skill directories together when using the plugin. The main skill can also be used alone, with its documented non-independent fallback. The independent workbench runs on localhost and opens validated `.ev` projects; analysis runs only from an explicit adopted plan. SVG is the default graphic export; PDF, PNG and TIFF remain available on request.
+Keep all three skill directories together when using the plugin. The main skill can also be used alone, with its documented non-independent fallback. The optional workbench runs on localhost and opens validated `.ev` projects; analysis runs only from an explicit adopted plan. SVG is the default graphic export; PDF, PNG and TIFF remain available on request.
 
 ## Install or update
 
@@ -51,11 +52,12 @@ opens relevant design cards and the new exports, corrects visible findings
 and uses `create_review.py` to record a review bound to the current files.
 The tools neither select an aesthetic winner nor certify publication quality.
 
-## Review and iterate
+## Optional workbench
 
-The Agent opens the local workbench after the first validated SVG and `.ev`
-are ready. Ask it to open the workbench for this project to browse figures
-before plotting. The independent entry is
+Request small adjustments directly in the original Agent chat. When you want
+to select elements or annotate several regions, ask the Agent to open the
+workbench for this project. It registers the current validated figure and can
+prepare an editable `.ev` project on demand. The independent entry is
 `easyviz_workbench.py --project-dir /absolute/path/to/project --port 0`.
 
 1. Choose a registered attempt or import a valid `.ev` project.

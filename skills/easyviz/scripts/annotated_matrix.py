@@ -687,15 +687,19 @@ def render(data_path, spec, out, *, spec_path=None, track=None, **inputs):
             summaries = [{"axis": axis, **summary} for axis, rows in prepared["marginals"].items() for summary in rows]
             if summaries: pd.DataFrame(summaries).to_csv(out / "marginal-data.csv", index=False)
             (out / "caption.md").write_text(_caption(prepared, spec))
+            if fig._easyviz_editing_availability["status"] == "available":
+                try:
+                    manifest_path = out / "elements.json"
+                    manifest = json.loads(manifest_path.read_text())
+                    manifest["input"]["aligned_layer_inputs"] = settings["inputs"]
+                    write_json(manifest_path, manifest)
+                except Exception as exc:
+                    core.record_editing_availability(fig, out, reason=exc, stage="aligned_layer_inputs")
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", {"tests_performed": False, "clustering_performed": False, "marginal_population": "displayed grid", "marginals": prepared["marginals"], "supplied_dendrograms": prepared["trees"]})
-            manifest_path = out / "elements.json"
-            manifest = json.loads(manifest_path.read_text())
-            manifest["input"]["aligned_layer_inputs"] = settings["inputs"]
-            write_json(manifest_path, manifest)
             write_json(out / "qa.json", qa)
             require(passed, "Compound matrix QA needs revision; inspect qa.json and the exported preview. Preserve final fonts and canvas or request a larger panel.")
-            core.save_document(out)
             return qa
     except Exception as exc:
         qa = json.loads((out / "qa.json").read_text())

@@ -406,11 +406,11 @@ def render(data_path, spec, out, *, spec_path=None):
             settings["resolved_legends"] = deepcopy(fig._easyviz_legend_layout.config)
             data.to_csv(out / "plotting-data.csv", index=False)
             summary.to_csv(out / "cumulative-data.csv", index=False)
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", {"method": "unweighted_empirical_distribution", "tests_performed": False, "smoothing_applied": False, "distributions_fitted": False, "confidence_intervals_computed": False, "experimental_independence_inferred": False, "observation_counts": {group: int(rows["observation_count"].iloc[0]) for group, rows in summary.groupby("group", sort=False)}})
             write_json(out / "qa.json", qa)
             require(passed, "Canvas or source-to-curve QA needs revision; inspect qa.json and the exported panel. Preserve final dimensions and fonts or explicitly request a larger panel.")
-            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

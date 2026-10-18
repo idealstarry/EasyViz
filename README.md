@@ -18,9 +18,9 @@ or references to editable scientific figures.
 | **Create** | Data and a scientific question | Choose a useful chart, apply suitable design and review the image. |
 | **Reproduce** | A reference image and your data | Read the reference, implement its layers and compare the result. |
 
-Receive SVG by default, a separate caption and an editable `.ev` project with
-code and declared plotting data at your chosen size and typography. Request
-PDF, PNG or TIFF when needed.
+Receive a reviewed SVG, separate caption, runnable code/settings and traceable
+plotting inputs at your chosen size and typography. Request PDF, PNG or TIFF
+when needed; an editable `.ev` project and local workbench are optional.
 
 For custom Create panels, the Agent plans the [main comparison and supporting
 layers](skills/easyviz/references/evidence-first-create.md) before the first render.
@@ -59,7 +59,7 @@ See [installation and update options](INSTALL.md). Start a new chat after instal
 ```text
 Use EasyViz to inspect /path/to/my-data and recommend useful figures.
 Use an 80 × 70 mm panel and 8 pt text. Inspect and refine the actual images
-before delivery, export SVG and an editable .ev project, and save a separate caption.
+before delivery, export SVG and save a separate caption and runnable code.
 ```
 
 **Reproduce**
@@ -67,12 +67,16 @@ before delivery, export SVG and an editable .ev project, and save a separate cap
 ```text
 Use EasyViz to reproduce this reference with my measurements.csv.
 Keep its layers and axis structure, use a 100 × 76 mm panel and 8 pt text,
-and write plotting code for any unsupported layers. Export SVG and an editable .ev project.
+and write plotting code for any unsupported layers. Export SVG and save a separate caption.
 ```
 
-The Agent establishes the question and experimental units, selects suitable
-literature mechanisms, and reviews the actual images. Adopted statistical
-results remain bound to the plotted comparison during cosmetic edits.
+On first use in each chat, the Agent briefly explains drawing, chat-based
+tweaks and the optional workbench. It inspects the data, then asks only the
+consequential missing questions, within at most two clarification rounds.
+You can ask it to recommend a design. It selects suitable literature
+mechanisms, checks the actual images and corrects concrete findings before
+the first finished delivery. Small changes can be requested directly in chat;
+cosmetic edits preserve adopted statistics and scientific meanings.
 
 ## Examples
 
@@ -147,16 +151,18 @@ Choose a palette for the marks and scientific meaning. Defaults are editable.
 
 [All palettes, HEX values and literature sources](docs/palettes.md).
 
-## Local workbench
+## Optional local workbench
 
-Ask your Agent to use EasyViz to create, reproduce or edit a figure. After the
-first validated SVG and `.ev` project are ready, it opens the workbench by
-default and provides the local address. Ask for files only to skip the browser.
-To open the project library before plotting:
+For ordinary plotting and small changes, stay in the Agent chat. To annotate
+several locations or compare attempts visually, ask:
 
 ```text
 Open the EasyViz workbench for this project.
 ```
+
+The Agent opens the local page only on request. It can register the current
+validated SVG or prepare an editable `.ev` project when requested; ordinary
+delivery needs no browser, running service or MCP connection.
 
 Use the local page at `http://127.0.0.1:PORT/` to annotate figures, and the
 original Agent chat to apply your edits:
@@ -198,7 +204,7 @@ project alone does not run its code.
 [First Create delivery](skills/easyviz/references/first-draft.md) ·
 [Reference to code](skills/easyviz/references/reference-to-code.md) ·
 [Development](docs/development.md) ·
-[Validation and limits](docs/validation-v0.5.2.md)
+[Validation and limits](docs/validation-v0.5.3.md)
 
 Original code and documentation: [MIT](LICENSE).
 Third-party materials retain their own terms; see [source attribution](THIRD_PARTY_NOTICES.md).

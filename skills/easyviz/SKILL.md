@@ -5,10 +5,51 @@ description: Create or reproduce scientific plots from bioinformatics source dat
 
 # EasyViz
 
-Turn a data directory or prepared tables, a scientific question or reference image, requested changes, and export preferences into individual panels ready for manuscript assembly. Preserve the final canvas dimensions and text sizes so the user can arrange panels at their recorded size. SVG is the default graphic export; retain explicitly requested PDF, PNG or TIFF outputs. Use a validated `.ev` project for workbench editing and transport of declared plotting inputs.
+Turn a data directory or prepared tables, a scientific question or reference image, requested changes, and export preferences into individual panels ready for manuscript assembly. Preserve the final canvas dimensions and text sizes so the user can arrange panels at their recorded size. SVG is the default graphic export; retain explicitly requested PDF, PNG or TIFF outputs. Deliver reviewed graphics directly in the conversation. The workbench, MCP connection and `.ev` project are optional editing tools.
 
 Candidate helpers may also generate PNG for actual image review. That preview
 does not require additional PDF or PNG formats in the final delivery.
+
+## First use and focused intake
+
+On the first EasyViz plotting use in each conversation, give one short introduction
+in the user's language. It must briefly communicate both reviewed delivery with
+direct chat refinements **and** the optional workbench for selecting/annotating
+elements or regions, including a phrase the user can say to open it (for example,
+“open the workbench” or “打开工作台”). Do not omit workbench discovery when
+shortening the introduction. Adapt the wording naturally; this is not a required
+verbatim template. For example:
+
+> EasyViz is ready. I'll draw and inspect the figure before delivery; you can ask
+> for small changes here. Say “open the workbench” if you'd like to select elements
+> or regions and annotate several changes. Save the comments there, then ask me
+> to apply them in this conversation.
+
+Remember that introduction in the conversation context only. Do not create a
+global flag, telemetry, extra file or persistent preference for it. Do not repeat
+it for every panel or while applying edits. A discussion about EasyViz or its
+installation alone does not begin a plotting task or start the workbench.
+
+Read available data, project notes, accepted settings and, for Reproduce, the
+reference before asking questions. For each new plotting request, use **at most
+two intake rounds**, with one or two consequential questions per round; skip
+questions already answered or unnecessary for a sound result. Do not restart
+the budget for each table, candidate or routine revision. Prioritize the purpose,
+experimental unit, pairing, units and uncertainty definition. Ask about manuscript
+versus presentation use or a material layout preference when it changes the
+design. Give brief answer choices and a reasoned recommendation when helpful;
+“recommend for me” delegates design judgment, not missing scientific facts.
+
+For Create, settle what the reader should compare and recommend an encoding.
+For Reproduce, settle the reference region, real-data mapping and intended
+adaptations. The user need not specify a renderer, every hue or line width.
+Honor supplied choices and carry adopted answers into the existing plotting
+specification, settings or project context using their supported fields; retain
+their provenance without adding unsupported keys to strict schemas. After two
+rounds, keep unresolved facts explicit and proceed with supported descriptive
+layers. Do not invent pairing, units or inferential assumptions to finish a
+statistical layer. If even a descriptive mapping remains undefined, state that
+specific blocker instead of drawing a misleading figure.
 
 ## Inputs and scope
 
@@ -84,13 +125,13 @@ they do not require the user's reference paper to publish its data or code.
 
 ## Execute
 
-1. Inspect the data and user requirements. Fill missing cosmetic preferences from recorded project settings or the shared defaults; clarify only consequential ambiguity.
+1. Give the first-use introduction once, inspect the data and user requirements, and follow the focused intake above. Fill missing cosmetic preferences from accepted project settings or task-appropriate design judgment.
 2. Follow the chosen track to produce an adopted plotting specification. In Create, decide the reading task, graphical organization and visual roles separately using [Design paths](references/design-space.md); a basic family has several valid solutions. For a custom/multi-layer panel or related set, use [Evidence before layout](references/evidence-first-create.md) to distinguish the main comparison from lookup detail and allocate supporting tracks before rendering. Additional layers need a purpose. In Reproduce, obtain an independent image reading before selecting implementation templates.
 3. Establish physical width and height, fonts, formats and project settings. Choose the leading layer and where category identity is decoded before choosing hues or outlines. Preserve shared profiles and category assignments, and resolve conflicts before rendering. A gallery palette or sample's complete layout is not the default for every task.
 4. Check implementation contracts. For new Create panels, inspect relevant [card mechanisms](references/design-cards.md) and follow [First reviewed delivery](references/first-draft.md). Candidate helpers cover a limited design set; adapt a spec or write focused/custom code when proposals miss the chosen route, including within a supported chart family. Examples have bounded contracts; copy them into the writable project before adapting. Preserve scientific and explicit user constraints; never guess that an existing key was a default and remove it. Reproduce retains its adopted reference and settings.
 5. Actually open the rendered images before presenting a finished result. Compare meaningful alternatives when design or reading-task choices are unresolved; routine corrections need no compulsory candidate set. Inspect palette decoding, point/summary crossings, contour hierarchy, category gaps, cell proportions, guide footprint, clipping and glyphs at final proportions. Use [Create design decisions](references/create-style.md), [physical point placement](references/collision-placement.md) and [Legend layout](references/legend-layout.md) where applicable. Obtain independent review when available; otherwise label self-review. Follow [Visual review](references/visual-review.md), using at most three initial visual passes while preserving science, agreed fonts and dimensions. Later feedback or explicitly continued work retains the cumulative history as a followup; it does not establish three-pass first-delivery success.
 6. For new Create delivery, save and check the review bound to the selected current exports using [First reviewed delivery](references/first-draft.md); pending or stale records do not establish readiness. Deliver individual panels, separate `caption.md`, runnable code/settings, traceable data or input references, computed statistics when used, and actual review findings. Report unresolved limitations without claiming an unreviewed output is finished.
-7. When the user asks to use EasyViz to create, reproduce or edit a figure, open the [local workbench](references/figure-workbench.md#default-activation) by default after the first current validated SVG and `.ev` are ready. Show that attempt and provide its local address. Reuse the project's running page for subsequent revisions. When MCP tools are available, connect the actual authoring session and wait for submitted annotations through the [same-session workflow](references/mcp.md#original-session-editing). Honor a request for files only or no browser; if browser opening is unavailable, report that and provide the address. An explicit request to open the workbench can start the library before a figure exists. Opening the page alone does not establish an Agent connection.
+7. Deliver the reviewed result and support ordinary chat refinements from the accepted code/settings. Start the [local workbench](references/figure-workbench.md#optional-activation) only when the user requests it or accepts an offer for visual annotations. Generate `.ev` only for a requested workbench/editable-project workflow. Browser, element-map, project-packaging or MCP failures do not invalidate otherwise reviewed graphic exports; report the affected optional capability separately. They never waive scientific, size, font or export checks.
 
 ## Output rules
 
@@ -105,63 +146,37 @@ they do not require the user's reference paper to publish its data or code.
 | Data integrity | Do not silently omit observations, reinterpret uncertainty, recompute upstream bioinformatics analysis, or invent values from reference pixels. |
 | Availability | In sparse dot matrices, distinguish observed zero, explicitly unmeasured and coordinates absent from the supplied table. A missing row does not establish that measurement was attempted. Retain quantitative areas; use a separate decoded presence flag if tiny positive marks need help at the final size. |
 | Traceability | Save the track, reference input mode, source paths, transformations, mappings, statistics, actual font and palette, dimensions, formats, and dpi. |
-| Editable project | Package the current SVG, genuine nonempty element map, code/settings, source provenance and declared plotting inputs in `.ev` for workbench use. Renaming a PDF, PNG or SVG does not create an editable project. Include requested additional exports when present; bundle only declared inputs. |
+| Editable project | Only for a requested workbench/editable-project workflow, package the current SVG, genuine nonempty element map, code/settings, source provenance and declared plotting inputs in `.ev`. Ordinary delivery needs no `.ev`. Renaming a PDF, PNG or SVG does not create an editable project. Include requested additional exports when present; bundle only declared inputs. |
 | Evidence | Distinguish image observations, caption or method evidence, author-code evidence, and design decisions. Report checks actually performed and their input scope; a successful example does not establish untested generalization. Disclose an unavailable visual review. |
 
-## Local editing and MCP
+## Optional local editing and MCP
 
-For installation and host-specific setup in DeepSeek Harness, read
-[DeepSeek Harness](references/deepseek-harness.md). The same two plotting tracks
-and review rules apply; the host's filesystem skill provider supplies discovery.
+For installation or host-specific setup in DeepSeek Harness, read
+[DeepSeek Harness](references/deepseek-harness.md). Host setup does not change
+these two tracks or their first-delivery review.
 
-Keep workbench edits in the conversation that first invoked EasyViz unless the
-user explicitly requests a separate editing worker. When the user says “Apply
-the saved EasyViz workbench comments,” read the current figure's pending
-requests and perform the [edit application](references/apply-figure-requests.md#iterate-from-the-original-chat)
-in this turn. **Save drafts** is sufficient; do not require an extra **Submit
-edits** or copied instructions. First inspect existing jobs when available:
-process a matching queued or still-valid running original-session job rather
-than applying the same requests twice. Free-form comments require explicit
-Agent source/specification edits, fresh exports and actual-image review.
+Apply ordinary chat changes directly to the accepted script/specification and
+inspect the fresh output. Do not start a browser, require an element map or
+connect MCP for a color, line, legend or layout correction in chat.
 
-For browser-submitted batches with MCP, call
-`connect_session` using the current host's actual authoring-session ID, keep its
-connection token private, and call bounded `wait_for_submission` while the
-Agent remains active. A submitted job returns to that waiting Agent; continue
-the adopted track, edit the source and render a fresh attempt in this same
-conversation. Report actual editing, rendering and reviewing starts through
-`report_session_progress`; claiming a job establishes receipt, not editing.
-Register the new attempt and use `complete_session_job` only for fulfilled
-requests after inspecting the actual result. The project's original-session
-owner persists across expired connections; reconnect that owner rather than
-substituting another conversation.
+When visual selection is requested, read [Figure workbench](references/figure-workbench.md).
+It provides numbered annotations, attempt comparison and validated `.ev`
+transport. Keep edits in the original authoring conversation. On “apply the
+saved workbench comments,” follow [Edit application](references/apply-figure-requests.md#iterate-from-the-original-chat):
+**Save drafts** is sufficient, and existing matching jobs must be checked to
+avoid applying a batch twice. Preserve the user's workbench name; it does not
+authorize an in-image title.
 
-Live MCP waits receive work only while the Agent is active. An optional host
-scheduled check is a separate way to resume the original conversation: create
-it successfully in the host first, then register its actual ID, scope and
-expiration using [MCP guidance](references/mcp.md). A local registration or a
-requested interval does not prove idle delivery. If no host task is verified,
-retain saved requests for the original Agent's next turn. Do not silently enable the
-dedicated Codex worker: it starts fresh sessions and cannot fulfill an
-original-session requirement.
+Read [MCP](references/mcp.md#original-session-editing) only when connecting the
+optional editing queue. It can deliver submissions to an actively waiting
+original Agent; it does not by itself wake an idle conversation. Preserve saved
+comments for the next message in that same conversation when no live connection
+is available. Never substitute a fresh dedicated worker for the original
+session without the user's explicit request.
 
-Open the [independent workbench](references/figure-workbench.md) for its project
-library, validated `.ev` imports, numbered selections, comparison and restoration.
-Read the user's editable workbench name from `figure-info.json` or service
-inspection and preserve it in new attempts. It identifies the project figure;
-it does not authorize adding an in-image title.
-SVG supplies vector interaction through its genuine element map; collections
-remain groups unless observations have individual mappings. Raster layers do
-not become vectors. **Save drafts** retains instructions; **Submit edits**
-queues them for the connected original session and exposes progress or
-cancellation. The optional dedicated worker remains a separate, explicitly
-requested execution route. Preserve original attempts, the adopted science
-and source bindings; record outcomes only against verified new exports. See
-[Edit application](references/apply-figure-requests.md) for manual processing.
-
-An optional [project-scoped MCP connection](references/mcp.md) exposes the same
-library, requests, render jobs and original-session queue to compatible Agents.
-It also exposes the separate dedicated-worker route. These are editing
-interfaces for the existing two tracks.
-
-For independent image reading and comparison, pass an explicit file path to [EasyViz Reference Reader](../easyviz-reference-reader/SKILL.md) or [EasyViz Figure Reviewer](../easyviz-figure-reviewer/SKILL.md). These are narrow helper skills, not automatic proof that a subagent used them. Supply accessible images and the permitted context. If a helper or collaboration tools are unavailable, follow the corresponding reference directly and record that the review was not independent.
+For independent image reading and comparison, pass accessible file paths to
+[EasyViz Reference Reader](../easyviz-reference-reader/SKILL.md) or
+[EasyViz Figure Reviewer](../easyviz-figure-reviewer/SKILL.md), with their permitted
+context. These narrow helpers do not require a workbench. If independent
+collaboration is unavailable, follow their references directly and label the
+review as self-review.

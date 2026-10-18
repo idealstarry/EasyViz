@@ -15,6 +15,7 @@ import shutil
 import struct
 import tempfile
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 import zlib
 
@@ -273,6 +274,42 @@ class CreateReviewTests(unittest.TestCase):
         self.assertIn("cannot prove", result["limitation"])
         self.stage()  # Restaging identical artifacts preserves completed review.
         self.assertEqual(self.read(staged["review"]), record)
+
+    def test_optional_mapping_failure_preserves_review_and_real_source_checks(self):
+        with patch.object(renderer.figure_elements, "write", side_effect=ValueError("Optional map unavailable")):
+            qa = renderer.render(self.data, deepcopy(self.spec), self.figure,
+                                 spec_path=self.spec_path, track="create")
+        self.assertEqual(qa["status"], "pass")
+        self.assertEqual(qa["editing_availability"]["status"], "unavailable")
+        self.assertFalse((self.figure / "elements.json").exists())
+        staged = self.stage()
+        self.assertEqual(staged["measured_checks"], {key: "passed" for key in gate.MEASURED_CRITERIA})
+        self.recorded_fixture(staged)
+        self.assertEqual(gate.check(staged["packet"])["gate_status"], "recorded")
+
+        settings_path = self.figure / "settings.json"
+        settings = self.read(settings_path)
+        other = self.root / "other-data.csv"
+        other.write_text("x,y\n1,999\n")
+        conflicts = []
+        changed_binding = deepcopy(settings)
+        changed_binding["source_bindings"]["data_file"] = {
+            "path": str(other), "sha256": settings["input_sha256"]}
+        conflicts.append(changed_binding)
+        changed_direct_path = deepcopy(settings)
+        changed_direct_path["input_file"] = str(other)
+        conflicts.append(changed_direct_path)
+        for changed in conflicts:
+            with self.subTest(declaration=changed):
+                self.write(settings_path, changed)
+                self.assertEqual(gate.snapshot(self.figure, caption=self.caption)
+                                 ["measured_checks"]["source_provenance"]["status"], "failed")
+        self.write(settings_path, settings)
+
+        self.data.write_text("x,y\n1,2\n2,3\n3,99\n4,4\n")
+        self.assertEqual(gate.snapshot(self.figure, caption=self.caption)
+                         ["measured_checks"]["source_provenance"]["status"], "failed")
+        self.assert_blocked(staged, "changed since staging")
 
     def test_export_replay_invalidates_prior_attestation_even_when_qa_still_passes(self):
         staged = self.stage()

@@ -11,8 +11,8 @@ export const SKILLS = ['easyviz', 'easyviz-reference-reader', 'easyviz-figure-re
 const HELP = `EasyViz — scientific plotting skills and local figure review
 
 Usage:
-  easyviz deepseek [--project DIRECTORY | --dsh-home DIRECTORY] [--python PATH]
   easyviz codex [--home OS_HOME] [--codex PATH] [--python PATH]
+  easyviz deepseek [--project DIRECTORY | --dsh-home DIRECTORY] [--python PATH]
   easyviz install [--target codex|deepseek-harness] [--python PATH]
     Codex:   [--home OS_HOME] [--codex PATH]
     Harness: [--project DIRECTORY | --dsh-home DIRECTORY]

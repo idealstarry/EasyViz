@@ -89,7 +89,7 @@ def guard_output_inputs(data_path, out, *, spec=None, spec_path=None, profile=No
     """
     out = Path(out)
     names = {"qa.json", "settings.json", "stats.json", "elements.json", "plotting-data.csv",
-             "source-data.csv", "panel.ev", "document-status.json", "summary-data.json",
+             "source-data.csv", "panel.ev", "document-status.json", "editing-status.json", "summary-data.json",
              "summary-data.csv", "cumulative-data.csv", "matrix-cells.csv", "artist-values.csv",
              "marginal-data.csv", "caption.md", "analysis-caption.md"}
     names.update(f"panel.{extension}" for extension in ("pdf", "svg", "png", "tiff"))
@@ -153,7 +153,7 @@ def load_adopted_analysis(data_path, spec, *, spec_path=None):
         raise SpecError(f"Adopted analysis: {exc}") from None
 
 
-VERSION = "0.5.2"
+VERSION = "0.5.3"
 
 
 REQUIRED = {
@@ -361,14 +361,15 @@ def write_json(path, obj):
 
 
 def save_document(out):
-    """Package a current mapped SVG after its graphic exports pass QA.
+    """Explicitly package a current mapped SVG after graphic exports pass QA.
 
-    Legacy in-memory/custom exports without a complete file binding still
-    remain valid graphics. Their explicit status must not claim an editable
-    document was delivered.
+    Ordinary render/export never calls this optional workbench boundary.
+    Missing editing dependencies do not affect already checked graphics.
     """
     out = Path(out)
+    invalidate_document(out)
     if not (out / "panel.svg").is_file():
+        write_json(out / "document-status.json", {"status": "unavailable", "reason": "A current SVG export is required"})
         return None
     try:
         from ev_document import EVDocumentError, export_document
@@ -386,18 +387,43 @@ def save_document(out):
     return path
 
 
-def begin_document(out, spec, spec_path):
-    """Invalidate the previous document and persist omitted input specs."""
-    out = Path(out)
+def invalidate_document(out):
+    """Remove a previous editable archive before a new attempt or export."""
     for name in ("panel.ev", "document-status.json"):
-        target = out / name
+        target = Path(out) / name
         require(not target.is_symlink(), "Document output must not be a symlink")
+        target.unlink(missing_ok=True)
+
+
+def begin_document(out, spec, spec_path):
+    """Invalidate old editing metadata and persist omitted input specs."""
+    out = Path(out)
+    invalidate_document(out)
+    for name in ("elements.json", "editing-status.json"):
+        target = out / name
+        require(not target.is_symlink(), "Editing metadata output must not be a symlink")
         target.unlink(missing_ok=True)
     if spec_path is None:
         spec_path = out / "plot-spec.json"
         require(not spec_path.is_symlink(), "Document specification must not be a symlink")
         write_json(spec_path, spec)
     return spec_path
+
+
+def record_editing_availability(fig, out, *, reason=None, stage=None):
+    """Record optional SVG selection availability separately from graphic QA."""
+    out = Path(out)
+    status = {"status": "unavailable" if reason else "available",
+              "scope": "SVG element mapping only; scientific and export validity require passing qa.json"}
+    if reason:
+        # A failed map must never survive as metadata for the current graphics.
+        (out / "elements.json").unlink(missing_ok=True)
+        status.update(reason=str(reason), stage=stage)
+    else:
+        status.update(file="elements.json", canvas="svg")
+    fig._easyviz_editing_availability = status
+    write_json(out / "editing-status.json", status)
+    return status
 
 
 def number(value, name, minimum=0, strict=True):
@@ -1493,10 +1519,25 @@ def draw(data, spec, layout, typography, result):
 
 
 def export(fig, out, spec, layout):
+    out = Path(out)
     formats = spec.get("formats", ["svg"])
     require(isinstance(formats, list) and len(formats) > 0 and len(formats) == len(set(formats)), "formats must be a nonempty list without duplicates")
     require(all(f in ("pdf", "svg", "png", "tiff") for f in formats), "Supported formats: pdf, svg, png, tiff")
-    figure_elements.attach_layout(fig, spec)
+    # Direct custom exporters use this boundary without begin_document(). They
+    # must invalidate old archives/maps too; a failed replacement cannot keep a
+    # previous attempt's editing metadata attached to the current graphics.
+    invalidate_document(out)
+    for name in ("elements.json", "editing-status.json"):
+        target = out / name
+        require(not target.is_symlink(), "Editing metadata output must not be a symlink")
+        target.unlink(missing_ok=True)
+    mapping_error, mapping_stage = None, None
+    try:
+        figure_elements.attach_layout(fig, spec)
+    except Exception as exc:
+        # Only semantic tagging is optional. Actual canvas drawing, clipping
+        # measurement and each graphic write below still run and may fail.
+        mapping_error, mapping_stage = exc, "attach_layout"
     width_px = round(layout["width_mm"] / 25.4 * layout["dpi"])
     height_px = round(layout["height_mm"] / 25.4 * layout["dpi"])
     sizes = {}
@@ -1535,8 +1576,18 @@ def export(fig, out, spec, layout):
         # above. Review helpers can reject an export replaced before staging
         # without pretending old page/pixel metadata describes the new file.
         sizes[extension]["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
-    figure_elements.write(fig, out, spec, layout)
     fig._easyviz_observation_clipping = observation_clipping.summarize(clipping_reports)
+    if mapping_error is None:
+        try:
+            manifest = figure_elements.write(fig, out, spec, layout)
+            if "svg" not in formats:
+                mapping_error, mapping_stage = "SVG was not requested; vector element selection is unavailable", "formats"
+            elif (not isinstance(manifest, dict) or not (out / "elements.json").is_file()
+                  or manifest.get("version", {}).get("figure_sha256") != sizes["svg"]["sha256"]):
+                mapping_error, mapping_stage = "Element mapping was not bound to the current SVG export", "write"
+        except Exception as exc:
+            mapping_error, mapping_stage = exc, "write"
+    record_editing_availability(fig, out, reason=mapping_error, stage=mapping_stage)
     return sizes
 
 
@@ -1692,6 +1743,7 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
                     (out / name).write_bytes(content)
             data.to_csv(out / "plotting-data.csv", index=False)
             (out / "source-data.csv").write_bytes(data.attrs["source_csv_bytes"])
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", results)
             write_json(out / "qa.json", qa)
@@ -1700,7 +1752,6 @@ def _render(data_path, spec, out, profile_record=None, spec_path=None, track=Non
             point_boundary_issues = len(point_layout.get("categorical_boundary_rows", [])) if point_layout else 0
             clipped_marks = max((report["clipped_observations"] for report in clipping_report["by_format"].values()), default=0)
             require(qa["status"] == "pass", f"Canvas QA needs revision: {len(clipped)} clipped text elements, {len(overlaps)} tick-label overlaps, {len(legends['issues'])} legend issues, {len(cell_annotations['issues'])} cell annotation issues, {point_issues} observation spacing conflicts, {point_boundary_issues} observation marker boundary issues, {clipped_marks} clipped observation envelopes, {len(missing_glyphs)} missing glyph warnings; inspect qa.json and panel.png. Preserve text and mark sizes; explicitly revise the adopted range/layout or split a panel that cannot fit.")
-            save_document(out)
             return qa
         finally:
             plt.close(fig)

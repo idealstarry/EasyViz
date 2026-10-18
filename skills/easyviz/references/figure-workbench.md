@@ -5,13 +5,23 @@ changes to a rendered panel; it does not choose or replace the track. In
 reproduce, compare each change with the adopted reference specification. In
 create, retain the accepted scientific question, analysis and data encodings.
 
-## Default activation
+## Optional activation
 
-When the user asks the Agent to use EasyViz for plotting or editing, open this
-workbench as part of delivery after the first current validated SVG and `.ev`
-are ready. The user does not need a separate workbench request. A discussion
-about EasyViz alone does not start a server. Honor files-only, no-browser or
-headless operation; provide the local address if a browser cannot be opened.
+Open this workbench when the user requests it or accepts an offer to annotate
+selected elements/regions. Ordinary EasyViz plotting and chat refinements deliver
+reviewed SVG and the requested additional formats directly; they do not start
+a server, open a browser, create `.ev` or connect MCP. Introduce the optional
+workbench once under [First use and focused intake](../SKILL.md#first-use-and-focused-intake),
+without making users choose an editing interface before they can receive a plot.
+
+For a requested visual-editing workflow, use the current validated SVG and its
+genuine element map, checking their bindings to the actual source and inputs.
+Prepare a validated `.ev` when an editable project or transport is requested;
+opening an already registered local attempt does not require a redundant bundle.
+Honor no-browser or headless operation and provide the local address when a
+browser cannot be opened. A failure in mapping, packaging, browser startup or
+MCP affects that optional capability; preserve the independently reviewed
+graphics, code, settings and caption as the ordinary deliverable.
 
 For the first attempt, start the launcher with the actual project and figure:
 
@@ -28,9 +38,11 @@ has a running workbench, reuse its address and select the new attempt through
 its library; do not start another service for each render. Opening the page
 alone does not connect an Agent.
 
-The authoring conversation remains the default owner of the edits. Its Agent
-calls MCP `connect_session` using the host's actual session ID, then uses
-bounded `wait_for_submission` calls while active. The page's **Connect original
+The authoring conversation remains the default owner of the edits. Saving
+comments and asking that Agent to apply them in chat requires no MCP connection.
+For a requested live connection, its Agent calls MCP `connect_session` using
+the host's actual session ID, then uses bounded `wait_for_submission` calls while
+active. The page's **Connect original
 Agent** control explains this connection; it does not create another Agent or
 enable a CLI worker. **Original Agent connected** reports the current leased
 binding. Verify actual submission and completion in that conversation before
@@ -80,12 +92,14 @@ editing worker needs a configured, authenticated Codex client.
 
 ## Editable `.ev` projects and SVG interaction
 
-`.ev` is one validated project bundle containing the current SVG, its real
+`.ev` is an optional validated project bundle containing the current SVG, its real
 nonempty element map, source provenance, plotting code/settings and explicitly declared
 data and auxiliary inputs. It may also contain requested PDF, PNG or TIFF
 exports. Bundle only the inputs actually declared for this figure, rather than
 an entire data directory. Import validates and copies its contents into a fresh
 project attempt; importing does not execute source code.
+Create it for an editable-project/workbench request, not for every graphic
+delivery or ordinary chat correction.
 
 SVG is the default graphic export and the workbench's interactive canvas.
 Vector selection is backed by actual SVG IDs and matching element mappings.

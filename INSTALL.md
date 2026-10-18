@@ -17,7 +17,7 @@ npx easyviz codex
 
 This downloads the published package and registers its complete skill bundles
 in the selected client. A global CLI installation is optional. Use
-`npx easyviz@0.5.2 codex` to pin this version, or `npx easyviz@latest codex`
+`npx easyviz@0.5.3 codex` to pin this version, or `npx easyviz@latest codex`
 when explicitly updating to the newest published version.
 
 | Client | Command |
@@ -105,9 +105,19 @@ For a plotting task, the Agent checks the selected Python environment against th
 
 Example first request:
 
-> Use $easyviz to make a dot plot from my source table. Use Arial 8 pt, a 180 × 120 mm panel, SVG and an editable .ev project, with a separate caption. Also export PDF if needed for assembly.
+> Use $easyviz to make a dot plot from my source table. Use Arial 8 pt, a 180 × 120 mm panel, SVG, runnable code and a separate caption. Inspect and refine the actual image before delivery. Also export PDF if needed for assembly.
 
-## Independent workbench and original-session editing
+## Optional workbench and original-session editing
+
+Ordinary Create/Reproduce tasks and chat-based tweaks do not launch the
+workbench or connect MCP. On the first plotting invocation in each conversation,
+the Agent briefly introduces both direct chat editing and the optional workbench.
+It inspects the inputs before asking up to two rounds of consequential missing
+questions; an adequately specified request can proceed immediately.
+
+When the user asks to open the workbench or annotate a figure, follow the
+steps below. `.ev` packaging is requested separately or prepared for portable
+workbench editing; it is not a requirement for ordinary SVG delivery.
 
 The [workbench](skills/easyviz/references/figure-workbench.md) starts with an
 authorized project directory even when no figure is selected. Resolve the

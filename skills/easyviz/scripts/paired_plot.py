@@ -440,11 +440,11 @@ def render(data_path, spec, out, *, spec_path=None):
                 qa["auto_layout"] = settings["auto_layout"] = fitted
             data.to_csv(out / "plotting-data.csv", index=False)
             pd.DataFrame(audit["summary_rows"]).to_csv(out / "summary-data.csv", index=False)
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             write_json(out / "settings.json", settings)
             write_json(out / "stats.json", {**settings["summary_policy"], "complete_units": audit["complete_units"], "observations": len(data), "pairing_inferred": False, "missing_values_filled": False})
             write_json(out / "qa.json", qa)
             require(passed, "Canvas or source-to-artist QA needs revision; inspect qa.json and the actual exported panel. Preserve final dimensions and fonts or explicitly adopt a larger panel.")
-            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

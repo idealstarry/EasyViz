@@ -485,6 +485,7 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
             if spec_path:
                 settings.update(spec_file=str(Path(spec_path).resolve()), spec_file_sha256=hashlib.sha256(Path(spec_path).read_bytes()).hexdigest())
             settings["source_bindings"] = deepcopy(fig._easyviz_source_bindings)
+            qa["editing_availability"] = settings["editing_availability"] = fig._easyviz_editing_availability
             write_json(out / "settings.json", settings)
             data.to_csv(out / "plotting-data.csv", index=False)
             write_json(out / "stats.json", {"method": "supplied_summaries", "uncertainty": spec["uncertainty"],
@@ -493,7 +494,6 @@ def render(data_path, spec, out, *, spec_path=None, track=None):
                        "new_measurements_interpolated": False, "connections": "Straight segments between adjacent supplied x values"})
             write_json(out / "qa.json", qa)
             require(passed, "Source, labels or fixed-canvas QA needs revision; inspect qa.json and the render")
-            core.save_document(out)
             return qa
     except Exception as exc:
         status = json.loads((out / "qa.json").read_text())

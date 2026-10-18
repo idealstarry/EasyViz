@@ -24,7 +24,12 @@ documented self-review fallback rather than inventing an independent review.
 
 ## Workbench and edits
 
-Launch `scripts/easyviz_workbench.py` with the authorized project directory.
+Deliver reviewed figures and handle small revisions in the current chat by
+default. The shared first-use introduction and two-round intake limit in
+[EasyViz](../SKILL.md#first-use-and-focused-intake) apply in Harness too.
+
+When the user requests visual annotations, launch
+`scripts/easyviz_workbench.py` with the authorized project directory.
 The user can select SVG elements or regions and save numbered comments. On
 the user's next message in this same Harness session, read and apply those
 comments through the ordinary [edit application](apply-figure-requests.md)
